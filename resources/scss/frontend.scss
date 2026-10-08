@@ -1,0 +1,3625 @@
+// Global Silk Mills — public site styles (Bootstrap 5 + theme accents).
+@import 'bootstrap/scss/bootstrap';
+
+// Brand palette (from Designs/*.pdf) — will move to CSS custom properties
+// fed by Settings → Branding when the theming pass lands.
+$gsm-navy: #1b2a4a;
+$gsm-magenta: #1b2a4a;
+$gsm-orange: #c29b54;
+$gsm-cream: #f5efe6;
+
+.gsm-btn-gradient {
+    // CSS custom properties (Theme Customizer → Buttons) override these
+    // SCSS-variable fallbacks at runtime — safe to theme without a rebuild.
+    background: linear-gradient(90deg, var(--gsm-btn-gradient-from, #{$gsm-magenta}) 0%, var(--gsm-btn-gradient-to, #{$gsm-orange}) 100%);
+    border: 0;
+    border-radius: var(--gsm-radius-buttons, 8px);
+
+    &:hover {
+        filter: brightness(1.08);
+        color: #fff;
+    }
+}
+
+.gsm-header {
+    // Design 01 Header.png: tall white bar (~96px with the 68px logo).
+    .navbar {
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+    }
+
+    .gsm-nav .nav-link {
+        // Typography from the Theme Customizer (Navigation role) with the
+        // pre-theming design defaults as fallbacks — never hardcoded per se.
+        white-space: nowrap; // "About Us" must never wrap (design 01)
+        font-family: var(--gsm-font-navigation, inherit);
+        font-weight: var(--gsm-weight-navigation, 500);
+        font-size: var(--gsm-size-navigation, 17px);
+        letter-spacing: var(--gsm-spacing-navigation, 0);
+        color: var(--gsm-header-text, #101828);
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+
+        &:hover,
+        &.active {
+            color: var(--gsm-primary, #{$gsm-magenta});
+        }
+    }
+
+    // Design 01: generous ~48px gaps between menu items on desktop.
+    @include media-breakpoint-up(lg) {
+        .gsm-nav .nav-link {
+            padding-left: 1.45rem;
+            padding-right: 1.45rem;
+        }
+    }
+
+    // Design 01 Header.png: gradient CTA pill — fully rounded left edge,
+    // tighter right corner.
+    .gsm-btn-gradient {
+        border-radius: 2rem 0.6rem 0.6rem 2rem;
+        padding: 0.62rem 2.1rem;
+        font-family: var(--gsm-font-buttons, inherit);
+        font-weight: var(--gsm-weight-buttons, 500);
+    }
+}
+
+// Topbar strip (design 01): compact, medium-weight announcement text.
+.gsm-topbar-strip {
+    font-family: var(--gsm-font-body-text, inherit);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+
+    a { text-decoration: none; }
+}
+
+// Clean gold rule under section headings (replaces the
+// diamond/floral ornament — modern minimal divider).
+.gsm-heading-ornament { display: none; } // legacy PNG ornament, retired
+
+.gsm-heading-rule {
+    display: block;
+    width: 64px;
+    height: 3px;
+    margin: 0.75rem auto 0;
+    border-radius: 3px;
+    background: var(--gsm-secondary, #c29b54);
+
+    &.gsm-heading-rule-start { margin-left: 0; margin-right: auto; } // left-aligned blocks
+    &.gsm-heading-rule-sm { width: 48px; height: 2px; }
+}
+
+// Elegant section divider — replaces the GSM garland strip with a soft hairline.
+.gsm-garland-border {
+    height: 1px;
+    max-width: 220px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, var(--gsm-secondary, #c29b54), transparent);
+}
+
+// Retired GSM garland texture (kept as a no-op guard for any stale markup).
+.gsm-garland-border-legacy {
+    height: 42px;
+    background: url('/images/design/line_seperater_part.png') repeat-x top center;
+    background-size: auto 42px;
+}
+
+.gsm-counter-number {
+    color: var(--gsm-accent, #c29b54);
+    font-weight: 600;
+}
+
+.gsm-counter-label {
+    letter-spacing: 0.6px;
+    max-width: 220px;
+    line-height: 1.6;
+}
+
+// About collage (design 04 About.png). The background artwork contains the
+// carpet arch, white frame outlines, baskets and hand-drawn arrows; the
+// canvas locks to the artwork's aspect ratio so %-positioned photos and
+// captions register exactly onto the painted frames at any viewport width.
+.gsm-about {
+    background-color: var(--gsm-light, #f5efe6);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    .gsm-about-canvas {
+        position: relative;
+        aspect-ratio: 1920 / 1090;
+        width: 100%;
+    }
+
+    .gsm-about-text {
+        position: absolute;
+        left: 6.3%;
+        top: 9%;
+        width: 33.5%;
+        z-index: 3;
+    }
+
+    .gsm-about-eyebrow {
+        color: var(--gsm-accent, #c29b54);
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+    }
+
+    .gsm-about-body {
+        line-height: var(--gsm-leading-paragraph, 1.7);
+
+        p { margin-bottom: 0.9rem; }
+    }
+
+    .gsm-about-photo {
+        position: absolute;
+        object-fit: cover;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .gsm-about-rect {
+        left: 49.5%;
+        top: 16.5%;
+        width: 18.3%;
+        height: 44.3%;
+        border: 6px solid #fff;
+        border-radius: 4px;
+        z-index: 1;
+    }
+
+    .gsm-about-oval {
+        left: 49.4%;
+        top: 41.8%;
+        width: 22.7%;
+        height: 55%;
+        border: 8px solid #fff;
+        border-radius: 50%;
+        z-index: 2;
+    }
+
+    .gsm-about-arch {
+        left: 61.9%;
+        top: 7.8%;
+        width: 28.7%;
+        height: 91%;
+        border: 8px solid #fff;
+        border-radius: 50% 50% 3% 3% / 28% 28% 2% 2%;
+        z-index: 2;
+    }
+}
+
+.gsm-about-caption {
+    position: absolute;
+    z-index: 3;
+    text-transform: uppercase;
+    font-family: var(--gsm-font-body-text, inherit);
+    font-weight: 700;
+    font-size: clamp(11px, 0.85vw, 16px);
+    letter-spacing: 0.5px;
+    color: var(--gsm-accent, #c29b54);
+}
+
+.gsm-about-caption-top { left: 42.2%; top: 11%; max-width: 24%; }
+.gsm-about-caption-left { left: 18.2%; top: 80.5%; }
+.gsm-about-caption-bottom { left: 34%; top: 92.5%; }
+
+// Stacked (below lg) variant of the collage captions/photos.
+.gsm-about-stacked {
+    background-color: var(--gsm-light, #f5efe6);
+
+    .gsm-about-caption {
+        position: static;
+        display: block;
+    }
+
+    .gsm-about-stacked-arch {
+        border-radius: 50% 50% 8px 8px / 18% 18% 8px 8px;
+        border: 6px solid #fff;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+    }
+
+    .gsm-about-stacked-oval {
+        border-radius: 50%;
+        border: 6px solid #fff;
+    }
+}
+
+// "About Global Silk Mills" story section (About page design 02).
+.gsm-about-story {
+    background-color: var(--gsm-light, #f5efe6);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .gsm-about-story-heading {
+        line-height: 1.15;
+    }
+
+    // Right column's lead paragraphs sit flush with the left column's
+    // heading row (both are plain row siblings — no vertical centering).
+    .gsm-about-story-lead {
+        padding-top: 0.35rem;
+    }
+
+    .gsm-about-story-photo-wrap {
+        margin-top: 2rem;
+    }
+
+    .gsm-about-story-photo {
+        display: block;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    // Pill-shaped highlights bar with dividers (design 02, bottom strip).
+    .gsm-about-story-highlights {
+        background: #fff;
+        border-radius: 100px;
+        padding: 1.15rem 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem 1.5rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .gsm-about-story-highlight {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--gsm-secondary, #1b2a4a);
+        text-align: center;
+        position: relative;
+        padding-right: 1.5rem;
+
+        &:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 1.3em;
+            background: rgba(27, 42, 74, 0.25);
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    // Mobile: stack the pill's taglines and hide the dividers.
+    @include media-breakpoint-down(md) {
+        .gsm-about-story-highlights {
+            border-radius: 24px;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .gsm-about-story-highlight {
+            padding-right: 0;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+}
+
+// "The Founder's Journey" (About page design 03): botanical-illustrated
+// damask backdrop, portrait bleeding off the right edge, Mission/Vision
+// card row. Unlike the About collage's painted-frame artwork, this
+// background is a soft repeating texture — no pixel-registration canvas
+// needed, only cover + absolutely-positioned decorative overlays.
+.gsm-founder-journey {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--gsm-light, #f5efe6);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 2rem;
+
+    .gsm-founder-content {
+        max-width: 900px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .gsm-founder-story p {
+        margin-bottom: 1.25rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // Decorative illustrations, anchored to the section's left edge.
+    .gsm-founder-ornament {
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: clamp(140px, 14vw, 260px);
+        height: auto;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .gsm-founder-ornament-top {
+        top: -1rem;
+    }
+
+    .gsm-founder-ornament-bottom {
+        bottom: 8%;
+    }
+
+    // Portrait bleeds off the right edge and the bottom of the section.
+    .gsm-founder-portrait {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        height: 100%;
+        width: auto;
+        max-width: 32%;
+        object-fit: cover;
+        object-position: top;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .gsm-founder-cards {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .gsm-founder-card {
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid var(--gsm-accent, #c29b54);
+        border-radius: 4px;
+        padding: 2rem;
+        height: 100%;
+
+        h3 {
+            font-size: 1.4rem;
+        }
+    }
+
+    // Tablet/mobile: ornaments hidden (see blade), portrait not shown,
+    // content takes the full width.
+    @include media-breakpoint-down(lg) {
+        .gsm-founder-content,
+        .gsm-founder-cards {
+            max-width: 100%;
+        }
+    }
+}
+
+// Video Showcase: repeater of alternating photo/text blocks (About page
+// design 05 Founder Video.png).
+.gsm-video-showcase {
+    .gsm-video-showcase-row:not(:last-child) {
+        margin-bottom: 3.5rem;
+    }
+
+    .gsm-video-showcase-play {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+// Instagram oEmbed widget wrapper (video-modal partial): centers Instagram's
+// own native embed inside the lightbox, sized to their fixed aspect ratio.
+.gsm-instagram-embed-wrap {
+    display: flex;
+    justify-content: center;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    iframe {
+        max-width: 100% !important;
+    }
+}
+
+// "Our Artistry Excellence" (About page design 06): 3-photo gallery with
+// overlay titles + a ribbon-notch icon-card strip beneath.
+.gsm-artistry {
+    background-color: var(--gsm-light, #f5efe6);
+    background-repeat: no-repeat;
+    padding-bottom: 5rem;
+
+    // Accordion-style gallery: a horizontally scrollable track once more
+    // than 3 cards exist, so the CMS can add unlimited cards without
+    // breaking the layout (same scroll-snap mechanism as .gsm-history-track).
+    .gsm-artistry-slider {
+        position: relative;
+    }
+
+    // 3 or fewer cards: plain responsive grid, one column per card.
+    .gsm-artistry-track {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    // More than 3 cards: horizontally scrollable track instead (the CMS
+    // can add unlimited cards without breaking the layout).
+    .gsm-artistry-slider-scroll .gsm-artistry-track {
+        display: flex;
+        grid-template-columns: none;
+        gap: 1rem;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        padding-bottom: 0.5rem;
+
+        &::-webkit-scrollbar { display: none; }
+    }
+
+    .gsm-artistry-slider-scroll .gsm-artistry-slot {
+        flex: 0 0 auto;
+        width: clamp(240px, 26vw, 340px);
+        scroll-snap-align: start;
+    }
+
+    // Card button reset (native <button> loses its default chrome).
+    .gsm-artistry-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        text-align: inherit;
+    }
+
+    .gsm-artistry-photo {
+        display: block;
+        width: 100%;
+        aspect-ratio: 547 / 653;
+        object-fit: cover;
+    }
+
+    .gsm-artistry-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: center;
+        padding: 1.5rem 1.25rem;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.75) 100%);
+        color: #fff;
+    }
+
+    .gsm-artistry-title {
+        font-size: 1.4rem;
+        margin-bottom: 0;
+    }
+
+    .gsm-artistry-text {
+        font-size: 0.9rem;
+        margin-top: 0.6rem;
+        max-width: 320px;
+        color: rgba(255, 255, 255, 0.9);
+        // Collapsed by default — only the selected card's description shows.
+        display: none;
+    }
+
+    // Selected/expanded card: reveal its description and mark it with a
+    // thin gold inner border (matches the "Expert Craftsmanship" card's
+    // permanent-open look in the original design).
+    .gsm-artistry-card-active {
+        border: 1px solid rgba(201, 162, 75, 0.6);
+
+        .gsm-artistry-overlay {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.8) 65%);
+            justify-content: center;
+        }
+
+        .gsm-artistry-text {
+            display: block;
+        }
+    }
+
+    .gsm-artistry-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+
+        .gsm-artistry-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: 0;
+            padding: 0;
+            background: #c9bda6;
+
+            &.active { background: #3d3327; }
+        }
+    }
+
+    .gsm-artistry-features-wrap {
+        margin-top: 1rem;
+    }
+
+    .gsm-artistry-features {
+        gap: 1.5rem;
+        position: relative;
+    }
+
+    .gsm-artistry-features-row {
+        flex: 1 1 auto;
+        max-width: 1000px;
+    }
+
+    .gsm-artistry-flourish {
+        width: 48px;
+        height: auto;
+        flex-shrink: 0;
+        opacity: 0.85;
+    }
+
+    .gsm-artistry-flourish-right {
+        transform: scaleX(-1);
+    }
+
+    // Ribbon-notch icon card: a jagged pennant bottom edge, reproduced with
+    // clip-path since no frame asset was exported for this shape.
+    .gsm-artistry-feature-card {
+        background: #fff;
+        border-radius: 4px 4px 0 0;
+        padding: 1.5rem 1.5rem 2.25rem;
+        height: 100%;
+        display: flex;
+        gap: 1rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+        clip-path: polygon(
+            0 0, 100% 0, 100% 88%,
+            92% 100%, 84% 88%, 76% 100%, 68% 88%, 60% 100%, 52% 88%, 44% 100%,
+            36% 88%, 28% 100%, 20% 88%, 12% 100%, 4% 88%, 0 100%
+        );
+    }
+
+    .gsm-artistry-feature-icon {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50% 50% 50% 4px;
+        background: linear-gradient(135deg, #c29b54, #c29b54);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.15rem;
+    }
+
+    .gsm-artistry-feature-body h4 {
+        font-size: 1.1rem;
+        position: relative;
+        padding-bottom: 0.6rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 32px;
+            height: 2px;
+            background: var(--gsm-accent, #c29b54);
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .gsm-artistry-overlay {
+            justify-content: flex-end;
+        }
+    }
+}
+
+// "The Threads of Our Heritage" (About page design 07 Our History.png):
+// horizontally scrollable, unbounded zigzag timeline — the CMS can add
+// any number of years without breaking the layout (a fixed-count grid
+// with hand-tuned SVG curves, like the Home Working Process section,
+// cannot scale to an admin-growable list).
+.gsm-history {
+    background-color: var(--gsm-light, #f5efe6);
+    background-repeat: no-repeat;
+
+    .gsm-history-slider {
+        position: relative;
+        margin-top: 1rem;
+    }
+
+    .gsm-history-track {
+        display: flex;
+        align-items: center;
+        gap: 3.5rem;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        padding: 3.5rem 0.5rem 2.5rem;
+        position: relative;
+
+        &::-webkit-scrollbar { display: none; }
+    }
+
+    // Real inline SVG connector (design 07 Our History.png): a single
+    // continuous smooth curve, sized and re-drawn by JS
+    // (gsm-history-line.js) to the track's actual scroll width and to
+    // each badge's real center, so it stays perfectly threaded through
+    // the wave of items at any breakpoint and for any CMS-added count —
+    // a fixed-size background-image tile could not track that.
+    .gsm-history-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        overflow: visible;
+    }
+
+    .gsm-history-item {
+        flex: 0 0 auto;
+        width: 260px;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+
+        &.gsm-history-item-high { transform: translateY(-22%); }
+        &.gsm-history-item-low { transform: translateY(22%); }
+    }
+
+    .gsm-history-text {
+        font-weight: 600;
+        color: #4a4238;
+        line-height: 1.5;
+        min-height: 3rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .gsm-history-marker {
+        margin-bottom: 0.75rem;
+    }
+
+    // Scalloped 8-point badge (clip-path defined in the blade); gold and
+    // orange alternate per the design.
+    .gsm-history-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 116px;
+        height: 116px;
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .gsm-history-badge-gold {
+        background: linear-gradient(160deg, #c29b54, #a97a2a);
+    }
+
+    .gsm-history-badge-orange {
+        background: linear-gradient(160deg, #c29b54, #c29b54);
+    }
+
+    .gsm-history-photo {
+        width: 100%;
+        aspect-ratio: 482 / 281;
+        object-fit: cover;
+        border-radius: 6px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    // Pagination dots (same mechanism as the Home Category slider).
+    .gsm-history-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+
+        .gsm-history-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: 0;
+            padding: 0;
+            background: #c9bda6;
+
+            &.active { background: #3d3327; }
+        }
+    }
+
+    // Mobile: smaller cards, tighter gap, same scroll mechanism.
+    @include media-breakpoint-down(sm) {
+        .gsm-history-item {
+            width: 200px;
+        }
+
+        .gsm-history-track {
+            gap: 2rem;
+        }
+
+        .gsm-history-badge {
+            width: 92px;
+            height: 92px;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+// "The Foundation Of Our Success" (About page design 08): spaced white
+// accordion rows with a custom +/− toggle icon instead of Bootstrap's
+// default chevron (reuses the generic "accordion" SectionType — see
+// AccordionSection's panel_style field).
+.gsm-accordion-cards.accordion {
+    --bs-accordion-border-width: 0;
+
+    .accordion-item {
+        background: #fff;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .accordion-button {
+        font-family: var(--gsm-font-section-heading, inherit);
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #22262a;
+        background: #fff;
+        box-shadow: none;
+        padding: 1.25rem 1.5rem;
+
+        &::after {
+            display: none; // remove Bootstrap's default chevron
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        &:not(.collapsed) {
+            background: #fff;
+            color: #22262a;
+        }
+    }
+
+    // Custom +/− toggle: two bars forming a plus, the vertical bar fades
+    // out when the panel is expanded (matches the design's red +/− marks).
+    .gsm-accordion-toggle-icon {
+        position: relative;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        margin-left: auto;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            background: var(--gsm-accent, #c29b54);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &::before {
+            width: 100%;
+            height: 2px;
+        }
+
+        &::after {
+            width: 2px;
+            height: 100%;
+            transition: opacity 0.15s ease;
+        }
+    }
+
+    .accordion-button:not(.collapsed) .gsm-accordion-toggle-icon::after {
+        opacity: 0; // collapses the plus into a minus when expanded
+    }
+
+    .accordion-body {
+        padding: 0 1.5rem 1.5rem;
+        color: #6b7280;
+        font-family: var(--gsm-font-paragraph, inherit);
+    }
+}
+
+.gsm-accordion-side-photo {
+    aspect-ratio: 4 / 3.4;
+    object-fit: cover;
+    width: 100%;
+}
+
+// "Meet Our Team!" (About page design 09): thin gold hairline border top
+// & bottom (distinct from the heavier floral-pattern border used on the
+// Home Category section — this design shows a plain solid line, not a
+// repeating tile), serif names, optional per-member social links.
+.gsm-team.gsm-team-bordered {
+    border-top: 1px solid rgba(201, 162, 75, 0.55);
+    border-bottom: 1px solid rgba(201, 162, 75, 0.55);
+}
+
+.gsm-team-photo {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gsm-team-name {
+    font-size: 1.15rem;
+}
+
+.gsm-team-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--gsm-light, #f5efe6);
+    color: var(--gsm-accent, #c29b54);
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: var(--gsm-accent, #c29b54);
+        color: #fff;
+    }
+}
+
+// Smaller, left-aligned heading ornament (About text column).
+.gsm-heading-ornament-sm {
+    max-width: 180px;
+    display: block;
+}
+
+// Working process zigzag timeline (design 05 Process.png).
+.gsm-process {
+    background-color: var(--gsm-light, #f5efe6);
+
+    .gsm-process-title {
+        font-size: 1.35rem;
+    }
+
+    .gsm-process-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        color: #fff;
+        font-weight: 700;
+        font-family: var(--gsm-font-buttons, inherit);
+        background: linear-gradient(135deg, var(--gsm-btn-gradient-from, #1b2a4a), var(--gsm-btn-gradient-to, #c29b54));
+        border: 4px solid rgba(255, 255, 255, 0.85);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    }
+
+    // Gold ogee-arch photo frame (SVG clip; gradient ring via nested clip).
+    .gsm-ogee {
+        width: min(210px, 80%);
+        aspect-ratio: 0.82;
+        margin: 0 auto;
+        padding: 6px;
+        background: linear-gradient(160deg, #c29b54, #c29b54);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    // Desktop: N columns, dashed line through the marker band.
+    @media (min-width: 992px) {
+        .gsm-process-row {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(var(--gsm-process-count, 4), 1fr);
+            column-gap: 1.5rem;
+
+            // Dashed timeline: slots are fixed-height, so the line's vertical
+            // position is deterministic (top slot + half the marker band).
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: calc(300px + 31px);
+                border-top: 2px dashed #b3aa98;
+            }
+        }
+
+        .gsm-process-slot {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 0;
+        }
+
+        .gsm-process-top { align-items: flex-end; }
+        .gsm-process-bottom { align-items: flex-start; }
+
+        .gsm-process-marker {
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    // Tablet / mobile: vertical list — marker left, content right.
+    @media (max-width: 991.98px) {
+        .gsm-process-step {
+            display: grid;
+            grid-template-columns: 62px 1fr;
+            grid-template-areas: 'marker top' 'marker bottom';
+            column-gap: 1rem;
+            margin-bottom: 2.25rem;
+
+            &:not(:last-child) .gsm-process-marker::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 54px;
+                bottom: -2.25rem;
+                border-left: 2px dashed #b3aa98;
+            }
+        }
+
+        .gsm-process-marker {
+            grid-area: marker;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .gsm-process-top { grid-area: top; }
+        .gsm-process-bottom { grid-area: bottom; margin-top: 0.75rem; }
+
+        .gsm-process-text { text-align: left !important; }
+        .gsm-ogee { margin: 0; }
+    }
+}
+
+// Category slider — clean modern cards, navy/gold, no
+// ornamental borders (removed the GSM floral separators / ogee arches).
+.gsm-cat {
+    background-color: var(--gsm-section-background, #f7f8fa);
+
+    .gsm-cat-track {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        padding-bottom: 0.5rem;
+
+        &::-webkit-scrollbar { display: none; }
+    }
+
+    .gsm-cat-card-link {
+        flex: 0 0 auto;
+        width: clamp(220px, 18vw, 300px);
+        scroll-snap-align: start;
+        text-decoration: none;
+
+        &:hover .gsm-cat-card {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 34px rgba(20, 32, 58, 0.16);
+            border-color: var(--gsm-secondary, #c29b54);
+        }
+    }
+
+    .gsm-cat-card {
+        overflow: hidden;
+        background: var(--gsm-card-background, #fff);
+        border: 1px solid var(--gsm-border-color, #eceef1);
+        border-radius: var(--gsm-radius-cards, 12px);
+        box-shadow: 0 6px 18px rgba(20, 32, 58, 0.06);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .gsm-cat-card__media {
+        position: relative;
+        aspect-ratio: 0.8;
+        background: var(--gsm-section-background, #f1f3f6);
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .gsm-cat-card__body {
+        padding: 1rem 1.1rem 1.15rem;
+        text-align: center;
+    }
+
+    .gsm-cat-card__title {
+        margin: 0 0 0.2rem;
+        color: var(--gsm-heading-color, #1b2a4a);
+        font-weight: 700;
+        font-size: clamp(1rem, 1.15vw, 1.2rem);
+        line-height: 1.3;
+    }
+
+    .gsm-cat-card__count {
+        display: inline-block;
+        color: var(--gsm-secondary, #c29b54);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+    }
+
+    .gsm-cat-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+
+        .gsm-cat-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: 0;
+            padding: 0;
+            background: #d4d8e0;
+
+            &.active { background: var(--gsm-primary, #1b2a4a); }
+        }
+    }
+}
+
+// Hero with background video (design 02 Hero.png).
+.gsm-hero {
+    // Layer order: video (0) → overlay (1) → content (2).
+    .gsm-hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        // Decorative background only: never clickable, never pausable.
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .gsm-hero-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .gsm-hero-content {
+        z-index: 2;
+    }
+
+    // Design 02 rhythm: airy letter-spaced eyebrow, big serif H1 (theme
+    // Main Heading role controls the size), generous vertical gaps.
+    .gsm-hero-eyebrow {
+        letter-spacing: 10px;
+        font-weight: 500;
+        font-size: clamp(0.85rem, 1.1vw, 1.25rem);
+        margin-bottom: clamp(1.25rem, 3vh, 2.5rem);
+    }
+
+    .gsm-hero-heading {
+        line-height: 1.12;
+        margin-bottom: clamp(1.5rem, 4.5vh, 3.5rem);
+
+        // Tighter gap when a breadcrumb sits directly under the heading
+        // (design 01 Hero.png, About page) instead of the intro copy.
+        &:has(+ .gsm-hero-breadcrumb) {
+            margin-bottom: 0.85rem;
+        }
+    }
+
+    // "Home / About us" beneath the H1 (design 01 Hero.png).
+    .gsm-hero-breadcrumb {
+        margin-bottom: clamp(1.5rem, 4.5vh, 3.5rem);
+
+        .breadcrumb-item,
+        .breadcrumb-item a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+
+        .breadcrumb-item.active {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    .gsm-hero-sub {
+        color: #fff;
+        margin-bottom: clamp(1.75rem, 6vh, 4.5rem);
+        line-height: 1.55;
+    }
+
+    // Thin vertical scroll indicator on the right edge (design 02).
+    .gsm-hero-scroll {
+        position: absolute;
+        right: 2.25rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 90px;
+        background: rgba(255, 255, 255, 0.75);
+        z-index: 2;
+    }
+}
+
+// "Why Choose Us" (design 07 Choose Us.png): rounded showroom photo with a
+// cream bullet strip overlapping its bottom edge.
+.gsm-choose {
+    .gsm-choose-media {
+        position: relative;
+        margin-top: 1.5rem;
+    }
+
+    .gsm-choose-photo {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1360 / 500;
+        object-fit: cover;
+        border-radius: 24px;
+    }
+
+    .gsm-choose-strip {
+        margin: 0;
+        padding: 1.1rem 1.75rem;
+        background: #faf6ec;
+        display: grid;
+        gap: 0.75rem 2rem;
+        border-radius: 2px;
+    }
+
+    .gsm-choose-bullet {
+        position: relative;
+        padding-left: 1.1rem;
+        font-weight: 600;
+        font-size: 1.05rem;
+        line-height: 1.35;
+        color: #22262a;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #22262a;
+        }
+    }
+
+    // Desktop/tablet: strip floats over the photo, inset from both edges.
+    @include media-breakpoint-up(md) {
+        .gsm-choose-photo ~ .gsm-choose-strip {
+            position: absolute;
+            left: 2.5%;
+            right: 2.5%;
+            bottom: 2.75rem;
+        }
+
+        .gsm-choose-strip {
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
+            align-items: center;
+        }
+    }
+
+    // Mobile: strip flows under the photo, bullets stacked.
+    @include media-breakpoint-down(md) {
+        .gsm-choose-strip {
+            margin-top: 1rem;
+        }
+    }
+}
+
+// Product grid (Featured / Latest Products home sections).
+.gsm-products {
+    .gsm-product-card {
+        background: #fff;
+        border-radius: var(--gsm-radius-cards, 12px);
+        overflow: hidden;
+        height: 100%;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+    }
+
+    .gsm-product-photo {
+        width: 100%;
+        aspect-ratio: 0.8;
+        object-fit: cover;
+        display: block;
+    }
+
+    .gsm-product-body {
+        padding: 0.9rem 1rem 1.1rem;
+    }
+
+    .gsm-product-name {
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: #22262a;
+        margin-bottom: 0.3rem;
+        line-height: 1.3;
+    }
+
+    .gsm-product-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.9rem;
+        font-size: 0.82rem;
+        color: #74797f;
+    }
+
+    .gsm-product-price {
+        margin-top: 0.4rem;
+        font-weight: 700;
+        color: var(--gsm-accent, #c29b54);
+    }
+}
+
+// "Our Blog Post" (design 08 Blog.png): two large cards + mini rows.
+.gsm-blog {
+    .gsm-blog-card {
+        background: #fff;
+        height: 100%;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    // Photo pair at the top of a large card (featured + first gallery image).
+    .gsm-blog-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 0.6;
+            object-fit: cover;
+        }
+
+        &.gsm-blog-pair-single {
+            grid-template-columns: 1fr;
+
+            img { aspect-ratio: 1.2; }
+        }
+    }
+
+    .gsm-blog-card-body {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .gsm-blog-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .gsm-blog-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.9rem;
+        border-radius: 100px;
+        background: #f5f0e6;
+        color: var(--gsm-accent, #c29b54);
+        font-size: 0.85rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .gsm-blog-title {
+        font-weight: 700;
+        font-size: 1.35rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+
+        a {
+            color: #22262a;
+            text-decoration: none;
+
+            &:hover { color: var(--gsm-accent, #c29b54); }
+        }
+
+        &.gsm-blog-title-sm {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .gsm-blog-excerpt {
+        color: #5a5f66;
+        margin-bottom: 0;
+    }
+
+    // Mini row: thumb left, meta + title right.
+    .gsm-blog-mini {
+        background: #fff;
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        flex: 1 1 0;
+
+        .gsm-blog-mini-thumb {
+            width: 150px;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .gsm-blog-mini-body {
+            padding: 1.1rem 1.25rem;
+            align-self: center;
+        }
+    }
+}
+
+// Mega menu: full-width panel under the header
+.gsm-mega .dropdown-menu {
+    left: 0;
+    right: 0;
+}
+
+// Nested dropdown (3rd level) opens to the side on hover
+.dropdown-submenu {
+    position: relative;
+
+    > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -0.25rem;
+        display: none;
+    }
+
+    &:hover > .dropdown-menu {
+        display: block;
+    }
+}
+
+// Serif display headings (design language)
+.gsm-serif {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+.gsm-eyebrow {
+    letter-spacing: 2px;
+    color: $gsm-orange;
+}
+
+// Section scroll-in animations.
+//
+// Anime.js does the moving (see public/js/gsm-animations.js); CSS only sets
+// the starting state. Two guards make that safe:
+//
+//   .js-enabled  — added by an inline script before first paint. Without JS,
+//                  or with the CDN blocked, nothing is ever hidden.
+//   [data-anim]  — only sections the admin actually animated.
+//
+// Together they mean a failure to load the library degrades to "no animation",
+// never to "blank page".
+.js-enabled [data-anim]:not([data-anim-done]) {
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+// Children carry the motion when stagger is on; the section itself is already
+// revealed, so only its animating children start hidden.
+.js-enabled [data-anim][data-anim-done] > * {
+    will-change: auto;
+}
+
+// No JavaScript, no hiding. The rule above is already scoped to .js-enabled,
+// but this states the guarantee outright and outranks anything the library
+// may have written inline before it stopped.
+html:not(.js-enabled) [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+// Someone who asked their system for less motion sees the content immediately.
+// Belt and braces: the script checks this too and never starts an animation,
+// but !important here also beats an inline opacity the library may already
+// have set, so the content shows even if the script's own check is bypassed.
+@media (prefers-reduced-motion: reduce) {
+    [data-anim] {
+        opacity: 1 !important;
+        transform: none !important;
+        will-change: auto;
+    }
+}
+
+// Rich text content defaults
+.gsm-richtext {
+    img { max-width: 100%; height: auto; }
+}
+
+// Header over hero (design 05): transparent on load, solid when scrolled.
+// Stays in flow via sticky + negative margin (JS sets --gsm-header-h).
+.gsm-header-overlay {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    margin-bottom: calc(var(--gsm-header-h, 88px) * -1);
+    background: var(--gsm-header-transparent, transparent);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
+
+    // Transparent state ONLY: swap to the light logo and light menu colors.
+    // The dark-logo hide must not leak into the scrolled state — the blade's
+    // responsive d-none/d-lg-* classes pick exactly ONE logo per breakpoint,
+    // and a blanket display override here would show all device variants.
+    &:not(.gsm-header-scrolled) {
+        .gsm-logo-light { display: inline-block; }
+        .gsm-logo-dark { display: none !important; }
+
+        .navbar .nav-link,
+        .navbar .navbar-toggler {
+            color: var(--gsm-header-menu, #fff);
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link:focus {
+            color: var(--gsm-header-menu-hover, #c29b54);
+        }
+
+        .navbar-toggler-icon {
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    // Scrolled: solid background, optional blur/shadow; dark logo falls back
+    // to its own responsive classes (one visible per breakpoint).
+    &.gsm-header-scrolled {
+        background: var(--gsm-header-scrolled-bg, #fff);
+        backdrop-filter: blur(var(--gsm-header-blur, 0px));
+
+        .gsm-logo-light { display: none; }
+
+        &.gsm-header-shadow-on-scroll {
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+        }
+    }
+}
+
+// Light logo hidden everywhere outside the transparent overlay state.
+.gsm-logo-light { display: none; }
+
+// Product Detail Page has no hero: JS forces the overlay header into its
+// solid/scrolled state permanently (colored logo, white background). Here we
+// set the dark menu text and add exactly 95px spacing so the content clears
+// the fixed header. Active/hover menu colours keep the existing theme accent.
+.gsm-pdp-page {
+    .gsm-header-overlay .navbar .nav-link {
+        color: #181818;
+    }
+
+    .gsm-pdp {
+        padding-top: 95px;
+    }
+}
+
+// Hero content entrance animations (admin-selectable).
+@keyframes gsm-hero-fade-up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+@keyframes gsm-hero-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes gsm-hero-zoom-in { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+
+.gsm-hero-enter { animation-duration: 0.9s; animation-timing-function: ease-out; animation-fill-mode: both; }
+.gsm-hero-enter-fade-up { animation-name: gsm-hero-fade-up; }
+.gsm-hero-enter-fade-in { animation-name: gsm-hero-fade-in; }
+.gsm-hero-enter-zoom-in { animation-name: gsm-hero-zoom-in; }
+
+@media (prefers-reduced-motion: reduce) {
+    .gsm-hero-enter { animation: none; }
+}
+
+// Section background video + overlay layers (Page Builder, any section).
+.gsm-section-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.gsm-section-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.gsm-section-inner {
+    position: relative;
+    z-index: 2;
+}
+
+// Button Builder support: video background layer + label stacking.
+// (The .gsm-btn-{slug} rules themselves are compiled by ButtonStyleService
+// into the Theme Customizer stylesheet.)
+.gsm-btn-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+[class*='gsm-btn-'] > .gsm-btn-label,
+[class*='gsm-btn-'] > i {
+    position: relative;
+    z-index: 1;
+}
+
+// Blackletter display text (designs 09/10). The design's blackletter font
+// file is not in assets/ — resolves to the Theme Customizer variable once
+// the font is uploaded (Theme → Local Font Upload); elegant serif fallback
+// until then. Never a hardcoded font: the CSS var wins when set.
+.gsm-blackletter {
+    font-family: var(--gsm-font-blackletter, 'Old English Text MT', 'UnifrakturMaguntia', 'Playfair Display', Georgia, serif);
+}
+
+// "Follow Us On Instagram" strip (design 09 Instagram.png) — full-bleed,
+// rendered above the footer on every page.
+.gsm-insta {
+    padding: 2.5rem 0 0;
+
+    .gsm-insta-heading {
+        text-align: center;
+        font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+        color: #1c1c1c;
+        margin-bottom: 1.75rem;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover { color: var(--gsm-accent, #c29b54); }
+        }
+    }
+
+    .gsm-insta-strip {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+
+        .gsm-insta-item {
+            display: block;
+
+            img {
+                width: 100%;
+                height: 100%;
+                aspect-ratio: 0.62;
+                object-fit: cover;
+                display: block;
+                transition: opacity 0.15s;
+            }
+
+            &:hover img { opacity: 0.85; }
+        }
+    }
+
+    // Tablet: 3 per row; mobile: 2 per row.
+    @include media-breakpoint-down(lg) {
+        .gsm-insta-strip { grid-template-columns: repeat(3, 1fr); }
+    }
+    @include media-breakpoint-down(sm) {
+        .gsm-insta-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+}
+
+// Footer with photographic background + overlay (design 10 Footer.png).
+.gsm-footer {
+    &.gsm-footer-has-bg {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .gsm-footer-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .gsm-footer-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    // Right-side model photo (design 10 Footer.png), split from the
+    // background artwork so it's swappable on its own. Sits above the
+    // dark overlay (stays fully lit) but below the text content.
+    .gsm-footer-side {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        max-height: 105%;
+        width: auto;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .gsm-footer-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    // Blackletter column headings ("Useful Links", "Contact Us").
+    h6 {
+        @extend .gsm-blackletter;
+        text-transform: none !important;
+        letter-spacing: 0.5px;
+        font-size: 1.4rem;
+        margin-bottom: 1rem !important;
+    }
+
+    // Newsletter as a white pill with an inset gradient Submit (design 10).
+    .gsm-newsletter .input-group {
+        background: #fff;
+        border-radius: 50rem;
+        padding: 5px;
+        align-items: center;
+
+        .form-control {
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            border-radius: 50rem;
+            padding-left: 1.1rem;
+            color: #22262a;
+        }
+
+        .btn {
+            border-radius: 50rem !important;
+            padding-left: 1.4rem;
+            padding-right: 1.4rem;
+        }
+    }
+}
+
+// Footer social circles (design 10): solid white, dark icon.
+.gsm-social-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #fff;
+    color: #1c1c1c !important;
+    font-size: 1.05rem;
+    transition: transform 0.15s;
+
+    &:hover {
+        transform: translateY(-2px);
+        color: var(--gsm-accent, #c29b54) !important;
+    }
+}
+
+// Footer social boxes
+.gsm-social-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 6px;
+    transition: background 0.15s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.12);
+    }
+}
+
+// Desktop: open dropdowns on hover
+@include media-breakpoint-up(lg) {
+    .gsm-nav .dropdown:hover > .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
+
+// "Our Collection" listing page (Designs/Our Collection/02 All Produts
+// with Filter.png): sidebar filter, product grid, color swatches with
+// real-time image swap, loading skeletons — see resources/js/frontend/app.js
+// ([data-gsm-collection] block) for the AJAX instant-filter behavior.
+.gsm-collection {
+    // Sidebar container (spec: #F5EBDA, radius 8px, padding 24px).
+    .gsm-filter-card {
+        background: #f5ebda;
+        border-radius: 8px;
+        padding: 24px;
+    }
+
+    // Selected Filters block.
+    .gsm-filter-title-sm {
+        color: #c29b54;
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .gsm-clear-all {
+        color: #c29b54;
+        font-weight: 600;
+        font-size: 0.82rem;
+        background: none;
+        border: 0;
+        line-height: 1;
+
+        &:hover { text-decoration: underline; }
+    }
+
+    // Selected pills (spec: white, 1px #DDD, radius 4px, text #575757).
+    .gsm-filter-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        color: #575757;
+        font-size: 0.82rem;
+        padding: 0.3rem 0.55rem;
+
+        i {
+            cursor: pointer;
+            color: #a0a0a0;
+            font-size: 0.7rem;
+
+            &:hover { color: #c29b54; }
+        }
+    }
+
+    // Each filter group box (spec: white, padding 20px, mb 20px, 1px #EEE, radius 6px).
+    .gsm-filter-box {
+        background: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+
+        &:last-child { margin-bottom: 0; }
+    }
+
+    // Filter title + divider (spec: #c29b54, 700, 24px, red divider below).
+    .gsm-filter-title {
+        color: #c29b54;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 1.1;
+        margin: 0 0 0.6rem;
+    }
+
+    .gsm-filter-divider {
+        height: 1px;
+        background: #c29b54;
+        margin-bottom: 1.1rem;
+    }
+
+    // Color swatches (circular, multi-select; active = red ring).
+    .gsm-color-swatches {
+        gap: 0.6rem;
+
+        .gsm-swatch { width: 26px; height: 26px; }
+    }
+
+    .gsm-swatch-wrap {
+        margin: 0;
+        cursor: pointer;
+        line-height: 0;
+
+        input:checked + .gsm-swatch {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #c29b54;
+        }
+    }
+
+    // Size squares with counts (spec: "XL (18)"; active = filled red).
+    .gsm-size-grid { gap: 0.5rem; }
+
+    .gsm-size-btn {
+        margin: 0;
+        cursor: pointer;
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            padding: 0.38rem 0.55rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fff;
+            color: #333;
+            font-size: 0.85rem;
+            transition: all 0.15s;
+
+            small { color: #999; margin-left: 3px; font-size: 0.72rem; }
+        }
+
+        &:hover span { border-color: #c29b54; }
+
+        input:checked + span {
+            background: #c29b54;
+            border-color: #c29b54;
+            color: #fff;
+
+            small { color: rgba(255, 255, 255, 0.85); }
+        }
+    }
+
+    // Category / Product Type checkbox rows.
+    .gsm-check-row {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin-bottom: 0.6rem;
+        cursor: pointer;
+        color: #444;
+        font-size: 0.95rem;
+
+        &:last-child { margin-bottom: 0; }
+
+        input {
+            width: 16px;
+            height: 16px;
+            accent-color: #c29b54;
+            cursor: pointer;
+        }
+    }
+
+    // Product grid fade transition while an AJAX filter request is in flight.
+    .gsm-fade-target {
+        transition: opacity 0.2s ease;
+    }
+
+    .gsm-fade-out {
+        opacity: 0.35;
+    }
+
+    // Loading skeletons (no flicker: same grid shape as real cards).
+    .gsm-skeleton-card {
+        border-radius: 6px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .gsm-skeleton-img {
+        aspect-ratio: 3 / 4;
+        background: linear-gradient(100deg, #ece5da 30%, #f5efe6 50%, #ece5da 70%);
+        background-size: 200% 100%;
+        animation: gsm-skeleton-shimmer 1.3s ease-in-out infinite;
+    }
+
+    .gsm-skeleton-line {
+        height: 10px;
+        margin: 0.6rem 0.75rem;
+        border-radius: 4px;
+        background: linear-gradient(100deg, #ece5da 30%, #f5efe6 50%, #ece5da 70%);
+        background-size: 200% 100%;
+        animation: gsm-skeleton-shimmer 1.3s ease-in-out infinite;
+    }
+}
+
+@keyframes gsm-skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+// Color swatch (product card + sidebar filter): shared circular dot,
+// active state gets a ring. Card image swap itself is a plain opacity
+// fade handled inline by JS (150–250ms — see app.js).
+.gsm-swatch {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+
+    &:hover {
+        transform: scale(1.12);
+    }
+
+    &.active {
+        box-shadow: 0 0 0 2px var(--gsm-primary, #1b2a4a);
+    }
+}
+
+.gsm-product-swatches {
+    gap: 0.4rem;
+}
+
+// Shared CTA gradient (spec) for the Catalogue border/text + Get Price fill.
+$gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, #c29b54 100%);
+
+// ── Collection page background (collection_bg.png) ─────────────────────
+// Scoped to the collection section only — never affects header/footer.
+.gsm-collection-page {
+    background-image: url('/images/design/collection_bg.png');
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: top center;
+}
+
+// ── Product grid: desktop 3 / tablet 2 / mobile 1, 30px gap ────────────
+.gsm-product-grid {
+    --bs-gutter-x: 30px;
+    --bs-gutter-y: 30px;
+}
+
+// ── Product card (Designs/Our Collection/02) ──────────────────────────
+.gsm-product-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    // Image + overlays.
+    .gsm-card-media {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .gsm-card-img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        border-radius: 12px 12px 0 0;
+        transition: opacity 0.2s ease, transform 0.4s ease;
+    }
+
+    .gsm-card-img-empty {
+        background: #f2ede4;
+    }
+
+    &:hover .gsm-card-img { transform: scale(1.03); }
+
+    // New Arrival folded ribbon (top-left).
+    .gsm-ribbon {
+        position: absolute;
+        top: 14px;
+        left: -6px;
+        background: #8d0212;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.72rem;
+        letter-spacing: 0.02em;
+        padding: 6px 14px 6px 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+        clip-path: polygon(0 0, 100% 0, 92% 50%, 100% 100%, 0 100%);
+
+        // Folded corner under the ribbon's left edge.
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            border-width: 3px 3px 3px 0;
+            border-style: solid;
+            border-color: #14203a #14203a transparent transparent;
+        }
+    }
+
+    // Design Code pill (bottom-right, inside image).
+    .gsm-code-badge {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        background: #f5ebda;
+        color: #c29b54;
+        font-weight: 700;
+        font-size: 0.8rem;
+        padding: 4px 14px;
+        border-radius: 999px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    // Body.
+    .gsm-card-body {
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .gsm-card-name {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin: 0 0 0.15rem;
+        line-height: 1.25;
+
+        a {
+            color: #2b2b2b;
+            text-decoration: none;
+
+            &:hover { color: #c29b54; }
+        }
+    }
+
+    .gsm-card-subtitle {
+        color: #8a8a8a;
+        font-size: 0.85rem;
+        margin: 0 0 0.9rem;
+    }
+
+    // Details strip (#FDF9F2): Fabric / Work / MOQ, three equal columns.
+    .gsm-card-details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background: #fdf9f2;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 0.9rem;
+
+        > div {
+            text-align: center;
+            padding: 0 6px;
+
+            &:not(:last-child) { border-right: 1px solid #efe6d5; }
+        }
+    }
+
+    .gsm-card-detail-title {
+        display: block;
+        color: #c29b54;
+        font-weight: 700;
+        font-size: 0.82rem;
+        margin-bottom: 2px;
+    }
+
+    .gsm-card-detail-value {
+        display: block;
+        color: #575757;
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    // Variant swatches.
+    .gsm-card-swatches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-bottom: 1rem;
+    }
+
+    // Bottom actions: two equal-width buttons, same height.
+    .gsm-card-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-top: auto;
+    }
+}
+
+// Bottom buttons (equal width/height, radius 10px). Catalogue = white with
+// gradient border + gradient text; Get Price = gradient fill, white text.
+.gsm-btn-catalogue,
+.gsm-btn-getprice {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+// Solid navy outline button (no gradient).
+.gsm-btn-catalogue {
+    border: 1.5px solid var(--gsm-primary, #1b2a4a);
+    background: #fff;
+    color: var(--gsm-primary, #1b2a4a);
+
+    .gsm-grad-text { color: var(--gsm-primary, #1b2a4a); transition: color 0.2s ease; }
+
+    &:not(.disabled):hover {
+        background: var(--gsm-primary, #1b2a4a);
+        box-shadow: 0 6px 16px rgba(20, 32, 58, 0.18);
+
+        .gsm-grad-text { color: #fff; }
+    }
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+// Primary CTA: solid navy, warm-gold on hover.
+.gsm-btn-getprice {
+    border: 0;
+    background: var(--gsm-primary, #1b2a4a);
+    color: #fff;
+
+    &:hover {
+        background: var(--gsm-secondary, #c29b54);
+        color: var(--gsm-primary, #1b2a4a);
+    }
+}
+
+// ── PDF viewer modal ──────────────────────────────────────────────────
+.gsm-pdf-modal {
+    .modal-content { border: 0; border-radius: 12px; overflow: hidden; }
+
+    .gsm-pdf-frame {
+        width: 100%;
+        height: 78vh;
+        border: 0;
+        display: block;
+        background: #333;
+    }
+
+    .gsm-pdf-tool {
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #444;
+        width: 34px;
+        height: 34px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+
+        &:hover { border-color: #c29b54; color: #c29b54; }
+    }
+
+    .gsm-pdf-zoom-label,
+    .gsm-pdf-page-label {
+        font-size: 0.82rem;
+        color: #666;
+        min-width: 42px;
+        text-align: center;
+        white-space: nowrap;
+    }
+    .gsm-pdf-page-label { min-width: 56px; }
+
+    // Toolbar group separator.
+    .gsm-pdf-divider {
+        width: 1px;
+        height: 22px;
+        background: #e2e2e2;
+        display: inline-block;
+    }
+
+    // Responsive: taller frame + wrapping toolbar on small screens.
+    @include media-breakpoint-down(md) {
+        .modal-dialog { margin: 0.5rem; }
+        .gsm-pdf-frame { height: 72vh; }
+        .gsm-pdf-toolbar { width: 100%; justify-content: center; }
+        .gsm-pdf-divider { display: none; }
+    }
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// Product Detail Page (Designs/PDP Page). Reuses .gsm-btn-catalogue /
+// .gsm-btn-getprice / .gsm-swatch / .gsm-ribbon / .gsm-product-grid /
+// .gsm-pdf-modal from the Collection styles above — no duplication.
+// ══════════════════════════════════════════════════════════════════════
+.gsm-pdp {
+    background: url('/images/design/product_detail_bg.png') top center repeat;
+    background-size: contain;
+
+    .gsm-pdp-breadcrumb .breadcrumb-item,
+    .gsm-pdp-breadcrumb .breadcrumb-item a {
+        color: #181818;
+        text-decoration: none;
+    }
+    .gsm-pdp-breadcrumb .breadcrumb-item.active { font-weight: 600; }
+
+    // ── Gallery ──────────────────────────────────────────────
+    .gsm-pdp-gallery {
+        display: flex;
+        gap: 16px;
+    }
+
+    .gsm-pdp-thumbs {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 20%;
+        max-height: 640px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+
+    .gsm-pdp-thumb {
+        border: 2px solid transparent;
+        border-radius: 6px;
+        padding: 0;
+        background: none;
+        overflow: hidden;
+        cursor: pointer;
+        aspect-ratio: 3 / 4;
+
+        img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        &.active { border-color: #c29b54; }
+        &:hover { border-color: rgba(194, 155, 84, 0.5); }
+    }
+
+    .gsm-pdp-main-wrap {
+        position: relative;
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .gsm-pdp-main-img {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        display: block;
+        transition: opacity 0.2s ease;
+    }
+
+    .gsm-pdp-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 0;
+        background: #1c1c1c;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0.85;
+        transition: opacity 0.2s, transform 0.2s;
+
+        &:hover { opacity: 1; }
+        &.gsm-pdp-prev { left: 14px; }
+        &.gsm-pdp-next { right: 14px; }
+    }
+
+    // ── Info panel (#F5EBDA, 40px) ───────────────────────────
+    .gsm-pdp-info {
+        background: #f5ebda;
+        padding: 40px;
+        border-radius: 10px;
+        height: 100%;
+    }
+
+    .gsm-pdp-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+    }
+    .gsm-pdp-meta-label { color: #181818; font-weight: 700; }
+    .gsm-pdp-meta-value { color: #575757; }
+    .gsm-pdp-meta-sep { color: #c9bda6; }
+
+    .gsm-pdp-name {
+        color: #c29b54;
+        font-size: 1.9rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 14px;
+    }
+
+    .gsm-pdp-desc {
+        color: #575757;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    // Row 4: attribute cards (#FDF9F2, radius 10).
+    .gsm-pdp-attr-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+    .gsm-pdp-attr-card {
+        background: #fdf9f2;
+        border-radius: 10px;
+        padding: 12px 14px;
+        text-align: center;
+
+        .t { display: block; color: #c29b54; font-weight: 700; font-size: 0.9rem; }
+        .v { display: block; color: #575757; font-size: 0.85rem; margin-top: 2px; }
+    }
+
+    .gsm-pdp-row-label {
+        font-weight: 700;
+        color: #181818;
+        margin-bottom: 10px;
+    }
+
+    // Row 5: size.
+    .gsm-pdp-size-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .gsm-pdp-row-label { margin-bottom: 0; }
+    }
+    .gsm-pdp-sizechart {
+        border: 0;
+        background: none;
+        color: #181818;
+        font-size: 0.88rem;
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover { color: #c29b54; }
+    }
+    .gsm-pdp-sizes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 22px;
+    }
+    .gsm-pdp-size {
+        min-width: 46px;
+        padding: 8px 12px;
+        background: #f5ebda;
+        border: 1px solid #181818;
+        border-radius: 6px;
+        color: #181818;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+
+        &.active { background: #181818; color: #f4f0ed; }
+    }
+
+    // Row 6: color.
+    .gsm-pdp-color-name { color: #575757; font-weight: 400; margin-left: 6px; }
+    .gsm-pdp-swatches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 8px 0 24px;
+
+        .gsm-swatch { width: 30px; height: 30px; }
+        // Issue 7: the selected swatch stays slightly larger with its ring
+        // (the .gsm-swatch.active box-shadow) until another swatch is clicked.
+        .gsm-swatch.active { transform: scale(1.15); }
+    }
+
+    // Row 7: actions (reused buttons).
+    .gsm-pdp-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 26px;
+
+        .gsm-btn-catalogue, .gsm-btn-getprice { height: 52px; font-size: 1rem; }
+    }
+
+    // Row 8: accordion (white; +/- icons #c29b54; one open at a time).
+    .gsm-pdp-accordion {
+        .accordion-item {
+            background: #fff;
+            border: 0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+        .accordion-button {
+            background: #fff;
+            color: #000;
+            font-weight: 700;
+            box-shadow: none;
+            padding: 16px 18px;
+
+            &::after { display: none; }
+            &:not(.collapsed) { color: #000; }
+        }
+        .accordion-body { color: #707070; padding: 0 18px 16px; }
+
+        .gsm-acc-icon {
+            margin-left: auto;
+            color: #c29b54;
+            font-size: 1rem;
+
+            .fa-minus { display: none; }
+        }
+        .accordion-button:not(.collapsed) .gsm-acc-icon {
+            .fa-plus { display: none; }
+            .fa-minus { display: inline; }
+        }
+    }
+}
+
+// ── Section 2: Introduction strip (#F5F3F2, #1b2a4a, centered) ────────
+.gsm-pdp-intro {
+    background: #f5f3f2;
+    padding: 28px 0;
+    text-align: center;
+
+    .gsm-pdp-intro-text {
+        color: #1b2a4a;
+        font-weight: 700;
+        font-size: 1.35rem;
+
+        p { margin: 0; }
+    }
+}
+
+// ── Section 4: You May Also Like ──────────────────────────────────────
+.gsm-pdp-related {
+    background: url('/images/design/may_like_bg.png') top center repeat;
+    background-size: contain;
+
+    .gsm-pdp-related-title { font-size: 2rem; }
+}
+
+@include media-breakpoint-down(md) {
+    .gsm-pdp {
+        .gsm-pdp-gallery { flex-direction: column-reverse; }
+        .gsm-pdp-thumbs {
+            flex-direction: row;
+            width: 100%;
+            max-height: none;
+            overflow-x: auto;
+            .gsm-pdp-thumb { width: 72px; flex: 0 0 auto; }
+        }
+        .gsm-pdp-info { padding: 24px; margin-top: 16px; }
+        .gsm-pdp-actions { grid-template-columns: 1fr; }
+    }
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// "Get Bulk Price / Enquiry" modal (Designs/PDP Page/04). Reuses the CTA
+// gradient ($gsm-cta-gradient) for the submit button.
+// ══════════════════════════════════════════════════════════════════════
+.gsm-inquiry-modal {
+    .modal-content {
+        position: relative;
+        border: 0;
+        border-radius: 14px;
+        background: #faf5ea;
+        padding: 8px;
+    }
+
+    .gsm-inquiry-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 3;
+    }
+
+    .gsm-inquiry-heading {
+        color: #c29b54;
+        font-weight: 700;
+        text-align: center;
+        font-size: 1.6rem;
+        margin: 6px 0 4px;
+    }
+    .gsm-inquiry-sub {
+        color: #575757;
+        text-align: center;
+        font-size: 0.9rem;
+        max-width: 460px;
+        margin: 0 auto 18px;
+    }
+
+    // Product summary.
+    .gsm-inquiry-summary {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .gsm-inquiry-thumb {
+        width: 96px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+        flex: 0 0 auto;
+    }
+    .gsm-inquiry-prod-name {
+        color: #c29b54;
+        font-weight: 700;
+        font-size: 1.05rem;
+        line-height: 1.3;
+        margin-bottom: 4px;
+    }
+    .gsm-inquiry-prod-meta {
+        font-size: 0.85rem;
+        .l { color: #181818; font-weight: 700; }
+        .v { color: #575757; }
+    }
+
+    // Form.
+    .gsm-inquiry-label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 4px;
+        span { color: #c29b54; }
+    }
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #e2d9c8;
+        background: #fff;
+        font-size: 0.9rem;
+        &:focus { border-color: #c29b54; box-shadow: none; }
+        &[readonly] { background: #f3ede1; color: #575757; }
+    }
+
+    // MOQ pills.
+    .gsm-moq-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .gsm-moq-pill {
+        min-width: 46px;
+        padding: 7px 16px;
+        border-radius: 999px;
+        border: 1px solid #c29b54;
+        background: #fff;
+        color: #575757;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+
+        &.active { background: #c29b54; border-color: #c29b54; color: #fff; }
+    }
+
+    // Submit (gradient pill).
+    .gsm-inquiry-submit {
+        border: 0;
+        border-radius: 999px;
+        background: $gsm-cta-gradient;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 12px 48px;
+        cursor: pointer;
+        transition: filter 0.2s, transform 0.2s;
+
+        &:hover { filter: brightness(1.07); transform: scale(1.02); }
+        &:disabled { opacity: 0.7; cursor: default; transform: none; }
+    }
+
+    .gsm-inquiry-success {
+        text-align: center;
+        color: #1f7a45;
+        background: #eaf6ee;
+        border: 1px solid #bfe3cc;
+        border-radius: 8px;
+        padding: 22px;
+        font-weight: 600;
+        margin-top: 8px;
+    }
+
+    .gsm-inquiry-note {
+        text-align: center;
+        color: #8a8a8a;
+        font-size: 0.75rem;
+        margin: 16px 0 4px;
+    }
+}
+
+// Decorative separator (Contact Us garland / floral) — centered, responsive.
+.gsm-separator {
+    text-align: center;
+    line-height: 0;
+
+    .gsm-separator-img {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// Contact Details cards (Designs/Contact Us Page/03). Gradient shield icon
+// reuses $gsm-cta-gradient (defined above). Garland ornaments flank the row.
+// ══════════════════════════════════════════════════════════════════════
+.gsm-contact-details {
+    .gsm-contact-details-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    // Garland side ornaments — decorative, hidden on small screens.
+    .gsm-contact-garland {
+        flex: 0 0 auto;
+        width: clamp(40px, 5vw, 70px);
+        height: auto;
+        opacity: 0.9;
+    }
+
+    // Responsive grid: 3 desktop / 2 tablet / 1 mobile.
+    .gsm-contact-cards {
+        flex: 1 1 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--gsm-card-gap, 24px);
+    }
+
+    .gsm-contact-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 26px 24px 34px;
+        background: #fff;
+
+        // Folded tab at the bottom-centre (design 03).
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 34px;
+            height: 16px;
+            background: inherit;
+            transform: translate(-50%, 50%) rotate(45deg);
+            border-bottom-right-radius: 4px;
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    // Gradient shield / pin icon with a white glyph.
+    .gsm-contact-icon {
+        flex: 0 0 auto;
+        width: 56px;
+        height: 64px;
+        background: $gsm-cta-gradient;
+        clip-path: polygon(0 0, 100% 0, 100% 68%, 50% 100%, 0 68%);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 15px;
+
+        i { color: #fff; font-size: 1.35rem; }
+    }
+
+    .gsm-contact-card-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--gsm-heading-color, #1b2a4a);
+        margin: 0 0 6px;
+
+        // Clean gold rule (replaces the retired heading_line.png underline).
+        &::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            max-width: 120px;
+            border-radius: 2px;
+            background: var(--gsm-secondary, #c29b54);
+        }
+
+        .gsm-contact-underline { display: none; }
+    }
+
+    .gsm-contact-card-desc {
+        color: #575757;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    @include media-breakpoint-down(lg) {
+        .gsm-contact-cards { grid-template-columns: repeat(2, 1fr); }
+        .gsm-contact-garland { display: none; }
+    }
+
+    @include media-breakpoint-down(md) {
+        .gsm-contact-cards { grid-template-columns: 1fr; }
+    }
+}
+
+// Contact form + map row (Contact Us Section 4): map fills the form's height.
+.gsm-contact-form-row {
+    iframe { display: block; }
+    .gsm-form-alert[hidden] { display: none; }
+}
+
+// Inner-page title banner — solid navy, optional image scrim.
+.gsm-page-banner {
+    position: relative;
+    padding: 3.25rem 0;
+    background-color: var(--gsm-primary, #1b2a4a);
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+
+    &.has-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(20, 32, 58, 0.72);
+    }
+
+    > .container { position: relative; z-index: 1; }
+
+    .gsm-page-banner__title {
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+        font-weight: 700;
+        margin: 0 0 0.5rem;
+        color: #fff;
+    }
+
+    .breadcrumb { --bs-breadcrumb-divider-color: rgba(255, 255, 255, 0.55); }
+
+    .breadcrumb-item,
+    .breadcrumb-item + .breadcrumb-item::before { color: rgba(255, 255, 255, 0.7); }
+
+    .breadcrumb-item a { color: #fff; text-decoration: none; }
+    .breadcrumb-item a:hover { color: var(--gsm-secondary, #c29b54); }
+    .breadcrumb-item.active { color: var(--gsm-secondary, #c29b54); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Glassmorphism modern design layer
+   ══════════════════════════════════════════════════════════════════════ */
+
+// Frosted-glass surface utility.
+.gsm-glass {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(20, 32, 58, 0.10);
+}
+
+// Modern section backgrounds — soft navy/gold depth (not a brand gradient).
+.gsm-products,
+.gsm-cat {
+    position: relative;
+    background:
+        radial-gradient(120% 80% at 100% 0%, rgba(194, 155, 84, 0.10), transparent 60%),
+        radial-gradient(120% 90% at 0% 100%, rgba(27, 42, 74, 0.06), transparent 55%),
+        var(--gsm-section-background, #f7f8fa);
+}
+.gsm-products--carousel {
+    background:
+        radial-gradient(120% 80% at 0% 0%, rgba(27, 42, 74, 0.07), transparent 55%),
+        #ffffff;
+}
+
+// Product carousel (Featured / New Arrivals).
+.gsm-pcar {
+    position: relative;
+
+    .gsm-pcar-track {
+        display: flex;
+        gap: 1.25rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        padding: 6px 2px 10px;
+
+        &::-webkit-scrollbar { display: none; }
+    }
+
+    .gsm-pcar-item {
+        flex: 0 0 auto;
+        width: clamp(240px, 26vw, 300px);
+        scroll-snap-align: start;
+    }
+
+    .gsm-pcar-nav {
+        position: absolute;
+        top: 44%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--gsm-primary, #1b2a4a);
+        color: #fff;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 16px rgba(20, 32, 58, 0.25);
+        cursor: pointer;
+        z-index: 3;
+
+        &:hover { background: var(--gsm-secondary, #c29b54); color: var(--gsm-primary, #1b2a4a); }
+    }
+    .gsm-pcar-prev { left: -10px; }
+    .gsm-pcar-next { right: -10px; }
+
+    @media (min-width: 768px) {
+        .gsm-pcar-nav { display: inline-flex; }
+    }
+
+    .gsm-pcar-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+
+        .gsm-cat-dot {
+            width: 9px; height: 9px; border-radius: 50%; border: 0; padding: 0;
+            background: #d4d8e0;
+            &.active { background: var(--gsm-primary, #1b2a4a); }
+        }
+    }
+}
+
+// Glass lift for product cards (enhances existing card).
+.gsm-product-card {
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 22px rgba(20, 32, 58, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover { transform: translateY(-6px); box-shadow: 0 16px 34px rgba(20, 32, 58, 0.15); }
+}
+
+// Category cards → glass.
+.gsm-cat .gsm-cat-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+}
+
+// Why Choose — glass icon cards.
+.gsm-feature-card {
+    padding: 2rem 1.25rem;
+    border-radius: 18px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &.gsm-glass:hover { transform: translateY(-6px); box-shadow: 0 16px 34px rgba(20, 32, 58, 0.14); }
+    &--row { gap: 1rem; padding: 1rem 0; }
+}
+.gsm-feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(27, 42, 74, 0.10), rgba(194, 155, 84, 0.22));
+    color: var(--gsm-primary, #1b2a4a);
+    font-size: 1.5rem;
+
+    .gsm-feature-card--row & { margin-bottom: 0; flex: 0 0 auto; }
+}
+.gsm-feature-title { font-weight: 700; color: var(--gsm-heading-color, #1b2a4a); margin-bottom: 0.35rem; }
+.gsm-feature-text { color: #5b6577; font-size: 0.9rem; line-height: 1.5; }
+
+// Testimonials glass.
+.gsm-testimonial-card {
+    padding: 2.25rem 2rem;
+
+    blockquote { font-size: 1.05rem; color: #2a3550; margin-bottom: 1rem; line-height: 1.6; }
+    .fw-bold { color: var(--gsm-heading-color, #1b2a4a); }
+}
+
+// Section CTA pill.
+.gsm-btn-pill {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 999px;
+    background: var(--gsm-primary, #1b2a4a);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid var(--gsm-primary, #1b2a4a);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    &:hover { background: var(--gsm-secondary, #c29b54); border-color: var(--gsm-secondary, #c29b54); color: var(--gsm-primary, #1b2a4a); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Storefront widgets (toast, search, shared UI)
+   ══════════════════════════════════════════════════════════════════════ */
+
+// Toast
+.gsm-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 96px;
+    transform: translate(-50%, 20px);
+    z-index: 1080;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: var(--gsm-primary, #1b2a4a);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 12px 30px rgba(20, 32, 58, 0.28);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    &.is-visible { opacity: 1; transform: translate(-50%, 0); }
+    &.is-error { background: #b3261e; }
+}
+
+// Quantity stepper
+.gsm-qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--gsm-border-color, #eceef1);
+    border-radius: 999px;
+    overflow: hidden;
+    background: #fff;
+
+    button {
+        width: 38px;
+        height: 38px;
+        border: 0;
+        background: transparent;
+        color: var(--gsm-primary, #1b2a4a);
+        font-size: 1.1rem;
+        line-height: 1;
+        cursor: pointer;
+
+        &:hover { background: rgba(194, 155, 84, 0.16); }
+    }
+
+    input {
+        width: 46px;
+        height: 38px;
+        border: 0;
+        text-align: center;
+        font-weight: 600;
+        color: var(--gsm-heading-color, #1b2a4a);
+
+        &:focus { outline: none; }
+    }
+
+    &--pdp { margin-bottom: 1.1rem; }
+}
+
+// Product card price + quick view
+.gsm-card-price {
+    margin: 0.35rem 0 0.6rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gsm-heading-color, #1b2a4a);
+}
+
+.gsm-quickview-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translate(-50%, 8px);
+    padding: 7px 16px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--gsm-primary, #1b2a4a);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: 2;
+}
+.gsm-product-card:hover .gsm-quickview-btn { opacity: 1; transform: translate(-50%, 0); }
+
+@media (hover: none) {
+    .gsm-quickview-btn { display: none; }
+}
+
+// PDP price + share
+.gsm-pdp-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gsm-heading-color, #1b2a4a);
+    margin-bottom: 0.35rem;
+
+    .gsm-pdp-price-note {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #7a8698;
+    }
+}
+
+.gsm-pdp-share {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 1.25rem;
+
+    a, button {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--gsm-border-color, #eceef1);
+        border-radius: 50%;
+        background: #fff;
+        color: var(--gsm-primary, #1b2a4a);
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover { background: var(--gsm-primary, #1b2a4a); color: #fff; }
+    }
+}
+
+// PDP image zoom on hover
+.gsm-pdp-main-wrap {
+    overflow: hidden;
+
+    .gsm-pdp-main-img {
+        transition: transform 0.35s ease;
+    }
+
+    &:hover .gsm-pdp-main-img { transform: scale(1.12); }
+}
+
+// Cart page
+.gsm-cart-line {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    &__media {
+        flex: 0 0 96px;
+        width: 96px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--gsm-section-background, #f1f3f6);
+
+        img { width: 100%; aspect-ratio: 0.8; object-fit: cover; display: block; }
+    }
+
+    &__body { flex: 1 1 auto; min-width: 0; }
+
+    &__name {
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0 0 0.25rem;
+        color: var(--gsm-heading-color, #1b2a4a);
+    }
+
+    &__meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 0.82rem;
+        color: #6b7688;
+        margin-bottom: 0.4rem;
+    }
+
+    &__price { font-weight: 600; margin-bottom: 0.6rem; }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    &__total {
+        flex: 0 0 auto;
+        font-weight: 700;
+        color: var(--gsm-heading-color, #1b2a4a);
+    }
+
+    @media (max-width: 575.98px) {
+        &__total { display: none; }
+    }
+}
+
+.gsm-cart-link {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gsm-primary, #1b2a4a);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover { color: var(--gsm-secondary, #c29b54); }
+    &--danger { color: #b3261e; }
+}
+
+.gsm-cart-summary {
+    padding: 1.5rem;
+    position: sticky;
+    top: 96px;
+
+    &__title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--gsm-heading-color, #1b2a4a);
+    }
+}
+
+// Checkout + account
+.gsm-checkout-heading {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--gsm-heading-color, #1b2a4a);
+}
+
+.gsm-auth-card {
+    max-width: 460px;
+    padding: 2.25rem 2rem;
+
+    &__title { font-size: 1.6rem; margin-bottom: 0.25rem; }
+}
+
+.gsm-account-link {
+    display: block;
+    padding: 0.5rem 0;
+    color: var(--gsm-primary, #1b2a4a);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+
+    &:hover { color: var(--gsm-secondary, #c29b54); }
+}
+
+// Header shop icons + live search
+.gsm-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+// Top level on purpose. These were nested under .gsm-header-actions, but the
+// storefront header uses .gsm-shop-header__actions and puts the drawer toggle
+// outside any actions wrapper — so the <button> icons got no styling and fell
+// back to raw browser chrome (grey box + border), while the <a> icons looked
+// fine. That mismatch is what made the logged-in account icon differ from the
+// logged-out one, and boxed the mobile hamburger.
+.gsm-header-icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--gsm-header-text, #1b2a4a);
+    font-size: 1.05rem;
+    line-height: 1;
+    text-decoration: none;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:hover,
+    &:focus-visible { background: rgba(194, 155, 84, 0.14); color: var(--gsm-secondary, #c29b54); }
+    &:focus { outline: none; }
+    &::after { display: none; } // kill Bootstrap's dropdown-toggle caret
+}
+
+.gsm-count-badge {
+    position: absolute;
+    top: 3px;
+    right: 2px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--gsm-secondary, #c29b54);
+    color: #fff;
+    font-size: 0.63rem;
+    font-weight: 700;
+    line-height: 17px;
+    text-align: center;
+}
+
+// The account dropdown wraps its icon in a .dropdown div; keep that wrapper
+// from breaking the flex row alignment.
+.gsm-account-menu {
+    display: inline-flex;
+    align-items: center;
+}
+
+.gsm-search-panel {
+    position: relative;
+
+    .gsm-search-input {
+        width: min(260px, 40vw);
+        height: 38px;
+        padding: 0 14px;
+        border: 1px solid var(--gsm-border-color, #eceef1);
+        border-radius: 999px;
+        font-size: 0.88rem;
+
+        &:focus { outline: none; border-color: var(--gsm-secondary, #c29b54); }
+    }
+
+    .gsm-search-results {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        width: min(360px, 90vw);
+        max-height: 60vh;
+        overflow-y: auto;
+        background: #fff;
+        border: 1px solid var(--gsm-border-color, #eceef1);
+        border-radius: 14px;
+        box-shadow: 0 16px 40px rgba(20, 32, 58, 0.16);
+        z-index: 1040;
+        padding: 6px;
+    }
+}
+
+.gsm-search-group {
+    padding: 8px 12px 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a94a6;
+}
+
+.gsm-search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: var(--gsm-heading-color, #1b2a4a);
+    text-decoration: none;
+    font-size: 0.88rem;
+
+    img { width: 34px; height: 42px; object-fit: cover; border-radius: 6px; }
+    &:hover { background: var(--gsm-section-background, #f7f8fa); color: var(--gsm-secondary, #c29b54); }
+}
+
+// Mobile search sheet
+.gsm-search-sheet {
+    .gsm-search-input { width: 100%; }
+    .gsm-search-results { position: static; width: 100%; box-shadow: none; border: 0; max-height: none; }
+}
+
+// Quick view modal
+.gsm-quickview-modal .modal-content {
+    border: 0;
+    border-radius: 20px;
+}
+
+// Auth pages — generous negative space around a centred card.
+.gsm-auth-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: calc(100vh - 260px);
+    padding-top: clamp(4.5rem, 12vh, 9rem);
+    padding-bottom: clamp(3.5rem, 9vh, 7rem);
+}
+
+.gsm-auth-card {
+    padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.75rem, 4vw, 3rem);
+
+    .gsm-auth-logo {
+        display: block;
+        max-height: 64px;
+        margin: 0 auto 1.75rem;
+    }
+
+    &__title { margin-bottom: 0.35rem; }
+
+    .form-label { font-size: 0.82rem; font-weight: 600; color: var(--gsm-primary, #1b2a4a); }
+
+    .form-control {
+        height: 48px;
+        border-radius: 12px;
+        border-color: #e3e7ee;
+
+        &:focus { border-color: var(--gsm-secondary, #c29b54); box-shadow: 0 0 0 4px rgba(194, 155, 84, 0.16); }
+    }
+
+    .btn { height: 50px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Site header: logo | search | menu
+   ══════════════════════════════════════════════════════════════════════ */
+.gsm-shop-header {
+    border-bottom: 1px solid var(--gsm-border-color, #eceef1);
+
+    &__bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-height: 76px;
+        padding-block: 0.6rem;
+    }
+
+    &__brand {
+        flex: 0 0 auto;
+        min-width: 0;
+
+        .navbar-brand { margin: 0; padding: 0; display: inline-flex; align-items: center; }
+
+        // Wide rectangular wordmark: cap BOTH axes and never distort it.
+        img {
+            max-height: 48px;
+            max-width: 190px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+    }
+
+    // Centre column takes the remaining width and stays centred.
+    &__search {
+        flex: 1 1 auto;
+        position: relative;
+        max-width: 560px;
+        margin-inline: auto;
+    }
+
+    &__actions {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+    }
+
+    .gsm-search-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #98a2b3;
+        font-size: 0.9rem;
+        pointer-events: none;
+    }
+
+    .gsm-search-input {
+        width: 100%;
+        height: 46px;
+        padding: 0 18px 0 44px;
+        border: 1px solid var(--gsm-border-color, #e3e7ee);
+        border-radius: 999px;
+        background: var(--gsm-section-background, #f7f8fa);
+        font-size: 0.92rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+        &:focus {
+            outline: none;
+            background: #fff;
+            border-color: var(--gsm-secondary, #c29b54);
+            box-shadow: 0 0 0 4px rgba(194, 155, 84, 0.14);
+        }
+    }
+
+    @media (max-width: 991.98px) {
+        &__bar {
+            min-height: 64px;
+            gap: 0.5rem;
+            flex-wrap: nowrap;   // never let the brand wrap to its own line
+        }
+        &__brand img { max-height: 36px; max-width: 140px; }
+        // The brand must be allowed to shrink, otherwise a wide logo pushes the
+        // cart/account icons off the edge on small phones.
+        &__brand { min-width: 0; overflow: hidden; }
+        &__actions { gap: 0; }
+    }
+}
+
+// Main menu dropdown (next to the logo, every breakpoint).
+.gsm-main-menu {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+
+    &__list {
+        min-width: 220px;
+        padding: 0.4rem 0;
+        border: 0;
+        border-radius: 14px;
+        box-shadow: 0 18px 44px rgba(20, 32, 58, 0.16);
+
+        .dropdown-item {
+            padding: 0.6rem 1.1rem;
+            font-weight: 600;
+            font-size: 0.94rem;
+            color: var(--gsm-heading-color, #1b2a4a);
+
+            &:hover,
+            &:focus { background: rgba(194, 155, 84, 0.12); color: var(--gsm-secondary, #c29b54); }
+            &.active { color: var(--gsm-secondary, #c29b54); }
+        }
+    }
+}
+
+// Account dropdown
+.gsm-account-dropdown {
+    min-width: 236px;
+    padding: 0.5rem 0;
+    border: 1px solid var(--gsm-border-color, #eceef1);
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(20, 32, 58, 0.16);
+
+    &__head {
+        padding: 0.6rem 1.1rem 0.4rem;
+        line-height: 1.3;
+    }
+
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 0.55rem 1.1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--gsm-primary, #1b2a4a);
+
+        &:hover,
+        &:focus {
+            background: var(--gsm-section-background, #f7f8fa);
+            color: var(--gsm-secondary, #c29b54);
+        }
+
+        &.text-danger:hover { color: #b3261e; }
+    }
+}
+
+.gsm-inline-badge {
+    margin-left: auto;
+    min-width: 20px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--gsm-secondary, #c29b54);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+// Pages without a hero must not be pulled under the overlay header. Cancel the
+// negative margin so the first section starts cleanly below it.
+.gsm-solid-header {
+    .gsm-header-overlay { margin-bottom: 0; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   Pill buttons site-wide (storefront)
+   ══════════════════════════════════════════════════════════════════════ */
+.gsm-btn-pill,
+.gsm-btn-primary,
+.gsm-btn-getprice,
+.gsm-btn-catalogue,
+.gsm-hero .btn,
+.gsm-products .btn,
+.gsm-cat .btn,
+main .btn,
+main .btn-primary,
+main .btn-outline-primary,
+main .btn-secondary,
+main button[type="submit"].btn,
+.gsm-cart-summary .btn,
+.gsm-auth-card .btn,
+.gsm-quickview-modal .btn {
+    border-radius: 999px !important;
+}
+
+// Section/hero CTAs rendered by the CMS button builder.
+.gsm-btn,
+.gsm-btn-gradient,
+[data-gsm-ripple] {
+    border-radius: 999px !important;
+}
+
+// Keep genuinely square controls square (qty stepper, close buttons, icons).
+.gsm-qty button,
+.btn-close,
+.gsm-pdp-thumb,
+.gsm-swatch,
+.navbar-toggler {
+    border-radius: inherit !important;
+}
+.gsm-swatch { border-radius: 50% !important; }

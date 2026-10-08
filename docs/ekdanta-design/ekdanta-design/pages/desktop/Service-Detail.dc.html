@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ekdanta — Service page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&amp;family=Hind:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Hind',system-ui,sans-serif;background:#0D1410;color:#0D1410;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #F2A230;outline-offset:3px}
+.eksd::-webkit-scrollbar{display:none}
+.press{transition:transform 100ms ease-out}
+.press:active{transform:scale(0.97)}
+.ek-rise{animation:ekRise 900ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekRise{from{transform:translateY(105%)}to{transform:none}}
+.ek-fade{animation:ekFade 800ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.ek-bob{animation:ekBob 3.4s ease-in-out infinite}
+@keyframes ekBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.ek-heart{animation:ekHeart 2.6s ease-out infinite}
+@keyframes ekHeart{0%{opacity:0;transform:translateY(12px) scale(.6)}20%{opacity:1}100%{opacity:0;transform:translateY(-70px) scale(1.1)}}
+.ek-blink{animation:ekBlink 1s steps(1) infinite}
+@keyframes ekBlink{50%{opacity:0}}
+.sc-pop{animation:scPop 8s cubic-bezier(.2,.9,.3,1.3) infinite both}
+@keyframes scPop{0%{opacity:0;transform:scale(.4)}7%{opacity:1;transform:scale(1)}86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(.9)}}
+.sc-drop{animation:scDrop 8s cubic-bezier(.2,.9,.3,1.3) infinite both}
+@keyframes scDrop{0%{opacity:0;transform:translateY(-70px)}8%{opacity:1;transform:none}86%{opacity:1;transform:none}94%,100%{opacity:0;transform:translateY(10px)}}
+.sc-slide{animation:scSlide 7s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes scSlide{0%{opacity:0;transform:translateX(60px)}8%{opacity:1;transform:none}84%{opacity:1;transform:none}92%,100%{opacity:0;transform:translateX(-20px)}}
+.sc-draw{stroke-dasharray:1 1;animation:scDraw 8s ease-in-out infinite both}
+@keyframes scDraw{0%{stroke-dashoffset:1}30%,86%{stroke-dashoffset:0}94%,100%{stroke-dashoffset:1}}
+.sc-cursor{animation:scCursor 7s cubic-bezier(.6,0,.2,1) infinite both}
+@keyframes scCursor{0%,10%{transform:translate(160px,120px)}30%,34%{transform:translate(0,0) scale(1)}36%{transform:translate(0,0) scale(.85)}40%,90%{transform:translate(0,0) scale(1)}100%{transform:translate(160px,120px)}}
+.sc-ripple{animation:scRipple 7s ease-out infinite both}
+@keyframes scRipple{0%,35%{opacity:0;transform:scale(.3)}37%{opacity:1;transform:scale(.5)}55%,100%{opacity:0;transform:scale(2.2)}}
+.sc-flash{animation:scFlash 4s linear infinite}
+@keyframes scFlash{0%,46%{opacity:0}48%{opacity:.85}56%,100%{opacity:0}}
+.sc-focus{animation:scFocus 4s cubic-bezier(.2,.9,.3,1.3) infinite}
+@keyframes scFocus{0%,30%{transform:scale(1.5);opacity:0}38%{transform:scale(1);opacity:1}80%{transform:scale(1);opacity:1}90%,100%{transform:scale(1);opacity:0}}
+.sc-strip{animation:scStrip 16s linear infinite}
+@keyframes scStrip{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sc-move{animation:scMove 8s cubic-bezier(.6,0,.2,1) infinite both}
+@keyframes scMove{0%,12%{transform:translate(0,0);opacity:1}26%,44%{transform:translate(166px,0);opacity:1}58%,86%{transform:translate(332px,0);opacity:1}92%{transform:translate(332px,0);opacity:0}96%{transform:translate(0,0);opacity:0}100%{transform:translate(0,0);opacity:1}}
+.sc-won{animation:scWon 8s linear infinite both}
+@keyframes scWon{0%,57%{background:#F2A230}58%,92%{background:#2EB45D}100%{background:#F2A230}}
+.sc-gauge{stroke-dasharray:1 1;animation:scGauge 8s cubic-bezier(.3,.7,.2,1) infinite both}
+@keyframes scGauge{0%,30%{stroke-dashoffset:1}60%,88%{stroke-dashoffset:0.06}96%,100%{stroke-dashoffset:1}}
+.sv-tab{transition:background-color 200ms ease-out,color 200ms ease-out}
+.sv-acc{transition:max-height 450ms cubic-bezier(.2,.8,.2,1),opacity 300ms ease-out}
+.sv-chev{transition:transform 300ms ease-out}
+@media (prefers-reduced-motion: reduce){.ek-rise,.ek-fade,.ek-bob,.ek-heart,.ek-blink,.sc-pop,.sc-drop,.sc-slide,.sc-cursor,.sc-ripple,.sc-flash,.sc-focus,.sc-strip,.sc-move,.sc-won{animation:none!important}.sc-draw,.sc-gauge{animation:none!important;stroke-dashoffset:0}.sc-ripple,.sc-flash{opacity:0}.press,.sv-tab,.sv-acc,.sv-chev{transition:none}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #0D1410; font-family: 'Hind', system-ui, sans-serif; color: #0D1410">
+
+<div class="eksd" ref="{{scrollRef}}" onScroll="{{onScroll}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+
+<section id="v-top" style="position: relative; height: 1300px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: {{heroBg}}; color: {{heroFg}}">
+<div aria-hidden="true" style="position: absolute; left: 760px; top: 60px; width: 700px; height: 700px; border-radius: 999px; background: radial-gradient(circle, {{heroGlow}}, rgba(0,0,0,0) 65%)"></div>
+<div style="position: absolute; left: 96px; top: 132px; width: 640px; opacity: {{heroTextOp}}; transform: translateY({{heroTextTy}})">
+<p class="ek-fade" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; opacity: 0.75"><a href="Services.dc.html" style="text-decoration: none">Services</a><span aria-hidden="true">  ›  </span>{{title}}</p>
+<h1 style="margin: 16px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{titleSize}}; line-height: 1; letter-spacing: -0.05em"><span style="display: block; overflow: hidden; padding-bottom: 8px"><span class="ek-rise" style="display: block; animation-delay: 150ms">{{title}}</span></span></h1>
+<p class="ek-fade" style="margin: 24px 0 0; width: 580px; font-size: 21px; line-height: 1.5; opacity: 0.88; animation-delay: 450ms">{{promise}}</p>
+<div class="ek-fade" style="margin-top: 24px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; animation-delay: 650ms">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; opacity: 0.65; margin-right: 4px">GOOD FOR</span>
+<sc-for list="{{goodFor}}" as="gf" hint-placeholder-count="3"><span style="padding: 8px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px {{chipRing}}; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px">{{gf.t}}</span></sc-for>
+</div>
+<div class="ek-fade" style="margin-top: 32px; display: flex; gap: 12px; animation-delay: 850ms">
+<a class="press" href="{{waHref}}" style="height: 56px; box-sizing: border-box; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; background: {{btnBg}}; color: {{btnFg}}; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg>Talk to us about {{shortLower}}</a>
+<a class="press" href="#v-price" style="height: 56px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; box-shadow: inset 0 0 0 1.5px {{chipRing}}; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none">How pricing works</a>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 790px; top: 130px; width: 560px; height: 560px; transform: translateY({{sceneTy}}) scale({{sceneSc}}); opacity: {{sceneOp}}">
+<sc-if value="{{isS0}}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; left: 150px; top: 20px; width: 260px; height: 520px; box-sizing: border-box; border-radius: 40px; border: 9px solid #1E2622; background: #FFFFFF; box-shadow: 0 50px 90px -40px rgba(0,0,0,0.8); overflow: hidden">
+<span style="position: absolute; left: 14px; top: 18px; width: 40px; height: 40px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 2px #E1306C; display: flex; align-items: center; justify-content: center"><img src="../../assets/e-mark.png" alt="" style="width: 26px; height: auto"></span>
+<span style="position: absolute; left: 64px; top: 22px; width: 90px; height: 8px; border-radius: 4px; background: #0D1410"></span>
+<span style="position: absolute; left: 64px; top: 38px; width: 120px; height: 6px; border-radius: 3px; background: #DDE2DA"></span>
+<div style="position: absolute; left: 6px; top: 76px; display: grid; grid-template-columns: repeat(3, 76px); gap: 3px"><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/reel-1.jpg) center top / cover no-repeat; animation-delay: 0ms"></span><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/case-trilok-infratech.jpg) center top / cover no-repeat; animation-delay: 280ms"></span><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/reel-2.jpg) center top / cover no-repeat; animation-delay: 560ms"></span><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/case-heaven-solar.jpg) center top / cover no-repeat; animation-delay: 840ms"></span><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/reel-4.jpg) center top / cover no-repeat; animation-delay: 1120ms"></span><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/case-srk-dairy.jpg) center top / cover no-repeat; animation-delay: 1400ms"></span><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/reel-3.jpg) center top / cover no-repeat; animation-delay: 1680ms"></span><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/case-her-and-he.jpg) center top / cover no-repeat; animation-delay: 1960ms"></span><span class="sc-pop" style="display: block; width: 76px; height: 100px; background: #DDE2DA url(../../assets/reel-5.jpg) center top / cover no-repeat; animation-delay: 2240ms"></span></div>
+<span style="position: absolute; left: 0; right: 0; bottom: 0; height: 44px; border-top: 1px solid #E4E8E2; background: #FFFFFF"></span>
+</div>
+<div class="ek-bob" style="position: absolute; left: 0; top: 330px; padding: 12px 16px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 20px 40px -20px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #0D1410"><span style="width: 30px; height: 30px; border-radius: 999px; background: #2EB45D; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></span>New followers</div>
+<div class="ek-bob" style="position: absolute; left: 400px; top: 70px; width: 150px; height: 266px; border-radius: 18px; overflow: hidden; transform: rotate(7deg); box-shadow: 0 30px 60px -25px rgba(0,0,0,0.7); animation-delay: 0.8s"><img src="../../assets/reel-1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; left: 10px; top: 10px; padding: 3px 8px; border-radius: 999px; background: rgba(13,20,16,0.8); color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10px">REEL</span></div>
+<div style="position: absolute; left: 330px; top: 420px; width: 40px; height: 100px"><span class="ek-heart" style="position: absolute; left: 0px; top: 60px; animation-delay: 0s"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.2 5.2 0 0 1 12 6.6 5.2 5.2 0 0 1 21.3 12C19 16.6 12 21 12 21z" fill="#E1306C"></path></svg></span><span class="ek-heart" style="position: absolute; left: 16px; top: 60px; animation-delay: 0.9s"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.2 5.2 0 0 1 12 6.6 5.2 5.2 0 0 1 21.3 12C19 16.6 12 21 12 21z" fill="#F2A230"></path></svg></span><span class="ek-heart" style="position: absolute; left: 6px; top: 60px; animation-delay: 1.7s"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.2 5.2 0 0 1 12 6.6 5.2 5.2 0 0 1 21.3 12C19 16.6 12 21 12 21z" fill="#2EB45D"></path></svg></span></div>
+</sc-if>
+<sc-if value="{{isS1}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 60px; top: 30px; width: 320px; height: 500px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 50px 90px -40px rgba(0,0,0,0.8); overflow: hidden">
+<span style="position: absolute; left: 14px; top: 14px; width: 34px; height: 34px; border-radius: 999px; background: #2EB45D"></span>
+<span style="position: absolute; left: 58px; top: 16px; width: 110px; height: 8px; border-radius: 4px; background: #0D1410"></span>
+<span style="position: absolute; left: 58px; top: 31px; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 11px; color: #8A968F">Sponsored</span>
+<span style="position: absolute; left: 0; top: 62px; width: 320px; height: 300px; background: url(../../assets/reel-4.jpg) center 20% / cover no-repeat"></span>
+<span style="position: absolute; left: 14px; top: 376px; width: 250px; height: 8px; border-radius: 4px; background: #DDE2DA"></span>
+<span style="position: absolute; left: 14px; top: 392px; width: 190px; height: 8px; border-radius: 4px; background: #DDE2DA"></span>
+<span style="position: absolute; left: 14px; right: 14px; top: 420px; height: 46px; border-radius: 12px; background: #0866FF; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center">Get a quote</span>
+</div>
+<span class="sc-ripple" style="position: absolute; left: 196px; top: 469px; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 999px; border: 3px solid #8FE3AE; box-sizing: border-box"></span>
+<svg class="sc-cursor" width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; left: 192px; top: 465px"><path d="M4 2l16 9-7 2-3 7z" fill="#FFFFFF" stroke="#0D1410" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+<div class="sc-slide" style="position: absolute; left: 330px; top: 110px; width: 210px; padding: 12px 14px; box-sizing: border-box; border-radius: 16px; background: #FFFFFF; box-shadow: 0 20px 40px -20px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 10px; animation-delay: 2600ms"><span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: #D9F2E1; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: flex; flex-direction: column"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #0D1410">New lead</span><span style="font-size: 13px; color: #56605A">From the lead form</span></span></div><div class="sc-slide" style="position: absolute; left: 330px; top: 192px; width: 210px; padding: 12px 14px; box-sizing: border-box; border-radius: 16px; background: #FFFFFF; box-shadow: 0 20px 40px -20px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 10px; animation-delay: 3200ms"><span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: #D9F2E1; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: flex; flex-direction: column"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #0D1410">New lead</span><span style="font-size: 13px; color: #56605A">From WhatsApp</span></span></div><div class="sc-slide" style="position: absolute; left: 330px; top: 274px; width: 210px; padding: 12px 14px; box-sizing: border-box; border-radius: 16px; background: #FFFFFF; box-shadow: 0 20px 40px -20px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 10px; animation-delay: 3800ms"><span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: #D9F2E1; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: flex; flex-direction: column"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #0D1410">New lead</span><span style="font-size: 13px; color: #56605A">From a call</span></span></div>
+</sc-if>
+<sc-if value="{{isS2}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 30px; top: 30px; width: 500px; height: 500px; border-radius: 28px; background: #FFFFFF; box-shadow: 0 50px 90px -40px rgba(13,20,16,0.6)">
+<svg width="220" height="220" viewBox="0 0 220 220" aria-hidden="true" style="position: absolute; left: 30px; top: 30px"><circle cx="110" cy="110" r="90" fill="none" stroke="#DDE2DA" stroke-width="2"></circle><circle class="sc-draw" pathLength="1" cx="110" cy="110" r="90" fill="none" stroke="#0D1410" stroke-width="14" stroke-linecap="round" transform="rotate(-90 110 110)"></circle><circle class="sc-pop" cx="110" cy="110" r="46" fill="#2EB45D" style="transform-box: fill-box; transform-origin: center; animation-delay: 1400ms"></circle><text class="sc-pop" x="110" y="128" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="800" font-size="52" fill="#0D1410" style="transform-box: fill-box; transform-origin: center; animation-delay: 1700ms">B</text></svg>
+<div style="position: absolute; left: 290px; top: 44px; display: flex; flex-direction: column; gap: 4px">
+<span class="sc-pop" style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 82px; line-height: 1; letter-spacing: -0.04em; color: #0D1410; animation-delay: 2200ms">Aa</span>
+<span class="sc-pop" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; color: #0D1410; animation-delay: 2500ms">Your brand font</span>
+<span class="sc-pop" style="font-size: 14px; color: #56605A; animation-delay: 2700ms">Headings · Body · Captions</span>
+</div>
+<div style="position: absolute; left: 30px; top: 300px; display: flex; gap: 12px"><span class="sc-drop" style="display: flex; flex-direction: column; align-items: center; gap: 6px; animation-delay: 2900ms"><span style="display: block; width: 56px; height: 100px; border-radius: 14px; background: #2EB45D; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.08)"></span><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10px; color: #56605A">#2EB45D</span></span><span class="sc-drop" style="display: flex; flex-direction: column; align-items: center; gap: 6px; animation-delay: 3080ms"><span style="display: block; width: 56px; height: 100px; border-radius: 14px; background: #0A5A30; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.08)"></span><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10px; color: #56605A">#0A5A30</span></span><span class="sc-drop" style="display: flex; flex-direction: column; align-items: center; gap: 6px; animation-delay: 3260ms"><span style="display: block; width: 56px; height: 100px; border-radius: 14px; background: #F2A230; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.08)"></span><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10px; color: #56605A">#F2A230</span></span><span class="sc-drop" style="display: flex; flex-direction: column; align-items: center; gap: 6px; animation-delay: 3440ms"><span style="display: block; width: 56px; height: 100px; border-radius: 14px; background: #0D1410; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.08)"></span><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10px; color: #56605A">#0D1410</span></span></div>
+<div class="sc-pop" style="position: absolute; left: 330px; top: 290px; width: 130px; height: 170px; animation-delay: 3600ms"><svg width="130" height="170" viewBox="0 0 130 170" aria-hidden="true"><path d="M20 30 Q65 10 110 30 L118 160 Q65 170 12 160 Z" fill="#2EB45D"></path><rect x="22" y="70" width="86" height="54" rx="8" fill="#FFFFFF"></rect><circle cx="44" cy="97" r="11" fill="#0A5A30"></circle><rect x="62" y="88" width="36" height="6" rx="3" fill="#0D1410"></rect><rect x="62" y="100" width="26" height="6" rx="3" fill="#DDE2DA"></rect><path d="M20 30 Q65 10 110 30 L108 40 Q65 22 22 40 Z" fill="#0A5A30"></path></svg></div>
+</div>
+</sc-if>
+<sc-if value="{{isS3}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 10px; top: 30px; width: 520px; height: 400px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 50px 90px -40px rgba(13,20,16,0.55); overflow: hidden">
+<span style="position: absolute; left: 0; top: 0; right: 0; height: 34px; background: #EEF1EC"></span>
+<span style="position: absolute; left: 14px; top: 12px; width: 10px; height: 10px; border-radius: 999px; background: #F2A230"></span><span style="position: absolute; left: 30px; top: 12px; width: 10px; height: 10px; border-radius: 999px; background: #8FE3AE"></span><span style="position: absolute; left: 46px; top: 12px; width: 10px; height: 10px; border-radius: 999px; background: #2EB45D"></span>
+<span style="position: absolute; left: 170px; top: 8px; width: 180px; height: 18px; border-radius: 999px; background: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 10.5px; color: #56605A; display: flex; align-items: center; justify-content: center">yourbrand.in</span>
+<div class="sc-drop" style="position: absolute; left: 20px; top: 48px; right: 20px; height: 22px; display: flex; align-items: center; justify-content: space-between; animation-delay: 300ms"><span style="width: 60px; height: 14px; border-radius: 4px; background: #0D1410"></span><span style="display: flex; gap: 10px"><span style="width: 40px; height: 6px; border-radius: 3px; background: #DDE2DA"></span><span style="width: 40px; height: 6px; border-radius: 3px; background: #DDE2DA"></span><span style="width: 56px; height: 18px; border-radius: 999px; background: #2EB45D"></span></span></div>
+<div class="sc-pop" style="position: absolute; left: 20px; top: 88px; width: 250px; height: 150px; animation-delay: 900ms"><span style="display: block; width: 230px; height: 22px; border-radius: 6px; background: #0D1410"></span><span style="display: block; margin-top: 8px; width: 180px; height: 22px; border-radius: 6px; background: #0D1410"></span><span style="display: block; margin-top: 14px; width: 220px; height: 8px; border-radius: 4px; background: #DDE2DA"></span><span style="display: block; margin-top: 6px; width: 190px; height: 8px; border-radius: 4px; background: #DDE2DA"></span><span style="display: block; margin-top: 16px; width: 110px; height: 30px; border-radius: 999px; background: #2EB45D"></span></div>
+<div class="sc-pop" style="position: absolute; left: 290px; top: 88px; width: 210px; height: 150px; border-radius: 14px; background: url(../../assets/case-her-and-he.jpg) center top / cover no-repeat; animation-delay: 1400ms"></div>
+<div style="position: absolute; left: 20px; top: 262px; right: 20px; display: flex; gap: 14px"><span class="sc-pop" style="flex: 1; height: 110px; border-radius: 12px; background: #F4F6F1; animation-delay: 1800ms"></span><span class="sc-pop" style="flex: 1; height: 110px; border-radius: 12px; background: #F4F6F1; animation-delay: 2050ms"></span><span class="sc-pop" style="flex: 1; height: 110px; border-radius: 12px; background: #F4F6F1; animation-delay: 2300ms"></span></div>
+</div>
+<div class="sc-pop" style="position: absolute; left: 380px; top: 340px; width: 150px; height: 170px; border-radius: 22px; background: #0D1410; color: #FFFFFF; box-shadow: 0 30px 60px -25px rgba(13,20,16,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; animation-delay: 2600ms">
+<svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="38" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="9"></circle><circle class="sc-gauge" pathLength="1" cx="48" cy="48" r="38" fill="none" stroke="#2EB45D" stroke-width="9" stroke-linecap="round" transform="rotate(-90 48 48)"></circle><path d="M36 49l8 8 16-17" fill="none" stroke="#8FE3AE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px">Fast to load</span>
+</div>
+<div class="sc-pop" style="position: absolute; left: 0; top: 300px; width: 110px; height: 220px; box-sizing: border-box; border-radius: 22px; border: 6px solid #1E2622; background: #FFFFFF; box-shadow: 0 30px 60px -25px rgba(13,20,16,0.6); overflow: hidden; animation-delay: 3000ms"><span style="display: block; margin: 16px 10px 0; height: 12px; border-radius: 4px; background: #0D1410"></span><span style="display: block; margin: 8px 10px 0; height: 60px; border-radius: 8px; background: url(../../assets/case-her-and-he.jpg) center top / cover no-repeat"></span><span style="display: block; margin: 8px 10px 0; height: 6px; border-radius: 3px; background: #DDE2DA"></span><span style="display: block; margin: 6px 10px 0; width: 50px; height: 18px; border-radius: 999px; background: #2EB45D"></span></div>
+</sc-if>
+<sc-if value="{{isS4}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 20px; top: 20px; width: 520px; height: 360px; border-radius: 22px; overflow: hidden; background: #0D1410 url(../../assets/reel-1.jpg) center 30% / cover no-repeat; box-shadow: 0 50px 90px -40px rgba(0,0,0,0.8)">
+<span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,20,16,0.35), rgba(13,20,16,0) 30%, rgba(13,20,16,0) 70%, rgba(13,20,16,0.45))"></span>
+<svg width="520" height="360" viewBox="0 0 520 360" aria-hidden="true" style="position: absolute; left: 0; top: 0"><path d="M24 54 V24 H54 M466 24 H496 V54 M496 306 V336 H466 M54 336 H24 V306" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path></svg>
+<span style="position: absolute; left: 40px; top: 36px; display: flex; align-items: center; gap: 6px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; color: #FFFFFF"><span class="ek-blink" style="width: 10px; height: 10px; border-radius: 999px; background: #FF4D3D"></span>REC</span>
+<span style="position: absolute; right: 40px; top: 36px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #FFFFFF">4K · 25 fps</span>
+<span class="sc-focus" style="position: absolute; left: 215px; top: 115px; width: 90px; height: 90px; border: 2px solid #8FE3AE; border-radius: 6px"></span>
+<span class="sc-flash" style="position: absolute; inset: 0; background: #FFFFFF"></span>
+</div>
+<div style="position: absolute; left: 0; top: 410px; width: 560px; height: 120px; overflow: hidden; border-radius: 14px; background: #0D1410">
+<div class="sc-strip" style="display: flex; gap: 10px; padding: 14px 0 14px 10px; width: max-content"><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-2.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-4.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-3.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-5.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-1.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-2.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-4.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-3.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-5.jpg) center 25% / cover no-repeat"></span><span style="display: block; width: 140px; height: 92px; flex-shrink: 0; border-radius: 6px; background: url(../../assets/reel-1.jpg) center 25% / cover no-repeat"></span></div>
+<span style="position: absolute; left: 0; right: 0; top: 3px; height: 8px; background-image: repeating-linear-gradient(90deg, #2B3832 0, #2B3832 12px, transparent 12px, transparent 22px)"></span>
+<span style="position: absolute; left: 0; right: 0; bottom: 3px; height: 8px; background-image: repeating-linear-gradient(90deg, #2B3832 0, #2B3832 12px, transparent 12px, transparent 22px)"></span>
+</div>
+</sc-if>
+<sc-if value="{{isS5}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 10px; top: 40px; width: 540px; height: 360px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 50px 90px -40px rgba(0,0,0,0.7)">
+<span style="position: absolute; left: 22px; top: 20px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px; color: #0D1410">Leads</span>
+<span style="position: absolute; right: 22px; top: 18px; padding: 5px 12px; border-radius: 999px; background: #F4F6F1; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; color: #56605A">This week</span>
+<span style="position: absolute; left: 22px; top: 60px; width: 156px; height: 280px; border-radius: 14px; background: #F4F6F1"><span style="position: absolute; left: 12px; top: 10px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #56605A">NEW</span></span><span style="position: absolute; left: 188px; top: 60px; width: 156px; height: 280px; border-radius: 14px; background: #F4F6F1"><span style="position: absolute; left: 12px; top: 10px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #56605A">TALKING</span></span><span style="position: absolute; left: 354px; top: 60px; width: 156px; height: 280px; border-radius: 14px; background: #EEF8F1"><span style="position: absolute; left: 12px; top: 10px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #56605A">WON</span></span>
+<span style="position: absolute; left: 30px; top: 92px; width: 140px; height: 50px; border-radius: 10px; background: #FFFFFF; box-shadow: 0 2px 8px -3px rgba(13,20,16,0.25)"></span>
+<span style="position: absolute; left: 196px; top: 92px; width: 140px; height: 50px; border-radius: 10px; background: #FFFFFF; box-shadow: 0 2px 8px -3px rgba(13,20,16,0.25)"></span>
+<span style="position: absolute; left: 196px; top: 152px; width: 140px; height: 50px; border-radius: 10px; background: #FFFFFF; box-shadow: 0 2px 8px -3px rgba(13,20,16,0.25)"></span>
+<span style="position: absolute; left: 362px; top: 92px; width: 140px; height: 50px; border-radius: 10px; background: #D9F2E1"></span>
+<span class="sc-move" style="position: absolute; left: 30px; top: 212px; width: 140px; height: 50px">
+<span class="sc-won" style="display: block; width: 140px; height: 50px; box-sizing: border-box; padding: 10px 12px; border-radius: 10px; background: #F2A230; box-shadow: 0 14px 24px -12px rgba(13,20,16,0.6)"><span style="display: block; width: 80px; height: 8px; border-radius: 4px; background: #0D1410"></span><span style="display: block; margin-top: 8px; width: 54px; height: 6px; border-radius: 3px; background: rgba(13,20,16,0.4)"></span></span>
+</span>
+</div>
+<div class="sc-slide" style="position: absolute; left: 300px; top: 0; padding: 12px 16px; border-radius: 16px; background: #0D1410; color: #FFFFFF; box-shadow: 0 20px 40px -20px rgba(0,0,0,0.7); display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; animation-delay: 1200ms"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2A230" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 21h4"></path></svg>Follow up today, 4 pm</div>
+<div style="position: absolute; left: 10px; top: 420px; width: 300px; height: 120px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7)">
+<span style="position: absolute; left: 18px; top: 14px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #0D1410">Deals won</span>
+<svg width="300" height="120" viewBox="0 0 300 120" aria-hidden="true" style="position: absolute; left: 0; top: 0"><path class="sc-draw" pathLength="1" d="M18 100 L70 90 L110 94 L150 72 L190 66 L230 44 L280 30" fill="none" stroke="#2EB45D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div class="ek-bob" style="position: absolute; left: 340px; top: 430px; width: 200px; padding: 14px 16px; box-sizing: border-box; border-radius: 18px; background: #2EB45D; color: #0D1410; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px">Every lead in one place</div>
+</sc-if>
+</div>
+<nav aria-label="Other services" style="position: absolute; left: 96px; top: 800px; display: flex; align-items: center; gap: 6px; opacity: {{heroTextOp}}">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; opacity: 0.65; margin-right: 10px">ALL SERVICES</span>
+<sc-for list="{{tabs}}" as="tb" hint-placeholder-count="6">
+<button type="button" class="sv-tab press" onClick="{{tb.go}}" aria-current="{{tb.cur}}" style="height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: {{tb.bg}}; color: {{tb.c}}; box-shadow: inset 0 0 0 1px {{chipRing}}; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer">{{tb.label}}</button>
+</sc-for>
+</nav>
+</div>
+</section>
+
+<section id="v-incl" style="position: relative; height: 2000px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #F4F6F1">
+<div style="position: absolute; left: 96px; top: 116px; opacity: {{inHeadOp}}; transform: translateY({{inHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #1E8E47">WHAT YOU GET</span>
+<h2 style="margin: 8px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 56px; line-height: 1.04; letter-spacing: -0.045em">What's included, end to end.</h2>
+</div>
+<div style="position: absolute; left: 96px; top: 290px; width: 1248px; height: 400px">
+<sc-for list="{{incl}}" as="ic" hint-placeholder-count="6">
+<div style="position: absolute; left: 0; top: 0; width: 400px; height: 176px; box-sizing: border-box; padding: 24px 26px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 20px 40px -28px rgba(13,20,16,0.45); transform: {{ic.tf}}; opacity: {{ic.op}}; z-index: {{ic.z}}">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; color: #1E8E47">{{ic.num}}</span><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="#D9F2E1"></circle><path pathLength="1" d="M9 15.5l4 4 8-9" fill="none" stroke="#1E8E47" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 1" stroke-dashoffset="{{ic.chk}}"></path></svg></span>
+<span style="display: block; margin-top: 12px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 21px; letter-spacing: -0.02em">{{ic.t}}</span>
+<span style="display: block; margin-top: 6px; font-size: 16px; line-height: 1.45; color: #56605A">{{ic.d}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="v-steps" style="position: relative; height: 2600px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #0D1410; color: #FFFFFF">
+<div style="position: absolute; left: 96px; top: 116px; opacity: {{stHeadOp}}; transform: translateY({{stHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #8FE3AE">HOW IT WORKS</span>
+<h2 style="margin: 8px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 56px; line-height: 1.04; letter-spacing: -0.045em">Four steps, start to finish.</h2>
+</div>
+<span aria-hidden="true" style="position: absolute; right: 70px; top: 90px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 260px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.12)">{{stBig}}</span>
+<div aria-hidden="true" style="position: absolute; left: 246px; top: 420px; width: 948px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.14); opacity: {{stHeadOp}}"><div style="height: 4px; border-radius: 2px; width: {{stFill}}; background: #2EB45D"></div></div>
+<sc-for list="{{steps}}" as="sp" hint-placeholder-count="4">
+<span aria-hidden="true" style="position: absolute; left: {{sp.nx}}; top: 404px; width: 36px; height: 36px; margin-left: -18px; border-radius: 999px; background: {{sp.nodeBg}}; box-shadow: 0 0 0 6px #0D1410, 0 0 0 7px {{sp.ring}}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 14px; color: {{sp.nc}}; display: flex; align-items: center; justify-content: center; opacity: {{sp.op}}">{{sp.n}}</span>
+<div style="position: absolute; left: {{sp.cx}}; top: 476px; width: 300px; min-height: 200px; box-sizing: border-box; padding: 24px; border-radius: 22px; background: {{sp.bg}}; color: {{sp.fg}}; opacity: {{sp.op}}; transform: translateY({{sp.ty}}) scale({{sp.sc}}); transform-origin: 50% 0">
+<span style="display: block; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; opacity: 0.7">STEP {{sp.n}}</span>
+<span style="display: block; margin-top: 8px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 23px; line-height: 1.15; letter-spacing: -0.03em">{{sp.t}}</span>
+<span style="display: block; margin-top: 8px; font-size: 16px; line-height: 1.45; opacity: 0.85">{{sp.d}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section id="v-proof" style="position: relative; height: 1700px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #FFFFFF">
+<div style="position: absolute; left: 96px; top: 116px; width: 900px; opacity: {{prHeadOp}}; transform: translateY({{prHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #1E8E47">RELATED WORK</span>
+<h2 style="margin: 8px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 56px; line-height: 1.04; letter-spacing: -0.045em">{{proofTitle}}</h2>
+</div>
+<div style="position: absolute; left: 96px; top: 280px; width: 1248px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<sc-for list="{{proof}}" as="pf" hint-placeholder-count="3">
+<div style="height: 500px; border-radius: 24px; overflow: hidden; background: {{pf.bg}}; box-shadow: {{pf.sh}}; opacity: {{pf.op}}; transform: translate({{pf.tx}}, {{pf.ty}}) rotate({{pf.rot}}); display: flex; flex-direction: column">
+<sc-if value="{{pf.real}}" hint-placeholder-val="{{ true }}">
+<div style="height: 300px; overflow: hidden; background: #FFFFFF"><img src="{{pf.img}}" alt="{{pf.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></div>
+<div style="padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; color: #FFFFFF">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.03em">{{pf.name}}</span>
+<span style="font-size: 15px; color: rgba(255,255,255,0.8)">{{pf.did}}</span>
+<a href="Case-Study.dc.html" style="margin-top: 4px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #8FE3AE">Read the case study</a>
+</div>
+</sc-if>
+<sc-if value="{{pf.ph}}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1; margin: 18px; border-radius: 18px; border: 2px dashed #C5CCC7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; padding: 24px; color: #56605A">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9AA39E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-8 8"></path></svg>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; color: #3B4640">{{pf.name}}</span>
+<span style="font-size: 15px; line-height: 1.45">{{pf.did}}</span>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="v-price" style="position: relative; height: 1800px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #F4F6F1">
+<div style="position: absolute; left: 96px; top: 120px; width: 520px; opacity: {{pcHeadOp}}; transform: translateY({{pcHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #1E8E47">PRICING</span>
+<h2 style="margin: 8px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 56px; line-height: 1.04; letter-spacing: -0.045em">No fixed packages.</h2>
+<p style="margin: 14px 0 0; font-size: 19px; line-height: 1.5; color: #56605A">After a free consultation, we send one clear monthly quote. For {{shortLower}}, it depends on:</p>
+</div>
+<div style="position: absolute; left: 96px; top: 320px; width: 520px; display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{factors}}" as="fa" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 10px 20px -18px rgba(13,20,16,0.5); opacity: {{fa.op}}; transform: translateX({{fa.tx}})"><span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; color: #1E8E47; display: flex; align-items: center; justify-content: center">{{fa.n}}</span><span style="font-size: 17px; line-height: 1.35">{{fa.t}}</span></div>
+</sc-for>
+<a class="press" href="{{waHref}}" style="align-self: flex-start; margin-top: 10px; height: 52px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; gap: 8px; background: #0D1410; color: #FFFFFF; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none; opacity: {{pcBtnOp}}">Get a quote for {{shortLower}}</a>
+</div>
+<div style="position: absolute; left: 720px; top: 120px; width: 624px; opacity: {{fqHeadOp}}; transform: translateY({{fqHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #1E8E47">QUESTIONS</span>
+<div style="margin-top: 16px; display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{faqs}}" as="fq" hint-placeholder-count="3">
+<div style="border-radius: 20px; background: #FFFFFF; box-shadow: 0 14px 28px -24px rgba(13,20,16,0.5); overflow: hidden; opacity: {{fq.op}}; transform: translateY({{fq.ty}})">
+<button type="button" onClick="{{fq.toggle}}" aria-expanded="{{fq.open}}" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; border: 0; background: none; text-align: left; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: #0D1410">{{fq.q}}<span class="sv-chev" style="width: 34px; height: 34px; flex-shrink: 0; border-radius: 999px; background: {{fq.cb}}; display: flex; align-items: center; justify-content: center; transform: rotate({{fq.rot}})"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{fq.cs}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+<div class="sv-acc" style="max-height: {{fq.mh}}; opacity: {{fq.aop}}; overflow: hidden"><p style="margin: 0; padding: 0 24px 22px; font-size: 17px; line-height: 1.55; color: #3B4640">{{fq.a}}</p></div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<section id="v-related" style="position: relative; height: 1500px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #0A5A30; color: #FFFFFF">
+<div style="position: absolute; left: 96px; top: 116px; opacity: {{rlHeadOp}}; transform: translateY({{rlHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #8FE3AE">WORKS WELL WITH</span>
+<h2 style="margin: 8px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 56px; line-height: 1.04; letter-spacing: -0.045em">Better together.</h2>
+</div>
+<div style="position: absolute; left: 96px; top: 290px; width: 1248px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<sc-for list="{{related}}" as="rl" hint-placeholder-count="3">
+<button type="button" class="press" onClick="{{rl.go}}" style="height: 380px; box-sizing: border-box; padding: 30px; border: 0; border-radius: 26px; background: {{rl.bg}}; color: {{rl.fg}}; text-align: left; cursor: pointer; display: flex; flex-direction: column; opacity: {{rl.op}}; transform: translateY({{rl.ty}}) rotate({{rl.rot}}); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), 0 40px 70px -40px rgba(0,0,0,0.6)">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; opacity: 0.7">{{rl.group}}</span>
+<span style="margin-top: 14px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 34px; line-height: 1.05; letter-spacing: -0.04em">{{rl.title}}</span>
+<span style="margin-top: 14px; font-size: 17px; line-height: 1.5; opacity: 0.85">{{rl.promise}}</span>
+<span style="margin-top: auto; display: inline-flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px">Explore {{rl.short}}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</button>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="v-contact" style="position: relative; height: 1800px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #2EB45D">
+<div style="position: absolute; left: 96px; top: 150px; width: 760px">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; opacity: {{endL1Op}}">Now it's your turn to</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 120px; line-height: 0.95; letter-spacing: -0.055em; opacity: {{endL2Op}}; transform: translateY({{endL2Ty}})">become a</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 200px; line-height: 0.9; letter-spacing: -0.06em; color: #FFFFFF; transform-origin: left center; opacity: {{endBigOp}}; transform: rotate({{endBigRot}}) scale({{endBigSc}})">BIG<br>BRAND!</p>
+</div>
+<div style="position: absolute; left: 880px; top: 130px; width: 464px; box-sizing: border-box; padding: 32px; border-radius: 28px; background: #FFFFFF; box-shadow: 0 40px 80px -40px rgba(13,20,16,0.5); display: flex; flex-direction: column; gap: 18px; opacity: {{cardOp}}; transform: translateX({{cardTx}})">
+<img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 40px; width: auto; align-self: flex-start">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">ALL SERVICES</span><a href="tel:+919099417987" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">90994 17987</a><a href="tel:+919099417949" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">90994 17949</a></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">SALES</span><a href="tel:+916354433194" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">63544 33194</a></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">EMAIL</span><a href="mailto:info@ekdanta.in" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; text-decoration: none">info@ekdanta.in</a></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">VISIT</span><span style="font-size: 17px; line-height: 1.5">B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017</span></div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap">
+<a href="https://wa.me/919099417987" style="height: 48px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; gap: 8px; background: #0D1410; color: #FFFFFF; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none">WhatsApp us</a>
+<a href="https://share.google/EAOxrObclZeY4QkQR" style="height: 48px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; border: 1.5px solid #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none">Get directions</a>
+<a href="https://www.instagram.com/ekdanta.in/" style="height: 48px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; border: 1.5px solid #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none">Instagram</a>
+</div>
+</div>
+<footer style="position: absolute; left: 96px; right: 96px; bottom: 34px; padding-top: 16px; border-top: 1px solid rgba(13,20,16,0.2); display: flex; justify-content: space-between; font-size: 15px; color: #0E3A22; opacity: {{footOp}}">
+<span>© 2026 Ekdanta Branding and Marketing. Surat and Ahmedabad.</span>
+<span>Aapki branding &amp; marketing ke विघ्नहर्ता</span>
+</footer>
+</div>
+</section>
+</div>
+
+<header style="position: absolute; top: 16px; left: 32px; right: 32px; height: 60px; box-sizing: border-box; padding: 0 10px 0 24px; border-radius: 999px; background: rgba(255,255,255,0.95); box-shadow: 0 10px 30px -18px rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: space-between; z-index: 50">
+<a href="Final-Home.dc.html" aria-label="Ekdanta home" style="display: flex; align-items: center"><img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 32px; width: auto; display: block"></a>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 15px">
+<a href="Final-Home.dc.html" style="padding: 9px 14px; border-radius: 999px; text-decoration: none">Home</a>
+<a href="Work.dc.html" style="padding: 9px 14px; border-radius: 999px; text-decoration: none">Work</a>
+<a href="Services.dc.html" aria-current="page" style="padding: 9px 14px; border-radius: 999px; background: rgba(46,180,93,0.22); font-weight: 600; text-decoration: none">Services</a>
+<a href="About.dc.html" style="padding: 9px 14px; border-radius: 999px; text-decoration: none">About</a>
+<a href="Contact.dc.html" style="padding: 9px 14px; border-radius: 999px; text-decoration: none">Contact</a>
+</nav>
+<a class="press" href="#v-contact" style="height: 42px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; background: #2EB45D; color: #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; text-decoration: none">Become a big brand</a>
+</header>
+<div aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 3px; width: {{progW}}; background: #F2A230; z-index: 60"></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"scrub":{"editor":"range","default":0,"min":0,"max":11800,"step":50,"unit":"px","label":"Preview scroll position"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.applyScrub();
+  }
+  componentWillUnmount() { if (this._raf) cancelAnimationFrame(this._raf); }
+  componentDidUpdate(prev) { if ((prev.scrub || 0) !== (this.props.scrub || 0)) this.applyScrub(); }
+  applyScrub() {
+    const v = this.props.scrub || 0;
+    if (this._el && v > 0) { this._el.scrollTop = v; this.setState({ y: v }); }
+  }
+  renderVals() {
+    const st = this.state || {};
+    const y = st.y || 0;
+    const rm = !!this._reduce;
+    const clamp = (v, a, b) => Math.max(a === undefined ? 0 : a, Math.min(b === undefined ? 1 : b, v));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const ease = (k) => (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+    const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+    const px = (v) => v.toFixed(1) + 'px';
+    const f3 = (v) => v.toFixed(3);
+    const pct = (v) => (v * 100).toFixed(2) + '%';
+    const move = (v) => (rm ? 0 : v);
+    const snap = (raw, n) => { const r = clamp(raw, 0, n); const i = Math.min(n - 1, Math.floor(r)); return r >= n ? n : i + ease(clamp((r - i - 0.4) / 0.6)); };
+
+    // Section tops on the page
+    const T_IN = 1300, T_ST = 3300, T_PR = 5900, T_PC = 7600, T_RL = 9400, T_END = 10900, MAXY = 11800;
+    const out = {};
+
+    // The six main services. One page design, switched in place (on the live site each gets its own URL).
+    const CASE = {
+      trilok: ['Trilok Infratech', '../../assets/case-trilok-infratech.jpg', [14, 44, 84], 'Social media creatives · Site and factory reels · Hindi and English campaigns'],
+      yantra: ['Yantra Design', '../../assets/case-yantra-design.jpg', [74, 18, 18], 'Product creatives · Machine showcase posts · Launch campaigns'],
+      heaven: ['Heaven Solar', '../../assets/case-heaven-solar.jpg', [12, 62, 36], 'Gujarati and English creatives · Offer campaigns · Festival posts'],
+      srk: ['SRK Dairy Farm and Foods', '../../assets/case-srk-dairy.jpg', [72, 50, 10], 'Product photography · Recipe and festive creatives · Brand campaigns'],
+      herhe: ['Her & He Cosmetics', '../../assets/case-her-and-he.jpg', [42, 40, 44], 'Product shoots · Model creatives · Launch posts'],
+      valley: ['ValleyRides', '../../assets/case-valleyrides.jpg', [12, 58, 66], 'Travel creatives · Reels from the trail · Booking campaigns']
+    };
+    const S = [
+      { title: 'Social media management', short: 'Social media', lower: 'social media', group: 'DIGITAL', hero: ['#0D1410', '#FFFFFF', 'rgba(46,180,93,0.28)', 'rgba(255,255,255,0.35)', '#2EB45D', '#0D1410'],
+        promise: 'Posts, reels and stories that keep your brand in front of the right people, every week.', goodFor: ['Manufacturers', 'D2C brands', 'Local businesses'],
+        incl: [['Monthly content calendar', 'Planned around your offers, festivals and launches.'], ['Creatives and carousels', "Designed in-house, in your brand's look."], ['Reels', 'Scripted, shot and edited by our team.'],
+          ['Captions in your languages', 'English, Hindi or Gujarati, written for your buyers.'], ['Posting on schedule', 'We publish on time across your pages.'], ['Monthly report', "What worked, what didn't, and next month's plan."]],
+        steps: [['Brand and audience call', 'We learn your products, customers and competitors.'], ['Calendar for approval', "You approve the month's plan before we create."], ['Create and publish', 'Design, shoots and edits, posted on schedule.'], ['Review every month', 'We look at the numbers and plan the next month.']],
+        proofTitle: 'Feeds we run.', proof: ['trilok', 'heaven', 'herhe'],
+        factors: ['How many posts and reels you need each month', 'Which platforms you want to be on', 'Whether shoots are needed at your location', 'The languages for captions and creatives'],
+        faqs: [['Do you shoot the content too?', 'Yes. Our crew can shoot at your factory, store or site, or we can work with photos and videos you share.'], ['Do I approve posts before they go live?', 'Yes. You see the monthly calendar and the creatives before anything is posted.'], ['Which platforms do you manage?', '[Confirm: for example Instagram, Facebook and LinkedIn.]']],
+        related: [1, 4, 2] },
+      { title: 'Meta ads', short: 'Meta ads', lower: 'Meta ads', group: 'DIGITAL · PERFORMANCE', hero: ['#0E2440', '#FFFFFF', 'rgba(8,102,255,0.38)', 'rgba(255,255,255,0.35)', '#FFFFFF', '#0D1410'],
+        promise: 'Facebook and Instagram ads that bring enquiries and orders, not just likes.', goodFor: ['Lead generation', 'Online sales', 'New launches'],
+        incl: [['Pixel and tracking setup', 'So every enquiry and sale is counted properly.'], ['Audience and funnel plan', 'Who to reach first, and how to bring them back.'], ['Ad creatives', 'Static ads, reels and UGC, made in-house.'],
+          ['Weekly testing', 'New hooks, offers and audiences, every week.'], ['Landing page fixes', 'Our developers fix pages that leak clicks.'], ['Monthly report and call', 'Spend, leads, cost per lead and next steps.']],
+        steps: [['Account audit', 'We review your ad account, past ads and website.'], ['Tracking and structure', 'Pixel, events and campaigns set up properly.'], ['Creatives and testing', 'Several ads and audiences run side by side.'], ['Scale what works', 'Budget moves to the winners while we keep testing.']],
+        proofTitle: "Campaigns we've run.", proof: ['heaven', 'yantra', 'trilok'],
+        factors: ['Your monthly ad budget, paid directly to Meta', 'How many ad creatives you need each month', 'Whether tracking or landing pages need fixing first', 'How many products, cities or audiences you target'],
+        faqs: [['Is the ad budget part of your fee?', 'No. You pay Meta directly for ad spend. Our fee covers planning, creatives and management.'], ['Can you take over our current ad account?', 'Yes. You give us partner access in Meta Business Manager, and the account stays in your name.'], ['What is the minimum ad budget?', '[Confirm the minimum monthly ad budget you recommend.]']],
+        related: [0, 3, 5] },
+      { title: 'Branding and packaging', short: 'Branding', lower: 'branding', group: 'BRANDING', hero: ['#2EB45D', '#0D1410', 'rgba(255,255,255,0.4)', 'rgba(13,20,16,0.4)', '#0D1410', '#FFFFFF'],
+        promise: 'A name, logo, look and packaging that people remember and trust.', goodFor: ['New brands', 'Brand refresh', 'Product launches'],
+        incl: [['Brand strategy', 'Who you serve, what you stand for and how you are different.'], ['Logo and identity', 'A mark and a personality your brand speaks with.'], ['Colours and typography', 'A look that stays the same everywhere.'],
+          ['Brand guidelines', 'One rulebook for every post, ad and print.'], ['Packaging design', 'Boxes, pouches and labels that sell on the shelf.'], ['Launch creatives', 'Posts and ads to introduce the new look.']],
+        steps: [['Discovery', 'We learn your business, buyers and competitors.'], ['Strategy and direction', 'Positioning and two or three design routes to choose from.'], ['Design and refine', 'Logo, colours, type and packaging, refined with you.'], ['Guidelines and handover', 'All files and a simple rulebook for your team.']],
+        proofTitle: "Brands we've shaped.", proof: [['[Add a branding project]', 'Logo, colours and guidelines for a client brand.'], ['[Add a packaging project]', 'Boxes, pouches or labels you designed.'], ['[Add a brand refresh]', 'Before and after of a refreshed brand.']],
+        factors: ['A new brand, or a refresh of an existing one', 'How many products or packaging variants you have', 'Whether you need print-ready files or print support', 'How soon you want to launch'],
+        faqs: [['Can you refresh our logo instead of starting over?', 'Yes. We can refresh what you have or start fresh, depending on what your brand needs.'], ['Do you also handle printing?', '[Confirm: do you coordinate printing, or hand over print-ready files?]'], ['How long does a branding project take?', '[Add a typical timeline.]']],
+        related: [4, 0, 3] },
+      { title: 'Website development', short: 'Websites', lower: 'websites', group: 'DIGITAL · DEVELOPMENT', hero: ['#F4F6F1', '#0D1410', 'rgba(46,180,93,0.25)', 'rgba(13,20,16,0.25)', '#0D1410', '#FFFFFF'],
+        promise: 'Fast, modern websites built and maintained in-house, made to turn visitors into enquiries.', goodFor: ['Company websites', 'Product catalogues', 'Landing pages'],
+        incl: [['Sitemap and content plan', 'Which pages you need and what each one says.'], ['Design', 'A look that matches your brand, made mobile-first.'], ['Development', 'Built in-house by our own developers.'],
+          ['Admin panel', 'Edit pages, products and blogs yourself.'], ['SEO basics', 'Clean structure, speed and tags so Google can find you.'], ['Maintenance', 'Updates, backups and fixes after launch.']],
+        steps: [['Plan the pages', 'Sitemap, content and features agreed together.'], ['Design', 'Home and key pages designed for your approval.'], ['Build and test', 'Developed, connected and tested on every screen size.'], ['Launch and maintain', 'We go live and keep the site updated.']],
+        proofTitle: "Websites we've built.", proof: [['[Add a website you built]', 'A screenshot of the home page and a link.'], ['[Add a second website]', 'Pick one with a clear before and after.'], ['[Add a landing page]', 'A page made for ads, with its result.']],
+        factors: ['How many pages you need', 'Custom features like catalogues, forms or payments', 'Whether we write the content and shoot photos', 'Ongoing maintenance and hosting'],
+        faqs: [['Can we update the website ourselves?', 'Yes. We can add an admin panel so your team can edit pages, products and blog posts.'], ['Will it work well on phones?', 'Yes. Every site is designed for mobile first.'], ['Do you host the website too?', '[Confirm hosting and maintenance terms.]']],
+        related: [1, 5, 2] },
+      { title: 'Product shoots and reels', short: 'Shoots and reels', lower: 'shoots and reels', group: 'FILMS', hero: ['#0A5A30', '#FFFFFF', 'rgba(242,162,48,0.32)', 'rgba(255,255,255,0.4)', '#F2A230', '#0D1410'],
+        promise: 'Photos, reels and films shot by our own crew, at your factory, store or site.', goodFor: ['Product brands', 'Factories and sites', 'Social media and ads'],
+        incl: [['Product photography', 'Clean photos of every product, for posts and listings.'], ['Reels and short videos', 'Made for Instagram, Facebook and ads.'], ['Brand and corporate films', 'Your story, from factory floor to founder.'],
+          ['Model and influencer shoots', 'Casting, styling and direction handled for you.'], ['UGC videos', 'Real people using your product, made for ads.'], ['Editing and motion graphics', 'Cuts, captions, music and animated text.']],
+        steps: [['Shoot plan', 'Shot list, script and location agreed with you.'], ['Shoot day', 'Our crew shoots on location or in a set-up.'], ['Edit', 'Cuts, colour, captions and music.'], ['Deliver', 'Every size you need, for posts, reels and ads.']],
+        proofTitle: "Shoots we've done.", proof: ['srk', 'herhe', 'valley'],
+        factors: ['How many products, locations or shoot days', 'Whether models or creators are needed', 'How many final photos and videos you need', 'Travel for outdoor or out-of-city shoots'],
+        faqs: [['Do you shoot outside Surat?', 'Yes. We shoot on location, from factories and sites to Himalayan treks.'], ['Can you find models and creators?', 'Yes. We run casting calls for models, influencers and UGC creators.'], ['Who owns the photos and videos?', '[Confirm usage rights for the final files.]']],
+        related: [0, 1, 2] },
+      { title: 'CRM and app development', short: 'CRM and apps', lower: 'CRM and apps', group: 'GROWTH', hero: ['#1F2A44', '#FFFFFF', 'rgba(242,162,48,0.28)', 'rgba(255,255,255,0.35)', '#F2A230', '#0D1410'],
+        promise: 'Custom CRMs and apps that track every lead, follow-up and order, built around how your team works.', goodFor: ['Sales teams', 'Manufacturers and dealers', 'Growing businesses'],
+        incl: [['Lead capture', 'Enquiries from ads, website and calls in one place.'], ['Pipeline and reminders', 'Every lead has a stage and a next follow-up.'], ['Quotes and orders', 'Create and track quotes and orders in the system.'],
+          ['Team roles and access', 'Everyone sees what they need, nothing more.'], ['Reports and dashboards', 'Leads, conversions and team performance at a glance.'], ['Support and updates', 'We keep improving it as your process grows.']],
+        steps: [['Map your sales process', 'How a lead comes in, moves and closes today.'], ['Design the screens', 'Simple screens your team will actually use.'], ['Build and connect', 'Developed in-house and connected to your lead sources.'], ['Train your team', 'We set it up with your team and stay on call.']],
+        proofTitle: "Systems we've built.", proof: [['[Add a CRM you built]', 'A screenshot of the lead pipeline or dashboard.'], ['[Add an app you built]', 'What it does and who uses it.'], ['[Add a result]', 'For example, fewer missed follow-ups.']],
+        factors: ['How many people will use it', 'Which lead sources and tools it connects to', 'Custom modules like quotes, stock or dispatch', 'Moving your existing data in'],
+        faqs: [['Can it connect to our ads and website forms?', '[Confirm which lead sources you connect, for example Meta lead ads and website forms.]'], ['Can our team use it on their phones?', '[Confirm mobile support.]'], ['Who owns the data?', '[Confirm data ownership and export terms.]']],
+        related: [1, 3, 0] }
+    ];
+    const si = clamp(st.svc || 0, 0, 5);
+    const s0 = S[si];
+    const H = s0.hero;
+    const go = (i) => { if (this._el) this._el.scrollTop = 0; this.setState({ svc: i, y: 0, faq: 0 }); };
+    const sizeFor = (t) => (t.length <= 10 ? '120px' : t.length <= 19 ? '88px' : '78px');
+    const lightHero = H[1] !== '#FFFFFF';
+    for (let i = 0; i < 6; i++) out['isS' + i] = i === si;
+    Object.assign(out, {
+      title: s0.title, short: s0.short, shortLower: s0.lower, group: s0.group, promise: s0.promise,
+      heroBg: H[0], heroFg: H[1], heroGlow: H[2], chipRing: H[3], btnBg: H[4], btnFg: H[5], titleSize: sizeFor(s0.title),
+      goodFor: s0.goodFor.map((t) => ({ t: t })),
+      waHref: 'https://wa.me/919099417987?text=' + encodeURIComponent("Hi Ekdanta, I'd like to know more about " + s0.lower + '.'),
+      tabs: S.map((s, i) => ({ label: s.short, go: () => go(i), cur: i === si ? 'true' : 'false', bg: i === si ? H[1] : 'transparent', c: i === si ? (lightHero ? '#FFFFFF' : '#0D1410') : H[1] }))
+    });
+
+    // 1. Hero: a live scene of the service at work (CSS loops); scrolling sets it down.
+    const h = rm ? 0 : clamp(y / 450);
+    Object.assign(out, {
+      heroTextOp: f3(rm ? 1 : 1 - clamp((y - 100) / 320)), heroTextTy: px(move(-h * 80)),
+      sceneTy: px(move(-h * 100)), sceneSc: (1 - h * 0.1).toFixed(3), sceneOp: f3(rm ? 1 : 1 - clamp((y - 150) / 300))
+    });
+
+    // 2. What you get: six cards dealt from a stack into a grid; their ticks draw in.
+    const s2 = y - T_IN;
+    const inHead = rm ? 1 : clamp((s2 + 650) / 420);
+    const stackOp = rm ? 1 : clamp((s2 + 650) / 300);
+    out.incl = s0.incl.map((c, i) => {
+      const d = rm ? 1 : easeOut(clamp((s2 + 250 - i * 90) / 450));
+      const sx = (i % 3) * 424, sy = Math.floor(i / 3) * 200;
+      const x = lerp(424 + i * 3, sx, d), yy = lerp(112 - i * 3, sy, d), r = lerp((i - 2.5) * 5, 0, d);
+      return { num: '0' + (i + 1), t: c[0], d: c[1], op: f3(stackOp), z: d < 0.98 ? 10 + (5 - i) : 1,
+        tf: 'translate(' + px(x) + ', ' + px(yy) + ') rotate(' + r.toFixed(2) + 'deg) scale(' + lerp(0.9, 1, d).toFixed(3) + ')',
+        chk: (1 - (rm ? 1 : clamp((s2 + 50 - i * 90) / 220))).toFixed(3) };
+    });
+    Object.assign(out, { inHeadOp: f3(inHead), inHeadTy: px(move((1 - easeOut(inHead)) * 40)) });
+
+    // 3. How it works: the track fills step by step; the active card lights up.
+    const s3 = y - T_ST;
+    const stHead = rm ? 1 : clamp((s3 + 650) / 420);
+    const sp = rm ? 3 : snap((s3 - 200) / 380, 3);
+    out.steps = s0.steps.map((c, i) => {
+      const a = rm ? (i === 3 ? 1 : 0) : clamp(1 - Math.abs(sp - i) * 1.5);
+      const reached = sp >= i - 0.3;
+      const e = rm ? 1 : clamp((s3 + 400 - i * 90) / 300);
+      const nx = 246 + i * 316;
+      return { n: String(i + 1), t: c[0], d: c[1], nx: px(nx), cx: px(nx - 150),
+        nodeBg: reached ? '#2EB45D' : '#1E2622', nc: reached ? '#0D1410' : 'rgba(255,255,255,0.55)', ring: reached ? '#2EB45D' : 'rgba(255,255,255,0.2)',
+        bg: a > 0.5 ? '#2EB45D' : 'rgba(255,255,255,0.06)', fg: a > 0.5 ? '#0D1410' : '#FFFFFF',
+        op: f3(e * (reached ? 1 : 0.5)), ty: px(move((1 - easeOut(e)) * 40 - a * 12)), sc: (1 + a * 0.04).toFixed(3) };
+    });
+    Object.assign(out, { stHeadOp: f3(stHead), stHeadTy: px(move((1 - easeOut(stHead)) * 40)), stFill: pct(sp / 3), stBig: '0' + (Math.round(sp) + 1) });
+
+    // 4. Related work: real case cards (or slots to fill) slide in from the sides.
+    const s4 = y - T_PR;
+    const prHead = rm ? 1 : clamp((s4 + 650) / 420);
+    out.proof = s0.proof.map((p, i) => {
+      const a = rm ? 1 : easeOut(clamp((s4 + 350 - i * 110) / 450));
+      const dir = i === 0 ? -1 : i === 2 ? 1 : 0;
+      const real = typeof p === 'string';
+      const c = real ? CASE[p] : null;
+      return { real: real, ph: !real, name: real ? c[0] : p[0], did: real ? c[3] : p[1], img: real ? c[1] : '', alt: real ? 'Social media work for ' + c[0] : '',
+        bg: real ? 'rgb(' + c[2].join(',') + ')' : '#F4F6F1', sh: real ? '0 40px 70px -40px rgba(13,20,16,0.6)' : 'none',
+        op: f3(clamp(a * 1.5)), tx: px(move(dir * (1 - a) * 200)), ty: px(move((1 - a) * 160)), rot: (rm ? 0 : dir * (1 - a) * 8).toFixed(2) + 'deg' };
+    });
+    Object.assign(out, { prHeadOp: f3(prHead), prHeadTy: px(move((1 - easeOut(prHead)) * 40)), proofTitle: s0.proofTitle });
+
+    // 5. Pricing and questions: factors slide in, the accordion opens on click.
+    const s5 = y - T_PC;
+    const pcHead = rm ? 1 : clamp((s5 + 650) / 420);
+    const fqHead = rm ? 1 : clamp((s5 + 500) / 420);
+    out.factors = s0.factors.map((t, k) => { const a = rm ? 1 : clamp((s5 + 300 - k * 90) / 250); return { n: String(k + 1), t: t, op: f3(a), tx: px(move((1 - easeOut(a)) * -30)) }; });
+    const openK = typeof st.faq === 'number' ? st.faq : 0;
+    out.faqs = s0.faqs.map((f, k) => {
+      const a = rm ? 1 : clamp((s5 + 200 - k * 100) / 260);
+      const open = k === openK;
+      return { q: f[0], a: f[1], open: open ? 'true' : 'false', mh: open ? '220px' : '0px', aop: open ? '1' : '0', rot: open ? '45deg' : '0deg',
+        cb: open ? '#0D1410' : '#F4F6F1', cs: open ? '#FFFFFF' : '#0D1410', op: f3(a), ty: px(move((1 - easeOut(a)) * 30)),
+        toggle: () => { const cur = this.state && typeof this.state.faq === 'number' ? this.state.faq : 0; this.setState({ faq: cur === k ? -1 : k }); } };
+    });
+    Object.assign(out, { pcHeadOp: f3(pcHead), pcHeadTy: px(move((1 - easeOut(pcHead)) * 40)), pcBtnOp: f3(rm ? 1 : clamp((s5 - 100) / 250)),
+      fqHeadOp: f3(fqHead), fqHeadTy: px(move((1 - easeOut(fqHead)) * 40)) });
+
+    // 6. Works well with: three other services rise in; each opens its own page.
+    const s6 = y - T_RL;
+    const rlHead = rm ? 1 : clamp((s6 + 650) / 420);
+    out.related = s0.related.map((ri, i) => {
+      const r = S[ri];
+      const a = rm ? 1 : easeOut(clamp((s6 + 350 - i * 110) / 450));
+      return { title: r.title, short: r.lower, group: r.group, promise: r.promise, bg: r.hero[0], fg: r.hero[1],
+        op: f3(clamp(a * 1.5)), ty: px(move((1 - a) * 200)), rot: (rm ? 0 : (1 - a) * (i - 1) * 5).toFixed(2) + 'deg', go: () => go(ri) };
+    });
+    Object.assign(out, { rlHeadOp: f3(rlHead), rlHeadTy: px(move((1 - easeOut(rlHead)) * 40)) });
+
+    // 7. Finale: the approved homepage closing, unchanged.
+    const s7 = y - T_END;
+    const pe = clamp((s7 + 600) / 1500);
+    const q = (x0) => (rm ? 1 : clamp((pe - x0) / 0.18));
+    Object.assign(out, {
+      endL1Op: f3(q(0)), endL2Op: f3(q(0.12)), endL2Ty: px(move((1 - q(0.12)) * 40)),
+      endBigOp: f3(q(0.24)), endBigRot: (rm ? -3 : lerp(-8, -3, q(0.24))).toFixed(2) + 'deg', endBigSc: (rm ? 1 : lerp(0.6, 1, ease(q(0.24)))).toFixed(3),
+      cardOp: f3(q(0.45)), cardTx: px(move((1 - q(0.45)) * 80)), footOp: f3(q(0.7))
+    });
+
+    out.scrollRef = (el) => { this._el = el; };
+    out.onScroll = (ev) => {
+      const t = ev && (ev.currentTarget || ev.target);
+      if (!t) return;
+      this._y = t.scrollTop;
+      if (!this._raf) this._raf = requestAnimationFrame(() => { this._raf = null; this.setState({ y: this._y }); });
+    };
+    out.progW = pct(clamp(y / MAXY));
+    return out;
+  }
+}
+</script>
+</body>
+</html>

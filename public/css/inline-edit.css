@@ -1,0 +1,37 @@
+/**
+ * Inline editing affordances, inside the builder preview only.
+ *
+ * The page must still look like the page — this adds the smallest hint that
+ * something is clickable, and gets louder only on hover, focus and while
+ * actually editing.
+ */
+
+.gsm-inline-editing .gsm-editable {
+    cursor: text;
+    border-radius: 3px;
+    outline: 1px dashed rgba(27, 106, 201, 0.35);
+    outline-offset: 3px;
+    transition: outline-color 120ms ease, background-color 120ms ease;
+}
+
+.gsm-inline-editing .gsm-editable:hover {
+    outline-color: rgba(27, 106, 201, 0.9);
+    background: rgba(27, 106, 201, 0.06);
+}
+
+.gsm-inline-editing .gsm-editable:focus,
+.gsm-inline-editing .gsm-editable[contenteditable] {
+    outline: 2px solid #1b6ac9;
+    outline-offset: 3px;
+    background: rgba(27, 106, 201, 0.08);
+}
+
+/* Brief confirmation that the edit was handed over, then out of the way. */
+.gsm-inline-editing .gsm-editable--saved {
+    outline-color: #2f7d55;
+    background: rgba(47, 125, 85, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gsm-inline-editing .gsm-editable { transition: none; }
+}

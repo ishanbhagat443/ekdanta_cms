@@ -1,0 +1,635 @@
+/**
+ * Builder chrome: the sticky save bar shared by the Page, Header and Footer
+ * builders.
+ *
+ * Design intent: the bar is the one piece of persistent furniture on the
+ * screen, so it stays quiet — a hairline, a soft surface, no colour until
+ * something needs attention. The save state is the only element allowed to
+ * shout, and only when a save actually fails.
+ */
+
+:root {
+    --gsm-bar-bg: #ffffff;
+    --gsm-bar-border: #dfe3e8;
+    --gsm-bar-ink: #3d4756;
+    --gsm-bar-ink-muted: #737e8c;
+
+    --gsm-state-saved: #2f7d55;
+    --gsm-state-pending: #8a6d1f;
+    --gsm-state-saving: #4a5568;
+    --gsm-state-error: #b3261e;
+    --gsm-state-error-bg: #fdeceb;
+
+    --gsm-focus: #1b6ac9;
+}
+
+/* ── The bar ─────────────────────────────────────────────────────── */
+
+.gsm-builder-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: -0.5rem 0 1rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--gsm-bar-bg);
+    border: 1px solid var(--gsm-bar-border);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.gsm-builder-bar__group {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.gsm-builder-bar__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+/* ── Undo / redo ─────────────────────────────────────────────────── */
+
+.gsm-tool-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    color: var(--gsm-bar-ink);
+    background: transparent;
+    border: 1px solid var(--gsm-bar-border);
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.gsm-tool-btn:hover:not(:disabled) {
+    background: #f1f3f6;
+    border-color: #c9cfd8;
+}
+
+/* Pressed feedback within the 80–150ms window. */
+.gsm-tool-btn:active:not(:disabled) {
+    background: #e6e9ee;
+    transform: translateY(1px);
+}
+
+.gsm-tool-btn:disabled {
+    color: #b6bcc6;
+    cursor: not-allowed;
+    opacity: 1; /* the muted ink already reads as disabled; no double-fading */
+}
+
+.gsm-tool-btn:focus-visible,
+.gsm-builder-bar .btn:focus-visible {
+    outline: 2px solid var(--gsm-focus);
+    outline-offset: 2px;
+}
+
+/* ── Save state ──────────────────────────────────────────────────── */
+
+.gsm-save-state {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.82rem;
+    line-height: 1.2;
+    color: var(--gsm-bar-ink-muted);
+    border-radius: 999px;
+    transition: color 120ms ease, background-color 120ms ease;
+}
+
+/* Each state changes the ICON as well as the colour, so the meaning does
+   not depend on colour perception alone. */
+.gsm-save-state[data-state='saved'] { color: var(--gsm-state-saved); }
+.gsm-save-state[data-state='idle'] { color: var(--gsm-bar-ink-muted); }
+.gsm-save-state[data-state='pending'] { color: var(--gsm-state-pending); }
+.gsm-save-state[data-state='saving'] { color: var(--gsm-state-saving); }
+
+.gsm-save-state[data-state='error'] {
+    color: var(--gsm-state-error);
+    background: var(--gsm-state-error-bg);
+    font-weight: 600;
+}
+
+.gsm-save-state[data-state='saving'] [data-gsm-save-icon] {
+    animation: gsm-spin 900ms linear infinite;
+}
+
+@keyframes gsm-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Version history ─────────────────────────────────────────────── */
+
+.gsm-revision {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.25rem;
+    border-bottom: 1px solid #edeff2;
+}
+
+.gsm-revision:last-child { border-bottom: 0; }
+
+.gsm-revision__when {
+    font-weight: 600;
+    color: var(--gsm-bar-ink);
+}
+
+.gsm-revision__meta {
+    font-size: 0.8rem;
+    color: var(--gsm-bar-ink-muted);
+}
+
+.gsm-revision__actions {
+    display: flex;
+    gap: 0.35rem;
+    margin-left: auto;
+}
+
+.gsm-revision--current {
+    background: #f5f9f6;
+    border-radius: 0.375rem;
+}
+
+/* ── Motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    .gsm-tool-btn,
+    .gsm-save-state {
+        transition: none;
+    }
+
+    .gsm-save-state[data-state='saving'] [data-gsm-save-icon] {
+        animation: none;
+    }
+
+    .gsm-tool-btn:active:not(:disabled) {
+        transform: none;
+    }
+}
+
+/* ── Small screens ───────────────────────────────────────────────── */
+
+@media (max-width: 575.98px) {
+    .gsm-builder-bar {
+        gap: 0.5rem;
+    }
+
+    .gsm-builder-bar__actions {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .gsm-builder-bar__actions .btn {
+        flex: 1 1 auto;
+    }
+}
+
+/* ── Starter layouts ─────────────────────────────────────────────── */
+
+.gsm-starter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0.5rem;
+}
+
+/* The radio itself is hidden but still focusable and still announced —
+   the visible card is the label, so clicking anywhere in it selects. */
+.gsm-starter input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.gsm-starter {
+    display: block;
+    margin: 0;
+    cursor: pointer;
+}
+
+.gsm-starter__body {
+    display: block;
+    height: 100%;
+    padding: 0.65rem 0.7rem;
+    border: 1px solid var(--gsm-bar-border);
+    border-radius: 0.45rem;
+    background: #fff;
+    transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.gsm-starter__body i {
+    color: var(--gsm-bar-ink-muted);
+    font-size: 1rem;
+}
+
+.gsm-starter__label {
+    display: block;
+    margin-top: 0.3rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--gsm-bar-ink);
+}
+
+.gsm-starter__hint {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    color: var(--gsm-bar-ink-muted);
+}
+
+.gsm-starter:hover .gsm-starter__body {
+    border-color: #b9c2cd;
+    background: #fbfcfd;
+}
+
+/* Selected state is border + tint + a bolder icon, never colour alone. */
+.gsm-starter input:checked + .gsm-starter__body {
+    border-color: var(--gsm-focus);
+    box-shadow: inset 0 0 0 1px var(--gsm-focus);
+    background: #f5f9ff;
+}
+
+.gsm-starter input:checked + .gsm-starter__body i,
+.gsm-starter input:checked + .gsm-starter__body .gsm-starter__label {
+    color: var(--gsm-focus);
+}
+
+.gsm-starter input:focus-visible + .gsm-starter__body {
+    outline: 2px solid var(--gsm-focus);
+    outline-offset: 2px;
+}
+
+/* ── Site kits ───────────────────────────────────────────────────── */
+
+.gsm-kit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1rem;
+}
+
+.gsm-kit {
+    padding: 1rem;
+    border: 1px solid var(--gsm-bar-border);
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+.gsm-kit__icon { font-size: 1.35rem; color: var(--gsm-focus); }
+.gsm-kit__label { margin: 0.5rem 0 0.25rem; font-size: 1rem; font-weight: 600; }
+.gsm-kit__hint { margin: 0 0 0.5rem; font-size: 0.83rem; color: var(--gsm-bar-ink-muted); }
+
+.gsm-kit__pages {
+    margin: 0 0 0.75rem;
+    font-size: 0.76rem;
+    color: var(--gsm-bar-ink-muted);
+    border-top: 1px dashed var(--gsm-bar-border);
+    padding-top: 0.5rem;
+}
+
+/* ── Empty states ────────────────────────────────────────────────── */
+
+.gsm-empty {
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.gsm-empty__icon { font-size: 1.75rem; color: var(--gsm-focus); }
+.gsm-empty__title { margin: 0.6rem 0 0.35rem; font-size: 1.1rem; font-weight: 600; }
+
+.gsm-empty__text {
+    margin: 0 auto 1rem;
+    max-width: 26rem;
+    color: var(--gsm-bar-ink-muted);
+    font-size: 0.9rem;
+}
+
+.gsm-empty__form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gsm-empty__form select { max-width: 22rem; }
+
+.gsm-empty__or {
+    margin: 0.85rem 0 0;
+    font-size: 0.8rem;
+    color: var(--gsm-bar-ink-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gsm-starter__body { transition: none; }
+}
+
+/* ── Reordering sections ─────────────────────────────────────────── */
+
+.gsm-drag-handle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    margin-right: 0.25rem;
+    border-radius: 0.35rem;
+    color: #9aa3ae;
+    cursor: grab;
+    transition: background-color 120ms ease, color 120ms ease;
+}
+
+.gsm-drag-handle:hover {
+    background: #eef1f5;
+    color: var(--gsm-bar-ink);
+}
+
+.gsm-drag-handle:active,
+.gsm-is-reordering .gsm-drag-handle { cursor: grabbing; }
+
+/* The gap the card will drop into. */
+.gsm-section-card--ghost {
+    opacity: 1;
+    background: #f2f7fd;
+    border: 1px dashed var(--gsm-focus) !important;
+}
+
+.gsm-section-card--ghost > * { visibility: hidden; }
+
+/* The card actually under the cursor. */
+.gsm-section-card--dragging {
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.18);
+    transform: rotate(0.4deg);
+}
+
+.gsm-section-card--chosen { border-color: var(--gsm-focus); }
+
+/* Collapse open panels while dragging: a 600px-tall card is unmanageable. */
+.gsm-is-reordering .gsm-section-card .collapse.show { display: none; }
+.gsm-is-reordering { user-select: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .gsm-drag-handle { transition: none; }
+    .gsm-section-card--dragging { transform: none; }
+}
+
+/* ── Brand screen ────────────────────────────────────────────────── */
+
+.gsm-brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 1rem;
+}
+
+.gsm-brand-card {
+    padding: 1.1rem;
+    background: #fff;
+    border: 1px solid var(--gsm-bar-border);
+    border-radius: 0.5rem;
+}
+
+.gsm-brand-card__title {
+    margin: 0 0 0.85rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gsm-bar-ink);
+}
+
+.gsm-brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5rem;
+    margin-bottom: 0.85rem;
+    padding: 0.75rem;
+    background: #f6f7f9;
+    border-radius: 0.4rem;
+}
+
+.gsm-brand-logo img { max-height: 3.5rem; max-width: 100%; }
+
+.gsm-brand-empty {
+    margin: 0;
+    font-size: 0.83rem;
+    color: var(--gsm-bar-ink-muted);
+    text-align: center;
+}
+
+.gsm-brand-facts {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.15rem 0.75rem;
+    margin: 0 0 0.85rem;
+    font-size: 0.83rem;
+}
+
+.gsm-brand-facts dt { color: var(--gsm-bar-ink-muted); font-weight: 400; }
+.gsm-brand-facts dd { margin: 0; color: var(--gsm-bar-ink); }
+
+.gsm-swatches { list-style: none; margin: 0 0 0.85rem; padding: 0; }
+
+.gsm-swatch {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    font-size: 0.85rem;
+}
+
+.gsm-swatch__chip {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 0.3rem;
+    border: 1px solid rgba(16, 24, 40, 0.15);
+    flex: none;
+}
+
+.gsm-swatch__label { color: var(--gsm-bar-ink); }
+
+.gsm-swatch__value {
+    margin-left: auto;
+    font-size: 0.76rem;
+    color: var(--gsm-bar-ink-muted);
+}
+
+.gsm-font-list { list-style: none; margin: 0 0 0.85rem; padding: 0; }
+.gsm-font-list li { padding: 0.3rem 0; border-bottom: 1px solid #f0f2f5; }
+.gsm-font-list li:last-child { border-bottom: 0; }
+.gsm-font-list__name { display: block; font-size: 1rem; color: var(--gsm-bar-ink); }
+
+.gsm-font-list__roles {
+    display: block;
+    font-size: 0.74rem;
+    color: var(--gsm-bar-ink-muted);
+}
+
+.gsm-brand-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.gsm-brand-chips li {
+    padding: 0.15rem 0.5rem;
+    font-size: 0.76rem;
+    color: var(--gsm-bar-ink);
+    background: #f1f3f6;
+    border-radius: 999px;
+}
+
+/* ── Onboarding checklist ────────────────────────────────────────── */
+
+.gsm-progress {
+    height: 0.4rem;
+    margin-bottom: 1rem;
+    background: #eceff3;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.gsm-progress__bar {
+    display: block;
+    height: 100%;
+    background: var(--gsm-state-saved);
+    border-radius: 999px;
+    transition: width 300ms ease;
+}
+
+.gsm-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: gsm-step;
+}
+
+.gsm-checklist__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.gsm-checklist__item:last-child { border-bottom: 0; }
+
+.gsm-checklist__mark {
+    flex: none;
+    width: 1.5rem;
+    text-align: center;
+    font-size: 1.05rem;
+    color: #c8ced6;
+}
+
+.gsm-checklist__item.is-done .gsm-checklist__mark { color: var(--gsm-state-saved); }
+
+.gsm-checklist__body { min-width: 0; }
+
+.gsm-checklist__title {
+    display: block;
+    font-weight: 600;
+    color: var(--gsm-bar-ink);
+}
+
+/* Done steps recede rather than vanish, so progress stays visible. */
+.gsm-checklist__item.is-done .gsm-checklist__title {
+    color: var(--gsm-bar-ink-muted);
+    text-decoration: line-through;
+    text-decoration-color: #c8ced6;
+}
+
+.gsm-checklist__text {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--gsm-bar-ink-muted);
+}
+
+.gsm-checklist__action { margin-left: auto; flex: none; }
+
+/* ── Dashboard tiles ─────────────────────────────────────────────── */
+
+.gsm-stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.75rem;
+}
+
+.gsm-stat {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--gsm-bar-border);
+    border-radius: 0.5rem;
+    color: var(--gsm-bar-ink);
+    text-decoration: none;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.gsm-stat:hover {
+    border-color: #b9c2cd;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+    color: var(--gsm-bar-ink);
+    text-decoration: none;
+}
+
+.gsm-stat i { color: var(--gsm-bar-ink-muted); font-size: 1.1rem; }
+.gsm-stat__value { display: block; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.gsm-stat__label { display: block; font-size: 0.8rem; color: var(--gsm-bar-ink-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+    .gsm-progress__bar, .gsm-stat { transition: none; }
+}
+
+/* ── Media: images with no description ───────────────────────────── */
+
+.ml-item--needs-alt { border-color: #e6c37a; }
+
+.ml-needs-alt .badge {
+    font-weight: 600;
+    font-size: 0.66rem;
+    opacity: 0.95;
+}
+
+/* Once the card is selected the border colour is doing another job, so the
+   badge alone carries the "needs description" meaning. */
+.ml-item.border-primary.ml-item--needs-alt { border-color: var(--gsm-focus); }
+
+/* ── Writing assistant ───────────────────────────────────────────── */
+
+.gsm-ai { float: right; }
+
+.gsm-ai__btn {
+    padding: 0 0.25rem;
+    color: var(--gsm-bar-ink-muted);
+    background: none;
+    border: 0;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.gsm-ai__btn:hover:not(:disabled) { color: var(--gsm-focus); background: #eef4fd; }
+.gsm-ai__btn:focus-visible { outline: 2px solid var(--gsm-focus); outline-offset: 2px; }
+.gsm-ai__btn:disabled { opacity: 0.5; cursor: progress; }
+.gsm-ai__btn.is-busy i { animation: gsm-spin 900ms linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    .gsm-ai__btn.is-busy i { animation: none; }
+}

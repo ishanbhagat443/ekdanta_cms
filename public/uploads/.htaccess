@@ -1,0 +1,37 @@
+# Security policy for user-uploaded files.
+#
+# Everything under /uploads is attacker-influenced content served from the
+# site's own origin, so it is locked down here rather than trusted.
+# Keep this file in place — deleting it re-opens stored-XSS via SVG.
+
+# Never let a browser second-guess the declared Content-Type.
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Content-Security-Policy "default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; sandbox"
+</IfModule>
+
+# SVG is an executable XML document in our origin. Serving it as an
+# attachment means a direct visit downloads the file instead of running it;
+# <img src="...svg"> still renders normally (Content-Disposition is ignored
+# for subresource loads), so logos and icons keep working.
+<FilesMatch "\.svg$">
+    <IfModule mod_headers.c>
+        Header always set Content-Type "image/svg+xml"
+        Header always set Content-Disposition "attachment"
+    </IfModule>
+</FilesMatch>
+
+# Nothing in here is ever code. Refuse to execute it even if a bad upload,
+# a path-traversal bug or a compromised dependency lands a script here.
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|php8|phps|pht|shtml|cgi|pl|py|rb|sh|htaccess|htpasswd)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+Options -ExecCGI -Indexes
+AddHandler default-handler .php .phtml .php3 .php4 .php5 .php7 .php8 .phps .pht .cgi .pl .py
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8 .phps .pht .cgi .pl .py
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8 .phps .pht
