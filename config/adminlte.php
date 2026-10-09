@@ -407,7 +407,7 @@ return [
             'url' => 'cms/not-found',
             'can' => 'seo.manage',
         ],
-        ['header' => 'DESIGN', 'can' => ['theme.manage', 'blocks.manage']],
+        ['header' => 'DESIGN', 'can' => ['theme.manage', 'blocks.manage', 'motion.manage']],
         [
             'text' => 'Brand',
             'icon' => 'fas fa-fw fa-fingerprint',
@@ -425,6 +425,12 @@ return [
             'icon' => 'fas fa-fw fa-fill-drip',
             'url' => 'cms/gradients',
             'can' => 'theme.manage',
+        ],
+        [
+            'text' => 'Motion Library',
+            'icon' => 'fas fa-fw fa-wand-magic-sparkles',
+            'url' => 'cms/motion-presets',
+            'can' => 'motion.manage',
         ],
         [
             'text' => 'Button Builder',

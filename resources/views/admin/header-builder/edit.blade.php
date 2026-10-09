@@ -133,6 +133,12 @@
                                    @checked($header->setting('overlay_call_line', false))>
                             <label class="custom-control-label" for="set_overlay_call_line">Call line (phone numbers with a short label)</label>
                         </div>
+                        <div class="form-group mb-2">
+                            <label class="mb-0" for="set_overlay_pause_label"><small>"Pause animations" button text</small></label>
+                            <input type="text" name="overlay_pause_label" id="set_overlay_pause_label" maxlength="40" class="form-control form-control-sm"
+                                   value="{{ $header->setting('overlay_pause_label') }}" aria-describedby="set_overlay_pause_help">
+                            <small id="set_overlay_pause_help" class="text-muted">Lets a visitor stop all looping and scroll motion (remembered on their device). Empty = no button.</small>
+                        </div>
                         <hr>
                         <div class="form-group">
                             <label class="mb-0" for="set_variant"><small>Default header style</small></label>

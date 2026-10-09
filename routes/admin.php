@@ -107,6 +107,13 @@ Route::prefix('theme-customizer')->name('theme.')->group(function (): void {
 
 // Design System: Global Gradient Library + Button Builder
 Route::resource('gradients', \App\Http\Controllers\Admin\GradientController::class)->except('show');
+
+// Motion Library (permission checked in the controller: motion.manage).
+Route::get('motion-presets/export', [\App\Http\Controllers\Admin\MotionPresetController::class, 'export'])->name('motion-presets.export');
+Route::post('motion-presets/import', [\App\Http\Controllers\Admin\MotionPresetController::class, 'import'])->name('motion-presets.import');
+Route::post('motion-presets/{motion_preset}/duplicate', [\App\Http\Controllers\Admin\MotionPresetController::class, 'duplicate'])->name('motion-presets.duplicate');
+Route::get('motion-presets/{motion_preset}/preview', [\App\Http\Controllers\Admin\MotionPresetController::class, 'preview'])->name('motion-presets.preview');
+Route::resource('motion-presets', \App\Http\Controllers\Admin\MotionPresetController::class)->except('show');
 Route::post('button-styles/{buttonStyle}/duplicate', [\App\Http\Controllers\Admin\ButtonStyleController::class, 'duplicate'])->name('button-styles.duplicate');
 Route::resource('button-styles', \App\Http\Controllers\Admin\ButtonStyleController::class)->except('show');
 

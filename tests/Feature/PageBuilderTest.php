@@ -1147,7 +1147,9 @@ class PageBuilderTest extends TestCase
 
         $this->assertStringContainsString('min-height: 100svh', $html);                         // full first screen
         $this->assertStringContainsString('background-image: var(--gsm-gradient-hero-overlay)', $html); // library overlay
-        $this->assertStringContainsString('gsm-hero-enter-fade-up', $html);                     // entrance animation
+        $this->assertStringContainsString('data-m="content"', $html);                           // entrance: a Motion tab track now
+        $this->assertStringContainsString('"css":"ek-hero-fade-up"', $html);
+        $this->assertStringContainsString('@keyframes ek-hero-fade-up', $html);
         $this->assertStringContainsString('max-width: 900px', $html);                           // content width
         $this->assertStringContainsString('gsm-hero-scroll', $html);                            // scroll indicator
         $this->assertStringContainsString('gsm-btn-primary-pill', $html);                       // Button Builder style

@@ -1,0 +1,925 @@
+[
+  {
+    "name": "Fade in",
+    "slug": "fade-in",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "params": {},
+    "duration": 700,
+    "delay": 0,
+    "ease": "outQuad",
+    "stagger": 0,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Fade up",
+    "slug": "fade-up",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "translateY": [
+        "32px",
+        0
+      ]
+    },
+    "params": {},
+    "duration": 700,
+    "delay": 0,
+    "ease": "outQuad",
+    "stagger": 0,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Fade down",
+    "slug": "fade-down",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "translateY": [
+        "-32px",
+        0
+      ]
+    },
+    "params": {},
+    "duration": 700,
+    "delay": 0,
+    "ease": "outQuad",
+    "stagger": 0,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Fade in from left",
+    "slug": "fade-left",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "translateX": [
+        "-40px",
+        0
+      ]
+    },
+    "params": {},
+    "duration": 700,
+    "delay": 0,
+    "ease": "outQuad",
+    "stagger": 0,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Fade in from right",
+    "slug": "fade-right",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "translateX": [
+        "40px",
+        0
+      ]
+    },
+    "params": {},
+    "duration": 700,
+    "delay": 0,
+    "ease": "outQuad",
+    "stagger": 0,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Zoom in",
+    "slug": "zoom-in",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "scale": [
+        0.94,
+        1
+      ]
+    },
+    "params": {},
+    "duration": 700,
+    "delay": 0,
+    "ease": "outQuad",
+    "stagger": 0,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Zoom out",
+    "slug": "zoom-out",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "scale": [
+        1.06,
+        1
+      ]
+    },
+    "params": {},
+    "duration": 700,
+    "delay": 0,
+    "ease": "outQuad",
+    "stagger": 0,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Flip up",
+    "slug": "flip-up",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "rotateX": [
+        -28,
+        0
+      ],
+      "transformPerspective": 800
+    },
+    "params": {},
+    "duration": 700,
+    "delay": 0,
+    "ease": "outQuad",
+    "stagger": 0,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Hero: fade up",
+    "slug": "hero-fade-up",
+    "kind": "css",
+    "trigger": "load",
+    "keyframes": {
+      "from": {
+        "opacity": "0",
+        "transform": "translateY(36px)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "none"
+      }
+    },
+    "params": {},
+    "duration": 900,
+    "delay": 0,
+    "ease": "ease-out",
+    "stagger": 0,
+    "description": "Hero Banner content, as the old entrance setting drew it."
+  },
+  {
+    "name": "Hero: fade in",
+    "slug": "hero-fade-in",
+    "kind": "css",
+    "trigger": "load",
+    "keyframes": {
+      "from": {
+        "opacity": "0"
+      },
+      "to": {
+        "opacity": "1"
+      }
+    },
+    "params": {},
+    "duration": 900,
+    "delay": 0,
+    "ease": "ease-out",
+    "stagger": 0,
+    "description": "Hero Banner content, as the old entrance setting drew it."
+  },
+  {
+    "name": "Hero: zoom in",
+    "slug": "hero-zoom-in",
+    "kind": "css",
+    "trigger": "load",
+    "keyframes": {
+      "from": {
+        "opacity": "0",
+        "transform": "scale(0.94)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "none"
+      }
+    },
+    "params": {},
+    "duration": 900,
+    "delay": 0,
+    "ease": "ease-out",
+    "stagger": 0,
+    "description": "Hero Banner content, as the old entrance setting drew it."
+  },
+  {
+    "name": "Rise in",
+    "slug": "rise",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "translateY": [
+        "{distance}",
+        0
+      ]
+    },
+    "params": {
+      "distance": 40
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "outCubic",
+    "stagger": 0,
+    "description": "Moves with the scroll position across the track's range."
+  },
+  {
+    "name": "Fade",
+    "slug": "fade",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "params": {},
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Moves with the scroll position across the track's range."
+  },
+  {
+    "name": "Fade out",
+    "slug": "fade-out",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "opacity": [
+        1,
+        0
+      ]
+    },
+    "params": {},
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Moves with the scroll position across the track's range."
+  },
+  {
+    "name": "Slide sideways",
+    "slug": "slide-x",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "translateX": [
+        "{from}",
+        "{to}"
+      ]
+    },
+    "params": {
+      "from": 0,
+      "to": -1440
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Horizontal track: distances in design px."
+  },
+  {
+    "name": "Slide up or down",
+    "slug": "slide-y",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "translateY": [
+        "{from}",
+        "{to}"
+      ]
+    },
+    "params": {
+      "from": 0,
+      "to": -300
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Moves with the scroll position across the track's range."
+  },
+  {
+    "name": "Scale",
+    "slug": "scale",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "scale": [
+        "{from}",
+        "{to}"
+      ]
+    },
+    "params": {
+      "from": 0.6,
+      "to": 1
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "outCubic",
+    "stagger": 0,
+    "description": "Moves with the scroll position across the track's range."
+  },
+  {
+    "name": "Rotate",
+    "slug": "rotate",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "rotate": [
+        "{from}",
+        "{to}"
+      ]
+    },
+    "params": {
+      "from": -8,
+      "to": 0
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "outCubic",
+    "stagger": 0,
+    "description": "Degrees."
+  },
+  {
+    "name": "Flip (card)",
+    "slug": "flip-y",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "rotateY": [
+        0,
+        "{angle}"
+      ]
+    },
+    "params": {
+      "angle": 180
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "inOutQuad",
+    "stagger": 0,
+    "description": "Turns a card over; give its back face backface-visibility: hidden."
+  },
+  {
+    "name": "Fan out",
+    "slug": "fan",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "rotate": [
+        0,
+        "{angle}"
+      ],
+      "translateX": [
+        0,
+        "{spread}"
+      ]
+    },
+    "params": {
+      "angle": 12,
+      "spread": 60
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "outCubic",
+    "stagger": 0,
+    "description": "Use with stagger on a stack of cards."
+  },
+  {
+    "name": "Deal in",
+    "slug": "deal",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "translateY": [
+        "{distance}",
+        0
+      ],
+      "rotate": [
+        "{angle}",
+        0
+      ]
+    },
+    "params": {
+      "distance": 120,
+      "angle": -12
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "outCubic",
+    "stagger": 0,
+    "description": "A card dealt onto the table."
+  },
+  {
+    "name": "Stamp",
+    "slug": "stamp",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "scale": [
+        "{from}",
+        1
+      ]
+    },
+    "params": {
+      "from": 1.6
+    },
+    "duration": 450,
+    "delay": 0,
+    "ease": "outBack",
+    "stagger": 0,
+    "description": "Lands like a rubber stamp."
+  },
+  {
+    "name": "Tumble away",
+    "slug": "tumble",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "opacity": [
+        1,
+        0
+      ],
+      "translateY": [
+        0,
+        "{distance}"
+      ],
+      "rotate": [
+        0,
+        "{angle}"
+      ]
+    },
+    "params": {
+      "distance": 300,
+      "angle": 25
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "inCubic",
+    "stagger": 0,
+    "description": "Falls off the screen."
+  },
+  {
+    "name": "Pop",
+    "slug": "pop",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "opacity": [
+        0,
+        1
+      ],
+      "scale": [
+        0.4,
+        1
+      ]
+    },
+    "params": {},
+    "duration": 1000,
+    "delay": 0,
+    "ease": "outBack",
+    "stagger": 0,
+    "description": "Moves with the scroll position across the track's range."
+  },
+  {
+    "name": "Draw a line",
+    "slug": "draw",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "draw": [
+        "0 0",
+        "0 1"
+      ]
+    },
+    "params": {},
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "SVG paths, lines and circles draw themselves."
+  },
+  {
+    "name": "Wipe (circle)",
+    "slug": "wipe-circle",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "clipPath": [
+        "circle(0% at 50% 50%)",
+        "circle(75% at 50% 50%)"
+      ]
+    },
+    "params": {},
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Moves with the scroll position across the track's range."
+  },
+  {
+    "name": "Wipe up",
+    "slug": "wipe-up",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "clipPath": [
+        "inset(100% 0% 0% 0%)",
+        "inset(0% 0% 0% 0%)"
+      ]
+    },
+    "params": {},
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Moves with the scroll position across the track's range."
+  },
+  {
+    "name": "Colour change",
+    "slug": "color",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "color": [
+        "{from}",
+        "{to}"
+      ]
+    },
+    "params": {
+      "from": "#C5CCC7",
+      "to": "#0D1410"
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Text colour."
+  },
+  {
+    "name": "Background change",
+    "slug": "background",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "backgroundColor": [
+        "{from}",
+        "{to}"
+      ]
+    },
+    "params": {
+      "from": "#0A5A30",
+      "to": "#0E2C54"
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Small elements only: a large area is smoother as two cross-faded layers."
+  },
+  {
+    "name": "Count up",
+    "slug": "count-up",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "$count": "en-IN"
+    },
+    "params": {},
+    "duration": 1200,
+    "delay": 0,
+    "ease": "outCubic",
+    "stagger": 0,
+    "description": "Counts to the number written in the part (\"10,000+\"); screen readers hear the real number."
+  },
+  {
+    "name": "Word highlight",
+    "slug": "word-highlight",
+    "kind": "anime",
+    "trigger": "scrub",
+    "keyframes": {
+      "$split": "words",
+      "color": [
+        "{from}",
+        "{to}"
+      ]
+    },
+    "params": {
+      "from": "#C5CCC7",
+      "to": "#0D1410"
+    },
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 20,
+    "description": "Lights words one by one as you scroll. Stagger = scroll px per word."
+  },
+  {
+    "name": "Typewriter",
+    "slug": "typewriter",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "$split": "chars",
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "params": {},
+    "duration": 1,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 40,
+    "description": "Letters appear one at a time."
+  },
+  {
+    "name": "Words rise",
+    "slug": "words-rise",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "$split": "words",
+      "opacity": [
+        0,
+        1
+      ],
+      "translateY": [
+        "{distance}",
+        0
+      ]
+    },
+    "params": {
+      "distance": 24
+    },
+    "duration": 600,
+    "delay": 0,
+    "ease": "outCubic",
+    "stagger": 60,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Letters rise",
+    "slug": "letters-rise",
+    "kind": "anime",
+    "trigger": "enter",
+    "keyframes": {
+      "$split": "chars",
+      "opacity": [
+        0,
+        1
+      ],
+      "translateY": [
+        "{distance}",
+        0
+      ]
+    },
+    "params": {
+      "distance": 20
+    },
+    "duration": 500,
+    "delay": 0,
+    "ease": "outCubic",
+    "stagger": 25,
+    "description": "Plays once when the part scrolls into view."
+  },
+  {
+    "name": "Marquee",
+    "slug": "marquee",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "from": {
+        "transform": "translateX(0)"
+      },
+      "to": {
+        "transform": "translateX(-50%)"
+      }
+    },
+    "params": {},
+    "duration": 30000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Repeat the content twice inside the part. Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  },
+  {
+    "name": "Marquee (reverse)",
+    "slug": "marquee-reverse",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "from": {
+        "transform": "translateX(-50%)"
+      },
+      "to": {
+        "transform": "translateX(0)"
+      }
+    },
+    "params": {},
+    "duration": 30000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  },
+  {
+    "name": "Orbit",
+    "slug": "orbit",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "from": {
+        "transform": "rotate(0deg)"
+      },
+      "to": {
+        "transform": "rotate(360deg)"
+      }
+    },
+    "params": {},
+    "duration": 40000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Pair each child with \"Orbit (keep upright)\". Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  },
+  {
+    "name": "Orbit (keep upright)",
+    "slug": "orbit-counter",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "from": {
+        "transform": "rotate(0deg)"
+      },
+      "to": {
+        "transform": "rotate(-360deg)"
+      }
+    },
+    "params": {},
+    "duration": 40000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  },
+  {
+    "name": "Float",
+    "slug": "float",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "0%,100%": {
+        "transform": "translateY(0)"
+      },
+      "50%": {
+        "transform": "translateY(calc(var(--distance) * -1px))"
+      }
+    },
+    "params": {
+      "distance": 8
+    },
+    "duration": 3000,
+    "delay": 0,
+    "ease": "ease-in-out",
+    "stagger": 0,
+    "description": "Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  },
+  {
+    "name": "Pulse",
+    "slug": "pulse",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "0%,100%": {
+        "transform": "scale(1)"
+      },
+      "50%": {
+        "transform": "scale(var(--scale))"
+      }
+    },
+    "params": {
+      "scale": 1.05
+    },
+    "duration": 2000,
+    "delay": 0,
+    "ease": "ease-in-out",
+    "stagger": 0,
+    "description": "Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  },
+  {
+    "name": "Swing",
+    "slug": "swing",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "0%,100%": {
+        "transform": "rotate(0deg)"
+      },
+      "25%": {
+        "transform": "rotate(calc(var(--angle) * 1deg))"
+      },
+      "75%": {
+        "transform": "rotate(calc(var(--angle) * -1deg))"
+      }
+    },
+    "params": {
+      "angle": 6
+    },
+    "duration": 4200,
+    "delay": 0,
+    "ease": "ease-in-out",
+    "stagger": 0,
+    "description": "Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  },
+  {
+    "name": "Blink",
+    "slug": "blink",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "0%,49%": {
+        "opacity": "1"
+      },
+      "50%,100%": {
+        "opacity": "0"
+      }
+    },
+    "params": {},
+    "duration": 1000,
+    "delay": 0,
+    "ease": "linear",
+    "stagger": 0,
+    "description": "A blinking caret. Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  },
+  {
+    "name": "Word roller",
+    "slug": "word-roller",
+    "kind": "css",
+    "trigger": "loop",
+    "keyframes": {
+      "from": {
+        "transform": "translateY(0)"
+      },
+      "to": {
+        "transform": "translateY(calc(var(--count) * -1lh))"
+      }
+    },
+    "params": {
+      "count": 4
+    },
+    "duration": 8000,
+    "delay": 0,
+    "ease": "steps(4)",
+    "stagger": 0,
+    "description": "A column of words, one line tall; set the ease to steps(<number of words>). Loops while on screen. Off under reduced motion and \"Pause animations\"."
+  }
+]

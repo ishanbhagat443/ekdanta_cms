@@ -7,7 +7,7 @@ namespace App\Services;
 use App\Models\Section;
 use App\Repositories\Contracts\SectionRepositoryInterface;
 use App\Services\SectionTypes\SectionTypeRegistry;
-use App\Support\SectionAnimation;
+use App\Support\SectionMotion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -49,7 +49,7 @@ class SectionBuilderService
             'name' => $type->label(),
             'sort_order' => $this->sections->nextSortOrder($owner),
             'data_desktop' => $type->defaults(),
-            'style' => $area === 'page' ? SectionAnimation::newSectionStyle() : [],
+            'style' => $area === 'page' ? SectionMotion::newSectionStyle() : [],
         ]);
 
         $this->flushFor($owner);

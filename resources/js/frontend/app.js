@@ -3,8 +3,8 @@ import * as bootstrap from 'bootstrap';
 
 window.bootstrap = bootstrap;
 
-// Scroll-in animations now live in public/js/gsm-animations.js, driven by the
-// data-anim-* attributes the CMS renders and powered by Anime.js v4.
+// Motion: every section's Motion tab, plus older [data-anim] effects (Anime.js v4).
+import './motion/index.js';
 
 // Hero background video: browsers may still block autoplay in rare cases
 // (e.g. data-saver mode) — force muted (required for mobile autoplay) and

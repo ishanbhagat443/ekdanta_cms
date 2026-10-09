@@ -29,6 +29,7 @@ class PermissionSeeder extends Seeder
         'menus.manage' => ['Admin', 'Content Manager'],
         'seo.manage' => ['Admin', 'SEO Manager'],
         'theme.manage' => ['Admin'],
+        'motion.manage' => ['Admin'],
         'users.view' => ['Admin'],
         'users.create' => ['Admin'],
         'users.update' => ['Admin'],

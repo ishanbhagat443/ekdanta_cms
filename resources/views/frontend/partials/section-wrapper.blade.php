@@ -42,16 +42,23 @@
 
     $domId = 'gsm-s'.$section->id;
 
-    // Scroll animation: the CMS emits settings as data-* attributes and
-    // public/js/gsm-animations.js turns them into Anime.js calls. No preset
-    // means no attributes at all, so an un-animated section carries nothing.
-    $animAttributes = \App\Support\SectionAnimation::attributesFor((array) $section->style);
+    // Motion tab: the engine (resources/js/frontend/motion) reads the JSON
+    // below. A pinned stage's height is CSS (--ek-len-*), so nothing jumps
+    // when the script starts. No motion: no attributes, nothing to run.
+    $motion = \App\Support\SectionMotion::render($section);
+    foreach ($motion['lengths'] ?? [] as $pinDevice => $pinLength) {
+        $style[] = '--ek-len-'.$pinDevice[0].': '.$pinLength;
+    }
 @endphp
 
 <section id="{{ $domId }}"
-         class="gsm-section gsm-section-{{ $section->type }} {{ $section->visibilityClasses() }}"
-         @foreach ($animAttributes as $animAttribute => $animValue) {{ $animAttribute }}="{{ $animValue }}" @endforeach
+         class="gsm-section gsm-section-{{ $section->type }} {{ $section->visibilityClasses() }} @if ($motion) ek-scene @foreach (array_keys($motion['lengths']) as $pinDevice) ek-pin-{{ $pinDevice[0] }} @endforeach @endif"
+         @if ($motion) data-ek-motion data-ek-type="{{ $section->type }}" @endif
          @if ($style !== []) style="{{ implode('; ', $style) }}" @endif>
+    @if ($motion)
+        <script type="application/json" data-ek-config>@json($motion['config'])</script>
+        @if ($motion['css'] !== '')<style>{!! style_safe($motion['css']) !!}</style>@endif
+    @endif
 
     @if ($video)
         <video class="gsm-section-video" autoplay muted loop playsinline preload="metadata"

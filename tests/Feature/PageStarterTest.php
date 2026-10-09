@@ -8,7 +8,7 @@ use App\Models\Menu;
 use App\Models\Page;
 use App\Models\User;
 use App\Services\PageStarterService;
-use App\Support\SectionAnimation;
+use App\Support\SectionMotion;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -110,10 +110,10 @@ class PageStarterTest extends TestCase
         $page = Page::create(['title' => 'Home', 'slug' => 'home-x', 'status' => Page::STATUS_DRAFT]);
         $this->starters()->apply($page, 'home');
 
-        $style = (array) $page->refresh()->sections->first()->style;
+        $motion = SectionMotion::effective($page->refresh()->sections->first());
 
-        $this->assertSame('fade-up', SectionAnimation::forDevice($style, 'desktop')['preset']);
-        $this->assertSame('fade-up', SectionAnimation::forDevice($style, 'mobile')['preset'], 'phones animate too');
+        $this->assertSame('fade-up', $motion['desktop']['tracks']['enter']['preset']);
+        $this->assertSame('fade-up', $motion['mobile']['tracks']['enter']['preset'], 'phones animate too');
     }
 
     public function test_a_starter_never_buries_existing_content(): void

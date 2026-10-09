@@ -82,9 +82,16 @@
                 @endforeach
                 <li class="nav-item ml-auto">
                     <a class="nav-link py-1 px-3" data-toggle="pill" href="#tab_{{ $sid }}_visibility" role="tab">
-                        <i class="fas fa-eye mr-1"></i>Visibility
+                        <i class="fas fa-eye mr-1" aria-hidden="true"></i>Visibility
                     </a>
                 </li>
+                @if ($area === 'page')
+                    <li class="nav-item">
+                        <a class="nav-link py-1 px-3" data-toggle="pill" href="#tab_{{ $sid }}_motion" role="tab">
+                            <i class="fas fa-wand-magic-sparkles mr-1" aria-hidden="true"></i>Motion
+                        </a>
+                    </li>
+                @endif
             </ul>
 
             <div class="tab-content">
@@ -119,6 +126,12 @@
                         </form>
                     </div>
                 @endforeach
+
+                @if ($area === 'page')
+                    <div class="tab-pane fade" id="tab_{{ $sid }}_motion" role="tabpanel">
+                        @include('admin.builder.partials.motion-tab', ['section' => $section, 'type' => $type, 'sid' => $sid])
+                    </div>
+                @endif
 
                 {{-- Visibility / layout tab --}}
                 <div class="tab-pane fade" id="tab_{{ $sid }}_visibility" role="tabpanel">
@@ -218,10 +231,6 @@
                                            class="form-control form-control-sm" placeholder="auto">
                                 </div>
                             </div>
-                            @include('admin.builder.partials.animation-fields', [
-                                'section' => $section,
-                                'sid' => $sid,
-                            ])
 
                             {{-- Raw CSS/JS render unescaped into every visitor's page,
                                  so authoring them is the same privilege Developer Mode

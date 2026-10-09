@@ -1452,7 +1452,7 @@ $gsm-cream: #f3f4f6;
 
 // Section scroll-in animations.
 //
-// Anime.js does the moving (see public/js/gsm-animations.js); CSS only sets
+// Anime.js does the moving (see resources/js/frontend/motion); CSS only sets
 // the starting state. Two guards make that safe:
 //
 //   .js-enabled  — added by an inline script before first paint. Without JS,
@@ -1500,8 +1500,54 @@ html[data-motion="off"] {
         transform: none !important;
         will-change: auto;
     }
+}
 
-    .gsm-hero-enter { animation: none; }
+// Motion tab scenes (resources/js/frontend/motion).
+//
+// A pinned stage: the section is as tall as one screen plus its scroll length
+// (design px, scaled to the screen height), and its [data-ek-stage] sticks
+// while the visitor scrolls through it. Heights are CSS, so nothing moves
+// when the script starts. No JS, reduced motion, "Pause animations" or the
+// site switch: no pinning, the content simply flows.
+@media (prefers-reduced-motion: no-preference) {
+    html.js-enabled:not([data-motion="off"]) {
+        @media (min-width: 992px) {
+            .ek-pin-d { height: calc(100svh + var(--ek-len-d) * 100svh / 900); }
+            .ek-pin-d [data-ek-stage] { position: sticky; top: 0; }
+        }
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .ek-pin-t { height: calc(100svh + var(--ek-len-t) * 100svh / 844); }
+            .ek-pin-t [data-ek-stage] { position: sticky; top: 0; }
+        }
+        @media (max-width: 767.98px) {
+            .ek-pin-m { height: calc(100svh + var(--ek-len-m) * 100svh / 844); }
+            .ek-pin-m [data-ek-stage] { position: sticky; top: 0; }
+        }
+    }
+}
+
+// Loops rest while their section is off screen…
+.ek-offscreen, .ek-offscreen * { animation-play-state: paused !important; }
+
+// …and stop entirely for anyone who asked for less motion.
+@media (prefers-reduced-motion: reduce) {
+    .ek-scene, .ek-scene * { animation: none !important; }
+}
+html[data-motion="off"] :is(.ek-scene, .ek-scene *) { animation: none !important; }
+
+// "Pause animations" (WCAG 2.2.2): a plain text button, wherever it is placed.
+.ek-pause-toggle {
+    min-height: 44px;
+    padding: 0 0.25rem;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+
+    &[aria-pressed="true"]::before { content: "✓ "; }
 }
 
 // Rich text content defaults
@@ -1571,20 +1617,6 @@ html[data-motion="off"] {
     .gsm-pdp {
         padding-top: 95px;
     }
-}
-
-// Hero content entrance animations (admin-selectable).
-@keyframes gsm-hero-fade-up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
-@keyframes gsm-hero-fade-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes gsm-hero-zoom-in { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
-
-.gsm-hero-enter { animation-duration: 0.9s; animation-timing-function: ease-out; animation-fill-mode: both; }
-.gsm-hero-enter-fade-up { animation-name: gsm-hero-fade-up; }
-.gsm-hero-enter-fade-in { animation-name: gsm-hero-fade-in; }
-.gsm-hero-enter-zoom-in { animation-name: gsm-hero-zoom-in; }
-
-@media (prefers-reduced-motion: reduce) {
-    .gsm-hero-enter { animation: none; }
 }
 
 // Section background video + overlay layers (Page Builder, any section).
@@ -3713,6 +3745,11 @@ html:has(.gsm-header-pill) { scroll-padding-top: 96px; }
     text-decoration: none;
     animation: gsm-overlay-rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
     animation-delay: calc(60ms + var(--i, 0) * 45ms);
+}
+
+.gsm-nav-overlay__pause {
+    display: block;
+    margin: 0.75rem auto 0;
 }
 
 .gsm-nav-overlay__call {

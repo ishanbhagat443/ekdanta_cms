@@ -175,6 +175,9 @@
                 @if ($overlayCta = $layout?->setting('overlay_cta_label'))
                     <a href="{{ $layout->setting('overlay_cta_url') ?: '#' }}" class="gsm-nav-overlay__cta" style="--i: {{ $navMenu->rootItems->count() }}">{{ $overlayCta }}</a>
                 @endif
+                @if ($pauseLabel = $layout?->setting('overlay_pause_label'))
+                    <button type="button" class="ek-pause-toggle gsm-nav-overlay__pause" data-ek-pause aria-pressed="false">{{ $pauseLabel }}</button>
+                @endif
                 @if ($layout?->setting('overlay_call_line') && ($callPhones = collect(business_phones())->where('menu_label', '!=', ''))->isNotEmpty())
                     <p class="gsm-nav-overlay__call">
                         @foreach ($callPhones as $phone)

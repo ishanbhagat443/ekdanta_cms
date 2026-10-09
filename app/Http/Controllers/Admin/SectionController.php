@@ -10,10 +10,11 @@ use App\Models\Layout;
 use App\Models\Section;
 use App\Services\GlobalBlockService;
 use App\Services\SectionBuilderService;
-use App\Support\SectionAnimation;
+use App\Support\SectionMotion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 
 class SectionController extends Controller
@@ -65,20 +66,25 @@ class SectionController extends Controller
             'style.overlay_opacity' => ['nullable', 'integer', 'between:0,95'],
             'style.radius' => ['nullable', 'regex:/^\d+(\.\d+)?(px|%|rem|em)?$/'],
             'style.z_index' => ['nullable', 'integer', 'between:-10,100'],
-            // Scroll animation, per device. Values are clamped and whitelisted
-            // by SectionAnimation below; this only checks the shape.
-            'style.anim' => ['nullable', 'array'],
-            'style.anim.*' => ['nullable', 'array'],
+            // Motion tab: every value is whitelisted and clamped by
+            // SectionMotion; this only checks the shape.
+            'motion' => ['nullable', 'array'],
+            'motion.*' => ['nullable', 'array'],
+            'motion_reset' => ['nullable', 'array', 'max:100'],
+            'motion_reset.*' => ['string', 'max:120'],
         ]);
 
         $input = $request->only(['device', 'data', 'name', 'is_active', 'style']);
 
         if (array_key_exists('style', $input)) {
-            $input['style'] = Section::withoutPrivilegedStyle((array) $input['style']);
+            // Motion only arrives through its own, sanitised path below.
+            $input['style'] = Arr::except(Section::withoutPrivilegedStyle((array) $input['style']), ['anim', 'motion']);
+        }
 
-            if (array_key_exists('anim', $input['style'])) {
-                $input['style']['anim'] = SectionAnimation::sanitiseAll((array) $input['style']['anim']);
-            }
+        if ($request->has('motion') || $request->has('motion_reset')) {
+            $input['style'] = array_replace((array) ($input['style'] ?? []), [
+                'motion' => SectionMotion::applyEdit($section, (array) $request->input('motion', []), (array) $request->input('motion_reset', [])),
+            ]);
         }
 
         $section = $this->builder->updateSection($section, $input);

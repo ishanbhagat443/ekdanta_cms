@@ -64,6 +64,22 @@ abstract class SectionType
         return $rules;
     }
 
+    /**
+     * The design's motion for this type, per device (see App\Support\SectionMotion
+     * for the shape). The Motion tab edits patches over it; "Reset to design
+     * default" goes back to it. Most types have none.
+     */
+    public function motionDefaults(): array
+    {
+        return [];
+    }
+
+    /** Names of the parts its view marks with data-m, offered in the Motion tab. */
+    public function motionParts(): array
+    {
+        return [];
+    }
+
     /** True for a section that draws its own site footer: the layout then skips the usual one. */
     public function hidesFooter(): bool
     {

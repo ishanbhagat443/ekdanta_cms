@@ -14,14 +14,6 @@ return [
 
     'name' => 'Ekdanta CMS',
 
-    // Scroll-animation library (Anime.js v4, UMD global `anime`). Pinned with
-    // a Subresource Integrity hash: if the CDN ever serves different bytes,
-    // the browser refuses to run them. Regenerate the hash when bumping.
-    'anime' => [
-        'url' => 'https://cdnjs.cloudflare.com/ajax/libs/animejs/4.5.0/anime.umd.min.js',
-        'sri' => 'sha384-InMmvD3VoYcY7hGjSC80aLb2bNNE4CzpX+Eq6FVDlmB0IKgDvmfPw4UY8L/M++iG',
-    ],
-
     // Cache-buster for admin JS/CSS assets — bump on every front-end change.
     'version' => '0.3.1',
 

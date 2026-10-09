@@ -209,6 +209,65 @@
     });
 
 
+    /* ── Motion tab ──────────────────────────────────────────────────
+       Add/remove tracks, resets (saved at once, then the page reloads so
+       every field shows the design again), and the preview controls, which
+       drive the live preview through EkMotion (same origin only).
+    */
+
+    function previewMotion(message) {
+        var frame = document.getElementById('gsm-live-preview');
+        if (frame && frame.contentWindow) frame.contentWindow.postMessage(message, window.location.origin);
+    }
+
+    root.addEventListener('input', function (e) {
+        var scrub = e.target.closest && e.target.closest('[data-motion-scrub]');
+        if (!scrub) return;
+        var form = scrub.closest('.gsm-motion-form');
+        previewMotion({ type: 'ek-motion-seek', section: 'gsm-s' + form.dataset.id, p: Number(scrub.value) });
+    });
+
+    root.addEventListener('click', function (e) {
+        if (!e.target.closest) return;
+
+        var play = e.target.closest('[data-motion-play]');
+        if (play) {
+            previewMotion({ type: 'ek-motion-play', section: 'gsm-s' + play.closest('.gsm-motion-form').dataset.id });
+            return;
+        }
+
+        var add = e.target.closest('[data-motion-add]');
+        if (add) {
+            var pane = add.closest('[data-motion-device]');
+            var trackId = 't' + Date.now().toString(36);
+            var html = pane.querySelector('template[data-motion-template]').innerHTML.replace(/__track__/g, trackId);
+            var list = pane.querySelector('[data-motion-tracks]');
+            list.insertAdjacentHTML('beforeend', html);
+            var row = list.lastElementChild;
+            row.querySelector('details').open = true;
+            row.querySelector('input[type=text]').focus();
+            add.closest('.gsm-motion-form').dataset.dirty = '1';
+            return;
+        }
+
+        var remove = e.target.closest('[data-motion-remove]');
+        if (remove && remove.closest('[data-motion-track]').dataset.saved !== '1') {
+            remove.closest('[data-motion-track]').remove(); // never saved: just take the row away
+            return;
+        }
+
+        var target = remove || e.target.closest('[data-motion-reset]');
+        if (!target) return;
+        if (!window.confirm(target.dataset.confirm || (remove ? 'Remove this track?' : 'Put this track back to the design default?'))) return;
+
+        var form = target.closest('.gsm-motion-form');
+        target.disabled = true;
+        ajax('PUT', sectionsUrl + '/' + form.dataset.id, {
+            device: 'desktop', data: null, motion_reset: [target.dataset.motionRemove || target.dataset.motionReset]
+        }).then(function () { window.location.reload(); })
+          .catch(function (err) { target.disabled = false; toast(err.message, true); });
+    });
+
     /* ── Saving ──────────────────────────────────────────────────────
        Each section has its own <form> (one per device, plus a display
        form). They are NOT inside the page/layout settings form — HTML
@@ -291,35 +350,6 @@
             if (input) style[key] = input.value === '' ? null : input.value;
         });
 
-        // Scroll animation, one set of fields per device:
-        //   style[anim][desktop][preset], style[anim][desktop][duration], …
-        var anim = {};
-
-        form.querySelectorAll('[name^="style[anim]"]').forEach(function (input) {
-            var match = input.name.match(/^style\[anim\]\[([a-z]+)\]\[([a-z_]+)\]$/);
-            if (!match) return;
-
-            var animDevice = match[1];
-            var key = match[2];
-
-            anim[animDevice] = anim[animDevice] || {};
-
-            // Checkboxes ship a hidden "0" ahead of them, so an unchecked box
-            // still sends a value and the switch can actually be turned off.
-            if (input.type === 'checkbox') {
-                if (input.checked) anim[animDevice][key] = true;
-                else if (!(key in anim[animDevice])) anim[animDevice][key] = false;
-
-                return;
-            }
-
-            if (input.type === 'hidden' && key in anim[animDevice]) return;
-
-            anim[animDevice][key] = input.value;
-        });
-
-        if (Object.keys(anim).length) style.anim = anim;
-
         var bgColor = form.querySelector('[name="style[bg_color]"]');
         if (bgColor) {
             var noBg = form.querySelector('[name="style[bg_none]"]');
@@ -329,10 +359,45 @@
         return { device: 'desktop', data: null, style: style };
     }
 
+    /**
+     * The Motion tab: field names are paths (motion[desktop][tracks][head][part]),
+     * fields marked data-json hold JSON. The server keeps only what changed.
+     */
+    function motionPayload(form) {
+        var motion = {};
+
+        new FormData(form).forEach(function (value, name) {
+            var keys = name.match(/[^[\]]+/g);
+            if (!keys || keys[0] !== 'motion') return;
+
+            var field = form.elements.namedItem(name);
+            if (field && field.hasAttribute && field.hasAttribute('data-json') && value.trim() !== '') {
+                try {
+                    value = JSON.parse(value);
+                } catch (e) {
+                    var label = form.querySelector('label[for="' + field.id + '"]');
+                    throw new Error('"' + (label ? label.textContent : name) + '" is not valid JSON');
+                }
+            }
+
+            var node = motion;
+            keys.slice(1, -1).forEach(function (key) { node = node[key] = node[key] || {}; });
+            node[keys[keys.length - 1]] = value; // a checkbox's "1" comes after its hidden "0"
+        });
+
+        return { device: 'desktop', data: null, motion: motion };
+    }
+
     /** PUT one section form. Resolves on success, rejects with the error. */
     function saveSectionForm(form) {
         var isContent = form.classList.contains('gsm-section-form');
-        var payload = isContent ? sectionPayload(form) : visibilityPayload(form);
+        var payload;
+        try {
+            payload = isContent ? sectionPayload(form)
+                : form.classList.contains('gsm-motion-form') ? motionPayload(form) : visibilityPayload(form);
+        } catch (err) {
+            return Promise.reject(err);
+        }
 
         return ajax('PUT', sectionsUrl + '/' + form.dataset.id, payload).then(function (res) {
             delete form.dataset.dirty;
@@ -346,6 +411,8 @@
         var title = card ? (card.querySelector('.gsm-sc-title') || {}).textContent : null;
         var name = (title || 'Section').trim();
 
+        if (form.classList.contains('gsm-motion-form')) return name + ' (motion)';
+
         return form.dataset.device ? name + ' (' + form.dataset.device + ')' : name + ' (display)';
     }
 
@@ -355,13 +422,14 @@
     root.addEventListener('change', markDirty, true);
 
     function markDirty(e) {
-        var form = e.target.closest && e.target.closest('.gsm-section-form, .gsm-visibility-form');
+        if (e.target.matches && e.target.matches('[data-motion-scrub]')) return; // preview only, nothing to save
+        var form = e.target.closest && e.target.closest('.gsm-section-form, .gsm-visibility-form, .gsm-motion-form');
         if (form) form.dataset.dirty = '1';
     }
 
     function dirtyForms() {
         return Array.prototype.slice.call(
-            root.querySelectorAll('.gsm-section-form[data-dirty], .gsm-visibility-form[data-dirty]')
+            root.querySelectorAll('.gsm-section-form[data-dirty], .gsm-visibility-form[data-dirty], .gsm-motion-form[data-dirty]')
         );
     }
 
@@ -417,6 +485,7 @@
             root.querySelectorAll(
                 '.gsm-section-form input, .gsm-section-form select, .gsm-section-form textarea,' +
                 '.gsm-visibility-form input, .gsm-visibility-form select, .gsm-visibility-form textarea,' +
+                '.gsm-motion-form input:not([type=range]), .gsm-motion-form select, .gsm-motion-form textarea,' +
                 '[data-gsm-primary-save] input, [data-gsm-primary-save] select, [data-gsm-primary-save] textarea'
             )
         ).filter(function (el) {
@@ -458,7 +527,7 @@
                 }
             }
 
-            var form = el.closest('.gsm-section-form, .gsm-visibility-form');
+            var form = el.closest('.gsm-section-form, .gsm-visibility-form, .gsm-motion-form');
             if (form) form.dataset.dirty = '1';
 
             // Page/layout settings live in their own form, which is tracked by
@@ -639,7 +708,7 @@
     root.addEventListener('submit', function (e) {
         var form = e.target;
 
-        if (form.classList.contains('gsm-section-form') || form.classList.contains('gsm-visibility-form')) {
+        if (form.classList.contains('gsm-section-form') || form.classList.contains('gsm-visibility-form') || form.classList.contains('gsm-motion-form')) {
             e.preventDefault();
             setState('saving');
 

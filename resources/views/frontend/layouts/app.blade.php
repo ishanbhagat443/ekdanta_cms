@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-{{-- data-motion="off": every visitor sees content still (Theme Customizer →
-     Animations off), or a preview asked for it (?reduce-motion=1). --}}
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if (! theme('animations.enabled', true) || request()->boolean('reduce-motion')) data-motion="off" @endif>
+{{-- data-motion="off": every visitor gets the reduced-motion page (Theme
+     Customizer → Animations off), or a preview asked for it (?reduce-motion=1).
+     "forced" hides the visitor's own Pause button: the choice is already made. --}}
+@php $motionForced = ! theme('animations.enabled', true) || request()->boolean('reduce-motion'); @endphp
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if ($motionForced) data-motion="off" data-motion-forced @endif>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +42,15 @@
     {{-- Set before first paint: the animation CSS only hides content when
          this class is present, so a visitor without JS (or with a blocked
          CDN) sees everything instead of a blank page. --}}
-    <script>document.documentElement.classList.add('js-enabled');</script>
+    {{-- Before first paint: JS is on; the visitor's "Pause animations" choice;
+         and if the motion script never arrives, show everything after 2.5 s. --}}
+    <script>
+        (function (root) {
+            root.classList.add('js-enabled');
+            try { if (!root.hasAttribute('data-motion') && localStorage.getItem('ek-motion-paused') === '1') root.setAttribute('data-motion', 'off'); } catch (e) {}
+            setTimeout(function () { if (!window.EkMotion) root.classList.add('ek-reveal'); }, 2500);
+        })(document.documentElement);
+    </script>
 
     @stack('head')
 </head>
@@ -64,16 +74,6 @@
     @if (theme('custom_code.js_footer'))
         <script>{!! theme('custom_code.js_footer') !!}</script>
     @endif
-
-    {{-- Scroll animations: Anime.js v4 (UMD global `anime`) plus the CMS's
-         attribute reader. Deferred so they never block first paint. --}}
-    {{-- Order matters: deferred scripts execute in document order, so the
-         local reveal script goes FIRST. If the CDN stalls, our file has
-         already run and can un-hide the content instead of waiting behind it. --}}
-    <script src="{{ asset('js/gsm-animations.js') }}?v={{ gsm_version() }}" defer></script>
-    <script src="{{ config('gsm.anime.url') }}"
-            integrity="{{ config('gsm.anime.sri') }}" crossorigin="anonymous"
-            referrerpolicy="no-referrer" defer></script>
 
     {{-- Builder preview only: click-to-edit on the page itself. Never sent
          to a public visitor — see gsm_inline_editing(). --}}

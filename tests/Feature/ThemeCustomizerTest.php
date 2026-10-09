@@ -137,19 +137,19 @@ class ThemeCustomizerTest extends TestCase
             'enabled' => 0, 'default_type' => 'none', 'duration' => 600, 'delay' => 0,
         ])->assertRedirect();
 
-        // gsm-animations.js and frontend.scss both key off this attribute.
+        // The motion engine and frontend.scss both key off this attribute.
         $this->get('/')->assertSee('data-motion="off"', false);
     }
 
     /**
      * Bug: Theme Customizer offered Fade In / Zoom In / Slide Up / Bounce,
-     * while sections offered fade-in … flip-up. Both now read
-     * SectionAnimation::PRESETS, and the default actually seeds new sections.
+     * while sections offered fade-in … flip-up. Both now read the Motion
+     * Library's entrance presets, and the default actually seeds new sections.
      */
     public function test_default_animation_comes_from_the_section_list_and_seeds_new_sections(): void
     {
         $admin = $this->admin();
-        $this->assertSame(\App\Support\SectionAnimation::PRESETS, config('theme.animations.types'));
+        $this->assertSame(\App\Support\SectionMotion::ENTRANCE, config('theme.animations.types'));
 
         $this->actingAs($admin)->put('/cms/theme-customizer/animations', [
             'enabled' => 1, 'default_type' => 'slide', 'duration' => 900, 'delay' => 150,
@@ -166,10 +166,10 @@ class ThemeCustomizerTest extends TestCase
             ->json('section');
 
         $this->assertSame(
-            ['preset' => 'fade-up', 'duration' => 900, 'delay' => 150],
-            array_intersect_key($section['style']['anim']['desktop'], array_flip(['preset', 'duration', 'delay']))
+            ['part' => '@self', 'trigger' => 'enter', 'preset' => 'fade-up', 'duration' => 900, 'delay' => 150],
+            $section['style']['motion']['desktop']['tracks']['enter']
         );
-        $this->assertSame('inherit', $section['style']['anim']['mobile']['preset']);
+        $this->assertArrayNotHasKey('mobile', $section['style']['motion'], 'phones follow desktop');
     }
 
     /* ── Custom CSS/JS per breakpoint ─────────────────────────────── */

@@ -109,12 +109,17 @@ class Section extends Model
     }
 
     /**
-     * Section CSS/JS reach every visitor, so writing them is the same
-     * privilege as Developer Mode. Dropped rather than nulled: saves merge
-     * style, so leaving the keys out keeps whatever a developer wrote.
+     * The gate every style save and import passes. Section CSS/JS reach every
+     * visitor, so writing them is the same privilege as Developer Mode.
+     * Dropped rather than nulled: saves merge style, so leaving the keys out
+     * keeps whatever a developer wrote. Motion is data for everyone, cleaned.
      */
     public static function withoutPrivilegedStyle(array $style): array
     {
+        if (isset($style['motion'])) {
+            $style['motion'] = \App\Support\SectionMotion::sanitiseStored((array) $style['motion']);
+        }
+
         if (\Illuminate\Support\Facades\Gate::allows('developer.mode')) {
             return $style;
         }

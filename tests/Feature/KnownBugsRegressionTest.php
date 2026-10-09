@@ -25,7 +25,7 @@ use Tests\TestCase;
 /**
  * One test (or a few) per bug from the 8 Oct 2026 audit, named after it, so
  * none of them can quietly come back. Bug 3 (Springy) is covered in
- * tests/js/gsm-animations.test.mjs; bug 4 in ThemeCustomizerTest.
+ * tests/js/motion.test.mjs; bug 4 in ThemeCustomizerTest.
  */
 class KnownBugsRegressionTest extends TestCase
 {

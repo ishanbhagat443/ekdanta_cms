@@ -73,7 +73,7 @@ class EditorLiveParityTest extends TestCase
         return trim(preg_replace('/\s+/', ' ', strip_tags($html)));
     }
 
-    /** Every <section> opening tag: classes, inline styles, data-anim-*. */
+    /** Every <section> opening tag: classes, inline styles, motion attributes. */
     private function sectionTags(string $html): array
     {
         preg_match_all('/<section[^>]*>/i', $html, $matches);

@@ -21,6 +21,17 @@ class HeroSection extends PageSectionType
         return 'fas fa-star';
     }
 
+    /** The content entrance (formerly a field on this form) is a Motion tab track now. */
+    public function motionDefaults(): array
+    {
+        return ['desktop' => ['tracks' => ['content' => ['part' => 'content', 'trigger' => 'load', 'preset' => 'hero-fade-up']]]];
+    }
+
+    public function motionParts(): array
+    {
+        return ['content'];
+    }
+
     public function fields(): array
     {
         return [
@@ -34,7 +45,6 @@ class HeroSection extends PageSectionType
             ['key' => 'height', 'label' => 'Height', 'type' => 'select', 'device' => true, 'default' => 'full', 'options' => ['banner' => 'Compact Banner (200px)', 'small' => 'Small', 'medium' => 'Medium', 'large' => 'Large', 'half' => 'Half screen (50vh)', 'full' => 'Full screen (100vh)'], 'rules' => ['nullable', 'in:banner,small,medium,large,half,full']],
             $this->alignmentField(),
             ['key' => 'content_width', 'label' => 'Content Max Width (px)', 'type' => 'number', 'default' => 780, 'rules' => ['nullable', 'integer', 'between:320,1600']],
-            ['key' => 'entrance', 'label' => 'Content Entrance Animation', 'type' => 'select', 'default' => 'fade-up', 'options' => ['none' => 'None', 'fade-up' => 'Fade up', 'fade-in' => 'Fade in', 'zoom-in' => 'Zoom in'], 'rules' => ['nullable', 'in:none,fade-up,fade-in,zoom-in']],
             ['key' => 'scroll_indicator', 'label' => 'Scroll Indicator (right edge line)', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
             ['key' => 'show_breadcrumb', 'label' => 'Show Breadcrumb (Home / …)', 'type' => 'toggle', 'default' => false, 'rules' => ['nullable', 'boolean']],
             ['key' => 'breadcrumb_label', 'label' => 'Breadcrumb Current-Page Label (defaults to the Heading)', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:150']],

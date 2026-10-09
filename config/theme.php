@@ -191,13 +191,13 @@ return [
     'animations' => [
         'label' => 'Animations',
         'icon' => 'fas fa-magic',
-        // The same list the section editor offers: one source of truth.
-        'types' => \App\Support\SectionAnimation::PRESETS,
+        // The Motion Library's entrance presets: one source of truth.
+        'types' => \App\Support\SectionMotion::ENTRANCE,
         'fields' => [
-            'enabled' => ['label' => 'Enable Scroll Animations', 'type' => 'toggle', 'default' => true,
-                'hint' => 'Off shows every section in place, with no movement, across the whole site.'],
+            'enabled' => ['label' => 'Enable Animations', 'type' => 'toggle', 'default' => true,
+                'hint' => 'Off = "Reduce motion" for every visitor: the whole site shows its final, still state, with no pinned scrolling and no loops.'],
             'default_type' => ['label' => 'Default Animation', 'type' => 'select', 'default' => 'none',
-                'rules' => ['nullable', 'in:'.implode(',', array_keys(\App\Support\SectionAnimation::PRESETS))],
+                'rules' => ['nullable', 'in:'.implode(',', array_keys(\App\Support\SectionMotion::ENTRANCE))],
                 'hint' => 'The animation a newly added page section starts with. Each section can change it.'],
             'duration' => ['label' => 'Duration (ms)', 'type' => 'number', 'default' => 600, 'min' => 100, 'max' => 3000,
                 'hint' => 'Starting speed for the default animation.'],

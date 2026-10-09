@@ -8,7 +8,7 @@ use App\Models\Menu;
 use App\Models\Page;
 use App\Services\SectionTypes\SectionType;
 use App\Services\SectionTypes\SectionTypeRegistry;
-use App\Support\SectionAnimation;
+use App\Support\SectionMotion;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -180,10 +180,8 @@ class PageStarterService
             return $style;
         }
 
-        $style['anim'] = SectionAnimation::everyDevice([
-            'preset' => $definition['anim'],
-            'stagger' => $definition['stagger'] ?? 0,
-        ]);
+        $stagger = (int) ($definition['stagger'] ?? 0);
+        $style['motion'] = SectionMotion::entrance($definition['anim'], ['stagger' => $stagger, 'children' => $stagger > 0]);
 
         return $style;
     }

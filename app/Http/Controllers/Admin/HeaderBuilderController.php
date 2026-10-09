@@ -54,6 +54,7 @@ class HeaderBuilderController extends Controller
             'overlay_cta_label' => ['nullable', 'string', 'max:60'],
             'overlay_cta_url' => ['nullable', 'string', 'max:500'],
             'overlay_call_line' => ['nullable', 'boolean'],
+            'overlay_pause_label' => ['nullable', 'string', 'max:40'],
             'nav_style' => ['nullable', 'array'],
             'nav_style.*' => ['nullable', 'in:inline,dropdown,overlay'],
             // Header-over-hero (design 05): transparent overlay → solid on scroll.
@@ -83,6 +84,7 @@ class HeaderBuilderController extends Controller
                 'overlay_cta_label' => $data['overlay_cta_label'] ?? null,
                 'overlay_cta_url' => $data['overlay_cta_url'] ?? null,
                 'overlay_call_line' => (bool) ($data['overlay_call_line'] ?? false),
+                'overlay_pause_label' => $data['overlay_pause_label'] ?? null,
                 'transparent_color' => $data['transparent_color'] ?? null,
                 'scrolled_color' => $data['scrolled_color'] ?? null,
                 'blur' => $data['blur'] ?? 0,

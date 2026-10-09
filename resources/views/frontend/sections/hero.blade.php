@@ -7,7 +7,6 @@
     $minHeight = ['banner' => '200px', 'small' => '320px', 'medium' => '460px', 'large' => '600px', 'half' => '50svh', 'full' => '100svh'][$data['height'] ?? 'full'] ?? '100svh';
     $align = $data['alignment'] ?? 'center';
     $contentWidth = (int) ($data['content_width'] ?? 780);
-    $entrance = $data['entrance'] ?? 'fade-up';
     $showScroll = (bool) ($data['scroll_indicator'] ?? true);
     $showBreadcrumb = (bool) ($data['show_breadcrumb'] ?? false);
     $breadcrumbLabel = $data['breadcrumb_label'] ?? $data['heading'] ?? null;
@@ -44,7 +43,7 @@
     @endif
 
     <div style="max-width: {{ $contentWidth }}px;"
-         class="container py-5 text-{{ $align }} position-relative gsm-hero-content {{ $entrance !== 'none' ? 'gsm-hero-enter gsm-hero-enter-'.$entrance : '' }}">
+         class="container py-5 text-{{ $align }} position-relative gsm-hero-content" data-m="content">
         @if (!empty($data['eyebrow']))
             <div class="text-uppercase gsm-eyebrow gsm-hero-eyebrow">
                 @include('frontend.partials.device-text', ['section' => $section, 'key' => 'eyebrow'])
