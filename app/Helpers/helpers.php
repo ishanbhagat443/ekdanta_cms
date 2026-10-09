@@ -314,3 +314,47 @@ if (! function_exists('site_title')) {
         return implode(' — ', array_filter([$page, (string) setting('business.company_name', '')]));
     }
 }
+
+if (! function_exists('media_ref')) {
+    /**
+     * The media file a field points at: a numeric id or a stable key.
+     * Keyed files (design assets) load in one query per request; ids are
+     * remembered as they are asked for.
+     */
+    function media_ref(mixed $ref): ?\App\Models\Media
+    {
+        if ($ref === null || $ref === '') {
+            return null;
+        }
+
+        $store = request()->attributes;
+        $keyed = $store->get('media.keyed');
+        if ($keyed === null) {
+            $keyed = \App\Models\Media::query()->whereNotNull('key')->get()->keyBy('key')->all();
+            $store->set('media.keyed', $keyed);
+        }
+
+        if (\App\Models\Media::isKey($ref)) {
+            return $keyed[$ref] ?? null;
+        }
+        if (! is_numeric($ref)) {
+            return null;
+        }
+
+        $byId = $store->get('media.byId', []);
+        if (! array_key_exists((int) $ref, $byId)) {
+            $byId[(int) $ref] = \App\Models\Media::query()->find((int) $ref);
+            $store->set('media.byId', $byId);
+        }
+
+        return $byId[(int) $ref];
+    }
+}
+
+if (! function_exists('link_href')) {
+    /** A link field's value as an href (see App\Support\Link). */
+    function link_href(?string $value): string
+    {
+        return \App\Support\Link::href($value);
+    }
+}

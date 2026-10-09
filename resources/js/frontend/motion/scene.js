@@ -91,8 +91,15 @@ export class Scene {
         this.el = el;
         this.config = config;
         this.env = env;
+        // A section may draw one composition per screen size ([data-ek-comp]);
+        // parts and the stage are looked up in the one this device shows.
+        this.root = el.querySelector(`[data-ek-comp="${env.device}"]`)
+            || (env.device === 'tablet' && el.querySelector('[data-ek-comp="mobile"]'))
+            || el;
         this.length = config.stage?.length || 0;
-        this.pinned = !!config.stage?.pin && !env.reduced;
+        // Reduced motion unpins a stage, unless it has steps: those still
+        // need the scroll to show each item (they switch, without moving).
+        this.pinned = !!config.stage?.pin && (!env.reduced || !!config.steps);
         this.focusEnd = new Map(); // element → px where its scrub tracks are done (D9)
         this.timeline = null;
         this.origin = 0;
@@ -104,7 +111,7 @@ export class Scene {
     }
 
     targetsOf(track) {
-        let els = track.part === '@self' ? [this.el] : [...this.el.querySelectorAll(`[data-m="${track.part}"]`)];
+        let els = track.part === '@self' ? [this.el] : [...this.root.querySelectorAll(`[data-m="${track.part}"]`)];
         if (track.children) els = els.flatMap((p) => (track.part === '@self' ? legacyChildren(p) : [...p.children]));
         const kf = track.keyframes || {};
         if (kf.$split) {
@@ -250,7 +257,7 @@ export class Scene {
     measure() {
         const box = this.el.getBoundingClientRect();
         this.top = box.top + window.scrollY;
-        const stage = this.el.querySelector('[data-ek-stage]');
+        const stage = this.root.querySelector('[data-ek-stage]');
         const travel = this.pinned && stage ? this.el.offsetHeight - stage.offsetHeight : 0;
         // Screen px per design px: from the real pinned travel when there is
         // one (it already includes svh quirks), else from the screen height.
@@ -272,7 +279,7 @@ export class Scene {
 
         const st = this.config.steps;
         if (st) {
-            const part = st.part === '@self' ? this.el : this.el.querySelector(`[data-m="${st.part}"]`);
+            const part = st.part === '@self' ? this.root : this.root.querySelector(`[data-m="${st.part}"]`);
             const items = part ? [...part.children] : [];
             const { f, index } = stepState(px, st, items.length, this.env.reduced);
             s.f = f;

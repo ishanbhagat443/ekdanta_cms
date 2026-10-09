@@ -332,6 +332,12 @@ return [
             'can' => 'pages.manage',
         ],
         [
+            'text' => 'Collections',
+            'icon' => 'fas fa-fw fa-layer-group',
+            'url' => 'cms/collections/case-studies',
+            'can' => 'collections.manage',
+        ],
+        [
             'text' => 'Header Builder',
             'icon' => 'fas fa-fw fa-heading',
             'url' => 'cms/header-builder',

@@ -1526,6 +1526,24 @@ html[data-motion="off"] {
     }
 }
 
+// A stage with steps stays pinned under reduced motion and "Pause
+// animations": its items switch in place as the visitor scrolls, without
+// moving, and every item is still reachable.
+html.js-enabled {
+    @media (min-width: 992px) {
+        .ek-steps.ek-pin-d { height: calc(100svh + var(--ek-len-d) * 100svh / 900); }
+        .ek-steps.ek-pin-d [data-ek-stage] { position: sticky; top: 0; }
+    }
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .ek-steps.ek-pin-t { height: calc(100svh + var(--ek-len-t) * 100svh / 844); }
+        .ek-steps.ek-pin-t [data-ek-stage] { position: sticky; top: 0; }
+    }
+    @media (max-width: 767.98px) {
+        .ek-steps.ek-pin-m { height: calc(100svh + var(--ek-len-m) * 100svh / 844); }
+        .ek-steps.ek-pin-m [data-ek-stage] { position: sticky; top: 0; }
+    }
+}
+
 // Loops rest while their section is off screen…
 .ek-offscreen, .ek-offscreen * { animation-play-state: paused !important; }
 

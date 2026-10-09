@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class Media extends Model
 {
     protected $fillable = [
+        'key',
         'folder_id',
         'disk',
         'path',
@@ -38,6 +39,12 @@ class Media extends Model
         'thumb_url',
         'human_size',
     ];
+
+    /** A media reference from a section or collection field: an id, or a stable key ("ekdanta/logo-colour"). */
+    public static function isKey(mixed $ref): bool
+    {
+        return is_string($ref) && preg_match('#^[a-z0-9-]+(/[a-z0-9._-]+)+$#', $ref) === 1;
+    }
 
     public function folder(): BelongsTo
     {

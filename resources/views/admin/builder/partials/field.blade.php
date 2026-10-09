@@ -95,8 +95,9 @@
                 @break
 
             @case('media')
+                {{-- Text, not number: a value can also be a stable key ("ekdanta/logo-colour"). --}}
                 <div class="input-group input-group-sm">
-                    <input type="number" name="data[{{ $key }}]" id="{{ $inputId }}" value="{{ $value }}"
+                    <input type="text" name="data[{{ $key }}]" id="{{ $inputId }}" value="{{ $value }}"
                            class="form-control gsm-bf-media-id" placeholder="{{ $placeholder ?: 'Media ID' }}">
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-primary gsm-bf-media-pick"
@@ -105,6 +106,11 @@
                         </button>
                     </div>
                 </div>
+                @break
+
+            @case('link')
+                <input type="text" name="data[{{ $key }}]" id="{{ $inputId }}" value="{{ $value }}" maxlength="500"
+                       class="form-control form-control-sm" placeholder="{{ $placeholder ?: '/contact, #c-brief, https://…, tel:…, wa:…' }}">
                 @break
 
             @case('number')
@@ -129,7 +135,7 @@
                                     'isTemplate' => false,
                                 ])
                             @endforeach
-                            <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove"><i class="fas fa-times"></i></button>
+                            <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove" aria-label="Remove this row"><i class="fas fa-times" aria-hidden="true"></i></button>
                         </div>
                     @endforeach
                     <template class="gsm-repeater-template">
@@ -142,7 +148,7 @@
                                     'isTemplate' => true,
                                 ])
                             @endforeach
-                            <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove"><i class="fas fa-times"></i></button>
+                            <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove" aria-label="Remove this row"><i class="fas fa-times" aria-hidden="true"></i></button>
                         </div>
                     </template>
                     <button type="button" class="btn btn-xs btn-outline-secondary gsm-repeater-add">

@@ -1,0 +1,72 @@
+// Ekdanta section pack (loaded only on pages that use it).
+//
+// Every composition is drawn in design px: 1 design px = var(--u).
+//   desktop (≥ 992 px)   the 1440 × 900 artboard, scaled to fit the screen
+//   phones  (≤ 767 px)   the 390 × 844 artboard
+//   tablets (768–991)    the phone artboard, centred, at most 1.35× size
+// The artboard sits centred in a full-screen stage whose background runs to
+// the edges, so no aspect ratio crops or overlaps it. Text has rem floors
+// (written into each view), so browser zoom still makes it bigger.
+
+.ek {
+    position: relative;
+    height: 100%;
+    container-type: inline-size; // --u from the real width, without the scrollbar
+    font-family: 'Hind', system-ui, sans-serif;
+    color: var(--tk-ink);
+    -webkit-font-smoothing: antialiased;
+
+    a { color: inherit; }
+
+    // Approved focus ring: orange outline with an ink halo (MASTER.md).
+    :focus-visible {
+        outline: 3px solid var(--tk-orange);
+        outline-offset: 3px;
+        box-shadow: 0 0 0 8px var(--tk-ink);
+    }
+}
+
+.ek-comp { height: 100%; }
+.ek-comp--d { --u: min(100cqw / 1440, 100svh / 900); }
+.ek-comp--m,
+.ek-comp--t { display: none; --u: min(100cqw / 390, 100svh / 844); }
+
+@media (max-width: 991.98px) {
+    .ek-comp--d { display: none; }
+    .ek-comp--m { display: block; }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .ek-comp--m,
+    .ek-comp--t { --u: min(100cqw / 390, 100svh / 844, 1.35px); }
+    // A tablet composition only exists when tablet text differs from phones.
+    .ek-comp--t { display: block; }
+    .ek-comp--t ~ .ek-comp--m { display: none; }
+}
+
+.ek-stage {
+    position: relative;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.ek-art {
+    position: absolute;
+    left: calc((100% - 1440 * var(--u)) / 2);
+    top: calc((100% - 900 * var(--u)) / 2);
+    width: calc(1440 * var(--u));
+    height: calc(900 * var(--u));
+}
+
+.ek-comp--m .ek-art,
+.ek-comp--t .ek-art {
+    left: calc((100% - 390 * var(--u)) / 2);
+    top: calc((100% - 844 * var(--u)) / 2);
+    width: calc(390 * var(--u));
+    height: calc(844 * var(--u));
+}
+
+// Shown only when motion is reduced (OS, site switch or "Pause animations").
+.ek-reduced-only { display: none; }
+@media (prefers-reduced-motion: reduce) { .ek-reduced-only { display: revert; } }
+html[data-motion="off"] .ek-reduced-only { display: revert; }

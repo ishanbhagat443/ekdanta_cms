@@ -23,6 +23,7 @@ class PermissionSeeder extends Seeder
         'builder.header' => ['Admin', 'Content Manager'],
         'builder.footer' => ['Admin', 'Content Manager'],
         'pages.manage' => ['Admin', 'Content Manager'],
+        'collections.manage' => ['Admin', 'Content Manager'],
         'blog.manage' => ['Admin', 'Content Manager', 'Marketing'],
         'forms.manage' => ['Admin', 'Content Manager', 'Marketing'],
         'enquiries.manage' => ['Admin', 'Content Manager', 'Marketing'],

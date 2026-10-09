@@ -39,9 +39,6 @@
         <script>{!! theme('custom_code.js_header') !!}</script>
     @endif
 
-    {{-- Set before first paint: the animation CSS only hides content when
-         this class is present, so a visitor without JS (or with a blocked
-         CDN) sees everything instead of a blank page. --}}
     {{-- Before first paint: JS is on; the visitor's "Pause animations" choice;
          and if the motion script never arrives, show everything after 2.5 s. --}}
     <script>

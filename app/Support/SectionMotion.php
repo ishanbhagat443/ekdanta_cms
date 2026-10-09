@@ -557,7 +557,9 @@ final class SectionMotion
             return null;
         }
 
-        return ['config' => $config, 'css' => $css, 'lengths' => $lengths];
+        $steps = array_filter(array_map(fn ($device) => isset($device['steps']), $config));
+
+        return ['config' => $config, 'css' => $css, 'lengths' => $lengths, 'steps' => $steps !== []];
     }
 
     private static function resolve(array $track, array $presets): ?array

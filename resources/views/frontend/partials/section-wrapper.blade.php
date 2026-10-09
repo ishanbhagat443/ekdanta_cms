@@ -52,7 +52,7 @@
 @endphp
 
 <section id="{{ $domId }}"
-         class="gsm-section gsm-section-{{ $section->type }} {{ $section->visibilityClasses() }} @if ($motion) ek-scene @foreach (array_keys($motion['lengths']) as $pinDevice) ek-pin-{{ $pinDevice[0] }} @endforeach @endif"
+         class="gsm-section gsm-section-{{ $section->type }} {{ $section->visibilityClasses() }} @if ($motion) ek-scene @if ($motion['steps']) ek-steps @endif @foreach (array_keys($motion['lengths']) as $pinDevice) ek-pin-{{ $pinDevice[0] }} @endforeach @endif"
          @if ($motion) data-ek-motion data-ek-type="{{ $section->type }}" @endif
          @if ($style !== []) style="{{ implode('; ', $style) }}" @endif>
     @if ($motion)
@@ -89,6 +89,14 @@
         ])
     @endif
 </section>
+
+@if (str_starts_with($section->type, 'ekdanta-'))
+    @once
+        @push('head')
+            @vite(['resources/scss/ekdanta.scss', 'resources/js/frontend/ekdanta.js'])
+        @endpush
+    @endonce
+@endif
 
 @if ($css = $section->styleValue('custom_css'))
     <style>{!! $css !!}</style>

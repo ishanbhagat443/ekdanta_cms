@@ -49,7 +49,10 @@ class SectionBuilderService
             'name' => $type->label(),
             'sort_order' => $this->sections->nextSortOrder($owner),
             'data_desktop' => $type->defaults(),
-            'style' => $area === 'page' ? SectionMotion::newSectionStyle() : [],
+            'data_tablet' => $type->deviceDefaults()['tablet'] ?? null,
+            'data_mobile' => $type->deviceDefaults()['mobile'] ?? null,
+            // A type with its own designed motion starts with that, not the theme's default entrance.
+            'style' => $area === 'page' && $type->motionDefaults() === [] ? SectionMotion::newSectionStyle() : [],
         ]);
 
         $this->flushFor($owner);

@@ -21,6 +21,8 @@ namespace App\Services\SectionTypes;
  */
 abstract class SectionType
 {
+    use \App\Support\FieldSchema;
+
     abstract public function key(): string;
 
     abstract public function label(): string;
@@ -33,35 +35,25 @@ abstract class SectionType
     /** @return list<array<string, mixed>> */
     abstract public function fields(): array;
 
-    /** Initial desktop payload for a fresh section. */
-    public function defaults(): array
+    /** Heading it sits under in "Add a section". */
+    public function group(): string
     {
-        $defaults = [];
-
-        foreach ($this->fields() as $field) {
-            $defaults[$field['key']] = $field['default'] ?? ($field['type'] === 'repeater' ? [] : null);
-        }
-
-        return $defaults;
+        return 'General';
     }
 
-    /** Validation rules for a full payload (desktop). */
-    public function rules(string $prefix = 'data'): array
+    /** The Blade view that draws it. */
+    public function view(): string
     {
-        $rules = [];
+        return 'frontend.sections.'.$this->key();
+    }
 
-        foreach ($this->fields() as $field) {
-            $rules["{$prefix}.{$field['key']}"] = $field['rules'] ?? ['nullable'];
-
-            if (($field['type'] ?? null) === 'repeater') {
-                $rules["{$prefix}.{$field['key']}"] = array_merge(['nullable', 'array'], $field['rules'] ?? []);
-                foreach ($field['fields'] ?? [] as $sub) {
-                    $rules["{$prefix}.{$field['key']}.*.{$sub['key']}"] = $sub['rules'] ?? ['nullable'];
-                }
-            }
-        }
-
-        return $rules;
+    /**
+     * Starting tablet/mobile values for a new section, where the mobile
+     * design uses different words or line breaks: ['mobile' => [key => value]].
+     */
+    public function deviceDefaults(): array
+    {
+        return [];
     }
 
     /**

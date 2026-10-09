@@ -86,7 +86,7 @@
         <small class="d-block text-muted">{{ $sub['label'] }}</small>
         @if ($subType === 'media')
             <div class="input-group input-group-sm">
-                <input type="number" {{ $nameAttr }}="{{ $inputName }}" value="{{ is_scalar($inputValue) ? $inputValue : '' }}"
+                <input type="text" {{ $nameAttr }}="{{ $inputName }}" value="{{ is_scalar($inputValue) ? $inputValue : '' }}"
                        class="form-control" aria-label="{{ $sub['label'] }}">
                 <div class="input-group-append">
                     <button type="button" class="btn btn-outline-primary gsm-bf-media-pick-near" title="Choose from library" aria-label="Choose {{ $sub['label'] }} from library">

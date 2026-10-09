@@ -14,7 +14,7 @@
         @endpush
     @endif
 @else
-    @include('frontend.sections.'.$section->type, [
+    @include(app(\App\Services\SectionTypes\SectionTypeRegistry::class)->find($section->type)->view(), [
         'section' => $section,
         'menu' => $menu,
         'mediaMap' => $mediaMap,

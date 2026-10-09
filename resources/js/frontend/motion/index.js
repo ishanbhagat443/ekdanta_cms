@@ -199,7 +199,7 @@ function boot() {
         const scene = jump && scenes.get(jump.closest('[data-ek-motion]'));
         const st = scene?.config.steps;
         if (!st) return;
-        const part = scene.el.querySelector(`[data-m="${st.part}"]`);
+        const part = scene.root.querySelector(`[data-m="${st.part}"]`);
         scrollToPx(scene, stepPx(st, Number(jump.dataset.ekStep), part ? part.children.length : 1));
     });
 
@@ -214,7 +214,7 @@ function boot() {
             if (scene.focusEnd.has(n)) need = Math.max(need, scene.focusEnd.get(n));
         }
         const st = scene.config.steps;
-        const part = st && el.querySelector(`[data-m="${st.part}"]`);
+        const part = st && scene.root.querySelector(`[data-m="${st.part}"]`);
         const item = part && [...part.children].findIndex((c) => c.contains(e.target));
         if (item >= 0 && item !== scene.state.index) need = Math.max(need, stepPx(st, item, part.children.length));
         if (need > scene.state.px) scrollToPx(scene, need, true);

@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+// The Ekdanta site's content from the design files (media, collections and,
+// as the build goes on, the rest). Safe to run again: see EkdantaSiteSeeder.
+Artisan::command('ekdanta:seed', function () {
+    $seeder = app(\Database\Seeders\EkdantaSiteSeeder::class);
+    $seeder->setCommand($this);
+    $seeder->run();
+    $this->info('Ekdanta content is in place.');
+})->purpose('Seed the Ekdanta site content (media, collections) from the design files');

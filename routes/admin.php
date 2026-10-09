@@ -108,6 +108,17 @@ Route::prefix('theme-customizer')->name('theme.')->group(function (): void {
 // Design System: Global Gradient Library + Button Builder
 Route::resource('gradients', \App\Http\Controllers\Admin\GradientController::class)->except('show');
 
+// Collections (case studies, services, clients…): permission checked in the controller.
+Route::prefix('collections')->name('collections.')->group(function (): void {
+    Route::get('{collection}', [\App\Http\Controllers\Admin\CollectionItemController::class, 'index'])->name('index');
+    Route::get('{collection}/create', [\App\Http\Controllers\Admin\CollectionItemController::class, 'create'])->name('create');
+    Route::post('{collection}', [\App\Http\Controllers\Admin\CollectionItemController::class, 'store'])->name('store');
+    Route::post('{collection}/reorder', [\App\Http\Controllers\Admin\CollectionItemController::class, 'reorder'])->name('reorder');
+    Route::get('{collection}/{item}/edit', [\App\Http\Controllers\Admin\CollectionItemController::class, 'edit'])->name('edit');
+    Route::put('{collection}/{item}', [\App\Http\Controllers\Admin\CollectionItemController::class, 'update'])->name('update');
+    Route::delete('{collection}/{item}', [\App\Http\Controllers\Admin\CollectionItemController::class, 'destroy'])->name('destroy');
+});
+
 // Motion Library (permission checked in the controller: motion.manage).
 Route::get('motion-presets/export', [\App\Http\Controllers\Admin\MotionPresetController::class, 'export'])->name('motion-presets.export');
 Route::post('motion-presets/import', [\App\Http\Controllers\Admin\MotionPresetController::class, 'import'])->name('motion-presets.import');

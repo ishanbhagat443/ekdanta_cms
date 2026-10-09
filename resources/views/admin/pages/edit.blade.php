@@ -32,12 +32,19 @@
                             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
                                 <i class="fas fa-plus mr-1"></i> Add a section
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right" style="max-height: 420px; overflow-y: auto;">
-                                @foreach ($pageTypes as $type)
-                                    <a href="#" class="dropdown-item gsm-add-section"
-                                       data-area="page" data-type="{{ $type->key() }}">
-                                        <i class="{{ $type->icon() }} fa-fw mr-2"></i>{{ $type->label() }}
-                                    </a>
+                            <div class="dropdown-menu dropdown-menu-right gsm-add-menu" style="max-height: 460px; overflow-y: auto; min-width: 300px;">
+                                <div class="px-2 pb-2">
+                                    <label for="gsm-add-filter" class="sr-only">Find a section type</label>
+                                    <input type="search" id="gsm-add-filter" class="form-control form-control-sm" placeholder="Find a section…" autocomplete="off">
+                                </div>
+                                @foreach ($pageTypes->groupBy(fn ($type) => $type->group()) as $groupName => $groupTypes)
+                                    <h6 class="dropdown-header" data-add-group>{{ $groupName }}</h6>
+                                    @foreach ($groupTypes as $type)
+                                        <a href="#" class="dropdown-item gsm-add-section"
+                                           data-area="page" data-type="{{ $type->key() }}">
+                                            <i class="{{ $type->icon() }} fa-fw mr-2" aria-hidden="true"></i>{{ $type->label() }}
+                                        </a>
+                                    @endforeach
                                 @endforeach
                             </div>
                         </div>
@@ -522,6 +529,26 @@
 
 @push('scripts')
     <script>
+        // "Add a section" filter: by name, keeping group headings that still have matches.
+        (function () {
+            var input = document.getElementById('gsm-add-filter');
+            if (!input) return;
+            var menu = input.closest('.gsm-add-menu');
+            input.addEventListener('click', function (e) { e.stopPropagation(); });
+            input.addEventListener('input', function () {
+                var q = input.value.trim().toLowerCase();
+                var heading = null, shown = 0;
+                var close = function () { if (heading) heading.hidden = shown === 0; };
+                menu.querySelectorAll('[data-add-group], .gsm-add-section').forEach(function (el) {
+                    if (el.hasAttribute('data-add-group')) { close(); heading = el; shown = 0; return; }
+                    var match = el.textContent.toLowerCase().indexOf(q) !== -1;
+                    el.hidden = !match;
+                    if (match) shown++;
+                });
+                close();
+            });
+        })();
+
         // Live preview: exact-size presets and the Reduce motion switch.
         (function () {
             var frame = document.getElementById('gsm-live-preview');
