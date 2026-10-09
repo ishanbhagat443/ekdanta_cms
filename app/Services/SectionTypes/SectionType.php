@@ -64,6 +64,12 @@ abstract class SectionType
         return $rules;
     }
 
+    /** True for a section that draws its own site footer: the layout then skips the usual one. */
+    public function hidesFooter(): bool
+    {
+        return false;
+    }
+
     /** Keys that may be overridden per device. */
     public function deviceKeys(): array
     {

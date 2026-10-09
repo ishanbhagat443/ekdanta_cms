@@ -3566,6 +3566,60 @@ $gsm-cta-gradient: linear-gradient(90deg, #0b0f19 2%, #111827 19%, #4b5563 50%, 
     }
 }
 
+// Header style "Fixed floating pill" (Header Builder or a page's settings):
+// floats over the page, so content under it is not pushed down.
+.gsm-header-pill {
+    position: fixed;
+    top: 16px;
+    left: 32px;
+    right: 32px;
+    z-index: 1030;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px -18px rgba(13, 20, 16, 0.5);
+
+    > .container,
+    > .container-fluid { max-width: none; padding-left: 24px; padding-right: 10px; }
+
+    .gsm-site-header__bar { min-height: 60px; padding-block: 0; }
+
+    @media (max-width: 767.98px) {
+        top: 10px;
+        left: 12px;
+        right: 12px;
+
+        > .container,
+        > .container-fluid { padding-left: 18px; padding-right: 6px; }
+
+        .gsm-site-header__bar { min-height: 56px; }
+    }
+}
+
+// Anchors and keyboard focus are never hidden under the floating pill.
+html:has(.gsm-header-pill) { scroll-padding-top: 96px; }
+
+.gsm-header-whatsapp {
+    background: var(--gsm-primary);
+    color: var(--gsm-button-text, #fff);
+
+    &:hover,
+    &:focus-visible { background: var(--gsm-primary); color: var(--gsm-button-text, #fff); filter: brightness(1.08); }
+}
+
+// Header Builder → scroll progress bar. Drawn with scaleX (no layout work).
+.gsm-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 1040;
+    background: var(--gsm-progress-color, var(--gsm-accent));
+    transform: scaleX(var(--gsm-progress, 0));
+    transform-origin: 0 50%;
+    pointer-events: none;
+}
+
 // Menu button whose two bars turn into a cross (Navigation style
 // "full-screen menu"). The close button inside the dialog is the cross.
 .gsm-menu-toggle {
@@ -3645,17 +3699,43 @@ $gsm-cta-gradient: linear-gradient(90deg, #0b0f19 2%, #111827 19%, #4b5563 50%, 
     }
 }
 
+// Full-screen menu extras (Header Builder): one button and the call line.
+.gsm-nav-overlay__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    margin-top: 2rem;
+    border-radius: 999px;
+    background: var(--gsm-primary);
+    color: var(--gsm-button-text, #fff);
+    font-weight: 600;
+    text-decoration: none;
+    animation: gsm-overlay-rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(60ms + var(--i, 0) * 45ms);
+}
+
+.gsm-nav-overlay__call {
+    margin-top: 0.9rem;
+    text-align: center;
+    font-size: 0.875rem;
+
+    a { color: inherit; }
+}
+
 @keyframes gsm-overlay-rise {
     from { opacity: 0; transform: translateY(18px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .gsm-nav-overlay__item,
+    .gsm-nav-overlay__cta,
     .gsm-menu-toggle__bar { animation: none !important; }
 }
 
 html[data-motion="off"] {
     .gsm-nav-overlay__item,
+    .gsm-nav-overlay__cta,
     .gsm-menu-toggle__bar { animation: none !important; }
 }
 

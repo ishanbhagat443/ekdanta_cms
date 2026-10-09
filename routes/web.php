@@ -22,6 +22,12 @@ Route::get('/home', fn (\Illuminate\Http\Request $request) => redirect(rtrim('/?
 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SeoController::class, 'sitemap'])->name('front.sitemap');
 Route::get('/robots.txt', [\App\Http\Controllers\Frontend\SeoController::class, 'robots'])->name('front.robots');
 
+// "Save our number": a contact card built from Settings → Business.
+Route::get('/contact.vcf', fn () => response(business_vcard(), 200, [
+    'Content-Type' => 'text/vcard; charset=utf-8',
+    'Content-Disposition' => 'attachment; filename="'.(\Illuminate\Support\Str::slug((string) setting('business.company_name', '')) ?: 'contact').'.vcf"',
+]))->name('front.vcard');
+
 Route::get('/blogs', [\App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('front.blog.index');
 Route::get('/blogs/{slug}', [\App\Http\Controllers\Frontend\BlogController::class, 'show'])->name('front.blog.show');
 

@@ -82,6 +82,26 @@
                             </select>
                         </div>
                         <hr>
+                        <div class="custom-control custom-switch mb-2">
+                            <input type="hidden" name="progress_bar" value="0">
+                            <input type="checkbox" class="custom-control-input" id="set_progress_bar" name="progress_bar" value="1"
+                                   @checked($header->setting('progress_bar', false))>
+                            <label class="custom-control-label" for="set_progress_bar">Scroll progress bar across the top</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-0" for="set_progress_color"><small>Progress bar colour</small></label>
+                            <input type="color" name="progress_color" id="set_progress_color" class="form-control form-control-sm"
+                                   value="{{ $header->setting('progress_color') ?: '#4b5563' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-0" for="set_whatsapp_button"><small>WhatsApp button (uses the first WhatsApp number in Settings → Business)</small></label>
+                            <select name="whatsapp_button" id="set_whatsapp_button" class="form-control form-control-sm">
+                                @foreach (['off' => 'Off', 'mobile' => 'Phones and tablets only', 'all' => 'Every screen'] as $waKey => $waLabel)
+                                    <option value="{{ $waKey }}" @selected($header->setting('whatsapp_button', 'off') === $waKey)>{{ $waLabel }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <hr>
                         <p class="text-muted small mb-2"><i class="fas fa-bars mr-1" aria-hidden="true"></i>Navigation style (the Nav Menu section)</p>
                         @foreach (['desktop' => 'Desktop', 'tablet' => 'Tablet', 'mobile' => 'Mobile'] as $device => $deviceLabel)
                             @php $navStyle = $header->navStyle($device); @endphp
@@ -94,14 +114,36 @@
                                 </select>
                             </div>
                         @endforeach
-                        <hr>
-                        <p class="text-muted small mb-2"><i class="fas fa-layer-group mr-1"></i>Header over hero (transparent → solid on scroll)</p>
-                        <div class="custom-control custom-switch mb-2">
-                            <input type="hidden" name="overlay_hero" value="0">
-                            <input type="checkbox" class="custom-control-input" id="set_overlay_hero" name="overlay_hero" value="1"
-                                   @checked($header->setting('overlay_hero', false))>
-                            <label class="custom-control-label" for="set_overlay_hero">Overlay the header on the first section</label>
+                        <p class="text-muted small mb-1 mt-2">Full-screen menu extras</p>
+                        <div class="form-row">
+                            <div class="form-group col-6 mb-2">
+                                <label class="mb-0" for="set_overlay_cta_label"><small>Button text</small></label>
+                                <input type="text" name="overlay_cta_label" id="set_overlay_cta_label" maxlength="60" class="form-control form-control-sm"
+                                       value="{{ $header->setting('overlay_cta_label') }}" placeholder="None">
+                            </div>
+                            <div class="form-group col-6 mb-2">
+                                <label class="mb-0" for="set_overlay_cta_url"><small>Button link</small></label>
+                                <input type="text" name="overlay_cta_url" id="set_overlay_cta_url" maxlength="500" class="form-control form-control-sm"
+                                       value="{{ $header->setting('overlay_cta_url') }}" placeholder="#contact">
+                            </div>
                         </div>
+                        <div class="custom-control custom-switch mb-2">
+                            <input type="hidden" name="overlay_call_line" value="0">
+                            <input type="checkbox" class="custom-control-input" id="set_overlay_call_line" name="overlay_call_line" value="1"
+                                   @checked($header->setting('overlay_call_line', false))>
+                            <label class="custom-control-label" for="set_overlay_call_line">Call line (phone numbers with a short label)</label>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="mb-0" for="set_variant"><small>Default header style</small></label>
+                            <select name="variant" id="set_variant" class="form-control form-control-sm">
+                                @foreach (['normal' => 'Normal bar', 'overlay' => 'Over the first section (transparent → solid on scroll)', 'pill' => 'Fixed floating pill', 'hidden' => 'Hidden'] as $variantKey => $variantLabel)
+                                    <option value="{{ $variantKey }}" @selected($header->headerVariant() === $variantKey)>{{ $variantLabel }}</option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-muted">Each page can choose its own in its page settings.</small>
+                        </div>
+                        <p class="text-muted small mb-2"><i class="fas fa-layer-group mr-1" aria-hidden="true"></i>"Over the first section" colours</p>
                         <div class="form-row">
                             <div class="col-6">
                                 <label><small>Transparent Color</small></label>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @unless (theme('animations.enabled', true)) data-motion="off" @endunless>
+{{-- data-motion="off": every visitor sees content still (Theme Customizer →
+     Animations off), or a preview asked for it (?reduce-motion=1). --}}
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if (! theme('animations.enabled', true) || request()->boolean('reduce-motion')) data-motion="off" @endif>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +52,10 @@
         @yield('content')
     </main>
 
-    @include('frontend.partials.footer')
+    {{-- Hidden by the page's settings, or by a section with its own footer. --}}
+    @unless ($hideFooter ?? false)
+        @include('frontend.partials.footer')
+    @endunless
 
 
     @if (theme('custom_code.js_global'))

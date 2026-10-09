@@ -74,6 +74,15 @@ class SettingsService
             }
 
             $value = $data[$key];
+
+            if ($type === 'list') {
+                // Rows the admin left completely empty are dropped.
+                $rows = array_values(array_filter((array) $value, fn ($row) => is_array($row) && array_filter($row, fn ($v) => $v !== null && $v !== '' && $v !== '0')));
+                $this->settings->upsertValue($group, $key, $rows === [] ? null : json_encode($rows), 'json');
+
+                continue;
+            }
+
             $this->settings->upsertValue($group, $key, $value === null ? null : (string) $value, $type);
         }
 

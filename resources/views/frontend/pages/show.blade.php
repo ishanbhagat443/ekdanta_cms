@@ -23,15 +23,28 @@
 @endphp
 
 @php
-    // <title>: explicit meta title / settings template win; otherwise "Page — Company".
-    $titleTag = ($page && ! empty($seo['title']) && ($seoMeta?->meta_title || setting('seo.meta_title')))
-        ? $seo['title']
-        : implode(' — ', array_filter([$page?->title, setting('business.company_name')]));
+    // <title>: the page's own meta title, else the site's title pattern.
+    $titleTag = $seoMeta?->meta_title ?: site_title($page?->title);
 @endphp
 @section('title', $titleTag)
 
 @if ($page)
     @include('frontend.partials.seo-head', ['seo' => $seo])
+
+    {{-- Page settings → Page code (Developer Mode only to write). --}}
+    @php $pageCode = (array) $page->setting('code', []); @endphp
+    @if (! empty($pageCode['head']) || ! empty($pageCode['css']))
+        @push('head')
+            {!! $pageCode['head'] ?? '' !!}
+            @if (! empty($pageCode['css']))<style>{!! style_safe($pageCode['css']) !!}</style>@endif
+        @endpush
+    @endif
+    @if (! empty($pageCode['js']) || ! empty($pageCode['body']))
+        @push('scripts')
+            @if (! empty($pageCode['js']))<script>{!! $pageCode['js'] !!}</script>@endif
+            {!! $pageCode['body'] ?? '' !!}
+        @endpush
+    @endif
 @endif
 
 @section('content')

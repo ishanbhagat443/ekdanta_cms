@@ -59,6 +59,21 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof NotFoundHttpException && $request->isMethod('GET') && ! $request->is('cms', 'cms/*')) {
             NotFoundLog::record('/'.ltrim($request->path(), '/'), $request->headers->get('referer'));
+
+            // The page marked as the 404 page (Page settings → role), with a
+            // real 404 status. Anything going wrong falls back to the plain
+            // error view: a broken 404 page must never become a 500.
+            if (! $request->expectsJson() && ($page = \App\Support\PageRoles::page('not_found'))) {
+                try {
+                    $payload = app(\App\Services\PageRenderService::class)->payloadFor($page->slug);
+
+                    if ($payload !== null) {
+                        return response(\App\Http\Controllers\Frontend\PageController::render($payload, false), 404);
+                    }
+                } catch (Throwable) {
+                    // fall through to the default 404 view
+                }
+            }
         }
 
         return parent::render($request, $e);

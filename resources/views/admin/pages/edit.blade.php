@@ -114,6 +114,72 @@
                                 <option value="published" @selected($page->status === 'published')>Published</option>
                             </select>
                         </div>
+                        @php
+                            $pageRole = \App\Support\PageRoles::roleOf($page);
+                            $pageHeader = (array) $page->setting('header', []);
+                            $pageCode = (array) $page->setting('code', []);
+                        @endphp
+                        <div class="form-group">
+                            <label for="page_role"><small>Use this page as</small></label>
+                            <select name="page_role" id="page_role" class="form-control form-control-sm">
+                                <option value="">An ordinary page</option>
+                                @foreach (\App\Support\PageRoles::ROLES as $roleKey => $roleLabel)
+                                    <option value="{{ $roleKey }}" @selected($pageRole === $roleKey)>{{ $roleLabel }}</option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-muted">One page per role. It takes effect on the live site once this page is published; previews use it straight away.</small>
+                        </div>
+                        <hr>
+                        <p class="text-muted small mb-2"><i class="fas fa-window-maximize mr-1" aria-hidden="true"></i>Header and footer on this page</p>
+                        <div class="form-group">
+                            <label for="header_variant"><small>Header style</small></label>
+                            <select name="header[variant]" id="header_variant" class="form-control form-control-sm">
+                                <option value="">Site default (Header Builder)</option>
+                                @foreach (['normal' => 'Normal bar', 'overlay' => 'Over the first section (transparent)', 'pill' => 'Fixed floating pill', 'hidden' => 'Hidden'] as $variantKey => $variantLabel)
+                                    <option value="{{ $variantKey }}" @selected(($pageHeader['variant'] ?? '') === $variantKey)>{{ $variantLabel }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="header_menu"><small>Header menu</small></label>
+                            <select name="header[menu_id]" id="header_menu" class="form-control form-control-sm">
+                                <option value="">Site default</option>
+                                @foreach ($menus as $menuOption)
+                                    <option value="{{ $menuOption->id }}" @selected((int) ($pageHeader['menu_id'] ?? 0) === $menuOption->id)>{{ $menuOption->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="header_cta_label"><small>Header button text</small></label>
+                                <input type="text" name="header[cta_label]" id="header_cta_label" maxlength="60"
+                                       value="{{ $pageHeader['cta_label'] ?? '' }}" placeholder="Site default" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="header_cta_url"><small>Header button link</small></label>
+                                <input type="text" name="header[cta_url]" id="header_cta_url" maxlength="500"
+                                       value="{{ $pageHeader['cta_url'] ?? '' }}" placeholder="e.g. #contact or /contact" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="custom-control custom-switch mb-2">
+                            <input type="hidden" name="show_footer" value="0">
+                            <input type="checkbox" class="custom-control-input" id="show_footer" name="show_footer" value="1"
+                                   @checked($page->setting('show_footer', true) !== false)>
+                            <label class="custom-control-label" for="show_footer">Show the site footer</label>
+                            <small class="form-text text-muted mt-0">A section that brings its own footer (e.g. Ekdanta · Big Brand Finale) hides it automatically.</small>
+                        </div>
+                        @can('developer.mode')
+                            <details class="mb-2">
+                                <summary class="small text-muted">Page code (Developer Mode)</summary>
+                                @foreach (['css' => 'Page CSS', 'js' => 'Page JavaScript', 'head' => 'Code before the closing head tag (e.g. conversion tags)', 'body' => 'Code before the closing body tag'] as $codeKey => $codeLabel)
+                                    <div class="form-group mt-2 mb-1">
+                                        <label class="mb-0" for="page_code_{{ $codeKey }}"><small>{{ $codeLabel }}</small></label>
+                                        <textarea name="code[{{ $codeKey }}]" id="page_code_{{ $codeKey }}" rows="3" spellcheck="false"
+                                                  class="form-control form-control-sm text-monospace">{{ $pageCode[$codeKey] ?? '' }}</textarea>
+                                    </div>
+                                @endforeach
+                            </details>
+                        @endcan
                         <hr>
                         <div class="custom-control custom-switch mb-2">
                             <input type="hidden" name="show_banner" value="0">
@@ -313,16 +379,28 @@
             </form>
 
             <div class="card" style="position: sticky; top: 60px;">
-                <div class="card-header d-flex align-items-center">
-                    <h3 class="card-title"><i class="fas fa-eye mr-2"></i>Live preview</h3>
-                    <button type="button" class="btn btn-outline-secondary btn-xs ml-auto"
+                <div class="card-header d-flex align-items-center flex-wrap" style="gap: .35rem;">
+                    <h3 class="card-title mr-auto"><i class="fas fa-eye mr-2" aria-hidden="true"></i>Live preview</h3>
+                    {{-- Exact screen sizes: the page inside sees that real viewport
+                         (media queries, vh), scaled down only to fit this panel. --}}
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Preview size">
+                        <button type="button" class="btn btn-outline-secondary active" data-gsm-preview-size="fit" aria-pressed="true">Fit</button>
+                        @foreach (['1440x900', '1280x720', '390x844', '360x640'] as $previewSize)
+                            <button type="button" class="btn btn-outline-secondary" data-gsm-preview-size="{{ $previewSize }}" aria-pressed="false">{{ str_replace('x', ' × ', $previewSize) }}</button>
+                        @endforeach
+                    </div>
+                    <div class="custom-control custom-switch ml-1">
+                        <input type="checkbox" class="custom-control-input" id="gsm-preview-reduce">
+                        <label class="custom-control-label small" for="gsm-preview-reduce">Reduce motion</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-xs" aria-label="Reload preview"
                             onclick="document.getElementById('gsm-live-preview').contentWindow.location.reload();">
-                        <i class="fas fa-sync-alt"></i>
+                        <i class="fas fa-sync-alt" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="card-body p-0">
-                    <iframe id="gsm-live-preview" src="{{ $page->previewUrl() }}"
-                            style="width:100%; height:60vh; border:0;"></iframe>
+                <div class="card-body p-0" id="gsm-preview-stage" style="overflow: hidden;">
+                    <iframe id="gsm-live-preview" src="{{ $page->previewUrl() }}" title="Live preview of this page"
+                            style="width:100%; height:60vh; border:0; transform-origin: 0 0;"></iframe>
                 </div>
             </div>
         </div>
@@ -440,4 +518,48 @@
     </script>
     <script src="{{ asset('js/admin/media-picker-field.js') }}?v={{ gsm_version() }}"></script>
     <script src="{{ asset('js/admin/header-builder.js') }}?v={{ gsm_version() }}"></script>
+@endpush
+
+@push('scripts')
+    <script>
+        // Live preview: exact-size presets and the Reduce motion switch.
+        (function () {
+            var frame = document.getElementById('gsm-live-preview');
+            var stage = document.getElementById('gsm-preview-stage');
+            if (!frame || !stage) return;
+            var size = 'fit';
+
+            function layout() {
+                if (size === 'fit') {
+                    frame.style.width = '100%'; frame.style.height = '60vh'; frame.style.transform = ''; stage.style.height = '';
+                    return;
+                }
+                var wh = size.split('x').map(Number);
+                var scale = Math.min(1, stage.clientWidth / wh[0]);
+                frame.style.width = wh[0] + 'px';
+                frame.style.height = wh[1] + 'px';
+                frame.style.transform = 'scale(' + scale + ')';
+                stage.style.height = Math.round(wh[1] * scale) + 'px';
+            }
+
+            document.querySelectorAll('[data-gsm-preview-size]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    size = button.dataset.gsmPreviewSize;
+                    document.querySelectorAll('[data-gsm-preview-size]').forEach(function (other) {
+                        other.classList.toggle('active', other === button);
+                        other.setAttribute('aria-pressed', other === button ? 'true' : 'false');
+                    });
+                    layout();
+                });
+            });
+
+            document.getElementById('gsm-preview-reduce').addEventListener('change', function () {
+                var url = new URL(frame.src, window.location.href);
+                if (this.checked) { url.searchParams.set('reduce-motion', '1'); } else { url.searchParams.delete('reduce-motion'); }
+                frame.src = url.toString();
+            });
+
+            window.addEventListener('resize', layout);
+        })();
+    </script>
 @endpush

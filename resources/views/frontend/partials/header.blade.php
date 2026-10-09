@@ -11,8 +11,17 @@
     $entries = collect($area['sections'] ?? []);
     $logoEntry = $entries->first(fn ($e) => $e['section']->type === 'logo');
     $navEntry = $entries->first(fn ($e) => $e['section']->type === 'nav-menu');
-    $navMenu = $navEntry['menu'] ?? null;
     $extras = $entries->reject(fn ($e) => in_array($e['section']->type, ['logo', 'nav-menu'], true));
+
+    // Page settings → "Header and footer on this page": style, menu and
+    // button text/link override the Header Builder defaults for one page.
+    $pageHeader = (array) (($currentPage ?? null)?->setting('header', []) ?? []);
+    $variant = $pageHeader['variant'] ?? ($layout?->headerVariant() ?? 'normal');
+    $navMenu = ! empty($pageHeader['menu_id'])
+        ? app(\App\Repositories\Contracts\MenuRepositoryInterface::class)->tree((int) $pageHeader['menu_id'])
+        : ($navEntry['menu'] ?? null);
+    $ctaOverride = array_filter(['label' => $pageHeader['cta_label'] ?? null, 'url' => $pageHeader['cta_url'] ?? null]);
+    $whatsapp = $layout?->setting('whatsapp_button', 'off') !== 'off' ? business_whatsapp() : null;
 
     // Header Builder → Navigation style, per device: inline links,
     // hamburger dropdown or full-screen overlay.
@@ -24,7 +33,7 @@
 
     // Header-over-hero mode (Header Builder): transparent on the first screen,
     // solid once the visitor scrolls.
-    $overlayHero = (bool) $layout?->setting('overlay_hero', false);
+    $overlayHero = $variant === 'overlay';
     $overlayVars = '';
     if ($overlayHero) {
         $overlayVars = '--gsm-header-transparent: '.($layout->setting('transparent_color') ?: 'transparent').';'
@@ -41,8 +50,17 @@
         : '<a href="'.e(url('/')).'" class="navbar-brand fw-bold">'.e(setting('business.company_name', '')).'</a>';
 @endphp
 
-@if ($area)
-    <header class="gsm-header gsm-site-header {{ $overlayHero ? 'gsm-header-overlay' : ($sticky ? 'sticky-top' : '').' bg-white shadow-sm' }} {{ $overlayHero && $layout?->setting('scrolled_shadow', true) ? 'gsm-header-shadow-on-scroll' : '' }}"
+@if ($area && $layout?->setting('progress_bar'))
+    {{-- Scroll progress across the very top (Header Builder). --}}
+    <div class="gsm-scroll-progress" aria-hidden="true" style="--gsm-progress-color: {{ $layout->setting('progress_color') ?: 'var(--gsm-accent)' }}"></div>
+@endif
+
+@if ($area && $variant !== 'hidden')
+    <header class="gsm-header gsm-site-header {{ match ($variant) {
+                'overlay' => 'gsm-header-overlay',
+                'pill' => 'gsm-header-pill',
+                default => ($sticky ? 'sticky-top' : '').' bg-white shadow-sm',
+            } }} {{ $overlayHero && $layout?->setting('scrolled_shadow', true) ? 'gsm-header-shadow-on-scroll' : '' }}"
             @if ($overlayVars !== '') style="{{ $overlayVars }}" @endif>
         <div class="{{ $container }}">
             <div class="gsm-site-header__bar">
@@ -58,10 +76,28 @@
 
                 <div class="gsm-site-header__actions">
                     @foreach ($extras as $entry)
+                        @php
+                            $extraSection = $entry['section'];
+                            // This page's own header button text/link.
+                            if ($extraSection->type === 'cta-button' && $ctaOverride !== []) {
+                                $extraSection = clone $extraSection;
+                                $extraSection->data_desktop = array_replace((array) $extraSection->data_desktop, $ctaOverride);
+                                $extraSection->data_tablet = array_diff_key((array) $extraSection->data_tablet, $ctaOverride);
+                                $extraSection->data_mobile = array_diff_key((array) $extraSection->data_mobile, $ctaOverride);
+                            }
+                        @endphp
                         @include('frontend.partials.render-section', [
-                            'section' => $entry['section'], 'menu' => $entry['menu'], 'mediaMap' => $entry['media'],
+                            'section' => $extraSection, 'menu' => $entry['menu'], 'mediaMap' => $entry['media'],
                         ])
                     @endforeach
+
+                    @if ($whatsapp)
+                        <a href="{{ $whatsapp['wa'] }}" target="_blank" rel="noopener"
+                           class="gsm-header-icon gsm-header-whatsapp {{ $layout->setting('whatsapp_button') === 'mobile' ? 'd-inline-flex d-lg-none' : '' }}"
+                           aria-label="WhatsApp {{ setting('business.company_name', '') }}">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                    @endif
 
                     @if ($navMenu && $uses('dropdown'))
                         <div class="dropdown gsm-main-menu {{ $showFor('dropdown', 'inline-flex') }}">
@@ -135,6 +171,17 @@
                         @endforeach
                     </ul>
                 </nav>
+                {{-- Header Builder → Full-screen menu: one button and the call line. --}}
+                @if ($overlayCta = $layout?->setting('overlay_cta_label'))
+                    <a href="{{ $layout->setting('overlay_cta_url') ?: '#' }}" class="gsm-nav-overlay__cta" style="--i: {{ $navMenu->rootItems->count() }}">{{ $overlayCta }}</a>
+                @endif
+                @if ($layout?->setting('overlay_call_line') && ($callPhones = collect(business_phones())->where('menu_label', '!=', ''))->isNotEmpty())
+                    <p class="gsm-nav-overlay__call">
+                        @foreach ($callPhones as $phone)
+                            {{ $phone['menu_label'] }} <a href="{{ $phone['tel'] }}">{{ $phone['number'] }}</a>@if (! $loop->last) · @endif
+                        @endforeach
+                    </p>
+                @endif
             </div>
         </dialog>
     @endif

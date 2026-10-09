@@ -88,6 +88,7 @@ Route::post('ai/draft-section', [\App\Http\Controllers\Admin\AiAssistController:
 
 // Brand — the one screen that summarises how the site looks.
 Route::get('brand', [\App\Http\Controllers\Admin\BrandController::class, 'index'])->name('brand.index');
+Route::put('brand/tokens', [\App\Http\Controllers\Admin\BrandController::class, 'updateTokens'])->name('brand.tokens');
 
 // Theme Customizer — single-page tabbed screen, AJAX-saved per group
 Route::prefix('theme-customizer')->name('theme.')->group(function (): void {

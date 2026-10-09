@@ -2,7 +2,7 @@
     $type = $field['type'] ?? 'text';
     $inputId = "setting_{$group}_{$key}";
     // Full-width for long content types, half-width for short inputs.
-    $col = in_array($type, ['textarea', 'code', 'image'], true) ? 'col-12' : 'col-12 col-lg-6';
+    $col = in_array($type, ['textarea', 'code', 'image', 'list'], true) ? 'col-12' : 'col-12 col-lg-6';
 @endphp
 
 <div class="{{ $col }}">
@@ -47,6 +47,35 @@
                     <span class="invalid-feedback d-block">{{ $message }}</span>
                 @enderror
             </div>
+
+        @elseif ($type === 'list')
+            {{-- Repeating rows (same markup as the page builder's repeater). The
+                 empty hidden field lets "remove every row" clear the setting. --}}
+            @php
+                $rows = old($key, json_decode((string) $value, true) ?: []);
+                $rows = is_array($rows) ? array_values($rows) : [];
+            @endphp
+            <input type="hidden" name="{{ $key }}" value="">
+            <div class="gsm-repeater border rounded p-2" id="{{ $inputId }}" data-key="{{ $key }}">
+                {{-- Saved rows, then one blank "__i__" row inside <template> that "Add" clones. --}}
+                @foreach ($rows + ['__i__' => []] as $i => $row)
+                    @if ($i === '__i__') <template class="gsm-repeater-template"> @endif
+                    <div class="gsm-repeater-row d-flex flex-wrap align-items-start mb-2 pb-2 border-bottom" style="gap:.4rem;">
+                        @foreach ($field['fields'] as $sub)
+                            @include('admin.builder.partials.repeater-input', [
+                                'sub' => $sub, 'inputName' => "{$key}[{$i}][{$sub['key']}]",
+                                'inputValue' => is_array($row) ? ($row[$sub['key']] ?? '') : '', 'isTemplate' => $i === '__i__',
+                            ])
+                        @endforeach
+                        <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove" aria-label="Remove this row"><i class="fas fa-times" aria-hidden="true"></i></button>
+                    </div>
+                    @if ($i === '__i__') </template> @endif
+                @endforeach
+                <button type="button" class="btn btn-sm btn-outline-secondary gsm-repeater-add"><i class="fas fa-plus mr-1" aria-hidden="true"></i>Add {{ strtolower(\Illuminate\Support\Str::singular($field['label'])) }}</button>
+            </div>
+            @foreach ($errors->get($key.'.*') as $messages)
+                <span class="invalid-feedback d-block">{{ $messages[0] }}</span>
+            @endforeach
 
         @else
             <input type="{{ $type === 'number' ? 'text' : $type }}"

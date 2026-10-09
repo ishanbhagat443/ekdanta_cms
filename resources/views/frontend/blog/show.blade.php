@@ -5,7 +5,7 @@
     $ogImage = $seoMeta?->ogMedia?->url ?? $post->featuredMedia?->url;
 @endphp
 
-@section('title', implode(' — ', array_filter([$seoMeta?->meta_title ?? $post->title, setting('business.company_name')])))
+@section('title', $seoMeta?->meta_title ?: site_title($post->title))
 
 @include('frontend.partials.seo-head', ['seo' => [
     'title' => $seoMeta?->meta_title ?? $post->title,

@@ -435,6 +435,13 @@ class ThemeService
 
     public function importPayload(array $payload): void
     {
+        // An uploaded file is untrusted: keep only "group.key" => {value: scalar|null}
+        // rows, so a malformed entry can't break the wipe-and-insert below.
+        $payload = array_filter($payload, fn ($entry, $dotted) => is_string($dotted)
+            && preg_match('/^[a-z0-9_]{1,50}\.[a-z0-9_]{1,100}$/', $dotted)
+            && is_array($entry)
+            && (! isset($entry['value']) || is_scalar($entry['value'])), ARRAY_FILTER_USE_BOTH);
+
         // Site-wide scripts are Developer Mode only: for anyone else an
         // imported file or a restored backup keeps the scripts the site has now.
         if (! Gate::allows('developer.mode')) {

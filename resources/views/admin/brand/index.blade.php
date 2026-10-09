@@ -52,6 +52,26 @@
             </ul>
 
             <a href="{{ route('admin.theme.index') }}#colors" class="btn btn-outline-primary btn-sm">Change colours</a>
+
+            @if ($tokens !== [])
+                {{-- Design tokens (Theme Customizer → Custom code → CSS variables). --}}
+                <h3 class="h6 mt-4 mb-2">Design colours</h3>
+                <form method="POST" action="{{ route('admin.brand.tokens') }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="d-flex flex-wrap" style="gap: .75rem;">
+                        @foreach ($tokens as $tokenName => $tokenValue)
+                            <label class="d-flex align-items-center mb-0" style="gap: .4rem; min-width: 11rem;">
+                                <input type="color" name="tokens[{{ $tokenName }}]" value="{{ strlen($tokenValue) === 4 ? '#'.str_repeat($tokenValue[1], 2).str_repeat($tokenValue[2], 2).str_repeat($tokenValue[3], 2) : substr($tokenValue, 0, 7) }}"
+                                       style="width: 2.75rem; height: 2.75rem; padding: 0; border: 0;">
+                                <code class="small">{{ $tokenName }}</code>
+                            </label>
+                        @endforeach
+                    </div>
+                    @error('tokens.*') <span class="text-danger small d-block">{{ $message }}</span> @enderror
+                    <button class="btn btn-primary btn-sm mt-3">Save design colours</button>
+                </form>
+            @endif
         </section>
 
         {{-- Fonts ----------------------------------------------------- --}}

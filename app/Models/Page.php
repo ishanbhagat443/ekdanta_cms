@@ -62,7 +62,15 @@ class Page extends Model
      */
     public function previewUrl(): string
     {
-        return url($this->slug === 'home' ? '/' : '/'.$this->slug).'?preview=1';
+        return url($this->isHomePage() ? '/' : '/'.$this->slug).'?preview=1';
+    }
+
+    /** The page marked as home (Page settings → role), else the "home" slug. */
+    public function isHomePage(): bool
+    {
+        $role = (int) setting('pages.home_id', 0);
+
+        return $role !== 0 ? $role === $this->id : $this->slug === 'home';
     }
 
     /** Read one value from the page's JSON settings store (dot-free key). */

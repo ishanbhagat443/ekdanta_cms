@@ -165,6 +165,16 @@ class PageController extends Controller
             'blog_post_content' => ['nullable', 'array'],
             'blog_post_content.show_reading_time' => ['nullable', 'boolean'],
             'blocks' => ['nullable', 'array'],
+            // Page settings: role, header, footer, page code.
+            'page_role' => ['nullable', 'in:'.implode(',', array_keys(\App\Support\PageRoles::ROLES))],
+            'header' => ['nullable', 'array'],
+            'header.variant' => ['nullable', 'in:normal,overlay,pill,hidden'],
+            'header.menu_id' => ['nullable', 'integer', 'exists:menus,id'],
+            'header.cta_label' => ['nullable', 'string', 'max:60'],
+            'header.cta_url' => ['nullable', 'string', 'max:500'],
+            'show_footer' => ['nullable', 'boolean'],
+            'code' => ['nullable', 'array'],
+            'code.*' => ['nullable', 'string', 'max:20000'],
         ], Page::seoRules()));
 
         // Editable blocks for bespoke template screens — see
@@ -204,6 +214,12 @@ class PageController extends Controller
             }
 
             $data['settings'] = $settings;
+        }
+
+        $data['settings'] = $this->pageSettings($request, (array) ($data['settings'] ?? $page->settings), $data);
+
+        if ($request->has('page_role')) {
+            \App\Support\PageRoles::assign($page, $data['page_role'] ?: null);
         }
 
         $page->syncSeoMeta($data);
@@ -270,6 +286,28 @@ class PageController extends Controller
             'tags' => (bool) ($input['tags'] ?? false),
             'newsletter' => (bool) ($input['newsletter'] ?? false),
         ];
+    }
+
+    /**
+     * Header, footer and page code from the page form, merged over what is
+     * stored. Page code runs on the public page, so it needs Developer Mode;
+     * without it the stored code is kept, never cleared.
+     */
+    private function pageSettings(Request $request, array $settings, array $data): array
+    {
+        $filled = fn ($value) => $value !== null && $value !== '';
+
+        if ($request->has('header')) {
+            $settings['header'] = array_filter(\Illuminate\Support\Arr::only((array) ($data['header'] ?? []), ['variant', 'menu_id', 'cta_label', 'cta_url']), $filled);
+        }
+        if ($request->has('show_footer')) {
+            $settings['show_footer'] = $request->boolean('show_footer');
+        }
+        if ($request->has('code') && \Illuminate\Support\Facades\Gate::allows('developer.mode')) {
+            $settings['code'] = array_filter(\Illuminate\Support\Arr::only((array) ($data['code'] ?? []), ['css', 'js', 'head', 'body']), $filled);
+        }
+
+        return $settings;
     }
 
     /** Blog Detail "Related Posts" settings. */

@@ -31,7 +31,7 @@
                         'isTemplate' => $isTemplate,
                     ])
                 @endforeach
-                <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove"><i class="fas fa-times"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove" aria-label="Remove this row"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
         @endforeach
         <template class="gsm-repeater-template">
@@ -44,7 +44,7 @@
                         'isTemplate' => true,
                     ])
                 @endforeach
-                <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove"><i class="fas fa-times"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-danger gsm-repeater-remove" aria-label="Remove this row"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
         </template>
         <button type="button" class="btn btn-xs btn-outline-secondary gsm-repeater-add">
@@ -59,7 +59,7 @@
         @foreach ((array) ($inputValue ?? []) as $i => $mediaId)
             <div class="input-group input-group-sm mb-1">
                 <input type="number" {{ $nameAttr }}="{{ $inputName }}[{{ $i }}]" value="{{ is_scalar($mediaId) ? $mediaId : '' }}"
-                       class="form-control">
+                       class="form-control" aria-label="{{ $sub['label'] }} {{ $loop->iteration }}">
                 <div class="input-group-append">
                     <button type="button" class="btn btn-outline-primary gsm-bf-media-pick-near" title="Choose from library">
                         <i class="fas fa-photo-video"></i>
@@ -68,40 +68,48 @@
             </div>
         @endforeach
     </div>
-@elseif ($subType === 'media')
-    <div class="input-group input-group-sm" style="width: 170px;">
-        <input type="number" {{ $nameAttr }}="{{ $inputName }}" value="{{ is_scalar($inputValue) ? $inputValue : '' }}"
-               class="form-control" placeholder="{{ $sub['label'] }}">
-        <div class="input-group-append">
-            <button type="button" class="btn btn-outline-primary gsm-bf-media-pick-near" title="Choose from library">
-                <i class="fas fa-photo-video"></i>
-            </button>
-        </div>
-    </div>
-@elseif ($subType === 'textarea' || $subType === 'richtext')
-    <textarea {{ $nameAttr }}="{{ $inputName }}" rows="{{ $subType === 'richtext' ? 4 : 2 }}"
-              class="form-control form-control-sm {{ $subType === 'richtext' ? 'gsm-richtext-input' : '' }}"
-              style="min-width: 220px; flex: 1;"
-              placeholder="{{ $sub['label'] }}">{{ is_scalar($inputValue) ? $inputValue : '' }}</textarea>
 @elseif ($subType === 'toggle')
-    <div class="custom-control custom-switch" style="padding-top: .35rem;">
-        <input type="hidden" {{ $nameAttr }}="{{ $inputName }}" value="0">
+    {{-- The input sits inside its label, so clicking the drawn switch toggles
+         it without ids (rows are cloned from a template). --}}
+    <input type="hidden" {{ $nameAttr }}="{{ $inputName }}" value="0">
+    <label class="custom-control custom-switch mb-0" style="padding-top: .35rem;">
         <input type="checkbox" {{ $nameAttr }}="{{ $inputName }}" value="1"
                class="custom-control-input" @checked((bool) $inputValue)>
-        <label class="custom-control-label">&nbsp;{{ $sub['label'] }}</label>
-    </div>
-@elseif ($subType === 'select')
-    <select {{ $nameAttr }}="{{ $inputName }}" class="form-control form-control-sm" style="min-width: 140px;">
-        @foreach ($sub['options'] ?? [] as $optValue => $optLabel)
-            <option value="{{ $optValue }}" @selected(is_scalar($inputValue) && (string) $inputValue === (string) $optValue)>{{ $optLabel }}</option>
-        @endforeach
-    </select>
+        <span class="custom-control-label">&nbsp;{{ $sub['label'] }}</span>
+    </label>
 @else
-    {{-- text, number, color, or any other scalar type: the value is
-         guaranteed scalar here — every array-shaped type is handled by a
-         branch above, so this plain input never receives an array. --}}
-    <input type="{{ $subType === 'number' ? 'number' : ($subType === 'color' ? 'color' : 'text') }}"
-           {{ $nameAttr }}="{{ $inputName }}" value="{{ is_scalar($inputValue) ? $inputValue : '' }}"
-           class="form-control form-control-sm" style="flex: 1; min-width: 120px;"
-           placeholder="{{ $sub['label'] }}">
+    {{-- Every other type: a visible caption over the control (a placeholder
+         vanishes once the row is filled) and the same text as its name for
+         screen readers. A div, not a <label>: richtext editors replace the
+         textarea, and a click inside one must not jump focus. --}}
+    <div class="gsm-repeater-field" style="flex: {{ match ($subType) { 'textarea', 'richtext' => '1 1 220px', 'media' => '0 0 170px', 'select' => '0 1 160px', default => '1 1 120px' } }};">
+        <small class="d-block text-muted">{{ $sub['label'] }}</small>
+        @if ($subType === 'media')
+            <div class="input-group input-group-sm">
+                <input type="number" {{ $nameAttr }}="{{ $inputName }}" value="{{ is_scalar($inputValue) ? $inputValue : '' }}"
+                       class="form-control" aria-label="{{ $sub['label'] }}">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-primary gsm-bf-media-pick-near" title="Choose from library" aria-label="Choose {{ $sub['label'] }} from library">
+                        <i class="fas fa-photo-video" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        @elseif ($subType === 'textarea' || $subType === 'richtext')
+            <textarea {{ $nameAttr }}="{{ $inputName }}" rows="{{ $subType === 'richtext' ? 4 : 2 }}" aria-label="{{ $sub['label'] }}"
+                      class="form-control form-control-sm {{ $subType === 'richtext' ? 'gsm-richtext-input' : '' }}">{{ is_scalar($inputValue) ? $inputValue : '' }}</textarea>
+        @elseif ($subType === 'select')
+            <select {{ $nameAttr }}="{{ $inputName }}" class="form-control form-control-sm" aria-label="{{ $sub['label'] }}">
+                @foreach ($sub['options'] ?? [] as $optValue => $optLabel)
+                    <option value="{{ $optValue }}" @selected(is_scalar($inputValue) && (string) $inputValue === (string) $optValue)>{{ $optLabel }}</option>
+                @endforeach
+            </select>
+        @else
+            {{-- text, number, color, or any other scalar type: the value is
+                 guaranteed scalar here — every array-shaped type is handled by a
+                 branch above, so this plain input never receives an array. --}}
+            <input type="{{ $subType === 'number' ? 'number' : ($subType === 'color' ? 'color' : 'text') }}"
+                   {{ $nameAttr }}="{{ $inputName }}" value="{{ is_scalar($inputValue) ? $inputValue : '' }}"
+                   class="form-control form-control-sm" aria-label="{{ $sub['label'] }}">
+        @endif
+    </div>
 @endif

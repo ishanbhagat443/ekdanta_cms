@@ -24,6 +24,11 @@ class UpdateSettingsRequest extends FormRequest
 
         foreach ((array) config("settings.{$group}.fields", []) as $key => $field) {
             $rules[$key] = $field['rules'] ?? ['nullable', 'string'];
+
+            // A list's rows are validated field by field.
+            foreach ((array) ($field['fields'] ?? []) as $sub) {
+                $rules["{$key}.*.{$sub['key']}"] = $sub['rules'] ?? ['nullable', 'string'];
+            }
         }
 
         $rules['remove'] = ['sometimes', 'array'];

@@ -35,6 +35,7 @@ Approved tokens. The CMS exposes them as CSS custom properties (`--tk-*`) throug
 | Muted text: small captions (approved a11y fix) | `#6A736D` | `--tk-muted-2-sm` |
 | Counter suffix (approved a11y fix for `#9AA39E`) | `#85908A` | `--tk-suffix` |
 | Lines | `#E4E8E2`, `#DDE2DA`, `#E6EEE9` | `--tk-line-1`, `--tk-line-2`, `--tk-line-3` |
+| Chip and input ring (Brief Builder) | `#CFD8D1` | `--tk-ring` |
 | Dark surfaces: cards on dark | `#1E2823`, `#222E28`, `#2B3832`, `#0E3A22` | `--tk-dark-1` … `--tk-dark-4` |
 | Finale band (approved a11y fix; buttons keep `#2EB45D`) | `#2CAA58` | `--tk-finale` |
 | Finale footer line (approved a11y fix) | `#0D351F` | `--tk-finale-foot` |

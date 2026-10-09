@@ -10,7 +10,8 @@ declare(strict_types=1);
 | tab; each field renders by "type" and validates by "rules". Adding a
 | field here is all that is needed — no migration, no view change.
 |
-| Field types: text, email, url, number, textarea, code, image, checkbox
+| Field types: text, email, url, number, textarea, code, image, checkbox,
+| list (repeating rows of sub-fields, stored as JSON)
 */
 
 return [
@@ -22,7 +23,27 @@ return [
             'company_name' => ['label' => 'Company Name', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191']],
             'email' => ['label' => 'Email', 'type' => 'email', 'rules' => ['nullable', 'email:rfc,strict', 'max:191']],
             'support_email' => ['label' => 'Support Email', 'type' => 'email', 'rules' => ['nullable', 'email:rfc,strict', 'max:191']],
-            'phone' => ['label' => 'Phone', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30']],
+            'phone' => ['label' => 'Phone', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30'], 'hint' => 'Used only when the Phone Numbers list below is empty.'],
+            'country_code' => ['label' => 'Country Calling Code', 'type' => 'text', 'rules' => ['nullable', 'regex:/^\d{1,4}$/'], 'hint' => 'Digits only, e.g. 91. Turns a local number such as 90994 17987 into tap-to-call and WhatsApp links.'],
+            'phones' => ['label' => 'Phone Numbers', 'type' => 'list', 'rules' => ['nullable', 'array', 'max:10'],
+                'hint' => 'Every number is tap-to-call. "Short label" puts it on the mobile menu call line (e.g. Call, Sales).',
+                'fields' => [
+                    ['key' => 'label', 'label' => 'Label (e.g. All services)', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:60']],
+                    ['key' => 'number', 'label' => 'Number', 'type' => 'text', 'rules' => ['required_with:phones.*.label,phones.*.menu_label', 'nullable', 'string', 'max:30', 'regex:/^[0-9+()\s.-]+$/']],
+                    ['key' => 'menu_label', 'label' => 'Short label', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:20']],
+                    ['key' => 'whatsapp', 'label' => 'WhatsApp', 'type' => 'toggle', 'rules' => ['nullable', 'boolean']],
+                ]],
+            'offices' => ['label' => 'Offices', 'type' => 'list', 'rules' => ['nullable', 'array', 'max:10'],
+                'hint' => 'The first office is the main one (contact card, map, contact file).',
+                'fields' => [
+                    ['key' => 'name', 'label' => 'Name (e.g. Surat)', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:60']],
+                    ['key' => 'address', 'label' => 'Address', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:500']],
+                    ['key' => 'directions_url', 'label' => 'Directions link', 'type' => 'text', 'rules' => ['nullable', 'url:https,http', 'max:500']],
+                    ['key' => 'latitude', 'label' => 'Latitude', 'type' => 'text', 'rules' => ['nullable', 'numeric', 'between:-90,90']],
+                    ['key' => 'longitude', 'label' => 'Longitude', 'type' => 'text', 'rules' => ['nullable', 'numeric', 'between:-180,180']],
+                    ['key' => 'hours', 'label' => 'Office hours', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191']],
+                ]],
+            'reply_time' => ['label' => 'Reply Time', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191'], 'hint' => 'e.g. We reply within 2 working hours.'],
             'whatsapp' => ['label' => 'WhatsApp Number', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30'], 'hint' => 'With country code, e.g. +91 92742 03144. Used for WhatsApp buttons and links.'],
             'address' => ['label' => 'Address', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:1000']],
             'google_map' => ['label' => 'Google Map Embed URL', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:2000'], 'hint' => 'Paste the src URL from Google Maps → Share → Embed a map.'],
@@ -70,7 +91,7 @@ return [
         'fields' => [
             'google_analytics' => ['label' => 'Google Analytics ID', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30'], 'hint' => 'e.g. G-XXXXXXXXXX'],
             'google_tag_manager' => ['label' => 'Google Tag Manager ID', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30'], 'hint' => 'e.g. GTM-XXXXXXX'],
-            'meta_title' => ['label' => 'Default Meta Title', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191'], 'hint' => 'Used when a page has no title of its own. {page} token is replaced by the page name.'],
+            'meta_title' => ['label' => 'Title pattern (Default Meta Title)', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191'], 'hint' => 'The browser-tab title of every page without its own meta title. {page} becomes the page name, e.g. {page} | Your Company.'],
             'meta_description' => ['label' => 'Default Meta Description', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:500']],
             'meta_keywords' => ['label' => 'Default Meta Keywords', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:500'], 'hint' => 'Comma separated.'],
             'og_title' => ['label' => 'Default Open Graph Title', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191']],

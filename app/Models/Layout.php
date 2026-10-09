@@ -36,6 +36,12 @@ class Layout extends Model
         return data_get($this->settings, $key, $default);
     }
 
+    /** Header style: normal | overlay | pill | hidden (a page may override it). */
+    public function headerVariant(): string
+    {
+        return $this->setting('variant') ?: ($this->setting('overlay_hero') ? 'overlay' : 'normal');
+    }
+
     /** Header navigation style on a device: inline | dropdown | overlay. */
     public function navStyle(string $device): string
     {

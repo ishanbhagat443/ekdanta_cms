@@ -47,6 +47,13 @@ class HeaderBuilderController extends Controller
             'sticky' => ['nullable', 'boolean'],
             'container' => ['nullable', 'in:container,container-fluid'],
             'show_topbar' => ['nullable', 'boolean'],
+            'variant' => ['nullable', 'in:normal,overlay,pill,hidden'],
+            'progress_bar' => ['nullable', 'boolean'],
+            'progress_color' => ['nullable', 'regex:/^#[0-9a-fA-F]{3,8}$/'],
+            'whatsapp_button' => ['nullable', 'in:off,mobile,all'],
+            'overlay_cta_label' => ['nullable', 'string', 'max:60'],
+            'overlay_cta_url' => ['nullable', 'string', 'max:500'],
+            'overlay_call_line' => ['nullable', 'boolean'],
             'nav_style' => ['nullable', 'array'],
             'nav_style.*' => ['nullable', 'in:inline,dropdown,overlay'],
             // Header-over-hero (design 05): transparent overlay → solid on scroll.
@@ -61,12 +68,21 @@ class HeaderBuilderController extends Controller
             'custom_js' => ['nullable', 'string', 'max:20000'],
         ]);
 
+        // A post without "variant" (older forms, scripts) still means what its overlay switch says.
+        $variant = $data['variant'] ?? (! empty($data['overlay_hero']) ? 'overlay' : 'normal');
+
         $this->layouts->updateArea(Layout::AREA_HEADER, [
             'settings' => [
                 'sticky' => (bool) ($data['sticky'] ?? false),
                 'container' => $data['container'] ?? 'container',
                 'show_topbar' => (bool) ($data['show_topbar'] ?? true),
-                'overlay_hero' => (bool) ($data['overlay_hero'] ?? false),
+                'variant' => $variant,
+                'progress_bar' => (bool) ($data['progress_bar'] ?? false),
+                'progress_color' => $data['progress_color'] ?? null,
+                'whatsapp_button' => $data['whatsapp_button'] ?? 'off',
+                'overlay_cta_label' => $data['overlay_cta_label'] ?? null,
+                'overlay_cta_url' => $data['overlay_cta_url'] ?? null,
+                'overlay_call_line' => (bool) ($data['overlay_call_line'] ?? false),
                 'transparent_color' => $data['transparent_color'] ?? null,
                 'scrolled_color' => $data['scrolled_color'] ?? null,
                 'blur' => $data['blur'] ?? 0,

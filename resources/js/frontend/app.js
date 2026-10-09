@@ -338,3 +338,18 @@ document.querySelectorAll('[data-gsm-menu-open]').forEach((button) => {
     dialog.addEventListener('close', () => button.setAttribute('aria-expanded', 'false'));
     dialog.querySelectorAll('a, [data-gsm-menu-close]').forEach((el) => el.addEventListener('click', () => dialog.close()));
 });
+
+// Scroll progress bar (Header Builder): one CSS variable, written at most once
+// per frame; the bar itself is a scaleX transform.
+const progressBar = document.querySelector('.gsm-scroll-progress');
+if (progressBar) {
+    let queued = false;
+    const update = () => {
+        queued = false;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.setProperty('--gsm-progress', max > 0 ? Math.min(1, window.scrollY / max).toFixed(4) : '0');
+    };
+    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+}

@@ -36,11 +36,46 @@ class BrandController extends Controller
             'favicon' => setting_image('branding.favicon'),
             'companyName' => setting('business.company_name', config('app.name')),
             'colors' => $this->colors(),
+            'tokens' => $this->colorTokens(),
             'fonts' => $this->fonts(),
             'radius' => (int) theme('radius.buttons', 8),
             'buttonStyles' => ButtonStyle::query()->orderBy('name')->limit(6)->get(),
             'gradients' => Gradient::query()->orderBy('name')->limit(6)->get(),
         ]);
+    }
+
+    /**
+     * Design tokens are the CSS variables in Theme Customizer → Custom code
+     * (one "--name: value" per line). Brand edits the colour ones in place,
+     * so both screens edit the same text.
+     *
+     * @return array<string, string> --name => #hex
+     */
+    private function colorTokens(): array
+    {
+        // 3- or 6-digit hex only: a colour picker can't hold alpha, so tokens
+        // with transparency stay with Theme Customizer's text field.
+        preg_match_all('/^\s*(--[a-z0-9_-]+)\s*:\s*(#(?:[0-9a-f]{3}|[0-9a-f]{6}))\s*;?\s*$/im', (string) theme('custom_code.css_variables', ''), $matches, PREG_SET_ORDER);
+
+        return collect($matches)->mapWithKeys(fn ($m) => [$m[1] => $m[2]])->all();
+    }
+
+    /** Save the colour tokens edited on the Brand screen back into the same text. */
+    public function updateTokens(\Illuminate\Http\Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $data = $request->validate([
+            'tokens' => ['required', 'array', 'max:200'],
+            'tokens.*' => ['required', 'regex:/^#[0-9a-fA-F]{3,8}$/'],
+        ]);
+
+        $text = (string) theme('custom_code.css_variables', '');
+        foreach ($data['tokens'] as $name => $value) {
+            $text = preg_replace('/^(\s*'.preg_quote((string) $name, '/').'\s*:\s*)#[0-9a-f]{3,8}/im', '${1}'.$value, $text);
+        }
+
+        $this->theme->updateGroup('custom_code', ['css_variables' => $text]);
+
+        return redirect()->route('admin.brand.index')->with('success', 'Design colours saved.');
     }
 
     /**

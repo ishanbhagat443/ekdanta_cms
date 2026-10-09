@@ -11,7 +11,7 @@
     $pageTitle = $seoMeta?->meta_title ?? 'The Journal';
 @endphp
 
-@section('title', implode(' — ', array_filter([$pageTitle, setting('business.company_name')])))
+@section('title', site_title($pageTitle))
 
 @include('frontend.partials.seo-head', ['seo' => [
     'title' => $pageTitle,

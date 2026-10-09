@@ -121,12 +121,16 @@ class SeoService
             ->orderBy('id')
             ->get();
 
+        $hidden = \App\Support\PageRoles::hiddenFromSitemap();
+
         foreach ($pages as $page) {
-            if ($this->excludedFromSitemap($page->seoMeta)) {
+            // Not real destinations: the 404 and thank-you pages, and
+            // template pages (shown only through their collection items).
+            if ($this->excludedFromSitemap($page->seoMeta) || in_array($page->id, $hidden, true) || $page->setting('template_for')) {
                 continue;
             }
 
-            $isHome = $page->slug === 'home';
+            $isHome = $page->isHomePage();
             $entries[] = [
                 'loc' => $this->canonicalFor($isHome ? '/' : $page->slug),
                 'lastmod' => $page->updated_at,

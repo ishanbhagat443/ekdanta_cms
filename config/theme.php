@@ -112,8 +112,8 @@ return [
             'padding_y' => ['label' => 'Vertical Padding (px)', 'type' => 'number', 'default' => 12, 'min' => 0, 'max' => 40],
             'shadow' => ['label' => 'Shadow', 'type' => 'select', 'default' => 'none', 'options' => ['none' => 'None', 'sm' => 'Small', 'md' => 'Medium', 'lg' => 'Large']],
             'hover_animation' => ['label' => 'Hover Animation', 'type' => 'select', 'default' => 'brighten', 'options' => ['none' => 'None', 'brighten' => 'Brighten', 'lift' => 'Lift', 'scale' => 'Scale', 'shrink' => 'Shrink']],
-            'gradient_from' => ['label' => 'Gradient Start', 'type' => 'color', 'default' => '#c2185b'],
-            'gradient_to' => ['label' => 'Gradient End', 'type' => 'color', 'default' => '#f7941d'],
+            'gradient_from' => ['label' => 'Gradient Start', 'type' => 'color', 'default' => '#111827'],
+            'gradient_to' => ['label' => 'Gradient End', 'type' => 'color', 'default' => '#4b5563'],
             'icon_position' => ['label' => 'Icon Position', 'type' => 'select', 'default' => 'right', 'options' => ['none' => 'No Icon', 'left' => 'Left of Text', 'right' => 'Right of Text']],
             // Task 3: free-form CSS applied to every button the CMS renders
             // (theme buttons, Button Builder styles, legacy gradient CTAs).
@@ -215,7 +215,7 @@ return [
         'label' => 'Custom CSS/JS',
         'icon' => 'fas fa-code',
         'fields' => [
-            'css_variables' => ['label' => 'Global CSS Variables (one per line, e.g. --gsm-gold: #d9a349)', 'type' => 'code', 'lang' => 'css'],
+            'css_variables' => ['label' => 'Global CSS Variables (one per line, e.g. --brand-accent: #4b5563)', 'type' => 'code', 'lang' => 'css'],
             'css_global' => ['label' => 'Global CSS', 'type' => 'code', 'lang' => 'css'],
             'css_desktop' => ['label' => 'Desktop CSS (min-width: 992px)', 'type' => 'code', 'lang' => 'css'],
             'css_tablet' => ['label' => 'Tablet CSS (768px–991px)', 'type' => 'code', 'lang' => 'css'],

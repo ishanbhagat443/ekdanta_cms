@@ -33,3 +33,13 @@ Recorded per phase from Phase 1 on.
 | Phase 1 | Theme Customizer → Animations | Helper text under each setting; list matches the section editor | Pass |
 | Phase 1 | Forms → edit | "Also save submissions as enquiries" switch with helper text replaces the fixed source list | Pass |
 | Phase 1 | Error pages (403, 404) | Message renders as text; no raw Blade | Pass |
+| Phase 2 | Settings → Business (phone numbers, offices) | Repeating rows with Add / Remove; "Add" moves focus to the new row; Remove has an `aria-label`; row errors are shown as text under the list. Found: every repeater field (here and in all builder repeaters) was labelled only by its placeholder, so a filled row lost its labels (WCAG 3.3.2), and selects had no name at all. Fixed in the shared partial: visible caption over each control, the same text as its `aria-label` | Pass after fix |
+| Phase 2 | Page settings (role, header style, menu, button, footer, page code) | Every control has a `<label for>`; page code shown only with Developer Mode | Pass |
+| Phase 2 | Builder preview sizes + Reduce motion | Size buttons are a labelled group with `aria-pressed`; the switch has a label; the iframe has a `title`; reload button got an `aria-label` | Pass |
+| Phase 2 | Header Builder (style, progress bar, WhatsApp button, full-screen menu extras) | All fields labelled. Floating pill: `scroll-padding-top: 96px`, so anchors and focus are never hidden under it. WhatsApp button is 44 × 44 with an `aria-label` (Ekdanta: ink on `#2EB45D`, 6.9:1). Progress bar is `aria-hidden` and drawn with `scaleX`. Found: the full-screen menu's new button still animated under reduced motion, and the call line was dimmed to 0.8 opacity. Fixed: no animation under reduced motion or the site switch, full-opacity text | Pass after fix |
+| Phase 2 | Brand → Design colours | Each colour picker sits inside a label naming its token; 44 × 44; invalid values are refused with a field error; tokens with transparency stay in Theme Customizer | Pass |
+| Phase 2 | Ekdanta theme preset | Colours, fonts and radii are copied from MASTER.md, including the approved accessibility shades (`#1B8141` links, `#2CAA58` finale band). Body text is ink `#0D1410`, the colour used in the design files | Pass |
+
+### Known limits (ponytail ledger)
+
+- Fonts load one weight per typography role. The Ekdanta preset spreads its roles to load Poppins 500/600/700/800 and Hind 400/500/600. If an editor changes the Tables role (Poppins 700) or the Testimonials role (Hind 600), that weight stops loading and the browser fakes it. Fix when it matters: an "extra weights" field per family.
