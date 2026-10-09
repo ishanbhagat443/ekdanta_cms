@@ -40,7 +40,7 @@
                                         </span>
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ url('/'.$page->slug).'?preview=1' }}" target="_blank"
+                                        <a href="{{ $page->previewUrl() }}" target="_blank"
                                            class="btn btn-xs btn-outline-secondary" title="Preview"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('admin.pages.edit', $page) }}"
                                            class="btn btn-xs btn-outline-primary" title="Build"><i class="fas fa-tools"></i></a>

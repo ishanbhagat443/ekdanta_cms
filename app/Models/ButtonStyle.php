@@ -53,7 +53,7 @@ class ButtonStyle extends Model
                 'mobile' => ['top' => 10, 'right' => 20, 'bottom' => 10, 'left' => 20],
             ],
             'border' => ['width' => 0, 'style' => 'solid', 'color' => '#ffffff', 'radius' => ['tl' => '999px', 'tr' => '999px', 'br' => '999px', 'bl' => '999px']],
-            'background' => ['mode' => 'solid', 'color' => '#1b2a4a', 'gradient_slug' => null, 'media_id' => null, 'video_media_id' => null, 'text_color' => '#ffffff'],
+            'background' => ['mode' => 'solid', 'color' => '#111827', 'gradient_slug' => null, 'media_id' => null, 'video_media_id' => null, 'text_color' => '#ffffff'],
             'hover' => ['mode' => null, 'color' => null, 'gradient_slug' => null, 'text_color' => null, 'border' => [], 'radius' => [], 'shadows' => []],
             'animation' => ['hover_effect' => 'lift', 'duration' => 250],
             'icon' => ['left' => null, 'right' => null, 'gap' => 8],

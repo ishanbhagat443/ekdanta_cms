@@ -22,7 +22,7 @@
                     class="btn btn-light rounded-circle position-absolute top-50 start-50 translate-middle shadow"
                     style="width: 72px; height: 72px;"
                     data-bs-toggle="modal" data-bs-target="#{{ $modalId }}" aria-label="Play video">
-                <i class="fas fa-play" style="color: #1b2a4a;"></i>
+                <i class="fas fa-play" style="color: #111827;"></i>
             </button>
         @endif
     </div>

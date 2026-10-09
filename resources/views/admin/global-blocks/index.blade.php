@@ -87,7 +87,7 @@
                             <button type="button" class="btn btn-xs btn-link ml-auto p-0 gsm-toggle-favorite"
                                     data-url="{{ route('admin.global-blocks.favorite', $block) }}"
                                     title="Toggle favorite">
-                                <i class="{{ $block->is_favorite ? 'fas' : 'far' }} fa-star" style="color:#c29b54;"></i>
+                                <i class="{{ $block->is_favorite ? 'fas' : 'far' }} fa-star" style="color:#4b5563;"></i>
                             </button>
                         </div>
                         <div class="small text-muted mb-1">

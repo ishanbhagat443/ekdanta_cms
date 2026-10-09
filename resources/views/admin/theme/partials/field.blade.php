@@ -50,4 +50,8 @@
             <input type="text" name="{{ $inputName }}" id="{{ $inputId }}"
                    value="{{ $value ?? $field['default'] ?? '' }}" class="form-control form-control-sm gsm-theme-field">
     @endswitch
+
+    @if (! empty($field['hint']))
+        <small class="form-text text-muted">{{ $field['hint'] }}</small>
+    @endif
 </div>

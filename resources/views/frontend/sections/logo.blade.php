@@ -35,6 +35,6 @@
             <img src="{{ $desktopMedia->url }}" alt="{{ $alt }}" class="gsm-logo-dark" style="max-height: {{ $maxH }}px;">
         @endif
     @else
-        <span class="fw-bold gsm-logo-dark">{{ setting('business.company_name', config('gsm.name')) }}</span>
+        <span class="fw-bold gsm-logo-dark">{{ setting('business.company_name', '') }}</span>
     @endif
 </a>

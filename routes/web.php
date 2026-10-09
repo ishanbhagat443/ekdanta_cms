@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Frontend\PageController::class, 'home'])->name('front.home');
 
+// The home page lives at "/". Old /home links (and their ?utm_… or ?preview=1)
+// land there; Route::permanentRedirect() would drop the query string.
+Route::get('/home', fn (\Illuminate\Http\Request $request) => redirect(rtrim('/?'.$request->getQueryString(), '?'), 301));
+
 // SEO endpoints — dots keep them clear of the page catch-all.
 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SeoController::class, 'sitemap'])->name('front.sitemap');
 Route::get('/robots.txt', [\App\Http\Controllers\Frontend\SeoController::class, 'robots'])->name('front.robots');

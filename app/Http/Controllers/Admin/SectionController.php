@@ -74,7 +74,7 @@ class SectionController extends Controller
         $input = $request->only(['device', 'data', 'name', 'is_active', 'style']);
 
         if (array_key_exists('style', $input)) {
-            $input['style'] = $this->withoutPrivilegedStyle((array) $input['style']);
+            $input['style'] = Section::withoutPrivilegedStyle((array) $input['style']);
 
             if (array_key_exists('anim', $input['style'])) {
                 $input['style']['anim'] = SectionAnimation::sanitiseAll((array) $input['style']['anim']);
@@ -84,29 +84,6 @@ class SectionController extends Controller
         $section = $this->builder->updateSection($section, $input);
 
         return response()->json(['section' => $section]);
-    }
-
-    /**
-     * Section CSS/JS render unescaped into every visitor's page, which is the
-     * same power Developer Mode grants — and that is deliberately Super Admin
-     * only. Editing a section must not be a way around it.
-     *
-     * The keys are dropped rather than nulled: updateSection() merges style
-     * over what is stored, so an editor without the permission saving an
-     * unrelated setting leaves any existing CSS/JS intact instead of wiping it.
-     *
-     * @param  array<string, mixed>  $style
-     * @return array<string, mixed>
-     */
-    private function withoutPrivilegedStyle(array $style): array
-    {
-        if (Gate::allows('developer.mode')) {
-            return $style;
-        }
-
-        unset($style['custom_css'], $style['custom_js']);
-
-        return $style;
     }
 
     public function clone(Section $section): JsonResponse

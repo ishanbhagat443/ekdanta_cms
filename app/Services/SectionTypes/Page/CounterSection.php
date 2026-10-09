@@ -31,7 +31,7 @@ class CounterSection extends PageSectionType
                 ['key' => 'label', 'label' => 'Label', 'type' => 'text', 'rules' => ['required', 'string', 'max:150']],
             ]],
             ['key' => 'animate', 'label' => 'Animate count-up', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
-            ['key' => 'show_ornament', 'label' => 'Gold garland border along the top edge', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
+            ['key' => 'show_ornament', 'label' => 'Decorative border along the top edge', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
         ];
     }
 }

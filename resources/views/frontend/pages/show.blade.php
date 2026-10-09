@@ -26,7 +26,7 @@
     // <title>: explicit meta title / settings template win; otherwise "Page — Company".
     $titleTag = ($page && ! empty($seo['title']) && ($seoMeta?->meta_title || setting('seo.meta_title')))
         ? $seo['title']
-        : (($page?->title ? $page->title.' — ' : '').setting('business.company_name', config('gsm.name')));
+        : implode(' — ', array_filter([$page?->title, setting('business.company_name')]));
 @endphp
 @section('title', $titleTag)
 

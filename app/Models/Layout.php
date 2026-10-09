@@ -35,4 +35,10 @@ class Layout extends Model
     {
         return data_get($this->settings, $key, $default);
     }
+
+    /** Header navigation style on a device: inline | dropdown | overlay. */
+    public function navStyle(string $device): string
+    {
+        return $this->setting("nav_style.{$device}") ?: ($device === 'desktop' ? 'inline' : 'dropdown');
+    }
 }

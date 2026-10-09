@@ -89,15 +89,25 @@
             });
 
             if (familySelect) {
-                var selectedOption = familySelect.options[familySelect.selectedIndex];
-                var familyName = selectedOption.dataset.familyName || familySelect.value;
-                preview.style.fontFamily = "'" + familyName + "'";
+                // A text field with a datalist: uploaded fonts are stored as
+                // local:slug, so look up their real family name.
+                var value = familySelect.value.trim();
+                var local = Array.prototype.find.call(
+                    document.querySelectorAll('#gsm-font-list option[data-family-name]'),
+                    function (option) { return option.value === value; }
+                );
+                var familyName = local ? local.dataset.familyName : value;
+                // Quote each family on its own, like ThemeService::fontStack().
+                preview.style.fontFamily = familyName.split(',').map(function (family) {
+                    family = family.trim().replace(/["']/g, '');
+                    return /^(serif|sans-serif|monospace|cursive|fantasy|system-ui)$/i.test(family) ? family : "'" + family + "'";
+                }).join(', ');
                 if (label) label.textContent = '— ' + familyName;
             }
         }
 
         fields.forEach(function (field) { field.addEventListener('input', apply); field.addEventListener('change', apply); });
-        if (familySelect) familySelect.addEventListener('change', apply);
+        if (familySelect) familySelect.addEventListener('input', apply);
 
         apply();
     });

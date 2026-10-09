@@ -35,7 +35,7 @@ class AnnouncementBarSection extends SectionType
             ['key' => 'link_label', 'label' => 'Link Label', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:100']],
             ['key' => 'link_url', 'label' => 'Link URL', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:500']],
             ['key' => 'dismissible', 'label' => 'Visitor can dismiss', 'type' => 'toggle', 'default' => false, 'rules' => ['nullable', 'boolean']],
-            ['key' => 'bg_color', 'label' => 'Background Color', 'type' => 'color', 'default' => '#1b2a4a', 'rules' => ['nullable', 'string', 'max:20']],
+            ['key' => 'bg_color', 'label' => 'Background Color', 'type' => 'color', 'default' => '#111827', 'rules' => ['nullable', 'string', 'max:20']],
             ['key' => 'text_color', 'label' => 'Text Color', 'type' => 'color', 'default' => '#ffffff', 'rules' => ['nullable', 'string', 'max:20']],
         ];
     }

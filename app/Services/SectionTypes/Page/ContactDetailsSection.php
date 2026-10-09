@@ -34,8 +34,8 @@ class ContactDetailsSection extends PageSectionType
     {
         return [
             ...$this->headingFields(),
-            ['key' => 'garland_left_media_id', 'label' => 'Garland — Left ornament', 'type' => 'media', 'rules' => ['nullable', 'integer', 'exists:media,id']],
-            ['key' => 'garland_right_media_id', 'label' => 'Garland — Right ornament', 'type' => 'media', 'rules' => ['nullable', 'integer', 'exists:media,id']],
+            ['key' => 'garland_left_media_id', 'label' => 'Left ornament image', 'type' => 'media', 'rules' => ['nullable', 'integer', 'exists:media,id']],
+            ['key' => 'garland_right_media_id', 'label' => 'Right ornament image', 'type' => 'media', 'rules' => ['nullable', 'integer', 'exists:media,id']],
             ['key' => 'title_underline_media_id', 'label' => 'Card title underline image (gold line)', 'type' => 'media', 'rules' => ['nullable', 'integer', 'exists:media,id']],
             ['key' => 'card_bg', 'label' => 'Card Background Color', 'type' => 'color', 'default' => '#ffffff', 'rules' => ['nullable', 'string', 'max:30']],
             ['key' => 'card_radius', 'label' => 'Card Border Radius (px)', 'type' => 'number', 'default' => 6, 'rules' => ['nullable', 'integer', 'between:0,60']],

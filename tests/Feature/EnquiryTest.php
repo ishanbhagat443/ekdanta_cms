@@ -36,7 +36,7 @@ class EnquiryTest extends TestCase
     {
         return app(FormBuilderService::class)->createForm([
             'name' => ucfirst($source).' Form',
-            'enquiry_source' => $source,
+            'store_as_enquiry' => true, // source = the form itself (its slug)
             'fields' => array_merge([
                 ['label' => 'Your Name', 'type' => 'text', 'is_required' => 1],
                 ['label' => 'Your Email', 'type' => 'email', 'is_required' => 1],
@@ -82,7 +82,8 @@ class EnquiryTest extends TestCase
 
         $enquiry = Enquiry::firstOrFail();
 
-        $this->assertSame('distributor', $enquiry->source);
+        $this->assertSame($form->slug, $enquiry->source);
+        $this->assertSame('Distributor Form', $enquiry->sourceLabel());
         $this->assertSame('Ishan', $enquiry->name);
         $this->assertSame('ishan@example.com', $enquiry->email);
         $this->assertSame('+91 9876543210', $enquiry->phone);
@@ -177,15 +178,16 @@ class EnquiryTest extends TestCase
         $this->assertStringNotContainsString('Contact Person', $csv);
     }
 
-    public function test_seeder_creates_all_five_source_forms(): void
+    public function test_seeder_creates_the_default_forms_each_its_own_source(): void
     {
         $this->seed(\Database\Seeders\FormSeeder::class);
         $this->seed(\Database\Seeders\FormSeeder::class); // idempotent
 
+        // One source per form, keyed by the form; no previous-client forms.
         $this->assertEqualsCanonicalizing(
-            ['contact', 'footer', 'distributor', 'dealer', 'career'],
+            ['contact-form', 'footer-form'],
             Form::whereNotNull('enquiry_source')->pluck('enquiry_source')->all(),
         );
-        $this->assertSame(5, Form::count());
+        $this->assertSame(2, Form::count());
     }
 }

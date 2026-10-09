@@ -1,6 +1,5 @@
 // Public site JS.
 import * as bootstrap from 'bootstrap';
-import axios from 'axios';
 
 window.bootstrap = bootstrap;
 
@@ -156,10 +155,9 @@ if (overlayHeader) {
     measure();
     window.addEventListener('resize', measure);
 
-    // Pages without a hero (e.g. the PDP) force the solid/light header always
-    // — colored logo, dark menu, white background — never transparent.
-    if (document.body.classList.contains('gsm-pdp-page')
-        || document.body.classList.contains('gsm-solid-header')) {
+    // Pages without a hero force the solid/light header always — colored
+    // logo, dark menu, white background — never transparent.
+    if (document.body.classList.contains('gsm-solid-header')) {
         overlayHeader.classList.add('gsm-header-scrolled');
     } else {
         const onScroll = () => {
@@ -251,21 +249,21 @@ document.querySelectorAll('[data-gsm-ajax-form]').forEach((form) => {
         const label = btn ? btn.textContent : '';
         if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
-        axios.post(form.action, new FormData(form))
-            .then((res) => {
-                showAlert((res.data && res.data.message) || 'Thank you! Your message has been sent.', true);
-                form.reset();
-                form.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
-            })
-            .catch((err) => {
-                const data = err.response && err.response.data;
-                if (err.response && err.response.status === 422 && data && data.errors) {
+        // Accept: JSON makes Laravel answer with JSON, including 422 errors.
+        fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+            .then((res) => res.json().catch(() => ({})).then((data) => {
+                if (res.ok) {
+                    showAlert(data.message || 'Thank you! Your message has been sent.', true);
+                    form.reset();
+                    form.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+                } else if (res.status === 422 && data.errors) {
                     Object.keys(data.errors).forEach((name) => showFieldError(name, data.errors[name][0]));
                     showAlert('Please correct the errors below.', false);
                 } else {
                     showAlert('Something went wrong. Please try again.', false);
                 }
-            })
+            }))
+            .catch(() => showAlert('Something went wrong. Please try again.', false))
             .finally(() => {
                 if (btn) { btn.disabled = false; btn.textContent = label; }
             });
@@ -323,4 +321,20 @@ document.querySelectorAll('[data-live-search]').forEach(function (searchInput) {
     document.addEventListener('click', (e) => {
         if (!e.target.closest('[data-live-search-wrap]')) panel.hidden = true;
     });
+});
+
+// Full-screen menu (Header Builder → Navigation style). A modal <dialog>:
+// the browser traps focus inside, closes it on Esc and returns focus to the
+// menu button. Following a link closes it, which also covers #anchors on the
+// same page.
+document.querySelectorAll('[data-gsm-menu-open]').forEach((button) => {
+    const dialog = document.getElementById(button.getAttribute('aria-controls'));
+    if (!dialog || typeof dialog.showModal !== 'function') return;
+
+    button.addEventListener('click', () => {
+        dialog.showModal();
+        button.setAttribute('aria-expanded', 'true');
+    });
+    dialog.addEventListener('close', () => button.setAttribute('aria-expanded', 'false'));
+    dialog.querySelectorAll('a, [data-gsm-menu-close]').forEach((el) => el.addEventListener('click', () => dialog.close()));
 });

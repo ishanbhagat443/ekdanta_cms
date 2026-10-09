@@ -126,7 +126,7 @@ class GlobalBlockController extends Controller
 
         if ($request->has('data') && is_array($request->input('data'))) {
             if ($device === 'desktop') {
-                $payload['data_desktop'] = $request->input('data');
+                $payload['data_desktop'] = $request->input('data'); // validated in GlobalBlockService::update()
             } else {
                 $allowed = $type->deviceKeys();
                 $sparse = array_intersect_key((array) $request->input('data'), array_flip($allowed));
@@ -135,7 +135,8 @@ class GlobalBlockController extends Controller
         }
 
         if ($request->has('style')) {
-            $payload['style'] = $request->input('style');
+            // A synced block reaches every page it is on: same CSS/JS rule as sections.
+            $payload['style'] = \App\Models\Section::withoutPrivilegedStyle((array) $request->input('style'));
         }
 
         $block = $this->service->update($block, $payload, (bool) $request->boolean('propagate', true));

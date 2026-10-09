@@ -13,6 +13,8 @@
         <div class="card-body">
             <div class="row">
                 @foreach ($schema['fields'] as $key => $field)
+                    {{-- Site-wide scripts: Developer Mode only (enforced in ThemeCustomizerController). --}}
+                    @continue(! empty($field['developer']) && ! auth()->user()?->can('developer.mode'))
                     {{-- select fields without explicit options: resolve from the group's shared enum (weights/levels/types) --}}
                     @php
                         if (($field['type'] ?? null) === 'select' && empty($field['options'])) {

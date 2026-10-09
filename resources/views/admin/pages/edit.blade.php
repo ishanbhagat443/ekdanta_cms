@@ -12,7 +12,7 @@
 
     @include('admin.builder.partials.toolbar', [
         'formId' => 'gsm-page-form',
-        'previewUrl' => url('/'.$page->slug).'?preview=1',
+        'previewUrl' => $page->previewUrl(),
         'historyUrl' => route('admin.pages.revisions.index', $page),
     ])
 
@@ -321,7 +321,7 @@
                     </button>
                 </div>
                 <div class="card-body p-0">
-                    <iframe id="gsm-live-preview" src="{{ url('/'.$page->slug).'?preview=1' }}"
+                    <iframe id="gsm-live-preview" src="{{ $page->previewUrl() }}"
                             style="width:100%; height:60vh; border:0;"></iframe>
                 </div>
             </div>

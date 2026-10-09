@@ -34,8 +34,8 @@ class GradientController extends Controller
             'angle' => 90,
             'is_active' => true,
             'stops' => [
-                ['color' => '#1b2a4a', 'opacity' => 100, 'position' => 0],
-                ['color' => '#c29b54', 'opacity' => 100, 'position' => 100],
+                ['color' => '#111827', 'opacity' => 100, 'position' => 0],
+                ['color' => '#4b5563', 'opacity' => 100, 'position' => 100],
             ],
         ])]);
     }

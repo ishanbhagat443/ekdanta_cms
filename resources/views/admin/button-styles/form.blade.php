@@ -176,7 +176,7 @@
                         <div class="form-group col-md-4">
                             <label>Solid Color</label>
                             <input type="color" name="config[background][color]" class="form-control" style="height:38px; padding:3px;"
-                                   value="{{ $cfg('background.color', '#1b2a4a') }}">
+                                   value="{{ $cfg('background.color', '#111827') }}">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Text Color</label>
@@ -240,7 +240,7 @@
                         <div class="form-group col-md-3">
                             <label>Solid Color</label>
                             <input type="color" name="config[hover][color]" class="form-control" style="height:38px; padding:3px;"
-                                   value="{{ $cfg('hover.color', '#c29b54') }}">
+                                   value="{{ $cfg('hover.color', '#4b5563') }}">
                         </div>
                         <div class="form-group col-md-3">
                             <label>Gradient</label>

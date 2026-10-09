@@ -13,9 +13,9 @@
     <title>Block Preview</title>
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
     @vite(['resources/scss/frontend.scss', 'resources/js/frontend/app.js'])
-    @if ($googleFontsUrl = app(\App\Services\ThemeService::class)->googleFontsUrl())
+    @foreach (app(\App\Services\ThemeService::class)->googleFontsUrls() as $googleFontsUrl)
         <link rel="stylesheet" href="{{ $googleFontsUrl }}">
-    @endif
+    @endforeach
     <style>{!! theme_css() !!}</style>
     <style>body { padding: 1.5rem 0; }</style>
 </head>

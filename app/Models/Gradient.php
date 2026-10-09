@@ -29,7 +29,7 @@ class Gradient extends Model
 
     /**
      * Valid CSS gradient value, e.g.
-     * linear-gradient(90deg, #981E63 2%, #B14D86 19%, #F5791A 50%, #F03225 100%).
+     * linear-gradient(90deg, #981E63 2%, #B14D86 19%, #F5791A 50%, #6b7280 100%).
      */
     public function toCss(): string
     {

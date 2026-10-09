@@ -5,7 +5,7 @@
 
 {{-- py-2 ≈ the design's 36px strip height (01 Header.png) --}}
 <div class="gsm-topbar-strip py-2 {{ $classes }}"
-     style="background: {{ $data['bg_color'] ?? '#1b2a4a' }}; color: {{ $data['text_color'] ?? '#fff' }};">
+     style="background: {{ $data['bg_color'] ?? '#111827' }}; color: {{ $data['text_color'] ?? '#fff' }};">
     <div class="container d-flex flex-wrap justify-content-center justify-content-md-between align-items-center small">
         <div>
             @include('frontend.partials.device-text', ['section' => $section, 'key' => 'left_text'])

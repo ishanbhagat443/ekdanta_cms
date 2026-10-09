@@ -42,7 +42,7 @@ class AboutStorySection extends PageSectionType
                 ['key' => 'text', 'label' => 'Text', 'type' => 'text', 'rules' => ['required', 'string', 'max:150']],
             ]],
             $this->mediaField('bg_media_id', 'Background Texture', device: false),
-            ['key' => 'show_garland', 'label' => 'Gold garland border along the top edge', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
+            ['key' => 'show_garland', 'label' => 'Decorative border along the top edge', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
         ];
     }
 }

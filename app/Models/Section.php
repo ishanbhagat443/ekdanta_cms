@@ -108,6 +108,22 @@ class Section extends Model
         return $values;
     }
 
+    /**
+     * Section CSS/JS reach every visitor, so writing them is the same
+     * privilege as Developer Mode. Dropped rather than nulled: saves merge
+     * style, so leaving the keys out keeps whatever a developer wrote.
+     */
+    public static function withoutPrivilegedStyle(array $style): array
+    {
+        if (\Illuminate\Support\Facades\Gate::allows('developer.mode')) {
+            return $style;
+        }
+
+        unset($style['custom_css'], $style['custom_js']);
+
+        return $style;
+    }
+
     /** Per-device style value, e.g. styleFor('visible.mobile', true). */
     public function styleValue(string $key, mixed $default = null): mixed
     {
@@ -130,20 +146,28 @@ class Section extends Model
     /** Bootstrap display classes implementing per-device visibility. */
     public function visibilityClasses(): string
     {
-        $classes = [];
+        return self::displayClasses(
+            (bool) $this->styleValue('visible.mobile', true),
+            (bool) $this->styleValue('visible.tablet', true),
+            (bool) $this->styleValue('visible.desktop', true),
+        );
+    }
 
-        $mobile = (bool) $this->styleValue('visible.mobile', true);
-        $tablet = (bool) $this->styleValue('visible.tablet', true);
-        $desktop = (bool) $this->styleValue('visible.desktop', true);
-
+    /**
+     * Bootstrap classes that show an element only on the given devices
+     * (mobile < 768 px, tablet < 992 px, desktop above). Empty when shown
+     * everywhere; $display is the value used where it is shown.
+     */
+    public static function displayClasses(bool $mobile, bool $tablet, bool $desktop, string $display = 'block'): string
+    {
         if ($mobile && $tablet && $desktop) {
             return '';
         }
 
-        $classes[] = $mobile ? 'd-block' : 'd-none';
-        $classes[] = $tablet ? 'd-md-block' : 'd-md-none';
-        $classes[] = $desktop ? 'd-lg-block' : 'd-lg-none';
-
-        return implode(' ', $classes);
+        return implode(' ', [
+            $mobile ? "d-{$display}" : 'd-none',
+            $tablet ? "d-md-{$display}" : 'd-md-none',
+            $desktop ? "d-lg-{$display}" : 'd-lg-none',
+        ]);
     }
 }

@@ -23,7 +23,7 @@ return [
             'email' => ['label' => 'Email', 'type' => 'email', 'rules' => ['nullable', 'email:rfc,strict', 'max:191']],
             'support_email' => ['label' => 'Support Email', 'type' => 'email', 'rules' => ['nullable', 'email:rfc,strict', 'max:191']],
             'phone' => ['label' => 'Phone', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30']],
-            'whatsapp' => ['label' => 'WhatsApp Number', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30'], 'hint' => 'With country code, e.g. +91 92742 03144. Used for "Get Price" buttons.'],
+            'whatsapp' => ['label' => 'WhatsApp Number', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30'], 'hint' => 'With country code, e.g. +91 92742 03144. Used for WhatsApp buttons and links.'],
             'address' => ['label' => 'Address', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:1000']],
             'google_map' => ['label' => 'Google Map Embed URL', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:2000'], 'hint' => 'Paste the src URL from Google Maps → Share → Embed a map.'],
             'latitude' => ['label' => 'Latitude', 'type' => 'number', 'rules' => ['nullable', 'numeric', 'between:-90,90']],

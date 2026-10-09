@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @unless (theme('animations.enabled', true)) data-motion="off" @endunless>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', setting('business.company_name', config('gsm.name')))</title>
+    <title>@yield('title', setting('business.company_name', ''))</title>
 
     @if (setting_image('branding.favicon'))
         <link rel="icon" href="{{ setting_image('branding.favicon') }}">
@@ -22,10 +22,12 @@
     @vite(['resources/scss/frontend.scss', 'resources/js/frontend/app.js'])
 
     {{-- Theme Customizer: Google Fonts + local @font-face + generated CSS variables --}}
-    @if ($googleFontsUrl = app(\App\Services\ThemeService::class)->googleFontsUrl())
+    @if ($googleFontsUrls = app(\App\Services\ThemeService::class)->googleFontsUrls())
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="{{ $googleFontsUrl }}">
+        @foreach ($googleFontsUrls as $googleFontsUrl)
+            <link rel="stylesheet" href="{{ $googleFontsUrl }}">
+        @endforeach
     @endif
     <style id="gsm-theme-vars">{!! theme_css() !!}</style>
 

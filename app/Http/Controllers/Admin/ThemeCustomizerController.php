@@ -47,7 +47,15 @@ class ThemeCustomizerController extends Controller
         abort_if(config("theme.{$group}") === null, 404);
         abort_if($group === 'typography', 404); // handled by updateTypography()
 
-        $this->theme->updateGroup($group, $request->validated());
+        $data = $request->validated();
+
+        // Fields flagged 'developer' (the site-wide scripts) need Developer
+        // Mode. Dropped, not nulled: updateGroup() leaves absent keys alone.
+        if (! \Illuminate\Support\Facades\Gate::allows('developer.mode')) {
+            $data = array_diff_key($data, array_filter((array) config("theme.{$group}.fields"), fn ($f) => ! empty($f['developer'])));
+        }
+
+        $this->theme->updateGroup($group, $data);
 
         return redirect()
             ->route('admin.theme.index')
@@ -181,7 +189,8 @@ class ThemeCustomizerController extends Controller
         $transforms = implode(',', array_keys(config('theme.typography.transforms')));
 
         foreach (array_keys(config('theme.typography.roles')) as $role) {
-            $rules["roles.{$role}.family"] = ['nullable', 'string', 'max:150'];
+            // A Google Font name, an uploaded font (local:slug) or a stack.
+            $rules["roles.{$role}.family"] = ['nullable', 'string', 'max:150', 'regex:/^(local:[a-z0-9-]+|[\pL\pN ,\'"_-]+)$/u'];
             $rules["roles.{$role}.weight"] = ['nullable', Rule::in(explode(',', $weights))];
             $rules["roles.{$role}.transform"] = ['nullable', Rule::in(explode(',', $transforms))];
             $rules["roles.{$role}.letter_spacing"] = ['nullable', 'numeric', 'between:-5,20'];

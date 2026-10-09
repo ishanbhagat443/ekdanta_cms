@@ -76,6 +76,19 @@
         </div>
     </div>
 
+    {{-- Suggestions only. Any Google Font name, an uploaded font (local:…) or a
+         stack such as Georgia, serif is accepted, so a stored value is never
+         silently swapped for the first option on save. --}}
+    <datalist id="gsm-font-list">
+        @foreach ($schema['google_fonts'] as $googleFont)
+            <option value="{{ $googleFont }}"></option>
+        @endforeach
+        @foreach ($fonts as $font)
+            <option value="local:{{ $font->slug }}" data-family-name="{{ $font->name }}">{{ $font->name }} (uploaded)</option>
+        @endforeach
+    </datalist>
+    <p class="small text-muted mb-2">Font family: type any Google Font name (it loads automatically), choose an uploaded font, or enter a stack such as <code>Georgia, serif</code>.</p>
+
     <div id="gsm-typography-accordion">
         @foreach ($schema['roles'] as $role => $roleSchema)
             @php $roleValues = $values[$role] ?? []; @endphp
@@ -95,22 +108,10 @@
 
                         <div class="form-row">
                             <div class="col-12 col-md-6 mb-2">
-                                <label class="small mb-0">Font Family</label>
-                                <select name="roles[{{ $role }}][family]" class="form-control form-control-sm gsm-typo-family" data-role="{{ $role }}">
-                                    <optgroup label="Google Fonts">
-                                        @foreach ($schema['google_fonts'] as $googleFont)
-                                            <option value="{{ $googleFont }}" @selected(($roleValues['family'] ?? $roleSchema['default_family']) === $googleFont)>{{ $googleFont }}</option>
-                                        @endforeach
-                                    </optgroup>
-                                    @if ($fonts->isNotEmpty())
-                                        <optgroup label="Uploaded Local Fonts">
-                                            @foreach ($fonts as $font)
-                                                <option value="local:{{ $font->slug }}" data-family-name="{{ $font->name }}"
-                                                        @selected(($roleValues['family'] ?? '') === 'local:'.$font->slug)>{{ $font->name }} (local)</option>
-                                            @endforeach
-                                        </optgroup>
-                                    @endif
-                                </select>
+                                <label class="small mb-0" for="family-{{ $role }}">Font Family</label>
+                                <input type="text" name="roles[{{ $role }}][family]" id="family-{{ $role }}" list="gsm-font-list"
+                                       value="{{ $roleValues['family'] ?? $roleSchema['default_family'] }}" maxlength="150" spellcheck="false"
+                                       class="form-control form-control-sm gsm-typo-family" data-role="{{ $role }}">
                             </div>
                             <div class="col-6 col-md-3 mb-2">
                                 <label class="small mb-0">Weight</label>

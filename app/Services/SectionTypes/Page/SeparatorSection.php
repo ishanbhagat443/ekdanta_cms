@@ -22,7 +22,7 @@ class SeparatorSection extends PageSectionType
 
     public function label(): string
     {
-        return 'Decorative Separator (Garland / Floral)';
+        return 'Decorative Separator (Image)';
     }
 
     public function icon(): string
@@ -33,7 +33,7 @@ class SeparatorSection extends PageSectionType
     public function fields(): array
     {
         return [
-            $this->mediaField('media_id', 'Separator Image (garland / floral)'),
+            $this->mediaField('media_id', 'Separator Image'),
             ['key' => 'width', 'label' => 'Image Width (px)', 'type' => 'number', 'default' => 340, 'rules' => ['nullable', 'integer', 'between:40,1600']],
             ['key' => 'margin_top', 'label' => 'Margin Top (px)', 'type' => 'number', 'default' => 24, 'rules' => ['nullable', 'integer', 'between:0,400']],
             ['key' => 'margin_bottom', 'label' => 'Margin Bottom (px)', 'type' => 'number', 'default' => 24, 'rules' => ['nullable', 'integer', 'between:0,400']],

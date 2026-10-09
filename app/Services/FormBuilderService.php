@@ -16,9 +16,8 @@ class FormBuilderService
     public function createForm(array $data): Form
     {
         return DB::transaction(function () use ($data): Form {
-            $form = Form::create($this->attributes($data) + [
-                'slug' => $this->uniqueSlugFor(Form::class, $data['slug'] ?? $data['name']),
-            ]);
+            $slug = $this->uniqueSlugFor(Form::class, $data['slug'] ?? $data['name']);
+            $form = Form::create($this->attributes($data, $slug) + ['slug' => $slug]);
 
             $this->syncFields($form, (array) ($data['fields'] ?? []));
 
@@ -29,7 +28,7 @@ class FormBuilderService
     public function updateForm(Form $form, array $data): Form
     {
         return DB::transaction(function () use ($form, $data): Form {
-            $attributes = $this->attributes($data);
+            $attributes = $this->attributes($data, $form->enquiry_source ?: $form->slug);
 
             if (! empty($data['slug']) && $data['slug'] !== $form->slug) {
                 $attributes['slug'] = $this->uniqueSlugFor(Form::class, $data['slug'], $form->id);
@@ -49,7 +48,11 @@ class FormBuilderService
 
     /* ── internals ─────────────────────────────────────────────── */
 
-    private function attributes(array $data): array
+    /**
+     * @param  string  $enquiryKey  this form's enquiry source key: its existing
+     *                              key, or its slug. One source per form.
+     */
+    private function attributes(array $data, string $enquiryKey): array
     {
         // "a@b.com, c@d.com" → ["a@b.com", "c@d.com"]
         $emails = collect(explode(',', (string) ($data['notify_emails_csv'] ?? '')))
@@ -64,7 +67,7 @@ class FormBuilderService
             'button_label' => ($data['button_label'] ?? null) ?: 'Submit',
             'success_message' => ($data['success_message'] ?? null) ?: 'Thank you! We will get back to you shortly.',
             'notify_emails' => $emails,
-            'enquiry_source' => ($data['enquiry_source'] ?? null) ?: null,
+            'enquiry_source' => ! empty($data['store_as_enquiry']) ? $enquiryKey : null,
             'is_active' => (bool) ($data['is_active'] ?? true),
         ];
     }

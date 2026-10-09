@@ -212,7 +212,7 @@ Feature tests (every Ekdanta section renders with defaults, field edits change o
 ## Verification commands
 ```
 php artisan test
-node --test tests/js
+npm run test:js
 npm run build
 php artisan ekdanta:seed --with-pages --env=preview
 npx playwright test tests/visual

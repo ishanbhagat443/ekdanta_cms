@@ -12,6 +12,7 @@ use App\Services\SectionTypes\SectionTypeRegistry;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class FooterBuilderController extends Controller
 {
@@ -58,7 +59,9 @@ class FooterBuilderController extends Controller
                 'container' => $data['container'] ?? 'container',
             ],
             'custom_css' => $data['custom_css'] ?? null,
-            'custom_js' => $data['custom_js'] ?? null,
+            // Footer JS runs on every public page: Developer Mode only. Without
+            // it the key is left out, so LayoutService keeps the current script.
+            ...(Gate::allows('developer.mode') ? ['custom_js' => $data['custom_js'] ?? null] : []),
         ]);
 
         return redirect()->route('admin.footer.edit')->with('success', 'Footer settings saved.');

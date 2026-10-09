@@ -22,7 +22,7 @@ class EnquiryController extends Controller
     private function filters(Request $request): array
     {
         return $request->validate([
-            'source' => ['nullable', 'in:'.implode(',', array_keys(Enquiry::SOURCES))],
+            'source' => ['nullable', 'in:'.implode(',', array_keys(Enquiry::sources()))],
             'status' => ['nullable', 'in:'.implode(',', Enquiry::STATUSES)],
             'q' => ['nullable', 'string', 'max:191'],
             'from' => ['nullable', 'date'],
@@ -37,7 +37,7 @@ class EnquiryController extends Controller
         return view('admin.enquiries.index', [
             'enquiries' => Enquiry::query()->filtered($filters)->latest('id')->paginate(20)->withQueryString(),
             'filters' => $filters,
-            'sources' => Enquiry::SOURCES,
+            'sources' => Enquiry::sources(),
             'statuses' => Enquiry::STATUSES,
             'counts' => Enquiry::query()
                 ->selectRaw("source, count(*) as total, sum(case when status = 'new' then 1 else 0 end) as new_count")

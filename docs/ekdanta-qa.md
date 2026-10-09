@@ -6,7 +6,7 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 
 | # | Where | Finding | Proposed fix | Status |
 |---|---|---|---|---|
-| 1 | Every page with looping motion (trunk and beam, orbit, marquees, phone dial, blinking "e") | WCAG 2.2.2 Pause, Stop, Hide (Level A): motion that starts by itself, lasts over 5 s and runs beside other content needs a way to pause it. The design has none. | A small "Pause animations" toggle, remembered per visitor, that switches the page to the reduced-motion state | Asked 8 Oct 2026 |
+| 1 | Every page with looping motion (trunk and beam, orbit, marquees, phone dial, blinking "e") | WCAG 2.2.2 Pause, Stop, Hide (Level A): motion that starts by itself, lasts over 5 s and runs beside other content needs a way to pause it. The design has none. | "Pause animations" text button in the Finale footer line and the mobile menu; switches to the reduced-motion state; remembered per visitor | Approved 8 Oct 2026, built in Phase 3/4 |
 
 ## Decisions already made
 
@@ -24,4 +24,12 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 
 Recorded per phase from Phase 1 on.
 
+| Phase | Area | Result | Status |
+|---|---|---|---|
 | Phase 0 | Setup (docs, design system, dependency) | No UI changed; nothing to check | n/a |
+| Phase 1 | Site header (all three navigation styles) | Menu buttons were 40 × 40 and lost their focus outline (`outline: none`, only a faint tint): now 44 × 44 with a 2 px ring on keyboard focus. Full-screen menu is a modal `<dialog>`: focus trapped, Esc closes, focus returns to the button; `aria-label` on both icon buttons, `aria-expanded` and `aria-controls` on the toggle. Current item gets `aria-current="page"`. Dropdown active item: ink on light tint (was accent text on Bootstrap blue). Rising items and the bars-to-cross skip animation under reduced motion and the site-wide switch | Pass |
+| Phase 1 | Header Builder → Navigation style | Three labelled selects with plain-language options and a heading; Header JS shown only to Developer Mode | Pass |
+| Phase 1 | Theme Customizer → Typography | Font family is a labelled text field with a suggestion list (`<datalist>`) and helper text; stored values are never replaced on save; invalid names get a field error | Pass |
+| Phase 1 | Theme Customizer → Animations | Helper text under each setting; list matches the section editor | Pass |
+| Phase 1 | Forms → edit | "Also save submissions as enquiries" switch with helper text replaces the fixed source list | Pass |
+| Phase 1 | Error pages (403, 404) | Message renders as text; no raw Blade | Pass |

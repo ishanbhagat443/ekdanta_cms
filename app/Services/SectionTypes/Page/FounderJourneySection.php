@@ -40,7 +40,7 @@ class FounderJourneySection extends PageSectionType
             ['key' => 'mission_text', 'label' => 'Mission Card — Text', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:1000']],
             ['key' => 'vision_title', 'label' => 'Vision Card — Title', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:100']],
             ['key' => 'vision_text', 'label' => 'Vision Card — Text', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:1000']],
-            ['key' => 'show_garland', 'label' => 'Gold garland border along the top edge', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
+            ['key' => 'show_garland', 'label' => 'Decorative border along the top edge', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
         ];
     }
 }

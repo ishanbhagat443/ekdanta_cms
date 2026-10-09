@@ -5,6 +5,7 @@
 --}}
 @if ($item->isVisibleToCurrentUser())
     <a class="{{ trim($linkClass.' '.$item->css_class.' '.($item->isCurrent() ? 'active' : '')) }}"
+       @if ($item->isCurrent()) aria-current="page" @endif
        @if ($item->element_id) id="{{ $item->element_id }}" @endif
        href="{{ $item->resolvedUrl() }}" target="{{ $item->target }}"
        @if ($item->target === '_blank') rel="noopener" @endif>

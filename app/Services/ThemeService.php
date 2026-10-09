@@ -8,6 +8,7 @@ use App\Models\ThemeFont;
 use App\Models\ThemePreset;
 use App\Repositories\Contracts\ThemeRepositoryInterface;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class ThemeService
@@ -110,8 +111,8 @@ class ThemeService
         $css .= (string) $this->get('buttons.custom_css');
         $css .= $this->shadowCss();
         $css .= $this->typographyRoleCss();
+        $css .= $this->elementTypographyCss();
         $css .= $this->responsiveSpacingCss();
-        $css .= $this->animationCss();
         $css .= $this->layoutUtilityCss();
 
         if ($this->get('dark_mode.enabled', false)) {
@@ -133,8 +134,8 @@ class ThemeService
             $vars .= '--gsm-'.str_replace('_', '-', $key).':'.$this->get("colors.{$key}").';';
         }
 
-        $vars .= '--gsm-btn-gradient-from:'.$this->get('buttons.gradient_from', '#1b2a4a').';';
-        $vars .= '--gsm-btn-gradient-to:'.$this->get('buttons.gradient_to', '#c29b54').';';
+        $vars .= '--gsm-btn-gradient-from:'.$this->get('buttons.gradient_from', '#111827').';';
+        $vars .= '--gsm-btn-gradient-to:'.$this->get('buttons.gradient_to', '#4b5563').';';
 
         return $vars;
     }
@@ -211,6 +212,36 @@ class ThemeService
         return $css;
     }
 
+    /**
+     * Plain elements follow the typography roles too, not only the
+     * .gsm-text-* classes, so body copy no longer falls back to Bootstrap's
+     * system-ui stack. Element selectors, emitted after the site stylesheet:
+     * they beat Bootstrap's own element rules, and any component class still
+     * beats them. Sizes only where the role names that element.
+     */
+    private function elementTypographyCss(): string
+    {
+        $roles = [
+            'body' => ['body_text', true], 'h1' => ['main_heading', true], 'h2' => ['section_heading', true],
+            'h3' => ['sub_heading', true], 'h4,h5,h6' => ['sub_heading', false], 'p' => ['paragraph', true],
+            'button,.btn' => ['buttons', false], '.nav-link,.navbar-nav a' => ['navigation', true],
+            'footer' => ['footer_text', true], 'label,.form-label' => ['form_labels', true],
+            'input,select,textarea,.form-control,.form-select' => ['form_inputs', true],
+            'table' => ['tables', true], '.gsm-richtext' => ['blog_content', true],
+        ];
+
+        $css = ':root{--bs-body-font-family:var(--gsm-font-body-text);--bs-body-font-weight:var(--gsm-weight-body-text);}';
+
+        foreach ($roles as $selector => [$role, $sized]) {
+            $var = str_replace('_', '-', $role);
+            $css .= "{$selector}{font-family:var(--gsm-font-{$var});font-weight:var(--gsm-weight-{$var});"
+                ."letter-spacing:var(--gsm-spacing-{$var});text-transform:".$this->get("typography.{$role}_transform", 'none').';'
+                .($sized ? "font-size:var(--gsm-size-{$var});line-height:var(--gsm-leading-{$var});" : '').'}';
+        }
+
+        return $css;
+    }
+
     /** Tablet/mobile font-size overrides per role. */
     private function responsiveSpacingCss(): string
     {
@@ -256,10 +287,29 @@ class ThemeService
         if (is_string($stored) && str_starts_with($stored, 'local:')) {
             $font = ThemeFont::where('slug', substr($stored, 6))->first();
 
-            return $font ? "'{$font->name}'" : $default;
+            return self::fontStack($font ? $font->name : $default);
         }
 
-        return $stored ? "'{$stored}'" : $default;
+        return self::fontStack($stored ?: $default);
+    }
+
+    /**
+     * A CSS font-family value from what an admin typed: each family quoted on
+     * its own, generic keywords bare. Quoting the whole list — the old
+     * behaviour — turned `Georgia, "Times New Roman", serif` into one font
+     * name that doesn't exist. Anything that isn't part of a name is dropped,
+     * so the value can't break out of the stylesheet.
+     */
+    public static function fontStack(string $value): string
+    {
+        $generic = ['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-serif',
+            'ui-sans-serif', 'ui-monospace', 'ui-rounded', 'emoji', 'math', 'fangsong', 'inherit', 'initial', 'unset'];
+
+        return collect(explode(',', $value))
+            ->map(fn (string $family) => trim((string) preg_replace('/[^\pL\pN _-]/u', '', $family)))
+            ->filter()
+            ->map(fn (string $family) => in_array(strtolower($family), $generic, true) ? $family : "'{$family}'")
+            ->implode(', ');
     }
 
     private function buttonCss(): string
@@ -268,8 +318,8 @@ class ThemeService
         $px = $this->get('buttons.padding_x', 24);
         $py = $this->get('buttons.padding_y', 12);
         $shadow = $this->shadowValue($this->get('buttons.shadow', 'none'));
-        $gradientFrom = $this->get('buttons.gradient_from', '#1b2a4a');
-        $gradientTo = $this->get('buttons.gradient_to', '#c29b54');
+        $gradientFrom = $this->get('buttons.gradient_from', '#111827');
+        $gradientTo = $this->get('buttons.gradient_to', '#4b5563');
 
         $hover = match ($this->get('buttons.hover_animation', 'brighten')) {
             'lift' => '.gsm-btn-theme:hover{transform:translateY(-2px);}',
@@ -307,28 +357,6 @@ class ThemeService
         };
     }
 
-    /**
-     * Section Builder already implements the scroll-in mechanics
-     * (.gsm-animate + .gsm-anim-{fade-in|fade-up|zoom-in} + IntersectionObserver
-     * adding .gsm-animated — see frontend.scss + resources/js/frontend/app.js).
-     * This only makes duration/delay theme-driven and adds the two extra
-     * vocabulary entries the brief asks for (slide, bounce) without
-     * touching the existing fade-in/fade-up/zoom-in section option values.
-     */
-    private function animationCss(): string
-    {
-        if (! $this->get('animations.enabled', true)) {
-            return '.gsm-animate{opacity:1 !important;transform:none !important;transition:none !important;}';
-        }
-
-        $duration = $this->get('animations.duration', 600);
-        $delay = $this->get('animations.delay', 0);
-
-        return ".gsm-animate{transition-duration:{$duration}ms;transition-delay:{$delay}ms;}".
-            '.gsm-animate.gsm-anim-slide{transform:translateY(48px);}'.
-            '.gsm-animate.gsm-anim-bounce{transform:translateY(48px);transition-timing-function:cubic-bezier(.34,1.56,.64,1);}';
-    }
-
     /** Opt-in utility classes so pages can consume container/content width and spacing vars. */
     private function layoutUtilityCss(): string
     {
@@ -352,31 +380,41 @@ class ThemeService
             '}';
     }
 
-    /** Google Fonts <link> href for every family currently in use (deduped, skips local uploads). */
-    public function googleFontsUrl(): ?string
+    /**
+     * One Google Fonts stylesheet per family in use. Separate links because
+     * a family name is free text now: one unknown name 400s its own request
+     * instead of every font on the site. Local uploads, stacks (commas) and
+     * fonts every device already has are never requested.
+     *
+     * @return list<string>
+     */
+    public function googleFontsUrls(): array
     {
+        $installed = ['georgia', 'times new roman', 'arial', 'helvetica', 'verdana', 'tahoma',
+            'trebuchet ms', 'courier new', 'segoe ui', 'system-ui', 'inherit'];
         $families = [];
 
         foreach (array_keys(config('theme.typography.roles')) as $role) {
             $default = config("theme.typography.roles.{$role}.default_family");
-            $family = $this->get("typography.{$role}_family", $default);
+            $family = trim((string) $this->get("typography.{$role}_family", $default));
 
-            if (is_string($family) && ! str_starts_with($family, 'local:') && ! str_contains($family, ',')) {
-                $weight = $this->get("typography.{$role}_weight", '400');
-                $families[$family][$weight] = true;
+            if ($family === '' || str_starts_with($family, 'local:') || str_contains($family, ',')
+                || in_array(strtolower($family), $installed, true)) {
+                continue;
             }
+
+            $families[$family][(int) $this->get("typography.{$role}_weight", '400')] = true;
         }
 
-        if ($families === []) {
-            return null;
-        }
+        return collect($families)
+            ->map(function (array $weights, string $family): string {
+                ksort($weights); // Google rejects unsorted weight lists
 
-        $parts = [];
-        foreach ($families as $family => $weights) {
-            $parts[] = 'family='.str_replace(' ', '+', $family).':wght@'.implode(';', array_keys($weights));
-        }
-
-        return 'https://fonts.googleapis.com/css2?'.implode('&', $parts).'&display=swap';
+                return 'https://fonts.googleapis.com/css2?family='.urlencode($family)
+                    .':wght@'.implode(';', array_keys($weights)).'&display=swap';
+            })
+            ->values()
+            ->all();
     }
 
     /** @font-face blocks for every uploaded local font. */
@@ -397,8 +435,38 @@ class ThemeService
 
     public function importPayload(array $payload): void
     {
+        // Site-wide scripts are Developer Mode only: for anyone else an
+        // imported file or a restored backup keeps the scripts the site has now.
+        if (! Gate::allows('developer.mode')) {
+            $current = $this->exportPayload();
+
+            foreach ($this->developerKeys() as $dotted) {
+                unset($payload[$dotted]);
+
+                if (isset($current[$dotted])) {
+                    $payload[$dotted] = $current[$dotted];
+                }
+            }
+        }
+
         $this->theme->replaceAll($payload);
         $this->flushCache();
+    }
+
+    /** "group.key" of every field flagged 'developer' in config/theme.php. */
+    private function developerKeys(): array
+    {
+        $keys = [];
+
+        foreach ((array) config('theme') as $group => $schema) {
+            foreach ((array) ($schema['fields'] ?? []) as $key => $field) {
+                if (! empty($field['developer'])) {
+                    $keys[] = "{$group}.{$key}";
+                }
+            }
+        }
+
+        return $keys;
     }
 
     /** Saves the current live state as a named, restorable snapshot (also used for "Backup Theme"). */

@@ -12,6 +12,7 @@ use App\Services\SectionTypes\SectionTypeRegistry;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HeaderBuilderController extends Controller
 {
@@ -46,6 +47,8 @@ class HeaderBuilderController extends Controller
             'sticky' => ['nullable', 'boolean'],
             'container' => ['nullable', 'in:container,container-fluid'],
             'show_topbar' => ['nullable', 'boolean'],
+            'nav_style' => ['nullable', 'array'],
+            'nav_style.*' => ['nullable', 'in:inline,dropdown,overlay'],
             // Header-over-hero (design 05): transparent overlay → solid on scroll.
             'overlay_hero' => ['nullable', 'boolean'],
             'transparent_color' => ['nullable', 'string', 'max:30'],
@@ -70,9 +73,12 @@ class HeaderBuilderController extends Controller
                 'scrolled_shadow' => (bool) ($data['scrolled_shadow'] ?? true),
                 'menu_color' => $data['menu_color'] ?? null,
                 'menu_hover_color' => $data['menu_hover_color'] ?? null,
+                'nav_style' => $data['nav_style'] ?? [], // defaults: Layout::navStyle()
             ],
             'custom_css' => $data['custom_css'] ?? null,
-            'custom_js' => $data['custom_js'] ?? null,
+            // Header JS runs on every public page: Developer Mode only. Without
+            // it the key is left out, so LayoutService keeps the current script.
+            ...(Gate::allows('developer.mode') ? ['custom_js' => $data['custom_js'] ?? null] : []),
         ]);
 
         return redirect()->route('admin.header.edit')->with('success', 'Header settings saved.');

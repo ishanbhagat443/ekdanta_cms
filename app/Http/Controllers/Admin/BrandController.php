@@ -83,7 +83,8 @@ class BrandController extends Controller
         $families = [];
 
         foreach ($roles as $role => $meta) {
-            $family = (string) theme("typography.{$role}.family", $meta['default_family'] ?? '');
+            // Same key Theme Customizer writes ({role}_family): one source of truth.
+            $family = (string) theme("typography.{$role}_family", $meta['default_family'] ?? '');
 
             if ($family === '') {
                 continue;

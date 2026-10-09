@@ -29,8 +29,11 @@ class LayoutService
 
         $layout->update([
             'settings' => array_replace((array) $layout->settings, (array) ($data['settings'] ?? [])),
-            'custom_css' => $data['custom_css'] ?? $layout->custom_css,
-            'custom_js' => $data['custom_js'] ?? $layout->custom_js,
+            // "Not sent" keeps the current code; "sent empty" clears it. With
+            // ?? an emptied field (null) kept the old script, so it could
+            // never be removed.
+            'custom_css' => array_key_exists('custom_css', $data) ? $data['custom_css'] : $layout->custom_css,
+            'custom_js' => array_key_exists('custom_js', $data) ? $data['custom_js'] : $layout->custom_js,
         ]);
 
         $this->flushCache();

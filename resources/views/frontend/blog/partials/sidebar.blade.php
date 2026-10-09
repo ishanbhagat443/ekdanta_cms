@@ -13,7 +13,7 @@
     $showTags = $sidebarSettings['tags'] ?? false;
     $showNewsletter = $sidebarSettings['newsletter'] ?? false;
 @endphp
-<aside class="border rounded p-3" style="border-color: #c29b54 !important;">
+<aside class="border rounded p-3" style="border-color: #4b5563 !important;">
     {{-- Search --}}
     @if ($showSearch)
         <h5 class="gsm-serif">Search</h5>
@@ -53,7 +53,7 @@
             @foreach ($sidebar['archives'] as $month => $archive)
                 <a href="{{ route('front.blog.index', ['archive' => $month]) }}"
                    class="badge rounded-pill text-decoration-none px-2 py-1"
-                   style="background: #f5f0e6; color: #c29b54;">{{ $archive['label'] }}</a>
+                   style="background: #f3f4f6; color: #4b5563;">{{ $archive['label'] }}</a>
             @endforeach
         </div>
     @endif
@@ -65,7 +65,7 @@
             @foreach ($sidebar['categories'] as $category)
                 <a href="{{ route('front.blog.index', ['category' => $category->slug]) }}"
                    class="badge rounded-pill text-decoration-none px-2 py-1"
-                   style="background: #f5f0e6; color: #c29b54;">
+                   style="background: #f3f4f6; color: #4b5563;">
                     {{ $category->name }} ({{ $category->posts_count }})
                 </a>
             @endforeach
@@ -79,7 +79,7 @@
             @foreach ($sidebar['tags'] as $tag)
                 <a href="{{ route('front.blog.index', ['tag' => $tag->slug]) }}"
                    class="badge rounded-pill text-decoration-none px-2 py-1"
-                   style="background: #f5f0e6; color: #c29b54;">#{{ $tag->name }}</a>
+                   style="background: #f3f4f6; color: #4b5563;">#{{ $tag->name }}</a>
             @endforeach
         </div>
     @endif

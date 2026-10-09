@@ -83,10 +83,13 @@ needing `!important` anywhere.
 
 ## Google Fonts + Local Fonts
 
-`ThemeService::googleFontsUrl()` scans all 15 typography roles, dedupes
-families in use, skips `local:*` references and multi-font-stack values
-(commas), and builds one `fonts.googleapis.com/css2?family=...` URL loaded
-via `<link rel="stylesheet">` with `preconnect` hints. Local uploads
+`ThemeService::googleFontsUrls()` scans all 15 typography roles, dedupes
+families in use, skips `local:*` references, multi-font-stack values
+(commas) and fonts every device already has (Georgia, Arial…), and builds
+one `fonts.googleapis.com/css2?family=...` URL **per family** (weights
+sorted, as Google requires), each loaded via `<link rel="stylesheet">` with
+`preconnect` hints. One URL per family because family names are free text:
+a mistyped name fails only its own request. Local uploads
 (`theme_fonts`) get their own `@font-face` (see CSS generation step 1
 above) and appear in the typography family `<select>` as `local:{slug}`.
 

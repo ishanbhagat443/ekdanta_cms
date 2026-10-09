@@ -145,6 +145,36 @@ final class SectionAnimation
      * @param  array<string, mixed>  $submitted
      * @return array<string, array<string, mixed>>
      */
+    /** One animation on desktop, with tablet and mobile following it. */
+    public static function everyDevice(array $desktop): array
+    {
+        return self::sanitiseAll([
+            'desktop' => $desktop,
+            'tablet' => ['preset' => self::INHERIT],
+            'mobile' => ['preset' => self::INHERIT],
+        ]);
+    }
+
+    /**
+     * Starting style for a new page section: Theme Customizer → Animations
+     * → Default Animation, or nothing. An unknown stored value (the old
+     * fade/zoom/slide/bounce list, which never animated anything) means none.
+     */
+    public static function newSectionStyle(): array
+    {
+        $preset = (string) theme('animations.default_type', 'none');
+
+        if ($preset === 'none' || ! isset(self::PRESETS[$preset])) {
+            return [];
+        }
+
+        return ['anim' => self::everyDevice([
+            'preset' => $preset,
+            'duration' => theme('animations.duration'),
+            'delay' => theme('animations.delay'),
+        ])];
+    }
+
     public static function sanitiseAll(array $submitted): array
     {
         $clean = [];

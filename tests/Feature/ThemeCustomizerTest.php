@@ -55,7 +55,7 @@ class ThemeCustomizerTest extends TestCase
     {
         $theme = app(ThemeService::class);
 
-        $this->assertSame('#1b2a4a', $theme->get('colors.primary'));
+        $this->assertSame('#111827', $theme->get('colors.primary'));
         $this->assertSame(8, $theme->get('radius.buttons'));
         $this->assertSame('Poppins', $theme->get('typography.body_text_family'));
     }
@@ -129,28 +129,47 @@ class ThemeCustomizerTest extends TestCase
 
     /* ── Animations ───────────────────────────────────────────────── */
 
-    public function test_animations_disabled_forces_visible_state(): void
+    public function test_animations_disabled_switches_the_whole_site_to_still(): void
     {
         $admin = $this->admin();
 
         $this->actingAs($admin)->put('/cms/theme-customizer/animations', [
-            'enabled' => 0, 'default_type' => 'fade', 'duration' => 600, 'delay' => 0,
+            'enabled' => 0, 'default_type' => 'none', 'duration' => 600, 'delay' => 0,
         ])->assertRedirect();
 
-        $css = app(ThemeService::class)->renderCss();
-        $this->assertStringContainsString('.gsm-animate{opacity:1 !important', $css);
+        // gsm-animations.js and frontend.scss both key off this attribute.
+        $this->get('/')->assertSee('data-motion="off"', false);
     }
 
-    public function test_animation_duration_and_delay_applied(): void
+    /**
+     * Bug: Theme Customizer offered Fade In / Zoom In / Slide Up / Bounce,
+     * while sections offered fade-in … flip-up. Both now read
+     * SectionAnimation::PRESETS, and the default actually seeds new sections.
+     */
+    public function test_default_animation_comes_from_the_section_list_and_seeds_new_sections(): void
     {
         $admin = $this->admin();
+        $this->assertSame(\App\Support\SectionAnimation::PRESETS, config('theme.animations.types'));
 
         $this->actingAs($admin)->put('/cms/theme-customizer/animations', [
             'enabled' => 1, 'default_type' => 'slide', 'duration' => 900, 'delay' => 150,
+        ])->assertSessionHasErrors('default_type');
+
+        $this->actingAs($admin)->put('/cms/theme-customizer/animations', [
+            'enabled' => 1, 'default_type' => 'fade-up', 'duration' => 900, 'delay' => 150,
         ])->assertRedirect();
 
-        $css = app(ThemeService::class)->renderCss();
-        $this->assertStringContainsString('transition-duration:900ms;transition-delay:150ms;', $css);
+        $page = \App\Models\Page::create(['title' => 'Demo', 'slug' => 'demo', 'status' => 'draft']);
+        $section = $this->actingAs($admin)
+            ->postJson('/cms/sections', ['area' => 'page', 'page_id' => $page->id, 'type' => 'text-block'])
+            ->assertCreated()
+            ->json('section');
+
+        $this->assertSame(
+            ['preset' => 'fade-up', 'duration' => 900, 'delay' => 150],
+            array_intersect_key($section['style']['anim']['desktop'], array_flip(['preset', 'duration', 'delay']))
+        );
+        $this->assertSame('inherit', $section['style']['anim']['mobile']['preset']);
     }
 
     /* ── Custom CSS/JS per breakpoint ─────────────────────────────── */
@@ -238,14 +257,13 @@ class ThemeCustomizerTest extends TestCase
         $this->assertSame('Lato', app(ThemeService::class)->get('typography.section_heading_family'));
     }
 
-    public function test_google_fonts_url_built_from_families_in_use(): void
+    public function test_google_fonts_urls_built_from_families_in_use(): void
     {
-        $url = app(ThemeService::class)->googleFontsUrl();
+        $urls = implode(' ', app(ThemeService::class)->googleFontsUrls());
 
-        $this->assertNotNull($url);
-        $this->assertStringContainsString('family=Poppins', $url);
-        $this->assertStringContainsString('family=Lato', $url);
-        $this->assertStringContainsString('display=swap', $url);
+        $this->assertStringContainsString('family=Poppins', $urls);
+        $this->assertStringContainsString('family=Lato', $urls);
+        $this->assertStringContainsString('display=swap', $urls);
     }
 
     public function test_google_fonts_link_rendered_on_frontend(): void
@@ -349,7 +367,7 @@ class ThemeCustomizerTest extends TestCase
 
         $this->actingAs($admin)->post('/cms/theme-customizer/reset')->assertRedirect();
 
-        $this->assertSame('#1b2a4a', app(ThemeService::class)->get('colors.primary')); // config default
+        $this->assertSame('#111827', app(ThemeService::class)->get('colors.primary')); // config default
     }
 
     /* ── Backup / Restore ─────────────────────────────────────────── */
@@ -385,7 +403,7 @@ class ThemeCustomizerTest extends TestCase
     {
         $admin = $this->admin();
         $firstCss = app(ThemeService::class)->renderCss();
-        $this->assertStringContainsString('--gsm-primary:#1b2a4a;', $firstCss);
+        $this->assertStringContainsString('--gsm-primary:#111827;', $firstCss);
 
         $this->actingAs($admin)->put('/cms/theme-customizer/colors', ['primary' => '#654321']);
 

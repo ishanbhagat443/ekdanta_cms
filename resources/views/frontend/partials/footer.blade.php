@@ -74,7 +74,7 @@
     </footer>
 
     @if ($layout?->custom_css)
-        <style>{!! $layout->custom_css !!}</style>
+        <style>{!! style_safe($layout->custom_css) !!}</style>
     @endif
     @if ($layout?->custom_js)
         @push('scripts')

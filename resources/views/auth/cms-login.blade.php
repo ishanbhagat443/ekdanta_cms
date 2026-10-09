@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
     <style>
-        :root { --mm-navy: #1b2a4a; --mm-gold: #c29b54; --mm-ink: #14203a; }
+        :root { --mm-navy: #111827; --mm-gold: #4b5563; --mm-ink: #0b0f19; }
 
         * { box-sizing: border-box; }
 
@@ -27,7 +27,7 @@
             font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: var(--mm-ink);
             background:
-                radial-gradient(120% 80% at 100% 0%, rgba(194, 155, 84, 0.16), transparent 60%),
+                radial-gradient(120% 80% at 100% 0%, rgba(75, 85, 99, 0.16), transparent 60%),
                 radial-gradient(120% 90% at 0% 100%, rgba(27, 42, 74, 0.10), transparent 55%),
                 #f7f8fa;
         }
@@ -87,7 +87,7 @@
         .cms-input:focus {
             outline: none;
             border-color: var(--mm-gold);
-            box-shadow: 0 0 0 4px rgba(194, 155, 84, 0.16);
+            box-shadow: 0 0 0 4px rgba(75, 85, 99, 0.16);
         }
 
         .cms-input.is-invalid { border-color: #b3261e; }

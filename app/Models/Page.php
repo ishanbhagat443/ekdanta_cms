@@ -56,6 +56,15 @@ class Page extends Model
         return $this->banner_title ?: $this->title;
     }
 
+    /**
+     * Where an admin previews this page, drafts included. The home page is
+     * served at "/", never "/home", so its preview lives there too.
+     */
+    public function previewUrl(): string
+    {
+        return url($this->slug === 'home' ? '/' : '/'.$this->slug).'?preview=1';
+    }
+
     /** Read one value from the page's JSON settings store (dot-free key). */
     public function setting(string $key, mixed $default = null): mixed
     {

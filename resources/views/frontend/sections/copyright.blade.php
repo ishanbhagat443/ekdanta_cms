@@ -4,7 +4,7 @@
 @endphp
 
 <div class="container text-center small opacity-75">
-    @if (isset($values['*']))
+    @if (array_key_exists('*', $values))
         {{ $render($values['*']) }}
     @else
         <span class="d-none d-lg-inline">{{ $render($values['desktop']) }}</span>

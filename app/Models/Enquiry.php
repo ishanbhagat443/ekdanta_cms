@@ -10,15 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Enquiry extends Model
 {
-    /** source key => admin label */
-    public const SOURCES = [
-        'footer' => 'Footer Form',
-        'contact' => 'Contact Page Form',
-        'distributor' => 'Distributor Form',
-        'dealer' => 'Dealer Form',
-        'career' => 'Career Form',
-    ];
-
     public const STATUSES = ['new', 'read', 'replied', 'closed'];
 
     protected $fillable = [
@@ -43,9 +34,28 @@ class Enquiry extends Model
         return $this->belongsTo(FormSubmission::class, 'form_submission_id');
     }
 
+    /**
+     * Every enquiry source, key => label: one per form that saves its
+     * submissions as enquiries (labelled with the form's name), plus any
+     * older source still on stored enquiries. Remembered for the request.
+     *
+     * @return array<string, string>
+     */
+    public static function sources(): array
+    {
+        return \Illuminate\Support\Facades\Cache::store('array')->rememberForever('enquiry.sources', function (): array {
+            $forms = Form::query()->whereNotNull('enquiry_source')->orderBy('name')->pluck('name', 'enquiry_source')->all();
+            $stored = static::query()->distinct()->pluck('source')->filter()
+                ->mapWithKeys(fn (string $source) => [$source => \Illuminate\Support\Str::headline($source)])
+                ->all();
+
+            return $forms + $stored;
+        });
+    }
+
     public function sourceLabel(): string
     {
-        return self::SOURCES[$this->source] ?? ucfirst($this->source);
+        return self::sources()[$this->source] ?? \Illuminate\Support\Str::headline((string) $this->source);
     }
 
     /** Apply admin index filters: source, status, free-text search, date range. */

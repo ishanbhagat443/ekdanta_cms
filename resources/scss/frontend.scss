@@ -3,10 +3,10 @@
 
 // Brand palette (from Designs/*.pdf) — will move to CSS custom properties
 // fed by Settings → Branding when the theming pass lands.
-$gsm-navy: #1b2a4a;
-$gsm-magenta: #1b2a4a;
-$gsm-orange: #c29b54;
-$gsm-cream: #f5efe6;
+$gsm-navy: #111827;
+$gsm-magenta: #111827;
+$gsm-orange: #4b5563;
+$gsm-cream: #f3f4f6;
 
 .gsm-btn-gradient {
     // CSS custom properties (Theme Customizer → Buttons) override these
@@ -54,10 +54,9 @@ $gsm-cream: #f5efe6;
         }
     }
 
-    // Design 01 Header.png: gradient CTA pill — fully rounded left edge,
-    // tighter right corner.
+    // Header CTA: an even pill (the old look rounded only the left edge).
     .gsm-btn-gradient {
-        border-radius: 2rem 0.6rem 0.6rem 2rem;
+        border-radius: 999px;
         padding: 0.62rem 2.1rem;
         font-family: var(--gsm-font-buttons, inherit);
         font-weight: var(--gsm-weight-buttons, 500);
@@ -83,7 +82,7 @@ $gsm-cream: #f5efe6;
     height: 3px;
     margin: 0.75rem auto 0;
     border-radius: 3px;
-    background: var(--gsm-secondary, #c29b54);
+    background: var(--gsm-secondary, #4b5563);
 
     &.gsm-heading-rule-start { margin-left: 0; margin-right: auto; } // left-aligned blocks
     &.gsm-heading-rule-sm { width: 48px; height: 2px; }
@@ -94,7 +93,7 @@ $gsm-cream: #f5efe6;
     height: 1px;
     max-width: 220px;
     margin: 0 auto;
-    background: linear-gradient(90deg, transparent, var(--gsm-secondary, #c29b54), transparent);
+    background: linear-gradient(90deg, transparent, var(--gsm-secondary, #4b5563), transparent);
 }
 
 // Retired GSM garland texture (kept as a no-op guard for any stale markup).
@@ -105,7 +104,7 @@ $gsm-cream: #f5efe6;
 }
 
 .gsm-counter-number {
-    color: var(--gsm-accent, #c29b54);
+    color: var(--gsm-accent, #4b5563);
     font-weight: 600;
 }
 
@@ -120,7 +119,7 @@ $gsm-cream: #f5efe6;
 // canvas locks to the artwork's aspect ratio so %-positioned photos and
 // captions register exactly onto the painted frames at any viewport width.
 .gsm-about {
-    background-color: var(--gsm-light, #f5efe6);
+    background-color: var(--gsm-light, #f3f4f6);
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
@@ -139,7 +138,7 @@ $gsm-cream: #f5efe6;
     }
 
     .gsm-about-eyebrow {
-        color: var(--gsm-accent, #c29b54);
+        color: var(--gsm-accent, #4b5563);
         letter-spacing: 2px;
         font-size: 0.9rem;
     }
@@ -196,7 +195,7 @@ $gsm-cream: #f5efe6;
     font-weight: 700;
     font-size: clamp(11px, 0.85vw, 16px);
     letter-spacing: 0.5px;
-    color: var(--gsm-accent, #c29b54);
+    color: var(--gsm-accent, #4b5563);
 }
 
 .gsm-about-caption-top { left: 42.2%; top: 11%; max-width: 24%; }
@@ -205,7 +204,7 @@ $gsm-cream: #f5efe6;
 
 // Stacked (below lg) variant of the collage captions/photos.
 .gsm-about-stacked {
-    background-color: var(--gsm-light, #f5efe6);
+    background-color: var(--gsm-light, #f3f4f6);
 
     .gsm-about-caption {
         position: static;
@@ -227,7 +226,7 @@ $gsm-cream: #f5efe6;
 
 // "About Global Silk Mills" story section (About page design 02).
 .gsm-about-story {
-    background-color: var(--gsm-light, #f5efe6);
+    background-color: var(--gsm-light, #f3f4f6);
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -269,7 +268,7 @@ $gsm-cream: #f5efe6;
     .gsm-about-story-highlight {
         font-weight: 700;
         font-size: 1.05rem;
-        color: var(--gsm-secondary, #1b2a4a);
+        color: var(--gsm-secondary, #111827);
         text-align: center;
         position: relative;
         padding-right: 1.5rem;
@@ -316,7 +315,7 @@ $gsm-cream: #f5efe6;
 .gsm-founder-journey {
     position: relative;
     overflow: hidden;
-    background-color: var(--gsm-light, #f5efe6);
+    background-color: var(--gsm-light, #f3f4f6);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -380,7 +379,7 @@ $gsm-cream: #f5efe6;
 
     .gsm-founder-card {
         background: rgba(255, 255, 255, 0.6);
-        border: 1px solid var(--gsm-accent, #c29b54);
+        border: 1px solid var(--gsm-accent, #4b5563);
         border-radius: 4px;
         padding: 2rem;
         height: 100%;
@@ -429,7 +428,7 @@ $gsm-cream: #f5efe6;
 // "Our Artistry Excellence" (About page design 06): 3-photo gallery with
 // overlay titles + a ribbon-notch icon-card strip beneath.
 .gsm-artistry {
-    background-color: var(--gsm-light, #f5efe6);
+    background-color: var(--gsm-light, #f3f4f6);
     background-repeat: no-repeat;
     padding-bottom: 5rem;
 
@@ -545,7 +544,7 @@ $gsm-cream: #f5efe6;
             padding: 0;
             background: #c9bda6;
 
-            &.active { background: #3d3327; }
+            &.active { background: #1f2937; }
         }
     }
 
@@ -596,7 +595,7 @@ $gsm-cream: #f5efe6;
         width: 48px;
         height: 48px;
         border-radius: 50% 50% 50% 4px;
-        background: linear-gradient(135deg, #c29b54, #c29b54);
+        background: linear-gradient(135deg, #4b5563, #4b5563);
         color: #fff;
         display: flex;
         align-items: center;
@@ -616,7 +615,7 @@ $gsm-cream: #f5efe6;
             bottom: 0;
             width: 32px;
             height: 2px;
-            background: var(--gsm-accent, #c29b54);
+            background: var(--gsm-accent, #4b5563);
         }
     }
 
@@ -633,7 +632,7 @@ $gsm-cream: #f5efe6;
 // with hand-tuned SVG curves, like the Home Working Process section,
 // cannot scale to an admin-growable list).
 .gsm-history {
-    background-color: var(--gsm-light, #f5efe6);
+    background-color: var(--gsm-light, #f3f4f6);
     background-repeat: no-repeat;
 
     .gsm-history-slider {
@@ -712,11 +711,11 @@ $gsm-cream: #f5efe6;
     }
 
     .gsm-history-badge-gold {
-        background: linear-gradient(160deg, #c29b54, #a97a2a);
+        background: linear-gradient(160deg, #4b5563, #a97a2a);
     }
 
     .gsm-history-badge-orange {
-        background: linear-gradient(160deg, #c29b54, #c29b54);
+        background: linear-gradient(160deg, #4b5563, #4b5563);
     }
 
     .gsm-history-photo {
@@ -742,7 +741,7 @@ $gsm-cream: #f5efe6;
             padding: 0;
             background: #c9bda6;
 
-            &.active { background: #3d3327; }
+            &.active { background: #1f2937; }
         }
     }
 
@@ -820,7 +819,7 @@ $gsm-cream: #f5efe6;
         &::after {
             content: '';
             position: absolute;
-            background: var(--gsm-accent, #c29b54);
+            background: var(--gsm-accent, #4b5563);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -883,12 +882,12 @@ $gsm-cream: #f5efe6;
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: var(--gsm-light, #f5efe6);
-    color: var(--gsm-accent, #c29b54);
+    background: var(--gsm-light, #f3f4f6);
+    color: var(--gsm-accent, #4b5563);
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-        background: var(--gsm-accent, #c29b54);
+        background: var(--gsm-accent, #4b5563);
         color: #fff;
     }
 }
@@ -901,7 +900,7 @@ $gsm-cream: #f5efe6;
 
 // Working process zigzag timeline (design 05 Process.png).
 .gsm-process {
-    background-color: var(--gsm-light, #f5efe6);
+    background-color: var(--gsm-light, #f3f4f6);
 
     .gsm-process-title {
         font-size: 1.35rem;
@@ -917,7 +916,7 @@ $gsm-cream: #f5efe6;
         color: #fff;
         font-weight: 700;
         font-family: var(--gsm-font-buttons, inherit);
-        background: linear-gradient(135deg, var(--gsm-btn-gradient-from, #1b2a4a), var(--gsm-btn-gradient-to, #c29b54));
+        background: linear-gradient(135deg, var(--gsm-btn-gradient-from, #111827), var(--gsm-btn-gradient-to, #4b5563));
         border: 4px solid rgba(255, 255, 255, 0.85);
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
     }
@@ -928,7 +927,7 @@ $gsm-cream: #f5efe6;
         aspect-ratio: 0.82;
         margin: 0 auto;
         padding: 6px;
-        background: linear-gradient(160deg, #c29b54, #c29b54);
+        background: linear-gradient(160deg, #4b5563, #4b5563);
 
         img {
             width: 100%;
@@ -1039,7 +1038,7 @@ $gsm-cream: #f5efe6;
         &:hover .gsm-cat-card {
             transform: translateY(-6px);
             box-shadow: 0 16px 34px rgba(20, 32, 58, 0.16);
-            border-color: var(--gsm-secondary, #c29b54);
+            border-color: var(--gsm-secondary, #4b5563);
         }
     }
 
@@ -1073,7 +1072,7 @@ $gsm-cream: #f5efe6;
 
     .gsm-cat-card__title {
         margin: 0 0 0.2rem;
-        color: var(--gsm-heading-color, #1b2a4a);
+        color: var(--gsm-heading-color, #111827);
         font-weight: 700;
         font-size: clamp(1rem, 1.15vw, 1.2rem);
         line-height: 1.3;
@@ -1081,7 +1080,7 @@ $gsm-cream: #f5efe6;
 
     .gsm-cat-card__count {
         display: inline-block;
-        color: var(--gsm-secondary, #c29b54);
+        color: var(--gsm-secondary, #4b5563);
         font-size: 0.85rem;
         font-weight: 600;
         letter-spacing: 0.03em;
@@ -1102,7 +1101,7 @@ $gsm-cream: #f5efe6;
             padding: 0;
             background: #d4d8e0;
 
-            &.active { background: var(--gsm-primary, #1b2a4a); }
+            &.active { background: var(--gsm-primary, #111827); }
         }
     }
 }
@@ -1270,6 +1269,10 @@ $gsm-cream: #f5efe6;
 }
 
 // Product grid (Featured / Latest Products home sections).
+// ponytail: dead shop-module CSS (.gsm-products, .gsm-pdp*, .gsm-swatch*, .gsm-product-*,
+// .gsm-account-dropdown, .gsm-inline-badge; ~1,200 lines, no markup uses them since the
+// shop was removed). Delete in the Phase 6 performance pass, with Playwright screenshots
+// as the safety net.
 .gsm-products {
     .gsm-product-card {
         background: #fff;
@@ -1314,7 +1317,7 @@ $gsm-cream: #f5efe6;
     .gsm-product-price {
         margin-top: 0.4rem;
         font-weight: 700;
-        color: var(--gsm-accent, #c29b54);
+        color: var(--gsm-accent, #4b5563);
     }
 }
 
@@ -1363,8 +1366,8 @@ $gsm-cream: #f5efe6;
         gap: 0.4rem;
         padding: 0.35rem 0.9rem;
         border-radius: 100px;
-        background: #f5f0e6;
-        color: var(--gsm-accent, #c29b54);
+        background: #f3f4f6;
+        color: var(--gsm-accent, #4b5563);
         font-size: 0.85rem;
         font-weight: 600;
         white-space: nowrap;
@@ -1380,7 +1383,7 @@ $gsm-cream: #f5efe6;
             color: #22262a;
             text-decoration: none;
 
-            &:hover { color: var(--gsm-accent, #c29b54); }
+            &:hover { color: var(--gsm-accent, #4b5563); }
         }
 
         &.gsm-blog-title-sm {
@@ -1489,6 +1492,18 @@ html:not(.js-enabled) [data-anim] {
     }
 }
 
+// Theme Customizer → Animations → "Enable Scroll Animations" off: same result
+// for every visitor, without waiting for the script.
+html[data-motion="off"] {
+    [data-anim] {
+        opacity: 1 !important;
+        transform: none !important;
+        will-change: auto;
+    }
+
+    .gsm-hero-enter { animation: none; }
+}
+
 // Rich text content defaults
 .gsm-richtext {
     img { max-width: 100%; height: auto; }
@@ -1519,7 +1534,7 @@ html:not(.js-enabled) [data-anim] {
 
         .navbar .nav-link:hover,
         .navbar .nav-link:focus {
-            color: var(--gsm-header-menu-hover, #c29b54);
+            color: var(--gsm-header-menu-hover, #4b5563);
         }
 
         .navbar-toggler-icon {
@@ -1615,12 +1630,10 @@ html:not(.js-enabled) [data-anim] {
     z-index: 1;
 }
 
-// Blackletter display text (designs 09/10). The design's blackletter font
-// file is not in assets/ — resolves to the Theme Customizer variable once
-// the font is uploaded (Theme → Local Font Upload); elegant serif fallback
-// until then. Never a hardcoded font: the CSS var wins when set.
+// Display heading over the Instagram strip: the theme's section-heading font
+// (Theme Customizer → Typography), like every other heading.
 .gsm-blackletter {
-    font-family: var(--gsm-font-blackletter, 'Old English Text MT', 'UnifrakturMaguntia', 'Playfair Display', Georgia, serif);
+    font-family: var(--gsm-font-section-heading);
 }
 
 // "Follow Us On Instagram" strip (design 09 Instagram.png) — full-bleed,
@@ -1638,7 +1651,7 @@ html:not(.js-enabled) [data-anim] {
             color: inherit;
             text-decoration: none;
 
-            &:hover { color: var(--gsm-accent, #c29b54); }
+            &:hover { color: var(--gsm-accent, #4b5563); }
         }
     }
 
@@ -1764,7 +1777,7 @@ html:not(.js-enabled) [data-anim] {
 
     &:hover {
         transform: translateY(-2px);
-        color: var(--gsm-accent, #c29b54) !important;
+        color: var(--gsm-accent, #4b5563) !important;
     }
 }
 
@@ -1806,13 +1819,13 @@ html:not(.js-enabled) [data-anim] {
 
     // Selected Filters block.
     .gsm-filter-title-sm {
-        color: #c29b54;
+        color: #4b5563;
         font-weight: 700;
         font-size: 1rem;
     }
 
     .gsm-clear-all {
-        color: #c29b54;
+        color: #4b5563;
         font-weight: 600;
         font-size: 0.82rem;
         background: none;
@@ -1839,7 +1852,7 @@ html:not(.js-enabled) [data-anim] {
             color: #a0a0a0;
             font-size: 0.7rem;
 
-            &:hover { color: #c29b54; }
+            &:hover { color: #4b5563; }
         }
     }
 
@@ -1854,9 +1867,9 @@ html:not(.js-enabled) [data-anim] {
         &:last-child { margin-bottom: 0; }
     }
 
-    // Filter title + divider (spec: #c29b54, 700, 24px, red divider below).
+    // Filter title + divider (spec: #4b5563, 700, 24px, red divider below).
     .gsm-filter-title {
-        color: #c29b54;
+        color: #4b5563;
         font-weight: 700;
         font-size: 24px;
         line-height: 1.1;
@@ -1865,7 +1878,7 @@ html:not(.js-enabled) [data-anim] {
 
     .gsm-filter-divider {
         height: 1px;
-        background: #c29b54;
+        background: #4b5563;
         margin-bottom: 1.1rem;
     }
 
@@ -1882,7 +1895,7 @@ html:not(.js-enabled) [data-anim] {
         line-height: 0;
 
         input:checked + .gsm-swatch {
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #c29b54;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #4b5563;
         }
     }
 
@@ -1909,11 +1922,11 @@ html:not(.js-enabled) [data-anim] {
             small { color: #999; margin-left: 3px; font-size: 0.72rem; }
         }
 
-        &:hover span { border-color: #c29b54; }
+        &:hover span { border-color: #4b5563; }
 
         input:checked + span {
-            background: #c29b54;
-            border-color: #c29b54;
+            background: #4b5563;
+            border-color: #4b5563;
             color: #fff;
 
             small { color: rgba(255, 255, 255, 0.85); }
@@ -1935,7 +1948,7 @@ html:not(.js-enabled) [data-anim] {
         input {
             width: 16px;
             height: 16px;
-            accent-color: #c29b54;
+            accent-color: #4b5563;
             cursor: pointer;
         }
     }
@@ -1959,7 +1972,7 @@ html:not(.js-enabled) [data-anim] {
 
     .gsm-skeleton-img {
         aspect-ratio: 3 / 4;
-        background: linear-gradient(100deg, #ece5da 30%, #f5efe6 50%, #ece5da 70%);
+        background: linear-gradient(100deg, #ece5da 30%, #f3f4f6 50%, #ece5da 70%);
         background-size: 200% 100%;
         animation: gsm-skeleton-shimmer 1.3s ease-in-out infinite;
     }
@@ -1968,7 +1981,7 @@ html:not(.js-enabled) [data-anim] {
         height: 10px;
         margin: 0.6rem 0.75rem;
         border-radius: 4px;
-        background: linear-gradient(100deg, #ece5da 30%, #f5efe6 50%, #ece5da 70%);
+        background: linear-gradient(100deg, #ece5da 30%, #f3f4f6 50%, #ece5da 70%);
         background-size: 200% 100%;
         animation: gsm-skeleton-shimmer 1.3s ease-in-out infinite;
     }
@@ -1997,7 +2010,7 @@ html:not(.js-enabled) [data-anim] {
     }
 
     &.active {
-        box-shadow: 0 0 0 2px var(--gsm-primary, #1b2a4a);
+        box-shadow: 0 0 0 2px var(--gsm-primary, #111827);
     }
 }
 
@@ -2006,7 +2019,7 @@ html:not(.js-enabled) [data-anim] {
 }
 
 // Shared CTA gradient (spec) for the Catalogue border/text + Get Price fill.
-$gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, #c29b54 100%);
+$gsm-cta-gradient: linear-gradient(90deg, #0b0f19 2%, #111827 19%, #4b5563 50%, #4b5563 100%);
 
 // ── Collection page background (collection_bg.png) ─────────────────────
 // Scoped to the collection section only — never affects header/footer.
@@ -2082,7 +2095,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
             bottom: -6px;
             border-width: 3px 3px 3px 0;
             border-style: solid;
-            border-color: #14203a #14203a transparent transparent;
+            border-color: #0b0f19 #0b0f19 transparent transparent;
         }
     }
 
@@ -2092,7 +2105,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         right: 20px;
         bottom: 20px;
         background: #f5ebda;
-        color: #c29b54;
+        color: #4b5563;
         font-weight: 700;
         font-size: 0.8rem;
         padding: 4px 14px;
@@ -2118,7 +2131,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
             color: #2b2b2b;
             text-decoration: none;
 
-            &:hover { color: #c29b54; }
+            &:hover { color: #4b5563; }
         }
     }
 
@@ -2147,7 +2160,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 
     .gsm-card-detail-title {
         display: block;
-        color: #c29b54;
+        color: #4b5563;
         font-weight: 700;
         font-size: 0.82rem;
         margin-bottom: 2px;
@@ -2196,14 +2209,14 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 
 // Solid navy outline button (no gradient).
 .gsm-btn-catalogue {
-    border: 1.5px solid var(--gsm-primary, #1b2a4a);
+    border: 1.5px solid var(--gsm-primary, #111827);
     background: #fff;
-    color: var(--gsm-primary, #1b2a4a);
+    color: var(--gsm-primary, #111827);
 
-    .gsm-grad-text { color: var(--gsm-primary, #1b2a4a); transition: color 0.2s ease; }
+    .gsm-grad-text { color: var(--gsm-primary, #111827); transition: color 0.2s ease; }
 
     &:not(.disabled):hover {
-        background: var(--gsm-primary, #1b2a4a);
+        background: var(--gsm-primary, #111827);
         box-shadow: 0 6px 16px rgba(20, 32, 58, 0.18);
 
         .gsm-grad-text { color: #fff; }
@@ -2218,12 +2231,12 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 // Primary CTA: solid navy, warm-gold on hover.
 .gsm-btn-getprice {
     border: 0;
-    background: var(--gsm-primary, #1b2a4a);
+    background: var(--gsm-primary, #111827);
     color: #fff;
 
     &:hover {
-        background: var(--gsm-secondary, #c29b54);
-        color: var(--gsm-primary, #1b2a4a);
+        background: var(--gsm-secondary, #4b5563);
+        color: var(--gsm-primary, #111827);
     }
 }
 
@@ -2251,7 +2264,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         justify-content: center;
         text-decoration: none;
 
-        &:hover { border-color: #c29b54; color: #c29b54; }
+        &:hover { border-color: #4b5563; color: #4b5563; }
     }
 
     .gsm-pdf-zoom-label,
@@ -2324,8 +2337,8 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 
         img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        &.active { border-color: #c29b54; }
-        &:hover { border-color: rgba(194, 155, 84, 0.5); }
+        &.active { border-color: #4b5563; }
+        &:hover { border-color: rgba(75, 85, 99, 0.5); }
     }
 
     .gsm-pdp-main-wrap {
@@ -2386,7 +2399,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     .gsm-pdp-meta-sep { color: #c9bda6; }
 
     .gsm-pdp-name {
-        color: #c29b54;
+        color: #4b5563;
         font-size: 1.9rem;
         font-weight: 700;
         line-height: 1.2;
@@ -2412,7 +2425,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         padding: 12px 14px;
         text-align: center;
 
-        .t { display: block; color: #c29b54; font-weight: 700; font-size: 0.9rem; }
+        .t { display: block; color: #4b5563; font-weight: 700; font-size: 0.9rem; }
         .v { display: block; color: #575757; font-size: 0.85rem; margin-top: 2px; }
     }
 
@@ -2439,7 +2452,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         text-decoration: underline;
         cursor: pointer;
 
-        &:hover { color: #c29b54; }
+        &:hover { color: #4b5563; }
     }
     .gsm-pdp-sizes {
         display: flex;
@@ -2485,7 +2498,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         .gsm-btn-catalogue, .gsm-btn-getprice { height: 52px; font-size: 1rem; }
     }
 
-    // Row 8: accordion (white; +/- icons #c29b54; one open at a time).
+    // Row 8: accordion (white; +/- icons #4b5563; one open at a time).
     .gsm-pdp-accordion {
         .accordion-item {
             background: #fff;
@@ -2509,7 +2522,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 
         .gsm-acc-icon {
             margin-left: auto;
-            color: #c29b54;
+            color: #4b5563;
             font-size: 1rem;
 
             .fa-minus { display: none; }
@@ -2521,14 +2534,14 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     }
 }
 
-// ── Section 2: Introduction strip (#F5F3F2, #1b2a4a, centered) ────────
+// ── Section 2: Introduction strip (#F5F3F2, #111827, centered) ────────
 .gsm-pdp-intro {
     background: #f5f3f2;
     padding: 28px 0;
     text-align: center;
 
     .gsm-pdp-intro-text {
-        color: #1b2a4a;
+        color: #111827;
         font-weight: 700;
         font-size: 1.35rem;
 
@@ -2580,7 +2593,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     }
 
     .gsm-inquiry-heading {
-        color: #c29b54;
+        color: #4b5563;
         font-weight: 700;
         text-align: center;
         font-size: 1.6rem;
@@ -2609,7 +2622,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         flex: 0 0 auto;
     }
     .gsm-inquiry-prod-name {
-        color: #c29b54;
+        color: #4b5563;
         font-weight: 700;
         font-size: 1.05rem;
         line-height: 1.3;
@@ -2627,14 +2640,14 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         font-weight: 600;
         color: #333;
         margin-bottom: 4px;
-        span { color: #c29b54; }
+        span { color: #4b5563; }
     }
     .form-control {
         border-radius: 8px;
         border: 1px solid #e2d9c8;
         background: #fff;
         font-size: 0.9rem;
-        &:focus { border-color: #c29b54; box-shadow: none; }
+        &:focus { border-color: #4b5563; box-shadow: none; }
         &[readonly] { background: #f3ede1; color: #575757; }
     }
 
@@ -2648,14 +2661,14 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         min-width: 46px;
         padding: 7px 16px;
         border-radius: 999px;
-        border: 1px solid #c29b54;
+        border: 1px solid #4b5563;
         background: #fff;
         color: #575757;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.15s;
 
-        &.active { background: #c29b54; border-color: #c29b54; color: #fff; }
+        &.active { background: #4b5563; border-color: #4b5563; color: #fff; }
     }
 
     // Submit (gradient pill).
@@ -2776,7 +2789,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         gap: 12px;
         font-size: 1.4rem;
         font-weight: 700;
-        color: var(--gsm-heading-color, #1b2a4a);
+        color: var(--gsm-heading-color, #111827);
         margin: 0 0 6px;
 
         // Clean gold rule (replaces the retired heading_line.png underline).
@@ -2786,7 +2799,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
             height: 2px;
             max-width: 120px;
             border-radius: 2px;
-            background: var(--gsm-secondary, #c29b54);
+            background: var(--gsm-secondary, #4b5563);
         }
 
         .gsm-contact-underline { display: none; }
@@ -2819,7 +2832,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 .gsm-page-banner {
     position: relative;
     padding: 3.25rem 0;
-    background-color: var(--gsm-primary, #1b2a4a);
+    background-color: var(--gsm-primary, #111827);
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -2846,8 +2859,8 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     .breadcrumb-item + .breadcrumb-item::before { color: rgba(255, 255, 255, 0.7); }
 
     .breadcrumb-item a { color: #fff; text-decoration: none; }
-    .breadcrumb-item a:hover { color: var(--gsm-secondary, #c29b54); }
-    .breadcrumb-item.active { color: var(--gsm-secondary, #c29b54); }
+    .breadcrumb-item a:hover { color: var(--gsm-secondary, #4b5563); }
+    .breadcrumb-item.active { color: var(--gsm-secondary, #4b5563); }
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -2869,7 +2882,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 .gsm-cat {
     position: relative;
     background:
-        radial-gradient(120% 80% at 100% 0%, rgba(194, 155, 84, 0.10), transparent 60%),
+        radial-gradient(120% 80% at 100% 0%, rgba(75, 85, 99, 0.10), transparent 60%),
         radial-gradient(120% 90% at 0% 100%, rgba(27, 42, 74, 0.06), transparent 55%),
         var(--gsm-section-background, #f7f8fa);
 }
@@ -2908,7 +2921,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         height: 42px;
         border: 0;
         border-radius: 50%;
-        background: var(--gsm-primary, #1b2a4a);
+        background: var(--gsm-primary, #111827);
         color: #fff;
         display: none;
         align-items: center;
@@ -2917,7 +2930,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         cursor: pointer;
         z-index: 3;
 
-        &:hover { background: var(--gsm-secondary, #c29b54); color: var(--gsm-primary, #1b2a4a); }
+        &:hover { background: var(--gsm-secondary, #4b5563); color: var(--gsm-primary, #111827); }
     }
     .gsm-pcar-prev { left: -10px; }
     .gsm-pcar-next { right: -10px; }
@@ -2935,7 +2948,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         .gsm-cat-dot {
             width: 9px; height: 9px; border-radius: 50%; border: 0; padding: 0;
             background: #d4d8e0;
-            &.active { background: var(--gsm-primary, #1b2a4a); }
+            &.active { background: var(--gsm-primary, #111827); }
         }
     }
 }
@@ -2975,13 +2988,13 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     height: 64px;
     margin-bottom: 1rem;
     border-radius: 50%;
-    background: linear-gradient(145deg, rgba(27, 42, 74, 0.10), rgba(194, 155, 84, 0.22));
-    color: var(--gsm-primary, #1b2a4a);
+    background: linear-gradient(145deg, rgba(27, 42, 74, 0.10), rgba(75, 85, 99, 0.22));
+    color: var(--gsm-primary, #111827);
     font-size: 1.5rem;
 
     .gsm-feature-card--row & { margin-bottom: 0; flex: 0 0 auto; }
 }
-.gsm-feature-title { font-weight: 700; color: var(--gsm-heading-color, #1b2a4a); margin-bottom: 0.35rem; }
+.gsm-feature-title { font-weight: 700; color: var(--gsm-heading-color, #111827); margin-bottom: 0.35rem; }
 .gsm-feature-text { color: #5b6577; font-size: 0.9rem; line-height: 1.5; }
 
 // Testimonials glass.
@@ -2989,7 +3002,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     padding: 2.25rem 2rem;
 
     blockquote { font-size: 1.05rem; color: #2a3550; margin-bottom: 1rem; line-height: 1.6; }
-    .fw-bold { color: var(--gsm-heading-color, #1b2a4a); }
+    .fw-bold { color: var(--gsm-heading-color, #111827); }
 }
 
 // Section CTA pill.
@@ -2997,14 +3010,14 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     display: inline-block;
     padding: 12px 30px;
     border-radius: 999px;
-    background: var(--gsm-primary, #1b2a4a);
+    background: var(--gsm-primary, #111827);
     color: #fff;
     font-weight: 600;
     text-decoration: none;
-    border: 1.5px solid var(--gsm-primary, #1b2a4a);
+    border: 1.5px solid var(--gsm-primary, #111827);
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 
-    &:hover { background: var(--gsm-secondary, #c29b54); border-color: var(--gsm-secondary, #c29b54); color: var(--gsm-primary, #1b2a4a); }
+    &:hover { background: var(--gsm-secondary, #4b5563); border-color: var(--gsm-secondary, #4b5563); color: var(--gsm-primary, #111827); }
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -3020,7 +3033,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     z-index: 1080;
     padding: 12px 22px;
     border-radius: 999px;
-    background: var(--gsm-primary, #1b2a4a);
+    background: var(--gsm-primary, #111827);
     color: #fff;
     font-size: 0.9rem;
     font-weight: 600;
@@ -3047,12 +3060,12 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         height: 38px;
         border: 0;
         background: transparent;
-        color: var(--gsm-primary, #1b2a4a);
+        color: var(--gsm-primary, #111827);
         font-size: 1.1rem;
         line-height: 1;
         cursor: pointer;
 
-        &:hover { background: rgba(194, 155, 84, 0.16); }
+        &:hover { background: rgba(75, 85, 99, 0.16); }
     }
 
     input {
@@ -3061,7 +3074,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         border: 0;
         text-align: center;
         font-weight: 600;
-        color: var(--gsm-heading-color, #1b2a4a);
+        color: var(--gsm-heading-color, #111827);
 
         &:focus { outline: none; }
     }
@@ -3074,7 +3087,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     margin: 0.35rem 0 0.6rem;
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--gsm-heading-color, #1b2a4a);
+    color: var(--gsm-heading-color, #111827);
 }
 
 .gsm-quickview-btn {
@@ -3086,7 +3099,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     border: 0;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.94);
-    color: var(--gsm-primary, #1b2a4a);
+    color: var(--gsm-primary, #111827);
     font-size: 0.78rem;
     font-weight: 600;
     white-space: nowrap;
@@ -3105,7 +3118,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 .gsm-pdp-price {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--gsm-heading-color, #1b2a4a);
+    color: var(--gsm-heading-color, #111827);
     margin-bottom: 0.35rem;
 
     .gsm-pdp-price-note {
@@ -3131,12 +3144,12 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         border: 1px solid var(--gsm-border-color, #eceef1);
         border-radius: 50%;
         background: #fff;
-        color: var(--gsm-primary, #1b2a4a);
+        color: var(--gsm-primary, #111827);
         text-decoration: none;
         cursor: pointer;
         transition: background 0.2s ease, color 0.2s ease;
 
-        &:hover { background: var(--gsm-primary, #1b2a4a); color: #fff; }
+        &:hover { background: var(--gsm-primary, #111827); color: #fff; }
     }
 }
 
@@ -3175,7 +3188,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         font-size: 1rem;
         font-weight: 700;
         margin: 0 0 0.25rem;
-        color: var(--gsm-heading-color, #1b2a4a);
+        color: var(--gsm-heading-color, #111827);
     }
 
     &__meta {
@@ -3199,7 +3212,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     &__total {
         flex: 0 0 auto;
         font-weight: 700;
-        color: var(--gsm-heading-color, #1b2a4a);
+        color: var(--gsm-heading-color, #111827);
     }
 
     @media (max-width: 575.98px) {
@@ -3213,11 +3226,11 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     padding: 0;
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--gsm-primary, #1b2a4a);
+    color: var(--gsm-primary, #111827);
     text-decoration: none;
     cursor: pointer;
 
-    &:hover { color: var(--gsm-secondary, #c29b54); }
+    &:hover { color: var(--gsm-secondary, #4b5563); }
     &--danger { color: #b3261e; }
 }
 
@@ -3230,7 +3243,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         font-size: 1.1rem;
         font-weight: 700;
         margin-bottom: 1rem;
-        color: var(--gsm-heading-color, #1b2a4a);
+        color: var(--gsm-heading-color, #111827);
     }
 }
 
@@ -3239,7 +3252,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--gsm-heading-color, #1b2a4a);
+    color: var(--gsm-heading-color, #111827);
 }
 
 .gsm-auth-card {
@@ -3252,12 +3265,12 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 .gsm-account-link {
     display: block;
     padding: 0.5rem 0;
-    color: var(--gsm-primary, #1b2a4a);
+    color: var(--gsm-primary, #111827);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.92rem;
 
-    &:hover { color: var(--gsm-secondary, #c29b54); }
+    &:hover { color: var(--gsm-secondary, #4b5563); }
 }
 
 // Header shop icons + live search
@@ -3269,15 +3282,15 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 }
 
 // Top level on purpose. These were nested under .gsm-header-actions, but the
-// storefront header uses .gsm-shop-header__actions and puts the drawer toggle
+// site header uses .gsm-site-header__actions and puts the drawer toggle
 // outside any actions wrapper — so the <button> icons got no styling and fell
 // back to raw browser chrome (grey box + border), while the <a> icons looked
 // fine. That mismatch is what made the logged-in account icon differ from the
 // logged-out one, and boxed the mobile hamburger.
 .gsm-header-icon {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 44px;  // minimum touch target
+    height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -3285,7 +3298,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     padding: 0;
     border: 0;
     background: transparent;
-    color: var(--gsm-header-text, #1b2a4a);
+    color: var(--gsm-header-text, #111827);
     font-size: 1.05rem;
     line-height: 1;
     text-decoration: none;
@@ -3295,8 +3308,10 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     appearance: none;
 
     &:hover,
-    &:focus-visible { background: rgba(194, 155, 84, 0.14); color: var(--gsm-secondary, #c29b54); }
-    &:focus { outline: none; }
+    &:focus-visible { background: rgba(75, 85, 99, 0.14); color: var(--gsm-secondary, #4b5563); }
+    // A clear ring for keyboard focus; none for mouse clicks.
+    &:focus:not(:focus-visible) { outline: none; }
+    &:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
     &::after { display: none; } // kill Bootstrap's dropdown-toggle caret
 }
 
@@ -3308,7 +3323,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     height: 17px;
     padding: 0 4px;
     border-radius: 999px;
-    background: var(--gsm-secondary, #c29b54);
+    background: var(--gsm-secondary, #4b5563);
     color: #fff;
     font-size: 0.63rem;
     font-weight: 700;
@@ -3334,7 +3349,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         border-radius: 999px;
         font-size: 0.88rem;
 
-        &:focus { outline: none; border-color: var(--gsm-secondary, #c29b54); }
+        &:focus { outline: none; border-color: var(--gsm-secondary, #4b5563); }
     }
 
     .gsm-search-results {
@@ -3368,12 +3383,12 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     gap: 10px;
     padding: 8px 12px;
     border-radius: 10px;
-    color: var(--gsm-heading-color, #1b2a4a);
+    color: var(--gsm-heading-color, #111827);
     text-decoration: none;
     font-size: 0.88rem;
 
     img { width: 34px; height: 42px; object-fit: cover; border-radius: 6px; }
-    &:hover { background: var(--gsm-section-background, #f7f8fa); color: var(--gsm-secondary, #c29b54); }
+    &:hover { background: var(--gsm-section-background, #f7f8fa); color: var(--gsm-secondary, #4b5563); }
 }
 
 // Mobile search sheet
@@ -3409,23 +3424,23 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
 
     &__title { margin-bottom: 0.35rem; }
 
-    .form-label { font-size: 0.82rem; font-weight: 600; color: var(--gsm-primary, #1b2a4a); }
+    .form-label { font-size: 0.82rem; font-weight: 600; color: var(--gsm-primary, #111827); }
 
     .form-control {
         height: 48px;
         border-radius: 12px;
         border-color: #e3e7ee;
 
-        &:focus { border-color: var(--gsm-secondary, #c29b54); box-shadow: 0 0 0 4px rgba(194, 155, 84, 0.16); }
+        &:focus { border-color: var(--gsm-secondary, #4b5563); box-shadow: 0 0 0 4px rgba(75, 85, 99, 0.16); }
     }
 
     .btn { height: 50px; }
 }
 
 /* ══════════════════════════════════════════════════════════════════════
-   Site header: logo | search | menu
+   Site header: logo | menu | actions (Header Builder sections)
    ══════════════════════════════════════════════════════════════════════ */
-.gsm-shop-header {
+.gsm-site-header {
     border-bottom: 1px solid var(--gsm-border-color, #eceef1);
 
     &__bar {
@@ -3450,6 +3465,14 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
             height: auto;
             object-fit: contain;
         }
+    }
+
+    // Inline menu (Navigation style "Links in the header"): centred in the
+    // space between the logo and the actions.
+    &__nav {
+        flex: 1 1 auto;
+        justify-content: center;
+        min-width: 0;
     }
 
     // Centre column takes the remaining width and stays centred.
@@ -3491,8 +3514,8 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         &:focus {
             outline: none;
             background: #fff;
-            border-color: var(--gsm-secondary, #c29b54);
-            box-shadow: 0 0 0 4px rgba(194, 155, 84, 0.14);
+            border-color: var(--gsm-secondary, #4b5563);
+            box-shadow: 0 0 0 4px rgba(75, 85, 99, 0.14);
         }
     }
 
@@ -3527,13 +3550,113 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
             padding: 0.6rem 1.1rem;
             font-weight: 600;
             font-size: 0.94rem;
-            color: var(--gsm-heading-color, #1b2a4a);
+            color: var(--gsm-heading-color, #111827);
 
+            // Ink on a light tint, never accent text on Bootstrap's blue
+            // active fill: --bs-dropdown-link-active-bg is replaced too.
             &:hover,
-            &:focus { background: rgba(194, 155, 84, 0.12); color: var(--gsm-secondary, #c29b54); }
-            &.active { color: var(--gsm-secondary, #c29b54); }
+            &:focus,
+            &.active,
+            &:active {
+                background: var(--gsm-section-background, #f3f4f6);
+                color: var(--gsm-heading-color, #111827);
+            }
+            &.active { font-weight: 700; box-shadow: inset 3px 0 0 var(--gsm-primary, #111827); }
         }
     }
+}
+
+// Menu button whose two bars turn into a cross (Navigation style
+// "full-screen menu"). The close button inside the dialog is the cross.
+.gsm-menu-toggle {
+    flex-direction: column;
+    gap: 6px;
+
+    &__bar {
+        display: block;
+        width: 18px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+    }
+
+    &.is-open &__bar { animation: gsm-bar-cross 260ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    &.is-open &__bar:first-child { transform: translateY(4px) rotate(45deg); }
+    &.is-open &__bar:last-child { transform: translateY(-4px) rotate(-45deg); }
+}
+
+@keyframes gsm-bar-cross {
+    from { transform: none; }
+}
+
+// Full-screen menu: a modal <dialog>, so focus trapping, Esc and returning
+// focus to the menu button come from the browser.
+.gsm-nav-overlay {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--gsm-nav-overlay-bg, var(--gsm-heading-color, #111827));
+    color: var(--gsm-nav-overlay-color, #ffffff);
+
+    &::backdrop { background: transparent; }
+
+    .gsm-menu-toggle { color: inherit; }
+
+    &__list {
+        list-style: none;
+        margin: 2rem 0 0;
+        padding: 0;
+    }
+
+    &__item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        animation: gsm-overlay-rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        animation-delay: calc(60ms + var(--i, 0) * 45ms);
+    }
+
+    &__link {
+        display: block;
+        padding: 0.75rem 0;
+        font-family: var(--gsm-font-navigation);
+        font-weight: 800;
+        font-size: 2rem;
+        letter-spacing: -0.04em;
+        color: inherit;
+        text-decoration: none;
+
+        &.active { color: var(--gsm-nav-overlay-current, var(--gsm-primary)); }
+    }
+
+    &__sub {
+        list-style: none;
+        margin: 0 0 0.75rem;
+        padding: 0;
+    }
+
+    &__sublink {
+        display: block;
+        padding: 0.25rem 0;
+        color: inherit;
+        opacity: 0.85;
+    }
+}
+
+@keyframes gsm-overlay-rise {
+    from { opacity: 0; transform: translateY(18px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gsm-nav-overlay__item,
+    .gsm-menu-toggle__bar { animation: none !important; }
+}
+
+html[data-motion="off"] {
+    .gsm-nav-overlay__item,
+    .gsm-menu-toggle__bar { animation: none !important; }
 }
 
 // Account dropdown
@@ -3555,12 +3678,12 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
         padding: 0.55rem 1.1rem;
         font-size: 0.9rem;
         font-weight: 500;
-        color: var(--gsm-primary, #1b2a4a);
+        color: var(--gsm-primary, #111827);
 
         &:hover,
         &:focus {
             background: var(--gsm-section-background, #f7f8fa);
-            color: var(--gsm-secondary, #c29b54);
+            color: var(--gsm-secondary, #4b5563);
         }
 
         &.text-danger:hover { color: #b3261e; }
@@ -3572,7 +3695,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #14203a 2%, #1b2a4a 19%, #c29b54 50%, 
     min-width: 20px;
     padding: 1px 7px;
     border-radius: 999px;
-    background: var(--gsm-secondary, #c29b54);
+    background: var(--gsm-secondary, #4b5563);
     color: #fff;
     font-size: 0.7rem;
     font-weight: 700;

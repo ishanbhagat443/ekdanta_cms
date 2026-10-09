@@ -60,14 +60,13 @@
                             <small class="text-muted">Comma-separated. Each address gets an email per submission.</small>
                         </div>
                         <div class="form-group">
-                            <label for="enquiry_source">Store Submissions As Enquiry</label>
-                            <select name="enquiry_source" id="enquiry_source" class="form-control">
-                                <option value="">— No (keep in Form Submissions only) —</option>
-                                @foreach (\App\Models\Enquiry::SOURCES as $key => $label)
-                                    <option value="{{ $key }}" @selected(old('enquiry_source', $form->enquiry_source) === $key)>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            <small class="text-muted">Submissions also land in the central <a href="{{ route('admin.enquiries.index') }}">Enquiries</a> inbox under this source.</small>
+                            <div class="custom-control custom-switch">
+                                <input type="hidden" name="store_as_enquiry" value="0">
+                                <input type="checkbox" class="custom-control-input" id="store_as_enquiry" name="store_as_enquiry" value="1"
+                                       @checked(old('store_as_enquiry', $form->enquiry_source !== null))>
+                                <label class="custom-control-label" for="store_as_enquiry">Also save submissions as enquiries</label>
+                            </div>
+                            <small class="text-muted">They land in the <a href="{{ route('admin.enquiries.index') }}">Enquiries</a> inbox with this form's name as the source.</small>
                         </div>
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="is_active" value="0">

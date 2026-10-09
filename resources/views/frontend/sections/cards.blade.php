@@ -24,7 +24,7 @@
                         @endif
                         @if (!empty($card['link_label']))
                             <a href="{{ $card['link_url'] ?? '#' }}" class="fw-bold small text-decoration-none"
-                               style="color: #1b2a4a;">{{ $card['link_label'] }} <i class="fas fa-arrow-right ms-1"></i></a>
+                               style="color: #111827;">{{ $card['link_label'] }} <i class="fas fa-arrow-right ms-1"></i></a>
                         @endif
                     </div>
                 </div>

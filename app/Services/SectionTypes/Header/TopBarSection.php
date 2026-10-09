@@ -36,7 +36,7 @@ class TopBarSection extends SectionType
             ['key' => 'left_link_url', 'label' => 'Left Link URL', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:500']],
             ['key' => 'show_email', 'label' => 'Show Email (from Business Info)', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
             ['key' => 'show_phone', 'label' => 'Show Phone (from Business Info)', 'type' => 'toggle', 'default' => true, 'rules' => ['nullable', 'boolean']],
-            ['key' => 'bg_color', 'label' => 'Background Color', 'type' => 'color', 'default' => '#1b2a4a', 'rules' => ['nullable', 'string', 'max:20']],
+            ['key' => 'bg_color', 'label' => 'Background Color', 'type' => 'color', 'default' => '#111827', 'rules' => ['nullable', 'string', 'max:20']],
             ['key' => 'text_color', 'label' => 'Text Color', 'type' => 'color', 'default' => '#ffffff', 'rules' => ['nullable', 'string', 'max:20']],
         ];
     }

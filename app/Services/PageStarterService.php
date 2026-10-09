@@ -180,13 +180,9 @@ class PageStarterService
             return $style;
         }
 
-        $style['anim'] = SectionAnimation::sanitiseAll([
-            'desktop' => [
-                'preset' => $definition['anim'],
-                'stagger' => $definition['stagger'] ?? 0,
-            ],
-            'tablet' => ['preset' => SectionAnimation::INHERIT],
-            'mobile' => ['preset' => SectionAnimation::INHERIT],
+        $style['anim'] = SectionAnimation::everyDevice([
+            'preset' => $definition['anim'],
+            'stagger' => $definition['stagger'] ?? 0,
         ]);
 
         return $style;

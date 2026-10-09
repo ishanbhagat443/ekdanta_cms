@@ -21,7 +21,7 @@ class ArtistrySection extends PageSectionType
 
     public function label(): string
     {
-        return 'Artistry Gallery + Icon Cards';
+        return 'Image Gallery + Icon Cards';
     }
 
     public function icon(): string

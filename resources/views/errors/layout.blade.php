@@ -22,7 +22,7 @@
             justify-content: center;
             padding: 2rem 1.25rem;
             background: #f6f7f9;
-            color: #1b2a4a;
+            color: #111827;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
         }
@@ -32,7 +32,7 @@
             font-weight: 800;
             letter-spacing: -0.03em;
             margin: 0;
-            color: #c29b54;
+            color: #4b5563;
             line-height: 1;
         }
         h1 { font-size: clamp(1.25rem, 4vw, 1.6rem); margin: 0.75rem 0 0.5rem; }
@@ -45,16 +45,16 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
-            background: #1b2a4a;
+            background: #111827;
             color: #fff;
-            border: 1px solid #1b2a4a;
+            border: 1px solid #111827;
         }
-        a.btn--ghost { background: transparent; color: #1b2a4a; }
+        a.btn--ghost { background: transparent; color: #111827; }
         a.btn:hover { opacity: 0.9; }
         @media (prefers-color-scheme: dark) {
             body { background: #12161d; color: #e8eaed; }
             p { color: #9aa4b2; }
-            a.btn { background: #c29b54; border-color: #c29b54; color: #12161d; }
+            a.btn { background: #4b5563; border-color: #4b5563; color: #12161d; }
             a.btn--ghost { background: transparent; color: #e8eaed; border-color: #3a4150; }
         }
     </style>

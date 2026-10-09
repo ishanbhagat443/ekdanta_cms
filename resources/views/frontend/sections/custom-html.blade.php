@@ -4,7 +4,7 @@
 @endphp
 
 <div class="gsm-custom-html {{ $classes }}">
-    @if (isset($values['*']))
+    @if (array_key_exists('*', $values))
         {!! $values['*'] !!}
     @else
         <div class="d-none d-lg-block">{!! $values['desktop'] !!}</div>

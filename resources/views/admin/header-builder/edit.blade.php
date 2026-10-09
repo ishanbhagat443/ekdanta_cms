@@ -82,6 +82,19 @@
                             </select>
                         </div>
                         <hr>
+                        <p class="text-muted small mb-2"><i class="fas fa-bars mr-1" aria-hidden="true"></i>Navigation style (the Nav Menu section)</p>
+                        @foreach (['desktop' => 'Desktop', 'tablet' => 'Tablet', 'mobile' => 'Mobile'] as $device => $deviceLabel)
+                            @php $navStyle = $header->navStyle($device); @endphp
+                            <div class="form-group mb-2">
+                                <label class="mb-0" for="nav_style_{{ $device }}"><small>{{ $deviceLabel }}</small></label>
+                                <select name="nav_style[{{ $device }}]" id="nav_style_{{ $device }}" class="form-control form-control-sm">
+                                    <option value="inline" @selected($navStyle === 'inline')>Links in the header</option>
+                                    <option value="dropdown" @selected($navStyle === 'dropdown')>Menu button with a dropdown</option>
+                                    <option value="overlay" @selected($navStyle === 'overlay')>Menu button with a full-screen menu</option>
+                                </select>
+                            </div>
+                        @endforeach
+                        <hr>
                         <p class="text-muted small mb-2"><i class="fas fa-layer-group mr-1"></i>Header over hero (transparent → solid on scroll)</p>
                         <div class="custom-control custom-switch mb-2">
                             <input type="hidden" name="overlay_hero" value="0">
@@ -119,7 +132,7 @@
                                 <label><small>Menu Hover Color</small></label>
                                 <input type="color" name="menu_hover_color" class="form-control form-control-sm"
                                        style="height:31px; padding:2px;"
-                                       value="{{ old('menu_hover_color', $header->setting('menu_hover_color', '#c29b54')) }}">
+                                       value="{{ old('menu_hover_color', $header->setting('menu_hover_color', '#4b5563')) }}">
                             </div>
                         </div>
                         <div class="custom-control custom-switch mt-2 mb-3">
@@ -136,13 +149,17 @@
                                       placeholder=".gsm-header { … }">{{ old('custom_css', $header->custom_css) }}</textarea>
                             @error('custom_css') <span class="text-danger small">{{ $message }}</span> @enderror
                         </div>
-                        <div class="form-group">
-                            <label><small>Header JS</small></label>
-                            <textarea name="custom_js" rows="5" spellcheck="false"
-                                      class="form-control form-control-sm text-monospace"
-                                      placeholder="// runs on every page">{{ old('custom_js', $header->custom_js) }}</textarea>
-                            @error('custom_js') <span class="text-danger small">{{ $message }}</span> @enderror
-                        </div>
+                        {{-- Runs on every public page, so it is a Developer Mode privilege
+                             (HeaderBuilderController drops it for everyone else). --}}
+                        @can('developer.mode')
+                            <div class="form-group">
+                                <label><small>Header JS</small></label>
+                                <textarea name="custom_js" rows="5" spellcheck="false"
+                                          class="form-control form-control-sm text-monospace"
+                                          placeholder="// runs on every page">{{ old('custom_js', $header->custom_js) }}</textarea>
+                                @error('custom_js') <span class="text-danger small">{{ $message }}</span> @enderror
+                            </div>
+                        @endcan
                     </div>
                     <div class="card-footer text-muted small">
                         <i class="fas fa-circle-info mr-1" aria-hidden="true"></i>Changes here save with the

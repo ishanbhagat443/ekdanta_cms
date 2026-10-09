@@ -36,7 +36,10 @@
         outExpo: 'outExpo',
         outBack: 'outBack',
         inOutQuad: 'inOut(2)',
-        spring: 'spring(1, 80, 10, 0)'
+        // v3's 'spring(1, 80, 10, 0)' string means nothing to v4, which
+        // silently runs it linear. A function, because anime may not be
+        // loaded yet when this map is built (see the note in init()).
+        spring: function () { return anime.spring({ mass: 1, stiffness: 80, damping: 10, velocity: 0 }); }
     };
 
     function device() {
@@ -126,7 +129,7 @@
 
         var params = Object.assign({}, PRESETS[settings.preset], {
             duration: settings.duration,
-            ease: settings.ease,
+            ease: typeof settings.ease === 'function' ? settings.ease() : settings.ease,
             delay: staggered
                 ? anime.stagger(settings.stagger, { start: settings.delay })
                 : settings.delay,
@@ -239,7 +242,8 @@
         // Someone who asked their OS for less motion gets the content, not the
         // motion. This is a preference, not a nicety. A browser with no
         // IntersectionObserver gets the same deal: content, no motion.
-        var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var calm = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+            || document.documentElement.getAttribute('data-motion') === 'off'; // Theme Customizer switch
 
         if (calm || typeof IntersectionObserver === 'undefined') {
             revealAll();

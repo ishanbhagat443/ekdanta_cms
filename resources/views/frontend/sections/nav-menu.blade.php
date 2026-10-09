@@ -5,8 +5,9 @@
     $alignClass = ['start' => 'me-auto', 'center' => 'mx-auto', 'end' => 'ms-auto'][$align] ?? 'mx-auto';
 @endphp
 
+{{-- The inline list only. partials/header decides where and on which
+     devices it shows (Header Builder → Navigation style). --}}
 @if ($menu)
-    <div class="collapse navbar-collapse order-2 d-none d-lg-flex">
         <ul class="navbar-nav {{ $alignClass }} gsm-nav {{ $classes }}">
             @foreach ($menu->rootItems as $item)
                 @continue(! $item->isVisibleToCurrentUser())
@@ -64,5 +65,4 @@
                 @endif
             @endforeach
         </ul>
-    </div>
 @endif

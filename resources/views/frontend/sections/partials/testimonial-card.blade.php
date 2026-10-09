@@ -6,7 +6,7 @@
              class="rounded-circle mb-3" style="width: 72px; height: 72px; object-fit: cover;">
     @endif
     @if (!empty($item['rating']))
-        <div class="mb-2" style="color: #c29b54;">
+        <div class="mb-2" style="color: #4b5563;">
             @for ($star = 1; $star <= 5; $star++)
                 <i class="{{ $star <= (int) $item['rating'] ? 'fas' : 'far' }} fa-star"></i>
             @endfor

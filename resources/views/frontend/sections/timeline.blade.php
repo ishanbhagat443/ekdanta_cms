@@ -10,7 +10,7 @@
         @foreach ($milestones as $milestone)
             <div class="d-flex mb-4">
                 <div class="flex-shrink-0 me-3">
-                    <span class="badge rounded-pill px-3 py-2" style="background: #c29b54; font-size: .95rem;">
+                    <span class="badge rounded-pill px-3 py-2" style="background: #4b5563; font-size: .95rem;">
                         {{ $milestone['year'] }}
                     </span>
                 </div>

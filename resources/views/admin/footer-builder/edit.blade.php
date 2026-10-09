@@ -120,11 +120,15 @@
                                       class="form-control form-control-sm text-monospace"
                                       placeholder=".gsm-footer { … }">{{ old('custom_css', $footer->custom_css) }}</textarea>
                         </div>
-                        <div class="form-group">
-                            <label><small>Footer JS</small></label>
-                            <textarea name="custom_js" rows="4" spellcheck="false"
-                                      class="form-control form-control-sm text-monospace">{{ old('custom_js', $footer->custom_js) }}</textarea>
-                        </div>
+                        {{-- Runs on every public page, so it is a Developer Mode privilege
+                             (FooterBuilderController drops it for everyone else). --}}
+                        @can('developer.mode')
+                            <div class="form-group">
+                                <label><small>Footer JS</small></label>
+                                <textarea name="custom_js" rows="4" spellcheck="false"
+                                          class="form-control form-control-sm text-monospace">{{ old('custom_js', $footer->custom_js) }}</textarea>
+                            </div>
+                        @endcan
                     </div>
                     <div class="card-footer text-muted small">
                         <i class="fas fa-circle-info mr-1" aria-hidden="true"></i>Changes here save with the

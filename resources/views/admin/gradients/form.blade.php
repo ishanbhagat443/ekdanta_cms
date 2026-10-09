@@ -215,7 +215,7 @@
     });
 
     document.getElementById('gsm-stop-add').addEventListener('click', function () {
-        rows.appendChild(rowTemplate('#c29b54', 100, 100));
+        rows.appendChild(rowTemplate('#4b5563', 100, 100));
         refresh();
     });
 

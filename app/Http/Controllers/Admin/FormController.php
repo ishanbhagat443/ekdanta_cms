@@ -60,7 +60,7 @@ class FormController extends Controller
             'button_label' => ['nullable', 'string', 'max:60'],
             'success_message' => ['nullable', 'string', 'max:191'],
             'notify_emails_csv' => ['nullable', 'string', 'max:500'],
-            'enquiry_source' => ['nullable', 'in:'.implode(',', array_keys(\App\Models\Enquiry::SOURCES))],
+            'store_as_enquiry' => ['sometimes', 'boolean'],
             'is_active' => ['sometimes', 'boolean'],
             'fields' => ['sometimes', 'array', 'max:30'],
             'fields.*.label' => ['nullable', 'string', 'max:150'],

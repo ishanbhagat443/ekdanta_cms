@@ -4,7 +4,8 @@
            'og_title', 'og_description', 'og_image', 'og_type', 'schema' (array|string)]
 --}}
 @php
-    $siteName = setting('business.company_name', config('gsm.name'));
+    // The site's own name (Settings → Business), never the CMS product name.
+    $siteName = setting('business.company_name', '');
     $title = $seo['title'] ?? $siteName;
     $ogTitle = $seo['og_title'] ?? $title;
 @endphp

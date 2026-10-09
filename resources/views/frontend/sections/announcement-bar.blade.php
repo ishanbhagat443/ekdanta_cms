@@ -6,7 +6,7 @@
 @endphp
 
 <div class="gsm-announcement text-center py-1 small {{ $classes }}" id="{{ $barId }}"
-     style="background: {{ $data['bg_color'] ?? '#1b2a4a' }}; color: {{ $data['text_color'] ?? '#fff' }};">
+     style="background: {{ $data['bg_color'] ?? '#111827' }}; color: {{ $data['text_color'] ?? '#fff' }};">
     <div class="container position-relative">
         @include('frontend.partials.device-text', ['section' => $section, 'key' => 'message'])
         @if (!empty($data['link_label']))

@@ -9,7 +9,7 @@
     <div class="{{ $narrow ? 'mx-auto' : '' }}" @if($narrow) style="max-width: 760px;" @endif>
         @include('frontend.partials.section-heading', ['section' => $section, 'align' => $align])
 
-        @if (isset($bodyValues['*']))
+        @if (array_key_exists('*', $bodyValues))
             <div class="gsm-richtext">{!! $bodyValues['*'] !!}</div>
         @else
             <div class="gsm-richtext d-none d-lg-block">{!! $bodyValues['desktop'] !!}</div>

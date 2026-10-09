@@ -76,10 +76,10 @@
 
     function backgroundCss(prefix, fallbackMode) {
         var mode = val(prefix + '[mode]', fallbackMode);
-        if (mode === 'solid') return { background: val(prefix + '[color]', '#1b2a4a') };
+        if (mode === 'solid') return { background: val(prefix + '[color]', '#111827') };
         if (mode === 'gradient') {
             var slug = val(prefix + '[gradient_slug]', '');
-            return { backgroundImage: (window.gsmGradients || {})[slug] || 'linear-gradient(90deg,#1b2a4a,#c29b54)' };
+            return { backgroundImage: (window.gsmGradients || {})[slug] || 'linear-gradient(90deg,#111827,#4b5563)' };
         }
         if (mode === 'transparent') return { background: 'transparent' };
         if (mode === 'image' || mode === 'video') return { background: '#101828' };

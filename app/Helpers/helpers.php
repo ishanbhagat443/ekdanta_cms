@@ -67,7 +67,19 @@ if (! function_exists('theme_css')) {
     /** Cached CSS custom-property block + component rules for <style>. */
     function theme_css(): string
     {
-        return app(\App\Services\ThemeService::class)->renderCss();
+        return style_safe(app(\App\Services\ThemeService::class)->renderCss());
+    }
+}
+
+if (! function_exists('style_safe')) {
+    /**
+     * Admin-written CSS for a raw <style> element. "</" is the only thing
+     * that can end the element early (</style><script>…), and it never means
+     * anything in CSS, so "<\/" keeps the CSS intact and the page script-free.
+     */
+    function style_safe(?string $css): string
+    {
+        return str_replace('</', '<\/', (string) $css);
     }
 }
 

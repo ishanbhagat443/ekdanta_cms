@@ -181,9 +181,9 @@ None in the design. Do not introduce modals for content the design shows in plac
 
 `prefers-reduced-motion: reduce`, the site-wide "Reduce motion" setting and `?reduce-motion=1` all give the same result: every value shows its final readable state, step sequences switch without tweening, loops stop, anchor scrolling is instant. With JavaScript off, stages fall back to normal flow and all text is readable.
 
-### Pause control (open question, see Phase 0 summary)
+### Pause control (approved 8 Oct 2026)
 
-WCAG 2.2.2 (Level A) needs a way to pause motion that starts automatically, lasts more than 5 s and runs beside other content (trunk and beam, orbit, marquees, phone dial, blinking "e"). Proposed: a small "Pause animations" toggle, remembered per visitor, that switches the page to the reduced-motion state.
+WCAG 2.2.2 (Level A) needs a way to pause motion that starts automatically, lasts more than 5 s and runs beside other content (trunk and beam, orbit, marquees, phone dial, blinking "e"). A small text button **"Pause animations"** sits in the Big Brand Finale footer line and inside the mobile menu. One tap switches the page to the reduced-motion state; the button then reads "Play animations". The choice is remembered per visitor.
 
 ---
 

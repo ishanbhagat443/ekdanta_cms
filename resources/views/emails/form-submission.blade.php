@@ -6,7 +6,7 @@
         <img src="{{ setting_image('branding.logo_email') }}" alt="" style="max-height: 56px; margin: 16px 0;">
     @endif
 
-    <h2 style="color: #1b2a4a;">New submission — {{ $form->name }}</h2>
+    <h2 style="color: #111827;">New submission — {{ $form->name }}</h2>
     <p style="color: #666;">Received {{ $submission->created_at->format('d M Y, H:i') }} · IP {{ $submission->ip }}</p>
 
     <table cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">

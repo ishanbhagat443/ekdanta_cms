@@ -5,7 +5,7 @@
     $ogImage = $seoMeta?->ogMedia?->url ?? $post->featuredMedia?->url;
 @endphp
 
-@section('title', ($seoMeta?->meta_title ?? $post->title).' — '.setting('business.company_name', config('gsm.name')))
+@section('title', implode(' — ', array_filter([$seoMeta?->meta_title ?? $post->title, setting('business.company_name')])))
 
 @include('frontend.partials.seo-head', ['seo' => [
     'title' => $seoMeta?->meta_title ?? $post->title,
@@ -85,13 +85,13 @@
                     @endif
 
                     <div class="mb-3 small">
-                        <span class="badge rounded-pill px-2" style="background:#f5f0e6; color:#c29b54;">{{ $post->displayAuthor() }}</span>
-                        <span class="badge rounded-pill px-2" style="background:#f5f0e6; color:#c29b54;">
+                        <span class="badge rounded-pill px-2" style="background:#f3f4f6; color:#4b5563;">{{ $post->displayAuthor() }}</span>
+                        <span class="badge rounded-pill px-2" style="background:#f3f4f6; color:#4b5563;">
                             <i class="far fa-calendar-alt me-1"></i>{{ $post->published_at?->format('F d, Y') }}
                         </span>
                         @if ($postContent['show_reading_time'] ?? false)
                             {{-- Computed (Post::readingTimeMinutes()), not stored — opt-in badge, off by default. --}}
-                            <span class="badge rounded-pill px-2" style="background:#f5f0e6; color:#c29b54;">
+                            <span class="badge rounded-pill px-2" style="background:#f3f4f6; color:#4b5563;">
                                 <i class="far fa-clock me-1"></i>{{ $post->readingTimeMinutes() }} min read
                             </span>
                         @endif
@@ -124,7 +124,7 @@
                             @foreach ($post->tags as $tag)
                                 <a href="{{ route('front.blog.index', ['tag' => $tag->slug]) }}"
                                    class="badge rounded-pill text-decoration-none px-2 py-1 me-1"
-                                   style="background:#f5f0e6; color:#c29b54;">#{{ $tag->name }}</a>
+                                   style="background:#f3f4f6; color:#4b5563;">#{{ $tag->name }}</a>
                             @endforeach
                         </div>
                     @endif
@@ -157,7 +157,7 @@
                             </button>
                         @endif
                         <a href="{{ route('front.blog.index') }}" class="ms-auto small align-self-center text-decoration-none"
-                           style="color:#c29b54;">← Back to blog</a>
+                           style="color:#4b5563;">← Back to blog</a>
                     </div>
                 </article>
 

@@ -259,6 +259,16 @@ class GlobalBlockService
             throw ValidationException::withMessages(['file' => 'Unknown or missing block type — this file is not a valid block export.']);
         }
 
+        // An imported file is untrusted: the same field rules as the editor,
+        // and section CSS/JS only for Developer Mode.
+        $validator = \Illuminate\Support\Facades\Validator::make(
+            ['data' => (array) ($payload['data_desktop'] ?? [])],
+            $this->registry->find($payload['type'])->rules()
+        );
+        if ($validator->fails()) {
+            throw ValidationException::withMessages(['file' => 'This block export has invalid content: '.$validator->errors()->first()]);
+        }
+
         return $this->blocks->create([
             'name' => $payload['name'] ?? 'Imported Block',
             'slug' => $this->uniqueSlug($payload['name'] ?? 'imported-block'),
@@ -271,7 +281,7 @@ class GlobalBlockService
             'data_desktop' => $payload['data_desktop'] ?? [],
             'data_tablet' => $payload['data_tablet'] ?? null,
             'data_mobile' => $payload['data_mobile'] ?? null,
-            'style' => $payload['style'] ?? null,
+            'style' => Section::withoutPrivilegedStyle((array) ($payload['style'] ?? [])),
         ]);
     }
 

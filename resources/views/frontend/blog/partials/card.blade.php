@@ -13,7 +13,7 @@
 @endphp
 <article class="card border-0 shadow-sm h-100 position-relative">
     @if ($showFeaturedBadge && $post->is_featured)
-        <span class="badge position-absolute top-0 start-0 m-2" style="background:#c29b54; z-index:1;">Featured</span>
+        <span class="badge position-absolute top-0 start-0 m-2" style="background:#4b5563; z-index:1;">Featured</span>
     @endif
     <a href="{{ route('front.blog.show', $post->slug) }}">
         @if ($post->featuredMedia)
@@ -29,10 +29,10 @@
         @if ($showAuthor || $showDate || ($showCategory && $post->categories->isNotEmpty()))
             <div class="mb-2 small">
                 @if ($showAuthor)
-                    <span class="badge rounded-pill px-2" style="background: #f5f0e6; color: #c29b54;">{{ $post->displayAuthor() }}</span>
+                    <span class="badge rounded-pill px-2" style="background: #f3f4f6; color: #4b5563;">{{ $post->displayAuthor() }}</span>
                 @endif
                 @if ($showDate)
-                    <span class="badge rounded-pill px-2" style="background: #f5f0e6; color: #c29b54;">
+                    <span class="badge rounded-pill px-2" style="background: #f3f4f6; color: #4b5563;">
                         <i class="far fa-calendar-alt me-1"></i>{{ $post->published_at?->format('F d, Y') }}
                     </span>
                 @endif
@@ -48,7 +48,7 @@
         </h3>
         <p class="small text-muted {{ $showReadMore ? 'mb-2' : 'mb-0' }}">{{ $post->autoExcerpt() }}</p>
         @if ($showReadMore)
-            <a href="{{ route('front.blog.show', $post->slug) }}" class="small text-decoration-none" style="color:#c29b54;">Read More →</a>
+            <a href="{{ route('front.blog.show', $post->slug) }}" class="small text-decoration-none" style="color:#4b5563;">Read More →</a>
         @endif
     </div>
 </article>
