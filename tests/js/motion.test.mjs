@@ -55,6 +55,7 @@ test('steps hold on each item for the dwell, then ease on', () => {
     assert.ok(mid > 0 && mid < 1, `easing between items, got ${mid}`);
     assert.equal(stepState(400, st, 4).f, 3, 'clamped to the last item');
     assert.equal(stepState(75, st, 4, true).f, Math.round(mid), 'reduced motion: whole steps only');
+    assert.equal(stepState(150, { ...st, ease: 'linear' }, 4).f, 1.5, 'linear: an even glide, no dwell');
 });
 
 test('design px scale with the design unit, other values do not', () => {

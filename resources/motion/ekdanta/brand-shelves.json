@@ -1,0 +1,30 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1500 },
+        "scene": { "params": { "seed": 21, "area": [200, 905, 300, 400], "turn": 56, "rankStep": 12, "popFrom": -500, "popFor": 200,
+            "flyFrom": 300, "flyShelf": 70, "flyItem": 28, "flyFor": 450, "arc": 80, "bob": 6,
+            "shelves": [[96, 300], [418, 300], [740, 300], [1062, 300]], "slot": [147, 58], "scale": 1, "fadeIn": [-300, 400] } },
+        "tracks": {
+            "head-fade": { "part": "brand-head", "trigger": "scrub", "preset": "fade", "range": [-700, -200], "ease": "linear" },
+            "head-rise": { "part": "brand-head", "trigger": "scrub", "keyframes": { "translateY": [30, 0] }, "range": [-700, -200], "ease": "outCubic" },
+            "shelves": { "part": "shelf", "trigger": "scrub", "preset": "fade", "range": [250, 500], "ease": "linear" },
+            "stats-fade": { "part": "brand-stats", "trigger": "scrub", "preset": "fade", "range": [900, 1100], "ease": "linear" },
+            "stats-rise": { "part": "brand-stats", "trigger": "scrub", "keyframes": { "translateY": [24, 0] }, "range": [900, 1100], "ease": "outCubic" },
+            "counts": { "part": "brand-count", "trigger": "scrub", "preset": "count-up", "range": [950, 1400], "ease": "outCubic" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1556 },
+        "scene": { "params": { "seed": 21, "area": [20, 280, 250, 380], "turn": 56, "rankStep": 12, "popFrom": -500, "popFor": 200,
+            "flyFrom": 300, "flyShelf": 70, "flyItem": 28, "flyFor": 450, "arc": 60, "bob": 5,
+            "shelves": [[24, 262], [206, 262], [24, 532], [206, 418]], "slot": [80, 29], "scale": 0.548, "fadeIn": [-300, 400] } },
+        "tracks": {
+            "head-fade": { "part": "brand-head", "trigger": "scrub", "preset": "fade", "range": [-700, -200], "ease": "linear" },
+            "head-rise": { "part": "brand-head", "trigger": "scrub", "keyframes": { "translateY": [24, 0] }, "range": [-700, -200], "ease": "outCubic" },
+            "shelves": { "part": "shelf", "trigger": "scrub", "preset": "fade", "range": [250, 500], "ease": "linear" },
+            "stats-fade": { "part": "brand-stats", "trigger": "scrub", "preset": "fade", "range": [900, 1100], "ease": "linear" },
+            "stats-rise": { "part": "brand-stats", "trigger": "scrub", "keyframes": { "translateY": [20, 0] }, "range": [900, 1100], "ease": "outCubic" },
+            "counts": { "part": "brand-count", "trigger": "scrub", "preset": "count-up", "range": [950, 1400], "ease": "outCubic" }
+        }
+    }
+}

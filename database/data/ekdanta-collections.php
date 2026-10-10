@@ -83,16 +83,16 @@ $items['case-studies'] = [
 ];
 
 $items['service-groups'] = [
-    ['branding', 'Branding', ['word' => 'BRANDING', 'colour' => '#2EB45D', 'text_colour' => '#0D1410', 'accent' => '#0D1410',
+    ['branding', 'Branding', ['word' => 'BRANDING', 'colour' => '#2EB45D', 'text_colour' => '#0D1410', 'accent' => '#0D1410', 'stroke' => 'rgba(13,20,16,0.35)', 'rule' => 'rgba(13,20,16,0.2)',
         'description' => 'We create distinctive brand identities that build recognition, trust and long-term value.',
         'short_description' => 'Identities that build recognition, trust and long-term value.']],
-    ['digital', 'Digital', ['word' => 'DIGITAL', 'colour' => '#0D1410', 'text_colour' => '#FFFFFF', 'accent' => '#2EB45D',
+    ['digital', 'Digital', ['word' => 'DIGITAL', 'colour' => '#0D1410', 'text_colour' => '#FFFFFF', 'accent' => '#2EB45D', 'stroke' => 'rgba(46,180,93,0.55)', 'rule' => 'rgba(255,255,255,0.15)',
         'description' => 'Data-driven digital strategies designed to attract the right audience, generate quality leads and accelerate growth.',
         'short_description' => 'Reach the right audience and bring in quality leads.']],
-    ['growth', 'Growth', ['word' => 'GROWTH', 'colour' => '#F4F6F1', 'text_colour' => '#0D1410', 'accent' => '#2EB45D',
+    ['growth', 'Growth', ['word' => 'GROWTH', 'colour' => '#F4F6F1', 'text_colour' => '#0D1410', 'accent' => '#2EB45D', 'stroke' => 'rgba(30,142,71,0.4)', 'rule' => 'rgba(13,20,16,0.12)',
         'description' => 'We build systems that turn enquiries into qualified leads, and leads into long-term customers.',
         'short_description' => 'Turn enquiries into leads, and leads into customers.']],
-    ['films', 'Films', ['word' => 'FILMS', 'colour' => '#0A5A30', 'text_colour' => '#FFFFFF', 'accent' => '#F2A230',
+    ['films', 'Films', ['word' => 'FILMS', 'colour' => '#0A5A30', 'text_colour' => '#FFFFFF', 'accent' => '#F2A230', 'stroke' => 'rgba(255,255,255,0.35)', 'rule' => 'rgba(255,255,255,0.18)',
         'description' => 'Compelling visual content that captures attention, tells your story and strengthens your brand.',
         'short_description' => 'Photos, videos and films that tell your story.']],
 ];

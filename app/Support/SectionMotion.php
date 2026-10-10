@@ -272,6 +272,9 @@ final class SectionMotion
             if (is_numeric($in['steps']['dwell'] ?? null)) {
                 $steps['dwell'] = round(max(0, min(0.9, (float) $in['steps']['dwell'])), 3);
             }
+            if (($in['steps']['ease'] ?? null) === 'linear') {
+                $steps['ease'] = 'linear';
+            }
             $out['steps'] = $steps;
         }
 

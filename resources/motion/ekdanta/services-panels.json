@@ -1,0 +1,10 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 2700 },
+        "steps": { "part": "svc-panels", "range": [0, 2700], "dwell": 0, "ease": "linear" }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 2756 },
+        "steps": { "part": "svc-panels", "range": [0, 2700], "dwell": 0.4 }
+    }
+}

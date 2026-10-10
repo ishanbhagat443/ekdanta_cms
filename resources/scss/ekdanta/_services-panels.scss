@@ -1,0 +1,18 @@
+// Ekdanta · Services Panels: the steps' index (--ek-f, set by the motion
+// engine) slides the row of panels, drifts each outline word and fills
+// the bar. Without JS --ek-f is 0: the first panel.
+.ek-services-panels {
+    .ek-comp--d { --drift: 260; }
+    .ek-comp--m,
+    .ek-comp--t { --drift: 140; }
+
+    .ek-sp-track { transform: translateX(calc(var(--ek-f, 0) * var(--w) * -1 * var(--u))); }
+    .ek-sp-word { transform: translateX(calc((var(--ek-f, 0) - var(--i)) * var(--drift) * -1 * var(--u))); }
+    .ek-sp-progress { transform: scaleX(calc(var(--ek-f, 0) / (var(--panels) - 1))); }
+}
+
+// Reduced motion: panels switch in place; the words stay still.
+@media (prefers-reduced-motion: reduce) {
+    .ek-services-panels .ek-sp-word { transform: none; }
+}
+html[data-motion="off"] .ek-services-panels .ek-sp-word { transform: none; }

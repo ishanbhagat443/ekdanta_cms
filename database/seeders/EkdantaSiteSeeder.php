@@ -9,6 +9,7 @@ use App\Models\CollectionItem;
 use App\Models\Media;
 use App\Models\MediaFolder;
 use App\Services\MediaService;
+use App\Services\SettingsService;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
@@ -32,6 +33,32 @@ class EkdantaSiteSeeder extends Seeder
     {
         $this->media();
         $this->collections();
+        $this->business();
+    }
+
+    /** Settings → Business from the design; only values that are still empty are filled. */
+    public function business(): void
+    {
+        $address = 'B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017';
+        $values = [
+            'company_name' => 'Ekdanta Branding and Marketing',
+            'email' => 'info@ekdanta.in',
+            'country_code' => '91',
+            'phones' => [
+                ['label' => 'All services', 'number' => '90994 17987', 'menu_label' => 'Call', 'whatsapp' => true],
+                ['label' => 'All services', 'number' => '90994 17949', 'menu_label' => '', 'whatsapp' => false],
+                ['label' => 'Sales', 'number' => '63544 33194', 'menu_label' => 'Sales', 'whatsapp' => false],
+            ],
+            'offices' => [
+                ['name' => 'Surat', 'address' => $address, 'directions_url' => 'https://share.google/EAOxrObclZeY4QkQR', 'latitude' => '', 'longitude' => '', 'hours' => '[Add office hours]'],
+                ['name' => 'Ahmedabad', 'address' => '[Add Ahmedabad address]', 'directions_url' => '', 'latitude' => '', 'longitude' => '', 'hours' => ''],
+            ],
+        ];
+
+        $missing = array_filter($values, fn ($value, string $key) => blank(setting("business.{$key}")), ARRAY_FILTER_USE_BOTH);
+        if ($missing !== []) {
+            app(SettingsService::class)->updateGroup('business', $missing);
+        }
     }
 
     /** Case studies, services, clients, reels, FAQs and team roles (database/data/ekdanta-collections.php). */

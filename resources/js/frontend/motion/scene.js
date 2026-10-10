@@ -52,11 +52,12 @@ export function easeOf(name) {
  * f that holds still for the first `dwell` of each step, then eases on.
  * Reduced motion: no in-between, f is always whole.
  */
-export function stepState(px, { range, dwell = 0.35 }, count, reduced = false) {
+export function stepState(px, { range, dwell = 0.35, ease }, count, reduced = false) {
     const last = Math.max(1, count - 1);
     const raw = clamp((px - range[0]) / ((range[1] - range[0]) / last), 0, last);
     const i = Math.floor(raw);
-    let f = raw >= last ? last : i + inOutQuad(clamp((raw - i - dwell) / (1 - dwell)));
+    // ease "linear": an even glide from item to item, no pause.
+    let f = ease === 'linear' ? raw : raw >= last ? last : i + inOutQuad(clamp((raw - i - dwell) / (1 - dwell)));
     if (reduced) f = Math.round(f);
     return { f, index: Math.round(f) };
 }

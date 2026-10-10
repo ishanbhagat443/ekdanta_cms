@@ -1,0 +1,22 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 900 },
+        "tracks": {
+            "line-1": { "part": "end-1", "trigger": "scrub", "preset": "fade", "range": [-600, -330], "ease": "linear" },
+            "line-2": { "part": "end-2", "trigger": "scrub", "preset": "rise", "params": { "distance": 40 }, "range": [-420, -150], "ease": "linear" },
+            "big": { "part": "end-big", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "rotate": [-8, -3], "scale": [{ "from": 0.6, "to": 1, "ease": "inOutQuad" }] }, "range": [-240, 30], "ease": "linear" },
+            "card": { "part": "end-card", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [80, 0] }, "range": [75, 345], "ease": "linear" },
+            "footer": { "part": "end-foot", "trigger": "scrub", "preset": "fade", "range": [450, 720], "ease": "linear" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 956 },
+        "tracks": {
+            "line-1": { "part": "end-1", "trigger": "scrub", "preset": "fade", "range": [-600, -330], "ease": "linear" },
+            "line-2": { "part": "end-2", "trigger": "scrub", "preset": "rise", "params": { "distance": 30 }, "range": [-420, -150], "ease": "linear" },
+            "big": { "part": "end-big", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "rotate": [-8, -3], "scale": [{ "from": 0.6, "to": 1, "ease": "inOutQuad" }] }, "range": [-240, 30], "ease": "linear" },
+            "card": { "part": "end-card", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [60, 0] }, "range": [75, 345], "ease": "linear" },
+            "footer": { "part": "end-foot", "trigger": "scrub", "preset": "fade", "range": [450, 720], "ease": "linear" }
+        }
+    }
+}

@@ -7,6 +7,7 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | # | Where | Finding | Proposed fix | Status |
 |---|---|---|---|---|
 | 1 | Every page with looping motion (trunk and beam, orbit, marquees, phone dial, blinking "e") | WCAG 2.2.2 Pause, Stop, Hide (Level A): motion that starts by itself, lasts over 5 s and runs beside other content needs a way to pause it. The design has none. | "Pause animations" text button in the Finale footer line and the mobile menu; switches to the reduced-motion state; remembered per visitor | Approved 8 Oct 2026, built in Phase 3/4 |
+| 2 | Big Brand Finale at 360 × 640 (short phones) | The stage is scaled by height (u ≈ 0.76), but text keeps its 12–13 px floor, so the card grows and its last row of buttons wraps, and the footer line overlaps the card. 390 × 844 matches the design | Phase 6 overlap pass: on short mobile screens, let the footer follow the card, or lower the card. Check every section at 360 × 640 together | Phase 6 |
 
 ## Decisions already made
 

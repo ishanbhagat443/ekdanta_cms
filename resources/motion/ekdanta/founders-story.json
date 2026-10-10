@@ -1,0 +1,18 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1350 },
+        "tracks": {
+            "story": { "part": "story", "trigger": "scrub", "preset": "word-highlight", "range": [-300, -268], "stagger": 32, "ease": "steps(1)" },
+            "signature": { "part": "signature", "trigger": "scrub", "preset": "fade", "range": [975, 1200], "ease": "linear" },
+            "counts": { "part": "founder-count", "trigger": "scrub", "preset": "count-up", "range": [-150, 1050], "ease": "outCubic" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1406 },
+        "tracks": {
+            "story": { "part": "story", "trigger": "scrub", "preset": "word-highlight", "range": [-300, -268], "stagger": 32, "ease": "steps(1)" },
+            "signature": { "part": "signature", "trigger": "scrub", "preset": "fade", "range": [975, 1200], "ease": "linear" },
+            "counts": { "part": "founder-count", "trigger": "scrub", "preset": "count-up", "range": [-150, 1050], "ease": "outCubic" }
+        }
+    }
+}

@@ -24,6 +24,8 @@ class ServiceGroups extends CollectionType
             $this->colour('colour', 'Panel colour'),
             $this->colour('text_colour', 'Text colour'),
             $this->colour('accent', 'Accent (dots)'),
+            $this->colour('stroke', 'Outline word colour', null, true),
+            $this->colour('rule', 'Line colour', null, true),
         ];
     }
 }
