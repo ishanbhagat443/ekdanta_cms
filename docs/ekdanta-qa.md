@@ -20,6 +20,7 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 8 Oct 2026 | White "BIG BRAND!" on `#2EB45D` (200 px) | 2.7:1 | Approved: finale band `#2CAA58` (3.0:1), footer line `#0D351F` (4.53:1) |
 | 8 Oct 2026 | Unlit founder-story words | 1.5:1 | Accepted: a transient scroll state that ends fully lit; shown lit under reduced motion |
 | 8 Oct 2026 | Mobile menu arrows | 2.9:1 | Accepted: decorative, `aria-hidden` |
+| 10 Oct 2026 | Brief Builder text boxes: outline `#CFD8D1` on white | 1.5:1 (WCAG 1.4.11 needs 3:1) | Approved: text-box outline `#85908A` (`--tk-suffix`), 3.3:1 on white, 3.0:1 against the paper fill. Chips keep the drawn outline (their text identifies them) |
 
 ## Checklist results
 

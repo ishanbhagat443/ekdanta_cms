@@ -37,7 +37,8 @@
             $k = $comp[0]; // ids are per composition (both are in the page)
             $spacing = $v([210.67, 96]);
             $pill = 'border-radius: 999px; font-family: \'Poppins\', sans-serif; font-weight: 600; cursor: pointer';
-            $input = 'height: '.$u($v([50, 46])).'; box-sizing: border-box; padding: 0 '.$u($v([18, 16])).'; border: '.$u(1.5).' solid var(--tk-ring); border-radius: 999px; background: var(--tk-paper); font-family: \'Hind\', sans-serif; font-size: max('.$u($v([17, 16])).', 1rem); color: var(--tk-ink); width: 100%';
+            // Text boxes: outline --tk-suffix (#85908A, 3:1), approved 10 Oct 2026 for WCAG 1.4.11 (drawn #CFD8D1).
+            $input = 'height: '.$u($v([50, 46])).'; box-sizing: border-box; padding: 0 '.$u($v([18, 16])).'; border: '.$u(1.5).' solid var(--tk-suffix); border-radius: 999px; background: var(--tk-paper); font-family: \'Hind\', sans-serif; font-size: max('.$u($v([17, 16])).', 1rem); color: var(--tk-ink); width: 100%';
         @endphp
         <div class="ek-comp ek-comp--{{ $k }}" data-ek-comp="{{ $comp }}" style="--spacing: {{ $spacing }}; --walker: {{ $v([52, 44]) }}; --walk-from: {{ $v([-90, -70]) }}; --walk-shift: {{ $v([0, -2]) }}; --fall: {{ $v([940, 660]) }}">
             <div class="ek-stage" data-ek-stage style="background: var(--tk-paper)">

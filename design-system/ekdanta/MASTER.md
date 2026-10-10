@@ -35,7 +35,7 @@ Approved tokens. The CMS exposes them as CSS custom properties (`--tk-*`) throug
 | Muted text: small captions (approved a11y fix) | `#6A736D` | `--tk-muted-2-sm` |
 | Counter suffix (approved a11y fix for `#9AA39E`) | `#85908A` | `--tk-suffix` |
 | Lines | `#E4E8E2`, `#DDE2DA`, `#E6EEE9` | `--tk-line-1`, `--tk-line-2`, `--tk-line-3` |
-| Chip and input ring (Brief Builder) | `#CFD8D1` | `--tk-ring` |
+| Chip ring (Brief Builder) | `#CFD8D1` | `--tk-ring` |
 | Dark surfaces: cards on dark | `#1E2823`, `#222E28`, `#2B3832`, `#0E3A22` | `--tk-dark-1` … `--tk-dark-4` |
 | Finale band (approved a11y fix; buttons keep `#2EB45D`) | `#2CAA58` | `--tk-finale` |
 | Finale footer line (approved a11y fix) | `#0D351F` | `--tk-finale-foot` |
@@ -135,8 +135,9 @@ The orange outline stays as designed. The ink halo under it is what keeps focus 
 
 ### Inputs (Brief Builder)
 
-- Chips: pill, 1.5 px inset ring `#CFD8D1`; selected = ink fill, white text, check icon, `aria-pressed`.
-- Text fields: visible label above, never placeholder-only; errors under the field, in text.
+- Chips: pill, 1.5 px ring `#CFD8D1` (their text identifies them).
+- Chips are checkboxes / radios with pill labels (native keyboard and screen-reader behaviour), checked = ink fill, white text, check icon.
+- Text fields: visible label above, never placeholder-only; errors under the field, in text. Outline 1.5 px `#85908A` (`--tk-suffix`; approved 10 Oct 2026, the drawn `#CFD8D1` is 1.5:1, WCAG 1.4.11 needs 3:1).
 
 ### Header
 
