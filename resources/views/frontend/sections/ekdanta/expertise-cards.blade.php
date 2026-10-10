@@ -1,7 +1,8 @@
 {{--
     Ekdanta · Expertise Cards. One card per service group, drawn dealt and
     face up (the final state, by left/top); scroll tracks move each card by
-    offsets from there: raise the deck, fan it, deal it and flip it. A card is a link to its group in the Service Deep
+    offsets from there: raise the deck, fan it, deal it and flip it.
+    Card label at 80 % opacity (drawn 70 %): approved 10 Oct 2026, 5:1 on green. A card is a link to its group in the Service Deep
     Dive (the motion engine scrolls to that group's step).
 --}}
 @php
@@ -44,7 +45,7 @@
                         <div data-m="card-{{ $i }}" class="ek-pcard" style="position: absolute; left: {{ $u($x) }}; top: {{ $u($y) }}; width: {{ $u($w) }}; height: {{ $u($h) }}; transform-origin: {{ $u($w / 2) }} {{ $u($v([640, 440])) }}; z-index: {{ 10 + $i }}; perspective: {{ $u($v([1400, 1000])) }}">
                             <a href="{{ $d['jump_to'] ?: '#s-deep' }}" data-ek-step="{{ $i }}" data-ek-target="{{ $d['jump_to'] ?: '#s-deep' }}" aria-label="{{ str_replace('{group}', $group->title, $d['card_label']) }}" data-m="flip-{{ $i }}" style="position: relative; display: block; width: {{ $u($w) }}; height: {{ $u($h) }}; text-decoration: none; transform-style: preserve-3d">
                                 <span style="position: absolute; inset: 0; box-sizing: border-box; padding: {{ $u($v([26, 14])) }}; border-radius: {{ $u($v([24, 20])) }}; background: {{ $bg }}; color: {{ $fg }}; box-shadow: {{ $shadow }}; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column">
-                                    <span style="display: flex; justify-content: space-between; align-items: center; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: {{ $mob ? $u(10.5) : 'max('.$u(14).', 0.8125rem)' }}; letter-spacing: {{ $v([0.08, 0.06]) }}em"><span>{{ sprintf('%02d', $i + 1) }}</span><span style="opacity: 0.7">{{ str_replace('{count}', (string) $items->count(), $t['kicker']) }}</span></span>
+                                    <span style="display: flex; justify-content: space-between; align-items: center; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: {{ $mob ? $u(10.5) : 'max('.$u(14).', 0.8125rem)' }}; letter-spacing: {{ $v([0.08, 0.06]) }}em"><span>{{ sprintf('%02d', $i + 1) }}</span><span style="opacity: 0.8">{{ str_replace('{count}', (string) $items->count(), $t['kicker']) }}</span></span>
                                     <span style="margin-top: {{ $u($v([20, 10])) }}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ $u($v([36, 24])) }}; line-height: 1; letter-spacing: -0.04em">{{ $group->title }}</span>
                                     <span style="margin-top: {{ $u($v([12, 6])) }}; font-size: max({{ $u($v([16, 12.5])) }}, {{ $mob ? '0.78125rem' : '0.8125rem' }}); line-height: {{ $v([1.45, 1.35]) }}; opacity: 0.85">{{ $group->get('short_description') }}</span>
                                     <span style="margin-top: auto; {{ $mob ? '' : 'padding-top: '.$u(14).';' }} display: flex; flex-direction: column; gap: {{ $u($v([9, 5])) }}">

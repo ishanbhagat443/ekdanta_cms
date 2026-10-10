@@ -38,6 +38,8 @@ Approved tokens. The CMS exposes them as CSS custom properties (`--tk-*`) throug
 | Chip ring (Brief Builder) | `#CFD8D1` | `--tk-ring` |
 | Dark surfaces: cards on dark | `#1E2823`, `#222E28`, `#2B3832`, `#0E3A22` | `--tk-dark-1` … `--tk-dark-4` |
 | Finale band (approved a11y fix; buttons keep `#2EB45D`) | `#2CAA58` | `--tk-finale` |
+| Services Deep Dive, Branding panel Hinglish line (approved a11y fix; drawn white) | `#0D1410` | Service groups → Branding → Hinglish line colour |
+| Services Deep Dive, Films panel Hinglish line (approved a11y fix; drawn `#F2A230`) | `#F7B955` | Service groups → Films → Hinglish line colour |
 | Finale footer line (approved a11y fix) | `#0D351F` | `--tk-finale-foot` |
 
 *Notes: brand-colour fills per case study (navy, maroon, forest, ochre, slate, teal) and per expertise group are content, edited on the collection items, not tokens.*

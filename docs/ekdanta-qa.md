@@ -21,6 +21,9 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 8 Oct 2026 | Unlit founder-story words | 1.5:1 | Accepted: a transient scroll state that ends fully lit; shown lit under reduced motion |
 | 8 Oct 2026 | Mobile menu arrows | 2.9:1 | Accepted: decorative, `aria-hidden` |
 | 10 Oct 2026 | Brief Builder text boxes: outline `#CFD8D1` on white | 1.5:1 (WCAG 1.4.11 needs 3:1) | Approved: text-box outline `#85908A` (`--tk-suffix`), 3.3:1 on white, 3.0:1 against the paper fill. Chips keep the drawn outline (their text identifies them) |
+| 10 Oct 2026 | Expertise Cards label ("6 SERVICES", 14 px bold) at 70 % opacity on the green card | 4.2:1 | Approved: 80 % opacity on every card (5.1:1 on green; the others 6.0–12:1) |
+| 10 Oct 2026 | Service Deep Dive, Branding panel: white Hinglish line on `#2EB45D` | 2.7:1 (30 px desktop needs 3:1, 17 px phones 4.5:1) | Approved: ink line `#0D1410` (6.9:1); a Service groups colour, so it stays editable |
+| 10 Oct 2026 | Service Deep Dive, Films panel: orange `#F2A230` Hinglish line on `#0A5A30` | 4.0:1 (17 px bold on phones needs 4.5:1) | Approved: `#F7B955` on both sizes (4.8:1) |
 
 ## Checklist results
 
@@ -54,6 +57,9 @@ Recorded per phase from Phase 1 on.
 | Phase 4 | FAQ Deck | Previous / next are labelled buttons (jump a card); the counter is a polite live region. Design difference, on purpose: the design hides the cards behind the front one from screen readers (`aria-hidden`); here every question and answer stays readable, in order, since none of them is interactive | Pass |
 | Phase 4 | Forms → edit (steps, chips, hidden fields, after sending) | Found: field rows were labelled only by placeholders (WCAG 3.3.2) and the remove button had no name. Fixed: every control has a visible caption, the remove button an `aria-label`; settings that don't apply to a field type are hidden; "After sending" is a labelled group with helper text; a page link that isn't a page, section, web address, phone, email or WhatsApp link is refused with a field error | Pass after fix |
 | Phase 4 | Brief Builder | Real form controls: each step is a `<fieldset>` with its question as the `<legend>`; chips are checkboxes / radios with labels (keyboard and screen readers get native behaviour), with the approved focus ring on the pill. Next stays `aria-disabled` until the step is answered; the step counter is a polite live region; focus moves to the new step. "Send" is a real link to WhatsApp, the brief is saved first (keepalive request). Without JS every step shows and the form posts normally, then opens WhatsApp. Found: focusing a chip scrolled the clipped stage sideways; fixed with `overflow: clip` on every Ekdanta stage | Pass after fix |
+| Phase 4 | Services Hero (Orbit) | The orbit is decoration (`aria-hidden`); the rolling words are one sentence for screen readers ("We handle your branding, reels, …"). Loops stop under reduced motion and "Pause animations"; the parts that leave on scroll stay as drawn | Pass |
+| Phase 4 | Expertise Cards | Each card is a link with a name ("See all Branding services") that jumps to its group in the Deep Dive (and to the section's anchor without JS). Found: the card label on the green card was 4.2:1; fixed with your approval (80 % opacity) | Pass after fix |
+| Phase 4 | Service Deep Dive | Each group is a region named by its heading; the services are a real list with their one-liners; the tiles repeat them as pictures (`aria-hidden`). Group tabs are buttons with `aria-current`. Under reduced motion each panel switches in place and every tile shows its finished state. Found: two Hinglish lines below AA (white on green 2.7:1, orange on deep green 4.0:1 at 17 px); fixed with your approval | Pass after fix |
 
 ### Known limits (ponytail ledger)
 
