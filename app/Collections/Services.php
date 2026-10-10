@@ -12,6 +12,17 @@ use App\Models\CollectionItem;
  */
 class Services extends CollectionType
 {
+    /** Service Deep Dive tile artworks (resources/views/frontend/sections/ekdanta/tiles). */
+    public const TILES = [
+        'brand-strategy' => 'Target and arrow', 'brand-identity' => 'Mark drawn in a circle', 'visual-identity' => 'Colour swatches', 'brand-guidelines' => 'Type specimen',
+        'packaging-design' => 'Box and lid', 'brand-positioning' => 'Position map', 'social-media-management' => 'Post grid', 'performance-marketing' => 'Growth chart',
+        'meta-ads' => 'Ad and tap', 'lead-generation' => 'Form filling in', 'seo' => 'Search ranking', 'website-development' => 'Page building',
+        'lead-funnel-strategy' => 'Paths to an enquiry', 'sales-funnel-design' => 'Funnel', 'lead-nurturing' => 'Follow-up messages', 'sales-consulting' => 'Call checklist',
+        'crm-and-app-development' => 'Pipeline board', 'conversion-optimisation' => 'Before and after bars', 'brand-and-corporate-films' => 'Film frame and timecode',
+        'product-photography' => 'Camera flash', 'product-videos' => 'Video player', 'motion-graphics' => 'Shapes in motion', 'ugc-content' => 'Creator post',
+        'influencer-and-model-shoots' => 'Camera and burst',
+    ];
+
     public const SCENES = ['social' => 'Social media feed', 'ads' => 'Ads dashboard', 'branding' => 'Brand board', 'website' => 'Website build', 'shoots' => 'Camera and reels', 'crm' => 'CRM pipeline'];
 
     public function key(): string { return 'services'; }
@@ -29,7 +40,7 @@ class Services extends CollectionType
             $this->text('short_name', 'Short name', null, 80),
             $this->text('lower_name', 'Name inside a sentence (e.g. "social media")', null, 80),
             $this->text('one_liner', 'One-liner', null, 200),
-            $this->text('tile', 'Tile artwork (name)', null, 60),
+            $this->select('tile', 'Services page: tile artwork', self::TILES),
             $this->toggle('in_grid', 'Show in the group grid', true),
             $this->toggle('has_page', 'Has its own page'),
             $this->text('group_label', 'Page: group label (e.g. DIGITAL · PERFORMANCE)', null, 80),

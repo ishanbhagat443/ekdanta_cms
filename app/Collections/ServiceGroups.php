@@ -30,6 +30,9 @@ class ServiceGroups extends CollectionType
             $this->colour('card_dot', 'Services page: card dots'),
             $this->colour('badge', 'Services page: number badge when lit'),
             $this->colour('badge_text', 'Services page: badge number when lit'),
+            $this->colour('deep_kicker', 'Services page: small label colour'),
+            $this->colour('deep_line', 'Services page: Hinglish line colour'),
+            $this->colour('deep_text', 'Services page: description colour'),
         ];
     }
 }

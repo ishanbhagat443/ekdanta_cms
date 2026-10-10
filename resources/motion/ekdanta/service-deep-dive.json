@@ -1,0 +1,12 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 6400 },
+        "steps": { "part": "deep-groups", "range": [320, 5120], "dwell": 0, "ease": "linear" },
+        "scene": { "params": { "group": 1600, "wipeFrom": -320, "wipeFor": 360, "wipeAt": [1078, 440], "wipeTo": 1300, "word": [220, 440], "rise": [40, 30], "tileRise": 40 } }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 6456 },
+        "steps": { "part": "deep-groups", "range": [320, 5120], "dwell": 0, "ease": "linear" },
+        "scene": { "params": { "group": 1600, "wipeFrom": -320, "wipeFor": 360, "wipeAt": [195, 420], "wipeTo": 1100, "word": [80, 260], "rise": [30, 24], "tileRise": 30 } }
+    }
+}

@@ -14,12 +14,14 @@
 @use 'ekdanta/contact-channels';
 @use 'ekdanta/faq-deck';
 @use 'ekdanta/brief-builder';
+@use 'ekdanta/service-deep-dive';
 
 .ek {
     position: relative;
     height: 100%;
     container-type: inline-size; // --u from the real width, without the scrollbar
     font-family: 'Hind', system-ui, sans-serif;
+    line-height: normal; // as the design files (no line-height set)
     color: var(--tk-ink);
     -webkit-font-smoothing: antialiased;
 

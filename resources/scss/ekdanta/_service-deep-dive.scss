@@ -1,0 +1,5 @@
+// Ekdanta · Service Deep Dive: the group tabs (the scene marks the current one).
+.ek-service-deep-dive {
+    .ek-deep-tab { background: transparent; color: #DCE7E0; transition: background-color 200ms ease-out, color 200ms ease-out; }
+    .ek-deep-tab.is-current { background: var(--tk-green); color: var(--tk-ink); }
+}
