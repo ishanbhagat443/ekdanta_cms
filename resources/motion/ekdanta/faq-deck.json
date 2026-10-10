@@ -1,0 +1,19 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 2400 },
+        "steps": { "part": "faq-cards", "range": [200, 2100], "dwell": 0.4 },
+        "tracks": {
+            "head": { "part": "faq-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-600, -200], "ease": "linear" },
+            "deck": { "part": "faq-deck", "trigger": "scrub", "preset": "fade", "range": [-600, -200], "ease": "linear" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 2456 },
+        "steps": { "part": "faq-cards", "range": [200, 2100], "dwell": 0.4 },
+        "tracks": {
+            "head": { "part": "faq-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 24, "to": 0, "ease": "outCubic" }] }, "range": [-600, -200], "ease": "linear" },
+            "deck": { "part": "faq-deck", "trigger": "scrub", "preset": "fade", "range": [-600, -200], "ease": "linear" },
+            "more": { "part": "faq-more", "trigger": "scrub", "preset": "fade", "range": [-600, -200], "ease": "linear" }
+        }
+    }
+}

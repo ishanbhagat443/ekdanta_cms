@@ -106,7 +106,7 @@ test('scrub stagger is in scroll px, one child after another', () => {
 });
 
 test('steps mark the current item and tell assistive tech', () => {
-    const el = section('<ol data-m="list"><li>one</li><li>two</li><li>three</li></ol>');
+    const el = section('<ol data-m="list"><li>one</li><li>two</li><li>three</li></ol><p aria-live="polite">Question <span data-ek-step-num="2">01</span> of 03</p>');
     const s = scene(el, { steps: { part: 'list', range: [0, 200], dwell: 0.2 } });
     let heard = null;
     el.addEventListener('ek:step', (e) => { heard = e.detail.index; });
@@ -116,6 +116,7 @@ test('steps mark the current item and tell assistive tech', () => {
     assert.equal(items[2].getAttribute('aria-current'), 'step');
     assert.equal(items[0].hasAttribute('aria-current'), false);
     assert.equal(heard, 2);
+    assert.equal(el.querySelector('[data-ek-step-num]').textContent, '03', 'the live step number follows');
     assert.equal(window.EkMotion, undefined, 'scene.js alone has no global side effects');
 });
 

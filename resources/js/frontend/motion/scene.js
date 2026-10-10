@@ -335,6 +335,9 @@ export class Scene {
             this.el.style.setProperty('--ek-f', f.toFixed(4));
             if (index !== s.index) {
                 s.index = index;
+                this.root.querySelectorAll('[data-ek-step-num]').forEach((e) => {
+                    e.textContent = String(index + 1).padStart(Number(e.dataset.ekStepNum) || 1, '0');
+                });
                 items.forEach((item, i) => {
                     item.classList.toggle('is-active', i === index);
                     if (i === index) item.setAttribute('aria-current', 'step');

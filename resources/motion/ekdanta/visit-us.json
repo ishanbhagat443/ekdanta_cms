@@ -1,0 +1,48 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1000 },
+        "tracks": {
+            "eyebrow": { "part": "visit-eyebrow", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [-700, -300] },
+            "heading": { "part": "visit-heading", "trigger": "scrub", "ease": "linear", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-700, -300] },
+            "map-in": { "part": "map", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [-200, -80] },
+            "map-grow": { "part": "map", "trigger": "scrub", "ease": "outCubic", "keyframes": { "scale": [0.94, 1] }, "range": [-200, 0] },
+            "river": { "part": "river", "trigger": "scrub", "ease": "inOutQuad", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [-200, 20] },
+            "river-label": { "part": "river-label", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [-20, 80] },
+            "roads": { "part": "road", "trigger": "scrub", "ease": "inOutQuad", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [-120, 180], "stagger": 50 },
+            "address": { "part": "address-line", "trigger": "scrub", "ease": "linear", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -30, "to": 0, "ease": "outCubic" }] }, "range": [100, 240], "stagger": 80 },
+            "junction": { "part": "junction", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [140, 240] },
+            "route-in": { "part": "route-mark", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [220, 270] },
+            "route": { "part": "route", "trigger": "scrub", "ease": "inOutQuad", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [220, 440] },
+            "pin-in": { "part": "pin", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [420, 467] },
+            "pin-drop": { "part": "pin", "trigger": "scrub", "ease": "outBack", "keyframes": { "translateY": ["-160px", "0px"] }, "range": [420, 560] },
+            "details": { "part": "visit-details", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [520, 660] },
+            "actions": { "part": "visit-actions", "trigger": "scrub", "ease": "linear", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 20, "to": 0, "ease": "outCubic" }] }, "range": [520, 660] },
+            "pulse-in": { "part": "pulse", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [580, 660] },
+            "pin-label": { "part": "pin-label", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [600, 700] },
+            "pulse": { "part": "pulse-ring", "trigger": "loop", "preset": "ek-pulse" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1056 },
+        "tracks": {
+            "eyebrow": { "part": "visit-eyebrow", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [-700, -300] },
+            "heading": { "part": "visit-heading", "trigger": "scrub", "ease": "linear", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-700, -300] },
+            "map-in": { "part": "map", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [-200, -80] },
+            "map-grow": { "part": "map", "trigger": "scrub", "ease": "outCubic", "keyframes": { "scale": [0.94, 1] }, "range": [-200, 0] },
+            "river": { "part": "river", "trigger": "scrub", "ease": "inOutQuad", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [-200, 20] },
+            "river-label": { "part": "river-label", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [-20, 80] },
+            "roads": { "part": "road", "trigger": "scrub", "ease": "inOutQuad", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [-120, 180], "stagger": 50 },
+            "address": { "part": "address-line", "trigger": "scrub", "ease": "linear", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -24, "to": 0, "ease": "outCubic" }] }, "range": [100, 240], "stagger": 80 },
+            "junction": { "part": "junction", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [140, 240] },
+            "route-in": { "part": "route-mark", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [220, 270] },
+            "route": { "part": "route", "trigger": "scrub", "ease": "inOutQuad", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [220, 440] },
+            "pin-in": { "part": "pin", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [420, 467] },
+            "pin-drop": { "part": "pin", "trigger": "scrub", "ease": "outBack", "keyframes": { "translateY": ["-160px", "0px"] }, "range": [420, 560] },
+            "details": { "part": "visit-details", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [520, 660] },
+            "actions": { "part": "visit-actions", "trigger": "scrub", "ease": "linear", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 20, "to": 0, "ease": "outCubic" }] }, "range": [520, 660] },
+            "pulse-in": { "part": "pulse", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [580, 660] },
+            "pin-label": { "part": "pin-label", "trigger": "scrub", "ease": "linear", "preset": "fade", "range": [600, 700] },
+            "pulse": { "part": "pulse-ring", "trigger": "loop", "preset": "ek-pulse" }
+        }
+    }
+}

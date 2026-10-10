@@ -10,7 +10,9 @@
  *   window.EkMotion.pause(true|false)     the visitor's "Pause animations" choice
  *
  * Markup hooks: [data-m="part"] parts, [data-ek-stage] the pinned stage,
- * [data-ek-step="2"] tap to jump to a step, [data-ek-pause] the pause button.
+ * [data-ek-step="2"] tap to jump to a step ("+1"/"-1": next/previous),
+ * [data-ek-step-num="2"] shows the current step number (2 digits),
+ * [data-ek-pause] the pause button.
  */
 import { Scene, unitOf } from './scene.js';
 
@@ -199,13 +201,17 @@ function boot() {
             pause(root.getAttribute('data-motion') !== 'off');
             return;
         }
-        // Tap to jump: <button data-ek-step="2"> inside a section with steps.
+        // Tap to jump: <button data-ek-step="2"> inside a section with steps;
+        // "+1" / "-1" go to the next / previous step.
         const jump = e.target.closest('[data-ek-step]');
         const scene = jump && scenes.get(jump.closest('[data-ek-motion]'));
         const st = scene?.config.steps;
         if (!st) return;
         const part = scene.root.querySelector(`[data-m="${st.part}"]`);
-        scrollToPx(scene, stepPx(st, Number(jump.dataset.ekStep), part ? part.children.length : 1));
+        const count = part ? part.children.length : 1;
+        const raw = jump.dataset.ekStep;
+        const to = /^[+-]/.test(raw) ? Math.max(0, scene.state.index) + Number(raw) : Number(raw);
+        scrollToPx(scene, stepPx(st, Math.max(0, Math.min(count - 1, to)), count));
     });
 
     // Keyboard focus never lands on a part that is still hidden in a pinned
