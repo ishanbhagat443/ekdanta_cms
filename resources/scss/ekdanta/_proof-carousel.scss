@@ -1,0 +1,26 @@
+// Ekdanta · Proof Carousel: the track and each card follow the steps' index
+// (--ek-f, set by the motion engine; 0 without JS). x = the track's left
+// edge; d = a card's distance from the centre, in card widths of the design.
+.ek-proof-carousel {
+    .ek-comp--d { --x0: 800; --xs: 351.2; --gap: 388; --c: 540; --dn: 820; --dy: 28; }
+    .ek-comp--m,
+    .ek-comp--t { --x0: 70; --xs: 266; --gap: 266; --c: 70; --dn: 300; --dy: 20; }
+
+    .ek-proof-track {
+        --x: calc(var(--x0) - var(--xs) * var(--ek-f, 0));
+        left: calc(var(--x) * var(--u));
+    }
+
+    .ek-proof-card {
+        --d: calc((var(--x) + var(--gap) * var(--i) - var(--c)) / var(--dn));
+        --ad: min(max(var(--d), -1 * var(--d)), 1.4);
+        transform: translateY(calc(var(--ad) * var(--dy) * var(--u))) rotateY(calc(clamp(-1.4, var(--d), 1.4) * -16deg)) scale(calc(1 - min(var(--ad), 1) * 0.08));
+        opacity: clamp(0, 1.8 - max(var(--d), -1 * var(--d)), 1);
+    }
+}
+
+// Reduced motion: the cards slide but don't tilt.
+@media (prefers-reduced-motion: reduce) {
+    .ek-proof-carousel .ek-proof-card { transform: none; }
+}
+html[data-motion="off"] .ek-proof-carousel .ek-proof-card { transform: none; }

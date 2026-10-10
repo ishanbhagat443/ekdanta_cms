@@ -1,0 +1,21 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1000 },
+        "steps": { "part": "proof-cards", "range": [-400, 1000], "dwell": 0, "ease": "linear" },
+        "tracks": {
+            "head": { "part": "proof-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "ui": { "part": "proof-ui", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "bar": { "part": "proof-bar", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [-400, 1000], "ease": "linear" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1056 },
+        "steps": { "part": "proof-cards", "range": [-128, 1000], "dwell": 0.35 },
+        "tracks": {
+            "head": { "part": "proof-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "ui": { "part": "proof-ui", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "bar": { "part": "proof-bar", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [-400, 1000], "ease": "linear" },
+            "lead-in": { "part": "proof-track", "trigger": "scrub", "keyframes": { "translateX": [320, 0] }, "range": [-400, -128], "ease": "linear" }
+        }
+    }
+}
