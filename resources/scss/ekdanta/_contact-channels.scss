@@ -1,0 +1,44 @@
+// Ekdanta · Contact Channels: everything follows the steps' index (--ek-f,
+// set by the motion engine; 0 without JS). How near a row or card is to the
+// index, 0–1: --a = 1 - |f - i| (rows), --act = 1 - 2.2 |f - i| (cards).
+.ek-contact-channels {
+    .ek-ch-band { transform: translateY(calc(var(--ek-f, 0) * var(--row) * var(--u))); }
+
+    .ek-ch-row {
+        --a: clamp(0, 1 - max(var(--ek-f, 0) - var(--i), var(--i) - var(--ek-f, 0)), 1);
+
+        .ek-ch-label { color: color-mix(in srgb, var(--tk-ink) calc(var(--a) * 100%), rgb(112, 118, 114)); }
+        .ek-ch-value { color: color-mix(in srgb, var(--tk-dark-4) calc(var(--a) * 100%), rgb(130, 138, 133)); }
+    }
+
+    // Only the current card is shown (and reachable by keyboard).
+    .ek-ch-card {
+        --act: clamp(0, 1 - 2.2 * max(var(--ek-f, 0) - var(--i), var(--i) - var(--ek-f, 0)), 1);
+        opacity: var(--act);
+        transform: translateY(calc((var(--ek-f, 0) - var(--i)) * var(--drop) * -1 * var(--u))) scale(calc(0.96 + 0.04 * var(--act)));
+
+        &:not(.is-active) { visibility: hidden; }
+    }
+
+    // The value rolls in letter by letter as its card arrives.
+    .ek-ch-char {
+        --r: clamp(0, var(--act) * 1.8 - var(--j) * 0.05, 1);
+        --k: calc(1 - var(--r));
+        opacity: var(--r);
+        transform: translateY(calc(var(--k) * var(--k) * var(--k) * var(--roll) * var(--u)));
+    }
+
+    // The current dot is long and green.
+    .ek-ch-dots > span { transition: none; }
+    @for $n from 1 through 8 {
+        .ek-comp:has(.ek-ch-card:nth-child(#{$n}).is-active) .ek-ch-dots > span:nth-child(#{$n}) { background: var(--tk-green) !important; }
+        .ek-comp--d:has(.ek-ch-card:nth-child(#{$n}).is-active) .ek-ch-dots > span:nth-child(#{$n}) { height: calc(34 * var(--u)) !important; }
+        :is(.ek-comp--m, .ek-comp--t):has(.ek-ch-card:nth-child(#{$n}).is-active) .ek-ch-dots > span:nth-child(#{$n}) { width: calc(26 * var(--u)) !important; }
+    }
+}
+
+// Reduced motion: cards switch in place, values are simply there.
+@media (prefers-reduced-motion: reduce) {
+    .ek-contact-channels .ek-ch-char { opacity: 1; transform: none; }
+}
+html[data-motion="off"] .ek-contact-channels .ek-ch-char { opacity: 1; transform: none; }

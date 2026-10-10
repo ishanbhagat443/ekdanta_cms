@@ -119,17 +119,20 @@ test('steps mark the current item and tell assistive tech', () => {
     assert.equal(window.EkMotion, undefined, 'scene.js alone has no global side effects');
 });
 
-test('reduced motion shows every scrubbed part in its final state', () => {
-    const el = section('<p data-m="line">Line</p><span data-m="sticker">*</span>');
+test('reduced motion shows every scrubbed part in its final state (or as drawn, for reduce "start")', () => {
+    const el = section('<p data-m="line">Line</p><span data-m="sticker">*</span><h1 data-m="title">Title</h1>');
     const s = scene(el, {
         tracks: [
             { part: 'line', trigger: 'scrub', keyframes: { opacity: [0, 1] }, range: [300, 600] },
             { part: 'sticker', trigger: 'loop', keyframes: { rotate: [0, 360] }, reduce: 'hide' },
+            { part: 'title', trigger: 'scrub', keyframes: { opacity: [1, 0] }, range: [0, 400], reduce: 'start' },
         ],
     }, { reduced: true });
     s.update(0);
+    s.update(500);
     assert.equal(Number(el.querySelector('[data-m="line"]').style.opacity), 1);
     assert.equal(el.querySelector('[data-m="sticker"]').style.visibility, 'hidden');
+    assert.equal(el.querySelector('[data-m="title"]').style.opacity, '', 'reduce "start": a part that leaves stays as drawn');
 });
 
 test('reduced motion "step" tracks switch item by item, without tweening, and keep the stage', () => {

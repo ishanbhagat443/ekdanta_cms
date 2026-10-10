@@ -162,7 +162,9 @@ export class Scene {
                 });
             }
         }
-        const scrub = tracks.filter((t) => t.trigger === 'scrub' && t.keyframes && !(this.env.reduced && t.reduce === 'step' && !t.keyframes.$count));
+        // reduce 'start': a part that leaves as the visitor scrolls stays as drawn.
+        const skip = (t) => this.env.reduced && ((t.reduce === 'step' && !t.keyframes.$count) || t.reduce === 'start');
+        const scrub = tracks.filter((t) => t.trigger === 'scrub' && t.keyframes && !skip(t));
 
         for (const t of tracks) {
             if (this.env.reduced && t.reduce === 'hide') {

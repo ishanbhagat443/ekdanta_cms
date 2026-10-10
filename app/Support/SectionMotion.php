@@ -332,7 +332,7 @@ final class SectionMotion
         if (($range = self::range($t['range'] ?? null)) !== null) {
             $out['range'] = $range;
         }
-        if (in_array($t['reduce'] ?? null, ['final', 'hide', 'step'], true)) {
+        if (in_array($t['reduce'] ?? null, ['final', 'start', 'hide', 'step'], true)) {
             $out['reduce'] = $t['reduce'];
         }
 

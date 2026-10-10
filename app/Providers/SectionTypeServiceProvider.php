@@ -41,6 +41,8 @@ class SectionTypeServiceProvider extends ServiceProvider
         \App\Services\SectionTypes\Ekdanta\ServicesPanelsSection::class,
         \App\Services\SectionTypes\Ekdanta\FoundersStorySection::class,
         \App\Services\SectionTypes\Ekdanta\FinaleSection::class,
+        \App\Services\SectionTypes\Ekdanta\ContactHeroSection::class,
+        \App\Services\SectionTypes\Ekdanta\ContactChannelsSection::class,
         \App\Services\SectionTypes\Page\HeroSection::class,
         \App\Services\SectionTypes\Page\BannerSection::class,
         \App\Services\SectionTypes\Page\CtaSection::class,

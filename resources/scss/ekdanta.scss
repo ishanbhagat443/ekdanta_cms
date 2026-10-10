@@ -11,6 +11,7 @@
 @use 'ekdanta/home-hero';
 @use 'ekdanta/reels-carousel';
 @use 'ekdanta/services-panels';
+@use 'ekdanta/contact-channels';
 
 .ek {
     position: relative;
@@ -29,6 +30,11 @@
         box-shadow: 0 0 0 8px var(--tk-ink);
     }
 }
+
+// Buttons sink a little while pressed (design: .press).
+.ek-press { transition: transform 100ms ease-out; }
+.ek-press:active { transform: scale(0.97); }
+@media (prefers-reduced-motion: reduce) { .ek-press { transition: none; } }
 
 .ek-comp { height: 100%; }
 .ek-comp--d { --u: min(100cqw / 1440, 100svh / 900); }
