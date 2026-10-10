@@ -6,8 +6,11 @@ namespace Database\Seeders;
 
 use App\Collections\CollectionRegistry;
 use App\Models\CollectionItem;
+use App\Models\Layout;
 use App\Models\Media;
 use App\Models\MediaFolder;
+use App\Models\Menu;
+use App\Services\LayoutService;
 use App\Services\MediaService;
 use App\Services\SettingsService;
 use Illuminate\Database\Seeder;
@@ -34,6 +37,69 @@ class EkdantaSiteSeeder extends Seeder
         $this->media();
         $this->collections();
         $this->business();
+        $this->menus();
+        $this->header();
+    }
+
+    /**
+     * The design's navigation. Home uses its section anchors, blog pages add
+     * Blog; each page picks its menu in Page settings (Main is the header's).
+     */
+    public const MENUS = [
+        'Ekdanta main menu' => [['Home', '/'], ['Work', '/work'], ['Services', '/services'], ['About', '/about'], ['Contact', '/contact']],
+        'Ekdanta home page menu' => [['Home', '#j-top', 'd-lg-none'], ['Why Ekdanta', '#j-obstacles'], ['Work', '#j-work'], ['Reels', '#j-reels'], ['Services', '/services'], ['About', '#j-about'], ['Contact', '/contact']],
+        'Ekdanta blog menu' => [['Home', '/'], ['Work', '/work'], ['Services', '/services'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']],
+    ];
+
+    public function menus(): void
+    {
+        foreach (self::MENUS as $name => $items) {
+            $menu = Menu::query()->firstOrCreate(['slug' => Str::slug($name)], ['name' => $name, 'location' => 'header', 'is_active' => true]);
+            if ($menu->items()->exists()) {
+                continue;
+            }
+            foreach ($items as $order => $item) {
+                [$label, $url, $class] = $item + [2 => null];
+                $menu->items()->create(['label' => $label, 'link_type' => 'url', 'url' => $url, 'css_class' => $class, 'sort_order' => $order]);
+            }
+        }
+    }
+
+    /**
+     * Header Builder: floating pill, inline menu on desktop, WhatsApp and the
+     * full-screen menu on phones and tablets, orange progress bar. Applied
+     * only to an empty header or the untouched starter one (logo + menu).
+     */
+    public function header(): void
+    {
+        $header = Layout::query()->firstOrCreate(['area' => Layout::AREA_HEADER]);
+        $sections = $header->sections()->get();
+        $starter = $sections->pluck('type')->sort()->values()->all() === ['logo', 'nav-menu']
+            && empty($sections->firstWhere('type', 'logo')->data_desktop['media_id']);
+        if ($sections->isNotEmpty() && ! $starter) {
+            $this->command?->warn('Header already set up: left as it is.');
+
+            return;
+        }
+
+        $header->sections()->delete();
+        $header->update(['settings' => [
+            'sticky' => true, 'container' => 'container-fluid', 'show_topbar' => false, 'variant' => 'pill',
+            'progress_bar' => true, 'progress_color' => '#F2A230', 'whatsapp_button' => 'mobile',
+            'overlay_cta_label' => 'Become a big brand', 'overlay_cta_url' => '#contact', 'overlay_call_line' => true,
+            'overlay_pause_label' => 'Pause animations', 'scrolled_shadow' => true, 'blur' => 0,
+            'nav_style' => ['mobile' => 'overlay', 'tablet' => 'overlay', 'desktop' => 'inline'],
+        ]]);
+        $header->sections()->createMany([
+            ['type' => 'logo', 'name' => 'Logo', 'sort_order' => 0, 'is_active' => true,
+                'data_desktop' => ['media_id' => media_ref('ekdanta/logo-colour')?->id, 'alt' => 'Ekdanta — Your Branding Partner', 'link' => '/', 'max_height' => 32],
+                'data_mobile' => ['max_height' => 27]],
+            ['type' => 'nav-menu', 'name' => 'Main menu', 'sort_order' => 1, 'is_active' => true,
+                'data_desktop' => ['menu_id' => Menu::query()->where('slug', 'ekdanta-main-menu')->value('id'), 'alignment' => 'center']],
+            ['type' => 'cta-button', 'name' => 'Become a big brand', 'sort_order' => 2, 'is_active' => true,
+                'data_desktop' => ['label' => 'Become a big brand', 'url' => '#contact', 'style' => 'solid', 'new_tab' => false]],
+        ]);
+        app(LayoutService::class)->flushCache();
     }
 
     /** Settings → Business from the design; only values that are still empty are filled. */

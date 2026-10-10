@@ -1623,6 +1623,11 @@ html[data-motion="off"] :is(.ek-scene, .ek-scene *) { animation: none !important
 // Light logo hidden everywhere outside the transparent overlay state.
 .gsm-logo-light { display: none; }
 
+// Header Builder → Logo → Max height, per device.
+.navbar-brand.gsm-logo-link img { max-height: var(--logo-m, 56px); }
+@include media-breakpoint-up(md) { .navbar-brand.gsm-logo-link img { max-height: var(--logo-t, 56px); } }
+@include media-breakpoint-up(lg) { .navbar-brand.gsm-logo-link img { max-height: var(--logo-d, 56px); } }
+
 // Product Detail Page has no hero: JS forces the overlay header into its
 // solid/scrolled state permanently (colored logo, white background). Here we
 // set the dark menu text and add exactly 95px spacing so the content clears
@@ -3643,6 +3648,14 @@ $gsm-cta-gradient: linear-gradient(90deg, #0b0f19 2%, #111827 19%, #4b5563 50%, 
 
         .gsm-site-header__bar { min-height: 56px; }
     }
+
+    // 30 px between menu items, a 42 px button and a filled menu button.
+    .gsm-nav .nav-link { padding-left: 15px; padding-right: 15px; }
+    .gsm-site-header__actions .btn { font-size: 14px; padding: 10.5px 18px !important; } // over .px-4
+
+    .gsm-menu-toggle,
+    .gsm-menu-toggle:hover,
+    .gsm-menu-toggle:focus-visible { background: var(--gsm-header-text, #111827); color: #fff; outline-color: var(--gsm-header-text, #111827); }
 }
 
 // Anchors and keyboard focus are never hidden under the floating pill.
@@ -3843,6 +3856,22 @@ html[data-motion="off"] {
     .gsm-header-overlay { margin-bottom: 0; }
 }
 
+
+// Bootstrap's primary buttons in the theme's colours (Brand → Primary, Button Text).
+.btn-primary {
+    --bs-btn-bg: var(--gsm-primary);
+    --bs-btn-border-color: var(--gsm-primary);
+    --bs-btn-color: var(--gsm-button-text, #fff);
+    --bs-btn-hover-bg: color-mix(in srgb, var(--gsm-primary) 88%, #000);
+    --bs-btn-hover-border-color: color-mix(in srgb, var(--gsm-primary) 88%, #000);
+    --bs-btn-hover-color: var(--gsm-button-text, #fff);
+    --bs-btn-active-bg: color-mix(in srgb, var(--gsm-primary) 80%, #000);
+    --bs-btn-active-border-color: color-mix(in srgb, var(--gsm-primary) 80%, #000);
+    --bs-btn-active-color: var(--gsm-button-text, #fff);
+    --bs-btn-disabled-bg: var(--gsm-primary);
+    --bs-btn-disabled-border-color: var(--gsm-primary);
+    --bs-btn-disabled-color: var(--gsm-button-text, #fff);
+}
 
 /* ══════════════════════════════════════════════════════════════════════
    Pill buttons site-wide (storefront)

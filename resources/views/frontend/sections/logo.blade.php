@@ -3,7 +3,8 @@
     $classes = $section->visibilityClasses();
     $link = $data['link'] ?? '/';
     $alt = $data['alt'] ?? setting('business.company_name', '');
-    $maxH = (int) ($data['max_height'] ?? 56);
+    // Max height per device (Header Builder: a smaller logo on phones).
+    $maxH = fn (string $device) => (int) ($section->dataFor($device)['max_height'] ?? 56);
 
     $desktopMedia = $mediaMap[$section->dataFor('desktop')['media_id'] ?? 0] ?? null;
     $tabletMedia = $mediaMap[$section->dataFor('tablet')['media_id'] ?? 0] ?? null;
@@ -21,18 +22,18 @@
 
 @php $lightMedia = $mediaMap[$data['light_media_id'] ?? 0] ?? null; @endphp
 
-<a href="{{ $link }}" class="navbar-brand order-0 {{ $classes }}">
+<a href="{{ $link }}" class="navbar-brand gsm-logo-link order-0 {{ $classes }}" style="--logo-d: {{ $maxH('desktop') }}px; --logo-t: {{ $maxH('tablet') }}px; --logo-m: {{ $maxH('mobile') }}px">
     @if ($lightMedia)
         {{-- Shown only while an overlay header is transparent (see .gsm-header-overlay CSS). --}}
-        <img src="{{ $lightMedia->url }}" alt="{{ $alt }}" class="gsm-logo-light" style="max-height: {{ $maxH }}px;">
+        <img src="{{ $lightMedia->url }}" alt="{{ $alt }}" class="gsm-logo-light">
     @endif
     @if ($desktopMedia)
         @if ($tabletMedia || $mobileMedia)
-            <img src="{{ $desktopMedia->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-lg-inline-block" style="max-height: {{ $maxH }}px;">
-            <img src="{{ ($tabletMedia ?? $desktopMedia)->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-md-inline-block d-lg-none" style="max-height: {{ $maxH }}px;">
-            <img src="{{ ($mobileMedia ?? $tabletMedia ?? $desktopMedia)->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-inline-block d-md-none" style="max-height: {{ $maxH }}px;">
+            <img src="{{ $desktopMedia->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-lg-inline-block">
+            <img src="{{ ($tabletMedia ?? $desktopMedia)->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-md-inline-block d-lg-none">
+            <img src="{{ ($mobileMedia ?? $tabletMedia ?? $desktopMedia)->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-inline-block d-md-none">
         @else
-            <img src="{{ $desktopMedia->url }}" alt="{{ $alt }}" class="gsm-logo-dark" style="max-height: {{ $maxH }}px;">
+            <img src="{{ $desktopMedia->url }}" alt="{{ $alt }}" class="gsm-logo-dark">
         @endif
     @else
         <span class="fw-bold gsm-logo-dark">{{ setting('business.company_name', '') }}</span>
