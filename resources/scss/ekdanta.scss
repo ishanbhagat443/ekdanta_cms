@@ -8,6 +8,8 @@
 // the edges, so no aspect ratio crops or overlaps it. Text has rem floors
 // (written into each view), so browser zoom still makes it bigger.
 
+@use 'ekdanta/home-hero';
+
 .ek {
     position: relative;
     height: 100%;
@@ -70,3 +72,11 @@
 .ek-reduced-only { display: none; }
 @media (prefers-reduced-motion: reduce) { .ek-reduced-only { display: revert; } }
 html[data-motion="off"] .ek-reduced-only { display: revert; }
+
+// Custom properties the design animates in CSS keyframes (torch beam: the
+// tip --ax/--ay on desktop, --mx/--my on phones). Registered so they
+// interpolate; each element sets its real value in design units.
+@property --ax { syntax: '<length>'; inherits: false; initial-value: 892px; }
+@property --ay { syntax: '<length>'; inherits: false; initial-value: 490px; }
+@property --mx { syntax: '<length>'; inherits: false; initial-value: 150px; }
+@property --my { syntax: '<length>'; inherits: false; initial-value: 590px; }

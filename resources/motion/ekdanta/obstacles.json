@@ -1,0 +1,20 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 2700 },
+        "tracks": {
+            "flip": { "part": "card", "trigger": "scrub", "preset": "flip-y", "range": [0, 300], "stagger": 420, "ease": "inOutQuad", "reduce": "step" },
+            "removed": { "part": "removed", "trigger": "scrub", "preset": "count-up", "range": [-60, 2460], "ease": "linear" },
+            "walker": { "part": "walker", "trigger": "scrub", "keyframes": { "translateX": [-1068, 0] }, "range": [0, 2400], "ease": "linear" },
+            "track": { "part": "trackfill", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [0, 2400], "ease": "linear" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 2756 },
+        "tracks": {
+            "flip": { "part": "card", "trigger": "scrub", "preset": "flip-y", "range": [0, 300], "stagger": 420, "ease": "inOutQuad", "reduce": "step" },
+            "removed": { "part": "removed", "trigger": "scrub", "preset": "count-up", "range": [-60, 2460], "ease": "linear" },
+            "walker": { "part": "walker", "trigger": "scrub", "keyframes": { "translateX": [-298, 0] }, "range": [0, 2400], "ease": "linear" },
+            "track": { "part": "trackfill", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [0, 2400], "ease": "linear" }
+        }
+    }
+}

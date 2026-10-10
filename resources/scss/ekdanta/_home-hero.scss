@@ -1,0 +1,22 @@
+// Ekdanta · Home Hero (Torch). The torch-beam scene writes these variables;
+// the defaults are the final state (beam open, buttons shown), which is
+// what visitors get without JS, with reduced motion, or if the script fails.
+.ek-home-hero {
+    .ek-comp { --bk: 0; --spa: -2400; --spb: 3200; --glow: 1; --cta: 1; --cta-rise: 30; --hint: 1; }
+    .ek-comp--m,
+    .ek-comp--t { --spa: -3000; --spb: 3000; --cta-rise: 24; }
+}
+
+// Before the scene starts: the beam closed, as the design opens it.
+@media (prefers-reduced-motion: no-preference) {
+    html.js-enabled:not(.ek-reveal):not([data-motion="off"]) .ek-home-hero .ek-comp {
+        --bk: 1; --spa: 0; --spb: 0; --glow: 0.55; --cta: 0; --hint: 0;
+    }
+}
+
+.ek-hh-cta {
+    opacity: var(--cta);
+    transform: translateY(calc((1 - var(--cta)) * var(--cta-rise) * var(--u)));
+}
+
+.ek-hh-hint { opacity: var(--hint); }

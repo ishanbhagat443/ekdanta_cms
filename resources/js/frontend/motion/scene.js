@@ -65,7 +65,10 @@ const splits = new WeakMap();
 
 /** Count-up: the real number stays in the DOM for screen readers; the ticking copy is hidden from them. */
 function countTarget(el, locale) {
-    const text = el.textContent.trim();
+    // The real text, kept on the element: a rebuilt scene (refresh) must not
+    // read the ticking copy it wrote last time.
+    el.dataset.ekCount ??= el.textContent.trim();
+    const text = el.dataset.ekCount;
     const m = /^(\D*)([\d.,]+)(.*)$/s.exec(text);
     if (!m) return null;
     const to = parseFloat(m[2].replace(/,/g, ''));
@@ -99,7 +102,10 @@ export class Scene {
         this.length = config.stage?.length || 0;
         // Reduced motion unpins a stage, unless it has steps: those still
         // need the scroll to show each item (they switch, without moving).
-        this.pinned = !!config.stage?.pin && (!env.reduced || !!config.steps);
+        // "step" tracks (reduce: 'step') switch in place at their point in the scroll.
+        const stepping = (config.tracks || []).some((t) => t.reduce === 'step' && t.enabled !== false);
+        this.pinned = !!config.stage?.pin && (!env.reduced || !!config.steps || stepping);
+        this.switches = []; // reduced motion, reduce: 'step': { anim, at, on }
         this.focusEnd = new Map(); // element → px where its scrub tracks are done (D9)
         this.timeline = null;
         this.origin = 0;
@@ -133,7 +139,20 @@ export class Scene {
 
     build() {
         const tracks = (this.config.tracks || []).filter((t) => t.enabled !== false);
-        const scrub = tracks.filter((t) => t.trigger === 'scrub' && t.keyframes);
+        // Reduced motion: a scrub track marked reduce 'step' jumps from start
+        // to end, item by item, at the middle of its range: no movement, and
+        // what the design reveals one by one is still revealed one by one.
+        if (this.env.reduced) {
+            for (const t of tracks) {
+                if (t.trigger !== 'scrub' || t.reduce !== 'step' || !t.keyframes || t.keyframes.$count) continue;
+                this.targetsOf(t).forEach((e, i) => {
+                    const anim = animate(e, { ...this.params(t), duration: 1, ease: 'linear', autoplay: false });
+                    anim.seek(0);
+                    this.switches.push({ anim, at: (t.range[0] + t.range[1]) / 2 + i * (t.stagger || 0), on: false });
+                });
+            }
+        }
+        const scrub = tracks.filter((t) => t.trigger === 'scrub' && t.keyframes && !(this.env.reduced && t.reduce === 'step' && !t.keyframes.$count));
 
         for (const t of tracks) {
             if (this.env.reduced && t.reduce === 'hide') {
@@ -144,6 +163,9 @@ export class Scene {
         if (scrub.length) {
             this.origin = Math.min(...scrub.map((t) => t.range[0]));
             const tl = createTimeline({ autoplay: false, defaults: { ease: 'linear' } });
+            // Reduced motion: a scroll-linked number keeps following the
+            // scroll (a changing number is not movement), in its own timeline.
+            const live = this.env.reduced ? createTimeline({ autoplay: false, defaults: { ease: 'linear' } }) : null;
             for (const t of scrub) {
                 const els = this.targetsOf(t);
                 if (!els.length) continue;
@@ -152,7 +174,7 @@ export class Scene {
                 const each = t.stagger || 0;
                 if (t.keyframes.$count) {
                     els.map((e) => countTarget(e, t.keyframes.$count)).forEach((c, i) => {
-                        if (c) tl.add(c.box, { v: [0, c.to], duration: span, ease: easeOf(t.ease), onUpdate: c.draw }, at + i * each);
+                        if (c) (live || tl).add(c.box, { v: [0, c.to], duration: span, ease: easeOf(t.ease), onUpdate: c.draw }, at + i * each);
                     });
                 } else {
                     tl.add(els, { ...this.params(t), duration: span, ease: easeOf(t.ease), delay: each ? stagger(each) : 0 }, at);
@@ -161,9 +183,13 @@ export class Scene {
             }
             // A child renders its start state only once the playhead has
             // passed it, so run to the end and back now (same frame, no paint).
-            tl.seek(tl.duration);
-            tl.seek(0);
+            for (const timeline of [tl, live]) {
+                if (!timeline) continue;
+                timeline.seek(timeline.duration);
+                timeline.seek(0);
+            }
             this.timeline = tl;
+            this.live = live;
         }
 
         for (const t of tracks) {
@@ -273,8 +299,19 @@ export class Scene {
         s.px = px;
         s.p = p;
 
+        for (const sw of this.switches) {
+            const on = px >= sw.at;
+            if (on !== sw.on) {
+                sw.on = on;
+                sw.anim.seek(on ? sw.anim.duration : 0);
+            }
+        }
+
         if (this.timeline) {
             this.timeline.seek(this.env.reduced ? this.timeline.duration : clamp(px - this.origin, 0, this.timeline.duration));
+        }
+        if (this.live) {
+            this.live.seek(clamp(px - this.origin, 0, this.live.duration));
         }
 
         const st = this.config.steps;
@@ -336,6 +373,8 @@ export class Scene {
             if (!anim) targets.forEach((e) => { e.style.animation = ''; });
         }
         this.timeline?.revert();
+        this.live?.revert();
+        this.switches.forEach((sw) => sw.anim.revert());
         this.env.factory?.destroy?.();
     }
 }

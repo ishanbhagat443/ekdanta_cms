@@ -32,6 +32,9 @@ class SectionTypeServiceProvider extends ServiceProvider
         \App\Services\SectionTypes\Footer\CopyrightSection::class,
         \App\Services\SectionTypes\Footer\FooterFormSection::class,
         \App\Services\SectionTypes\Footer\InstagramFeedSection::class,
+        // Ekdanta section pack ("Ekdanta · …" in Add a section).
+        \App\Services\SectionTypes\Ekdanta\HomeHeroSection::class,
+        \App\Services\SectionTypes\Ekdanta\ObstaclesSection::class,
         \App\Services\SectionTypes\Page\HeroSection::class,
         \App\Services\SectionTypes\Page\BannerSection::class,
         \App\Services\SectionTypes\Page\CtaSection::class,

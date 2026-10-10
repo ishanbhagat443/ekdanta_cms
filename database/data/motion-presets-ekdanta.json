@@ -1,0 +1,3676 @@
+[
+ {
+  "name": "Ekdanta: abL",
+  "slug": "ek-ab-l",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(105%)"
+   },
+   "to": {
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 900,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: ekFade",
+  "slug": "ek-fade",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translateY(calc(20 * var(--u)))"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 800,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (About, Blog, Blog-Post, Case-Study, Contact, M-Contact, M-Not-Found, M-Services, M-Thank-You, Not-Found, Service-Detail, Services, Thank-You, Work)."
+ },
+ {
+  "name": "Ekdanta: abHl",
+  "slug": "ek-ab-hl",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "to": {
+    "background-size": "100% 100%"
+   }
+  },
+  "params": {},
+  "duration": 1200,
+  "delay": 2600,
+  "ease": "cubic-bezier(.6,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: abOpen",
+  "slug": "ek-ab-open",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "transform": "rotateY(0deg)"
+   },
+   "to": {
+    "transform": "rotateY(-180deg)"
+   }
+  },
+  "params": {},
+  "duration": 1600,
+  "delay": 600,
+  "ease": "cubic-bezier(.6,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: abWrite",
+  "slug": "ek-ab-write",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "to": {
+    "max-width": "calc(240 * var(--u))"
+   }
+  },
+  "params": {},
+  "duration": 800,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: abTick",
+  "slug": "ek-ab-tick",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "scale(0) rotate(-20deg)"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 450,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.9,.3,1.5)",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: abFloat",
+  "slug": "ek-ab-float",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0) rotate(0deg)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-10 * var(--u))) rotate(-0.6deg)"
+   }
+  },
+  "params": {},
+  "duration": 6000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: ekBob",
+  "slug": "ek-bob",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-8 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 3000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: ekBob (Contact)",
+  "slug": "ek-bob-contact",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-4 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 900,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact, M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: ekBob (Service-Detail)",
+  "slug": "ek-bob-service-detail",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-10 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 3400,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Service-Detail, Work)."
+ },
+ {
+  "name": "Ekdanta: abPulse",
+  "slug": "ek-ab-pulse",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "box-shadow": "0 0 0 0 rgba(46,180,93,.55)"
+   },
+   "to": {
+    "box-shadow": "0 0 0 calc(26 * var(--u)) rgba(46,180,93,0)"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: abTw",
+  "slug": "ek-ab-tw",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "opacity": ".25",
+    "transform": "scale(.7)"
+   },
+   "50%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   }
+  },
+  "params": {},
+  "duration": 2200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (About)."
+ },
+ {
+  "name": "Ekdanta: tyIn",
+  "slug": "ek-ty-in",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0"
+   },
+   "to": {
+    "opacity": "1"
+   }
+  },
+  "params": {},
+  "duration": 1,
+  "delay": 42,
+  "ease": "steps(1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: tyCar",
+  "slug": "ek-ty-car",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "0%,100%": {
+    "box-shadow": "calc(6 * var(--u)) 0 0 #2EB45D"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: tyBlink",
+  "slug": "ek-ty-blink",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "0%,49%": {
+    "box-shadow": "calc(6 * var(--u)) 0 0 #2EB45D"
+   },
+   "50%,100%": {
+    "box-shadow": "none"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pDraw",
+  "slug": "ek-p-draw",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "to": {
+    "stroke-dashoffset": "0"
+   }
+  },
+  "params": {},
+  "duration": 700,
+  "delay": 2350,
+  "ease": "cubic-bezier(.6,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pCover",
+  "slug": "ek-p-cover",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "clip-path": "inset(100% 0 0 0 round calc(30 * var(--u)))"
+   },
+   "to": {
+    "clip-path": "inset(0 0 0 0 round calc(30 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 1100,
+  "delay": 450,
+  "ease": "cubic-bezier(.7,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pBro",
+  "slug": "ek-p-bro",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translate(calc(-70 * var(--u)),calc(90 * var(--u))) rotate(-18deg)"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "rotate(-8deg)"
+   }
+  },
+  "params": {},
+  "duration": 900,
+  "delay": 1050,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pPh",
+  "slug": "ek-p-ph",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translateY(calc(160 * var(--u))) rotate(16deg)"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "rotate(5deg)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 1300,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pStk",
+  "slug": "ek-p-stk",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "transform": "scale(0)"
+   },
+   "to": {
+    "transform": "scale(1)"
+   }
+  },
+  "params": {},
+  "duration": 520,
+  "delay": 0,
+  "ease": "cubic-bezier(.3,1.6,.5,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pBub",
+  "slug": "ek-p-bub",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "opacity": "0",
+    "transform": "translateY(calc(18 * var(--u))) scale(.92)"
+   },
+   "6%,80%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "88%,100%": {
+    "opacity": "0",
+    "transform": "translateY(calc(-12 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 10000,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pSeg0",
+  "slug": "ek-p-seg0",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "width": "0"
+   },
+   "33.3%,100%": {
+    "width": "100%"
+   }
+  },
+  "params": {},
+  "duration": 9000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pSeg1",
+  "slug": "ek-p-seg1",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,33.3%": {
+    "width": "0"
+   },
+   "66.6%,100%": {
+    "width": "100%"
+   }
+  },
+  "params": {},
+  "duration": 9000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pSeg2",
+  "slug": "ek-p-seg2",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,66.6%": {
+    "width": "0"
+   },
+   "100%": {
+    "width": "100%"
+   }
+  },
+  "params": {},
+  "duration": 9000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pSpin",
+  "slug": "ek-p-spin",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "to": {
+    "transform": "rotate(360deg)"
+   }
+  },
+  "params": {},
+  "duration": 6000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pBelt",
+  "slug": "ek-p-belt",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "to": {
+    "stroke-dashoffset": "-14"
+   }
+  },
+  "params": {},
+  "duration": 233,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pBox",
+  "slug": "ek-p-box",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateX(0)"
+   },
+   "to": {
+    "transform": "translateX(calc(280 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 4500,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pQc",
+  "slug": "ek-p-qc",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "opacity": "0",
+    "transform": "scale(.5)"
+   },
+   "12%": {
+    "opacity": "1",
+    "transform": "scale(1.15)"
+   },
+   "22%,60%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "80%,100%": {
+    "opacity": "0",
+    "transform": "scale(1)"
+   }
+  },
+  "params": {},
+  "duration": 1500,
+  "delay": 850,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pScan",
+  "slug": "ek-p-scan",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "opacity": ".35"
+   },
+   "50%": {
+    "opacity": "1"
+   }
+  },
+  "params": {},
+  "duration": 1500,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pHeart",
+  "slug": "ek-p-heart",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,70%,100%": {
+    "transform": "scale(1)"
+   },
+   "78%": {
+    "transform": "scale(1.3)"
+   },
+   "86%": {
+    "transform": "scale(.95)"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pJdot",
+  "slug": "ek-p-jdot",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "translateX(0)",
+    "opacity": "0"
+   },
+   "4%,10%": {
+    "transform": "translateX(0)",
+    "opacity": "1"
+   },
+   "27%,35%": {
+    "transform": "translateX(calc(165 * var(--u)))"
+   },
+   "52%,60%": {
+    "transform": "translateX(calc(330 * var(--u)))"
+   },
+   "77%,92%": {
+    "transform": "translateX(calc(495 * var(--u)))",
+    "opacity": "1"
+   },
+   "97%,100%": {
+    "transform": "translateX(calc(495 * var(--u)))",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "cubic-bezier(.6,0,.4,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pJline",
+  "slug": "ek-p-jline",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,10%": {
+    "transform": "scaleX(0)",
+    "opacity": "1"
+   },
+   "27%,35%": {
+    "transform": "scaleX(.3334)"
+   },
+   "52%,60%": {
+    "transform": "scaleX(.6667)"
+   },
+   "77%,92%": {
+    "transform": "scaleX(1)",
+    "opacity": "1"
+   },
+   "97%,100%": {
+    "transform": "scaleX(1)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "cubic-bezier(.6,0,.4,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pJn0",
+  "slug": "ek-p-jn0",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,3%,98%,100%": {
+    "background": "#FFFFFF",
+    "color": "#56605A"
+   },
+   "5%,95%": {
+    "background": "#2EB45D",
+    "color": "#0D1410"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pJn1",
+  "slug": "ek-p-jn1",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,25%,98%,100%": {
+    "background": "#FFFFFF",
+    "color": "#56605A"
+   },
+   "28%,95%": {
+    "background": "#2EB45D",
+    "color": "#0D1410"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pJn2",
+  "slug": "ek-p-jn2",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,50%,98%,100%": {
+    "background": "#FFFFFF",
+    "color": "#56605A"
+   },
+   "53%,95%": {
+    "background": "#2EB45D",
+    "color": "#0D1410"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pJn3",
+  "slug": "ek-p-jn3",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,75%,98%,100%": {
+    "background": "#FFFFFF",
+    "color": "#56605A"
+   },
+   "78%,95%": {
+    "background": "#F2A230",
+    "color": "#0D1410"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pNeedle",
+  "slug": "ek-p-needle",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "rotate(-55deg)"
+   },
+   "to": {
+    "transform": "rotate(50deg)"
+   }
+  },
+  "params": {},
+  "duration": 2600,
+  "delay": 0,
+  "ease": "cubic-bezier(.5,0,.3,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pDot",
+  "slug": "ek-p-dot",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,60%,100%": {
+    "opacity": ".25"
+   },
+   "30%": {
+    "opacity": "1"
+   }
+  },
+  "params": {},
+  "duration": 1200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pTruck",
+  "slug": "ek-p-truck",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateX(calc(-3 * var(--u)))"
+   },
+   "50%": {
+    "transform": "translateX(calc(4 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pRoad",
+  "slug": "ek-p-road",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "to": {
+    "stroke-dashoffset": "10"
+   }
+  },
+  "params": {},
+  "duration": 600,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pMorph",
+  "slug": "ek-p-morph",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,15%": {
+    "border-radius": "calc(3 * var(--u))",
+    "background": "#8A968F",
+    "transform": "rotate(0)"
+   },
+   "45%,65%": {
+    "border-radius": "50%",
+    "background": "#2EB45D",
+    "transform": "rotate(180deg) scale(1.1)"
+   },
+   "95%,100%": {
+    "border-radius": "calc(3 * var(--u))",
+    "background": "#8A968F",
+    "transform": "rotate(360deg)"
+   }
+  },
+  "params": {},
+  "duration": 3200,
+  "delay": 0,
+  "ease": "cubic-bezier(.6,0,.3,1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pRec",
+  "slug": "ek-p-rec",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "50%": {
+    "opacity": ".2"
+   }
+  },
+  "params": {},
+  "duration": 1200,
+  "delay": 0,
+  "ease": "steps(1)",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: pVf",
+  "slug": "ek-p-vf",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "scale(1)"
+   },
+   "50%": {
+    "transform": "scale(.97)"
+   }
+  },
+  "params": {},
+  "duration": 3000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Blog-Post)."
+ },
+ {
+  "name": "Ekdanta: ekRise",
+  "slug": "ek-rise",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(105%)"
+   },
+   "to": {
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 900,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Blog, Case-Study, Contact, M-Contact, M-Not-Found, M-Services, M-Thank-You, Not-Found, Service-Detail, Services, Thank-You, Work)."
+ },
+ {
+  "name": "Ekdanta: blCard",
+  "slug": "ek-bl-card",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,28%": {
+    "transform": "translate(0,0) rotate(0deg) scale(1)",
+    "opacity": "1",
+    "z-index": "3"
+   },
+   "33%": {
+    "transform": "translate(calc(-170 * var(--u)),calc(30 * var(--u))) rotate(-12deg) scale(1)",
+    "opacity": "0",
+    "z-index": "3"
+   },
+   "33.5%": {
+    "transform": "translate(calc(44 * var(--u)),calc(-44 * var(--u))) rotate(5deg) scale(.88)",
+    "opacity": "0",
+    "z-index": "1"
+   },
+   "38%,61%": {
+    "transform": "translate(calc(44 * var(--u)),calc(-44 * var(--u))) rotate(5deg) scale(.88)",
+    "opacity": ".7",
+    "z-index": "1"
+   },
+   "66%,94%": {
+    "transform": "translate(calc(22 * var(--u)),calc(-22 * var(--u))) rotate(2.5deg) scale(.94)",
+    "opacity": ".9",
+    "z-index": "2"
+   },
+   "100%": {
+    "transform": "translate(0,0) rotate(0deg) scale(1)",
+    "opacity": "1",
+    "z-index": "3"
+   }
+  },
+  "params": {},
+  "duration": 9000,
+  "delay": 0,
+  "ease": "cubic-bezier(.6,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Blog)."
+ },
+ {
+  "name": "Ekdanta: blTick",
+  "slug": "ek-bl-tick",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateX(0)"
+   },
+   "to": {
+    "transform": "translateX(-50%)"
+   }
+  },
+  "params": {},
+  "duration": 36000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Blog)."
+ },
+ {
+  "name": "Ekdanta: blCaret",
+  "slug": "ek-bl-caret",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "50%": {
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "steps(1)",
+  "stagger": 0,
+  "description": "From the design (Blog)."
+ },
+ {
+  "name": "Ekdanta: csIn",
+  "slug": "ek-cs-in",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translateX(calc(120 * var(--u))) rotate(6deg)"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 1100,
+  "delay": 250,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Case-Study)."
+ },
+ {
+  "name": "Ekdanta: csPan",
+  "slug": "ek-cs-pan",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(0)"
+   },
+   "to": {
+    "transform": "translateY(calc(-120 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 9000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Case-Study)."
+ },
+ {
+  "name": "Ekdanta: csLike",
+  "slug": "ek-cs-like",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "scale(1)"
+   },
+   "12%": {
+    "transform": "scale(1.25)"
+   },
+   "24%": {
+    "transform": "scale(1)"
+   }
+  },
+  "params": {},
+  "duration": 2600,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Case-Study)."
+ },
+ {
+  "name": "Ekdanta: csDash",
+  "slug": "ek-cs-dash",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "to": {
+    "background-position": "calc(24 * var(--u)) 0"
+   }
+  },
+  "params": {},
+  "duration": 1600,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Case-Study)."
+ },
+ {
+  "name": "Ekdanta: ekStepIn",
+  "slug": "ek-step-in",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translateX(calc(28 * var(--u)))"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 500,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: ekPulse",
+  "slug": "ek-pulse",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "scale(.4)",
+    "opacity": ".7"
+   },
+   "to": {
+    "transform": "scale(2.4)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 2000,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: ekPulse (Services)",
+  "slug": "ek-pulse-services",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "scale(.6)",
+    "opacity": ".8"
+   },
+   "to": {
+    "transform": "scale(2.6)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 2000,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: ekFall",
+  "slug": "ek-fall",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(calc(-40 * var(--u))) rotate(0deg)"
+   },
+   "to": {
+    "transform": "translateY(calc(940 * var(--u))) rotate(320deg)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (Contact)."
+ },
+ {
+  "name": "Ekdanta: ekFall (M-Contact)",
+  "slug": "ek-fall-m-contact",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(calc(-40 * var(--u))) rotate(0deg)"
+   },
+   "to": {
+    "transform": "translateY(calc(660 * var(--u))) rotate(320deg)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD0",
+  "slug": "ek-kp-d0",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,6.0%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "7.6%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP0",
+  "slug": "ek-kp-p0",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,6.0%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "6.8%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "9.6%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD1",
+  "slug": "ek-kp-d1",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,9.2%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "10.8%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP1",
+  "slug": "ek-kp-p1",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,9.2%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "10.0%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "12.8%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD2",
+  "slug": "ek-kp-d2",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,12.4%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "14.0%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP2",
+  "slug": "ek-kp-p2",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,12.4%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "13.2%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "16.0%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD3",
+  "slug": "ek-kp-d3",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,15.6%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "17.2%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP3",
+  "slug": "ek-kp-p3",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,15.6%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "16.4%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "19.2%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD4",
+  "slug": "ek-kp-d4",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,18.8%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "20.4%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP4",
+  "slug": "ek-kp-p4",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,18.8%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "19.6%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "22.4%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD5",
+  "slug": "ek-kp-d5",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,22.0%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "23.6%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP5",
+  "slug": "ek-kp-p5",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,22.0%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "22.8%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "25.6%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD6",
+  "slug": "ek-kp-d6",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,25.2%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "26.8%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP6",
+  "slug": "ek-kp-p6",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,25.2%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "26.0%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "28.8%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD7",
+  "slug": "ek-kp-d7",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,28.4%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "30.0%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP7",
+  "slug": "ek-kp-p7",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,28.4%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "29.2%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "32.0%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD8",
+  "slug": "ek-kp-d8",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,31.6%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "33.2%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP8",
+  "slug": "ek-kp-p8",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,31.6%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "32.4%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "35.2%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpD9",
+  "slug": "ek-kp-d9",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,34.8%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   },
+   "36.4%,90%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpP9",
+  "slug": "ek-kp-p9",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,34.8%": {
+    "opacity": "0",
+    "transform": "scale(.7)"
+   },
+   "35.6%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "38.4%,100%": {
+    "opacity": "0",
+    "transform": "scale(1.15)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpLbl",
+  "slug": "ek-kp-lbl",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,36%": {
+    "opacity": "0"
+   },
+   "39%,90%": {
+    "opacity": "1"
+   },
+   "94%,100%": {
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpPad",
+  "slug": "ek-kp-pad",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,40%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "43%,91%": {
+    "opacity": "0",
+    "transform": "scale(.94)"
+   },
+   "95%,100%": {
+    "opacity": "1",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpBtn",
+  "slug": "ek-kp-btn",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,36%": {
+    "box-shadow": "0 0 0 0 rgba(46,180,93,0)"
+   },
+   "38%": {
+    "box-shadow": "0 0 0 calc(14 * var(--u)) rgba(46,180,93,.35)"
+   },
+   "41%,100%": {
+    "box-shadow": "0 0 0 0 rgba(46,180,93,0)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpCall",
+  "slug": "ek-kp-call",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,41%": {
+    "opacity": "0",
+    "transform": "translateY(calc(24 * var(--u)))"
+   },
+   "45%,89%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "93%,100%": {
+    "opacity": "0",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpBub",
+  "slug": "ek-kp-bub",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,49%": {
+    "opacity": "0",
+    "transform": "scale(.6) translateY(calc(12 * var(--u)))"
+   },
+   "53%,87%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "91%,100%": {
+    "opacity": "0",
+    "transform": "scale(.9)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpRing",
+  "slug": "ek-kp-ring",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "scale(.55)",
+    "opacity": ".4"
+   },
+   "to": {
+    "transform": "scale(1.5)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 3600,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: kpAv",
+  "slug": "ek-kp-av",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "box-shadow": "0 0 0 0 rgba(46,180,93,.55)"
+   },
+   "to": {
+    "box-shadow": "0 0 0 calc(28 * var(--u)) rgba(46,180,93,0)"
+   }
+  },
+  "params": {},
+  "duration": 1600,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: ekFloat",
+  "slug": "ek-float",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-12 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 5000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Contact, M-Contact)."
+ },
+ {
+  "name": "Ekdanta: ekFloat (Services)",
+  "slug": "ek-float-services",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-6 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 3000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: ekRig",
+  "slug": "ek-rig",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "rotate(0deg)"
+   },
+   "25%": {
+    "transform": "rotate(6deg)"
+   },
+   "75%": {
+    "transform": "rotate(-6deg)"
+   }
+  },
+  "params": {},
+  "duration": 4200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Final-Home, M-Home)."
+ },
+ {
+  "name": "Ekdanta: ekBeam",
+  "slug": "ek-beam",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "--ax": "calc(892 * var(--u))",
+    "--ay": "calc(490 * var(--u))"
+   },
+   "25%": {
+    "--ax": "calc(907.6 * var(--u))",
+    "--ay": "calc(460.8 * var(--u))"
+   },
+   "75%": {
+    "--ax": "calc(879.6 * var(--u))",
+    "--ay": "calc(520.6 * var(--u))"
+   }
+  },
+  "params": {},
+  "duration": 4200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Final-Home)."
+ },
+ {
+  "name": "Ekdanta: nDrop",
+  "slug": "ek-n-drop",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "0%": {
+    "transform": "translateY(calc(-520 * var(--u)))"
+   },
+   "60%": {
+    "transform": "translateY(calc(18 * var(--u)))"
+   },
+   "78%": {
+    "transform": "translateY(calc(-10 * var(--u)))"
+   },
+   "100%": {
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 900,
+  "delay": 0,
+  "ease": "cubic-bezier(.3,.7,.3,1)",
+  "stagger": 0,
+  "description": "From the design (Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nDrop (M-Not-Found)",
+  "slug": "ek-n-drop-m-not-found",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "0%": {
+    "transform": "translateY(calc(-320 * var(--u)))"
+   },
+   "60%": {
+    "transform": "translateY(calc(18 * var(--u)))"
+   },
+   "78%": {
+    "transform": "translateY(calc(-10 * var(--u)))"
+   },
+   "100%": {
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 900,
+  "delay": 0,
+  "ease": "cubic-bezier(.3,.7,.3,1)",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nRoll",
+  "slug": "ek-n-roll",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "transform": "translateX(calc(760 * var(--u))) rotate(400deg)"
+   },
+   "to": {
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 1200,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.25,1)",
+  "stagger": 0,
+  "description": "From the design (Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nRoll (M-Not-Found)",
+  "slug": "ek-n-roll-m-not-found",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "transform": "translateX(calc(320 * var(--u))) rotate(400deg)"
+   },
+   "to": {
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 1200,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.25,1)",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nLook",
+  "slug": "ek-n-look",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,14%,100%": {
+    "transform": "rotate(0)"
+   },
+   "22%,36%": {
+    "transform": "rotate(-12deg)"
+   },
+   "46%,52%": {
+    "transform": "rotate(0)"
+   },
+   "60%,74%": {
+    "transform": "rotate(11deg)"
+   },
+   "84%": {
+    "transform": "translateY(calc(-14 * var(--u))) rotate(0)"
+   },
+   "90%": {
+    "transform": "translateY(0)"
+   }
+  },
+  "params": {},
+  "duration": 6000,
+  "delay": 1800,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nBlink",
+  "slug": "ek-n-blink",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,90%,100%": {
+    "transform": "scaleY(0)"
+   },
+   "94%": {
+    "transform": "scaleY(1)"
+   }
+  },
+  "params": {},
+  "duration": 4200,
+  "delay": 2400,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nSheetA",
+  "slug": "ek-n-sheet-a",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(0) rotate(0)"
+   },
+   "to": {
+    "transform": "translateY(calc(-34 * var(--u))) rotate(6deg)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nSheetB",
+  "slug": "ek-n-sheet-b",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(0) rotate(0)"
+   },
+   "to": {
+    "transform": "translateY(calc(-34 * var(--u))) rotate(-6deg)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nTrail",
+  "slug": "ek-n-trail",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "to": {
+    "stroke-dashoffset": "-32"
+   }
+  },
+  "params": {},
+  "duration": 1600,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nPin",
+  "slug": "ek-n-pin",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "scale(0)"
+   },
+   "12%,100%": {
+    "transform": "scale(1)"
+   }
+  },
+  "params": {},
+  "duration": 2600,
+  "delay": 1600,
+  "ease": "cubic-bezier(.3,1.5,.5,1)",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nQ",
+  "slug": "ek-n-q",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-6 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 2200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nSmoke",
+  "slug": "ek-n-smoke",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "translateY(0) scale(.6)",
+    "opacity": "0"
+   },
+   "30%": {
+    "opacity": ".8"
+   },
+   "100%": {
+    "transform": "translateY(calc(-12 * var(--u))) scale(1.2)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nSq",
+  "slug": "ek-n-sq",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "fill": "#2EB45D"
+   },
+   "25%": {
+    "fill": "#0D1410"
+   },
+   "50%": {
+    "fill": "#F2A230"
+   },
+   "75%": {
+    "fill": "#8FE3AE"
+   }
+  },
+  "params": {},
+  "duration": 4000,
+  "delay": 0,
+  "ease": "steps(1)",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nStack",
+  "slug": "ek-n-stack",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translate(0,0)"
+   },
+   "50%": {
+    "transform": "translate(calc(3 * var(--u)),calc(-3 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 3000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nBob",
+  "slug": "ek-n-bob",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-2.5 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nWrite",
+  "slug": "ek-n-write",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,10%": {
+    "transform": "scaleX(0)"
+   },
+   "60%,85%": {
+    "transform": "scaleX(1)"
+   },
+   "100%": {
+    "transform": "scaleX(0)"
+   }
+  },
+  "params": {},
+  "duration": 2600,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nPen",
+  "slug": "ek-n-pen",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,10%": {
+    "transform": "translateX(0)"
+   },
+   "60%,85%": {
+    "transform": "translateX(calc(11 * var(--u)))"
+   },
+   "100%": {
+    "transform": "translateX(0)"
+   }
+  },
+  "params": {},
+  "duration": 2600,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nWig",
+  "slug": "ek-n-wig",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,55%,100%": {
+    "transform": "rotate(0)"
+   },
+   "62%,72%,82%": {
+    "transform": "rotate(-14deg)"
+   },
+   "67%,77%,87%": {
+    "transform": "rotate(14deg)"
+   }
+  },
+  "params": {},
+  "duration": 1600,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nRes",
+  "slug": "ek-n-res",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translateY(calc(-8 * var(--u)))"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 300,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nJit",
+  "slug": "ek-n-jit",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translate(0,0)"
+   },
+   "25%": {
+    "transform": "translate(calc(-2 * var(--u)),calc(1 * var(--u)))"
+   },
+   "75%": {
+    "transform": "translate(calc(2 * var(--u)),calc(-1 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: nSpark",
+  "slug": "ek-n-spark",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "opacity": "0",
+    "transform": "scale(.5)"
+   },
+   "30%": {
+    "opacity": "1"
+   },
+   "100%": {
+    "opacity": "0",
+    "transform": "scale(1.3)"
+   }
+  },
+  "params": {},
+  "duration": 1100,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (M-Not-Found, Not-Found)."
+ },
+ {
+  "name": "Ekdanta: ekHeart",
+  "slug": "ek-heart",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "opacity": "0",
+    "transform": "translateY(calc(12 * var(--u))) scale(.6)"
+   },
+   "20%": {
+    "opacity": "1"
+   },
+   "100%": {
+    "opacity": "0",
+    "transform": "translateY(calc(-70 * var(--u))) scale(1.1)"
+   }
+  },
+  "params": {},
+  "duration": 2600,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: ekHeart (Services)",
+  "slug": "ek-heart-services",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "opacity": "0",
+    "transform": "translateY(calc(12 * var(--u))) scale(.6)"
+   },
+   "20%": {
+    "opacity": "1"
+   },
+   "100%": {
+    "opacity": "0",
+    "transform": "translateY(calc(-54 * var(--u))) scale(1.1)"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: ekBlink",
+  "slug": "ek-blink",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "50%": {
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "steps(1)",
+  "stagger": 0,
+  "description": "From the design (M-Services, Service-Detail, Services)."
+ },
+ {
+  "name": "Ekdanta: scPop",
+  "slug": "ek-sc-pop",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "opacity": "0",
+    "transform": "scale(.4)"
+   },
+   "7%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "86%": {
+    "opacity": "1",
+    "transform": "scale(1)"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "scale(.9)"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.9,.3,1.3)",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scDrop",
+  "slug": "ek-sc-drop",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "opacity": "0",
+    "transform": "translateY(calc(-70 * var(--u)))"
+   },
+   "8%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "86%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "94%,100%": {
+    "opacity": "0",
+    "transform": "translateY(calc(10 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.9,.3,1.3)",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scSlide",
+  "slug": "ek-sc-slide",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "opacity": "0",
+    "transform": "translateX(calc(60 * var(--u)))"
+   },
+   "8%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "84%": {
+    "opacity": "1",
+    "transform": "none"
+   },
+   "92%,100%": {
+    "opacity": "0",
+    "transform": "translateX(calc(-20 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scDraw",
+  "slug": "ek-sc-draw",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "stroke-dashoffset": "1"
+   },
+   "30%,86%": {
+    "stroke-dashoffset": "0"
+   },
+   "94%,100%": {
+    "stroke-dashoffset": "1"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scCursor",
+  "slug": "ek-sc-cursor",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,10%": {
+    "transform": "translate(calc(160 * var(--u)),calc(120 * var(--u)))"
+   },
+   "30%,34%": {
+    "transform": "translate(0,0) scale(1)"
+   },
+   "36%": {
+    "transform": "translate(0,0) scale(.85)"
+   },
+   "40%,90%": {
+    "transform": "translate(0,0) scale(1)"
+   },
+   "100%": {
+    "transform": "translate(calc(160 * var(--u)),calc(120 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "cubic-bezier(.6,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scRipple",
+  "slug": "ek-sc-ripple",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,35%": {
+    "opacity": "0",
+    "transform": "scale(.3)"
+   },
+   "37%": {
+    "opacity": "1",
+    "transform": "scale(.5)"
+   },
+   "55%,100%": {
+    "opacity": "0",
+    "transform": "scale(2.2)"
+   }
+  },
+  "params": {},
+  "duration": 7000,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scFlash",
+  "slug": "ek-sc-flash",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,46%": {
+    "opacity": "0"
+   },
+   "48%": {
+    "opacity": ".85"
+   },
+   "56%,100%": {
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 4000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scFocus",
+  "slug": "ek-sc-focus",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,30%": {
+    "transform": "scale(1.5)",
+    "opacity": "0"
+   },
+   "38%": {
+    "transform": "scale(1)",
+    "opacity": "1"
+   },
+   "80%": {
+    "transform": "scale(1)",
+    "opacity": "1"
+   },
+   "90%,100%": {
+    "transform": "scale(1)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 4000,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.9,.3,1.3)",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scStrip",
+  "slug": "ek-sc-strip",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateX(0)"
+   },
+   "to": {
+    "transform": "translateX(-50%)"
+   }
+  },
+  "params": {},
+  "duration": 16000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scMove",
+  "slug": "ek-sc-move",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,12%": {
+    "transform": "translate(0,0)",
+    "opacity": "1"
+   },
+   "26%,44%": {
+    "transform": "translate(calc(166 * var(--u)),0)",
+    "opacity": "1"
+   },
+   "58%,86%": {
+    "transform": "translate(calc(332 * var(--u)),0)",
+    "opacity": "1"
+   },
+   "92%": {
+    "transform": "translate(calc(332 * var(--u)),0)",
+    "opacity": "0"
+   },
+   "96%": {
+    "transform": "translate(0,0)",
+    "opacity": "0"
+   },
+   "100%": {
+    "transform": "translate(0,0)",
+    "opacity": "1"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "cubic-bezier(.6,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scWon",
+  "slug": "ek-sc-won",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,57%": {
+    "background": "#F2A230"
+   },
+   "58%,92%": {
+    "background": "#2EB45D"
+   },
+   "100%": {
+    "background": "#F2A230"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: scGauge",
+  "slug": "ek-sc-gauge",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,30%": {
+    "stroke-dashoffset": "1"
+   },
+   "60%,88%": {
+    "stroke-dashoffset": "0.06"
+   },
+   "96%,100%": {
+    "stroke-dashoffset": "1"
+   }
+  },
+  "params": {},
+  "duration": 8000,
+  "delay": 0,
+  "ease": "cubic-bezier(.3,.7,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Service-Detail)."
+ },
+ {
+  "name": "Ekdanta: obSpin",
+  "slug": "ek-ob-spin",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "to": {
+    "transform": "rotate(360deg)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: obRev",
+  "slug": "ek-ob-rev",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "to": {
+    "transform": "rotate(-360deg)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: obPop",
+  "slug": "ek-ob-pop",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translate(-50%,-50%) scale(.3)"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "translate(-50%,-50%) scale(1)"
+   }
+  },
+  "params": {},
+  "duration": 800,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.9,.3,1.25)",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: coreRing",
+  "slug": "ek-core-ring",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "scale(1)",
+    "opacity": ".55"
+   },
+   "to": {
+    "transform": "scale(2.1)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 3000,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: svRoll",
+  "slug": "ek-sv-roll",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "translateY(0)"
+   },
+   "13.47%": {
+    "transform": "translateY(0)"
+   },
+   "16.67%": {
+    "transform": "translateY(calc(-44 * var(--u)))"
+   },
+   "30.13%": {
+    "transform": "translateY(calc(-44 * var(--u)))"
+   },
+   "33.33%": {
+    "transform": "translateY(calc(-88 * var(--u)))"
+   },
+   "46.80%": {
+    "transform": "translateY(calc(-88 * var(--u)))"
+   },
+   "50.00%": {
+    "transform": "translateY(calc(-132 * var(--u)))"
+   },
+   "63.47%": {
+    "transform": "translateY(calc(-132 * var(--u)))"
+   },
+   "66.67%": {
+    "transform": "translateY(calc(-176 * var(--u)))"
+   },
+   "80.13%": {
+    "transform": "translateY(calc(-176 * var(--u)))"
+   },
+   "83.33%": {
+    "transform": "translateY(calc(-220 * var(--u)))"
+   },
+   "96.80%": {
+    "transform": "translateY(calc(-220 * var(--u)))"
+   },
+   "100.00%": {
+    "transform": "translateY(calc(-264 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 13200,
+  "delay": 0,
+  "ease": "cubic-bezier(.7,0,.25,1)",
+  "stagger": 0,
+  "description": "From the design (Services)."
+ },
+ {
+  "name": "Ekdanta: svRoll (M-Services)",
+  "slug": "ek-sv-roll-m-services",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "translateY(0)"
+   },
+   "13.47%": {
+    "transform": "translateY(0)"
+   },
+   "16.67%": {
+    "transform": "translateY(calc(-30 * var(--u)))"
+   },
+   "30.13%": {
+    "transform": "translateY(calc(-30 * var(--u)))"
+   },
+   "33.33%": {
+    "transform": "translateY(calc(-60 * var(--u)))"
+   },
+   "46.80%": {
+    "transform": "translateY(calc(-60 * var(--u)))"
+   },
+   "50.00%": {
+    "transform": "translateY(calc(-90 * var(--u)))"
+   },
+   "63.47%": {
+    "transform": "translateY(calc(-90 * var(--u)))"
+   },
+   "66.67%": {
+    "transform": "translateY(calc(-120 * var(--u)))"
+   },
+   "80.13%": {
+    "transform": "translateY(calc(-120 * var(--u)))"
+   },
+   "83.33%": {
+    "transform": "translateY(calc(-150 * var(--u)))"
+   },
+   "96.80%": {
+    "transform": "translateY(calc(-150 * var(--u)))"
+   },
+   "100.00%": {
+    "transform": "translateY(calc(-180 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 13200,
+  "delay": 0,
+  "ease": "cubic-bezier(.7,0,.25,1)",
+  "stagger": 0,
+  "description": "From the design (M-Services)."
+ },
+ {
+  "name": "Ekdanta: ekDrop",
+  "slug": "ek-drop",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "translateY(0)",
+    "opacity": "0"
+   },
+   "10%": {
+    "opacity": "1"
+   },
+   "85%": {
+    "opacity": "1"
+   },
+   "100%": {
+    "transform": "translateY(calc(142 * var(--u)))",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 2100,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: ekTurn",
+  "slug": "ek-turn",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "scaleX(1)"
+   },
+   "50%": {
+    "transform": "scaleX(.6)"
+   }
+  },
+  "params": {},
+  "duration": 3200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Services, Services)."
+ },
+ {
+  "name": "Ekdanta: tMorph",
+  "slug": "ek-t-morph",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "0%": {
+    "width": "calc(330 * var(--u))",
+    "height": "calc(72 * var(--u))",
+    "background": "#0D1410",
+    "box-shadow": "0 calc(20 * var(--u)) calc(40 * var(--u)) calc(-24 * var(--u)) rgba(13,20,16,.6)"
+   },
+   "55%": {
+    "width": "calc(330 * var(--u))",
+    "height": "calc(72 * var(--u))",
+    "background": "#0D1410"
+   },
+   "80%,100%": {
+    "width": "calc(128 * var(--u))",
+    "height": "calc(128 * var(--u))",
+    "background": "#2EB45D",
+    "box-shadow": "0 calc(24 * var(--u)) calc(50 * var(--u)) calc(-20 * var(--u)) rgba(10,90,48,.6)"
+   }
+  },
+  "params": {},
+  "duration": 1700,
+  "delay": 200,
+  "ease": "cubic-bezier(.7,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tMorph (M-Thank-You)",
+  "slug": "ek-t-morph-m-thank-you",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "0%": {
+    "width": "calc(280 * var(--u))",
+    "height": "calc(64 * var(--u))",
+    "background": "#0D1410",
+    "box-shadow": "0 calc(20 * var(--u)) calc(40 * var(--u)) calc(-24 * var(--u)) rgba(13,20,16,.6)"
+   },
+   "55%": {
+    "width": "calc(280 * var(--u))",
+    "height": "calc(64 * var(--u))",
+    "background": "#0D1410"
+   },
+   "80%,100%": {
+    "width": "calc(112 * var(--u))",
+    "height": "calc(112 * var(--u))",
+    "background": "#2EB45D",
+    "box-shadow": "0 calc(24 * var(--u)) calc(50 * var(--u)) calc(-20 * var(--u)) rgba(10,90,48,.6)"
+   }
+  },
+  "params": {},
+  "duration": 1700,
+  "delay": 200,
+  "ease": "cubic-bezier(.7,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tSend",
+  "slug": "ek-t-send",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "0%": {
+    "opacity": "0"
+   },
+   "8%,48%": {
+    "opacity": "1"
+   },
+   "58%,100%": {
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 1700,
+  "delay": 200,
+  "ease": "ease",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tSpin",
+  "slug": "ek-t-spin",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "to": {
+    "transform": "rotate(360deg)"
+   }
+  },
+  "params": {},
+  "duration": 800,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tWave",
+  "slug": "ek-t-wave",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "scale(1)",
+    "opacity": "0"
+   },
+   "6%": {
+    "opacity": ".55"
+   },
+   "100%": {
+    "transform": "scale(4.6)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 3600,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.6,.3,1)",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tChip",
+  "slug": "ek-t-chip",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translateY(calc(16 * var(--u))) scale(.85)"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 700,
+  "delay": 0,
+  "ease": "cubic-bezier(.3,1.4,.5,1)",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tFloat",
+  "slug": "ek-t-float",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-8 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 4000,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tDraw",
+  "slug": "ek-t-draw",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "to": {
+    "stroke-dashoffset": "0"
+   }
+  },
+  "params": {},
+  "duration": 550,
+  "delay": 1600,
+  "ease": "cubic-bezier(.6,0,.2,1)",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tLive",
+  "slug": "ek-t-live",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "box-shadow": "0 0 0 0 rgba(46,180,93,.55)"
+   },
+   "50%": {
+    "box-shadow": "0 0 0 calc(7 * var(--u)) rgba(46,180,93,0)"
+   }
+  },
+  "params": {},
+  "duration": 1600,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tBob",
+  "slug": "ek-t-bob",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(6 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 1600,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tPulse",
+  "slug": "ek-t-pulse",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "scale(1)",
+    "opacity": ".6"
+   },
+   "100%": {
+    "transform": "scale(1.7)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 1800,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tWig",
+  "slug": "ek-t-wig",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,60%,100%": {
+    "transform": "rotate(0)"
+   },
+   "65%,75%,85%": {
+    "transform": "rotate(-14deg)"
+   },
+   "70%,80%,90%": {
+    "transform": "rotate(14deg)"
+   }
+  },
+  "params": {},
+  "duration": 1400,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tScan",
+  "slug": "ek-t-scan",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translate(calc(-2 * var(--u)),calc(-1 * var(--u)))"
+   },
+   "25%": {
+    "transform": "translate(calc(2 * var(--u)),calc(-2 * var(--u)))"
+   },
+   "50%": {
+    "transform": "translate(calc(2 * var(--u)),calc(2 * var(--u)))"
+   },
+   "75%": {
+    "transform": "translate(calc(-2 * var(--u)),calc(2 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tEnv",
+  "slug": "ek-t-env",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-2 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 2200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tDoc",
+  "slug": "ek-t-doc",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,15%": {
+    "transform": "scaleX(0)"
+   },
+   "45%,85%": {
+    "transform": "scaleX(1)"
+   },
+   "100%": {
+    "transform": "scaleX(0)"
+   }
+  },
+  "params": {},
+  "duration": 2400,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tVib",
+  "slug": "ek-t-vib",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,45%,100%": {
+    "transform": "translateX(0)"
+   },
+   "5%,15%,25%,35%": {
+    "transform": "translateX(calc(-3 * var(--u))) rotate(-.6deg)"
+   },
+   "10%,20%,30%,40%": {
+    "transform": "translateX(calc(3 * var(--u))) rotate(.6deg)"
+   }
+  },
+  "params": {},
+  "duration": 1800,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tRing",
+  "slug": "ek-t-ring",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%": {
+    "transform": "scale(1)",
+    "opacity": ".5"
+   },
+   "100%": {
+    "transform": "scale(1.9)",
+    "opacity": "0"
+   }
+  },
+  "params": {},
+  "duration": 2200,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tAcc",
+  "slug": "ek-t-acc",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "transform": "translateY(0)"
+   },
+   "50%": {
+    "transform": "translateY(calc(-6 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 1200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You, Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tFeed",
+  "slug": "ek-t-feed",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(0)"
+   },
+   "to": {
+    "transform": "translateY(calc(-507 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 20000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tFeed (M-Thank-You)",
+  "slug": "ek-t-feed-m-thank-you",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(0)"
+   },
+   "to": {
+    "transform": "translateY(calc(-243 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 20000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tTitles",
+  "slug": "ek-t-titles",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,28%": {
+    "transform": "translateY(0)"
+   },
+   "33%,61%": {
+    "transform": "translateY(calc(-86 * var(--u)))"
+   },
+   "66%,94%": {
+    "transform": "translateY(calc(-172 * var(--u)))"
+   },
+   "100%": {
+    "transform": "translateY(calc(-258 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 9000,
+  "delay": 0,
+  "ease": "cubic-bezier(.7,0,.3,1)",
+  "stagger": 0,
+  "description": "From the design (Thank-You)."
+ },
+ {
+  "name": "Ekdanta: tTitles (M-Thank-You)",
+  "slug": "ek-t-titles-m-thank-you",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,28%": {
+    "transform": "translateY(0)"
+   },
+   "33%,61%": {
+    "transform": "translateY(calc(-58 * var(--u)))"
+   },
+   "66%,94%": {
+    "transform": "translateY(calc(-116 * var(--u)))"
+   },
+   "100%": {
+    "transform": "translateY(calc(-174 * var(--u)))"
+   }
+  },
+  "params": {},
+  "duration": 9000,
+  "delay": 0,
+  "ease": "cubic-bezier(.7,0,.3,1)",
+  "stagger": 0,
+  "description": "From the design (M-Thank-You)."
+ },
+ {
+  "name": "Ekdanta: wkUp",
+  "slug": "ek-wk-up",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(0)"
+   },
+   "to": {
+    "transform": "translateY(-50%)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Work)."
+ },
+ {
+  "name": "Ekdanta: wkDown",
+  "slug": "ek-wk-down",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "transform": "translateY(-50%)"
+   },
+   "to": {
+    "transform": "translateY(0)"
+   }
+  },
+  "params": {},
+  "duration": 1000,
+  "delay": 0,
+  "ease": "linear",
+  "stagger": 0,
+  "description": "From the design (Work)."
+ },
+ {
+  "name": "Ekdanta: wkIn",
+  "slug": "ek-wk-in",
+  "kind": "css",
+  "trigger": "load",
+  "keyframes": {
+   "from": {
+    "opacity": "0",
+    "transform": "translateY(calc(160 * var(--u)))"
+   },
+   "to": {
+    "opacity": "1",
+    "transform": "none"
+   }
+  },
+  "params": {},
+  "duration": 1200,
+  "delay": 0,
+  "ease": "cubic-bezier(.2,.8,.2,1)",
+  "stagger": 0,
+  "description": "From the design (Work)."
+ },
+ {
+  "name": "Ekdanta: wkPulse",
+  "slug": "ek-wk-pulse",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "from": {
+    "box-shadow": "0 0 0 0 rgba(46,180,93,.7)"
+   },
+   "to": {
+    "box-shadow": "0 0 0 calc(22 * var(--u)) rgba(46,180,93,0)"
+   }
+  },
+  "params": {},
+  "duration": 1800,
+  "delay": 0,
+  "ease": "ease-out",
+  "stagger": 0,
+  "description": "From the design (Work)."
+ },
+ {
+  "name": "Ekdanta: ekBeamM",
+  "slug": "ek-beam-m",
+  "kind": "css",
+  "trigger": "loop",
+  "keyframes": {
+   "0%,100%": {
+    "--mx": "calc(150 * var(--u))",
+    "--my": "calc(590 * var(--u))"
+   },
+   "25%": {
+    "--mx": "calc(165.7 * var(--u))",
+    "--my": "calc(576.9 * var(--u))"
+   },
+   "75%": {
+    "--mx": "calc(135.7 * var(--u))",
+    "--my": "calc(604.7 * var(--u))"
+   }
+  },
+  "params": {},
+  "duration": 4200,
+  "delay": 0,
+  "ease": "ease-in-out",
+  "stagger": 0,
+  "description": "From the design (M-Home)."
+ }
+]

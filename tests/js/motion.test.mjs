@@ -131,6 +131,22 @@ test('reduced motion shows every scrubbed part in its final state', () => {
     assert.equal(el.querySelector('[data-m="sticker"]').style.visibility, 'hidden');
 });
 
+test('reduced motion "step" tracks switch item by item, without tweening, and keep the stage', () => {
+    const el = section('<ul data-m="cards"><li>a</li><li>b</li></ul>');
+    const [a, b] = el.querySelectorAll('li');
+    const s = scene(el, { stage: { pin: true, length: 1000 }, tracks: [
+        { part: 'cards', children: true, trigger: 'scrub', keyframes: { opacity: [0, 1] }, range: [0, 300], stagger: 420, reduce: 'step' },
+    ] }, { reduced: true });
+    assert.equal(s.pinned, true, 'the stage stays pinned so each item can still be reached');
+    s.update(100);
+    assert.equal(Number(a.style.opacity), 0, 'before its midpoint: as it starts');
+    s.update(200);
+    assert.equal(Number(a.style.opacity), 1, 'past its midpoint: done, no in-between');
+    assert.equal(Number(b.style.opacity), 0);
+    s.update(600);
+    assert.equal(Number(b.style.opacity), 1);
+});
+
 test('count-up keeps the real number for screen readers', () => {
     const el = section('<strong data-m="stat">10,000+</strong>');
     const s = scene(el, { tracks: [{ part: 'stat', trigger: 'scrub', keyframes: { $count: 'en-IN' }, range: [0, 100], ease: 'linear' }] });
@@ -139,6 +155,13 @@ test('count-up keeps the real number for screen readers', () => {
     assert.equal(stat.querySelector('.visually-hidden').textContent, '10,000+');
     assert.equal(stat.querySelector('[aria-hidden="true"]').textContent, '5,000+');
     s.update(100);
+    assert.equal(stat.querySelector('[aria-hidden="true"]').textContent, '10,000+');
+
+    // Rebuilt (EkMotion.refresh): still counts to the real number, not to what it last showed.
+    s.destroy();
+    const again = scene(el, { tracks: [{ part: 'stat', trigger: 'scrub', keyframes: { $count: 'en-IN' }, range: [0, 100], ease: 'linear' }] });
+    again.update(100);
+    assert.equal(stat.querySelector('.visually-hidden').textContent, '10,000+');
     assert.equal(stat.querySelector('[aria-hidden="true"]').textContent, '10,000+');
 });
 

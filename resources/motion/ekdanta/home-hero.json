@@ -1,0 +1,18 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 700 },
+        "scene": { "params": { "openSeconds": 10, "scrollOpen": 600, "spreadA": -2400, "spreadB": 3200, "ctaAt": 0.8, "ctaSpan": 0.12, "ctaRise": 30, "glowFrom": 0.55, "hintAt": 560, "hintFadeAt": 650, "hintFadeSpan": 150 } },
+        "tracks": {
+            "rig": { "part": "rig", "trigger": "loop", "preset": "ek-rig", "duration": 4200, "ease": "ease-in-out", "reduce": "final" },
+            "beam": { "part": "beam", "trigger": "loop", "preset": "ek-beam", "duration": 4200, "ease": "ease-in-out", "reduce": "final" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 756 },
+        "scene": { "params": { "openSeconds": 10, "scrollOpen": 600, "spreadA": -3000, "spreadB": 3000, "ctaAt": 0.8, "ctaSpan": 0.12, "ctaRise": 24, "glowFrom": 0.55, "hintAt": 560, "hintFadeAt": 650, "hintFadeSpan": 150 } },
+        "tracks": {
+            "rig": { "part": "rig", "trigger": "loop", "preset": "ek-rig", "duration": 4200, "ease": "ease-in-out", "reduce": "final" },
+            "beam": { "part": "beam", "trigger": "loop", "preset": "ek-beam-m", "duration": 4200, "ease": "ease-in-out", "reduce": "final" }
+        }
+    }
+}

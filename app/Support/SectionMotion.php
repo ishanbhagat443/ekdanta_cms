@@ -329,7 +329,7 @@ final class SectionMotion
         if (($range = self::range($t['range'] ?? null)) !== null) {
             $out['range'] = $range;
         }
-        if (in_array($t['reduce'] ?? null, ['final', 'hide'], true)) {
+        if (in_array($t['reduce'] ?? null, ['final', 'hide', 'step'], true)) {
             $out['reduce'] = $t['reduce'];
         }
 
@@ -557,7 +557,9 @@ final class SectionMotion
             return null;
         }
 
-        $steps = array_filter(array_map(fn ($device) => isset($device['steps']), $config));
+        // Stages that stay pinned under reduced motion: steps, and "step" tracks.
+        $steps = array_filter(array_map(fn ($device) => isset($device['steps'])
+            || in_array('step', array_column((array) ($device['tracks'] ?? []), 'reduce'), true), $config));
 
         return ['config' => $config, 'css' => $css, 'lengths' => $lengths, 'steps' => $steps !== []];
     }

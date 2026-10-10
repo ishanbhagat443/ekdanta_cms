@@ -62,6 +62,7 @@
                 <select class="form-control form-control-sm" id="{{ $tid }}_reduce" name="{{ $n }}[reduce]">
                     <option value="final" @selected(($track['reduce'] ?? 'final') === 'final')>Show its final state</option>
                     <option value="hide" @selected(($track['reduce'] ?? '') === 'hide')>Hide the part</option>
+                    <option value="step" @selected(($track['reduce'] ?? '') === 'step')>Switch at its point (scroll tracks)</option>
                 </select>
             </div>
         </div>
