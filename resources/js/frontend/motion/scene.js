@@ -122,6 +122,8 @@ export class Scene {
         this.abort = new AbortController();
         this.state = { px: 0, p: 0, f: 0, index: -1 };
         this.u = unitOf(this.root) || env.u;
+        // The unit as a plain number, for CSS that can't use a length (scale(), offset-path frames).
+        this.root.style?.setProperty('--u-n', String(this.u));
         this.build();
         this.measure();
     }

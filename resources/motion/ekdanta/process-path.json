@@ -1,0 +1,30 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1700 },
+        "tracks": {
+            "head": { "part": "proc-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "text": { "part": "proc-text", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "path": { "part": "proc-path", "trigger": "scrub", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [-100, 1200], "ease": "linear" },
+            "marker": { "part": "proc-marker", "trigger": "scrub", "keyframes": { "offsetDistance": ["0%", "100%"] }, "range": [-100, 1200], "ease": "linear" },
+            "marker-in": { "part": "proc-marker", "trigger": "scrub", "preset": "fade", "range": [-100, -67], "ease": "linear" },
+            "bob": { "part": "proc-bob", "trigger": "loop", "preset": "ek-bob-contact" },
+            "nodes": { "part": "proc-node", "trigger": "scrub", "keyframes": { "scale": [0.2, 1] }, "range": [17, 82], "ease": "outBack", "stagger": 264 },
+            "nodes-in": { "part": "proc-node", "trigger": "scrub", "preset": "fade", "range": [17, 39], "ease": "linear", "stagger": 264 },
+            "cards-below": { "part": "proc-card-below", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 24, "to": 0, "ease": "outCubic" }] }, "range": [17, 82], "ease": "linear", "stagger": 528 },
+            "cards-above": { "part": "proc-card-above", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": -24, "to": 0, "ease": "outCubic" }] }, "range": [281, 346], "ease": "linear", "stagger": 528 }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1756 },
+        "tracks": {
+            "head": { "part": "proc-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "path": { "part": "proc-path", "trigger": "scrub", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [-100, 1200], "ease": "linear" },
+            "marker": { "part": "proc-marker", "trigger": "scrub", "keyframes": { "offsetDistance": ["0%", "100%"] }, "range": [-100, 1200], "ease": "linear" },
+            "marker-in": { "part": "proc-marker", "trigger": "scrub", "preset": "fade", "range": [-100, -67], "ease": "linear" },
+            "bob": { "part": "proc-bob", "trigger": "loop", "preset": "ek-bob-contact" },
+            "nodes": { "part": "proc-node", "trigger": "scrub", "keyframes": { "scale": [0.2, 1] }, "range": [22, 87], "ease": "outBack", "stagger": 255 },
+            "nodes-in": { "part": "proc-node", "trigger": "scrub", "preset": "fade", "range": [22, 44], "ease": "linear", "stagger": 255 },
+            "cards": { "part": "proc-card", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": 24, "to": 0, "ease": "outCubic" }] }, "range": [22, 87], "ease": "linear", "stagger": 255 }
+        }
+    }
+}
