@@ -1,0 +1,41 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 700 },
+        "tracks": {
+            "word": { "part": "brief-word", "trigger": "scrub", "keyframes": { "translateX": [140, -760] }, "range": [-900, 1600], "ease": "linear", "reduce": "start" },
+            "eyebrow": { "part": "brief-eyebrow", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [30, 0] }, "range": [-682, -457], "ease": "outCubic" },
+            "heading": { "part": "brief-heading", "trigger": "scrub", "keyframes": { "$split": "words", "opacity": [0, 1], "translateY": [50, 0] }, "range": [-628, -430], "ease": "outCubic", "stagger": 45 },
+            "text": { "part": "brief-text", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [30, 0] }, "range": [-466, -241], "ease": "outCubic" },
+            "call": { "part": "brief-call", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [30, 0] }, "range": [-394, -169], "ease": "outCubic" },
+            "card-in": { "part": "brief-card", "trigger": "scrub", "preset": "fade", "range": [-592, -475], "ease": "outQuad" },
+            "card-rise": { "part": "brief-card", "trigger": "scrub", "keyframes": { "translateY": [180, 0], "scale": [0.9, 1] }, "range": [-592, -250], "ease": "outCubic" },
+            "road": { "part": "brief-track", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [-430, -160], "ease": "outCubic" },
+            "miles-in": { "part": "brief-mile", "trigger": "scrub", "preset": "fade", "range": [-322, -259], "ease": "linear", "stagger": 63 },
+            "miles-pop": { "part": "brief-mile", "trigger": "scrub", "keyframes": { "scale": [0, 1] }, "range": [-322, -196], "ease": "outBack", "stagger": 63 },
+            "walker-in": { "part": "brief-walker", "trigger": "scrub", "preset": "fade", "range": [-250, -194], "ease": "linear" },
+            "walk": { "part": "brief-walker", "trigger": "scrub", "keyframes": { "--walk-in": [0, 1] }, "range": [-250, 20], "ease": "outCubic" },
+            "fill": { "part": "brief-fill", "trigger": "scrub", "keyframes": { "--fill-in": [0, 1] }, "range": [-205, -25], "ease": "outCubic" },
+            "chips": { "part": "brief-chip", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [30, 0] }, "range": [-160, -16], "ease": "outCubic", "stagger": 36 },
+            "nav": { "part": "brief-nav", "trigger": "scrub", "preset": "fade", "range": [65, 200], "ease": "outCubic" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 756 },
+        "tracks": {
+            "word": { "part": "brief-word", "trigger": "scrub", "keyframes": { "translateX": [60, -540] }, "range": [-900, 1600], "ease": "linear", "reduce": "start" },
+            "eyebrow": { "part": "brief-eyebrow", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [24, 0] }, "range": [-682, -457], "ease": "outCubic" },
+            "heading": { "part": "brief-heading", "trigger": "scrub", "keyframes": { "$split": "words", "opacity": [0, 1], "translateY": [36, 0] }, "range": [-628, -430], "ease": "outCubic", "stagger": 45 },
+            "text": { "part": "brief-text", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [24, 0] }, "range": [-466, -241], "ease": "outCubic" },
+            "card-in": { "part": "brief-card", "trigger": "scrub", "preset": "fade", "range": [-592, -475], "ease": "outQuad" },
+            "card-rise": { "part": "brief-card", "trigger": "scrub", "keyframes": { "translateY": [140, 0], "scale": [0.9, 1] }, "range": [-592, -250], "ease": "outCubic" },
+            "road": { "part": "brief-track", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [-430, -160], "ease": "outCubic" },
+            "miles-in": { "part": "brief-mile", "trigger": "scrub", "preset": "fade", "range": [-322, -259], "ease": "linear", "stagger": 63 },
+            "miles-pop": { "part": "brief-mile", "trigger": "scrub", "keyframes": { "scale": [0, 1] }, "range": [-322, -196], "ease": "outBack", "stagger": 63 },
+            "walker-in": { "part": "brief-walker", "trigger": "scrub", "preset": "fade", "range": [-250, -194], "ease": "linear" },
+            "walk": { "part": "brief-walker", "trigger": "scrub", "keyframes": { "--walk-in": [0, 1] }, "range": [-250, 20], "ease": "outCubic" },
+            "fill": { "part": "brief-fill", "trigger": "scrub", "keyframes": { "--fill-in": [0, 1] }, "range": [-205, -25], "ease": "outCubic" },
+            "chips": { "part": "brief-chip", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [30, 0] }, "range": [-160, -16], "ease": "outCubic", "stagger": 36 },
+            "nav": { "part": "brief-nav", "trigger": "scrub", "preset": "fade", "range": [65, 200], "ease": "outCubic" }
+        }
+    }
+}

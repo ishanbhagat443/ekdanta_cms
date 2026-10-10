@@ -69,6 +69,7 @@ class FormBuilderService
             'notify_emails' => $emails,
             'enquiry_source' => ! empty($data['store_as_enquiry']) ? $enquiryKey : null,
             'is_active' => (bool) ($data['is_active'] ?? true),
+            'settings' => array_filter(array_intersect_key($data, array_flip(['success_action', 'success_page', 'whatsapp_intro', 'then_label', 'then_page'])), fn ($v) => $v !== null && $v !== '') ?: null,
         ];
     }
 
@@ -112,6 +113,12 @@ class FormBuilderService
                 'is_required' => (bool) ($row['is_required'] ?? false),
                 'validation_rules' => $row['validation_rules'] ?? null,
                 'sort_order' => $position,
+                'settings' => array_filter([
+                    'step' => isset($row['step']) && $row['step'] !== '' ? (int) $row['step'] : null,
+                    'display' => ($row['display'] ?? null) === 'chips' ? 'chips' : null,
+                    'whatsapp' => $row['whatsapp'] ?? null,
+                    'autofill' => $row['type'] === 'hidden' ? ($row['autofill'] ?? null) : null,
+                ], fn ($v) => $v !== null && $v !== '') ?: null,
             ]);
         }
     }

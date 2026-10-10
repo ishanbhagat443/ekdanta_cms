@@ -36,10 +36,10 @@ class WhatsAppService
         return (bool) $this->settings->get('whatsapp.enabled', false);
     }
 
-    /** Digits-only recipient MSISDN; falls back to the Business WhatsApp number. */
+    /** Digits-only recipient MSISDN; falls back to the business WhatsApp number (Settings → Business). */
     public function recipient(): ?string
     {
-        $raw = $this->cfg('recipient_number') ?: (string) $this->settings->get('business.whatsapp', '');
+        $raw = $this->cfg('recipient_number') ?: (business_whatsapp()['intl'] ?? '');
         $digits = preg_replace('/\D+/', '', (string) $raw);
 
         return $digits !== '' ? $digits : null;

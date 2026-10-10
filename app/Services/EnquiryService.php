@@ -45,12 +45,17 @@ class EnquiryService
             'name' => $name,
             'email' => $pick(fn ($f) => $f->type === 'email'),
             'phone' => $pick(fn ($f) => $f->type === 'phone'),
-            'message' => $pick(fn ($f) => $f->type === 'textarea'),
+            // No message box: a WhatsApp form's built message reads as the enquiry.
+            'message' => $pick(fn ($f) => $f->type === 'textarea')
+                ?? ($form->successAction() === 'whatsapp' ? $form->whatsappMessage((array) $submission->data) : null),
             'extra' => $this->extras($fields, $submission, $used) ?: null,
             'ip' => $submission->ip,
             'status' => 'new',
             'form_submission_id' => $submission->id,
         ]);
+
+        // WhatsApp Cloud API alert (Settings → WhatsApp), after the visitor has their answer.
+        dispatch(fn () => app(WhatsAppService::class)->sendInquiry($enquiry))->afterResponse();
 
         return $enquiry;
     }

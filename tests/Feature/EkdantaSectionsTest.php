@@ -10,6 +10,7 @@ use App\Services\SectionTypes\SectionType;
 use App\Services\SectionTypes\SectionTypeRegistry;
 use App\Services\SettingsService;
 use App\Support\SectionMotion;
+use Database\Seeders\EkdantaSiteSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
@@ -57,6 +58,7 @@ class EkdantaSectionsTest extends TestCase
 
     public function test_every_section_draws_with_its_defaults(): void
     {
+        (new EkdantaSiteSeeder)->briefForm(); // the Brief Builder draws a Forms module form
         $types = $this->types()->keys()->all();
         $this->assertGreaterThanOrEqual(8, count($types));
         $page = $this->page('ek-all', $types);
@@ -92,5 +94,23 @@ class EkdantaSectionsTest extends TestCase
             ->assertSee('© '.now()->format('Y').' Ekdanta Branding and Marketing.', false)
             ->assertSee('data-ek-pause', false)
             ->assertDontSee('<footer class="gsm-footer', false);
+    }
+
+    public function test_the_brief_builder_walks_the_ekdanta_brief_form(): void
+    {
+        (new EkdantaSiteSeeder)->briefForm();
+        $this->page('contact', ['ekdanta-brief-builder']);
+
+        $html = $this->get('/contact')->assertOk()
+            ->assertSee('action="'.route('front.form.submit', 'ekdanta-brief').'"', false)
+            ->assertSee('What do you need help with?')
+            ->assertSee('data-wa="I would like help with: {value}."', false)
+            ->assertSee('data-autofill="utm_source"', false)
+            ->assertSee('Sent it? See what happens next')
+            ->getContent();
+
+        // Four steps per composition; chips are real inputs with labels.
+        $this->assertSame(8, substr_count($html, 'data-brief-step='));
+        $this->assertStringContainsString('<input class="ek-brief-check" type="checkbox" name="services[]" value="Branding"', $html);
     }
 }

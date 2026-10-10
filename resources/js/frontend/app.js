@@ -210,6 +210,18 @@ if (counters.length && 'IntersectionObserver' in window) {
     counters.forEach((el) => countObserver.observe(el));
 }
 
+// Form Builder hidden fields that fill themselves: page address, referrer, UTM tags.
+const fillAutofill = (root = document) => {
+    const query = new URLSearchParams(window.location.search);
+    const values = { page_url: window.location.href, referrer: document.referrer };
+    root.querySelectorAll('input[data-autofill]').forEach((input) => {
+        const key = input.dataset.autofill;
+        input.value = (key in values ? values[key] : query.get(key)) || '';
+    });
+};
+fillAutofill();
+window.gsmFillAutofill = fillAutofill;
+
 // Progressive AJAX for Form Builder forms ([data-gsm-ajax-form]) — contact,
 // footer, etc. Submits without a page reload; shows inline success or
 // per-field validation errors. Falls back to a normal POST if JS is off.
@@ -253,8 +265,18 @@ document.querySelectorAll('[data-gsm-ajax-form]').forEach((form) => {
         fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
             .then((res) => res.json().catch(() => ({})).then((data) => {
                 if (res.ok) {
+                    // Forms → After sending: go to a page, or offer WhatsApp (a link, as a
+                    // window opened after a request is blocked by browsers).
+                    if (data.redirect) { window.location.href = data.redirect; return; }
                     showAlert(data.message || 'Thank you! Your message has been sent.', true);
+                    [[data.whatsapp, 'WhatsApp'], [data.then?.url, data.then?.label]].forEach(([href, text]) => {
+                        if (!href || !alertBox) return;
+                        const a = Object.assign(document.createElement('a'), { href, textContent: text || href, className: 'd-block fw-semibold mt-1' });
+                        if (href.startsWith('https://wa.me/')) Object.assign(a, { target: '_blank', rel: 'noopener' });
+                        alertBox.append(a);
+                    });
                     form.reset();
+                    fillAutofill(form);
                     form.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
                 } else if (res.status === 422 && data.errors) {
                     Object.keys(data.errors).forEach((name) => showFieldError(name, data.errors[name][0]));

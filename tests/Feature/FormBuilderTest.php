@@ -259,4 +259,76 @@ class FormBuilderTest extends TestCase
         $this->assertSame(1, Form::where('slug', 'contact-form')->count());
         $this->assertSame(4, Form::where('slug', 'contact-form')->first()->fields()->count());
     }
+
+    public function test_steps_chips_hidden_fields_and_after_sending_are_saved(): void
+    {
+        $form = $this->makeForm();
+
+        $this->actingAs($this->admin())->put("/cms/forms/{$form->id}", [
+            'name' => 'Brief',
+            'success_action' => 'whatsapp',
+            'whatsapp_intro' => 'Hi!',
+            'then_label' => 'What happens next',
+            'then_page' => '/thank-you',
+            'fields' => [
+                ['label' => 'Services', 'type' => 'checkbox', 'options' => "SEO
+Website", 'step' => 1, 'display' => 'chips', 'whatsapp' => 'Help with: {value}.'],
+                ['label' => 'Campaign', 'type' => 'hidden', 'step' => 2, 'autofill' => 'utm_campaign'],
+            ],
+        ])->assertRedirect()->assertSessionHasNoErrors();
+
+        $form->refresh()->load('fields');
+        $this->assertSame('whatsapp', $form->successAction());
+        $this->assertSame('/thank-you', $form->setting('then_page'));
+        $this->assertSame(['step' => 1, 'display' => 'chips', 'whatsapp' => 'Help with: {value}.'], $form->fields[0]->settings);
+        $this->assertSame(['step' => 2, 'autofill' => 'utm_campaign'], $form->fields[1]->settings);
+
+        $this->actingAs($this->admin())->put("/cms/forms/{$form->id}", ['name' => 'Brief', 'success_page' => 'javascript:alert(1)', 'fields' => [['label' => 'X', 'type' => 'hidden', 'autofill' => 'cookies']]])
+            ->assertSessionHasErrors(['success_page', 'fields.0.autofill']);
+    }
+
+    public function test_a_whatsapp_form_saves_the_enquiry_then_hands_over_the_message(): void
+    {
+        app(\App\Services\SettingsService::class)->updateGroup('business', ['country_code' => '91', 'phones' => [['label' => 'All', 'number' => '90994 17987', 'whatsapp' => true]]]);
+        $form = $this->makeForm([
+            ['label' => 'Services', 'type' => 'checkbox', 'options' => "SEO
+Website", 'is_required' => 1, 'whatsapp' => 'I would like help with: {value}.'],
+            ['label' => 'Your name', 'type' => 'text', 'whatsapp' => 'My name is {value}.'],
+            ['label' => 'Page', 'type' => 'hidden', 'autofill' => 'page_url'],
+        ], ['store_as_enquiry' => 1, 'success_action' => 'whatsapp', 'whatsapp_intro' => 'Hi Ekdanta!', 'then_label' => 'Next', 'then_page' => '/thank-you']);
+
+        $message = 'Hi Ekdanta! I would like help with: SEO, Website. My name is Asha.';
+        $this->postJson("/forms/{$form->slug}", ['services' => ['SEO', 'Website'], 'your_name' => 'Asha', 'page' => 'https://ekdanta.in/contact?utm_source=ads'])
+            ->assertOk()
+            ->assertJson(['whatsapp' => 'https://wa.me/919099417987?text='.rawurlencode($message), 'then' => ['label' => 'Next', 'url' => '/thank-you']]);
+
+        $enquiry = \App\Models\Enquiry::query()->latest('id')->firstOrFail();
+        $this->assertSame($message, $enquiry->message);
+        $this->assertSame('https://ekdanta.in/contact?utm_source=ads', $enquiry->extra['Page']);
+
+        // Without JS the browser goes straight to WhatsApp.
+        $this->post("/forms/{$form->slug}", ['services' => ['SEO']])->assertRedirect('https://wa.me/919099417987?text='.rawurlencode('Hi Ekdanta! I would like help with: SEO.'));
+    }
+
+    public function test_a_page_form_sends_the_visitor_to_its_page(): void
+    {
+        $form = $this->makeForm([['label' => 'Name', 'type' => 'text']], ['success_action' => 'page', 'success_page' => '/thank-you']);
+
+        $this->postJson("/forms/{$form->slug}", ['name' => 'A'])->assertOk()->assertJson(['redirect' => '/thank-you']);
+        $this->post("/forms/{$form->slug}", ['name' => 'A'])->assertRedirect('/thank-you');
+    }
+
+    public function test_enquiries_alert_whatsapp_when_it_is_set_up(): void
+    {
+        \Illuminate\Support\Facades\Http::fake(['graph.facebook.com/*' => \Illuminate\Support\Facades\Http::response(['messages' => [['id' => 'x']]])]);
+        foreach (['enabled' => '1', 'phone_number_id' => '123', 'access_token' => 'token', 'recipient_number' => '919099417987'] as $key => $value) {
+            \App\Models\Setting::query()->updateOrCreate(['group' => 'whatsapp', 'key' => $key], ['value' => $value]);
+        }
+        app(\App\Services\SettingsService::class)->flushCache();
+        $form = $this->makeForm([['label' => 'Name', 'type' => 'text']], ['store_as_enquiry' => 1]);
+
+        $this->postJson("/forms/{$form->slug}", ['name' => 'Asha'])->assertOk();
+
+        \Illuminate\Support\Facades\Http::assertSent(fn ($request) => str_contains($request->url(), '/123/messages'));
+    }
 }

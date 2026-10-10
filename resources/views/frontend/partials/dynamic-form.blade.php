@@ -25,7 +25,11 @@
                    style="position:absolute; left:-9999px;" aria-hidden="true">
 
             <div class="row g-3">
-                @foreach ($form->fields as $field)
+                {{-- ponytail: steps are shown together here; the Ekdanta Brief Builder walks them one by one. Add a stepper when another site needs one. --}}
+                @foreach ($form->fields->where('type', 'hidden') as $field)
+                    <input type="hidden" name="{{ $field->name }}" value="" @if ($field->setting('autofill')) data-autofill="{{ $field->setting('autofill') }}" @endif>
+                @endforeach
+                @foreach ($form->fields->where('type', '!=', 'hidden') as $field)
                     @php
                         $isWide = in_array($field->type, ['textarea', 'checkbox', 'radio', 'file'], true);
                         $fieldErrors = old('_gsm_form') === $form->slug ? $errors->first($field->name) : null;
@@ -56,7 +60,7 @@
 
                             @case('radio')
                             @case('checkbox')
-                                <div class="d-flex flex-wrap gap-3">
+                                <div class="d-flex flex-wrap {{ $field->setting('display') === 'chips' ? 'gap-2 gsm-chips' : 'gap-3' }}" role="group" aria-label="{{ $field->label }}">
                                     @foreach ((array) $field->options as $i => $option)
                                         <div class="form-check">
                                             <input type="{{ $field->type }}" class="form-check-input"

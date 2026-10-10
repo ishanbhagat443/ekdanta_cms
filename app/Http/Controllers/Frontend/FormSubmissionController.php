@@ -34,13 +34,26 @@ class FormSubmissionController extends Controller
 
         // Validation failures throw ValidationException — Laravel auto-returns
         // a 422 JSON error bag for AJAX requests (no page reload needed).
-        $this->service->submit($form, $request);
+        $submission = $this->service->submit($form, $request);
+
+        // Forms → After sending: a message, a page, or WhatsApp with the answers.
+        $action = $form->successAction();
+        $page = $action === 'page' && $form->setting('success_page') ? link_href($form->setting('success_page')) : null;
+        $whatsapp = $action === 'whatsapp' ? $form->whatsappUrl((array) $submission->data) : null;
+        $then = $form->setting('then_page') ? ['label' => (string) $form->setting('then_label', ''), 'url' => link_href($form->setting('then_page'))] : null;
 
         if ($wantsJson) {
-            return response()->json([
+            return response()->json(array_filter([
                 'ok' => true,
                 'message' => $form->success_message,
-            ]);
+                'redirect' => $page,
+                'whatsapp' => $whatsapp,
+                'then' => $then,
+            ], fn ($v) => $v !== null));
+        }
+
+        if ($page || $whatsapp) {
+            return redirect()->away($page ?? $whatsapp);
         }
 
         return redirect()

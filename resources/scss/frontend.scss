@@ -3910,3 +3910,20 @@ main button[type="submit"].btn,
     border-radius: inherit !important;
 }
 .gsm-swatch { border-radius: 50% !important; }
+
+// Form Builder → "Show options as: Chips": radio / checkbox options as pills.
+.gsm-chips {
+    .form-check { padding-left: 0; margin: 0; }
+    .form-check-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .form-check-label {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 1rem;
+        border: 1.5px solid var(--gsm-border-color, #cfd8d1);
+        border-radius: 999px;
+        cursor: pointer;
+    }
+    .form-check-input:checked + .form-check-label { background: var(--gsm-primary); border-color: var(--gsm-primary); color: var(--gsm-button-text, #fff); }
+    .form-check-input:focus-visible + .form-check-label { outline: 2px solid currentColor; outline-offset: 2px; }
+}

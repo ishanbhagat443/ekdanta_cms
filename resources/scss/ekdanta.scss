@@ -13,6 +13,7 @@
 @use 'ekdanta/services-panels';
 @use 'ekdanta/contact-channels';
 @use 'ekdanta/faq-deck';
+@use 'ekdanta/brief-builder';
 
 .ek {
     position: relative;
@@ -59,6 +60,7 @@
     position: relative;
     height: 100svh;
     overflow: hidden;
+    overflow: clip; // focus can't scroll a clipped stage sideways (hidden still can)
 }
 
 .ek-art {

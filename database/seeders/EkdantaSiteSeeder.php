@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Collections\CollectionRegistry;
 use App\Models\CollectionItem;
+use App\Models\Form;
 use App\Models\Layout;
 use App\Models\Media;
 use App\Models\MediaFolder;
@@ -39,6 +40,48 @@ class EkdantaSiteSeeder extends Seeder
         $this->business();
         $this->menus();
         $this->header();
+        $this->briefForm();
+    }
+
+    /**
+     * "Ekdanta Brief" (Contact → Brief Builder): four steps of chips and
+     * contact details, hidden fields for the page and campaign, saved as an
+     * enquiry, then WhatsApp with the answers and the thank-you page.
+     */
+    public function briefForm(): void
+    {
+        if (Form::query()->where('slug', 'ekdanta-brief')->exists()) {
+            return;
+        }
+
+        $form = Form::query()->create([
+            'name' => 'Ekdanta Brief', 'slug' => 'ekdanta-brief', 'button_label' => 'Send my brief on WhatsApp',
+            'success_message' => 'Your brief is ready in WhatsApp. Hit send, and our team will take it from there.',
+            'notify_emails' => array_filter([setting('business.email')]), 'enquiry_source' => 'ekdanta-brief', 'is_active' => true,
+            'settings' => ['success_action' => 'whatsapp', 'whatsapp_intro' => 'Hi Ekdanta!', 'then_label' => 'Sent it? See what happens next', 'then_page' => '/thank-you'],
+        ]);
+
+        $fields = [
+            // label, type, step, required, options, WhatsApp sentence, autofill
+            ['Services', 'checkbox', 1, true, ['Branding', 'Social media and reels', 'Meta ads and leads', 'SEO', 'Website', 'Films and shoots', 'CRM and apps'], 'I would like help with: {value}.'],
+            ['Business type', 'radio', 2, true, ['Manufacturing', 'Food and beverage', 'Retail', 'Services', 'Something else'], 'Business type: {value}.'],
+            ['When to start', 'radio', 3, true, ['This month', 'In 1 to 3 months', 'Just exploring'], 'When to start: {value}.'],
+            ['Your name', 'text', 4, false, null, 'My name is {value}.'],
+            ['Phone number', 'phone', 4, false, null, 'Phone: {value}.'],
+            ['Company or brand', 'text', 4, false, null, 'Company: {value}.'],
+            ['Page', 'hidden', 4, false, null, null, 'page_url'],
+            ['Referrer', 'hidden', 4, false, null, null, 'referrer'],
+            ['UTM source', 'hidden', 4, false, null, null, 'utm_source'],
+            ['UTM medium', 'hidden', 4, false, null, null, 'utm_medium'],
+            ['UTM campaign', 'hidden', 4, false, null, null, 'utm_campaign'],
+        ];
+        foreach ($fields as $order => $row) {
+            [$label, $type, $step, $required, $options, $sentence] = $row;
+            $form->fields()->create([
+                'label' => $label, 'name' => Str::slug($label, '_'), 'type' => $type, 'options' => $options, 'is_required' => $required, 'sort_order' => $order,
+                'settings' => array_filter(['step' => $step, 'display' => $options ? 'chips' : null, 'whatsapp' => $sentence, 'autofill' => $row[6] ?? null]),
+            ]);
+        }
     }
 
     /**

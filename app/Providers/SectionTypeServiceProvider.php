@@ -43,6 +43,7 @@ class SectionTypeServiceProvider extends ServiceProvider
         \App\Services\SectionTypes\Ekdanta\FinaleSection::class,
         \App\Services\SectionTypes\Ekdanta\ContactHeroSection::class,
         \App\Services\SectionTypes\Ekdanta\ContactChannelsSection::class,
+        \App\Services\SectionTypes\Ekdanta\BriefBuilderSection::class,
         \App\Services\SectionTypes\Ekdanta\VisitUsSection::class,
         \App\Services\SectionTypes\Ekdanta\FaqDeckSection::class,
         \App\Services\SectionTypes\Page\HeroSection::class,

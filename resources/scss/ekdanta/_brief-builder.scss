@@ -1,0 +1,71 @@
+// Ekdanta · Brief Builder. --step (the current step, set by
+// brief-builder.js) moves the walker and fills the road; --walk-in and
+// --fill-in (0–1, scroll tracks) bring them in. Without JS every step shows
+// with a plain submit button.
+.ek-brief-builder {
+    .ek-brief-walker {
+        transform: translateX(calc((var(--walk-from) + (var(--step) * var(--spacing) + var(--walk-shift) - var(--walk-from)) * var(--walk-in, 1)) * var(--u)));
+        transition: transform 700ms cubic-bezier(0.3, 0.7, 0.2, 1);
+    }
+    [data-m="brief-bob"] { animation: ek-brief-bob 900ms ease-in-out infinite; }
+    .ek-brief-fill { transform: scaleX(calc(var(--step) * var(--fill-in, 1))); transition: transform 700ms cubic-bezier(0.3, 0.7, 0.2, 1); }
+
+    .ek-brief-dot { background: #C9D3C7; }
+    .ek-brief-mile-label { color: var(--tk-muted-2-sm); }
+    .ek-brief-mile.is-done .ek-brief-dot { background: var(--tk-green); }
+    .ek-brief-mile.is-done .ek-brief-mile-label { color: var(--tk-ink); }
+
+    // Options as chips: the real input sits under its pill label.
+    .ek-brief-check { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .ek-brief-chip {
+        background: #FFFFFF;
+        color: var(--tk-ink);
+        transition: background-color 200ms ease-out, color 200ms ease-out, border-color 200ms ease-out;
+        svg { opacity: 0; }
+    }
+    .ek-brief-check:checked + .ek-brief-chip { background: var(--tk-ink); border-color: var(--tk-ink) !important; color: #FFFFFF; svg { opacity: 1; } }
+    .ek-brief-check:focus-visible + .ek-brief-chip { outline: 3px solid var(--tk-orange); outline-offset: 3px; box-shadow: 0 0 0 8px var(--tk-ink); }
+
+    [aria-disabled="true"] { opacity: 0.35; cursor: not-allowed; }
+
+    .ek-brief-js, .ek-brief-sent { display: none !important; }
+    .ek-brief-nav { display: none; }
+
+    .ek-brief.is-js {
+        .ek-brief-js { display: flex !important; }
+        .ek-brief-nojs { display: none; }
+        .ek-brief-nav { display: flex; }
+        .ek-brief-step:not(.is-current) { display: none !important; }
+        .ek-brief-step.is-current { animation: ek-brief-step-in 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    }
+    .ek-brief.is-sent {
+        .ek-brief-form, .ek-brief-nav { display: none !important; }
+        .ek-brief-sent { display: flex !important; }
+    }
+
+    .ek-brief-confetti {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        span { position: absolute; top: calc(-20 * var(--u)); border-radius: 50%; animation: ek-brief-fall var(--dur) linear var(--delay) infinite; }
+    }
+}
+
+@keyframes ek-brief-step-in { from { opacity: 0; transform: translateX(calc(28 * var(--u))); } to { opacity: 1; transform: none; } }
+@keyframes ek-brief-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(calc(-4 * var(--u))); } }
+@keyframes ek-brief-fall { from { transform: translateY(calc(-40 * var(--u))) rotate(0deg); } to { transform: translateY(calc(var(--fall) * var(--u))) rotate(320deg); } }
+
+// Reduced motion: steps switch, the walker jumps, nothing falls or bobs.
+@media (prefers-reduced-motion: reduce) {
+    .ek-brief-builder {
+        .ek-brief-walker, .ek-brief-fill, .ek-brief-chip { transition: none; }
+        [data-m="brief-bob"], .ek-brief.is-js .ek-brief-step.is-current { animation: none; }
+        .ek-brief-confetti { display: none; }
+    }
+}
+html[data-motion="off"] .ek-brief-builder {
+    .ek-brief-walker, .ek-brief-fill, .ek-brief-chip { transition: none; }
+    [data-m="brief-bob"], .ek-brief.is-js .ek-brief-step.is-current { animation: none; }
+    .ek-brief-confetti { display: none; }
+}

@@ -68,6 +68,43 @@
                             </div>
                             <small class="text-muted">They land in the <a href="{{ route('admin.enquiries.index') }}">Enquiries</a> inbox with this form's name as the source.</small>
                         </div>
+                        <fieldset class="border-top pt-3 mb-3">
+                            <legend class="h6 mb-2">After sending</legend>
+                            <div class="form-group">
+                                <label for="success_action">Then</label>
+                                <select name="success_action" id="success_action" class="form-control @error('success_action') is-invalid @enderror">
+                                    @foreach (\App\Models\Form::SUCCESS_ACTIONS as $key => $label)
+                                        <option value="{{ $key }}" @selected(old('success_action', $form->successAction()) === $key)>{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="success_page">Page to go to</label>
+                                <input type="text" name="success_page" id="success_page" class="form-control @error('success_page') is-invalid @enderror"
+                                       value="{{ old('success_page', $form->setting('success_page')) }}" placeholder="/thank-you">
+                                @error('success_page')<span class="invalid-feedback">{{ $message }}</span>@enderror
+                                <small class="text-muted">For "Go to a page".</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsapp_intro">WhatsApp message: first line</label>
+                                <input type="text" name="whatsapp_intro" id="whatsapp_intro" class="form-control"
+                                       value="{{ old('whatsapp_intro', $form->setting('whatsapp_intro')) }}" placeholder="Hi! I would like to know more.">
+                                <small class="text-muted">For "Open WhatsApp". Each field's WhatsApp sentence follows, with the visitor's answer. It goes to the WhatsApp number in Settings → Business.</small>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="then_label">Then offer: link text</label>
+                                    <input type="text" name="then_label" id="then_label" class="form-control" value="{{ old('then_label', $form->setting('then_label')) }}">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="then_page">Then offer: page</label>
+                                    <input type="text" name="then_page" id="then_page" class="form-control @error('then_page') is-invalid @enderror"
+                                           value="{{ old('then_page', $form->setting('then_page')) }}" placeholder="/thank-you">
+                                    @error('then_page')<span class="invalid-feedback">{{ $message }}</span>@enderror
+                                </div>
+                            </div>
+                            <small class="text-muted d-block mt-n2">A link shown after WhatsApp opens, e.g. to the thank-you page.</small>
+                        </fieldset>
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="is_active" value="0">
                             <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" value="1"
@@ -89,23 +126,15 @@
                     </div>
                     <div class="card-body">
                         <p class="text-muted small mb-3">
-                            Drag <i class="fas fa-grip-vertical"></i> to reorder. Options textarea (one per line) applies to
+                            Drag <i class="fas fa-grip-vertical" aria-hidden="true"></i> to reorder. Options (one per line) apply to
                             Dropdown / Radio / Checkbox. Extra rules use Laravel pipe syntax, e.g. <code>min:3|max:50</code>.
+                            <strong>Step</strong> splits the form into steps (fields with the same number show together).
+                            A <strong>Hidden</strong> field is not shown and can fill itself with the page address, UTM tags or the referrer.
                         </p>
                         <div id="field-rows">
                             @foreach ($form->fields as $i => $field)
-                                <div class="border rounded p-2 mb-2 field-row bg-light">
-                                    <div class="form-row align-items-center">
-                                        <div class="col-auto text-muted drag-handle" style="cursor: grab;"><i class="fas fa-grip-vertical"></i></div>
-                                        <div class="col-md-3">
-                                            <input type="text" name="fields[{{ $i }}][label]" class="form-control form-control-sm"
-                                                   placeholder="Label" value="{{ $field->label }}">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <select name="fields[{{ $i }}][type]" class="form-control form-control-sm field-type">
-                                                @foreach ($fieldTypes as $type)
-                                                    <option value="{{ $type }}" @selected($field->type === $type)>{{ ucfirst($type) }}</option>
-                                                @endforeach
+                                @include('admin.forms.partials.field-row', ['i' => $i, 'field' => $field])
+                            @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-3">
@@ -151,42 +180,7 @@
 
     {{-- JS template for new rows --}}
     <template id="field-row-template">
-        <div class="border rounded p-2 mb-2 field-row bg-light">
-            <div class="form-row align-items-center">
-                <div class="col-auto text-muted drag-handle" style="cursor: grab;"><i class="fas fa-grip-vertical"></i></div>
-                <div class="col-md-3">
-                    <input type="text" name="fields[__i__][label]" class="form-control form-control-sm" placeholder="Label">
-                </div>
-                <div class="col-md-2">
-                    <select name="fields[__i__][type]" class="form-control form-control-sm field-type">
-                        @foreach ($fieldTypes as $type)
-                            <option value="{{ $type }}">{{ ucfirst($type) }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" name="fields[__i__][placeholder]" class="form-control form-control-sm" placeholder="Placeholder">
-                </div>
-                <div class="col-md-2">
-                    <input type="text" name="fields[__i__][validation_rules]" class="form-control form-control-sm" placeholder="Extra rules">
-                </div>
-                <div class="col-auto">
-                    <div class="custom-control custom-checkbox">
-                        <input type="hidden" name="fields[__i__][is_required]" value="0">
-                        <input type="checkbox" class="custom-control-input" id="req___i__" name="fields[__i__][is_required]" value="1">
-                        <label class="custom-control-label small" for="req___i__">Req.</label>
-                    </div>
-                </div>
-                <div class="col-auto ml-auto">
-                    <button type="button" class="btn btn-xs btn-outline-danger remove-field"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="form-row mt-1 options-wrap" style="display:none">
-                <div class="col-11 offset-1">
-                    <textarea name="fields[__i__][options]" rows="2" class="form-control form-control-sm" placeholder="One option per line"></textarea>
-                </div>
-            </div>
-        </div>
+        @include('admin.forms.partials.field-row', ['i' => '__i__', 'field' => null])
     </template>
 @stop
 

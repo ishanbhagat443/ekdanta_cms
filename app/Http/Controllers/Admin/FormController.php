@@ -10,6 +10,7 @@ use App\Models\FormField;
 use App\Models\FormSubmission;
 use App\Services\FormBuilderService;
 use App\Services\FormSubmissionService;
+use App\Support\Link;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -62,6 +63,11 @@ class FormController extends Controller
             'notify_emails_csv' => ['nullable', 'string', 'max:500'],
             'store_as_enquiry' => ['sometimes', 'boolean'],
             'is_active' => ['sometimes', 'boolean'],
+            'success_action' => ['nullable', 'in:'.implode(',', array_keys(Form::SUCCESS_ACTIONS))],
+            'success_page' => Link::rules(),
+            'whatsapp_intro' => ['nullable', 'string', 'max:300'],
+            'then_label' => ['nullable', 'string', 'max:60'],
+            'then_page' => Link::rules(),
             'fields' => ['sometimes', 'array', 'max:30'],
             'fields.*.label' => ['nullable', 'string', 'max:150'],
             'fields.*.type' => ['nullable', 'in:'.implode(',', FormField::TYPES)],
@@ -69,6 +75,10 @@ class FormController extends Controller
             'fields.*.options' => ['nullable', 'string', 'max:2000'],
             'fields.*.is_required' => ['nullable', 'boolean'],
             'fields.*.validation_rules' => ['nullable', 'string', 'max:191'],
+            'fields.*.step' => ['nullable', 'integer', 'between:1,10'],
+            'fields.*.display' => ['nullable', 'in:list,chips'],
+            'fields.*.whatsapp' => ['nullable', 'string', 'max:200'],
+            'fields.*.autofill' => ['nullable', 'in:'.implode(',', array_keys(FormField::AUTOFILL))],
         ]);
 
         $this->builder->updateForm($form, $data);

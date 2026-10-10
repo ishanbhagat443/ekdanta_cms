@@ -1,6 +1,6 @@
 /**
  * Form Builder — fields repeater.
- * Add/remove rows, toggle options textarea per type, drag-sort via SortableJS.
+ * Add/remove rows, show the settings that apply to each type, drag-sort via SortableJS.
  * Row indexes only need to be unique (server re-orders by DOM position),
  * so new rows take an ever-increasing counter.
  */
@@ -36,8 +36,11 @@
     wrap.addEventListener('change', function (e) {
         if (!e.target.classList.contains('field-type')) return;
         var row = e.target.closest('.field-row');
-        var optionsWrap = row.querySelector('.options-wrap');
-        optionsWrap.style.display = OPTION_TYPES.indexOf(e.target.value) !== -1 ? '' : 'none';
+        var type = e.target.value;
+        var show = function (selector, on) { row.querySelector(selector).style.display = on ? '' : 'none'; };
+        show('.options-wrap', OPTION_TYPES.indexOf(type) !== -1);
+        show('.options-only', type === 'radio' || type === 'checkbox'); // chips
+        show('.hidden-only', type === 'hidden'); // fills itself with
     });
 
     if (window.Sortable) {

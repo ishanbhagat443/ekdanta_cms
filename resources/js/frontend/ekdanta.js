@@ -5,8 +5,11 @@ import torchBeam from './sections/ekdanta/torch-beam.js';
 import workIntro from './sections/ekdanta/work-intro.js';
 import indexCarousel from './sections/ekdanta/index-carousel.js';
 import scatterToSlots from './sections/ekdanta/scatter-to-slots.js';
+import initBriefBuilders from './sections/ekdanta/brief-builder.js';
 
 window.EkMotion.register('ekdanta-home-hero', torchBeam);
 window.EkMotion.register('ekdanta-work-showcase', workIntro);
 window.EkMotion.register('ekdanta-reels-carousel', indexCarousel);
 window.EkMotion.register('ekdanta-brand-shelves', scatterToSlots);
+
+initBriefBuilders();
