@@ -74,7 +74,7 @@
                     <div class="form-row">
                         <div class="form-group col-6 col-md-3">
                             <label for="mp-duration">Duration (ms)</label>
-                            <input type="number" name="duration" id="mp-duration" class="form-control" min="0" max="60000" value="{{ old('duration', $preset->duration) }}" required>
+                            <input type="number" name="duration" id="mp-duration" class="form-control" min="0" max="600000" value="{{ old('duration', $preset->duration) }}" required>
                         </div>
                         <div class="form-group col-6 col-md-3">
                             <label for="mp-delay">Delay (ms)</label>

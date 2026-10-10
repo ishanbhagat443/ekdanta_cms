@@ -161,7 +161,7 @@ class MotionPresetController extends Controller
             'trigger' => ['required', Rule::in(array_keys(SectionMotion::TRIGGERS))],
             'keyframes' => ['required', 'string', 'max:20000'],
             'params' => ['nullable', 'string', 'max:5000'],
-            'duration' => ['required', 'integer', 'between:0,60000'],
+            'duration' => ['required', 'integer', 'between:0,600000'],
             'delay' => ['nullable', 'integer', 'between:0,60000'],
             'stagger' => ['nullable', 'integer', 'between:0,10000'],
             'ease' => ['required', 'string', 'max:60'],

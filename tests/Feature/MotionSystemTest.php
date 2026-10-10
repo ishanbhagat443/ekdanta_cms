@@ -197,7 +197,7 @@ class MotionSystemTest extends TestCase
         $this->assertArrayNotHasKey('keyframes', $tracks['a']);
         $this->assertArrayNotHasKey('part', $tracks['b']);
         $this->assertArrayNotHasKey('keyframes', $tracks['c']);
-        $this->assertSame(60000, $tracks['d']['duration']);
+        $this->assertSame(600000, $tracks['d']['duration'], 'clamped to 10 minutes (long orbits loop for 90 s)');
         $this->assertArrayNotHasKey('ease', $tracks['d']);
         $this->assertStringNotContainsString('evil.test', $this->get('/motion')->getContent());
     }

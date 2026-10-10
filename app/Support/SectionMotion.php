@@ -321,7 +321,7 @@ final class SectionMotion
         if (is_array($t['params'] ?? null)) {
             $out['params'] = self::params($t['params']);
         }
-        foreach (['duration' => 60000, 'delay' => 60000, 'stagger' => 10000, 'step' => 50] as $key => $max) {
+        foreach (['duration' => 600000, 'delay' => 60000, 'stagger' => 10000, 'step' => 50] as $key => $max) {
             if (is_numeric($t[$key] ?? null)) {
                 $out[$key] = self::int($t[$key], 0, $max);
             }
