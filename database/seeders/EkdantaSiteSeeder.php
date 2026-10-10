@@ -170,7 +170,7 @@ class EkdantaSiteSeeder extends Seeder
         }
     }
 
-    /** Case studies, services, clients, reels, FAQs and team roles (database/data/ekdanta-collections.php). */
+    /** Case studies, services, clients, reels, FAQs and team roles (database/data/ekdanta-collections.php); existing items only gain fields they lack. */
     public function collections(): void
     {
         $registry = app(CollectionRegistry::class);
@@ -178,7 +178,14 @@ class EkdantaSiteSeeder extends Seeder
         foreach (require database_path('data/ekdanta-collections.php') as $collection => $rows) {
             $defaults = $registry->find($collection)->defaults();
             foreach ($rows as $order => [$slug, $title, $data]) {
-                if (CollectionItem::withTrashed()->where('collection', $collection)->where('slug', $slug)->exists()) {
+                $existing = CollectionItem::withTrashed()->where('collection', $collection)->where('slug', $slug)->first();
+                if ($existing) {
+                    // Fields added since it was seeded get their design value; nothing is overwritten.
+                    $missing = array_diff_key(array_replace($defaults, $data), (array) $existing->data);
+                    if ($missing !== [] && ! $existing->trashed()) {
+                        $existing->update(['data' => (array) $existing->data + $missing]);
+                    }
+
                     continue;
                 }
                 CollectionItem::create([

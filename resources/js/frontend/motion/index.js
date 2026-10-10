@@ -10,7 +10,8 @@
  *   window.EkMotion.pause(true|false)     the visitor's "Pause animations" choice
  *
  * Markup hooks: [data-m="part"] parts, [data-ek-stage] the pinned stage,
- * [data-ek-step="2"] tap to jump to a step ("+1"/"-1": next/previous),
+ * [data-ek-step="2"] tap to jump to a step ("+1"/"-1": next/previous;
+ *   with data-ek-target="#anchor", a step of that section),
  * [data-ek-step-num="2"] shows the current step number (2 digits),
  * [data-ek-pause] the pause button.
  */
@@ -204,9 +205,12 @@ function boot() {
         // Tap to jump: <button data-ek-step="2"> inside a section with steps;
         // "+1" / "-1" go to the next / previous step.
         const jump = e.target.closest('[data-ek-step]');
-        const scene = jump && scenes.get(jump.closest('[data-ek-motion]'));
+        // data-ek-target="#s-deep": the steps of another section (its anchor).
+        const host = jump?.dataset.ekTarget ? document.querySelector(jump.dataset.ekTarget)?.closest('[data-ek-motion]') : jump?.closest('[data-ek-motion]');
+        const scene = host && scenes.get(host);
         const st = scene?.config.steps;
         if (!st) return;
+        e.preventDefault(); // a link to the section's anchor is the no-JS fallback
         const part = scene.root.querySelector(`[data-m="${st.part}"]`);
         const count = part ? part.children.length : 1;
         const raw = jump.dataset.ekStep;

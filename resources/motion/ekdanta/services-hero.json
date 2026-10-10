@@ -1,0 +1,61 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 400 },
+        "tracks": {
+            "crumb": { "part": "crumb", "trigger": "load", "preset": "ek-fade" },
+            "lines": { "part": "line", "trigger": "load", "preset": "ek-rise", "delay": 150, "stagger": 150 },
+            "roll-line": { "part": "roll-line", "trigger": "load", "preset": "ek-fade", "delay": 600 },
+            "lede": { "part": "lede", "trigger": "load", "preset": "ek-fade", "delay": 800 },
+            "actions": { "part": "actions", "trigger": "load", "preset": "ek-fade", "delay": 1000 },
+            "pop-core": { "part": "pop-core", "trigger": "load", "preset": "ek-ob-pop", "delay": 250 },
+            "pop-inner": { "part": "pop-1", "trigger": "load", "preset": "ek-ob-pop", "delay": 500, "stagger": 120 },
+            "pop-outer": { "part": "pop-2", "trigger": "load", "preset": "ek-ob-pop", "delay": 900, "stagger": 70 },
+            "pop-dots": { "part": "pop-3", "trigger": "load", "preset": "ek-ob-pop", "delay": 1500, "stagger": 100 },
+            "turn-inner": { "part": "turn-1", "trigger": "loop", "preset": "ek-ob-rev", "duration": 40000 },
+            "upright-inner": { "part": "upright-1", "trigger": "loop", "preset": "ek-ob-spin", "duration": 40000 },
+            "turn-outer": { "part": "turn-2", "trigger": "loop", "preset": "ek-ob-spin", "duration": 70000 },
+            "upright-outer": { "part": "upright-2", "trigger": "loop", "preset": "ek-ob-rev", "duration": 70000 },
+            "turn-dots": { "part": "turn-3", "trigger": "loop", "preset": "ek-ob-spin", "duration": 90000 },
+            "upright-dots": { "part": "upright-3", "trigger": "loop", "preset": "ek-ob-rev", "duration": 90000 },
+            "core-rings": { "part": "core-ring", "trigger": "loop", "preset": "ek-core-ring", "stagger": 1500 },
+            "roller": { "part": "roller", "trigger": "loop", "preset": "ek-sv-roll" },
+            "glow-out": { "part": "glow", "trigger": "scrub", "keyframes": { "opacity": [1, 0.4] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "core-out": { "part": "core", "trigger": "scrub", "keyframes": { "scale": [1, 1.5] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "inner-out": { "part": "ring-1", "trigger": "scrub", "keyframes": { "scale": [1, 1.35], "opacity": [1, 0.3] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "outer-out": { "part": "ring-2", "trigger": "scrub", "keyframes": { "scale": [1, 1.7], "opacity": [1, 0] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "dots-out": { "part": "ring-3", "trigger": "scrub", "keyframes": { "scale": [1, 2], "opacity": [1, 0] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "text-rise": { "part": "hero-text", "trigger": "scrub", "keyframes": { "translateY": [0, -90] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "text-fade": { "part": "hero-text", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [100, 420], "ease": "linear", "reduce": "start" },
+            "hint-out": { "part": "hint", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [0, 200], "ease": "linear", "reduce": "start" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 456 },
+        "tracks": {
+            "crumb": { "part": "crumb", "trigger": "load", "preset": "ek-fade" },
+            "lines": { "part": "line", "trigger": "load", "preset": "ek-rise", "delay": 150, "stagger": 150 },
+            "roll-line": { "part": "roll-line", "trigger": "load", "preset": "ek-fade", "delay": 600 },
+            "lede": { "part": "lede", "trigger": "load", "preset": "ek-fade", "delay": 800 },
+            "actions": { "part": "actions", "trigger": "load", "preset": "ek-fade", "delay": 1000 },
+            "pop-core": { "part": "pop-core", "trigger": "load", "preset": "ek-ob-pop", "delay": 250 },
+            "pop-inner": { "part": "pop-1", "trigger": "load", "preset": "ek-ob-pop", "delay": 500, "stagger": 120 },
+            "pop-outer": { "part": "pop-2", "trigger": "load", "preset": "ek-ob-pop", "delay": 900, "stagger": 70 },
+            "pop-dots": { "part": "pop-3", "trigger": "load", "preset": "ek-ob-pop", "delay": 1500, "stagger": 100 },
+            "turn-inner": { "part": "turn-1", "trigger": "loop", "preset": "ek-ob-rev", "duration": 40000 },
+            "upright-inner": { "part": "upright-1", "trigger": "loop", "preset": "ek-ob-spin", "duration": 40000 },
+            "turn-outer": { "part": "turn-2", "trigger": "loop", "preset": "ek-ob-spin", "duration": 70000 },
+            "upright-outer": { "part": "upright-2", "trigger": "loop", "preset": "ek-ob-rev", "duration": 70000 },
+            "turn-dots": { "part": "turn-3", "trigger": "loop", "preset": "ek-ob-spin", "duration": 90000 },
+            "upright-dots": { "part": "upright-3", "trigger": "loop", "preset": "ek-ob-rev", "duration": 90000 },
+            "core-rings": { "part": "core-ring", "trigger": "loop", "preset": "ek-core-ring", "stagger": 1500 },
+            "roller": { "part": "roller", "trigger": "loop", "preset": "ek-sv-roll-m-services" },
+            "glow-out": { "part": "glow", "trigger": "scrub", "keyframes": { "opacity": [1, 0.4] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "core-out": { "part": "core", "trigger": "scrub", "keyframes": { "scale": [1, 1.5] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "inner-out": { "part": "ring-1", "trigger": "scrub", "keyframes": { "scale": [1, 1.35], "opacity": [1, 0.3] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "outer-out": { "part": "ring-2", "trigger": "scrub", "keyframes": { "scale": [1, 1.7], "opacity": [1, 0] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "dots-out": { "part": "ring-3", "trigger": "scrub", "keyframes": { "scale": [1, 2], "opacity": [1, 0] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "text-rise": { "part": "hero-text", "trigger": "scrub", "keyframes": { "translateY": [0, -90] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "text-fade": { "part": "hero-text", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [100, 420], "ease": "linear", "reduce": "start" }
+        }
+    }
+}

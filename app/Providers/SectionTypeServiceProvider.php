@@ -46,6 +46,8 @@ class SectionTypeServiceProvider extends ServiceProvider
         \App\Services\SectionTypes\Ekdanta\BriefBuilderSection::class,
         \App\Services\SectionTypes\Ekdanta\VisitUsSection::class,
         \App\Services\SectionTypes\Ekdanta\FaqDeckSection::class,
+        \App\Services\SectionTypes\Ekdanta\ServicesHeroSection::class,
+        \App\Services\SectionTypes\Ekdanta\ExpertiseCardsSection::class,
         \App\Services\SectionTypes\Page\HeroSection::class,
         \App\Services\SectionTypes\Page\BannerSection::class,
         \App\Services\SectionTypes\Page\CtaSection::class,
