@@ -16,6 +16,14 @@ const LENGTHS = new Set(['x', 'y', 'translateX', 'translateY', 'translateZ', 'le
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const inOutQuad = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
+/**
+ * One design px in screen px: the composition's --u (registered as a length
+ * in the Ekdanta styles, so it reads back resolved), else 0.
+ */
+export function unitOf(el) {
+    return parseFloat(getComputedStyle(el).getPropertyValue('--u')) || 0;
+}
+
 /** Design px → screen px, for plain numbers on length properties. */
 export function scaleKeyframes(value, u, key = '') {
     if (Array.isArray(value)) return value.map((v) => scaleKeyframes(v, u, key));
@@ -112,6 +120,7 @@ export class Scene {
         this.timed = []; // { track, anim, targets, run }
         this.abort = new AbortController();
         this.state = { px: 0, p: 0, f: 0, index: -1 };
+        this.u = unitOf(this.root) || env.u;
         this.build();
         this.measure();
     }
@@ -134,7 +143,7 @@ export class Scene {
     params(track) {
         const out = {};
         for (const [k, v] of Object.entries(track.keyframes || {})) if (!k.startsWith('$')) out[k] = v;
-        return scaleKeyframes(out, this.env.u);
+        return scaleKeyframes(out, this.u);
     }
 
     build() {

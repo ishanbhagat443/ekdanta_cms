@@ -12,7 +12,7 @@
  * Markup hooks: [data-m="part"] parts, [data-ek-stage] the pinned stage,
  * [data-ek-step="2"] tap to jump to a step, [data-ek-pause] the pause button.
  */
-import { Scene } from './scene.js';
+import { Scene, unitOf } from './scene.js';
 
 const root = document.documentElement;
 const factories = new Map();
@@ -38,7 +38,7 @@ const ENTRANCE = {
 const deviceOf = () => (innerWidth >= 992 ? 'desktop' : innerWidth >= 768 ? 'tablet' : 'mobile');
 
 /** Size of one design px (the CSS --u): 1440 × 900 desktop, 390 × 844 phone, tablets capped. */
-const unitOf = (d) => (d === 'desktop'
+const deviceUnit = (d) => (d === 'desktop'
     ? Math.min(innerWidth / 1440, innerHeight / 900)
     : Math.min(innerWidth / 390, innerHeight / 844, d === 'tablet' ? 1.35 : Infinity));
 
@@ -80,7 +80,7 @@ function reveal(el) {
 function build() {
     device = deviceOf();
     const reduced = isReduced();
-    const u = unitOf(device);
+    const u = deviceUnit(device);
 
     document.querySelectorAll('[data-ek-motion], [data-anim]').forEach((el) => {
         if (scenes.has(el)) return;
@@ -180,7 +180,12 @@ function boot() {
         clearTimeout(resizing);
         resizing = setTimeout(() => {
             if (deviceOf() !== device) return refresh();
-            scenes.forEach((scene) => scene.measure());
+            // A new design unit means every built distance is stale: rebuild.
+            for (const scene of scenes.values()) {
+                const u = unitOf(scene.root);
+                if (u && Math.abs(u - scene.u) / scene.u > 0.01) return refresh();
+                scene.measure();
+            }
             tick();
         }, 150);
     };

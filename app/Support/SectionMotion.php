@@ -435,17 +435,29 @@ final class SectionMotion
         return strlen($v) <= 200 && ! preg_match('/[;{}<>\\\\"`]|url\s*\(|expression|javascript:|@import/i', $v);
     }
 
+    /**
+     * Named values for a preset or a scene: numbers, short safe strings, or
+     * lists of numbers (one level of nesting: [[x, y, scale, rotate], …]).
+     */
     public static function params(array $params): array
     {
+        $numbers = fn ($list) => is_array($list) && array_is_list($list) && count($list) <= 40
+            && array_filter($list, fn ($n) => ! is_numeric($n)) === [] ? array_map(fn ($n) => $n + 0, $list) : null;
+
         $out = [];
         foreach ($params as $name => $value) {
-            if (count($out) >= 20 || ! preg_match('/^[a-zA-Z][a-zA-Z0-9_]{0,30}$/', (string) $name)) {
+            if (count($out) >= 40 || ! preg_match('/^[a-zA-Z][a-zA-Z0-9_]{0,30}$/', (string) $name)) {
                 continue;
             }
             if (is_numeric($value)) {
                 $out[$name] = $value + 0;
             } elseif (is_string($value) && strlen($value) <= 100 && self::safe($value)) {
                 $out[$name] = $value;
+            } elseif (($list = $numbers($value)) !== null) {
+                $out[$name] = $list;
+            } elseif (is_array($value) && array_is_list($value) && count($value) <= 40
+                && ($rows = array_map($numbers, $value)) && ! in_array(null, $rows, true)) {
+                $out[$name] = $rows;
             }
         }
 

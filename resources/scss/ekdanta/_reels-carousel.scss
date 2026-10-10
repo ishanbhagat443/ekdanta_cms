@@ -1,0 +1,13 @@
+// Ekdanta · Reels Carousel: the current reel (is-active, from the steps) gets the green ring.
+.ek-reels-carousel [data-m="reel-cards"] > li {
+    box-shadow: 0 calc(30 * var(--u)) calc(60 * var(--u)) calc(-30 * var(--u)) rgba(0, 0, 0, 0.8);
+
+    &.is-active { box-shadow: 0 0 0 calc(4 * var(--u)) var(--tk-green), 0 calc(40 * var(--u)) calc(80 * var(--u)) calc(-30 * var(--u)) rgba(0, 0, 0, 0.8); }
+}
+
+.ek-reels-carousel .ek-comp--m [data-m="reel-cards"] > li,
+.ek-reels-carousel .ek-comp--t [data-m="reel-cards"] > li {
+    box-shadow: 0 calc(24 * var(--u)) calc(50 * var(--u)) calc(-24 * var(--u)) rgba(0, 0, 0, 0.8);
+
+    &.is-active { box-shadow: 0 0 0 calc(3 * var(--u)) var(--tk-green), 0 calc(30 * var(--u)) calc(60 * var(--u)) calc(-24 * var(--u)) rgba(0, 0, 0, 0.8); }
+}

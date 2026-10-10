@@ -35,6 +35,22 @@ class CollectionItem extends Model
         return $query->where('status', self::STATUS_PUBLISHED);
     }
 
+    /**
+     * Published items for a section: the slugs listed (comma separated, in
+     * that order), or every published item in the collection's order.
+     *
+     * @return \Illuminate\Support\Collection<int, self>
+     */
+    public static function pick(string $collection, ?string $slugs = null): \Illuminate\Support\Collection
+    {
+        $items = self::query()->of($collection)->published()->get();
+        $wanted = array_values(array_filter(array_map('trim', explode(',', (string) $slugs))));
+
+        return $wanted === []
+            ? $items
+            : collect($wanted)->map(fn ($slug) => $items->firstWhere('slug', $slug))->filter()->values();
+    }
+
     public function type(): CollectionType
     {
         return app(CollectionRegistry::class)->find($this->collection);

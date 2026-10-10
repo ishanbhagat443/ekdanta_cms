@@ -35,6 +35,8 @@ class SectionTypeServiceProvider extends ServiceProvider
         // Ekdanta section pack ("Ekdanta · …" in Add a section).
         \App\Services\SectionTypes\Ekdanta\HomeHeroSection::class,
         \App\Services\SectionTypes\Ekdanta\ObstaclesSection::class,
+        \App\Services\SectionTypes\Ekdanta\WorkShowcaseSection::class,
+        \App\Services\SectionTypes\Ekdanta\ReelsCarouselSection::class,
         \App\Services\SectionTypes\Page\HeroSection::class,
         \App\Services\SectionTypes\Page\BannerSection::class,
         \App\Services\SectionTypes\Page\CtaSection::class,

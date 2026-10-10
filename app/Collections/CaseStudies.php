@@ -33,6 +33,7 @@ class CaseStudies extends CollectionType
             $this->lines('approach', 'Our approach', null, 800),
             $this->lines('made', 'What we made (one per line)', null, 600),
             $this->rows('facts', 'Facts', [$this->text('value', 'Number or word'), $this->text('label', 'What it means')], [], 4),
+            $this->text('home_result', 'Result number (Home)', null, 120),
             $this->text('result_line', 'Result in one line'),
             $this->rows('results', 'Results', [$this->text('label', 'Measure'), $this->text('value', 'Number'), $this->text('note', 'Note')], [], 3),
             $this->lines('quote', 'Client quote', null, 800),

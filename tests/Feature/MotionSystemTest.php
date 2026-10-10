@@ -202,6 +202,15 @@ class MotionSystemTest extends TestCase
         $this->assertStringNotContainsString('evil.test', $this->get('/motion')->getContent());
     }
 
+    public function test_scene_settings_keep_numbers_and_number_lists_only(): void
+    {
+        $this->assertSame(
+            ['n' => 2, 'hero' => [-320, 0], 'scatter' => [[-470, 60, 0.42, -8], [-170, 230, 0.38, 6]], 'name' => 'ok'],
+            SectionMotion::params(['n' => '2', 'hero' => [-320, 0], 'scatter' => [[-470, 60, 0.42, -8], [-170, 230, 0.38, 6]], 'name' => 'ok',
+                'bad' => ['a' => 1], 'worse' => [['x']], 'deep' => [[[1]]], 'evil' => 'url(x)'])
+        );
+    }
+
     public function test_style_saves_cannot_write_motion_around_the_sanitiser(): void
     {
         $section = $this->section();

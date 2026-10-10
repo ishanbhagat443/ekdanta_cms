@@ -15,6 +15,7 @@ $results = [
     ['label' => 'Engagement', 'value' => '[ + ]', 'note' => 'Add the real number'],
 ];
 $case = fn (array $data) => $data + [
+    'home_result' => '[Add one number from this campaign]',
     'result_line' => '[One line on what changed for the brand, in plain words.]',
     'results' => $results,
     'quote' => '[Client quote: what changed for their business, in their own words. Ask for permission to use their name and photo.]',

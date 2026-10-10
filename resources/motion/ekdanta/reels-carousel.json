@@ -1,0 +1,28 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 2500 },
+        "steps": { "part": "reel-cards", "range": [300, 2100], "dwell": 0.35 },
+        "scene": { "params": { "items": "reel-cards", "captions": "reel-caps", "count": "reel-count", "spacing": 300, "tilt": 24, "shrink": 0.16, "dip": 14, "fadeFrom": 1.2, "dealFrom": -700, "dealFor": 800, "dealStagger": 90, "dealRise": 520, "capShift": -16, "capFade": 2.5 } },
+        "tracks": {
+            "head-fade": { "part": "reel-head", "trigger": "scrub", "preset": "fade", "range": [-700, -100], "ease": "linear" },
+            "head-rise": { "part": "reel-head", "trigger": "scrub", "keyframes": { "translateY": [40, 0] }, "range": [-700, 200], "ease": "inOutQuad" },
+            "late": { "part": "reel-late", "trigger": "scrub", "preset": "fade", "range": [-160, 200], "ease": "linear" },
+            "wall": { "part": "reel-wall", "trigger": "scrub", "keyframes": { "opacity": [0.14, 0.08] }, "range": [300, 2100], "ease": "linear" },
+            "wall-up": { "part": "reel-wall-up", "trigger": "scrub", "keyframes": { "translateY": [-222, -630] }, "range": [-900, 2500], "ease": "linear" },
+            "wall-down": { "part": "reel-wall-down", "trigger": "scrub", "keyframes": { "translateY": [-438, -30] }, "range": [-900, 2500], "ease": "linear" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 2556 },
+        "steps": { "part": "reel-cards", "range": [300, 2100], "dwell": 0.35 },
+        "scene": { "params": { "items": "reel-cards", "captions": "reel-caps", "count": "reel-count", "spacing": 205, "tilt": 24, "shrink": 0.16, "dip": 12, "fadeFrom": 1.2, "dealFrom": -700, "dealFor": 800, "dealStagger": 90, "dealRise": 480, "capShift": -14, "capFade": 2.5 } },
+        "tracks": {
+            "head-fade": { "part": "reel-head", "trigger": "scrub", "preset": "fade", "range": [-700, -100], "ease": "linear" },
+            "head-rise": { "part": "reel-head", "trigger": "scrub", "keyframes": { "translateY": [30, 0] }, "range": [-700, 200], "ease": "inOutQuad" },
+            "late": { "part": "reel-late", "trigger": "scrub", "preset": "fade", "range": [-160, 200], "ease": "linear" },
+            "wall": { "part": "reel-wall", "trigger": "scrub", "keyframes": { "opacity": [0.14, 0.08] }, "range": [300, 2100], "ease": "linear" },
+            "wall-up": { "part": "reel-wall-up", "trigger": "scrub", "keyframes": { "translateY": [-210, -550] }, "range": [-900, 2500], "ease": "linear" },
+            "wall-down": { "part": "reel-wall-down", "trigger": "scrub", "keyframes": { "translateY": [-390, -50] }, "range": [-900, 2500], "ease": "linear" }
+        }
+    }
+}

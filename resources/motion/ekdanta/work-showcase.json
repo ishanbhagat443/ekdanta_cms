@@ -1,0 +1,22 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 5100 },
+        "steps": { "part": "work-panels", "range": [1100, 4600], "dwell": 0 },
+        "scene": { "params": {
+            "gatherFrom": -600, "gatherFor": 1100, "forwardFrom": 500, "forwardFor": 600, "carouselFrom": 1100, "step": 700,
+            "hero": [-320, 0], "spacing": 720, "dip": 40, "tilt": 10, "spread": 1.6, "drop": 320, "shrink": 0.4,
+            "panelRise": 40, "panelShift": -60, "introRise": 40, "dot": [10, 34],
+            "scatter": [[-470, 60, 0.42, -8], [-170, 230, 0.38, 6], [150, 40, 0.42, 7], [430, 220, 0.38, -6], [580, 40, 0.34, 5], [-580, 250, 0.34, -4]]
+        } }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 5156 },
+        "steps": { "part": "work-panels", "range": [1100, 4600], "dwell": 0 },
+        "scene": { "params": {
+            "gatherFrom": -600, "gatherFor": 1100, "forwardFrom": 500, "forwardFor": 600, "carouselFrom": 1100, "step": 700,
+            "hero": [0, 0], "spacing": 420, "dip": 30, "tilt": 10, "spread": 1.6, "drop": 300, "shrink": 0.4,
+            "panelRise": 30, "panelShift": -50, "introRise": 30, "dot": [7, 26],
+            "scatter": [[-100, 250, 0.5, -8], [30, 330, 0.46, 6], [120, 236, 0.5, 7], [-90, 450, 0.46, -6], [110, 440, 0.44, 5], [10, 540, 0.44, -4]]
+        } }
+    }
+}

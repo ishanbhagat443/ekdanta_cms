@@ -9,6 +9,7 @@
 // (written into each view), so browser zoom still makes it bigger.
 
 @use 'ekdanta/home-hero';
+@use 'ekdanta/reels-carousel';
 
 .ek {
     position: relative;
@@ -72,6 +73,10 @@
 .ek-reduced-only { display: none; }
 @media (prefers-reduced-motion: reduce) { .ek-reduced-only { display: revert; } }
 html[data-motion="off"] .ek-reduced-only { display: revert; }
+
+// The design unit, registered so it computes to a real length: scripts read
+// it back resolved (getComputedStyle), so their distances match the CSS.
+@property --u { syntax: '<length>'; inherits: true; initial-value: 1px; }
 
 // Custom properties the design animates in CSS keyframes (torch beam: the
 // tip --ax/--ay on desktop, --mx/--my on phones). Registered so they
