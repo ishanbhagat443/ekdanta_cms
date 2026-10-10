@@ -2,6 +2,8 @@
     Ekdanta · Proof Carousel. The cards are the steps; the track's place and
     each card's tilt, dip, size and fade follow the steps' index (--ek-f) in
     CSS (_proof-carousel.scss). Drawn at the start (first card in front).
+    Counter suffix in --tk-suffix (the approved counter-suffix shade; drawn
+    in muted, 2.9:1 on ink).
 --}}
 @php
     $d = $section->dataFor('desktop');
@@ -49,7 +51,7 @@
                     </div>
 
                     <div data-m="proof-ui" style="position: absolute; left: {{ $u($v([96, 24])) }}; {{ $mob ? 'right: '.$u(24).'; top: '.$u(674) : 'top: '.$u(812) }}; display: flex; align-items: center; gap: {{ $u($v([18, 14])) }}">
-                        <span aria-hidden="true" style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ $u($v([26, 22])) }}, 0.8125rem); letter-spacing: -0.03em"><span data-ek-step-num="2">01</span><span style="color: var(--tk-muted)"> / {{ sprintf('%02d', $cases->count()) }}</span></span>
+                        <span aria-hidden="true" style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ $u($v([26, 22])) }}, 0.8125rem); letter-spacing: -0.03em"><span data-ek-step-num="2">01</span><span style="color: var(--tk-suffix)"> / {{ sprintf('%02d', $cases->count()) }}</span></span>
                         <span aria-hidden="true" style="{{ $mob ? 'flex: 1;' : 'width: '.$u(300).';' }} height: {{ $u(4) }}; border-radius: {{ $u(2) }}; background: rgba(255,255,255,0.15)"><span data-m="proof-bar" style="display: block; height: 100%; border-radius: {{ $u(2) }}; background: var(--tk-green); transform-origin: 0 50%"></span></span>
                     </div>
                     @if ($mob)
