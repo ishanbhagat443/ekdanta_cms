@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Services\PageRenderService;
 use App\Support\PageRoles;
+use App\Support\Templates;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,9 +37,16 @@ class PageController extends Controller
         if ($this->previewing($request)) {
             $page = Page::query()->where('slug', $slug)->firstOrFail();
             $payload = $this->renderer->livePayloadFor($page);
+
+            // A template page previews with the item picked in the builder (or the first one).
+            if ($template = $page->setting('template_for')) {
+                view()->share('templateItem', Templates::item($template, $request->query('item'), true) ?? Templates::item($template, null, true));
+            }
         } else {
             $payload = $this->renderer->payloadFor($slug);
             abort_if($payload === null, 404);
+            // A template page is not a destination: its items are (/work/…, /services/…, /blog/…).
+            abort_if((bool) $payload['page']->setting('template_for'), 404);
 
             // The home page lives at "/" only.
             if (PageRoles::page('home')?->is($payload['page'])) {
@@ -47,6 +55,32 @@ class PageController extends Controller
         }
 
         return $this->render($payload, false);
+    }
+
+    /**
+     * /work/{slug}, /services/{slug}, /blog/{slug}: the page marked as this
+     * template, drawing one item. A blog article without a template page
+     * keeps the blog's own article view.
+     */
+    public function template(Request $request, string $slug, string $template): View|\Symfony\Component\HttpFoundation\Response
+    {
+        $previewing = $this->previewing($request);
+        $page = Templates::page($template, ! $previewing);
+
+        if ($page === null && $template === 'post') {
+            return app(BlogController::class)->show($request, $slug);
+        }
+
+        $item = $page ? Templates::item($template, $slug, $previewing) : null;
+        abort_if($item === null, 404);
+
+        if ($template === 'post' && ! $previewing) {
+            app(\App\Services\BlogService::class)->recordView($item);
+        }
+
+        view()->share('templateItem', $item);
+
+        return $this->render($previewing ? $this->renderer->livePayloadFor($page) : $this->renderer->payloadFor($page->slug), false);
     }
 
     /** One render path for pages, also used for the 404 page. */

@@ -29,6 +29,11 @@ class BlogController extends Controller
 
     public function index(Request $request): View
     {
+        // A page built in the page builder at /blog replaces this listing.
+        if ($payload = app(\App\Services\PageRenderService::class)->payloadFor('blog')) {
+            return PageController::render($payload, false);
+        }
+
         $filters = [
             'search' => $request->string('search')->toString() ?: null,
             'category' => $request->string('category')->toString() ?: null,

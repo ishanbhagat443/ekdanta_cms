@@ -55,22 +55,24 @@ class RoutingAndChromeTest extends TestCase
         $this->actingAs($this->staff())->get($home)->assertOk();
     }
 
-    /* ── /blog → /blogs ─────────────────────────────────────────── */
+    /* ── /blogs → /blog (the blog's address since Phase 4) ─────────── */
 
-    public function test_singular_blog_url_redirects_permanently(): void
+    public function test_old_blog_url_redirects_permanently_keeping_its_query(): void
     {
-        $this->get('/blog')->assertRedirect('/blogs')->assertStatus(301);
+        $this->get('/blogs')->assertRedirect(url('/blog'))->assertStatus(301);
+        $this->get('/blogs?category=news')->assertRedirect(url('/blog?category=news'));
+        $this->get('/blog')->assertOk();
     }
 
-    public function test_singular_blog_post_url_redirects_permanently(): void
+    public function test_old_blog_post_url_redirects_permanently(): void
     {
         Post::create([
             'title' => 'Silk Guide', 'slug' => 'silk-guide', 'body' => 'x',
             'status' => Post::STATUS_PUBLISHED, 'published_at' => now(),
         ]);
 
-        $this->get('/blog/silk-guide')->assertRedirect('/blogs/silk-guide')->assertStatus(301);
-        $this->get('/blogs/silk-guide')->assertOk();
+        $this->get('/blogs/silk-guide')->assertRedirect(url('/blog/silk-guide'))->assertStatus(301);
+        $this->get('/blog/silk-guide')->assertOk();
     }
 
     public function test_the_page_catchall_still_works_for_other_slugs(): void

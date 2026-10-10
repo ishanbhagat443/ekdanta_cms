@@ -175,8 +175,8 @@ class SeoModuleTest extends TestCase
         $this->assertStringContainsString('<loc>https://gsm.test/visible-page</loc>', $xml);
         $this->assertStringContainsString('<priority>0.9</priority>', $xml);
         $this->assertStringContainsString('<changefreq>daily</changefreq>', $xml);
-        $this->assertStringContainsString('<loc>https://gsm.test/blogs</loc>', $xml);
-        $this->assertStringContainsString('<loc>https://gsm.test/blogs/silk-guide</loc>', $xml);
+        $this->assertStringContainsString('<loc>https://gsm.test/blog</loc>', $xml);
+        $this->assertStringContainsString('<loc>https://gsm.test/blog/silk-guide</loc>', $xml);
         $this->assertStringNotContainsString('hidden-noindex', $xml);
         $this->assertStringNotContainsString('hidden-excluded', $xml);
         $this->assertStringNotContainsString('draft-page', $xml);

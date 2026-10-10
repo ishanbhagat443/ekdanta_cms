@@ -103,7 +103,7 @@ class BlogCmsTest extends TestCase
         $post = Post::where('slug', 'festival-collection-preview')->firstOrFail();
 
         // Not visible publicly yet.
-        $this->get('/blogs/'.$post->slug)->assertNotFound();
+        $this->get('/blog/'.$post->slug)->assertNotFound();
         $this->assertFalse($post->isLive());
 
         // Command does nothing before due time.
@@ -114,7 +114,7 @@ class BlogCmsTest extends TestCase
         $this->travel(2)->days();
         $this->artisan('gsm:publish-scheduled-posts')->assertSuccessful();
         $this->assertSame('published', $post->fresh()->status);
-        $this->get('/blogs/'.$post->slug)->assertOk();
+        $this->get('/blog/'.$post->slug)->assertOk();
         $this->travelBack();
     }
 
@@ -135,21 +135,21 @@ class BlogCmsTest extends TestCase
         $b->update(['excerpt' => 'FACTORY-EXCERPT-MARKER']);
 
         // Search
-        $this->get('/blogs?search=Georgette')->assertOk()
+        $this->get('/blog?search=Georgette')->assertOk()
             ->assertSee('GEORGETTE-EXCERPT-MARKER')->assertDontSee('FACTORY-EXCERPT-MARKER');
         // Category
-        $this->get('/blogs?category=news')->assertOk()
+        $this->get('/blog?category=news')->assertOk()
             ->assertSee('GEORGETTE-EXCERPT-MARKER')->assertDontSee('FACTORY-EXCERPT-MARKER');
         // Tag
-        $this->get('/blogs?tag=silk')->assertOk()
+        $this->get('/blog?tag=silk')->assertOk()
             ->assertSee('GEORGETTE-EXCERPT-MARKER')->assertDontSee('FACTORY-EXCERPT-MARKER');
         // Archive month of $b only
-        $this->get('/blogs?archive='.now()->subDay()->format('Y-m'))
+        $this->get('/blog?archive='.now()->subDay()->format('Y-m'))
             ->assertOk()->assertSee('FACTORY-EXCERPT-MARKER')->assertDontSee('GEORGETTE-EXCERPT-MARKER');
         // No matches → empty state
-        $this->get('/blogs?search=zzz-no-match')->assertOk()->assertSee('No posts found.');
+        $this->get('/blog?search=zzz-no-match')->assertOk()->assertSee('No posts found.');
         // Archive list shows month labels
-        $this->get('/blogs')->assertSee(now()->subMonths(2)->format('F Y'));
+        $this->get('/blog')->assertSee(now()->subMonths(2)->format('F Y'));
     }
 
     public function test_draft_and_future_posts_hidden_from_listing(): void
@@ -158,7 +158,7 @@ class BlogCmsTest extends TestCase
         Post::create(['title' => 'Draft Post', 'slug' => 'draft-post', 'status' => 'draft']);
         Post::create(['title' => 'Future Post', 'slug' => 'future-post', 'status' => 'published', 'published_at' => now()->addWeek()]);
 
-        $response = $this->get('/blogs')->assertOk();
+        $response = $this->get('/blog')->assertOk();
         $response->assertSee('Visible Post');
         $response->assertDontSee('Draft Post');
         $response->assertDontSee('Future Post');
@@ -168,7 +168,7 @@ class BlogCmsTest extends TestCase
     {
         $post = $this->livePost(['title' => 'Elegance Story', 'excerpt' => 'A story of craft.']);
 
-        $response = $this->get('/blogs/'.$post->slug)->assertOk();
+        $response = $this->get('/blog/'.$post->slug)->assertOk();
 
         $response->assertSee('Elegance Story');
         $response->assertSee('breadcrumb', false);
@@ -178,7 +178,7 @@ class BlogCmsTest extends TestCase
         $response->assertSee('og:type" content="article', false);
 
         $this->assertSame(1, $post->fresh()->views_count);
-        $this->get('/blogs/'.$post->slug);
+        $this->get('/blog/'.$post->slug);
         $this->assertSame(2, $post->fresh()->views_count);
     }
 
@@ -285,7 +285,7 @@ class BlogCmsTest extends TestCase
         $post->categories()->attach($category->id);
         $post->tags()->attach($tag->id);
 
-        $response = $this->get('/blogs')->assertOk();
+        $response = $this->get('/blog')->assertOk();
         $response->assertSee('col-md-4', false);       // 3-column grid class
         $response->assertSee('Featured', false);        // featured badge
         $response->assertSee('Read More', false);        // read-more link
@@ -332,7 +332,7 @@ class BlogCmsTest extends TestCase
 
         // Frontend reflects the saved settings without any code changes.
         $post = $this->livePost(['title' => 'Detail Post']);
-        $response = $this->get("/blogs/{$post->slug}")->assertOk();
+        $response = $this->get("/blog/{$post->slug}")->assertOk();
         $response->assertSee('min read', false);              // reading time badge (opt-in)
         $response->assertSee('data-gsm-copy-link', false);     // copy-link button (opt-in)
         $response->assertDontSee('fa-facebook-f', false);      // disabled share icons hidden

@@ -167,6 +167,7 @@ class PageController extends Controller
             'blocks' => ['nullable', 'array'],
             // Page settings: role, header, footer, page code.
             'page_role' => ['nullable', 'in:'.implode(',', array_keys(\App\Support\PageRoles::ROLES))],
+            'template_for' => ['nullable', 'in:'.implode(',', array_keys(\App\Support\Templates::TYPES))],
             'header' => ['nullable', 'array'],
             'header.variant' => ['nullable', 'in:normal,overlay,pill,hidden'],
             'header.menu_id' => ['nullable', 'integer', 'exists:menus,id'],
@@ -302,6 +303,9 @@ class PageController extends Controller
         }
         if ($request->has('show_footer')) {
             $settings['show_footer'] = $request->boolean('show_footer');
+        }
+        if ($request->has('template_for')) {
+            $settings['template_for'] = $data['template_for'] ?: null;
         }
         if ($request->has('code') && \Illuminate\Support\Facades\Gate::allows('developer.mode')) {
             $settings['code'] = array_filter(\Illuminate\Support\Arr::only((array) ($data['code'] ?? []), ['css', 'js', 'head', 'body']), $filled);

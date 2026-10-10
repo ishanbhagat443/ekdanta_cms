@@ -136,6 +136,16 @@
                             </select>
                             <small class="form-text text-muted">One page per role. It takes effect on the live site once this page is published; previews use it straight away.</small>
                         </div>
+                        <div class="form-group">
+                            <label for="template_for"><small>Template for</small></label>
+                            <select name="template_for" id="template_for" class="form-control form-control-sm">
+                                <option value="">Not a template</option>
+                                @foreach (\App\Support\Templates::TYPES as $templateKey => $templateLabel)
+                                    <option value="{{ $templateKey }}" @selected($page->setting('template_for') === $templateKey)>{{ $templateLabel }}</option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-muted">This page then draws every item at its own address, and is not shown at its own. Its sections read the item.</small>
+                        </div>
                         <hr>
                         <p class="text-muted small mb-2"><i class="fas fa-window-maximize mr-1" aria-hidden="true"></i>Header and footer on this page</p>
                         <div class="form-group">
@@ -396,6 +406,15 @@
                             <button type="button" class="btn btn-outline-secondary" data-gsm-preview-size="{{ $previewSize }}" aria-pressed="false">{{ str_replace('x', ' × ', $previewSize) }}</button>
                         @endforeach
                     </div>
+                    @if ($previewTemplate = $page->setting('template_for'))
+                        {{-- A template page previews one item: pick which. Drafts included. --}}
+                        <label for="gsm-preview-item" class="sr-only">Preview with</label>
+                        <select id="gsm-preview-item" class="form-control form-control-sm" style="width: auto; max-width: 220px;">
+                            @foreach (\App\Support\Templates::options($previewTemplate) as $optionSlug => $optionTitle)
+                                <option value="{{ $optionSlug }}">{{ \Illuminate\Support\Str::limit($optionTitle, 40) }}</option>
+                            @endforeach
+                        </select>
+                    @endif
                     <div class="custom-control custom-switch ml-1">
                         <input type="checkbox" class="custom-control-input" id="gsm-preview-reduce">
                         <label class="custom-control-label small" for="gsm-preview-reduce">Reduce motion</label>
@@ -578,6 +597,13 @@
                     });
                     layout();
                 });
+            });
+
+            var pick = document.getElementById('gsm-preview-item');
+            if (pick) pick.addEventListener('change', function () {
+                var url = new URL(frame.src, window.location.href);
+                url.searchParams.set('item', pick.value);
+                frame.src = url.toString();
             });
 
             document.getElementById('gsm-preview-reduce').addEventListener('change', function () {

@@ -1102,7 +1102,7 @@ class PageBuilderTest extends TestCase
         $this->assertSame(2, substr_count($html, '<article class="gsm-blog-card"'), 'two large cards');
         $this->assertSame(3, substr_count($html, '<article class="gsm-blog-mini"'), 'three mini rows');
         $this->assertStringContainsString('Ethnic Fashion Story 1', $html);      // newest first
-        $this->assertStringContainsString('/blogs/ethnic-fashion-story-1', $html);
+        $this->assertStringContainsString('/blog/ethnic-fashion-story-1', $html);
         $this->assertStringNotContainsString('Hidden Draft Post', $html);        // live() scope
         $this->assertStringContainsString('Acme Studio', $html);           // author pill
         $this->assertStringContainsString(now()->subDay()->format('F j, Y'), $html); // date pill

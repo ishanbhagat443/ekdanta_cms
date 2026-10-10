@@ -153,7 +153,7 @@ class MenuItem extends Model
         /** @var Post|null $post */
         $post = $this->reference();
 
-        return $post ? url('/blogs/'.$post->slug) : '#';
+        return $post ? url('/blog/'.$post->slug) : '#';
     }
 
     private function blogCategoryUrl(): string
@@ -161,7 +161,7 @@ class MenuItem extends Model
         /** @var BlogCategory|null $category */
         $category = $this->reference();
 
-        return $category ? url('/blogs?category='.$category->slug) : '#';
+        return $category ? url('/blog?category='.$category->slug) : '#';
     }
 
     /** Visible to the current visitor: permission gate + auth/guest gate. */

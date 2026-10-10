@@ -92,7 +92,7 @@ class HardeningTest extends TestCase
             ])->id,
         ]);
 
-        $this->get('/blogs')->assertOk()->assertSee('loading="lazy"', false);
+        $this->get('/blog')->assertOk()->assertSee('loading="lazy"', false);
     }
 
     public function test_csrf_required_on_public_form_post(): void

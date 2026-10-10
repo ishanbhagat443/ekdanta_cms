@@ -136,8 +136,8 @@ class MenuBuilderTest extends TestCase
         $blogCatItem = $menu->items()->create(['label' => 'Fabrics', 'link_type' => 'blog_category', 'reference_id' => $blogCategory->id, 'reference_type' => BlogCategory::class]);
 
         $this->assertSame(url('/about-us'), $pageItem->resolvedUrl());
-        $this->assertSame(url('/blogs/silk-guide'), $blogItem->resolvedUrl());
-        $this->assertSame(url('/blogs?category=fabrics'), $blogCatItem->resolvedUrl());
+        $this->assertSame(url('/blog/silk-guide'), $blogItem->resolvedUrl());
+        $this->assertSame(url('/blog?category=fabrics'), $blogCatItem->resolvedUrl());
     }
 
     public function test_home_page_reference_resolves_to_site_root(): void

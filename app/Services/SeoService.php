@@ -148,7 +148,7 @@ class SeoService
 
         if ($posts->isNotEmpty()) {
             $entries[] = [
-                'loc' => $this->canonicalFor('blogs'),
+                'loc' => $this->canonicalFor('blog'),
                 'lastmod' => $posts->max('updated_at'),
                 'changefreq' => 'weekly',
                 'priority' => '0.7',
@@ -161,7 +161,7 @@ class SeoService
             }
 
             $entries[] = [
-                'loc' => $this->canonicalFor("blogs/{$post->slug}"),
+                'loc' => $this->canonicalFor("blog/{$post->slug}"),
                 'lastmod' => $post->updated_at,
                 'changefreq' => $post->seoMeta?->sitemap_changefreq ?: 'monthly',
                 'priority' => $post->seoMeta?->sitemap_priority ?: '0.6',

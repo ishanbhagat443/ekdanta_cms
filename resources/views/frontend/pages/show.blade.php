@@ -2,10 +2,13 @@
 
 @php
     $seoService = app(\App\Services\SeoService::class);
-    $seoMeta = $page?->seoMeta;
+    // A template page drawing one item (/work/…, /services/…, /blog/…) speaks for that item.
+    $templateItem = $templateItem ?? null;
+    $seoMeta = $templateItem ? $templateItem->seoMeta : $page?->seoMeta;
+    $seoTitle = $templateItem->title ?? $page?->title;
     $seo = $page ? $seoService->resolve($seoMeta, [
-        'title' => $page->title,
-        'canonical' => $seoService->canonicalFor($isHome ? '/' : $page->slug),
+        'title' => $seoTitle,
+        'canonical' => $seoService->canonicalFor($templateItem ? request()->path() : ($isHome ? '/' : $page->slug)),
     ]) : [];
 
     // Entity schema (if set) + BreadcrumbList for inner pages.
@@ -16,7 +19,7 @@
     }
     if ($page && !$isHome) {
         $schemas[] = $seoService->breadcrumbSchema([
-            ['name' => $seoMeta?->breadcrumb_title ?: $page->title],
+            ['name' => $seoMeta?->breadcrumb_title ?: $seoTitle],
         ]);
     }
     if ($schemas !== []) $seo['schema'] = count($schemas) === 1 ? $schemas[0] : $schemas;
@@ -24,7 +27,7 @@
 
 @php
     // <title>: the page's own meta title, else the site's title pattern.
-    $titleTag = $seoMeta?->meta_title ?: site_title($page?->title);
+    $titleTag = $seoMeta?->meta_title ?: site_title($seoTitle);
 @endphp
 @section('title', $titleTag)
 

@@ -32,7 +32,7 @@ class SearchSection extends SectionType
     {
         return [
             ['key' => 'placeholder', 'label' => 'Placeholder', 'type' => 'text', 'default' => 'Search…', 'rules' => ['nullable', 'string', 'max:100']],
-            ['key' => 'action_url', 'label' => 'Search Results URL', 'type' => 'text', 'default' => '/blogs', 'rules' => ['nullable', 'string', 'max:500'], 'hint' => 'Query is appended as ?search=…'],
+            ['key' => 'action_url', 'label' => 'Search Results URL', 'type' => 'text', 'default' => '/blog', 'rules' => ['nullable', 'string', 'max:500'], 'hint' => 'Query is appended as ?search=…'],
             ['key' => 'display', 'label' => 'Display', 'type' => 'select', 'default' => 'icon', 'options' => ['icon' => 'Icon → expands', 'input' => 'Always-visible input'], 'rules' => ['nullable', 'in:icon,input']],
         ];
     }

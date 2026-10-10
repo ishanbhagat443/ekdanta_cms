@@ -28,13 +28,17 @@ Route::get('/contact.vcf', fn () => response(business_vcard(), 200, [
     'Content-Disposition' => 'attachment; filename="'.(\Illuminate\Support\Str::slug((string) setting('business.company_name', '')) ?: 'contact').'.vcf"',
 ]))->name('front.vcard');
 
-Route::get('/blogs', [\App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('front.blog.index');
-Route::get('/blogs/{slug}', [\App\Http\Controllers\Frontend\BlogController::class, 'show'])->name('front.blog.show');
+// Blog at /blog: a published page with slug "blog" replaces the built-in
+// listing; a page marked "Template for: Blog article" draws each article.
+// /blogs, the older address, redirects (keeping ?category=… and friends).
+Route::get('/blog', [\App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('front.blog.index');
+Route::get('/blog/{slug}', [\App\Http\Controllers\Frontend\PageController::class, 'template'])->defaults('template', 'post')->name('front.blog.show');
+Route::get('/blogs/{slug?}', fn (\Illuminate\Http\Request $request, ?string $slug = null) => redirect(
+    url('/blog'.($slug !== null ? '/'.$slug : '')).($request->getQueryString() ? '?'.$request->getQueryString() : ''), 301));
 
-// The singular form is the one people type and the one other sites link to.
-// Registered before the /{slug} catch-all so it redirects instead of 404ing.
-Route::permanentRedirect('/blog', '/blogs');
-Route::permanentRedirect('/blog/{slug}', '/blogs/{slug}');
+// Collection item pages, drawn by the page marked as their template.
+Route::get('/work/{slug}', [\App\Http\Controllers\Frontend\PageController::class, 'template'])->defaults('template', 'case_study')->name('front.case');
+Route::get('/services/{slug}', [\App\Http\Controllers\Frontend\PageController::class, 'template'])->defaults('template', 'service')->name('front.service');
 
 Route::post('/forms/{slug}', [\App\Http\Controllers\Frontend\FormSubmissionController::class, 'store'])
     ->middleware('throttle:10,1')
