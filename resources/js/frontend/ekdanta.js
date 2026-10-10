@@ -15,3 +15,13 @@ window.EkMotion.register('ekdanta-brand-shelves', scatterToSlots);
 window.EkMotion.register('ekdanta-service-deep-dive', serviceDeepDive);
 
 initBriefBuilders();
+
+// "Received today at 3:42 pm": the visitor's own clock ([data-ek-now] holds "… {time} …").
+document.querySelectorAll('[data-ek-now]').forEach((el) => {
+    try {
+        const time = new Date().toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit', hour12: true }).toLowerCase();
+        el.textContent = el.dataset.ekNow.replace('{time}', time);
+    } catch {
+        // keep the fallback ("just now")
+    }
+});

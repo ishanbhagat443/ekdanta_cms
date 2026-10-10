@@ -1,0 +1,56 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 400 },
+        "tracks": {
+            "morph": { "part": "ty-morph", "trigger": "load", "preset": "ek-t-morph", "delay": 200 },
+            "sending": { "part": "ty-send", "trigger": "load", "preset": "ek-t-send", "delay": 200 },
+            "spinner": { "part": "ty-spin", "trigger": "loop", "preset": "ek-t-spin" },
+            "tick": { "part": "ty-check", "trigger": "load", "keyframes": { "strokeDashoffset": [1, 0] }, "duration": 550, "delay": 1600, "ease": "cubicBezier(0.6,0,0.2,1)" },
+            "waves": { "part": "ty-wave", "trigger": "loop", "preset": "ek-t-wave", "delay": 2000, "stagger": 1200 },
+            "chips": { "part": "ty-chip", "trigger": "load", "preset": "ek-t-chip", "delay": 2100, "stagger": 250 },
+            "float": { "part": "ty-float", "trigger": "loop", "preset": "ek-t-float" },
+            "float-2": { "part": "ty-float-2", "trigger": "loop", "preset": "ek-t-float", "delay": 2000 },
+            "title": { "part": "ty-title", "trigger": "load", "preset": "ek-rise", "delay": 1500 },
+            "line": { "part": "ty-line", "trigger": "load", "preset": "ek-fade", "delay": 1750 },
+            "text": { "part": "ty-text", "trigger": "load", "preset": "ek-fade", "delay": 1900 },
+            "actions": { "part": "ty-actions", "trigger": "load", "preset": "ek-fade", "delay": 2050 },
+            "next": { "part": "ty-next", "trigger": "load", "preset": "ek-fade", "delay": 2300 },
+            "next-bob": { "part": "ty-bob", "trigger": "loop", "preset": "ek-t-bob" },
+            "live": { "part": "ty-live", "trigger": "loop", "preset": "ek-t-live" },
+            "message-fade": { "part": "ty-message", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [140, 520], "ease": "linear", "reduce": "start" },
+            "message-rise": { "part": "ty-message", "trigger": "scrub", "keyframes": { "translateY": [0, -90] }, "range": [0, 500], "ease": "linear", "reduce": "start" },
+            "chip-left-out": { "part": "ty-chip-left", "trigger": "scrub", "keyframes": { "translateX": [0, -120] }, "range": [0, 500], "ease": "linear", "reduce": "start" },
+            "chip-left-fade": { "part": "ty-chip-left", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [140, 520], "ease": "linear", "reduce": "start" },
+            "chip-right-out": { "part": "ty-chip-right", "trigger": "scrub", "keyframes": { "translateX": [0, 120] }, "range": [0, 500], "ease": "linear", "reduce": "start" },
+            "chip-right-fade": { "part": "ty-chip-right", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [140, 520], "ease": "linear", "reduce": "start" },
+            "waves-fade": { "part": "ty-waves", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [60, 360], "ease": "linear", "reduce": "start" },
+            "next-fade": { "part": "ty-next", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [140, 520], "ease": "linear", "reduce": "start" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 456 },
+        "tracks": {
+            "morph": { "part": "ty-morph", "trigger": "load", "preset": "ek-t-morph-m-thank-you", "delay": 200 },
+            "sending": { "part": "ty-send", "trigger": "load", "preset": "ek-t-send", "delay": 200 },
+            "spinner": { "part": "ty-spin", "trigger": "loop", "preset": "ek-t-spin" },
+            "tick": { "part": "ty-check", "trigger": "load", "keyframes": { "strokeDashoffset": [1, 0] }, "duration": 550, "delay": 1600, "ease": "cubicBezier(0.6,0,0.2,1)" },
+            "waves": { "part": "ty-wave", "trigger": "loop", "preset": "ek-t-wave", "delay": 2000, "stagger": 1200 },
+            "chips": { "part": "ty-chip", "trigger": "load", "preset": "ek-t-chip", "delay": 2100, "stagger": 250 },
+            "float": { "part": "ty-float", "trigger": "loop", "preset": "ek-t-float" },
+            "float-2": { "part": "ty-float-2", "trigger": "loop", "preset": "ek-t-float", "delay": 2000 },
+            "title": { "part": "ty-title", "trigger": "load", "preset": "ek-rise", "delay": 1500 },
+            "line": { "part": "ty-line", "trigger": "load", "preset": "ek-fade", "delay": 1750 },
+            "text": { "part": "ty-text", "trigger": "load", "preset": "ek-fade", "delay": 1900 },
+            "received": { "part": "ty-received", "trigger": "load", "preset": "ek-fade", "delay": 2000 },
+            "actions": { "part": "ty-actions", "trigger": "load", "preset": "ek-fade", "delay": 2100 },
+            "live": { "part": "ty-live", "trigger": "loop", "preset": "ek-t-live" },
+            "message-fade": { "part": "ty-message", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [140, 520], "ease": "linear", "reduce": "start" },
+            "message-rise": { "part": "ty-message", "trigger": "scrub", "keyframes": { "translateY": [0, -70] }, "range": [0, 500], "ease": "linear", "reduce": "start" },
+            "chip-left-out": { "part": "ty-chip-left", "trigger": "scrub", "keyframes": { "translateX": [0, -80] }, "range": [0, 500], "ease": "linear", "reduce": "start" },
+            "chip-left-fade": { "part": "ty-chip-left", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [140, 520], "ease": "linear", "reduce": "start" },
+            "chip-right-out": { "part": "ty-chip-right", "trigger": "scrub", "keyframes": { "translateX": [0, 80] }, "range": [0, 500], "ease": "linear", "reduce": "start" },
+            "chip-right-fade": { "part": "ty-chip-right", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [140, 520], "ease": "linear", "reduce": "start" },
+            "waves-fade": { "part": "ty-waves", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [60, 360], "ease": "linear", "reduce": "start" }
+        }
+    }
+}

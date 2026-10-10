@@ -1,0 +1,32 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1700 },
+        "steps": { "part": "nx-steps", "range": [150, 1710], "dwell": 0.4 },
+        "tracks": {
+            "head": { "part": "nx-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "track": { "part": "nx-track", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [-450, 50], "ease": "outCubic" },
+            "marker": { "part": "nx-marker-in", "trigger": "scrub", "preset": "fade", "range": [-200, 100], "ease": "linear" },
+            "cards": { "part": "nx-card", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 60, "to": 0, "ease": "outCubic" }] }, "range": [-300, 20], "ease": "linear", "stagger": 70 },
+            "icon-mail": { "part": "nx-icon-mail", "trigger": "loop", "preset": "ek-t-env" },
+            "icon-phone": { "part": "nx-icon-phone", "trigger": "loop", "preset": "ek-t-wig" },
+            "icon-search": { "part": "nx-icon-search", "trigger": "loop", "preset": "ek-t-scan" },
+            "icon-doc": { "part": "nx-icon-doc", "trigger": "loop", "preset": "ek-t-doc" },
+            "pulse": { "part": "nx-pulse", "trigger": "loop", "preset": "ek-t-pulse" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1756 },
+        "steps": { "part": "nx-steps", "range": [150, 1710], "dwell": 0.4 },
+        "tracks": {
+            "head": { "part": "nx-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "track": { "part": "nx-track", "trigger": "scrub", "keyframes": { "scaleY": [0, 1] }, "range": [-450, 50], "ease": "outCubic" },
+            "marker": { "part": "nx-marker-in", "trigger": "scrub", "preset": "fade", "range": [-200, 100], "ease": "linear" },
+            "cards": { "part": "nx-card", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": 50, "to": 0, "ease": "outCubic" }] }, "range": [-300, 20], "ease": "linear", "stagger": 70 },
+            "icon-mail": { "part": "nx-icon-mail", "trigger": "loop", "preset": "ek-t-env" },
+            "icon-phone": { "part": "nx-icon-phone", "trigger": "loop", "preset": "ek-t-wig" },
+            "icon-search": { "part": "nx-icon-search", "trigger": "loop", "preset": "ek-t-scan" },
+            "icon-doc": { "part": "nx-icon-doc", "trigger": "loop", "preset": "ek-t-doc" },
+            "pulse": { "part": "nx-pulse", "trigger": "loop", "preset": "ek-t-pulse" }
+        }
+    }
+}
