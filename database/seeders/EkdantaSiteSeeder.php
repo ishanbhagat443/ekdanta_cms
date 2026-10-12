@@ -9,14 +9,22 @@ use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use App\Models\CollectionItem;
 use App\Models\Form;
+use App\Models\GlobalBlock;
 use App\Models\Layout;
 use App\Models\Media;
 use App\Models\MediaFolder;
 use App\Models\Menu;
+use App\Models\Page;
 use App\Models\Post;
+use App\Models\ThemePreset;
+use App\Models\ThemeSetting;
+use App\Services\GlobalBlockService;
 use App\Services\LayoutService;
 use App\Services\MediaService;
+use App\Services\SectionBuilderService;
 use App\Services\SettingsService;
+use App\Services\ThemeService;
+use App\Support\PageRoles;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
@@ -43,11 +51,90 @@ class EkdantaSiteSeeder extends Seeder
     {
         $this->media();
         $this->collections();
+        $this->theme();
         $this->business();
         $this->menus();
         $this->header();
+        $this->finale();
         $this->briefForm();
         $this->samplePosts($this->withPages);
+        if ($this->withPages) {
+            $this->pages();
+        }
+    }
+
+    /**
+     * --with-pages: every designed page, its sections in the design's order,
+     * each ending with the synced Big Brand Finale. slug => [title, settings
+     * (header.menu as a menu slug), role, section types after "ekdanta-"].
+     */
+    public const PAGES = [
+        'home' => ['Home', ['header' => ['menu' => 'ekdanta-home-page-menu']], 'home', ['home-hero', 'obstacles', 'work-showcase', 'reels-carousel', 'brand-shelves', 'services-panels', 'founders-story']],
+        'contact' => ['Contact', [], null, ['contact-hero', 'contact-channels', 'brief-builder', 'visit-us', 'faq-deck']],
+        'services' => ['Services', [], null, ['services-hero', 'expertise-cards', 'service-deep-dive', 'process-path', 'proof-carousel', 'pricing']],
+        'thank-you' => ['Thank you', [], 'thank_you', ['thank-you-hero', 'next-steps', 'save-our-number', 'while-you-wait']],
+        'page-not-found' => ['Page not found', [], 'not_found', ['not-found-hero', 'page-finder', 'report-link']],
+        'about' => ['About', [], null, ['about-hero', 'our-story', 'four-promises', 'team-roll-call', 'who-we-work-with']],
+        'work' => ['Work', [], null, ['work-hero', 'case-studies-scroller', 'reels-arc', 'client-logo-wall']],
+        'case-study-template' => ['Case study (template)', ['template_for' => 'case_study'], null, ['case-hero', 'case-overview', 'case-gallery', 'case-results', 'next-case']],
+        'service-template' => ['Service (template)', ['template_for' => 'service'], null, ['service-hero', 'whats-included', 'how-it-works', 'related-work', 'service-pricing-faq', 'works-well-with']],
+        'blog' => ['Blog', ['header' => ['menu' => 'ekdanta-blog-menu']], null, ['blog-hero', 'featured-article', 'article-grid', 'whatsapp-tips']],
+        'article-template' => ['Blog article (template)', ['template_for' => 'post', 'header' => ['menu' => 'ekdanta-blog-menu']], null, ['article-hero', 'article-body', 'keep-reading']],
+    ];
+
+    /** The pages (only with --with-pages). A page that already has sections is left as it is. */
+    public function pages(): void
+    {
+        $finale = GlobalBlock::query()->where('slug', 'big-brand-finale')->firstOrFail();
+        $builder = app(SectionBuilderService::class);
+
+        foreach (self::PAGES as $slug => [$title, $settings, $role, $types]) {
+            $page = Page::query()->firstOrCreate(['slug' => $slug], ['title' => $title, 'status' => Page::STATUS_PUBLISHED]);
+            if ($page->sections()->exists()) {
+                continue;
+            }
+            if ($menu = $settings['header']['menu'] ?? null) {
+                $settings['header'] = ['menu_id' => Menu::query()->where('slug', $menu)->value('id')];
+            }
+            $page->update(['status' => Page::STATUS_PUBLISHED, 'show_banner' => false, 'settings' => array_replace((array) $page->settings, $settings)]);
+            foreach ($types as $type) {
+                $builder->addSection($page, 'page', 'ekdanta-'.$type);
+            }
+            app(GlobalBlockService::class)->placeOnPage($finale, $page, count($types) + 1);
+            if ($role && PageRoles::page($role, false) === null) {
+                PageRoles::assign($page, $role);
+            }
+        }
+    }
+
+    /**
+     * The Ekdanta theme: kept as a preset (Theme Customizer → Backups) and
+     * applied once, to a site that doesn't have it yet. The theme the site
+     * had before is saved as a backup first.
+     */
+    public function theme(): void
+    {
+        $settings = json_decode((string) file_get_contents(database_path('presets/ekdanta-theme.json')), true)['settings'];
+        ThemePreset::query()->firstOrCreate(['slug' => 'ekdanta'], ['name' => 'Ekdanta', 'payload' => $settings, 'is_system' => true]);
+
+        if (ThemeSetting::query()->where('key', 'css_variables')->where('value', 'like', '%--tk-ink%')->exists()) {
+            return;
+        }
+        $theme = app(ThemeService::class);
+        $theme->savePreset('Before Ekdanta');
+        $theme->importPayload($settings);
+    }
+
+    /** The Big Brand Finale as a saved block: pages place it synced, so one edit changes every page. */
+    public function finale(): void
+    {
+        if (GlobalBlock::query()->where('slug', 'big-brand-finale')->exists()) {
+            return;
+        }
+        app(GlobalBlockService::class)->create([
+            'name' => 'Big Brand Finale', 'slug' => 'big-brand-finale', 'type' => 'ekdanta-finale',
+            'description' => 'The closing section of every Ekdanta page, with the contact card and the footer line.',
+        ]);
     }
 
     /** The design's blog articles: [category, title, excerpt, cover media key or null, featured]. */

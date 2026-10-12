@@ -66,7 +66,8 @@
             <div class="gsm-site-header__bar">
                 <div class="gsm-site-header__brand">{!! $brand() !!}</div>
 
-                @if ($navMenu && $uses('inline'))
+                {{-- The inline menu is the Header Builder's menu section (its style), so it needs one. --}}
+                @if ($navMenu && $navEntry && $uses('inline'))
                     <nav class="navbar navbar-expand p-0 gsm-site-header__nav {{ $showFor('inline', 'flex') }}" aria-label="Main">
                         @include('frontend.partials.render-section', [
                             'section' => $navEntry['section'], 'menu' => $navMenu, 'mediaMap' => $navEntry['media'],
