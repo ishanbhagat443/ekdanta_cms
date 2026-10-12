@@ -8,12 +8,14 @@ import scatterToSlots from './sections/ekdanta/scatter-to-slots.js';
 import initBriefBuilders from './sections/ekdanta/brief-builder.js';
 import serviceDeepDive from './sections/ekdanta/service-deep-dive.js';
 import initPageFinders from './sections/ekdanta/page-finder.js';
+import aboutStory from './sections/ekdanta/about-story.js';
 
 window.EkMotion.register('ekdanta-home-hero', torchBeam);
 window.EkMotion.register('ekdanta-work-showcase', workIntro);
 window.EkMotion.register('ekdanta-reels-carousel', indexCarousel);
 window.EkMotion.register('ekdanta-brand-shelves', scatterToSlots);
 window.EkMotion.register('ekdanta-service-deep-dive', serviceDeepDive);
+window.EkMotion.register('ekdanta-our-story', aboutStory);
 
 initBriefBuilders();
 initPageFinders();

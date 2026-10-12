@@ -59,6 +59,8 @@ class SectionTypeServiceProvider extends ServiceProvider
         \App\Services\SectionTypes\Ekdanta\NotFoundHeroSection::class,
         \App\Services\SectionTypes\Ekdanta\PageFinderSection::class,
         \App\Services\SectionTypes\Ekdanta\ReportLinkSection::class,
+        \App\Services\SectionTypes\Ekdanta\AboutHeroSection::class,
+        \App\Services\SectionTypes\Ekdanta\OurStorySection::class,
         \App\Services\SectionTypes\Page\HeroSection::class,
         \App\Services\SectionTypes\Page\BannerSection::class,
         \App\Services\SectionTypes\Page\CtaSection::class,

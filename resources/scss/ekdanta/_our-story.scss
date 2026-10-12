@@ -1,0 +1,34 @@
+// Ekdanta · Our Story: everything that follows the beat index --ek-f (the
+// engine's steps; 0 without JS, whole numbers under reduced motion).
+.ek-our-story {
+    --f: var(--ek-f, 0);
+    --lit: clamp(0, (var(--f) - 1.3) / 0.7, 1); // owners guided: 0–1
+    --joined: clamp(0, (var(--f) - 3.5) / 0.5, 1); // the badge becomes the logo
+
+    // Each beat holds at its index and slides away above / below it.
+    .ek-story-beat {
+        --d: calc(var(--f) - var(--i));
+        opacity: clamp(0, 1 - max(var(--d), -1 * var(--d)) * 1.6, 1);
+        transform: translateY(calc(var(--d) * -60 * var(--u)));
+    }
+
+    .ek-story-dot {
+        --on: clamp(0, (var(--lit) * 100 - var(--i) - 0.5) * 1000, 1);
+        background: color-mix(in srgb, var(--tk-green) calc(var(--on) * 100%), rgba(255, 255, 255, 0.12));
+    }
+
+    .ek-story-hl { background-size: calc(clamp(0, (var(--f) - 2.55) / 0.45, 1) * 100%) 100%; }
+
+    .ek-story-plus { opacity: calc(1 - var(--joined)); }
+    .ek-story-mark { opacity: var(--joined); }
+    .ek-story-photo {
+        position: relative;
+        box-shadow: 0 0 0 calc(3 * var(--u) * clamp(0, (var(--f) - 3.5) * 1000, 1)) var(--tk-green), 0 calc(30 * var(--u)) calc(60 * var(--u)) calc(-30 * var(--u)) rgba(0, 0, 0, 0.8);
+    }
+
+    .ek-story-side {
+        --act: clamp(0, (0.5 - max(var(--f) - var(--i), var(--i) - var(--f))) * 1000, 1);
+        height: calc((8 + 22 * var(--act)) * var(--u));
+        background: color-mix(in srgb, var(--tk-green) calc(var(--act) * 100%), rgba(255, 255, 255, 0.3));
+    }
+}

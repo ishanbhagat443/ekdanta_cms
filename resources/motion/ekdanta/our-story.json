@@ -1,0 +1,28 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 2500 },
+        "steps": { "part": "ab-beats", "range": [250, 1930], "dwell": 0.4 },
+        "tracks": {
+            "beat-in": { "part": "ab-beat-in", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-500, -100], "ease": "linear" },
+            "founder-1": { "part": "ab-founder-1", "trigger": "scrub", "keyframes": { "translateX": [-200, 0], "rotate": [-14, -5] }, "range": [-450, 100], "ease": "inOutQuad" },
+            "founder-1-in": { "part": "ab-founder-1", "trigger": "scrub", "preset": "fade", "range": [-450, -138], "ease": "inQuad" },
+            "founder-2": { "part": "ab-founder-2", "trigger": "scrub", "keyframes": { "translateX": [188, 0], "rotate": [14, 5] }, "range": [-450, 100], "ease": "inOutQuad" },
+            "founder-2-in": { "part": "ab-founder-2", "trigger": "scrub", "preset": "fade", "range": [-450, -138], "ease": "inQuad" },
+            "join": { "part": "ab-join", "trigger": "scrub", "keyframes": { "scale": [0, 1] }, "range": [-146, 100], "ease": "outBack" },
+            "pulse": { "part": "ab-pulse", "trigger": "loop", "preset": "ek-ab-pulse" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 2556 },
+        "steps": { "part": "ab-beats", "range": [250, 1930], "dwell": 0.4 },
+        "tracks": {
+            "beat-in": { "part": "ab-beat-in", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-500, -100], "ease": "linear" },
+            "founder-1": { "part": "ab-founder-1", "trigger": "scrub", "keyframes": { "translateX": [-150, 0], "rotate": [-14, -5] }, "range": [-450, 100], "ease": "inOutQuad" },
+            "founder-1-in": { "part": "ab-founder-1", "trigger": "scrub", "preset": "fade", "range": [-450, -138], "ease": "inQuad" },
+            "founder-2": { "part": "ab-founder-2", "trigger": "scrub", "keyframes": { "translateX": [150, 0], "rotate": [14, 5] }, "range": [-450, 100], "ease": "inOutQuad" },
+            "founder-2-in": { "part": "ab-founder-2", "trigger": "scrub", "preset": "fade", "range": [-450, -138], "ease": "inQuad" },
+            "join": { "part": "ab-join", "trigger": "scrub", "keyframes": { "scale": [0, 1] }, "range": [-146, 100], "ease": "outBack" },
+            "pulse": { "part": "ab-pulse", "trigger": "loop", "preset": "ek-ab-pulse" }
+        }
+    }
+}

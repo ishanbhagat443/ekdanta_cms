@@ -47,6 +47,9 @@
   "kind": "css",
   "trigger": "load",
   "keyframes": {
+   "from": {
+    "background-size": "0% 100%"
+   },
    "to": {
     "background-size": "100% 100%"
    }
@@ -84,6 +87,9 @@
   "kind": "css",
   "trigger": "load",
   "keyframes": {
+   "from": {
+    "max-width": "0"
+   },
    "to": {
     "max-width": "calc(240 * var(--u))"
    }
