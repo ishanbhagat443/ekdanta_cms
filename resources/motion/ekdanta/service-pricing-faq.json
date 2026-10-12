@@ -1,0 +1,22 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 900 },
+        "tracks": {
+            "head": { "part": "pf-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "factors": { "part": "pf-factor", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -30, "to": 0, "ease": "outCubic" }] }, "range": [-300, -50], "ease": "linear", "stagger": 90 },
+            "button": { "part": "pf-button", "trigger": "scrub", "preset": "fade", "range": [100, 350], "ease": "linear" },
+            "questions-head": { "part": "pf-faq-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-500, -80], "ease": "linear" },
+            "questions": { "part": "pf-faq", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-200, 60], "ease": "linear", "stagger": 100 }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 956 },
+        "tracks": {
+            "head": { "part": "pf-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "factors": { "part": "pf-factor", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -30, "to": 0, "ease": "outCubic" }] }, "range": [-300, -50], "ease": "linear", "stagger": 90 },
+            "button": { "part": "pf-button", "trigger": "scrub", "preset": "fade", "range": [100, 350], "ease": "linear" },
+            "questions-head": { "part": "pf-faq-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-500, -80], "ease": "linear" },
+            "questions": { "part": "pf-faq", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-200, 60], "ease": "linear", "stagger": 100 }
+        }
+    }
+}

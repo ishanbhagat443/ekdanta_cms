@@ -1,0 +1,26 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 600 },
+        "tracks": {
+            "head": { "part": "ww-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "card-1": { "part": "ww-card-1", "trigger": "scrub", "keyframes": { "translateY": [200, 0], "rotate": [-5, 0] }, "range": [-350, 100], "ease": "outCubic" },
+            "card-1-in": { "part": "ww-card-1", "trigger": "scrub", "preset": "fade", "range": [-350, -212], "ease": "outQuad" },
+            "card-2": { "part": "ww-card-2", "trigger": "scrub", "keyframes": { "translateY": [200, 0], "rotate": [0, 0] }, "range": [-240, 210], "ease": "outCubic" },
+            "card-2-in": { "part": "ww-card-2", "trigger": "scrub", "preset": "fade", "range": [-240, -102], "ease": "outQuad" },
+            "card-3": { "part": "ww-card-3", "trigger": "scrub", "keyframes": { "translateY": [200, 0], "rotate": [5, 0] }, "range": [-130, 320], "ease": "outCubic" },
+            "card-3-in": { "part": "ww-card-3", "trigger": "scrub", "preset": "fade", "range": [-130, 8], "ease": "outQuad" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 656 },
+        "tracks": {
+            "head": { "part": "ww-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "card-1": { "part": "ww-card-1", "trigger": "scrub", "keyframes": { "translateY": [120, 0], "rotate": [-5, 0] }, "range": [-350, 100], "ease": "outCubic" },
+            "card-1-in": { "part": "ww-card-1", "trigger": "scrub", "preset": "fade", "range": [-350, -212], "ease": "outQuad" },
+            "card-2": { "part": "ww-card-2", "trigger": "scrub", "keyframes": { "translateY": [120, 0], "rotate": [0, 0] }, "range": [-240, 210], "ease": "outCubic" },
+            "card-2-in": { "part": "ww-card-2", "trigger": "scrub", "preset": "fade", "range": [-240, -102], "ease": "outQuad" },
+            "card-3": { "part": "ww-card-3", "trigger": "scrub", "keyframes": { "translateY": [120, 0], "rotate": [5, 0] }, "range": [-130, 320], "ease": "outCubic" },
+            "card-3-in": { "part": "ww-card-3", "trigger": "scrub", "preset": "fade", "range": [-130, 8], "ease": "outQuad" }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1100 },
+        "tracks": {
+            "head": { "part": "wi-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "stack-in": { "part": "wi-stack", "trigger": "scrub", "preset": "fade", "range": [-650, -350], "ease": "linear" },
+            "deal-1": { "part": "wi-card-1", "trigger": "scrub", "keyframes": { "translateX": [424, 0], "translateY": [112, 0], "rotate": [-12.5, 0], "scale": [0.9, 1] }, "range": [-250, 200], "ease": "outCubic" },
+            "deal-2": { "part": "wi-card-2", "trigger": "scrub", "keyframes": { "translateX": [3, 0], "translateY": [109, 0], "rotate": [-7.5, 0], "scale": [0.9, 1] }, "range": [-160, 290], "ease": "outCubic" },
+            "deal-3": { "part": "wi-card-3", "trigger": "scrub", "keyframes": { "translateX": [-418, 0], "translateY": [106, 0], "rotate": [-2.5, 0], "scale": [0.9, 1] }, "range": [-70, 380], "ease": "outCubic" },
+            "deal-4": { "part": "wi-card-4", "trigger": "scrub", "keyframes": { "translateX": [433, 0], "translateY": [-97, 0], "rotate": [2.5, 0], "scale": [0.9, 1] }, "range": [20, 470], "ease": "outCubic" },
+            "deal-5": { "part": "wi-card-5", "trigger": "scrub", "keyframes": { "translateX": [12, 0], "translateY": [-100, 0], "rotate": [7.5, 0], "scale": [0.9, 1] }, "range": [110, 560], "ease": "outCubic" },
+            "deal-6": { "part": "wi-card-6", "trigger": "scrub", "keyframes": { "translateX": [-409, 0], "translateY": [-103, 0], "rotate": [12.5, 0], "scale": [0.9, 1] }, "range": [200, 650], "ease": "outCubic" },
+            "ticks": { "part": "wi-tick", "trigger": "scrub", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [-50, 170], "ease": "linear", "stagger": 90 }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1156 },
+        "tracks": {
+            "head": { "part": "wi-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "stack-in": { "part": "wi-stack", "trigger": "scrub", "preset": "fade", "range": [-650, -350], "ease": "linear" },
+            "deal-1": { "part": "wi-card-1", "trigger": "scrub", "keyframes": { "translateX": [88, 0], "translateY": [180, 0], "rotate": [-12.5, 0], "scale": [0.9, 1] }, "range": [-250, 200], "ease": "outCubic" },
+            "deal-2": { "part": "wi-card-2", "trigger": "scrub", "keyframes": { "translateX": [-86, 0], "translateY": [177, 0], "rotate": [-7.5, 0], "scale": [0.9, 1] }, "range": [-160, 290], "ease": "outCubic" },
+            "deal-3": { "part": "wi-card-3", "trigger": "scrub", "keyframes": { "translateX": [94, 0], "translateY": [-6, 0], "rotate": [-2.5, 0], "scale": [0.9, 1] }, "range": [-70, 380], "ease": "outCubic" },
+            "deal-4": { "part": "wi-card-4", "trigger": "scrub", "keyframes": { "translateX": [-80, 0], "translateY": [-9, 0], "rotate": [2.5, 0], "scale": [0.9, 1] }, "range": [20, 470], "ease": "outCubic" },
+            "deal-5": { "part": "wi-card-5", "trigger": "scrub", "keyframes": { "translateX": [100, 0], "translateY": [-192, 0], "rotate": [7.5, 0], "scale": [0.9, 1] }, "range": [110, 560], "ease": "outCubic" },
+            "deal-6": { "part": "wi-card-6", "trigger": "scrub", "keyframes": { "translateX": [-74, 0], "translateY": [-195, 0], "rotate": [12.5, 0], "scale": [0.9, 1] }, "range": [200, 650], "ease": "outCubic" },
+            "ticks": { "part": "wi-tick", "trigger": "scrub", "keyframes": { "strokeDashoffset": [1, 0] }, "range": [-50, 170], "ease": "linear", "stagger": 90 }
+        }
+    }
+}

@@ -34,6 +34,9 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 12 Oct 2026 | Reels Arc (Work) counter suffix (" / 05", 26 px bold) in muted `#56605A` on ink | 2.7:1 (needs 3:1) | The approved counter-suffix shade applied (8 Oct decision): `#85908A`, 5.7:1 |
 | 12 Oct 2026 | Case Gallery Zoom (case study): the lit item's number, ink at 70 % on green | 4.3:1 | Approved: 85 % (5.4:1), as Team Roll Call |
 | 12 Oct 2026 | Case Results (case study): the "[ + ]" placeholder in `#C5CCC7` (46 px) on paper | 1.6:1 (needs 3:1) | Approved: `#85908A` (`--tk-suffix`, 3.0:1) while a card still shows its placeholder; real numbers show in ink |
+| 12 Oct 2026 | Service detail: labels on a service's colours (hero GOOD FOR / ALL SERVICES 65 %, Works Well With group 70 %, 12 px) | 3.7:1 and 4.1:1 on the Branding green | Approved: 80 % on every service (5.1:1 on Branding, 6:1+ elsewhere) |
+| 12 Oct 2026 | How It Works (service): the lit step's "STEP n", ink at 70 % on green | 4.3:1 | Approved: 85 % (5.4:1), as Team Roll Call |
+| 12 Oct 2026 | Service Pricing: factor numbers `#1B8141` on the mint circle `#D9F2E1` | 4.2:1 | Approved: `#0A5A30` (`--tk-green-deep`), 7.0:1 |
 
 ## Checklist results
 
@@ -94,6 +97,12 @@ Recorded per phase from Phase 1 on.
 | Phase 4 | Case Gallery Zoom | The grid picture is described; the guided zoom is scroll-linked and ends on the whole grid, which is also the reduced-motion and no-JS view. Found: the lit item's number 4.3:1; fixed with your approval | Pass after fix |
 | Phase 4 | Case Results | Result cards are a list (value, measure, note); the quote is a `figure` with `blockquote` and caption. Found: the "[ + ]" placeholder 1.6:1; fixed with your approval | Pass after fix |
 | Phase 4 | Next Case | A heading with the next brand, its story and a real link to its page (named with the brand); the grid picture is described | Pass |
+| Phase 4 | Service Hero (Live Scene) | Reads the service from the template page (`/services/{slug}`); its colours and scene come from Collections → Services. One `<h1>`; "good for" is a list; the other services are a named `nav` of links with `aria-current="page"`. The six scenes are decoration (`aria-hidden`); their loops are Motion tab tracks and stop under reduced motion. Found: dimmed labels 3.7:1 on Branding; fixed with your approval | Pass after fix |
+| Phase 4 | What's Included | A list of the service's items, each a heading and text; ticks are decoration. Drawn dealt and ticked | Pass |
+| Phase 4 | How It Works | An ordered list of steps (the engine's steps, `aria-current="step"`). Future steps are dimmed only until reached (a scroll state; all are reached at the end and under reduced motion). Found: lit "STEP n" 4.3:1; fixed with your approval | Pass after fix |
+| Phase 4 | Related Work | Case cards with described pictures and named links; services without cases yet show their `[Add …]` placeholder cards | Pass |
+| Phase 4 | Service Pricing + FAQ | Factors are an ordered list; the questions are native `<details>` (keyboard and screen readers get native behaviour, and they work without JS). Found: factor numbers 4.2:1; fixed with your approval | Pass after fix |
+| Phase 4 | Works Well With | Related services are links to their pages, on their own colours | Pass |
 
 ### Known limits (ponytail ledger)
 

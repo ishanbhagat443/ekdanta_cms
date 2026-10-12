@@ -130,6 +130,23 @@ class EkdantaSectionsTest extends TestCase
         $this->get('/work/no-such-case')->assertNotFound();
     }
 
+    public function test_the_service_template_shows_its_service_questions_and_partners(): void
+    {
+        (new EkdantaSiteSeeder)->collections();
+        $page = $this->page('service-template', ['ekdanta-service-hero', 'ekdanta-whats-included', 'ekdanta-service-pricing-faq', 'ekdanta-works-well-with']);
+        $page->forceFill(['settings' => ['template_for' => 'service']])->save();
+
+        $this->get('/services/meta-ads')->assertOk()
+            ->assertSee('<h1', false)
+            ->assertSee('Pixel and tracking setup')
+            ->assertSee('Is the ad budget part of your fee?') // its own FAQ group
+            ->assertDontSee('Do you shoot the content too?') // another service's FAQ
+            ->assertSee('<details', false)
+            ->assertSee('aria-current="page"', false)
+            ->assertSee('href="'.url('/services/social-media-management').'"', false); // works well with
+        $this->get('/services/brand-strategy')->assertNotFound(); // a real service without its own page
+    }
+
     public function test_the_brief_builder_walks_the_ekdanta_brief_form(): void
     {
         (new EkdantaSiteSeeder)->briefForm();

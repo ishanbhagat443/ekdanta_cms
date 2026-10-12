@@ -1,0 +1,28 @@
+// Ekdanta · How It Works: --ek-f (the engine's steps; 0 without JS, whole
+// under reduced motion) fills the track, marks the steps reached and lights
+// the card in view (--a, the design's "a").
+.ek-how-it-works {
+    --f: var(--ek-f, 0);
+
+    .ek-comp--d .ek-hw-fill { transform: scaleX(calc(var(--f) / var(--last))); }
+    .ek-comp--m .ek-hw-fill, .ek-comp--t .ek-hw-fill { transform: scaleY(calc(var(--f) / var(--last))); }
+
+    .ek-hw-step {
+        --reached: clamp(0, (var(--f) - var(--i) + 0.3) * 1000, 1);
+        --a: clamp(0, 1 - max(var(--f) - var(--i), var(--i) - var(--f)) * 1.5, 1);
+        --hot: clamp(0, (var(--a) - 0.5) * 1000, 1);
+    }
+    .ek-hw-node {
+        background: color-mix(in srgb, var(--tk-green) calc(var(--reached) * 100%), #1E2622);
+        color: color-mix(in srgb, var(--tk-ink) calc(var(--reached) * 100%), rgba(255, 255, 255, 0.55));
+        box-shadow: 0 0 0 calc(6 * var(--u)) var(--tk-ink), 0 0 0 calc(7 * var(--u)) color-mix(in srgb, var(--tk-green) calc(var(--reached) * 100%), rgba(255, 255, 255, 0.2));
+        opacity: calc(0.5 + 0.5 * var(--reached));
+    }
+    .ek-hw-card {
+        background: color-mix(in srgb, var(--tk-green) calc(var(--hot) * 100%), rgba(255, 255, 255, 0.06));
+        color: color-mix(in srgb, var(--tk-ink) calc(var(--hot) * 100%), #FFFFFF);
+        opacity: calc(0.5 + 0.5 * var(--reached));
+        transform: translateY(calc(var(--a) * -12 * var(--u))) scale(calc(1 + var(--a) * 0.04));
+    }
+    .ek-hw-label { opacity: 0.85; } // drawn 0.7; approved contrast fix (5.4:1 on the lit card)
+}

@@ -1,0 +1,11 @@
+// Ekdanta · Service Pricing + FAQ: the factor numbers and the native
+// <details> accordion (the plus turns into a cross on an ink disc).
+.ek-service-pricing-faq {
+    .ek-pf-num { color: var(--tk-green-deep); } // drawn #1B8141 (4.2:1 on the mint circle); approved contrast fix (7.0:1)
+    .ek-pf-faq summary::-webkit-details-marker { display: none; }
+    .ek-pf-chev { background: var(--tk-paper); color: var(--tk-ink); transition: transform 250ms ease-out, background-color 250ms ease-out, color 250ms ease-out; }
+    .ek-pf-faq[open] .ek-pf-chev { background: var(--tk-ink); color: #FFFFFF; transform: rotate(45deg); }
+}
+
+@media (prefers-reduced-motion: reduce) { .ek-service-pricing-faq .ek-pf-chev { transition: none; } }
+html[data-motion="off"] .ek-service-pricing-faq .ek-pf-chev { transition: none; }
