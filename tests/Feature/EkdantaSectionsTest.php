@@ -114,6 +114,22 @@ class EkdantaSectionsTest extends TestCase
         $this->assertStringContainsString(rawurlencode(' '.url('/no-such-page')).'"', $html, 'the WhatsApp report names the address that failed');
     }
 
+    public function test_the_case_study_template_shows_its_case_and_links_to_the_next(): void
+    {
+        (new EkdantaSiteSeeder)->collections();
+        $page = $this->page('case-template', ['ekdanta-case-hero', 'ekdanta-case-overview', 'ekdanta-next-case']);
+        $page->forceFill(['settings' => ['template_for' => 'case_study']])->save();
+
+        $this->get('/work/yantra-design')->assertOk()
+            ->assertSee('<h1', false)
+            ->assertSee('Yantra Design')
+            ->assertSee('INDUSTRIAL MACHINERY')
+            ->assertSee('Case study 02 of 06')
+            ->assertSee('href="'.url('/work/heaven-solar').'"', false) // next case
+            ->assertSee('href="'.url('/work/trilok-infratech').'"', false); // previous case
+        $this->get('/work/no-such-case')->assertNotFound();
+    }
+
     public function test_the_brief_builder_walks_the_ekdanta_brief_form(): void
     {
         (new EkdantaSiteSeeder)->briefForm();

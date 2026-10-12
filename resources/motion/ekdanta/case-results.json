@@ -1,0 +1,24 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 900 },
+        "tracks": {
+            "head": { "part": "cr-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "cards": { "part": "cr-card", "trigger": "scrub", "keyframes": { "rotateX": [-90, 0] }, "range": [-300, 100], "ease": "outCubic", "stagger": 120 },
+            "cards-in": { "part": "cr-card", "trigger": "scrub", "preset": "fade", "range": [-300, -217], "ease": "outQuad", "stagger": 120 },
+            "quote": { "part": "cr-quote", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [120, 0], "rotate": [6, 0] }, "range": [-100, 350], "ease": "outCubic" },
+            "band": { "part": "cr-cta", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 24, "to": 0, "ease": "outCubic" }] }, "range": [150, 450], "ease": "linear" },
+            "dash": { "part": "cr-dash", "trigger": "loop", "preset": "ek-cs-dash" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 956 },
+        "tracks": {
+            "head": { "part": "cr-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "cards": { "part": "cr-card", "trigger": "scrub", "keyframes": { "rotateX": [-90, 0] }, "range": [-300, 100], "ease": "outCubic", "stagger": 120 },
+            "cards-in": { "part": "cr-card", "trigger": "scrub", "preset": "fade", "range": [-300, -217], "ease": "outQuad", "stagger": 120 },
+            "quote": { "part": "cr-quote", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [120, 0], "rotate": [6, 0] }, "range": [-100, 350], "ease": "outCubic" },
+            "band": { "part": "cr-cta", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 24, "to": 0, "ease": "outCubic" }] }, "range": [150, 450], "ease": "linear" },
+            "dash": { "part": "cr-dash", "trigger": "loop", "preset": "ek-cs-dash" }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 900 },
+        "tracks": {
+            "head": { "part": "co-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "columns": { "part": "co-col", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [50, 0] }, "range": [-400, 0], "ease": "outCubic", "stagger": 120 },
+            "rules": { "part": "co-rule", "trigger": "scrub", "keyframes": { "scaleY": [0, 1] }, "range": [-300, 200], "ease": "outCubic", "stagger": 120 },
+            "made": { "part": "co-item", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -20, "to": 0, "ease": "outCubic" }] }, "range": [-60, 190], "ease": "linear", "stagger": 90 },
+            "facts-in": { "part": "co-facts", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [0, 300], "ease": "linear" },
+            "facts-count": { "part": "co-fact", "trigger": "scrub", "keyframes": { "$count": true }, "range": [50, 650], "ease": "outCubic" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 956 },
+        "tracks": {
+            "head": { "part": "co-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "columns": { "part": "co-col", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [50, 0] }, "range": [-400, 0], "ease": "outCubic", "stagger": 120 },
+            "rules": { "part": "co-rule", "trigger": "scrub", "keyframes": { "scaleY": [0, 1] }, "range": [-300, 200], "ease": "outCubic", "stagger": 120 },
+            "made": { "part": "co-item", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -20, "to": 0, "ease": "outCubic" }] }, "range": [-60, 190], "ease": "linear", "stagger": 90 },
+            "facts-in": { "part": "co-facts", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [0, 300], "ease": "linear" },
+            "facts-count": { "part": "co-fact", "trigger": "scrub", "keyframes": { "$count": true }, "range": [50, 650], "ease": "outCubic" }
+        }
+    }
+}

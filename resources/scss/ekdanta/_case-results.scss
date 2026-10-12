@@ -1,0 +1,4 @@
+// Ekdanta · Case Results: a result still showing its "[ + ]" default is
+// drawn faint until a real number is filled in: the approved suffix shade
+// (drawn #C5CCC7, 1.6:1; approved contrast fix, 3.0:1 at this size).
+.ek-case-results .ek-result-empty { color: var(--tk-suffix) !important; }

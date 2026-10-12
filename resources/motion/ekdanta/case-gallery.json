@@ -1,0 +1,30 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1700 },
+        "tracks": {
+            "head": { "part": "cg-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "frame-in": { "part": "cg-frame", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [120, 0], "scale": [0.94, 1] }, "range": [-550, -50], "ease": "outCubic" },
+            "bar-in": { "part": "cg-bar-box", "trigger": "scrub", "preset": "fade", "range": [-550, -50], "ease": "outCubic" },
+            "pan-1": { "part": "cg-pan", "trigger": "scrub", "keyframes": { "--ps": [1.3, 1.3], "--px": [0, -370], "--py": [0, -150] }, "range": [0, 375], "ease": "inOutQuad" },
+            "pan-2": { "part": "cg-pan", "trigger": "scrub", "keyframes": { "--ps": [1.3, 1.3], "--px": [-370, 0], "--py": [-150, -281] }, "range": [375, 750], "ease": "inOutQuad" },
+            "pan-3": { "part": "cg-pan", "trigger": "scrub", "keyframes": { "--ps": [1.3, 1.3], "--px": [0, -370], "--py": [-281, -562] }, "range": [750, 1125], "ease": "inOutQuad" },
+            "pan-4": { "part": "cg-pan", "trigger": "scrub", "keyframes": { "--ps": [1.3, 0.7021], "--px": [-370, 71.1], "--py": [-562, 0] }, "range": [1125, 1500], "ease": "inOutQuad" },
+            "items": { "part": "cg-progress-box", "trigger": "scrub", "keyframes": { "--gp": [0, 2.999] }, "range": [0, 1500], "ease": "linear" },
+            "bar": { "part": "cg-bar", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [0, 1500], "ease": "linear" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1756 },
+        "tracks": {
+            "head": { "part": "cg-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "frame-in": { "part": "cg-frame", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [120, 0], "scale": [0.94, 1] }, "range": [-550, -50], "ease": "outCubic" },
+            "bar-in": { "part": "cg-bar-box", "trigger": "scrub", "preset": "fade", "range": [-550, -50], "ease": "outCubic" },
+            "pan-1": { "part": "cg-pan", "trigger": "scrub", "keyframes": { "--ps": [1.3, 1.3], "--px": [0, -370], "--py": [0, -150] }, "range": [0, 375], "ease": "inOutQuad" },
+            "pan-2": { "part": "cg-pan", "trigger": "scrub", "keyframes": { "--ps": [1.3, 1.3], "--px": [-370, 0], "--py": [-150, -281] }, "range": [375, 750], "ease": "inOutQuad" },
+            "pan-3": { "part": "cg-pan", "trigger": "scrub", "keyframes": { "--ps": [1.3, 1.3], "--px": [0, -370], "--py": [-281, -562] }, "range": [750, 1125], "ease": "inOutQuad" },
+            "pan-4": { "part": "cg-pan", "trigger": "scrub", "keyframes": { "--ps": [1.3, 0.7021], "--px": [-370, 71.1], "--py": [-562, 0] }, "range": [1125, 1500], "ease": "inOutQuad" },
+            "items": { "part": "cg-progress-box", "trigger": "scrub", "keyframes": { "--gp": [0, 2.999] }, "range": [0, 1500], "ease": "linear" },
+            "bar": { "part": "cg-bar", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [0, 1500], "ease": "linear" }
+        }
+    }
+}

@@ -32,6 +32,8 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 12 Oct 2026 | Team Roll Call (About): role numbers at 70 % opacity | 3.9:1 on the dark rows, 4.3:1 on the lit row | Approved: 85 % (5.2:1 and 5.4:1), as the row descriptions |
 | 12 Oct 2026 | Case Studies Scroller (Work): index entries not in view at 50 % on the six case colours | sectors 2.7–2.9:1, numbers 3.1–3.5:1, names down to 4.2:1 | Approved: 80 % for entries not in view and sector lines at 75 % white (65 % drawn): names 8.3:1+, sectors 5.4:1+, numbers 5.7:1+ on every case colour |
 | 12 Oct 2026 | Reels Arc (Work) counter suffix (" / 05", 26 px bold) in muted `#56605A` on ink | 2.7:1 (needs 3:1) | The approved counter-suffix shade applied (8 Oct decision): `#85908A`, 5.7:1 |
+| 12 Oct 2026 | Case Gallery Zoom (case study): the lit item's number, ink at 70 % on green | 4.3:1 | Approved: 85 % (5.4:1), as Team Roll Call |
+| 12 Oct 2026 | Case Results (case study): the "[ + ]" placeholder in `#C5CCC7` (46 px) on paper | 1.6:1 (needs 3:1) | Approved: `#85908A` (`--tk-suffix`, 3.0:1) while a card still shows its placeholder; real numbers show in ink |
 
 ## Checklist results
 
@@ -87,6 +89,11 @@ Recorded per phase from Phase 1 on.
 | Phase 4 | Case Studies Scroller | The index buttons are steps (`aria-current="step"`); only the case in view can be read or focused (the others are `visibility: hidden` until their turn), and each "Read the full case study" link names its brand. Pictures are described. Found: dimmed index entries below AA on the case colours; fixed with your approval. Phones (no design): numbered index buttons (named by brand) above the picture and story | Pass after fix |
 | Phase 4 | Reels Arc | Each phone is one link named "Watch … by … on Instagram"; the phones are steps, so focusing one scrolls it into the spotlight. The spotlight (size, brightness, ring, play button) is decoration; reduced motion leaves the arc resting. The counter suffix uses the approved suffix shade | Pass |
 | Phase 4 | Client Logo Wall | Logos are images named by the client in a list. The filter is a labelled group of toggle buttons (`aria-pressed`); the count is a polite live region; filtered-out logos fade and then leave the accessibility tree. Without JS the filter is hidden and every logo shows; reduced motion moves logos without gliding | Pass |
+| Phase 4 | Case Hero | Reads the case from the template page (`/work/{slug}`); one `<h1>` (the brand). The profile card's header is decoration; its grid picture is described. Previous / next are real links named with the case they open. Phones (no design): text, then a smaller card | Pass |
+| Phase 4 | Case Overview | Three columns with their own headings; "what we made" is a list; client facts count up with the real value kept in text (non-numeric facts stay as written) | Pass |
+| Phase 4 | Case Gallery Zoom | The grid picture is described; the guided zoom is scroll-linked and ends on the whole grid, which is also the reduced-motion and no-JS view. Found: the lit item's number 4.3:1; fixed with your approval | Pass after fix |
+| Phase 4 | Case Results | Result cards are a list (value, measure, note); the quote is a `figure` with `blockquote` and caption. Found: the "[ + ]" placeholder 1.6:1; fixed with your approval | Pass after fix |
+| Phase 4 | Next Case | A heading with the next brand, its story and a real link to its page (named with the brand); the grid picture is described | Pass |
 
 ### Known limits (ponytail ledger)
 

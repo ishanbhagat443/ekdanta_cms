@@ -46,6 +46,8 @@ Approved tokens. The CMS exposes them as CSS custom properties (`--tk-*`) throug
 | About Four Promises, tabs not in view (approved a11y fix; drawn `#9AA39E` / `#C5CCC7`) | titles `#85908A`, numbers `#6A736D` | `--tk-suffix`, `--tk-muted-2-sm` |
 | About Team Roll Call, row numbers (approved a11y fix; drawn 70 %) | 85 % opacity | In the view |
 | Work Case Studies index, entries not in view (approved a11y fix; drawn 50 % / sector 65 %) | 80 %, sector 75 % white | In SCSS / the view |
+| Case study Gallery, lit item number (approved a11y fix; drawn 70 %) | 85 % opacity | In SCSS |
+| Case study Results, "[ + ]" placeholder (approved a11y fix; drawn `#C5CCC7`) | `#85908A` | `--tk-suffix` |
 | Finale footer line (approved a11y fix) | `#0D351F` | `--tk-finale-foot` |
 
 *Notes: brand-colour fills per case study (navy, maroon, forest, ochre, slate, teal) and per expertise group are content, edited on the collection items, not tokens.*

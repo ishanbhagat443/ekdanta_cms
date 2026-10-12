@@ -1,0 +1,19 @@
+// Ekdanta · Case Gallery Zoom: the picture sits where --px, --py and --ps
+// (design px; scroll tracks) put it, the whole grid when they are unset;
+// --gp (0–3) lights the item being shown and swaps the label at 2.625.
+.ek-case-gallery {
+    .ek-gallery-img { transform: translate(calc(var(--px, 71.1) * var(--u)), calc(var(--py, 0) * var(--u))) scale(var(--ps, 0.7021)); }
+
+    .ek-gallery-item {
+        --on: calc(clamp(0, (var(--gp, 2.999) - var(--j)) * 1000 + 1, 1) * clamp(0, (var(--j) + 1 - var(--gp, 2.999)) * 1000, 1));
+        background: color-mix(in srgb, var(--tk-green) calc(var(--on) * 100%), rgba(255, 255, 255, 0.06));
+        color: color-mix(in srgb, var(--tk-ink) calc(var(--on) * 100%), #FFFFFF);
+    }
+    .ek-gallery-num { opacity: 0.85; } // drawn 0.7; approved contrast fix (5.4:1 on the lit item)
+
+    // The two labels share one place; --gp past 2.625 shows "Full grid".
+    .ek-gallery-label { display: inline-grid; }
+    .ek-gallery-zoom, .ek-gallery-full { grid-area: 1 / 1; }
+    .ek-gallery-zoom { opacity: clamp(0, (2.625 - var(--gp, 2.999)) * 1000, 1); }
+    .ek-gallery-full { opacity: clamp(0, (var(--gp, 2.999) - 2.625) * 1000, 1); }
+}

@@ -1,0 +1,22 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 700 },
+        "tracks": {
+            "eyebrow-in": { "part": "nc-eyebrow", "trigger": "scrub", "preset": "fade", "range": [-600, 0], "ease": "outCubic" },
+            "name-in": { "part": "nc-name", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [300, 0] }, "range": [-600, 0], "ease": "outCubic" },
+            "story-in": { "part": "nc-story", "trigger": "scrub", "preset": "fade", "range": [-200, 100], "ease": "linear" },
+            "grid-in": { "part": "nc-grid", "trigger": "scrub", "preset": "fade", "range": [-450, -281], "ease": "outQuad" },
+            "grid-rise": { "part": "nc-grid", "trigger": "scrub", "keyframes": { "translateY": [500, 0], "rotate": [-12, -3] }, "range": [-450, 100], "ease": "outCubic" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 756 },
+        "tracks": {
+            "eyebrow-in": { "part": "nc-eyebrow", "trigger": "scrub", "preset": "fade", "range": [-600, 0], "ease": "outCubic" },
+            "name-in": { "part": "nc-name", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [150, 0] }, "range": [-600, 0], "ease": "outCubic" },
+            "story-in": { "part": "nc-story", "trigger": "scrub", "preset": "fade", "range": [-200, 100], "ease": "linear" },
+            "grid-in": { "part": "nc-grid", "trigger": "scrub", "preset": "fade", "range": [-450, -281], "ease": "outQuad" },
+            "grid-rise": { "part": "nc-grid", "trigger": "scrub", "keyframes": { "translateY": [300, 0], "rotate": [-12, -3] }, "range": [-450, 100], "ease": "outCubic" }
+        }
+    }
+}
