@@ -10,7 +10,6 @@
 @php
     $d = $section->dataFor('desktop');
     $m = $section->dataFor('mobile');
-    $u = fn ($n) => "calc({$n} * var(--u))";
     $post = ($templateItem ?? null) instanceof \App\Models\Post ? $templateItem : \App\Models\Post::query()->live()->latest('published_at')->first();
 @endphp
 @if ($post)
@@ -48,34 +47,34 @@
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $by = str_replace('{author}', $post->displayAuthor(), $t['byline']);
             $meta = str_replace(['{date}', '{minutes}'], [$post->published_at?->format('M Y') ?? '', $post->readingTimeMinutes()], $t['meta']);
-            $btn = 'width: '.$u($v([42, 40])).'; height: '.$u($v([42, 40])).'; border-radius: 999px; background: var(--tk-paper); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: var(--tk-ink); border: 0; cursor: pointer';
+            $btn = 'width: '.ek_u($v([42, 40])).'; height: '.ek_u($v([42, 40])).'; border-radius: 999px; background: var(--tk-paper); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: var(--tk-ink); border: 0; cursor: pointer';
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
-            <div style="padding: {{ $u($v([116, 96])) }} {{ $u($v([96, 24])) }} {{ $u($v([50, 40])) }}; background: #FFFFFF">
+            <div style="padding: {{ ek_u($v([116, 96])) }} {{ ek_u($v([96, 24])) }} {{ ek_u($v([50, 40])) }}; background: #FFFFFF">
                 <div data-m="ah-head">
-                    <div data-m="ah-crumbs" style="display: flex; align-items: center; gap: {{ $u(12) }}; font-size: max({{ $u(15) }}, 0.8125rem); color: var(--tk-muted)">
-                        <a href="{{ link_href($d['back_link'] ?? '/blog') }}" style="display: inline-flex; align-items: center; gap: {{ $u(8) }}; height: {{ $u(36) }}; padding: 0 {{ $u(14) }} 0 {{ $u(10) }}; border-radius: 999px; background: var(--tk-paper); text-decoration: none; color: var(--tk-ink); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ $u(14) }}, 0.8125rem)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ $u(16) }}; height: {{ $u(16) }}">{!! $back !!}</svg>{{ $t['back_label'] }}</a>
+                    <div data-m="ah-crumbs" style="display: flex; align-items: center; gap: {{ ek_u(12) }}; font-size: max({{ ek_u(15) }}, 0.8125rem); color: var(--tk-muted)">
+                        <a href="{{ link_href($d['back_link'] ?? '/blog') }}" style="display: inline-flex; align-items: center; gap: {{ ek_u(8) }}; height: {{ ek_u(36) }}; padding: 0 {{ ek_u(14) }} 0 {{ ek_u(10) }}; border-radius: 999px; background: var(--tk-paper); text-decoration: none; color: var(--tk-ink); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u(14) }}, 0.8125rem)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u(16) }}; height: {{ ek_u(16) }}">{!! $back !!}</svg>{{ $t['back_label'] }}</a>
                         @if ($cat)
                             <span aria-hidden="true">/</span>
-                            <span style="padding: {{ $u(6) }} {{ $u(12) }}; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ $u(12) }}, 0.75rem); letter-spacing: 0.06em; color: var(--tk-green-deep)">{{ mb_strtoupper($cat->name) }}</span>
+                            <span style="padding: {{ ek_u(6) }} {{ ek_u(12) }}; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(12) }}, 0.75rem); letter-spacing: 0.06em; color: var(--tk-green-deep)">{{ mb_strtoupper($cat->name) }}</span>
                         @endif
                     </div>
-                    <h1 aria-label="{{ $title }}" style="position: relative; margin: {{ $u($v([22, 18])) }} 0 0; max-width: {{ $u($v([1100, 342])) }}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ $u($v([78, 40])) }}, 1.5rem); line-height: 1.06; letter-spacing: -0.045em"><span aria-hidden="true">{!! $typed !!}</span></h1>
-                    <p data-m="ah-lede" style="margin: {{ $u($v([26, 18])) }} 0 0; max-width: {{ $u($v([820, 342])) }}; font-size: max({{ $u($v([21, 17])) }}, 0.8125rem); line-height: 1.55; color: #3B4640">{{ $post->autoExcerpt(40) }}</p>
-                    <div data-m="ah-byline" style="margin-top: {{ $u($v([28, 22])) }}; display: flex; align-items: center; gap: {{ $u($v([14, 12])) }}; flex-wrap: wrap">
-                        <span style="width: {{ $u($v([50, 44])) }}; height: {{ $u($v([50, 44])) }}; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 {{ $u(1.5) }} var(--tk-line-2); display: flex; align-items: center; justify-content: center">@if ($avatar)<img src="{{ $avatar }}" alt="" style="width: {{ $u($v([28, 24])) }}; height: auto">@endif</span>
-                        <span style="display: flex; flex-direction: column; gap: {{ $u(2) }}"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ $u($v([16, 15])) }}, 0.8125rem)">{{ ucfirst($by) }}</span><span style="font-size: max({{ $u($v([15, 14])) }}, 0.8125rem); color: var(--tk-muted)">{{ $meta }}</span></span>
-                        <span data-share style="{{ $mob ? 'flex-basis: 100%' : 'margin-left: auto' }}; display: flex; align-items: center; gap: {{ $u(10) }}">
-                            <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ $u(13) }}, 0.8125rem); letter-spacing: 0.1em; color: var(--tk-muted); margin-right: {{ $u(4) }}">{{ $t['share_label'] }}</span>
+                    <h1 aria-label="{{ $title }}" style="position: relative; margin: {{ ek_u($v([22, 18])) }} 0 0; max-width: {{ ek_u($v([1100, 342])) }}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([78, 40])) }}, 1.5rem); line-height: 1.06; letter-spacing: -0.045em"><span aria-hidden="true">{!! $typed !!}</span></h1>
+                    <p data-m="ah-lede" style="margin: {{ ek_u($v([26, 18])) }} 0 0; max-width: {{ ek_u($v([820, 342])) }}; font-size: max({{ ek_u($v([21, 17])) }}, 0.8125rem); line-height: 1.55; color: #3B4640">{{ $post->autoExcerpt(40) }}</p>
+                    <div data-m="ah-byline" style="margin-top: {{ ek_u($v([28, 22])) }}; display: flex; align-items: center; gap: {{ ek_u($v([14, 12])) }}; flex-wrap: wrap">
+                        <span style="width: {{ ek_u($v([50, 44])) }}; height: {{ ek_u($v([50, 44])) }}; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 {{ ek_u(1.5) }} var(--tk-line-2); display: flex; align-items: center; justify-content: center">@if ($avatar)<img src="{{ $avatar }}" alt="" style="width: {{ ek_u($v([28, 24])) }}; height: auto">@endif</span>
+                        <span style="display: flex; flex-direction: column; gap: {{ ek_u(2) }}"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([16, 15])) }}, 0.8125rem)">{{ ucfirst($by) }}</span><span style="font-size: max({{ ek_u($v([15, 14])) }}, 0.8125rem); color: var(--tk-muted)">{{ $meta }}</span></span>
+                        <span data-share style="{{ $mob ? 'flex-basis: 100%' : 'margin-left: auto' }}; display: flex; align-items: center; gap: {{ ek_u(10) }}">
+                            <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u(13) }}, 0.8125rem); letter-spacing: 0.1em; color: var(--tk-muted); margin-right: {{ ek_u(4) }}">{{ $t['share_label'] }}</span>
                             @include('frontend.sections.ekdanta.partials.share-links', ['t' => $d, 'url' => $url, 'title' => $title, 'btn' => $btn, 'icon' => $v([[20, 18, 19], [19, 17, 18]])])
                             <span class="visually-hidden" role="status" data-copy-status></span>
                         </span>
                     </div>
                 </div>
-                <div data-m="ah-cover" style="position: relative; margin-top: {{ $u($v([82, 36])) }}; height: {{ $u($v([540, 300])) }}; border-radius: {{ $u($v([30, 24])) }}; overflow: hidden; background: var(--tk-dark-4)">
+                <div data-m="ah-cover" style="position: relative; margin-top: {{ ek_u($v([82, 36])) }}; height: {{ ek_u($v([540, 300])) }}; border-radius: {{ ek_u($v([30, 24])) }}; overflow: hidden; background: var(--tk-dark-4)">
                     @if ($drawing)
                         {{-- Phones: the drawing at 42 %, the brochure and phone in view. --}}
-                        <div style="position: absolute; left: {{ $mob ? $u(-76) : 0 }}; top: {{ $mob ? $u(36) : 0 }}; width: {{ $u(1248) }}; height: {{ $u(540) }}; {{ $mob ? 'transform: scale(0.42); transform-origin: 0 0' : '' }}">
+                        <div style="position: absolute; left: {{ $mob ? ek_u(-76) : 0 }}; top: {{ $mob ? ek_u(36) : 0 }}; width: {{ ek_u(1248) }}; height: {{ ek_u(540) }}; {{ $mob ? 'transform: scale(0.42); transform-origin: 0 0' : '' }}">
                             @include('frontend.sections.ekdanta.partials.article-drawing', ['d' => $d, 'mob' => $mob])
                         </div>
                     @else

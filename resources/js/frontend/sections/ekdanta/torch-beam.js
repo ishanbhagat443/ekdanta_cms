@@ -4,17 +4,15 @@
  * appear and the scroll hint fades in. Writes CSS variables the view's
  * clip-path and styles read. Numbers: Motion tab → Scene settings.
  */
-const clamp = (v) => Math.max(0, Math.min(1, v));
-const inOutQuad = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+import { clamp, inOutQuad } from '../../motion/math.js';
 
 export const DEFAULTS = {
     openSeconds: 10, scrollOpen: 600, spreadA: -2400, spreadB: 3200, ctaAt: 0.8, ctaSpan: 0.12, ctaRise: 30,
     glowFrom: 0.55, hintAt: 560, hintFadeAt: 650, hintFadeSpan: 150,
 };
 
-export default function torchBeam(el, { device, reduced, config }) {
+export default function torchBeam(el, { reduced, config, root }) {
     const p = { ...DEFAULTS, ...(config.scene?.params || {}) };
-    const root = el.querySelector(`[data-ek-comp="${device}"]`) || el.querySelector('[data-ek-comp="mobile"]') || el;
     let t0 = performance.now();
     let y = 0;
     let raf = 0;

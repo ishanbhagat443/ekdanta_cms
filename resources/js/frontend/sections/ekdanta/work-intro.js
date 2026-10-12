@@ -7,13 +7,11 @@
  * The background blends between the cases' brand colours. Under reduced
  * motion the cases switch in place. Numbers: Motion tab → Scene settings.
  */
-const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
-const lerp = (a, b, t) => a + (b - a) * t;
-const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+import { clamp, lerp, inOutQuad as ease } from '../../motion/math.js';
 const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
 const mix = (c1, c2, t) => `rgb(${c1.map((v, i) => Math.round(lerp(v, c2[i], t))).join(',')})`;
 
-export default function workIntro(el, { device, reduced, config }) {
+export default function workIntro(el, { reduced, config, root }) {
     const p = {
         gatherFrom: -600, gatherFor: 1100, forwardFrom: 500, forwardFor: 600, carouselFrom: 1100, step: 700,
         hero: [-320, 0], spacing: 720, dip: 40, tilt: 10, spread: 1.6, drop: 320, shrink: 0.4,
@@ -21,7 +19,6 @@ export default function workIntro(el, { device, reduced, config }) {
         scatter: [[-470, 60, 0.42, -8], [-170, 230, 0.38, 6], [150, 40, 0.42, 7], [430, 220, 0.38, -6], [580, 40, 0.34, 5], [-580, 250, 0.34, -4]],
         ...(config.scene?.params || {}),
     };
-    const root = el.querySelector(`[data-ek-comp="${device}"]`) || el.querySelector('[data-ek-comp="mobile"]') || el;
     const cards = [...root.querySelectorAll('[data-m="work-card"]')];
     const panels = [...root.querySelectorAll('[data-m="work-panels"] > *')];
     const dots = [...root.querySelectorAll('[data-m="work-dots"] > *')];

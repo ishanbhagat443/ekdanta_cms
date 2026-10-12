@@ -30,11 +30,6 @@ class CollectionRegistry
         return collect(self::$types);
     }
 
-    public function has(string $key): bool
-    {
-        return $this->all()->has($key);
-    }
-
     public function find(string $key): CollectionType
     {
         return $this->all()->get($key) ?? abort(404);

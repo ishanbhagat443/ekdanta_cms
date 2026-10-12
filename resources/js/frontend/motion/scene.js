@@ -9,12 +9,11 @@
  * the config, works out progress and calls seek().
  */
 import { animate, createTimeline, cubicBezier, splitText, spring, stagger, steps, svg } from 'animejs';
+import { clamp, inOutQuad } from './math.js';
 
 /** Plain-number keyframe values for these properties are design px. */
 const LENGTHS = new Set(['x', 'y', 'translateX', 'translateY', 'translateZ', 'left', 'top', 'right', 'bottom', 'width', 'height']);
 
-const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
-const inOutQuad = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
 /**
  * One design px in screen px: the composition's --u (registered as a length
@@ -22,6 +21,14 @@ const inOutQuad = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2)
  */
 export function unitOf(el) {
     return parseFloat(getComputedStyle(el).getPropertyValue('--u')) || 0;
+}
+
+/**
+ * A section may draw one composition per screen size ([data-ek-comp]; tablets
+ * show the phone one): parts and the stage are looked up in the one in view.
+ */
+export function compOf(el, device) {
+    return el.querySelector(`[data-ek-comp="${device === 'tablet' ? 'mobile' : device}"]`) || el;
 }
 
 /** Design px → screen px, for plain numbers on length properties. */
@@ -103,11 +110,7 @@ export class Scene {
         this.el = el;
         this.config = config;
         this.env = env;
-        // A section may draw one composition per screen size ([data-ek-comp]);
-        // parts and the stage are looked up in the one this device shows.
-        this.root = el.querySelector(`[data-ek-comp="${env.device}"]`)
-            || (env.device === 'tablet' && el.querySelector('[data-ek-comp="mobile"]'))
-            || el;
+        this.root = compOf(el, env.device);
         this.length = config.stage?.length || 0;
         // Reduced motion unpins a stage, unless it has steps: those still
         // need the scroll to show each item (they switch, without moving).

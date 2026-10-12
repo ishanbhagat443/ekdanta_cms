@@ -7,10 +7,7 @@
  * Markup: [data-m="tiles"] > tile (data-shelf="<index>"), [data-m="shelf-count"]
  * and [data-m="shelf-fill"] per shelf, in shelf order.
  */
-const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
-const lerp = (a, b, t) => a + (b - a) * t;
-const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
-const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+import { clamp, lerp, inOutQuad as ease, easeOut } from '../../motion/math.js';
 
 /** The design's generator (Park–Miller), so the scatter matches it exactly. */
 function seeded(seed) {
@@ -21,14 +18,13 @@ function seeded(seed) {
     };
 }
 
-export default function scatterToSlots(el, { device, reduced, config }) {
+export default function scatterToSlots(el, { reduced, config, root }) {
     const p = {
         seed: 21, area: [200, 905, 300, 400], turn: 56, rankStep: 12, popFrom: -500, popFor: 200,
         flyFrom: 300, flyShelf: 70, flyItem: 28, flyFor: 450, arc: 80, bob: 6,
         shelves: [[96, 300], [418, 300], [740, 300], [1062, 300]], slot: [147, 58], scale: 1, fadeIn: [-300, 400],
         ...(config.scene?.params || {}),
     };
-    const root = el.querySelector(`[data-ek-comp="${device}"]`) || el.querySelector('[data-ek-comp="mobile"]') || el;
     const tiles = [...(root.querySelector('[data-m="tiles"]')?.children || [])];
     const counts = [...root.querySelectorAll('[data-m="shelf-count"]')];
     const fills = [...root.querySelectorAll('[data-m="shelf-fill"]')];
@@ -85,7 +81,6 @@ export default function scatterToSlots(el, { device, reduced, config }) {
                 tile.style.transform = `translate(${(x * u).toFixed(1)}px, ${(y * u).toFixed(1)}px) rotate(${r.toFixed(1)}deg) scale(${sc.toFixed(3)})`;
                 tile.style.opacity = op.toFixed(3);
                 tile.style.zIndex = flying ? 30 : 10;
-                tile.classList.toggle('is-flying', flying);
             });
 
             counts.forEach((c, i) => { c.textContent = String(landed[i] ?? 0); });

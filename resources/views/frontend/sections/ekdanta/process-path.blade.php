@@ -7,7 +7,6 @@
 @php
     $d = $section->dataFor('desktop');
     $m = $section->dataFor('mobile');
-    $u = fn ($n) => "calc({$n} * var(--u))";
     $steps = array_values(array_filter((array) ($d['steps'] ?? []), fn ($s) => ($s['title'] ?? '') !== ''));
     $mark = media_ref($d['mark'] ?? null);
     $paths = [
@@ -26,15 +25,15 @@
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: #FFFFFF">
                 <div class="ek-art">
-                    <div data-m="proc-head" style="position: absolute; left: {{ $u($v([96, 24])) }}; top: {{ $u($v([112, 82])) }}; {{ $mob ? 'width: '.$u(342) : '' }}">
-                        <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ $u($v([14, 12])) }}, 0.75rem); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
-                        <h2 style="margin: {{ $u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ $u($v([54, 31])) }}; line-height: 1.04; letter-spacing: -0.045em">{{ $t['heading'] }}<br><span style="color: var(--tk-green-text)">{{ $t['heading_2'] }}</span></h2>
+                    <div data-m="proc-head" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([112, 82])) }}; {{ $mob ? 'width: '.ek_u(342) : '' }}">
+                        <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, 0.75rem); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
+                        <h2 style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([54, 31])) }}; line-height: 1.04; letter-spacing: -0.045em">{{ $t['heading'] }}<br><span style="color: var(--tk-green-text)">{{ $t['heading_2'] }}</span></h2>
                     </div>
                     @unless ($mob)
-                        <p data-m="proc-text" style="position: absolute; right: {{ $u(96) }}; top: {{ $u(136) }}; width: {{ $u(400) }}; margin: 0; font-size: max({{ $u(19) }}, 0.8125rem); line-height: 1.5; color: var(--tk-muted)">{{ $t['text'] }}</p>
+                        <p data-m="proc-text" style="position: absolute; right: {{ ek_u(96) }}; top: {{ ek_u(136) }}; width: {{ ek_u(400) }}; margin: 0; font-size: max({{ ek_u(19) }}, 0.8125rem); line-height: 1.5; color: var(--tk-muted)">{{ $t['text'] }}</p>
                     @endunless
 
-                    <svg viewBox="0 0 {{ $w }} {{ $h }}" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: {{ $u($w) }}; height: {{ $u($h) }}">
+                    <svg viewBox="0 0 {{ $w }} {{ $h }}" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: {{ ek_u($w) }}; height: {{ ek_u($h) }}">
                         <path d="{{ $paths[$comp] }}" fill="none" stroke="#DDE2DA" stroke-width="3" stroke-dasharray="{{ $v(['2 10', '2 9']) }}" stroke-linecap="round"></path>
                         <path data-m="proc-path" d="{{ $paths[$comp] }}" fill="none" stroke="#2EB45D" stroke-width="{{ $v([6, 5]) }}" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" style="stroke-dashoffset: 0"></path>
                     </svg>
@@ -47,13 +46,13 @@
                                 $side = $mob ? 'card' : ($below ? 'card-below' : 'card-above');
                             @endphp
                             <li>
-                                <div aria-hidden="true" style="position: absolute; left: {{ $u($nx) }}; top: {{ $u($ny) }}; width: 0; height: 0">
-                                    <span style="position: absolute; left: {{ $u(-$v([15, 12])) }}; top: {{ $u(-$v([15, 12])) }}; width: {{ $u($v([30, 24])) }}; height: {{ $u($v([30, 24])) }}; border-radius: 50%; background: #FFFFFF; box-shadow: inset 0 0 0 {{ $u(3) }} var(--tk-line-2)"></span>
-                                    <span data-m="proc-node" style="position: absolute; left: {{ $u(-$v([20, 16])) }}; top: {{ $u(-$v([20, 16])) }}; width: {{ $u($v([40, 32])) }}; height: {{ $u($v([40, 32])) }}; border-radius: 50%; background: var(--tk-green); color: var(--tk-ink); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ $u($v([15, 13])) }}, 0.8125rem); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 {{ $u($v([6, 5])) }} rgba(46,180,93,0.18)">{{ $i + 1 }}</span>
+                                <div aria-hidden="true" style="position: absolute; left: {{ ek_u($nx) }}; top: {{ ek_u($ny) }}; width: 0; height: 0">
+                                    <span style="position: absolute; left: {{ ek_u(-$v([15, 12])) }}; top: {{ ek_u(-$v([15, 12])) }}; width: {{ ek_u($v([30, 24])) }}; height: {{ ek_u($v([30, 24])) }}; border-radius: 50%; background: #FFFFFF; box-shadow: inset 0 0 0 {{ ek_u(3) }} var(--tk-line-2)"></span>
+                                    <span data-m="proc-node" style="position: absolute; left: {{ ek_u(-$v([20, 16])) }}; top: {{ ek_u(-$v([20, 16])) }}; width: {{ ek_u($v([40, 32])) }}; height: {{ ek_u($v([40, 32])) }}; border-radius: 50%; background: var(--tk-green); color: var(--tk-ink); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([15, 13])) }}, 0.8125rem); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 {{ ek_u($v([6, 5])) }} rgba(46,180,93,0.18)">{{ $i + 1 }}</span>
                                 </div>
-                                <div data-m="proc-{{ $side }}" style="position: absolute; {{ $mob ? 'left: '.$u(152).'; top: '.$u($ny - 44).'; width: '.$u(222).'; padding: '.$u(10).' '.$u(12).'; border-radius: '.$u(14) : 'left: '.$u($nx - 120).'; '.($below ? 'top: '.$u($ny + 40) : 'bottom: '.$u(900 - $ny + 40)).'; width: '.$u(240).'; padding: '.$u(18).' '.$u(20).'; border-radius: '.$u(18) }}; box-sizing: border-box; background: var(--tk-paper)">
-                                    <span style="display: block; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ $u($v([19, 14.5])) }}, 0.8125rem); letter-spacing: -0.02em">{{ $step['title'] }}</span>
-                                    <span style="display: block; margin-top: {{ $u($v([6, 3])) }}; font-size: max({{ $u($v([15, 12.5])) }}, {{ $mob ? '0.78125rem' : '0.8125rem' }}); line-height: {{ $v([1.45, 1.38]) }}; color: var(--tk-muted)">{{ $step['text'] ?? '' }}</span>
+                                <div data-m="proc-{{ $side }}" style="position: absolute; {{ $mob ? 'left: '.ek_u(152).'; top: '.ek_u($ny - 44).'; width: '.ek_u(222).'; padding: '.ek_u(10).' '.ek_u(12).'; border-radius: '.ek_u(14) : 'left: '.ek_u($nx - 120).'; '.($below ? 'top: '.ek_u($ny + 40) : 'bottom: '.ek_u(900 - $ny + 40)).'; width: '.ek_u(240).'; padding: '.ek_u(18).' '.ek_u(20).'; border-radius: '.ek_u(18) }}; box-sizing: border-box; background: var(--tk-paper)">
+                                    <span style="display: block; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([19, 14.5])) }}, 0.8125rem); letter-spacing: -0.02em">{{ $step['title'] }}</span>
+                                    <span style="display: block; margin-top: {{ ek_u($v([6, 3])) }}; font-size: max({{ ek_u($v([15, 12.5])) }}, {{ $mob ? '0.78125rem' : '0.8125rem' }}); line-height: {{ $v([1.45, 1.38]) }}; color: var(--tk-muted)">{{ $step['text'] ?? '' }}</span>
                                 </div>
                             </li>
                         @endforeach

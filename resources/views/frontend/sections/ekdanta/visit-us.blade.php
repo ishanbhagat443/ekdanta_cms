@@ -6,7 +6,6 @@
 @php
     $d = $section->dataFor('desktop');
     $m = $section->dataFor('mobile');
-    $u = fn ($n) => "calc({$n} * var(--u))";
     $roads = ['M40 660 C 140 520 260 470 420 470 S 620 430 680 380', 'M0 405 L 644 504', 'M520 230 C 480 340 440 420 420 470 S 380 600 370 680', 'M120 250 C 220 330 300 360 420 470', 'M260 260 L 300 680'];
     $pin = '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path>';
     $lines = fn ($text) => array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $text)), fn ($l) => $l !== ''));
@@ -18,31 +17,31 @@
         @php
             $mob = $comp === 'mobile';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
-            $button = 'height: '.$u($v([54, 48])).'; box-sizing: border-box; display: inline-flex; align-items: center; gap: '.$u(8).'; border-radius: 999px; font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.$u($v([16, 14.5])).', 0.8125rem); text-decoration: none; white-space: nowrap';
+            $button = 'height: '.ek_u($v([54, 48])).'; box-sizing: border-box; display: inline-flex; align-items: center; gap: '.ek_u(8).'; border-radius: 999px; font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u($v([16, 14.5])).', 0.8125rem); text-decoration: none; white-space: nowrap';
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: var(--tk-green-deep); color: #FFFFFF">
                 <div class="ek-art">
-                    <div style="position: absolute; left: {{ $u($v([96, 24])) }}; top: {{ $u($v([130, 82])) }}; width: {{ $u($v([520, 342])) }}; display: flex; flex-direction: column; gap: {{ $u($v([16, 8])) }}">
-                        <span data-m="visit-eyebrow" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ $u($v([14, 12])) }}, 0.75rem); letter-spacing: 0.12em; color: var(--tk-orange)">{{ $t['eyebrow'] }}</span>
-                        <h2 data-m="visit-heading" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ $u($v([64, 36])) }}; line-height: 1; letter-spacing: -0.045em">{{ $t['heading'] }}</h2>
-                        <address style="margin-top: {{ $u($v([14, 6])) }}; font-style: normal; display: flex; flex-direction: column; gap: {{ $u($v([6, 2])) }}">
+                    <div style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([130, 82])) }}; width: {{ ek_u($v([520, 342])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([16, 8])) }}">
+                        <span data-m="visit-eyebrow" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, 0.75rem); letter-spacing: 0.12em; color: var(--tk-orange)">{{ $t['eyebrow'] }}</span>
+                        <h2 data-m="visit-heading" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([64, 36])) }}; line-height: 1; letter-spacing: -0.045em">{{ $t['heading'] }}</h2>
+                        <address style="margin-top: {{ ek_u($v([14, 6])) }}; font-style: normal; display: flex; flex-direction: column; gap: {{ ek_u($v([6, 2])) }}">
                             @foreach ($lines($t['address']) as $k => $line)
-                                <span data-m="address-line" style="font-size: max({{ $u($v([22, 15.5])) }}, 0.8125rem); line-height: 1.4; color: {{ $k === 0 ? '#FFFFFF' : '#DCEFE2' }}">{{ $line }}</span>
+                                <span data-m="address-line" style="font-size: max({{ ek_u($v([22, 15.5])) }}, 0.8125rem); line-height: 1.4; color: {{ $k === 0 ? '#FFFFFF' : '#DCEFE2' }}">{{ $line }}</span>
                             @endforeach
                         </address>
-                        <div data-m="visit-details" style="display: flex; flex-direction: column; gap: {{ $u($v([4, 2])) }}; {{ $mob ? '' : 'margin-top: '.$u(6).';' }} font-size: max({{ $u($v([17, 13.5])) }}, 0.8125rem); color: var(--tk-mint-2)">
+                        <div data-m="visit-details" style="display: flex; flex-direction: column; gap: {{ ek_u($v([4, 2])) }}; {{ $mob ? '' : 'margin-top: '.ek_u(6).';' }} font-size: max({{ ek_u($v([17, 13.5])) }}, 0.8125rem); color: var(--tk-mint-2)">
                             @foreach ($lines($t['details']) as $line)
                                 <span>{{ $line }}</span>
                             @endforeach
                         </div>
-                        <div data-m="visit-actions" style="margin-top: {{ $u($v([14, 6])) }}; display: flex; gap: {{ $u($v([12, 8])) }}">
-                            <a class="ek-press" href="{{ link_href($d['directions_link'] ?? '') }}" @if (\App\Support\Link::external($d['directions_link'] ?? '')) target="_blank" rel="noopener" @endif style="{{ $button }}; padding: 0 {{ $u($v([24, 18])) }}; background: #FFFFFF; color: var(--tk-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ $u(18) }}; height: {{ $u(18) }}">{!! $pin !!}</svg>{{ $t['directions_label'] }}</a>
-                            <a class="ek-press" href="{{ link_href($d['call_link'] ?? '') }}" style="{{ $button }}; padding: 0 {{ $u($v([22, 18])) }}; box-shadow: inset 0 0 0 {{ $u(1.5) }} rgba(255,255,255,0.7)">{{ $t['call_label'] }}</a>
+                        <div data-m="visit-actions" style="margin-top: {{ ek_u($v([14, 6])) }}; display: flex; gap: {{ ek_u($v([12, 8])) }}">
+                            <a class="ek-press" href="{{ link_href($d['directions_link'] ?? '') }}" @if (\App\Support\Link::external($d['directions_link'] ?? '')) target="_blank" rel="noopener" @endif style="{{ $button }}; padding: 0 {{ ek_u($v([24, 18])) }}; background: #FFFFFF; color: var(--tk-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u(18) }}; height: {{ ek_u(18) }}">{!! $pin !!}</svg>{{ $t['directions_label'] }}</a>
+                            <a class="ek-press" href="{{ link_href($d['call_link'] ?? '') }}" style="{{ $button }}; padding: 0 {{ ek_u($v([22, 18])) }}; box-shadow: inset 0 0 0 {{ ek_u(1.5) }} rgba(255,255,255,0.7)">{{ $t['call_label'] }}</a>
                         </div>
                     </div>
 
-                    <div data-m="map" style="position: absolute; left: {{ $u($v([700, 24])) }}; top: {{ $u($v([120, 438])) }}; width: {{ $u($v([644, 342])) }}; height: {{ $u($v([660, 350])) }}; border-radius: {{ $u($v([28, 22])) }}; overflow: hidden; background: #E9EFE7; box-shadow: 0 {{ $u($v([40, 30])) }} {{ $u($v([80, 60])) }} {{ $u($v([-40, -30])) }} rgba(0,0,0,0.6)">
+                    <div data-m="map" style="position: absolute; left: {{ ek_u($v([700, 24])) }}; top: {{ ek_u($v([120, 438])) }}; width: {{ ek_u($v([644, 342])) }}; height: {{ ek_u($v([660, 350])) }}; border-radius: {{ ek_u($v([28, 22])) }}; overflow: hidden; background: #E9EFE7; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-40, -30])) }} rgba(0,0,0,0.6)">
                         <svg role="img" aria-label="{{ $d['map_description'] }}" viewBox="0 0 644 660" style="width: 100%; height: 100%; display: block">
                             <rect x="60" y="300" width="150" height="90" rx="22" fill="#D7E6D3"></rect>
                             <rect x="500" y="560" width="120" height="80" rx="22" fill="#D7E6D3"></rect>

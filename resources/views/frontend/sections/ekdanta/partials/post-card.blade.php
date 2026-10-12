@@ -1,7 +1,7 @@
 {{--
     An article card (Article Grid, Keep Reading): cover image, or a tile in
     its topic's colour; topic, reading time, title, excerpt. Needs $post,
-    $u, $v (desktop / phone values) and $readTime ("{minutes} min read").
+    $v (desktop / phone values) and $readTime ("{minutes} min read").
 --}}
 @php
     // Tiles for posts without a cover: topic slug => [colour, icon path].
@@ -13,15 +13,15 @@
     $cat = $post->categories->first();
     [$artBg, $icon] = $art[$cat?->slug] ?? ['var(--tk-ink)', $art['branding'][1]];
 @endphp
-<a href="{{ route('front.blog.show', $post->slug) }}" style="display: block; height: {{ $u($v([470, 400])) }}; border-radius: {{ $u($v([24, 20])) }}; overflow: hidden; background: #FFFFFF; box-shadow: 0 {{ $u(1) }} 0 rgba(13,20,16,0.04), 0 {{ $u(24) }} {{ $u(48) }} {{ $u(-32) }} rgba(13,20,16,0.45), inset 0 0 0 {{ $u(1) }} rgba(13,20,16,0.07); text-decoration: none; color: var(--tk-ink)">
+<a href="{{ route('front.blog.show', $post->slug) }}" style="display: block; height: {{ ek_u($v([470, 400])) }}; border-radius: {{ ek_u($v([24, 20])) }}; overflow: hidden; background: #FFFFFF; box-shadow: 0 {{ ek_u(1) }} 0 rgba(13,20,16,0.04), 0 {{ ek_u(24) }} {{ ek_u(48) }} {{ ek_u(-32) }} rgba(13,20,16,0.45), inset 0 0 0 {{ ek_u(1) }} rgba(13,20,16,0.07); text-decoration: none; color: var(--tk-ink)">
     @if ($post->featuredMedia)
-        <span style="display: block; height: {{ $u($v([230, 190])) }}; background: var(--tk-paper) url({{ $post->featuredMedia->url }}) center top / cover no-repeat" role="img" aria-label="{{ $post->featuredMedia->alt ?: $post->title }}"></span>
+        <span style="display: block; height: {{ ek_u($v([230, 190])) }}; background: var(--tk-paper) url({{ $post->featuredMedia->url }}) center top / cover no-repeat" role="img" aria-label="{{ $post->featuredMedia->alt ?: $post->title }}"></span>
     @else
-        <span aria-hidden="true" style="display: flex; height: {{ $u($v([230, 190])) }}; align-items: center; justify-content: center; background: {{ $artBg }}"><span style="width: {{ $u(96) }}; height: {{ $u(96) }}; border-radius: {{ $u(28) }}; background: rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: {{ $u(48) }}; height: {{ $u(48) }}"><path d="{{ $icon }}"></path></svg></span></span>
+        <span aria-hidden="true" style="display: flex; height: {{ ek_u($v([230, 190])) }}; align-items: center; justify-content: center; background: {{ $artBg }}"><span style="width: {{ ek_u(96) }}; height: {{ ek_u(96) }}; border-radius: {{ ek_u(28) }}; background: rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: {{ ek_u(48) }}; height: {{ ek_u(48) }}"><path d="{{ $icon }}"></path></svg></span></span>
     @endif
-    <span style="display: flex; flex-direction: column; gap: {{ $u($v([10, 8])) }}; padding: {{ $u($v([20, 16])) }} {{ $u($v([24, 18])) }}">
-        <span style="display: flex; align-items: center; gap: {{ $u(10) }}">@if ($cat)<span style="padding: {{ $u(5) }} {{ $u(10) }}; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ $u(11) }}, 0.6875rem); letter-spacing: 0.06em; color: var(--tk-green-deep)">{{ mb_strtoupper($cat->name) }}</span>@endif<span style="font-size: max({{ $u(14) }}, 0.8125rem); color: var(--tk-muted)">{{ str_replace('{minutes}', $post->readingTimeMinutes(), $readTime) }}</span></span>
-        <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ $u($v([22, 19])) }}, 0.8125rem); line-height: 1.22; letter-spacing: -0.03em">{{ $post->title }}</span>
-        <span style="font-size: max({{ $u($v([15.5, 14])) }}, 0.8125rem); line-height: 1.5; color: var(--tk-muted)">{{ $post->autoExcerpt() }}</span>
+    <span style="display: flex; flex-direction: column; gap: {{ ek_u($v([10, 8])) }}; padding: {{ ek_u($v([20, 16])) }} {{ ek_u($v([24, 18])) }}">
+        <span style="display: flex; align-items: center; gap: {{ ek_u(10) }}">@if ($cat)<span style="padding: {{ ek_u(5) }} {{ ek_u(10) }}; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(11) }}, 0.6875rem); letter-spacing: 0.06em; color: var(--tk-green-deep)">{{ mb_strtoupper($cat->name) }}</span>@endif<span style="font-size: max({{ ek_u(14) }}, 0.8125rem); color: var(--tk-muted)">{{ str_replace('{minutes}', $post->readingTimeMinutes(), $readTime) }}</span></span>
+        <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([22, 19])) }}, 0.8125rem); line-height: 1.22; letter-spacing: -0.03em">{{ $post->title }}</span>
+        <span style="font-size: max({{ ek_u($v([15.5, 14])) }}, 0.8125rem); line-height: 1.5; color: var(--tk-muted)">{{ $post->autoExcerpt() }}</span>
     </span>
 </a>

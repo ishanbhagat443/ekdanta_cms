@@ -8,21 +8,16 @@
  * "head" | "text" | "item" | "tile" | "caption" | "dot"]; tiles carry
  * data-tile="<artwork key>"; [data-deep="tab"] buttons and [data-deep="bar"].
  */
+import { clamp, inOutQuad as ease, easeOut, easeBack } from '../../motion/math.js';
 import { TILES, applyTile } from './service-tiles.js';
 
-const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
-const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
-const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-const easeBack = (t) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); };
-
-export default function serviceDeepDive(el, { device, reduced, config }) {
+export default function serviceDeepDive(el, { device, reduced, config, root }) {
     const desktop = device === 'desktop';
     const p = {
         group: 1600, wipeFrom: -320, wipeFor: 360, wipeAt: desktop ? [1078, 440] : [195, 420], wipeTo: desktop ? 1300 : 1100,
         word: desktop ? [220, 440] : [80, 260], rise: desktop ? [40, 30] : [30, 24], tileRise: desktop ? 40 : 30,
         ...(config.scene?.params || {}),
     };
-    const root = el.querySelector(`[data-ek-comp="${device}"]`) || el.querySelector('[data-ek-comp="mobile"]') || el;
     const groups = [...root.querySelectorAll('[data-group]')].map((panel) => ({
         panel,
         word: panel.querySelector('[data-deep="word"]'),

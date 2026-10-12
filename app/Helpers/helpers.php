@@ -358,3 +358,11 @@ if (! function_exists('link_href')) {
         return \App\Support\Link::href($value);
     }
 }
+
+if (! function_exists('ek_u')) {
+    /** Ekdanta views: a length in design px, in the composition's unit (--u). */
+    function ek_u(int|float|string $n): string
+    {
+        return "calc({$n} * var(--u))";
+    }
+}

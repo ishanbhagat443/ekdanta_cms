@@ -9,7 +9,6 @@
 --}}
 @php
     $d = $section->dataFor('desktop');
-    $u = fn ($n) => "calc({$n} * var(--u))";
     $post = ($templateItem ?? null) instanceof \App\Models\Post ? $templateItem : \App\Models\Post::query()->live()->latest('published_at')->first();
 @endphp
 @if ($post)
@@ -20,7 +19,7 @@
     $url = route('front.blog.show', $post->slug);
     $author = $d['author_name'] ?: ucfirst($post->displayAuthor());
     $authorImage = media_ref($d['author_image'] ?? null)?->url;
-    $btn = 'width: '.$u(46).'; height: '.$u(46).'; border-radius: 999px; background: var(--tk-paper); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: var(--tk-ink); border: 0; cursor: pointer';
+    $btn = 'width: '.ek_u(46).'; height: '.ek_u(46).'; border-radius: 999px; background: var(--tk-paper); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: var(--tk-ink); border: 0; cursor: pointer';
     $ring = round(2 * M_PI * 22, 2);
 @endphp
 <div class="ek ek-article-body" id="{{ $d['anchor'] ?: 'p-body' }}" data-article data-minutes="{{ $minutes }}" data-left="{{ $d['left_label'] }}" data-done="{{ $d['done_label'] }}" data-read="{{ $d['read_label'] }}">

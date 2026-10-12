@@ -2,8 +2,9 @@
  * EkMotion: runs every section's motion (Motion tab → <script data-ek-config>)
  * and the older [data-anim] scroll-in effects, on Anime.js v4.
  *
- *   window.EkMotion.register('section-type', factory)  hand-coded scene; factory(el, ctx)
- *                                                       returns { update(state, scene), destroy() }
+ *   window.EkMotion.register('section-type', factory)  hand-coded scene; factory(el, ctx),
+ *       ctx { device, reduced, u, config, root: the composition in view },
+ *       returns { update(state, scene), destroy() }
  *   window.EkMotion.get(sectionEl)        → { progress, px, step, f }
  *   window.EkMotion.refresh()             re-read every config (builder preview, device change)
  *   window.EkMotion.scrollToProgress(sectionEl, p)
@@ -15,7 +16,7 @@
  * [data-ek-step-num="2"] shows the current step number (2 digits),
  * [data-ek-pause] the pause button.
  */
-import { Scene, unitOf } from './scene.js';
+import { Scene, compOf, unitOf } from './scene.js';
 
 const root = document.documentElement;
 const factories = new Map();
@@ -94,7 +95,7 @@ function build() {
                 return;
             }
             const make = factories.get(el.getAttribute('data-ek-type'));
-            const factory = make ? make(el, { device, reduced, u, config }) : null;
+            const factory = make ? make(el, { device, reduced, u, config, root: compOf(el, device) }) : null;
             scenes.set(el, new Scene(el, config, { device, reduced, u, factory }));
             screens.observe(el);
             // The pre-script hiding (server CSS, [data-anim] CSS) ends here:

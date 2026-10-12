@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Collections\CollectionRegistry;
-use App\Collections\CollectionType;
 use App\Models\Concerns\HasSeoMeta;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -51,11 +50,6 @@ class CollectionItem extends Model
             : collect($wanted)->map(fn ($slug) => $items->firstWhere('slug', $slug))->filter()->values();
     }
 
-    public function type(): CollectionType
-    {
-        return app(CollectionRegistry::class)->find($this->collection);
-    }
-
     /** A field value, falling back to its default. */
     public function get(string $key, mixed $default = null): mixed
     {
@@ -65,7 +59,7 @@ class CollectionItem extends Model
     /** The public address of an item with its own page, or null. */
     public function url(): ?string
     {
-        $prefix = $this->type()->pagePrefix($this);
+        $prefix = app(CollectionRegistry::class)->find($this->collection)->pagePrefix($this);
 
         return $prefix === null ? null : url($prefix.'/'.$this->slug);
     }

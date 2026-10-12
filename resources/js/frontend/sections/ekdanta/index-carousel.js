@@ -7,10 +7,9 @@
  * is-active from the steps (its ring is CSS).
  * Used by Reels Carousel (Home), Proof Carousel (Services) and Reels Arc (Work).
  */
-const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
-const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+import { clamp, inOutQuad as ease } from '../../motion/math.js';
 
-export default function indexCarousel(el, { device, reduced, config }) {
+export default function indexCarousel(el, { reduced, config, root }) {
     const p = {
         items: 'reel-cards', captions: 'reel-caps', count: 'reel-count',
         spacing: 300, tilt: 24, shrink: 0.16, dip: 14, depth: 2, fadeFrom: 1.2, arc: 0,
@@ -18,7 +17,6 @@ export default function indexCarousel(el, { device, reduced, config }) {
         capShift: -16, capFade: 2.5,
         ...(config.scene?.params || {}),
     };
-    const root = el.querySelector(`[data-ek-comp="${device}"]`) || el.querySelector('[data-ek-comp="mobile"]') || el;
     const items = [...(root.querySelector(`[data-m="${p.items}"]`)?.children || [])];
     const caps = [...(root.querySelector(`[data-m="${p.captions}"]`)?.children || [])];
     const count = root.querySelector(`[data-m="${p.count}"]`);

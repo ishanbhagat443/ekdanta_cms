@@ -4,11 +4,7 @@
  * motion → the values its artwork's data-b-* templates take. The math is
  * the design's own (Services.dc.html, deep dive), ported as it is.
  */
-const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
-const lerp = (a, b, k) => a + (b - a) * k;
-const ease = (k) => (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
-const easeOut = (k) => 1 - Math.pow(1 - k, 3);
-const easeBack = (k) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
+import { clamp, lerp, inOutQuad as ease, easeOut, easeBack } from '../../motion/math.js';
 const px = (v) => v.toFixed(1) + 'px';
 const f3 = (v) => v.toFixed(3);
 const pad = (n) => (n < 10 ? '0' : '') + n;
