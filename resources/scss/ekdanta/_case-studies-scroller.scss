@@ -1,0 +1,48 @@
+// Ekdanta · Case Studies Scroller: everything per case follows --ek-f (the
+// engine's steps; 0 without JS). The first colour layer and the window's
+// --win (1 = closed) are scroll tracks. Cases not in view in the index are
+// at 80 % with 75 % sector lines (drawn 50 % / 65 %; approved contrast fix).
+.ek-case-studies-scroller {
+    --f: var(--ek-f, 0);
+
+    // Colour layers stack in order: each one fades in over the last as f
+    // passes it, so the background is the mix of the two cases around f.
+    .ek-case-bg:not([data-m]) { opacity: clamp(0, var(--f) - var(--i) + 1, 1); }
+
+    .ek-case-bignum {
+        --d: calc(var(--f) - var(--i));
+        opacity: clamp(0, (0.5 - max(var(--d), -1 * var(--d))) * 1000, 1);
+        transform: translateY(calc(var(--d) * -200 * var(--u)));
+    }
+
+    .ek-case-tab { opacity: 0.8; }
+    .ek-case-tab.is-active { opacity: 1; }
+    .ek-comp--m .ek-case-tab.is-active,
+    .ek-comp--t .ek-case-tab.is-active { background: var(--tk-green) !important; color: var(--tk-ink) !important; }
+    .ek-case-tab-bar { transform: scaleX(clamp(0, var(--f) - var(--i) + 1, 1)); }
+
+    .ek-case-window { clip-path: inset(calc(var(--win, 0) * 100%) 0 0 0 round calc(28 * var(--u))); }
+    .ek-case-track { transform: translateY(calc(var(--f) * var(--win-h) * -1 * var(--u))); }
+    .ek-case-img { transform: translateY(calc(clamp(-70, (var(--f) - var(--i)) * 120, 70) * var(--u))); }
+
+    .ek-case-text {
+        --d: calc(var(--f) - var(--i));
+        opacity: clamp(0, 1 - max(var(--d), -1 * var(--d)) * 2.4, 1);
+        transform: translateY(calc(var(--d) * -60 * var(--u)));
+        visibility: hidden; // only the case in view can be read, clicked or focused
+    }
+    // The case in view: its index tab is active (the engine's is-active).
+    // ponytail: rules for 12 cases; raise the loop if a site shows more.
+    @for $n from 1 through 12 {
+        .ek-comp:has(.ek-case-tab:nth-child(#{$n}).is-active) .ek-case-text:nth-child(#{$n}) { visibility: visible; }
+    }
+
+    .ek-case-chip {
+        --c: clamp(0, (1 - max(var(--f) - var(--i), var(--i) - var(--f)) - 0.45 - var(--k) * 0.12) / 0.2, 1);
+        --cm: calc(var(--c) - 1);
+        opacity: var(--c);
+        transform: scale(calc(0.7 + 0.3 * (1 + 2.70158 * var(--cm) * var(--cm) * var(--cm) + 1.70158 * var(--cm) * var(--cm))));
+    }
+
+    .ek-case-progress { transform: scaleX(calc(var(--f) / max(1, var(--count) - 1))); }
+}

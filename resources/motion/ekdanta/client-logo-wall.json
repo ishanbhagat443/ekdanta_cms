@@ -1,0 +1,22 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1300 },
+        "tracks": {
+            "head": { "part": "cl-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "filters-in": { "part": "cl-filters", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "count-in": { "part": "cl-showing", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "footer-in": { "part": "cl-footer", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "cascade": { "part": "cl-tile-in", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-300, -40], "ease": "linear", "stagger": 12 }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1356 },
+        "tracks": {
+            "head": { "part": "cl-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "filters-in": { "part": "cl-filters", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "count-in": { "part": "cl-showing", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "footer-in": { "part": "cl-footer", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "cascade": { "part": "cl-tile-in", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-300, -40], "ease": "linear", "stagger": 12 }
+        }
+    }
+}

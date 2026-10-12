@@ -1,0 +1,40 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 400 },
+        "tracks": {
+            "text-out": { "part": "wk-text", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [100, 420], "ease": "linear", "reduce": "start" },
+            "text-up": { "part": "wk-text", "trigger": "scrub", "keyframes": { "translateY": [0, -80] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "wall-closer": { "part": "wk-wall", "trigger": "scrub", "keyframes": { "translateX": [0, -60], "translateY": [0, -140], "scale": [1, 1.15] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "hint-out": { "part": "wk-hint", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [0, 200], "ease": "linear", "reduce": "start" },
+            "crumb": { "part": "wk-crumb", "trigger": "load", "preset": "ek-fade" },
+            "lines": { "part": "wk-line", "trigger": "load", "preset": "ek-rise", "delay": 150, "stagger": 150 },
+            "lede": { "part": "wk-lede", "trigger": "load", "preset": "ek-fade", "delay": 650 },
+            "chips": { "part": "wk-chips", "trigger": "load", "preset": "ek-fade", "delay": 850 },
+            "buttons": { "part": "wk-buttons", "trigger": "load", "preset": "ek-fade", "delay": 1050 },
+            "columns-in": { "part": "wk-col-in", "trigger": "load", "preset": "ek-wk-in", "delay": 200, "stagger": 140 },
+            "column-1": { "part": "wk-col-1", "trigger": "loop", "preset": "ek-wk-up", "duration": 46000 },
+            "column-2": { "part": "wk-col-2", "trigger": "loop", "preset": "ek-wk-down", "duration": 54000 },
+            "column-3": { "part": "wk-col-3", "trigger": "loop", "preset": "ek-wk-up", "duration": 50000 },
+            "column-4": { "part": "wk-col-4", "trigger": "loop", "preset": "ek-wk-down", "duration": 58000 }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 456 },
+        "tracks": {
+            "text-out": { "part": "wk-text", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [100, 420], "ease": "linear", "reduce": "start" },
+            "text-up": { "part": "wk-text", "trigger": "scrub", "keyframes": { "translateY": [0, -60] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "wall-closer": { "part": "wk-wall", "trigger": "scrub", "keyframes": { "translateX": [0, -60], "translateY": [0, -140], "scale": [1, 1.15] }, "range": [0, 450], "ease": "linear", "reduce": "start" },
+            "hint-out": { "part": "wk-hint", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [0, 200], "ease": "linear", "reduce": "start" },
+            "crumb": { "part": "wk-crumb", "trigger": "load", "preset": "ek-fade" },
+            "lines": { "part": "wk-line", "trigger": "load", "preset": "ek-rise", "delay": 150, "stagger": 150 },
+            "lede": { "part": "wk-lede", "trigger": "load", "preset": "ek-fade", "delay": 650 },
+            "chips": { "part": "wk-chips", "trigger": "load", "preset": "ek-fade", "delay": 850 },
+            "buttons": { "part": "wk-buttons", "trigger": "load", "preset": "ek-fade", "delay": 1050 },
+            "columns-in": { "part": "wk-col-in", "trigger": "load", "preset": "ek-wk-in", "delay": 200, "stagger": 140 },
+            "column-1": { "part": "wk-col-1", "trigger": "loop", "preset": "ek-wk-up", "duration": 46000 },
+            "column-2": { "part": "wk-col-2", "trigger": "loop", "preset": "ek-wk-down", "duration": 54000 },
+            "column-3": { "part": "wk-col-3", "trigger": "loop", "preset": "ek-wk-up", "duration": 50000 },
+            "column-4": { "part": "wk-col-4", "trigger": "loop", "preset": "ek-wk-down", "duration": 58000 }
+        }
+    }
+}

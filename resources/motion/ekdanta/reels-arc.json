@@ -1,0 +1,32 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1500 },
+        "steps": { "part": "rl-phones", "range": [460, 1340], "ease": "linear" },
+        "tracks": {
+            "head": { "part": "rl-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "glow-in": { "part": "rl-glow", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "caption-in": { "part": "rl-caption", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "rise": { "part": "rl-phone", "trigger": "scrub", "keyframes": { "translateY": [600, 0] }, "range": [-450, 0], "ease": "outBack", "stagger": 90 },
+            "rise-in": { "part": "rl-phone", "trigger": "scrub", "preset": "fade", "range": [-450, -225], "ease": "linear", "stagger": 90 },
+            "focus": { "part": "rl-phones", "trigger": "scrub", "keyframes": { "--focus": [0, 1] }, "range": [150, 350], "ease": "linear", "reduce": "start" },
+            "spotlight": { "part": "rl-phones", "trigger": "scrub", "keyframes": { "--af": [-1.59, 5] }, "range": [0, 1450], "ease": "linear", "reduce": "start" },
+            "bob": { "part": "rl-bob", "trigger": "loop", "preset": "ek-bob", "stagger": 450 },
+            "pulse": { "part": "rl-pulse", "trigger": "loop", "preset": "ek-wk-pulse" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1556 },
+        "steps": { "part": "rl-phones", "range": [460, 1340], "ease": "linear" },
+        "tracks": {
+            "head": { "part": "rl-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "glow-in": { "part": "rl-glow", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "caption-in": { "part": "rl-caption", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "rise": { "part": "rl-phone", "trigger": "scrub", "keyframes": { "translateY": [400, 0] }, "range": [-450, 0], "ease": "outBack", "stagger": 90 },
+            "rise-in": { "part": "rl-phone", "trigger": "scrub", "preset": "fade", "range": [-450, -225], "ease": "linear", "stagger": 90 },
+            "focus": { "part": "rl-phones", "trigger": "scrub", "keyframes": { "--focus": [0, 1] }, "range": [150, 350], "ease": "linear", "reduce": "start" },
+            "spotlight": { "part": "rl-phones", "trigger": "scrub", "keyframes": { "--af": [-1.59, 5] }, "range": [0, 1450], "ease": "linear", "reduce": "start" },
+            "bob": { "part": "rl-bob", "trigger": "loop", "preset": "ek-bob", "stagger": 450 },
+            "pulse": { "part": "rl-pulse", "trigger": "loop", "preset": "ek-wk-pulse" }
+        }
+    }
+}

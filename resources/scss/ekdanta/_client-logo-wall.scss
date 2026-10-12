@@ -1,0 +1,28 @@
+// Ekdanta · Client Logo Wall: each logo sits at its slot (--x, --y; set by
+// client-wall.js when the filter changes) and glides there; logos that do
+// not match shrink, fade and leave the accessibility tree once faded.
+.ek-client-logo-wall {
+    .ek-wall-tile {
+        transform: translate(calc(var(--x) * var(--dx) * var(--u)), calc(var(--y) * var(--dy) * var(--u)));
+        z-index: 2;
+        transition: transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 450ms ease-out;
+    }
+    .ek-wall-tile.is-out {
+        transform: translate(calc(var(--x) * var(--dx) * var(--u)), calc(var(--y) * var(--dy) * var(--u))) scale(0.85);
+        opacity: 0;
+        visibility: hidden;
+        z-index: 0;
+        transition: transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 450ms ease-out, visibility 0s 450ms;
+    }
+
+    .ek-wall-chip { background: #FFFFFF; color: var(--tk-ink); transition: background-color 200ms ease-out, color 200ms ease-out; }
+    .ek-wall-chip[aria-pressed="true"] { background: var(--tk-ink); color: #FFFFFF; }
+    .ek-wall-chip-n { opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ek-client-logo-wall .ek-wall-tile, .ek-client-logo-wall .ek-wall-tile.is-out, .ek-client-logo-wall .ek-wall-chip { transition: none; }
+}
+html[data-motion="off"] .ek-client-logo-wall .ek-wall-tile,
+html[data-motion="off"] .ek-client-logo-wall .ek-wall-tile.is-out,
+html[data-motion="off"] .ek-client-logo-wall .ek-wall-chip { transition: none; }
