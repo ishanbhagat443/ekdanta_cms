@@ -1,0 +1,498 @@
+// Ekdanta · Article Body + Reading Rail, and the in-article blocks (admin:
+// Insert block; markup in views/frontend/article-blocks). The text is drawn
+// once, so sizes switch here: desktop as the Blog-Post design, phones (no
+// design) stacked. --clip, --hl, --cmp and --ck are run by enter tracks;
+// unset, everything shows in its final state (no script, reduced motion).
+
+@function u($n) { @return calc(#{$n} * var(--u)); }
+@function fs($n, $floor: 0.8125rem) { @return max(#{u($n)}, #{$floor}); }
+
+.ek-ab {
+    --u: min(100cqw / 1440, 100svh / 900);
+    display: flex;
+    align-items: flex-start;
+    gap: u(84);
+    padding: u(46) u(96) u(130);
+    background: #FFFFFF;
+}
+
+.ek-ab__rail {
+    position: sticky;
+    top: u(116);
+    width: u(280);
+    flex: none;
+}
+
+.ek-ab__label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: fs(13);
+    letter-spacing: 0.12em;
+    color: var(--tk-green-text-sm);
+}
+.ek-ab__label--muted { color: var(--tk-muted); }
+
+.ek-ab__toc {
+    position: relative;
+    margin-top: u(14);
+    padding-left: u(18);
+    box-shadow: inset u(2) 0 0 var(--tk-line-2);
+    a {
+        display: flex;
+        align-items: center;
+        min-height: u(46);
+        font-size: fs(16);
+        line-height: 1.25;
+        font-weight: 500;
+        color: var(--tk-muted);
+        text-decoration: none;
+        transition: color 200ms ease-out;
+    }
+    a[aria-current="true"] { color: var(--tk-ink); font-weight: 600; }
+}
+// The bar beside the heading in view (article.js sets --act; -1 = none yet).
+.ek-ab__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: u(2);
+    height: u(46);
+    background: var(--tk-green);
+    transform: translateY(calc(max(var(--act, -1), 0) * #{u(46)}));
+    opacity: clamp(0, calc((var(--act, -1) + 1) * 1000), 1);
+    transition: transform 350ms cubic-bezier(.2, .8, .2, 1), opacity 200ms ease-out;
+}
+
+.ek-ab__progress {
+    margin-top: u(26);
+    display: flex;
+    align-items: center;
+    gap: u(14);
+    padding: u(16) u(18);
+    border-radius: u(20);
+    background: var(--tk-paper);
+    svg { width: u(56); height: u(56); flex: none; }
+    [data-ring] { transition: stroke-dashoffset 200ms linear; }
+    > span { display: flex; flex-direction: column; gap: u(2); font-size: fs(14); color: var(--tk-muted); }
+}
+.ek-ab__left { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: fs(17); color: var(--tk-ink); }
+
+.ek-ab__share {
+    margin-top: u(26);
+    > div { margin-top: u(12); display: flex; align-items: center; gap: u(10); }
+}
+.ek-ab__copied {
+    display: inline-block;
+    margin-top: u(10);
+    padding: u(6) u(12);
+    border-radius: 999px;
+    background: var(--tk-ink);
+    color: #FFFFFF;
+    font-size: fs(14);
+    &:empty { display: none; }
+}
+
+.ek-ab__main { width: u(720); flex: none; }
+
+.ek-ab__tags {
+    margin-top: u(44);
+    padding-top: u(26);
+    border-top: u(1) solid var(--tk-line-2);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: u(8);
+    .ek-ab__label { display: inline; margin-right: u(6); letter-spacing: 0.1em; }
+    a {
+        height: u(36);
+        padding: 0 u(14);
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        box-shadow: inset 0 0 0 u(1) var(--tk-line-2);
+        text-decoration: none;
+        font-size: fs(15);
+        color: var(--tk-ink);
+    }
+}
+
+.ek-ab__author {
+    margin-top: u(30);
+    padding: u(28);
+    border-radius: u(24);
+    background: var(--tk-paper);
+    display: flex;
+    gap: u(22);
+    align-items: flex-start;
+    .ek-ab__label { letter-spacing: 0.1em; }
+    a {
+        margin-top: u(4);
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        gap: u(8);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: fs(15);
+        color: var(--tk-green-deep);
+        text-decoration: none;
+        svg { width: u(16); height: u(16); }
+    }
+}
+.ek-ab__avatar {
+    width: u(72);
+    height: u(72);
+    flex: none;
+    border-radius: 999px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img { width: u(40); height: auto; }
+}
+.ek-ab__who { display: flex; flex-direction: column; gap: u(6); }
+.ek-ab__name { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: fs(22); letter-spacing: -0.02em; }
+.ek-ab__bio { font-size: fs(16.5); line-height: 1.55; color: #3B4640; }
+
+// ── The article's text ────────────────────────────────────────────────
+.ek-ab-text {
+    font-size: fs(20);
+    line-height: 1.72;
+    color: #2B332E;
+
+    // (The theme sizes every <p> by its Paragraph role; the article's own size wins here.)
+    > p { margin: 0 0 u(24); font-size: inherit; line-height: inherit; }
+    > p:last-child { margin-bottom: 0; }
+    // The first paragraph is the lead, with a drop cap.
+    > p:first-child { margin-bottom: u(26); font-size: fs(24); line-height: 1.6; color: var(--tk-ink); }
+    > p:first-child::first-letter {
+        float: left;
+        margin: u(8) u(14) 0 0;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: fs(92);
+        line-height: 0.8;
+        color: var(--tk-green-text);
+    }
+    > h2 {
+        scroll-margin-top: u(110);
+        margin: u(64) 0 u(18);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: fs(38);
+        line-height: 1.12;
+        letter-spacing: -0.04em;
+        color: var(--tk-ink);
+    }
+    > h3 { margin: u(40) 0 u(14); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: fs(26); line-height: 1.2; color: var(--tk-ink); }
+    > ul:not([class]), > ol:not([class]) { margin: 0 0 u(24); padding-left: u(28); }
+    > blockquote:not([class]) { margin: 0 0 u(24); padding-left: u(20); box-shadow: inset u(3) 0 0 var(--tk-green); }
+    > p img, > figure:not([class]) img { max-width: 100%; height: auto; border-radius: u(16); }
+    a:not([class]) { color: var(--tk-green-deep); }
+}
+
+// Buyer journey strip: a dot walks the steps, each lights up in turn.
+.ek-b-journey {
+    margin: u(8) 0 u(34);
+    figcaption { margin-top: u(12); font-size: fs(15); color: var(--tk-muted); }
+}
+.ek-b-journey__box { position: relative; padding: u(30) u(30) u(26); border-radius: u(24); background: var(--tk-paper); }
+.ek-b-journey__track,
+.ek-b-journey__fill { position: absolute; left: u(112); top: u(57); width: u(495); height: u(2); background: var(--tk-line-2); }
+.ek-b-journey__fill { background: var(--tk-green); transform-origin: 0 50%; }
+.ek-b-journey__dot {
+    position: absolute;
+    left: u(105);
+    top: u(51);
+    width: u(14);
+    height: u(14);
+    border-radius: 999px;
+    background: var(--tk-orange);
+    box-shadow: 0 0 0 u(5) rgba(242, 162, 48, 0.25);
+    opacity: 0;
+}
+.ek-b-journey__steps {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+        width: u(165);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: u(12);
+        text-align: center;
+        > span:last-child { width: u(132); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: fs(15.5); line-height: 1.3; color: var(--tk-ink); }
+    }
+}
+.ek-b-journey__node {
+    width: u(56);
+    height: u(56);
+    border-radius: 999px;
+    background: #FFFFFF;
+    color: var(--tk-muted);
+    box-shadow: inset 0 0 0 u(2) var(--tk-line-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg { width: u(24); height: u(24); }
+}
+
+// Compare rows: brochure claims hand over to what a reel shows.
+.ek-b-compare { margin: u(6) 0 u(40); }
+.ek-b-compare__head {
+    display: flex;
+    padding-bottom: u(12);
+    border-bottom: u(2) solid var(--tk-ink);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: fs(13);
+    letter-spacing: 0.12em;
+    > :first-child { width: u(320); color: var(--tk-muted-2-sm); } // drawn #8A968F (3.1:1); approved 12 Oct
+    > :last-child { color: var(--tk-green-text-sm); } // approved small-text green (8 Oct)
+}
+.ek-b-compare__row { display: flex; align-items: center; padding: u(16) 0; border-bottom: u(1) solid var(--tk-line-2); }
+.ek-b-compare__say { width: u(250); flex: none; display: flex; align-items: center; gap: u(10); font-size: fs(17); color: var(--tk-muted); }
+.ek-b-compare__arrow {
+    width: u(70);
+    flex: none;
+    display: flex;
+    align-items: center;
+    > span { display: block; height: u(2); width: calc(var(--cmp, 1) * #{u(46)}); background: var(--tk-green); }
+    svg { width: u(12); height: u(12); margin-left: u(-2); opacity: var(--cmp, 1); }
+}
+.ek-b-compare__show {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: u(10);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: fs(17);
+    line-height: 1.3;
+    color: var(--tk-ink);
+    opacity: var(--cmp, 1);
+}
+.ek-b-compare__say svg,
+.ek-b-compare__show svg { width: u(18); height: u(18); flex: none; }
+
+// Wide figure: opens from the top and settles.
+.ek-b-figure {
+    margin: u(12) 0 u(44);
+    width: u(884);
+    figcaption {
+        margin-top: u(14);
+        width: u(720);
+        display: flex;
+        gap: u(10);
+        font-size: fs(15);
+        line-height: 1.5;
+        color: var(--tk-muted);
+        &::before { content: ''; width: u(18); height: u(2); margin-top: u(11); background: var(--tk-green); flex: none; }
+    }
+}
+.ek-b-figure__frame {
+    height: u(500);
+    border-radius: u(24);
+    overflow: hidden;
+    background: var(--tk-paper);
+    clip-path: inset(0 0 calc(var(--clip, 0) * 100%) 0 round #{u(24)});
+    img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(calc(1 + 0.14 * var(--clip, 0))); }
+}
+
+// Pull quote: highlighted once it is in view.
+.ek-b-quote {
+    position: relative;
+    margin: u(20) 0;
+    padding: u(66) 0 u(6);
+    > svg { position: absolute; left: u(-10); top: 0; width: u(64); height: u(64); }
+    p { margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: fs(40); line-height: 1.2; letter-spacing: -0.035em; color: var(--tk-ink); }
+    mark { color: inherit; background: linear-gradient(#FBD9A5, #FBD9A5) no-repeat 0 88% / calc(var(--hl, 1) * 100%) 42%; }
+}
+
+// Reel ideas: cards, the last one an invitation.
+.ek-b-reels { width: u(884); margin: u(10) 0 u(30); display: flex; flex-wrap: wrap; gap: u(19); }
+.ek-b-reel {
+    position: relative;
+    width: u(282);
+    height: u(340);
+    box-sizing: border-box;
+    padding: u(24);
+    border-radius: u(22);
+    background: #FFFFFF;
+    box-shadow: inset 0 0 0 u(1) var(--tk-line-2), 0 u(20) u(40) u(-34) rgba(13, 20, 16, 0.5);
+    display: flex;
+    flex-direction: column;
+    h3 { margin: u(22) 0 0; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: fs(20); line-height: 1.2; letter-spacing: -0.02em; color: var(--tk-ink); }
+    p { margin: u(10) 0 0; font-size: fs(16); line-height: 1.5; color: var(--tk-muted); }
+}
+.ek-b-reel__top { display: flex; align-items: flex-start; justify-content: space-between; }
+.ek-b-reel__icon {
+    width: u(64);
+    height: u(64);
+    border-radius: u(18);
+    background: var(--tk-paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg { width: u(40); height: u(40); }
+}
+.ek-b-reel__num { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: fs(46); line-height: 1; letter-spacing: -0.04em; color: var(--tk-line-2); }
+.ek-b-reel__morph { display: block; width: u(26); height: u(26); border-radius: u(3); background: #8A968F; }
+.ek-b-reel__time {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: u(6);
+    padding: u(5) u(10);
+    border-radius: 999px;
+    background: #D9F2E1;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: fs(12, 0.75rem);
+    color: var(--tk-green-deep);
+    svg { width: u(12); height: u(12); }
+}
+.ek-b-reel--cta {
+    padding: u(30) u(28) u(28);
+    background: var(--tk-ink);
+    box-shadow: none;
+    h3 { margin-top: u(18); font-weight: 800; font-size: fs(25); line-height: 1.12; letter-spacing: -0.03em; color: #FFFFFF; }
+    p { font-size: fs(15.5); color: #BFD2C6; }
+}
+.ek-b-reel__vf {
+    position: absolute;
+    inset: u(14);
+    pointer-events: none;
+    > span { position: absolute; width: u(22); height: u(22); border: 0 solid var(--tk-mint); }
+    > :nth-child(1) { left: 0; top: 0; border-left-width: u(3); border-top-width: u(3); }
+    > :nth-child(2) { right: 0; top: 0; border-right-width: u(3); border-top-width: u(3); }
+    > :nth-child(3) { left: 0; bottom: 0; border-left-width: u(3); border-bottom-width: u(3); }
+    > :nth-child(4) { right: 0; bottom: 0; border-right-width: u(3); border-bottom-width: u(3); }
+}
+.ek-b-reel__rec {
+    display: inline-flex;
+    align-items: center;
+    gap: u(8);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: fs(13);
+    letter-spacing: 0.12em;
+    color: #FFFFFF;
+    > span { width: u(10); height: u(10); border-radius: 999px; background: #FF5A6E; }
+}
+.ek-b-reel__btn {
+    position: relative;
+    margin-top: auto;
+    height: u(48);
+    box-sizing: border-box;
+    padding: 0 u(18);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: u(8);
+    background: var(--tk-green);
+    color: var(--tk-ink) !important;
+    border-radius: 999px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: fs(15);
+    text-decoration: none;
+    transition: transform 100ms ease-out;
+    &:active { transform: scale(0.97); }
+    svg { width: u(16); height: u(16); }
+}
+
+// The loops' pivots: gears and ticks turn about their own centre, the
+// needle about its hub.
+[data-m="ab-gear"] { transform-box: fill-box; transform-origin: center; }
+[data-m="ab-needle"] { transform-box: view-box; transform-origin: 20px 30px; }
+
+// Checklist: ticks draw themselves.
+.ek-b-check {
+    list-style: none;
+    margin: u(6) 0 u(20);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: u(10);
+    li { display: flex; align-items: center; gap: u(16); padding: u(14) u(18); border-radius: u(16); background: var(--tk-paper); }
+    li > span:last-child { font-size: fs(19); line-height: 1.45; color: var(--tk-ink); }
+}
+.ek-b-check__tick {
+    position: relative;
+    width: u(34);
+    height: u(34);
+    flex: none;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 u(2) var(--tk-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > span { position: absolute; inset: 0; border-radius: 999px; background: var(--tk-green); opacity: var(--ck, 1); }
+    svg { position: relative; width: u(18); height: u(18); }
+    path { fill: none; stroke: var(--tk-ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--ck, 1)); }
+}
+
+// Keep Reading: phones scroll the cards sideways.
+.ek-kr-row::-webkit-scrollbar { display: none; }
+
+// ── Phones and tablets (no design): the rail stacks above the text ─────
+@media (max-width: 991.98px) {
+    .ek-ab {
+        --u: min(100cqw / 390, 100svh / 844);
+        display: block;
+        padding: u(24) u(24) u(80);
+    }
+    .ek-ab__rail { position: static; width: auto; margin-bottom: u(36); padding-bottom: u(24); border-bottom: u(1) solid var(--tk-line-2); }
+    .ek-ab__progress { display: none; }
+    .ek-ab__toc a { min-height: u(40); font-size: fs(16); }
+    .ek-ab__bar { height: u(40); transform: translateY(calc(max(var(--act, -1), 0) * #{u(40)})); }
+    .ek-ab__share { margin-top: u(20); }
+    .ek-ab__main { width: auto; }
+    .ek-ab__author { flex-direction: column; gap: u(14); padding: u(22); }
+    .ek-ab__author a { margin-top: u(4); }
+
+    .ek-ab-text {
+        font-size: fs(17);
+        > p:first-child { font-size: fs(19); }
+        > p:first-child::first-letter { font-size: fs(68); margin: u(6) u(10) 0 0; }
+        > h2 { margin: u(48) 0 u(14); font-size: fs(28); }
+    }
+
+    .ek-b-journey__track, .ek-b-journey__fill, .ek-b-journey__dot { display: none; }
+    .ek-b-journey__box { padding: u(20); }
+    .ek-b-journey__steps { flex-wrap: wrap; row-gap: u(18); }
+    .ek-b-journey__steps li { width: 50%; }
+    .ek-b-journey__steps li > span:last-child { width: auto; font-size: fs(15); }
+
+    .ek-b-compare__head { font-size: fs(12, 0.75rem); letter-spacing: 0.08em; > :first-child { width: 48%; } }
+    .ek-b-compare__say { width: 40%; font-size: fs(15); align-items: flex-start; }
+    .ek-b-compare__arrow { width: 8%; > span { width: calc(var(--cmp, 1) * #{u(12)}); } }
+    .ek-b-compare__show { font-size: fs(15); align-items: flex-start; }
+
+    .ek-b-figure { width: auto; figcaption { width: auto; } }
+    .ek-b-figure__frame { height: u(220); }
+
+    .ek-b-quote { padding-top: u(52); > svg { width: u(52); height: u(52); } p { font-size: fs(28); } }
+
+    .ek-b-reels { width: auto; gap: u(14); }
+    .ek-b-reel { width: 100%; height: auto; min-height: u(280); }
+
+    .ek-b-check li > span:last-child { font-size: fs(17); }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .ek-ab { --u: min(100cqw / 390, 100svh / 844, 1.35px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ek-ab__bar, .ek-ab__progress [data-ring], .ek-ab__toc a, .ek-b-reel__btn { transition: none; }
+}
+html[data-motion="off"] {
+    .ek-ab__bar, .ek-ab__progress [data-ring], .ek-ab__toc a, .ek-b-reel__btn { transition: none; }
+}

@@ -9,6 +9,7 @@ use App\Services\SectionBuilderService;
 use App\Services\SectionTypes\SectionType;
 use App\Services\SectionTypes\SectionTypeRegistry;
 use App\Services\SettingsService;
+use App\Support\ArticleBody;
 use App\Support\SectionMotion;
 use Database\Seeders\EkdantaSiteSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -166,6 +167,44 @@ class EkdantaSectionsTest extends TestCase
         $this->assertSame([18, 18], $cards('/notes'), 'nine cards in each layout: the featured article stays above');
         $this->assertSame([18, 2], $cards('/notes?topic=ads'), 'only the Ads article is shown');
         $this->get('/notes?search=leads')->assertOk()->assertSee('Results for “leads”');
+    }
+
+    public function test_the_article_template_types_its_title_lists_its_headings_and_reads_on(): void
+    {
+        (new EkdantaSiteSeeder)->samplePosts(true);
+        $page = $this->page('article-template', ['ekdanta-article-hero', 'ekdanta-article-body', 'ekdanta-keep-reading']);
+        $page->forceFill(['settings' => ['template_for' => 'post']])->save();
+
+        $html = $this->get('/blog/why-your-factory-needs-reels-not-just-brochures')->assertOk()
+            ->assertSee('<h1 aria-label="Why your factory needs reels, not just brochures"', false)
+            ->assertSee('data-m="ah-swoosh"', false) // under the green word
+            ->assertSee('aria-label="A printed company brochure listing generic claims"', false) // the drawing, not the cover image
+            ->assertSee('<a href="#h-1">Buyers check you out first</a>', false) // the heading's short contents label
+            ->assertSee('<h2 data-toc="Buyers check you out first" id="h-1"', false)
+            ->assertSee('<a href="#h-5">Start small, then build</a>', false)
+            ->assertSee('role="columnheader"', false)
+            ->assertSee('?search=B2B%20marketing', false)
+            ->getContent();
+
+        // Keep reading: the article's related ones, in their order.
+        $more = substr($html, (int) strpos($html, 'ek-keep-reading'));
+        $at = fn (string $title) => strpos($more, $title);
+        $this->assertTrue($at('Festival posts that bring') < $at('How we plan a product shoot') && $at('How we plan a product shoot') < $at('Reels or posts: what to make first'));
+        $this->assertStringNotContainsString('Why your factory needs reels', strip_tags($more));
+    }
+
+    public function test_an_article_body_gets_heading_ids_and_reveal_marks_and_loses_scripts(): void
+    {
+        $out = ArticleBody::prepare('<p onclick="steal()">Hi</p><script>alert(1)</script><h2>One</h2><h2 id="h-1">Two</h2>'
+            .'<ul class="ek-b-check"><li>a</li><li>b</li></ul><p><a href="  JavaScript:alert(1)">x</a></p>');
+
+        $this->assertSame([['id' => 'h-1', 'label' => 'One'], ['id' => 'h-2', 'label' => 'Two']], $out['toc'], 'a repeated id is replaced');
+        $this->assertStringContainsString('<p data-m="ab-rise">Hi</p>', $out['html']);
+        $this->assertSame(2, substr_count($out['html'], '<li data-m="ab-rise">'), 'a checklist rises item by item');
+        foreach (['<script', 'onclick', 'javascript:', 'JavaScript:'] as $gone) {
+            $this->assertStringNotContainsString($gone, $out['html']);
+        }
+        $this->assertSame(['html' => '', 'toc' => []], ArticleBody::prepare(''));
     }
 
     public function test_the_brief_builder_walks_the_ekdanta_brief_form(): void

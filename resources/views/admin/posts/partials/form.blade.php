@@ -24,6 +24,8 @@
                 <div class="form-group mb-0">
                     <label>Body</label>
                     <textarea name="body" rows="10" class="form-control gsm-summernote">{{ old('body', $post?->body) }}</textarea>
+                    {{-- The editor's "Insert block" menu: the Ekdanta article blocks, styled and animated by the article template. --}}
+                    <script type="application/json" id="gsm-article-blocks">@json(\App\Support\ArticleBody::blocks())</script>
                 </div>
             </div>
         </div>

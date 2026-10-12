@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Collections\CollectionRegistry;
 use App\Models\BlogCategory;
+use App\Models\BlogTag;
 use App\Models\CollectionItem;
 use App\Models\Form;
 use App\Models\Layout;
@@ -95,6 +96,52 @@ class EkdantaSiteSeeder extends Seeder
             ]);
             $post->categories()->sync([$cat->id]);
         }
+        $this->sampleArticle();
+    }
+
+    /**
+     * The article the design draws in full (Blog-Post): its text, blocks,
+     * tags and the three articles under "Keep reading". Only while it still
+     * holds the placeholder text, so a written article is never replaced.
+     */
+    private function sampleArticle(): void
+    {
+        $post = Post::query()->where('slug', 'why-your-factory-needs-reels-not-just-brochures')->first();
+        if (! $post || ! str_contains((string) $post->body, '[Write the article here.]')) {
+            return;
+        }
+        $block = fn (string $name) => trim(view('frontend.article-blocks.'.$name)->render());
+        $post->update(['body' => implode("\n", [
+            '<p>A buyer in Pune gets your brochure on WhatsApp. Before he calls you back, he opens your Instagram. What he finds there decides whether he calls you, or the next supplier on his list.</p>',
+            '<p>The brochure gets you on the list. What buyers see next decides whether you stay on it.</p>',
+            '<h2 data-toc="Buyers check you out first">Buyers check you out before they call</h2>',
+            '<p>Most buyers do their homework on their phone before they pick it up to call. They look at your website, your Google listing and your Instagram, and they are asking one simple question: is this a real, serious company I can trust with my order?</p>',
+            $block('journey'),
+            '<p>A brochure answers that question with claims: modern plant, quality products, timely delivery. The trouble is, every supplier says the same things. A reel answers it with proof.</p>',
+            "<h2>What a brochure can't show</h2>",
+            '<p>Some things are hard to believe until you see them. A fifteen-second reel can show what pages of text cannot.</p>',
+            $block('compare'),
+            $block('figure'),
+            $block('quote'),
+            '<h2 data-toc="Five reels to shoot this month">Five reels every factory can shoot this month</h2>',
+            "<p>You don't need a film crew. A recent phone, good light and a plan are enough. Start with these five, in any order.</p>",
+            $block('reels'),
+            '<h2>Keep it simple</h2>',
+            '<p>Good factory reels are simple. Before you post, run through this list:</p>',
+            $block('checklist'),
+            '<h2>Start small, then build</h2>',
+            '<p>Start with one reel a week for a month. Watch which ones bring messages and calls, then make more of those. Doing it every week matters more than making it perfect.</p>',
+            '<p>And keep your brochure. It still has a job: it is what buyers save, print and forward to their boss. Let your reels bring buyers in, and let your brochure help close the deal.</p>',
+        ])]);
+        $post->tags()->sync(collect(['Reels', 'Manufacturing', 'Instagram', 'B2B marketing'])
+            ->map(fn ($name) => BlogTag::query()->firstOrCreate(['slug' => Str::slug($name)], ['name' => $name])->id)->all());
+        $related = [];
+        foreach (['Festival posts that bring enquiries, not just likes', 'How we plan a product shoot in one day', 'Reels or posts: what to make first on a small budget'] as $title) {
+            if ($id = Post::query()->where('slug', Str::slug($title))->value('id')) {
+                $related[$id] = ['sort_order' => count($related)];
+            }
+        }
+        $post->relatedPosts()->sync($related);
     }
 
     /**

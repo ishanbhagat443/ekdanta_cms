@@ -38,6 +38,7 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 12 Oct 2026 | How It Works (service): the lit step's "STEP n", ink at 70 % on green | 4.3:1 | Approved: 85 % (5.4:1), as Team Roll Call |
 | 12 Oct 2026 | Service Pricing: factor numbers `#1B8141` on the mint circle `#D9F2E1` | 4.2:1 | Approved: `#0A5A30` (`--tk-green-deep`), 7.0:1 |
 | 12 Oct 2026 | Blog Hero search pill: outline `#DCE3DA` | 1.2:1 | The approved 404 search-box fix applied (same component): outline `#85908A`, hint `#6A736D` |
+| 12 Oct 2026 | Blog article, compare rows: "THE BROCHURE SAYS" in `#8A968F` (13 px bold) | 3.1:1 | Approved: `#6A736D` (`--tk-muted-2-sm`, 4.9:1). "THE REEL SHOWS" (`#1E8E47`, 4.2:1) takes the approved small-text green `#1B8141` (8 Oct decision) |
 
 ## Checklist results
 
@@ -108,6 +109,9 @@ Recorded per phase from Phase 1 on.
 | Phase 4 | Featured Article | The newest featured post: an `article` with its heading, excerpt, byline and a named link; the cover has its media description | Pass |
 | Phase 4 | Article Grid | Flows with the page. Topic chips are links (`aria-current` on the topic in view) that filter in place with JS and on the server without; the result heading changes with the search; cards are links with real titles; covers are described; tiles without a cover are decoration. Re-sorting uses View Transitions where available, skipped under reduced motion. Cards rise as each comes into view (the engine's enter tracks now play per element) | Pass |
 | Phase 4 | WhatsApp Tips | Heading, text and a real WhatsApp link; the tips are an ordered list. The plane and its trail are decoration and hidden under reduced motion. Phones: the phone is drawn at 55 %, so its text has a floor that renders at 13 px (12 px labels), and three tips fit | Pass |
+| Phase 4 | Article Hero (Typewriter) | The heading's name is the title (`aria-label`); the typed letters are `aria-hidden`. Static markup is the typed state, so no script or reduced motion shows the whole title, the swoosh drawn and the cover open. Share: real WhatsApp and LinkedIn links with names; Copy link is a button whose name changes to "Link copied" and a status line says so. The drawing's brochure and phone are pictures with descriptions. Phones: the drawing at 42 % with its messages left out | Pass |
+| Phase 4 | Article Body + Reading Rail | The text is drawn once (one id per heading). The contents are a `nav` of links, `aria-current` on the heading in view; the rail is an `aside` with a name. Compare rows are a table with row, column-header and cell roles (the design had only `role="table"`). The first letter is the paragraph's own (`::first-letter`), so it is read normally. The theme's paragraph size no longer shrinks the article text (found in the browser, fixed). Scripts, inline handlers and `javascript:` links in a post body are dropped when it is drawn. Reduced motion: every block, tick, highlight and figure shows in its final state; the minutes-left count still follows the scroll. Phones: the rail stacks above the text, without the ring (the header's bar shows progress) | Pass after fix |
+| Phase 4 | Keep Reading | Heading, a real link to all articles and article cards (the Article Grid's card). Related articles come first. Phones: the cards scroll sideways with snap, links stay in tab order | Pass |
 
 ### Known limits (ponytail ledger)
 

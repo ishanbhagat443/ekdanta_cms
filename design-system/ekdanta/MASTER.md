@@ -51,6 +51,7 @@ Approved tokens. The CMS exposes them as CSS custom properties (`--tk-*`) throug
 | Service detail labels on service colours (approved a11y fix; drawn 65 % / 70 %) | 80 % opacity | In SCSS |
 | Service How It Works, lit "STEP n" (approved a11y fix; drawn 70 %) | 85 % opacity | In SCSS |
 | Service Pricing factor numbers (approved a11y fix; drawn `#1B8141`) | `#0A5A30` | `--tk-green-deep` |
+| Blog article compare rows, "THE BROCHURE SAYS" (approved a11y fix; drawn `#8A968F`) | `#6A736D` | `--tk-muted-2-sm` |
 | Finale footer line (approved a11y fix) | `#0D351F` | `--tk-finale-foot` |
 
 *Notes: brand-colour fills per case study (navy, maroon, forest, ochre, slate, teal) and per expertise group are content, edited on the collection items, not tokens.*

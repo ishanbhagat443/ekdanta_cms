@@ -337,4 +337,12 @@ class BlogCmsTest extends TestCase
         $response->assertSee('data-gsm-copy-link', false);     // copy-link button (opt-in)
         $response->assertDontSee('fa-facebook-f', false);      // disabled share icons hidden
     }
+
+    public function test_the_post_editor_offers_the_article_blocks(): void
+    {
+        $this->actingAs($this->admin())->get('/cms/posts/create')->assertOk()
+            ->assertSee('id="gsm-article-blocks"', false)
+            ->assertSee('Buyer journey strip')
+            ->assertSee('ek-b-compare', false);
+    }
 }

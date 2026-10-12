@@ -1,0 +1,52 @@
+{
+    "desktop": {
+        "stage": { "pin": false },
+        "tracks": {
+            "rail": { "part": "ab-rail", "trigger": "scrub", "ease": "linear", "reduce": "start", "keyframes": { "opacity": [0, 1] }, "range": [-700, -400] },
+            "blocks": { "part": "ab-rise", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [40, 0] }, "duration": 700, "ease": "outCubic", "stagger": 80 },
+            "figure": { "part": "ab-fig", "trigger": "enter", "keyframes": { "--clip": [1, 0] }, "duration": 1000, "ease": "inOutQuad" },
+            "highlight": { "part": "ab-hl", "trigger": "enter", "keyframes": { "--hl": [0, 1] }, "duration": 800, "delay": 500, "ease": "outQuad" },
+            "compare": { "part": "ab-cmp", "trigger": "enter", "keyframes": { "--cmp": [0, 1] }, "duration": 700, "delay": 350, "ease": "outQuad" },
+            "ticks": { "part": "ab-ck", "trigger": "enter", "keyframes": { "--ck": [0, 1] }, "duration": 600, "delay": 300, "ease": "outQuad" },
+            "journey-dot": { "part": "ab-jdot", "trigger": "loop", "preset": "ek-p-jdot" },
+            "journey-line": { "part": "ab-jline", "trigger": "loop", "preset": "ek-p-jline" },
+            "journey-1": { "part": "ab-jn0", "trigger": "loop", "preset": "ek-p-jn0" },
+            "journey-2": { "part": "ab-jn1", "trigger": "loop", "preset": "ek-p-jn1" },
+            "journey-3": { "part": "ab-jn2", "trigger": "loop", "preset": "ek-p-jn2" },
+            "journey-4": { "part": "ab-jn3", "trigger": "loop", "preset": "ek-p-jn3" },
+            "gear": { "part": "ab-gear", "trigger": "loop", "preset": "ek-p-spin" },
+            "needle": { "part": "ab-needle", "trigger": "loop", "preset": "ek-p-needle", "direction": "alternate" },
+            "typing": { "part": "ab-dot", "trigger": "loop", "preset": "ek-p-dot", "stagger": 200 },
+            "truck": { "part": "ab-truck", "trigger": "loop", "preset": "ek-p-truck" },
+            "road": { "part": "ab-road", "trigger": "loop", "preset": "ek-p-road" },
+            "morph": { "part": "ab-morph", "trigger": "loop", "preset": "ek-p-morph" },
+            "rec": { "part": "ab-rec", "trigger": "loop", "preset": "ek-p-rec" },
+            "viewfinder": { "part": "ab-vf", "trigger": "loop", "preset": "ek-p-vf" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": false },
+        "tracks": {
+            "rail": { "part": "ab-rail", "trigger": "scrub", "ease": "linear", "reduce": "start", "keyframes": { "opacity": [0, 1] }, "range": [-700, -400] },
+            "blocks": { "part": "ab-rise", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [40, 0] }, "duration": 700, "ease": "outCubic", "stagger": 80 },
+            "figure": { "part": "ab-fig", "trigger": "enter", "keyframes": { "--clip": [1, 0] }, "duration": 1000, "ease": "inOutQuad" },
+            "highlight": { "part": "ab-hl", "trigger": "enter", "keyframes": { "--hl": [0, 1] }, "duration": 800, "delay": 500, "ease": "outQuad" },
+            "compare": { "part": "ab-cmp", "trigger": "enter", "keyframes": { "--cmp": [0, 1] }, "duration": 700, "delay": 350, "ease": "outQuad" },
+            "ticks": { "part": "ab-ck", "trigger": "enter", "keyframes": { "--ck": [0, 1] }, "duration": 600, "delay": 300, "ease": "outQuad" },
+            "journey-dot": { "part": "ab-jdot", "trigger": "loop", "preset": "ek-p-jdot" },
+            "journey-line": { "part": "ab-jline", "trigger": "loop", "preset": "ek-p-jline" },
+            "journey-1": { "part": "ab-jn0", "trigger": "loop", "preset": "ek-p-jn0" },
+            "journey-2": { "part": "ab-jn1", "trigger": "loop", "preset": "ek-p-jn1" },
+            "journey-3": { "part": "ab-jn2", "trigger": "loop", "preset": "ek-p-jn2" },
+            "journey-4": { "part": "ab-jn3", "trigger": "loop", "preset": "ek-p-jn3" },
+            "gear": { "part": "ab-gear", "trigger": "loop", "preset": "ek-p-spin" },
+            "needle": { "part": "ab-needle", "trigger": "loop", "preset": "ek-p-needle", "direction": "alternate" },
+            "typing": { "part": "ab-dot", "trigger": "loop", "preset": "ek-p-dot", "stagger": 200 },
+            "truck": { "part": "ab-truck", "trigger": "loop", "preset": "ek-p-truck" },
+            "road": { "part": "ab-road", "trigger": "loop", "preset": "ek-p-road" },
+            "morph": { "part": "ab-morph", "trigger": "loop", "preset": "ek-p-morph" },
+            "rec": { "part": "ab-rec", "trigger": "loop", "preset": "ek-p-rec" },
+            "viewfinder": { "part": "ab-vf", "trigger": "loop", "preset": "ek-p-vf" }
+        }
+    }
+}

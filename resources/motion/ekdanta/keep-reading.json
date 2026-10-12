@@ -1,0 +1,16 @@
+{
+    "desktop": {
+        "stage": { "pin": false },
+        "tracks": {
+            "head": { "part": "kr-head", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [40, 0] }, "duration": 700, "ease": "outCubic" },
+            "cards": { "part": "kr-card", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [40, 0] }, "duration": 700, "ease": "outCubic", "stagger": 80 }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": false },
+        "tracks": {
+            "head": { "part": "kr-head", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [40, 0] }, "duration": 700, "ease": "outCubic" },
+            "cards": { "part": "kr-card", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [40, 0] }, "duration": 700, "ease": "outCubic", "stagger": 80 }
+        }
+    }
+}
