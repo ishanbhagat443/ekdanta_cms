@@ -1,0 +1,36 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 600 },
+        "tracks": {
+            "head": { "part": "sv-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "numbers": { "part": "sv-number", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -30, "to": 0, "ease": "outCubic" }] }, "range": [-320, -60], "ease": "linear", "stagger": 90 },
+            "button": { "part": "sv-button", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "phone-in": { "part": "sv-phone", "trigger": "scrub", "preset": "fade", "range": [-520, -343], "ease": "linear" },
+            "phone-rise": { "part": "sv-phone", "trigger": "scrub", "keyframes": { "translateY": [240, 0], "rotate": [12, -4] }, "range": [-520, 0], "ease": "outCubic" },
+            "unknown-out": { "part": "sv-unknown", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [60, 340], "ease": "linear" },
+            "saved-in": { "part": "sv-saved", "trigger": "scrub", "preset": "fade", "range": [60, 340], "ease": "linear" },
+            "toast-in": { "part": "sv-toast", "trigger": "scrub", "preset": "fade", "range": [120, 320], "ease": "linear" },
+            "toast-drop": { "part": "sv-toast", "trigger": "scrub", "keyframes": { "translateY": [-70, 0] }, "range": [120, 380], "ease": "outCubic" },
+            "rings": { "part": "sv-ring", "trigger": "loop", "preset": "ek-t-ring", "stagger": 1100 },
+            "accept": { "part": "sv-accept", "trigger": "loop", "preset": "ek-t-acc" },
+            "vibrate": { "part": "sv-vibrate", "trigger": "loop", "preset": "ek-t-vib" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 656 },
+        "tracks": {
+            "head": { "part": "sv-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "numbers": { "part": "sv-number", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -24, "to": 0, "ease": "outCubic" }] }, "range": [-200, 60], "ease": "linear", "stagger": 80 },
+            "button": { "part": "sv-button", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "phone-in": { "part": "sv-phone", "trigger": "scrub", "preset": "fade", "range": [-520, -343], "ease": "linear" },
+            "phone-rise": { "part": "sv-phone", "trigger": "scrub", "keyframes": { "translateY": [200, 0], "rotate": [10, -3] }, "range": [-520, 0], "ease": "outCubic" },
+            "unknown-out": { "part": "sv-unknown", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [60, 340], "ease": "linear" },
+            "saved-in": { "part": "sv-saved", "trigger": "scrub", "preset": "fade", "range": [60, 340], "ease": "linear" },
+            "toast-in": { "part": "sv-toast", "trigger": "scrub", "preset": "fade", "range": [120, 320], "ease": "linear" },
+            "toast-drop": { "part": "sv-toast", "trigger": "scrub", "keyframes": { "translateY": [-50, 0] }, "range": [120, 380], "ease": "outCubic" },
+            "rings": { "part": "sv-ring", "trigger": "loop", "preset": "ek-t-ring", "stagger": 1100 },
+            "accept": { "part": "sv-accept", "trigger": "loop", "preset": "ek-t-acc" },
+            "vibrate": { "part": "sv-vibrate", "trigger": "loop", "preset": "ek-t-vib" }
+        }
+    }
+}

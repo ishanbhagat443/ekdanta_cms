@@ -54,6 +54,8 @@ class SectionTypeServiceProvider extends ServiceProvider
         \App\Services\SectionTypes\Ekdanta\PricingSection::class,
         \App\Services\SectionTypes\Ekdanta\ThankYouHeroSection::class,
         \App\Services\SectionTypes\Ekdanta\NextStepsSection::class,
+        \App\Services\SectionTypes\Ekdanta\SaveOurNumberSection::class,
+        \App\Services\SectionTypes\Ekdanta\WhileYouWaitSection::class,
         \App\Services\SectionTypes\Page\HeroSection::class,
         \App\Services\SectionTypes\Page\BannerSection::class,
         \App\Services\SectionTypes\Page\CtaSection::class,
