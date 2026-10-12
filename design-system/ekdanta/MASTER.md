@@ -40,6 +40,7 @@ Approved tokens. The CMS exposes them as CSS custom properties (`--tk-*`) throug
 | Finale band (approved a11y fix; buttons keep `#2EB45D`) | `#2CAA58` | `--tk-finale` |
 | Services Deep Dive, Branding panel Hinglish line (approved a11y fix; drawn white) | `#0D1410` | Service groups → Branding → Hinglish line colour |
 | Services Deep Dive, Films panel Hinglish line (approved a11y fix; drawn `#F2A230`) | `#F7B955` | Service groups → Films → Hinglish line colour |
+| Thank-you While You Wait, Instagram card label (approved a11y fix; drawn `#6B3D00`) | `#633800` | Fixed in the view (illustration colour) |
 | Finale footer line (approved a11y fix) | `#0D351F` | `--tk-finale-foot` |
 
 *Notes: brand-colour fills per case study (navy, maroon, forest, ochre, slate, teal) and per expertise group are content, edited on the collection items, not tokens.*

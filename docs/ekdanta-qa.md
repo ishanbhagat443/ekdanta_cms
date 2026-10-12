@@ -25,6 +25,7 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 10 Oct 2026 | Service Deep Dive, Branding panel: white Hinglish line on `#2EB45D` | 2.7:1 (30 px desktop needs 3:1, 17 px phones 4.5:1) | Approved: ink line `#0D1410` (6.9:1); a Service groups colour, so it stays editable |
 | 10 Oct 2026 | Service Deep Dive, Films panel: orange `#F2A230` Hinglish line on `#0A5A30` | 4.0:1 (17 px bold on phones needs 4.5:1) | Approved: `#F7B955` on both sizes (4.8:1) |
 | 10 Oct 2026 | Proof Carousel counter suffix (" / 06", 26 px) in muted `#56605A` on ink | 2.9:1 (needs 3:1) | The approved counter-suffix shade applied (8 Oct decision): `#85908A`, 5.7:1 |
+| 12 Oct 2026 | While You Wait, Instagram card: label `#6B3D00` on orange `#F2A230` (13 px desktop, 11 px phones) | 4.35:1 | Approved: `#633800` (4.8:1) on both sizes |
 
 ## Checklist results
 
@@ -64,6 +65,10 @@ Recorded per phase from Phase 1 on.
 | Phase 4 | Process Path | The steps are an ordered list; nodes and the riding mark are decoration. Reduced motion shows the finished path, every step and the mark at the end | Pass |
 | Phase 4 | Proof Carousel | Cards are a list of case studies with real headings and a list of what we made; pictures have descriptions. The counter is the step number. Found: the counter suffix was 2.9:1; the approved suffix shade applied | Pass after fix |
 | Phase 4 | Pricing (No Fixed Packages) | The quote factors and plan items are lists; the tumbling packages and stamp are decoration (`aria-hidden`). Drawn in the final state, which is also the reduced-motion state | Pass |
+| Phase 4 | Thank-you Hero | One `<h1>`; the received line is a polite status region and gets the visitor's local time (without JS it reads "just now"). The tick, rings, chips and live dot are decoration (`aria-hidden`). The opening plays once on load; under reduced motion the page starts in the finished state and the loops stop | Pass |
+| Phase 4 | Next Steps Track | The steps are an ordered list; the current step has `aria-current="step"` and the counter is a polite live region. Track, marker and pulse are decoration. Reduced motion switches steps without tweening | Pass |
+| Phase 4 | Save Our Number | The numbers are a list of tap-to-call links; the button downloads the contact card. The phone is one picture with a description (`role="img"`); its call screens are hidden from screen readers. Loops (ring, vibrate) stop under reduced motion; the phone is drawn saved | Pass |
+| Phase 4 | While You Wait | Each card is one link, named by its label, title, text and link text; the photos, phone feed and notebook are decoration (`aria-hidden`). Under reduced motion the cards are dealt in, the photos fanned, and the feed and titles stop on their first item. Found: the Instagram card label was 4.35:1; fixed with your approval (`#633800`) | Pass after fix |
 
 ### Known limits (ponytail ledger)
 

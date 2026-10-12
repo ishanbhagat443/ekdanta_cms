@@ -16,7 +16,7 @@
     $feed = ['feed_1', 'feed_2', 'feed_3', 'feed_1'];
     $cards = [
         ['key' => 'work', 'bg' => 'var(--tk-dark-4)', 'color' => '#FFFFFF', 'label' => 'var(--tk-mint)', 'text' => '#BFD2C6', 'link' => 'var(--tk-mint)'],
-        ['key' => 'insta', 'bg' => 'var(--tk-orange)', 'color' => 'var(--tk-ink)', 'label' => '#6B3D00', 'text' => '#3B2A10', 'link' => 'inherit'],
+        ['key' => 'insta', 'bg' => 'var(--tk-orange)', 'color' => 'var(--tk-ink)', 'label' => '#633800', 'text' => '#3B2A10', 'link' => 'inherit'],
         ['key' => 'blog', 'bg' => 'var(--tk-paper)', 'color' => 'var(--tk-ink)', 'label' => 'var(--tk-green-text-sm)', 'text' => 'var(--tk-muted)', 'link' => 'var(--tk-green-deep)'],
     ];
 @endphp
