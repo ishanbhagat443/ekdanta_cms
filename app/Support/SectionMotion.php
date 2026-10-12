@@ -323,7 +323,8 @@ final class SectionMotion
         }
         foreach (['duration' => 600000, 'delay' => 60000, 'stagger' => 10000, 'step' => 50] as $key => $max) {
             if (is_numeric($t[$key] ?? null)) {
-                $out[$key] = self::int($t[$key], 0, $max);
+                // A negative delay starts a CSS loop part-way through, as the designs do.
+                $out[$key] = self::int($t[$key], $key === 'delay' ? -$max : 0, $max);
             }
         }
         if (is_string($t['ease'] ?? null) && (preg_match(self::ANIME_EASE, $t['ease']) || preg_match(self::CSS_EASE, $t['ease']))) {
@@ -334,6 +335,9 @@ final class SectionMotion
         }
         if (in_array($t['reduce'] ?? null, ['final', 'start', 'hide', 'step'], true)) {
             $out['reduce'] = $t['reduce'];
+        }
+        if (in_array($t['direction'] ?? null, ['normal', 'reverse', 'alternate', 'alternate-reverse'], true)) {
+            $out['direction'] = $t['direction'];
         }
 
         return $out;
@@ -622,12 +626,13 @@ final class SectionMotion
         $out += array_filter([
             'children' => ! empty($track['children']) ?: null,
             'duration' => $track['duration'] ?? $preset['duration'] ?? null,
-            'delay' => $track['delay'] ?? $preset['delay'] ?? null,
+            'delay' => isset($track['delay']) && ! isset($out['css']) ? max(0, $track['delay']) : ($track['delay'] ?? $preset['delay'] ?? null),
             'ease' => $ease,
             'stagger' => $track['stagger'] ?? $preset['stagger'] ?? null,
             'range' => $track['range'] ?? null,
             'step' => $track['step'] ?? null,
             'reduce' => $track['reduce'] ?? null,
+            'direction' => isset($out['css']) && ($track['direction'] ?? 'normal') !== 'normal' ? $track['direction'] : null,
             'once' => ($track['once'] ?? true) === false ? false : null,
         ], fn ($v) => $v !== null);
 
@@ -744,7 +749,7 @@ final class SectionMotion
         $config += ['off' => false];
         $config['stage'] = (array) ($config['stage'] ?? []) + ['pin' => false];
         foreach ((array) ($config['tracks'] ?? []) as $id => $track) {
-            $config['tracks'][$id] = $track + ['enabled' => true, 'once' => true, 'children' => false, 'reduce' => 'final'];
+            $config['tracks'][$id] = $track + ['enabled' => true, 'once' => true, 'children' => false, 'reduce' => 'final', 'direction' => 'normal'];
         }
 
         return $config;

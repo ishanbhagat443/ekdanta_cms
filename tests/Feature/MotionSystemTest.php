@@ -130,6 +130,29 @@ class MotionSystemTest extends TestCase
         $this->assertStringContainsString('data-m="content"', $html);
     }
 
+    public function test_svg_icon_presets_move_in_viewbox_units_unless_edited(): void
+    {
+        $pen = fn () => MotionPreset::where('slug', 'ek-n-pen')->value('keyframes');
+        MotionPreset::where('slug', 'ek-n-pen')->update(['keyframes' => ['0%,10%' => ['transform' => 'translateX(0)'], '60%,85%' => ['transform' => 'translateX(calc(11 * var(--u)))'], '100%' => ['transform' => 'translateX(0)']]]);
+        MotionPreset::where('slug', 'ek-n-bob')->update(['keyframes' => ['50%' => ['transform' => 'translateY(calc(-9 * var(--u)))']]]);
+        $migration = require database_path('migrations/2026_10_12_000001_fix_svg_motion_presets.php');
+
+        $migration->up();
+        $this->assertSame('translateX(11px)', $pen()['60%,85%']['transform']);
+        $this->assertSame('translateY(calc(-9 * var(--u)))', MotionPreset::where('slug', 'ek-n-bob')->value('keyframes')['50%']['transform'], 'an edited preset is left alone');
+
+        $migration->down();
+        $this->assertSame('translateX(calc(11 * var(--u)))', $pen()['60%,85%']['transform']);
+    }
+
+    public function test_a_css_track_can_play_back_and_forth(): void
+    {
+        $this->assertSame('alternate', SectionMotion::sanitiseTrack(['direction' => 'alternate'])['direction']);
+        $this->assertArrayNotHasKey('direction', SectionMotion::sanitiseTrack(['direction' => 'sideways; color: red']));
+        $this->assertSame(-1200, SectionMotion::sanitiseTrack(['delay' => -1200])['delay'], 'a loop can start part-way');
+        $this->assertSame(0, SectionMotion::sanitiseTrack(['stagger' => -5])['stagger']);
+    }
+
     /* ── Motion tab saves ────────────────────────────────────────────── */
 
     public function test_a_save_keeps_only_what_changed(): void

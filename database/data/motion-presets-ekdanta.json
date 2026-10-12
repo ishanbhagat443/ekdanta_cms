@@ -527,7 +527,7 @@
     "transform": "translateX(0)"
    },
    "to": {
-    "transform": "translateX(calc(280 * var(--u)))"
+    "transform": "translateX(280px)"
    }
   },
   "params": {},
@@ -813,10 +813,10 @@
   "trigger": "loop",
   "keyframes": {
    "0%,100%": {
-    "transform": "translateX(calc(-3 * var(--u)))"
+    "transform": "translateX(-3px)"
    },
    "50%": {
-    "transform": "translateX(calc(4 * var(--u)))"
+    "transform": "translateX(4px)"
    }
   },
   "params": {},
@@ -2228,7 +2228,7 @@
     "opacity": ".8"
    },
    "100%": {
-    "transform": "translateY(calc(-12 * var(--u))) scale(1.2)",
+    "transform": "translateY(-12px) scale(1.2)",
     "opacity": "0"
    }
   },
@@ -2275,7 +2275,7 @@
     "transform": "translate(0,0)"
    },
    "50%": {
-    "transform": "translate(calc(3 * var(--u)),calc(-3 * var(--u)))"
+    "transform": "translate(3px,-3px)"
    }
   },
   "params": {},
@@ -2295,7 +2295,7 @@
     "transform": "translateY(0)"
    },
    "50%": {
-    "transform": "translateY(calc(-2.5 * var(--u)))"
+    "transform": "translateY(-2.5px)"
    }
   },
   "params": {},
@@ -2338,7 +2338,7 @@
     "transform": "translateX(0)"
    },
    "60%,85%": {
-    "transform": "translateX(calc(11 * var(--u)))"
+    "transform": "translateX(11px)"
    },
    "100%": {
     "transform": "translateX(0)"
@@ -3346,16 +3346,16 @@
   "trigger": "loop",
   "keyframes": {
    "0%,100%": {
-    "transform": "translate(calc(-2 * var(--u)),calc(-1 * var(--u)))"
+    "transform": "translate(-2px,-1px)"
    },
    "25%": {
-    "transform": "translate(calc(2 * var(--u)),calc(-2 * var(--u)))"
+    "transform": "translate(2px,-2px)"
    },
    "50%": {
-    "transform": "translate(calc(2 * var(--u)),calc(2 * var(--u)))"
+    "transform": "translate(2px,2px)"
    },
    "75%": {
-    "transform": "translate(calc(-2 * var(--u)),calc(2 * var(--u)))"
+    "transform": "translate(-2px,2px)"
    }
   },
   "params": {},
@@ -3375,7 +3375,7 @@
     "transform": "translateY(0)"
    },
    "50%": {
-    "transform": "translateY(calc(-2 * var(--u)))"
+    "transform": "translateY(-2px)"
    }
   },
   "params": {},

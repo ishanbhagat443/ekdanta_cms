@@ -216,7 +216,7 @@ export class Scene {
                 // the engine only switches it on. Reduced motion: CSS turns it off.
                 targets.forEach((e, i) => {
                     for (const [k, v] of Object.entries(t.vars || {})) e.style.setProperty(`--${k}`, String(v));
-                    e.style.animation = `${t.css} ${t.duration ?? 600}ms ${t.ease || 'ease'} ${(t.delay || 0) + i * (t.stagger || 0)}ms ${t.trigger === 'loop' ? 'infinite' : 1} both`;
+                    e.style.animation = `${t.css} ${t.duration ?? 600}ms ${t.ease || 'ease'} ${(t.delay || 0) + i * (t.stagger || 0)}ms ${t.trigger === 'loop' ? 'infinite' : 1} ${t.direction || 'normal'} both`;
                     if (t.trigger !== 'load' && t.trigger !== 'loop') e.style.animationPlayState = 'paused';
                 });
                 this.timed.push({ track: t, anim: null, targets });

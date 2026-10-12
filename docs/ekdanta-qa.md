@@ -26,6 +26,8 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 10 Oct 2026 | Service Deep Dive, Films panel: orange `#F2A230` Hinglish line on `#0A5A30` | 4.0:1 (17 px bold on phones needs 4.5:1) | Approved: `#F7B955` on both sizes (4.8:1) |
 | 10 Oct 2026 | Proof Carousel counter suffix (" / 06", 26 px) in muted `#56605A` on ink | 2.9:1 (needs 3:1) | The approved counter-suffix shade applied (8 Oct decision): `#85908A`, 5.7:1 |
 | 12 Oct 2026 | While You Wait, Instagram card: label `#6B3D00` on orange `#F2A230` (13 px desktop, 11 px phones) | 4.35:1 | Approved: `#633800` (4.8:1) on both sizes |
+| 12 Oct 2026 | Page Finder (404): result count ("3 matches", 12 px / 11 px) `#8A968F` on white | 3.1:1 | Approved: `#6A736D` (`--tk-muted-2-sm`), 4.9:1 |
+| 12 Oct 2026 | Page Finder (404): search box outline `#DCE3DA` | 1.2:1 against its paper fill and the white page (needs 3:1) | Approved: the Brief Builder text-box outline `#85908A` (`--tk-suffix`); the hint text (browser default in the design) set to `#6A736D` |
 
 ## Checklist results
 
@@ -69,6 +71,9 @@ Recorded per phase from Phase 1 on.
 | Phase 4 | Next Steps Track | The steps are an ordered list; the current step has `aria-current="step"` and the counter is a polite live region. Track, marker and pulse are decoration. Reduced motion switches steps without tweening | Pass |
 | Phase 4 | Save Our Number | The numbers are a list of tap-to-call links; the button downloads the contact card. The phone is one picture with a description (`role="img"`); its call screens are hidden from screen readers. Loops (ring, vibrate) stop under reduced motion; the phone is drawn saved | Pass |
 | Phase 4 | While You Wait | Each card is one link, named by its label, title, text and link text; the photos, phone feed and notebook are decoration (`aria-hidden`). Under reduced motion the cards are dealt in, the photos fanned, and the feed and titles stop on their first item. Found: the Instagram card label was 4.35:1; fixed with your approval (`#633800`) | Pass after fix |
+| Phase 4 | 404 Hero | One `<h1>`; the big number is one picture named by its code ("404"), the paper sheets, trail and pin are decoration. The opening (4s drop, "e" rolls in, text rises) plays once on load; under reduced motion it starts arrived, the loops stop and the blinking eyelid stays open | Pass |
+| Phase 4 | Page Finder | Cards are links named by their title and text; their icons are decoration. The search box is a labelled `type="search"` inside `role="search"`; the result count is a polite status; results are plain links; the clear button has a name and returns focus to the box. The focus ring sits on the pill (the input has no outline of its own). Without JS the box stays hidden and the cards remain. Found: count text 3.1:1 and box outline 1.2:1; fixed with your approval | Pass after fix |
+| Phase 4 | Report Broken Link | The chain is one picture with a description; the button is a real WhatsApp link that carries the address the visitor tried to open (on by default, a switch in the section). Drawn fixed; reduced motion shows it fixed with the loops stopped | Pass |
 
 ### Known limits (ponytail ledger)
 

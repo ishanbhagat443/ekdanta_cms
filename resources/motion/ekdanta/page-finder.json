@@ -1,0 +1,42 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 800 },
+        "tracks": {
+            "head": { "part": "nf-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "search": { "part": "nf-search", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "card-0": { "part": "nf-card-0", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [90, 0], "scale": [0.94, 1] }, "range": [-420, 0], "ease": "outCubic" },
+            "card-1": { "part": "nf-card-1", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [90, 0], "scale": [0.94, 1] }, "range": [-350, 70], "ease": "outCubic" },
+            "card-2": { "part": "nf-card-2", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [90, 0], "scale": [0.94, 1] }, "range": [-280, 140], "ease": "outCubic" },
+            "card-3": { "part": "nf-card-3", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [90, 0], "scale": [0.94, 1] }, "range": [-300, 120], "ease": "outCubic" },
+            "card-4": { "part": "nf-card-4", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [90, 0], "scale": [0.94, 1] }, "range": [-230, 190], "ease": "outCubic" },
+            "card-5": { "part": "nf-card-5", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [90, 0], "scale": [0.94, 1] }, "range": [-160, 260], "ease": "outCubic" },
+            "smoke": { "part": "nf-smoke", "trigger": "loop", "preset": "ek-n-smoke", "stagger": 1200 },
+            "squares": { "part": "nf-sq", "trigger": "loop", "preset": "ek-n-sq", "delay": -12000, "stagger": 3000 },
+            "stack": { "part": "nf-stack", "trigger": "loop", "preset": "ek-n-stack" },
+            "bob": { "part": "nf-bob", "trigger": "loop", "preset": "ek-n-bob", "delay": -2400, "stagger": 1200 },
+            "write": { "part": "nf-write", "trigger": "loop", "preset": "ek-n-write" },
+            "pen": { "part": "nf-pen", "trigger": "loop", "preset": "ek-n-pen" },
+            "wiggle": { "part": "nf-wig", "trigger": "loop", "preset": "ek-n-wig" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 856 },
+        "tracks": {
+            "head": { "part": "nf-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "search": { "part": "nf-search", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "card-0": { "part": "nf-card-0", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [70, 0], "scale": [0.94, 1] }, "range": [-420, 0], "ease": "outCubic" },
+            "card-1": { "part": "nf-card-1", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [70, 0], "scale": [0.94, 1] }, "range": [-360, 60], "ease": "outCubic" },
+            "card-2": { "part": "nf-card-2", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [70, 0], "scale": [0.94, 1] }, "range": [-310, 110], "ease": "outCubic" },
+            "card-3": { "part": "nf-card-3", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [70, 0], "scale": [0.94, 1] }, "range": [-250, 170], "ease": "outCubic" },
+            "card-4": { "part": "nf-card-4", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [70, 0], "scale": [0.94, 1] }, "range": [-200, 220], "ease": "outCubic" },
+            "card-5": { "part": "nf-card-5", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [70, 0], "scale": [0.94, 1] }, "range": [-140, 280], "ease": "outCubic" },
+            "smoke": { "part": "nf-smoke", "trigger": "loop", "preset": "ek-n-smoke", "stagger": 1200 },
+            "squares": { "part": "nf-sq", "trigger": "loop", "preset": "ek-n-sq", "delay": -12000, "stagger": 3000 },
+            "stack": { "part": "nf-stack", "trigger": "loop", "preset": "ek-n-stack" },
+            "bob": { "part": "nf-bob", "trigger": "loop", "preset": "ek-n-bob", "delay": -2400, "stagger": 1200 },
+            "write": { "part": "nf-write", "trigger": "loop", "preset": "ek-n-write" },
+            "pen": { "part": "nf-pen", "trigger": "loop", "preset": "ek-n-pen" },
+            "wiggle": { "part": "nf-wig", "trigger": "loop", "preset": "ek-n-wig" }
+        }
+    }
+}

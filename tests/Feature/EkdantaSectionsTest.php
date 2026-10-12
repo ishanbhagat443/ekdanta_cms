@@ -96,6 +96,24 @@ class EkdantaSectionsTest extends TestCase
             ->assertDontSee('<footer class="gsm-footer', false);
     }
 
+    public function test_the_404_page_finds_real_pages_and_reports_the_missing_address(): void
+    {
+        app(SettingsService::class)->updateGroup('business', ['country_code' => '91', 'phones' => [['label' => 'All services', 'number' => '90994 17987', 'whatsapp' => true]]]);
+        $lost = $this->page('lost', ['ekdanta-not-found-hero', 'ekdanta-page-finder', 'ekdanta-report-link']);
+        \App\Support\PageRoles::assign($lost, 'not_found');
+        $this->page('about-us', []);
+        Page::create(['title' => 'Secret draft', 'slug' => 'secret', 'status' => Page::STATUS_DRAFT]);
+
+        $html = $this->get('/no-such-page')->assertNotFound()->getContent();
+        preg_match('/<script type="application\/json" data-finder-index>(.*?)<\/script>/s', $html, $m);
+        $titles = array_column(json_decode($m[1], true), 't');
+
+        $this->assertContains('About-us', $titles);
+        $this->assertNotContains('Secret draft', $titles, 'drafts stay out');
+        $this->assertNotContains('Lost', $titles, 'the 404 page itself is not a destination');
+        $this->assertStringContainsString(rawurlencode(' '.url('/no-such-page')).'"', $html, 'the WhatsApp report names the address that failed');
+    }
+
     public function test_the_brief_builder_walks_the_ekdanta_brief_form(): void
     {
         (new EkdantaSiteSeeder)->briefForm();

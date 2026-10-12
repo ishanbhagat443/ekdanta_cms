@@ -50,7 +50,7 @@
             @foreach (['duration' => 'Duration (ms)', 'delay' => 'Delay (ms)', 'stagger' => 'Stagger'] as $key => $label)
                 <div class="col-4 col-lg-2">
                     <label class="mb-0 small" for="{{ $tid }}_{{ $key }}">{{ $label }}</label>
-                    <input type="number" class="form-control form-control-sm" id="{{ $tid }}_{{ $key }}" name="{{ $n }}[{{ $key }}]" min="0" value="{{ $track[$key] ?? '' }}" placeholder="preset">
+                    <input type="number" class="form-control form-control-sm" id="{{ $tid }}_{{ $key }}" name="{{ $n }}[{{ $key }}]" @if ($key !== 'delay') min="0" @endif value="{{ $track[$key] ?? '' }}" placeholder="preset">
                 </div>
             @endforeach
             <div class="col-6 col-lg-3">
@@ -64,6 +64,14 @@
                     <option value="start" @selected(($track['reduce'] ?? '') === 'start')>Keep it as drawn (parts that leave as you scroll)</option>
                     <option value="hide" @selected(($track['reduce'] ?? '') === 'hide')>Hide the part</option>
                     <option value="step" @selected(($track['reduce'] ?? '') === 'step')>Switch at its point (scroll tracks)</option>
+                </select>
+            </div>
+            <div class="col-6 col-lg-2">
+                <label class="mb-0 small" for="{{ $tid }}_direction">Direction (CSS presets)</label>
+                <select class="form-control form-control-sm" id="{{ $tid }}_direction" name="{{ $n }}[direction]">
+                    @foreach (['normal' => 'Forwards', 'alternate' => 'Back and forth', 'reverse' => 'Backwards', 'alternate-reverse' => 'Back and forth, backwards first'] as $value => $text)
+                        <option value="{{ $value }}" @selected(($track['direction'] ?? 'normal') === $value)>{{ $text }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
