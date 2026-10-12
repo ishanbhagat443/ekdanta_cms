@@ -1,0 +1,19 @@
+// Ekdanta · Blog: the search pill uses the approved text-box edge and hint
+// (as the 404 finder: drawn #DCE3DA, 1.2:1), with the focus ring on the pill.
+.ek-blog-search { box-shadow: inset 0 0 0 calc(1.5 * var(--u)) var(--tk-suffix); }
+.ek-blog-search:has(input:focus-visible) { outline: 3px solid var(--tk-orange); outline-offset: 3px; box-shadow: inset 0 0 0 calc(1.5 * var(--u)) var(--tk-suffix), 0 0 0 8px var(--tk-ink); }
+.ek-blog-search input { outline: none; box-shadow: none; }
+.ek-blog-search input::placeholder { color: var(--tk-muted-2-sm); opacity: 1; }
+
+// Featured Article: the card opens from the middle (--curtain: 0.5 → 0 of
+// each side, a scroll track; open when unset).
+.ek-fa-card { clip-path: inset(0 calc(var(--curtain, 0) * 100%) 0 calc(var(--curtain, 0) * 100%) round calc(30 * var(--u))); }
+
+// Article Grid: the topic in view is the dark chip.
+.ek-ag-chip { background: #FFFFFF; color: var(--tk-ink); transition: background-color 200ms ease-out, color 200ms ease-out; }
+.ek-ag-chip[aria-current] { background: var(--tk-ink); color: #FFFFFF; }
+.ek-article-grid nav::-webkit-scrollbar { display: none; }
+@media (prefers-reduced-motion: reduce) { .ek-ag-chip { transition: none; } }
+
+// WhatsApp Tips: the plane flies its path as --plane (a scroll track) runs 0 → 1.
+.ek-tw-plane { offset-distance: calc(var(--plane, 0) * 100%); }

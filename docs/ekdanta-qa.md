@@ -37,6 +37,7 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 12 Oct 2026 | Service detail: labels on a service's colours (hero GOOD FOR / ALL SERVICES 65 %, Works Well With group 70 %, 12 px) | 3.7:1 and 4.1:1 on the Branding green | Approved: 80 % on every service (5.1:1 on Branding, 6:1+ elsewhere) |
 | 12 Oct 2026 | How It Works (service): the lit step's "STEP n", ink at 70 % on green | 4.3:1 | Approved: 85 % (5.4:1), as Team Roll Call |
 | 12 Oct 2026 | Service Pricing: factor numbers `#1B8141` on the mint circle `#D9F2E1` | 4.2:1 | Approved: `#0A5A30` (`--tk-green-deep`), 7.0:1 |
+| 12 Oct 2026 | Blog Hero search pill: outline `#DCE3DA` | 1.2:1 | The approved 404 search-box fix applied (same component): outline `#85908A`, hint `#6A736D` |
 
 ## Checklist results
 
@@ -103,6 +104,10 @@ Recorded per phase from Phase 1 on.
 | Phase 4 | Related Work | Case cards with described pictures and named links; services without cases yet show their `[Add …]` placeholder cards | Pass |
 | Phase 4 | Service Pricing + FAQ | Factors are an ordered list; the questions are native `<details>` (keyboard and screen readers get native behaviour, and they work without JS). Found: factor numbers 4.2:1; fixed with your approval | Pass after fix |
 | Phase 4 | Works Well With | Related services are links to their pages, on their own colours | Pass |
+| Phase 4 | Blog Hero (Notebook) | One `<h1>`; the search is a real form (`role="search"`, labelled field) that filters the grid as you type and works without JS (`?search=`). The post stack and topic ticker are decoration; loops stop under reduced motion | Pass |
+| Phase 4 | Featured Article | The newest featured post: an `article` with its heading, excerpt, byline and a named link; the cover has its media description | Pass |
+| Phase 4 | Article Grid | Flows with the page. Topic chips are links (`aria-current` on the topic in view) that filter in place with JS and on the server without; the result heading changes with the search; cards are links with real titles; covers are described; tiles without a cover are decoration. Re-sorting uses View Transitions where available, skipped under reduced motion. Cards rise as each comes into view (the engine's enter tracks now play per element) | Pass |
+| Phase 4 | WhatsApp Tips | Heading, text and a real WhatsApp link; the tips are an ordered list. The plane and its trail are decoration and hidden under reduced motion. Phones: the phone is drawn at 55 %, so its text has a floor that renders at 13 px (12 px labels), and three tips fit | Pass |
 
 ### Known limits (ponytail ledger)
 

@@ -20,9 +20,10 @@ Artisan::command('inspire', function () {
 
 // The Ekdanta site's content from the design files (media, collections and,
 // as the build goes on, the rest). Safe to run again: see EkdantaSiteSeeder.
-Artisan::command('ekdanta:seed', function () {
+Artisan::command('ekdanta:seed {--with-pages : The preview database: also the pages, and the sample articles live}', function () {
     $seeder = app(\Database\Seeders\EkdantaSiteSeeder::class);
     $seeder->setCommand($this);
+    $seeder->withPages = (bool) $this->option('with-pages');
     $seeder->run();
     $this->info('Ekdanta content is in place.');
 })->purpose('Seed the Ekdanta site content (media, collections) from the design files');

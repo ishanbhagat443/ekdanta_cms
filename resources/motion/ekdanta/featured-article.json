@@ -1,0 +1,26 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 600 },
+        "tracks": {
+            "head": { "part": "fa-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "curtain": { "part": "fa-card", "trigger": "scrub", "keyframes": { "--curtain": [0.5, 0] }, "range": [-450, 150], "ease": "inOutQuad" },
+            "cover-settle": { "part": "fa-cover", "trigger": "scrub", "keyframes": { "scale": [1.25, 1] }, "range": [-450, 150], "ease": "inOutQuad" },
+            "cover-drift": { "part": "fa-cover", "trigger": "scrub", "keyframes": { "translateY": [0, -120] }, "range": [0, 900], "ease": "linear" },
+            "chip": { "part": "fa-chip", "trigger": "scrub", "preset": "fade", "range": [-200, 50], "ease": "linear" },
+            "text": { "part": "fa-text", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-120, 130], "ease": "linear", "stagger": 80 },
+            "meta": { "part": "fa-meta", "trigger": "scrub", "preset": "fade", "range": [40, 290], "ease": "linear" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 656 },
+        "tracks": {
+            "head": { "part": "fa-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "curtain": { "part": "fa-card", "trigger": "scrub", "keyframes": { "--curtain": [0.5, 0] }, "range": [-450, 150], "ease": "inOutQuad" },
+            "cover-settle": { "part": "fa-cover", "trigger": "scrub", "keyframes": { "scale": [1.25, 1] }, "range": [-450, 150], "ease": "inOutQuad" },
+            "cover-drift": { "part": "fa-cover", "trigger": "scrub", "keyframes": { "translateY": [0, -60] }, "range": [0, 900], "ease": "linear" },
+            "chip": { "part": "fa-chip", "trigger": "scrub", "preset": "fade", "range": [-200, 50], "ease": "linear" },
+            "text": { "part": "fa-text", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-120, 130], "ease": "linear", "stagger": 80 },
+            "meta": { "part": "fa-meta", "trigger": "scrub", "preset": "fade", "range": [40, 290], "ease": "linear" }
+        }
+    }
+}

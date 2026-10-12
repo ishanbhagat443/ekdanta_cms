@@ -147,6 +147,27 @@ class EkdantaSectionsTest extends TestCase
         $this->get('/services/brand-strategy')->assertNotFound(); // a real service without its own page
     }
 
+    public function test_the_blog_grid_filters_by_topic_and_search_without_js(): void
+    {
+        (new EkdantaSiteSeeder)->samplePosts();
+        $drafts = \App\Models\Post::query()->where('status', \App\Models\Post::STATUS_DRAFT)->pluck('title');
+        $this->assertCount(10, $drafts, 'a real site gets drafts');
+        $this->assertTrue($drafts->every(fn ($title) => str_starts_with($title, 'SAMPLE – ')));
+
+        \App\Models\Post::query()->forceDelete();
+        (new EkdantaSiteSeeder)->samplePosts(true);
+        $this->page('notes', ['ekdanta-featured-article', 'ekdanta-article-grid']);
+        $cards = function (string $url): array {
+            preg_match_all('/<li data-m="ag-card"([^>]*)>/', $this->get($url)->assertOk()->getContent(), $m);
+
+            return [count($m[1]), count(array_filter($m[1], fn ($attrs) => ! preg_match('/"\s+hidden\s+style=/', $attrs)))];
+        };
+
+        $this->assertSame([18, 18], $cards('/notes'), 'nine cards in each layout: the featured article stays above');
+        $this->assertSame([18, 2], $cards('/notes?topic=ads'), 'only the Ads article is shown');
+        $this->get('/notes?search=leads')->assertOk()->assertSee('Results for “leads”');
+    }
+
     public function test_the_brief_builder_walks_the_ekdanta_brief_form(): void
     {
         (new EkdantaSiteSeeder)->briefForm();

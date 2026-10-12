@@ -240,8 +240,8 @@ export class Scene {
                 loop: t.trigger === 'loop',
                 autoplay: false,
             });
-            // Hover and click animate each target on its own.
-            const anim = t.trigger === 'hover' || t.trigger === 'click' ? targets.map((e) => make(e)) : [make(targets)];
+            // Hover, click and enter animate each target on its own.
+            const anim = ['hover', 'click', 'enter'].includes(t.trigger) ? targets.map((e) => make(e)) : [make(targets)];
             anim.forEach((a) => a.seek(0));
             this.timed.push({ track: t, anim, targets });
         }
@@ -272,12 +272,16 @@ export class Scene {
                 else all.forEach((a) => a?.play());
             } else if (t.trigger === 'enter') {
                 if (reduced) { all.forEach((a) => a && a.seek(a.duration)); continue; }
+                // Each part plays as it comes into view (a tall grid fills in
+                // row by row); parts that arrive together keep the stagger.
                 const io = new IntersectionObserver((entries) => {
-                    if (!entries.some((e) => e.isIntersecting)) return;
-                    all.forEach((a) => run(a));
-                    if (t.once !== false) io.disconnect();
+                    const shown = entries.filter((e) => e.isIntersecting).map((e) => targets.indexOf(e.target)).sort((x, y) => x - y);
+                    shown.forEach((i, k) => {
+                        setTimeout(() => run(all[i]), k * (t.stagger || 0));
+                        if (t.once !== false) io.unobserve(targets[i]);
+                    });
                 }, { rootMargin: '0px 0px -80px 0px' });
-                io.observe(targets[0]);
+                targets.forEach((e) => io.observe(e));
                 this.observers.push(io);
             } else if (t.trigger === 'hover' || t.trigger === 'click') {
                 targets.forEach((e, i) => {

@@ -1,0 +1,23 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 700 },
+        "tracks": {
+            "head": { "part": "tw-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "phone-in": { "part": "tw-phone", "trigger": "scrub", "preset": "fade", "range": [-500, -347], "ease": "outQuad" },
+            "phone-rise": { "part": "tw-phone", "trigger": "scrub", "keyframes": { "translateY": [200, 0], "rotate": [8, -2] }, "range": [-500, 0], "ease": "outCubic" },
+            "tips": { "part": "tw-tip", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 20, "to": 0, "ease": "outCubic" }], "scale": [{ "from": 0.9, "to": 1, "ease": "outCubic" }] }, "range": [0, 180], "ease": "linear", "stagger": 200 },
+            "plane-fly": { "part": "tw-plane", "trigger": "scrub", "keyframes": { "--plane": [0, 1] }, "range": [-300, 700], "ease": "linear", "reduce": "hide" },
+            "plane-in": { "part": "tw-plane", "trigger": "scrub", "keyframes": { "opacity": [0, 1] }, "range": [-300, -200], "ease": "linear", "reduce": "hide" },
+            "plane-out": { "part": "tw-plane", "trigger": "scrub", "keyframes": { "opacity": [1, 0] }, "range": [640, 700], "ease": "linear", "reduce": "hide" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 756 },
+        "tracks": {
+            "head": { "part": "tw-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "phone-in": { "part": "tw-phone", "trigger": "scrub", "preset": "fade", "range": [-500, -347], "ease": "outQuad" },
+            "phone-rise": { "part": "tw-phone", "trigger": "scrub", "keyframes": { "translateY": [200, 0], "rotate": [8, -2] }, "range": [-500, 0], "ease": "outCubic" },
+            "tips": { "part": "tw-tip", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 20, "to": 0, "ease": "outCubic" }], "scale": [{ "from": 0.9, "to": 1, "ease": "outCubic" }] }, "range": [0, 180], "ease": "linear", "stagger": 200 }
+        }
+    }
+}

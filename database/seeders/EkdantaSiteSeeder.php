@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Collections\CollectionRegistry;
+use App\Models\BlogCategory;
 use App\Models\CollectionItem;
 use App\Models\Form;
 use App\Models\Layout;
 use App\Models\Media;
 use App\Models\MediaFolder;
 use App\Models\Menu;
+use App\Models\Post;
 use App\Services\LayoutService;
 use App\Services\MediaService;
 use App\Services\SettingsService;
@@ -33,6 +35,9 @@ class EkdantaSiteSeeder extends Seeder
         'client-logos-strip-b.jpg' => ['Suzuki dealership', 'Samsung authorised distributor', 'Dharmaraj Suzuki Citylight', 'Vijay Mobile', '09 Mobile Gallery', 'Her & He Cosmetics', 'Karvi Realtors', 'Nainvish', 'Zorko', 'Chapter.1', 'ValleyRides', 'Slimiphy', 'Zeronine Retail ERP', 'Zeronine Tax Consultancy', 'MoneyMatters AM', 'Jiya Financial Services', 'Karma Realtors', 'Signs360', 'GenZ Lifestyle', 'Ruparel'],
     ];
 
+    /** --with-pages (the preview database): the design's sample articles go live as drawn. */
+    public bool $withPages = false;
+
     public function run(): void
     {
         $this->media();
@@ -41,6 +46,55 @@ class EkdantaSiteSeeder extends Seeder
         $this->menus();
         $this->header();
         $this->briefForm();
+        $this->samplePosts($this->withPages);
+    }
+
+    /** The design's blog articles: [category, title, excerpt, cover media key or null, featured]. */
+    private const POSTS = [
+        ['Social media', 'Hindi, Gujarati or English? Choosing a language for your posts', 'Your buyers scroll in more than one language. Here is how we decide which one each post should speak, with examples from brands across Gujarat.', 'ekdanta/case-heaven-solar', true],
+        ['Social media', 'Why your factory needs reels, not just brochures', 'Buyers decide faster when they can see your plant, your machines and your people at work.', 'ekdanta/case-trilok-infratech', false],
+        ['Ads', 'Meta ads for manufacturers: a simple first campaign', 'One campaign that brings real enquiries, without spending your budget on likes.', 'ekdanta/case-yantra-design', false],
+        ['Social media', 'Festival posts that bring enquiries, not just likes', 'Diwali, Navratri and Uttarayan posts that sell, with an offer and a clear next step.', 'ekdanta/case-heaven-solar', false],
+        ['Websites', 'Five signs your website is losing you leads', 'Slow pages, hidden phone numbers and forms nobody fills. Fix these first.', null, false],
+        ['Branding', 'Packaging that sells on a crowded shelf', 'What shoppers notice in the first three seconds, and how to design for it.', 'ekdanta/case-srk-dairy', false],
+        ['Growth', 'Why leads go cold, and how a CRM fixes it', 'Most enquiries are lost to slow follow-ups, not to competitors. Here is the fix.', null, false],
+        ['Shoots', 'How we plan a product shoot in one day', 'Shot lists, props and light: how one well-planned day gives you a month of content.', 'ekdanta/case-her-and-he', false],
+        ['Social media', 'Reels or posts: what to make first on a small budget', 'Where to start when you can only make a few pieces of content a month.', 'ekdanta/reel-1', false],
+        ['Branding', "Does your logo still work in WhatsApp's tiny circle?", 'Most people see your logo at the size of a coin. Here is how to make sure it still reads.', null, false],
+    ];
+
+    /**
+     * The design's articles, so the blog pages have something to show. On a
+     * real site they are drafts titled "SAMPLE – …" (replace or delete
+     * them); on the preview database (--with-pages) they are live as drawn.
+     * Their text is a placeholder until the real article is written.
+     */
+    public function samplePosts(bool $live = false): void
+    {
+        // The topics in the design's order (Blog: All, Social media, Ads, …).
+        foreach (['Social media', 'Ads', 'Branding', 'Websites', 'Shoots', 'Growth'] as $order => $name) {
+            BlogCategory::query()->firstOrCreate(['slug' => Str::slug($name)], ['name' => $name, 'is_active' => true, 'sort_order' => $order + 1]);
+        }
+        foreach (self::POSTS as $i => [$category, $title, $excerpt, $cover, $featured]) {
+            $slug = Str::slug($title);
+            // A sample the site has deleted (soft delete) stays deleted.
+            if (Post::withTrashed()->where('slug', $slug)->exists()) {
+                continue;
+            }
+            $cat = BlogCategory::query()->where('slug', Str::slug($category))->firstOrFail();
+            $post = Post::query()->create([
+                'title' => $live ? $title : 'SAMPLE – '.$title,
+                'slug' => $slug,
+                'author_name' => 'the Ekdanta team',
+                'excerpt' => $excerpt,
+                'body' => '<p>'.e($excerpt).'</p><p>[Write the article here.]</p>',
+                'featured_media_id' => $cover ? Media::query()->where('key', $cover)->value('id') : null,
+                'status' => $live ? Post::STATUS_PUBLISHED : Post::STATUS_DRAFT,
+                'is_featured' => $featured,
+                'published_at' => now()->subDays($i + 1),
+            ]);
+            $post->categories()->sync([$cat->id]);
+        }
     }
 
     /**

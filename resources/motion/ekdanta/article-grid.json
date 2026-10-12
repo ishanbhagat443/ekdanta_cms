@@ -1,0 +1,18 @@
+{
+    "desktop": {
+        "stage": { "pin": false },
+        "tracks": {
+            "head": { "part": "ag-head", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [40, 0] }, "duration": 700, "ease": "outCubic" },
+            "chips": { "part": "ag-chips", "trigger": "enter", "keyframes": { "opacity": [0, 1] }, "duration": 600, "delay": 150, "ease": "linear" },
+            "cards": { "part": "ag-card", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [80, 0] }, "duration": 650, "ease": "outCubic", "stagger": 80 }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": false },
+        "tracks": {
+            "head": { "part": "ag-head", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [40, 0] }, "duration": 700, "ease": "outCubic" },
+            "chips": { "part": "ag-chips", "trigger": "enter", "keyframes": { "opacity": [0, 1] }, "duration": 600, "delay": 150, "ease": "linear" },
+            "cards": { "part": "ag-card", "trigger": "enter", "keyframes": { "opacity": [0, 1], "translateY": [80, 0] }, "duration": 650, "ease": "outCubic", "stagger": 80 }
+        }
+    }
+}
