@@ -28,6 +28,8 @@ The ui-ux-pro-max pre-delivery checklist (see `design-system/ekdanta/MASTER.md` 
 | 12 Oct 2026 | While You Wait, Instagram card: label `#6B3D00` on orange `#F2A230` (13 px desktop, 11 px phones) | 4.35:1 | Approved: `#633800` (4.8:1) on both sizes |
 | 12 Oct 2026 | Page Finder (404): result count ("3 matches", 12 px / 11 px) `#8A968F` on white | 3.1:1 | Approved: `#6A736D` (`--tk-muted-2-sm`), 4.9:1 |
 | 12 Oct 2026 | Page Finder (404): search box outline `#DCE3DA` | 1.2:1 against its paper fill and the white page (needs 3:1) | Approved: the Brief Builder text-box outline `#85908A` (`--tk-suffix`); the hint text (browser default in the design) set to `#6A736D` |
+| 12 Oct 2026 | Four Promises (About): tabs not in view, titles `#9AA39E` (22 px bold) and numbers `#C5CCC7` (14 px) on white | 2.4:1 and 1.6:1 | Approved: titles `#85908A` (`--tk-suffix`, 3.0:1), numbers `#6A736D` (`--tk-muted-2-sm`, 4.9:1); the current tab keeps ink and green (small-text green `#1B8141` for its number) |
+| 12 Oct 2026 | Team Roll Call (About): role numbers at 70 % opacity | 3.9:1 on the dark rows, 4.3:1 on the lit row | Approved: 85 % (5.2:1 and 5.4:1), as the row descriptions |
 
 ## Checklist results
 
@@ -76,6 +78,9 @@ Recorded per phase from Phase 1 on.
 | Phase 4 | Report Broken Link | The chain is one picture with a description; the button is a real WhatsApp link that carries the address the visitor tried to open (on by default, a switch in the section). Drawn fixed; reduced motion shows it fixed with the loops stopped | Pass |
 | Phase 4 | About Hero (Dictionary) | One `<h1>` named by the word (its letters are split for the animation and hidden from screen readers); the Devanagari spelling is marked `lang="hi"`; the meanings are an ordered list. The ledger is decoration. Drawn finished (highlight on, ledger open and written); the opening plays once; reduced motion starts finished. The ledger's handwriting font (Kalam, from the design) loads only on pages with this section. Phones (no design): the entry stacks above a smaller ledger | Pass |
 | Phase 4 | Our Story | The five beats are steps (`aria-current="step"`), all real text in reading order. The counters are drawn with their final numbers; while they count they are hidden from screen readers, which read the final number in text. The founders' cards are figures with their names; photos are fields (the `[Photo: …]` text shows until one is added). Reduced motion switches beats without tweening. Phones (no design): founders above, beats below | Pass |
+| Phase 4 | Four Promises | The tabs are buttons (steps, `aria-current="step"`) that turn the block to their promise; focusing one scrolls it into view. Each face is a heading and text (all four stay readable to screen readers; the big face numbers are decoration). Phones (no design): the block is drawn at 60 %, so its text has a floor that still renders at 13 px. Found: inactive tabs below AA; fixed with your approval | Pass after fix |
+| Phase 4 | Team Roll Call | The roles (Collections → Team roles) are an ordered list, all text. The roll-call highlight is colour only and repeats nothing a reader needs; under reduced motion it stays off. Phones (no design): role over description in each row. Found: row numbers 3.9:1; fixed with your approval | Pass after fix |
+| Phase 4 | Who We Work With | Numbers count up with the real value kept in text for screen readers (engine count-up). Logos are images named by the client; the industry cards are a list, each counting its clients from the collection. Under reduced motion the rows stay where drawn and the numbers still follow the scroll (not movement) | Pass |
 
 ### Known limits (ponytail ledger)
 

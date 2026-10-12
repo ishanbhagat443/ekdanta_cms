@@ -1,0 +1,30 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1300 },
+        "tracks": {
+            "head": { "part": "br-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "counts": { "part": "br-count", "trigger": "scrub", "keyframes": { "$count": true }, "range": [-300, 400], "ease": "outCubic" },
+            "rows-in": { "part": "br-rows", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "row-1": { "part": "br-row-1", "trigger": "scrub", "keyframes": { "translateX": [0, -1000] }, "range": [-900, 1300], "ease": "linear", "reduce": "start" },
+            "row-2": { "part": "br-row-2", "trigger": "scrub", "keyframes": { "translateX": [0, 1000] }, "range": [-900, 1300], "ease": "linear", "reduce": "start" },
+            "row-3": { "part": "br-row-3", "trigger": "scrub", "keyframes": { "translateX": [0, -900] }, "range": [-900, 1300], "ease": "linear", "reduce": "start" },
+            "cards": { "part": "br-card", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [50, 300], "ease": "linear", "stagger": 80 },
+            "card-counts": { "part": "br-card-count", "trigger": "scrub", "keyframes": { "$count": true }, "range": [150, 650], "ease": "outCubic", "stagger": 80 },
+            "card-fills": { "part": "br-card-fill", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [150, 650], "ease": "outCubic", "stagger": 80 }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1356 },
+        "tracks": {
+            "head": { "part": "br-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "counts": { "part": "br-count", "trigger": "scrub", "keyframes": { "$count": true }, "range": [-300, 400], "ease": "outCubic" },
+            "rows-in": { "part": "br-rows", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "row-1": { "part": "br-row-1", "trigger": "scrub", "keyframes": { "translateX": [0, -1000] }, "range": [-900, 1300], "ease": "linear", "reduce": "start" },
+            "row-2": { "part": "br-row-2", "trigger": "scrub", "keyframes": { "translateX": [0, 1000] }, "range": [-900, 1300], "ease": "linear", "reduce": "start" },
+            "row-3": { "part": "br-row-3", "trigger": "scrub", "keyframes": { "translateX": [0, -900] }, "range": [-900, 1300], "ease": "linear", "reduce": "start" },
+            "cards": { "part": "br-card", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [50, 300], "ease": "linear", "stagger": 80 },
+            "card-counts": { "part": "br-card-count", "trigger": "scrub", "keyframes": { "$count": true }, "range": [150, 650], "ease": "outCubic", "stagger": 80 },
+            "card-fills": { "part": "br-card-fill", "trigger": "scrub", "keyframes": { "scaleX": [0, 1] }, "range": [150, 650], "ease": "outCubic", "stagger": 80 }
+        }
+    }
+}

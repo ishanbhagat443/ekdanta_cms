@@ -1,0 +1,26 @@
+{
+    "desktop": {
+        "stage": { "pin": true, "length": 1700 },
+        "tracks": {
+            "head": { "part": "tm-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 40, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "text-in": { "part": "tm-text", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "even": { "part": "tm-band-even", "trigger": "scrub", "keyframes": { "translateX": [-1500, 0] }, "range": [-250, 150], "ease": "outCubic", "stagger": 220 },
+            "even-in": { "part": "tm-band-even", "trigger": "scrub", "preset": "fade", "range": [-250, -127], "ease": "outQuad", "stagger": 220 },
+            "odd": { "part": "tm-band-odd", "trigger": "scrub", "keyframes": { "translateX": [1500, 0] }, "range": [-140, 260], "ease": "outCubic", "stagger": 220 },
+            "odd-in": { "part": "tm-band-odd", "trigger": "scrub", "preset": "fade", "range": [-140, -17], "ease": "outQuad", "stagger": 220 },
+            "roll-call": { "part": "tm-bands", "trigger": "scrub", "keyframes": { "--roll": [-1, 7] }, "range": [805, 1565], "ease": "linear" }
+        }
+    },
+    "mobile": {
+        "stage": { "pin": true, "length": 1756 },
+        "tracks": {
+            "head": { "part": "tm-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
+            "text-in": { "part": "tm-text", "trigger": "scrub", "preset": "fade", "range": [-650, -230], "ease": "linear" },
+            "even": { "part": "tm-band-even", "trigger": "scrub", "keyframes": { "translateX": [-600, 0] }, "range": [-250, 150], "ease": "outCubic", "stagger": 220 },
+            "even-in": { "part": "tm-band-even", "trigger": "scrub", "preset": "fade", "range": [-250, -127], "ease": "outQuad", "stagger": 220 },
+            "odd": { "part": "tm-band-odd", "trigger": "scrub", "keyframes": { "translateX": [600, 0] }, "range": [-140, 260], "ease": "outCubic", "stagger": 220 },
+            "odd-in": { "part": "tm-band-odd", "trigger": "scrub", "preset": "fade", "range": [-140, -17], "ease": "outQuad", "stagger": 220 },
+            "roll-call": { "part": "tm-bands", "trigger": "scrub", "keyframes": { "--roll": [-1, 7] }, "range": [805, 1565], "ease": "linear" }
+        }
+    }
+}

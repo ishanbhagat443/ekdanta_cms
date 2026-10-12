@@ -1,0 +1,21 @@
+// Ekdanta · Four Promises: the block turns a quarter per step (--ek-f, the
+// engine's steps; 0 without JS); each face's icon pops (an easeBack written
+// out) as it comes round. Tabs not in view use the approved small shades
+// (drawn #9AA39E / #C5CCC7; see ekdanta-qa.md).
+.ek-four-promises {
+    --f: var(--ek-f, 0);
+
+    .ek-promise-block { transform: translateZ(calc(-180 * var(--u))) rotateX(calc(var(--f) * 90deg)); }
+
+    .ek-promise-icon {
+        --k: clamp(0, 1 - max(var(--f) - var(--i), var(--i) - var(--f)) * 1.5, 1);
+        --km: calc(var(--k) - 1);
+        transform: scale(calc(0.6 + 0.4 * (1 + 2.70158 * var(--km) * var(--km) * var(--km) + 1.70158 * var(--km) * var(--km))));
+    }
+
+    .ek-promise-tab { color: var(--tk-suffix); }
+    .ek-promise-num { color: var(--tk-muted-2-sm); }
+    .ek-promise-tab.is-active { color: var(--tk-ink); }
+    .ek-promise-tab.is-active .ek-promise-num { color: var(--tk-green-text-sm); }
+    .ek-promise-bar { transform: scaleY(clamp(0, 1 - max(var(--f) - var(--i), var(--i) - var(--f)) * 2, 1)); }
+}

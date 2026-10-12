@@ -1,0 +1,20 @@
+// Ekdanta · Team Roll Call: --roll (a scroll track on the list; -1 before,
+// the role count after) lights the role it is passing. The numbers are at
+// 85 % (drawn 70 %; approved contrast fix, see ekdanta-qa.md).
+.ek-team-roll-call {
+    .ek-team-band {
+        --on: calc(clamp(0, (var(--roll, -1) - var(--i)) * 1000 + 1, 1) * clamp(0, (var(--i) + 1 - var(--roll, -1)) * 1000, 1));
+        background: color-mix(in srgb, var(--tk-green) calc(var(--on) * 100%), rgba(255, 255, 255, 0.08));
+        color: color-mix(in srgb, var(--tk-ink) calc(var(--on) * 100%), #FFFFFF);
+        transition: background-color 250ms ease-out, color 250ms ease-out;
+    }
+    .ek-team-arrow {
+        background: color-mix(in srgb, var(--tk-ink) calc(var(--on) * 100%), var(--tk-green));
+        color: color-mix(in srgb, var(--tk-green) calc(var(--on) * 100%), var(--tk-ink));
+        transform: rotate(calc(var(--on) * -45deg));
+        transition: transform 250ms ease-out;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) { .ek-team-roll-call .ek-team-band, .ek-team-roll-call .ek-team-arrow { transition: none; } }
+html[data-motion="off"] .ek-team-roll-call .ek-team-band, html[data-motion="off"] .ek-team-roll-call .ek-team-arrow { transition: none; }
