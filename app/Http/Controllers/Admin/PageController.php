@@ -176,7 +176,8 @@ class PageController extends Controller
             'show_footer' => ['nullable', 'boolean'],
             'code' => ['nullable', 'array'],
             'code.*' => ['nullable', 'string', 'max:20000'],
-        ], Page::seoRules()));
+            'conversions' => ['nullable', 'array'],
+        ], \Illuminate\Support\Arr::prependKeysWith(Page::CONVERSION_RULES, 'conversions.'), Page::seoRules()));
 
         // Editable blocks for bespoke template screens — see
         // config/page_templates.php.
@@ -307,6 +308,9 @@ class PageController extends Controller
         if ($request->has('template_for')) {
             $settings['template_for'] = $data['template_for'] ?: null;
         }
+        if ($request->has('conversions')) {
+            $settings['conversions'] = array_filter(\Illuminate\Support\Arr::only((array) ($data['conversions'] ?? []), array_keys(Page::CONVERSION_RULES)), $filled);
+        }
         if ($request->has('code') && \Illuminate\Support\Facades\Gate::allows('developer.mode')) {
             $settings['code'] = array_filter(\Illuminate\Support\Arr::only((array) ($data['code'] ?? []), ['css', 'js', 'head', 'body']), $filled);
         }
@@ -341,6 +345,33 @@ class PageController extends Controller
             'twitter' => (bool) ($input['twitter'] ?? false),
             'copy_link' => (bool) ($input['copy_link'] ?? false),
         ];
+    }
+
+    /** The page as JSON: sections, data, style and motion; ?bundle=1 adds its media files and the collection items. */
+    public function export(Request $request, Page $page): \Symfony\Component\HttpFoundation\StreamedResponse
+    {
+        $payload = app(\App\Services\ContentTransfer::class)->exportPage($page, $request->boolean('bundle'));
+
+        return response()->streamDownload(
+            fn () => print (json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)),
+            $page->slug.'-page.json',
+            ['Content-Type' => 'application/json'],
+        );
+    }
+
+    /** A page export becomes a new draft page (its address made unique if taken). */
+    public function import(Request $request): RedirectResponse
+    {
+        // A bundled export carries its media files, so it can be large.
+        $request->validate(['file' => ['required', 'file', 'mimes:json,txt', 'max:'.config('gsm.media.max_upload_kb')]]);
+        $payload = json_decode((string) file_get_contents($request->file('file')->getRealPath()), true);
+        if (! is_array($payload)) {
+            throw \Illuminate\Validation\ValidationException::withMessages(['file' => 'That file is not a page export.']);
+        }
+
+        $page = \Illuminate\Support\Facades\DB::transaction(fn () => app(\App\Services\ContentTransfer::class)->importPage($payload));
+
+        return redirect()->route('admin.pages.edit', $page)->with('success', 'Page imported as a draft. Check it, then publish it.');
     }
 
     public function destroy(Page $page): RedirectResponse

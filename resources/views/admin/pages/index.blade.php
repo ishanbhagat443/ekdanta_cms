@@ -25,7 +25,7 @@
                                 <th>Slug</th>
                                 <th>Sections</th>
                                 <th>Status</th>
-                                <th class="text-right" style="width: 160px;">Actions</th>
+                                <th class="text-right" style="width: 210px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +44,10 @@
                                            class="btn btn-xs btn-outline-secondary" title="Preview"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('admin.pages.edit', $page) }}"
                                            class="btn btn-xs btn-outline-primary" title="Build"><i class="fas fa-tools"></i></a>
+                                        <a href="{{ route('admin.pages.export', $page) }}"
+                                           class="btn btn-xs btn-outline-secondary" title="Export (JSON)" aria-label="Export {{ $page->title }}"><i class="fas fa-file-export"></i></a>
+                                        <a href="{{ route('admin.pages.export', [$page, 'bundle' => 1]) }}"
+                                           class="btn btn-xs btn-outline-secondary" title="Export with media (for another site)" aria-label="Export {{ $page->title }} with media"><i class="fas fa-file-archive"></i></a>
                                         @if ($page->slug !== 'home')
                                             <form method="POST" action="{{ route('admin.pages.destroy', $page) }}"
                                                   class="d-inline js-confirm-delete">
@@ -107,6 +111,23 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Create page</button>
+                    </div>
+                </div>
+            </form>
+
+            <form method="POST" action="{{ route('admin.pages.import') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">Import a page</h3></div>
+                    <div class="card-body">
+                        <label for="page-import-file">Page export file (.json)</label>
+                        <input type="file" name="file" id="page-import-file" accept=".json,application/json" required
+                               class="form-control-file @error('file') is-invalid @enderror" aria-describedby="page-import-help">
+                        @error('file') <span class="invalid-feedback d-block">{{ $message }}</span> @enderror
+                        <small id="page-import-help" class="form-text text-muted">It becomes a new draft page. Media and collection items in the file are added only where this site doesn't have them; saved blocks link up by name.</small>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-outline-primary"><i class="fas fa-file-import mr-1"></i> Import as draft</button>
                     </div>
                 </div>
             </form>

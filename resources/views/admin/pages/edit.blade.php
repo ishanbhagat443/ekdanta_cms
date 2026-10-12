@@ -185,6 +185,19 @@
                             <label class="custom-control-label" for="show_footer">Show the site footer</label>
                             <small class="form-text text-muted mt-0">A section that brings its own footer (e.g. Ekdanta · Big Brand Finale) hides it automatically.</small>
                         </div>
+                        @php $conversions = (array) $page->setting('conversions', []); @endphp
+                        <details class="mb-2" @if ($conversions !== []) open @endif>
+                            <summary class="small text-muted">Conversion tags (fire when this page opens, e.g. the thank-you page)</summary>
+                            @foreach (['meta_pixel' => ['Meta Pixel ID', '123456789012345', 'Sends "Lead".'], 'ads_id' => ['Google Ads conversion ID', 'AW-123456789', ''], 'ads_label' => ['Google Ads conversion label', 'AbCdEfGhIj', 'With the ID, sends the conversion.']] as $convKey => [$convLabel, $convHint, $convHelp])
+                                <div class="form-group mt-2 mb-1">
+                                    <label class="mb-0" for="conversion_{{ $convKey }}"><small>{{ $convLabel }}</small></label>
+                                    <input type="text" name="conversions[{{ $convKey }}]" id="conversion_{{ $convKey }}" value="{{ old('conversions.'.$convKey, $conversions[$convKey] ?? '') }}"
+                                           placeholder="{{ $convHint }}" class="form-control form-control-sm @error('conversions.'.$convKey) is-invalid @enderror" @if ($convHelp) aria-describedby="conversion_{{ $convKey }}_help" @endif>
+                                    @error('conversions.'.$convKey) <span class="invalid-feedback">{{ $message }}</span> @enderror
+                                    @if ($convHelp)<small id="conversion_{{ $convKey }}_help" class="form-text text-muted mt-0">{{ $convHelp }}</small>@endif
+                                </div>
+                            @endforeach
+                        </details>
                         @can('developer.mode')
                             <details class="mb-2">
                                 <summary class="small text-muted">Page code (Developer Mode)</summary>

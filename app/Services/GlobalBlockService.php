@@ -240,48 +240,28 @@ class GlobalBlockService
 
     /* ── Export / Import ──────────────────────────────────────────── */
 
-    public function exportPayload(GlobalBlock $block): array
+    /** The block as JSON: media by key; with $bundle, its media files and the collection items too (ContentTransfer). */
+    public function exportPayload(GlobalBlock $block, bool $bundle = false): array
     {
-        return [
-            'name' => $block->name,
-            'type' => $block->type,
-            'description' => $block->description,
-            'data_desktop' => $block->data_desktop,
-            'data_tablet' => $block->data_tablet,
-            'data_mobile' => $block->data_mobile,
-            'style' => $block->style,
-        ];
+        return app(\App\Services\ContentTransfer::class)->exportBlock($block, $bundle);
     }
 
     public function import(array $payload): GlobalBlock
     {
-        if (! isset($payload['type']) || ! $this->registry->has($payload['type'])) {
-            throw ValidationException::withMessages(['file' => 'Unknown or missing block type — this file is not a valid block export.']);
-        }
-
-        // An imported file is untrusted: the same field rules as the editor,
-        // and section CSS/JS only for Developer Mode.
-        $validator = \Illuminate\Support\Facades\Validator::make(
-            ['data' => (array) ($payload['data_desktop'] ?? [])],
-            $this->registry->find($payload['type'])->rules()
-        );
-        if ($validator->fails()) {
-            throw ValidationException::withMessages(['file' => 'This block export has invalid content: '.$validator->errors()->first()]);
-        }
+        // An imported file is untrusted: the editor's field rules, motion
+        // sanitiser and Developer Mode gate (ContentTransfer).
+        $fields = app(\App\Services\ContentTransfer::class)->importBlock($payload);
+        $name = \Illuminate\Support\Str::limit((string) ($payload['name'] ?? '') ?: 'Imported Block', 100, '');
 
         return $this->blocks->create([
-            'name' => $payload['name'] ?? 'Imported Block',
-            'slug' => $this->uniqueSlug($payload['name'] ?? 'imported-block'),
-            'type' => $payload['type'],
-            'description' => $payload['description'] ?? null,
+            ...\Illuminate\Support\Arr::only($fields, ['type', 'data_desktop', 'data_tablet', 'data_mobile', 'style']),
+            'name' => $name,
+            'slug' => $this->uniqueSlug($name),
+            'description' => is_string($payload['description'] ?? null) ? \Illuminate\Support\Str::limit($payload['description'], 500, '') : null,
             'status' => GlobalBlock::STATUS_DRAFT,
             'version' => 1,
             'created_by' => Auth::id(),
             'updated_by' => Auth::id(),
-            'data_desktop' => $payload['data_desktop'] ?? [],
-            'data_tablet' => $payload['data_tablet'] ?? null,
-            'data_mobile' => $payload['data_mobile'] ?? null,
-            'style' => Section::withoutPrivilegedStyle((array) ($payload['style'] ?? [])),
         ]);
     }
 

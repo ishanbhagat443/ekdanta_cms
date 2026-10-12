@@ -135,6 +135,9 @@ Route::delete('blog-tags/{tag}', [BlogCategoryController::class, 'destroyTag'])-
 
 // Pages (WordPress-style page builder)
 Route::resource('pages', PageController::class)->except(['show', 'create']);
+// Export / import a page as JSON (another site, or a backup).
+Route::get('pages/{page}/export', [PageController::class, 'export'])->name('pages.export');
+Route::post('pages/import', [PageController::class, 'import'])->name('pages.import');
 
 // Starter layouts and multi-page site kits.
 Route::post('pages/kits/{kit}', [PageController::class, 'applyKit'])->name('pages.kits.apply');

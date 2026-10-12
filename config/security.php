@@ -36,18 +36,19 @@ return [
     | Font Awesome (cdnjs) and Google Fonts.
     */
     'csp_allow' => [
-        'script' => [],
+        // Page settings → Conversion tags (Meta Pixel, Google Ads).
+        'script' => ['https://connect.facebook.net', 'https://www.googletagmanager.com'],
         'style' => [
             'https://cdnjs.cloudflare.com',
             'https://fonts.googleapis.com',
         ],
-        'img' => [],
+        'img' => ['https://www.facebook.com', 'https://www.google.com', 'https://googleads.g.doubleclick.net', 'https://www.googleadservices.com'],
         'font' => [
             'https://cdnjs.cloudflare.com',
             'https://fonts.gstatic.com',
         ],
-        'connect' => [],
-        'frame' => [],
+        'connect' => ['https://www.facebook.com', 'https://www.google.com', 'https://googleads.g.doubleclick.net', 'https://www.googleadservices.com', 'https://www.googletagmanager.com'],
+        'frame' => ['https://www.googletagmanager.com', 'https://td.doubleclick.net'],
         'media' => [],
     ],
 

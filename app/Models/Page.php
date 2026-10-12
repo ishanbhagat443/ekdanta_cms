@@ -36,6 +36,13 @@ class Page extends Model
         'published_at' => 'datetime',
     ];
 
+    /** Page settings → Conversion tags: IDs only (the tags themselves are fixed), so no Developer Mode needed. */
+    public const CONVERSION_RULES = [
+        'meta_pixel' => ['nullable', 'regex:/^\d{5,20}$/'],
+        'ads_id' => ['nullable', 'regex:/^AW-\d{5,15}$/'],
+        'ads_label' => ['nullable', 'regex:/^[A-Za-z0-9_-]{1,40}$/'],
+    ];
+
     public function sections(): MorphMany
     {
         return $this->morphMany(Section::class, 'sectionable')->orderBy('sort_order');

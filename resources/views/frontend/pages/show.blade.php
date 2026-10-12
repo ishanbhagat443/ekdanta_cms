@@ -34,6 +34,20 @@
 @if ($page)
     @include('frontend.partials.seo-head', ['seo' => $seo])
 
+    {{-- Page settings → Conversion tags: on the live page only (not in the builder's preview). --}}
+    @php $conversions = request()->boolean('preview') ? [] : array_filter((array) $page->setting('conversions', [])); @endphp
+    @if ($conversions !== [])
+        @push('head')
+            @if (! empty($conversions['meta_pixel']))
+                <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',@json($conversions['meta_pixel']));fbq('track','PageView');fbq('track','Lead');</script>
+            @endif
+            @if (! empty($conversions['ads_id']))
+                <script async src="https://www.googletagmanager.com/gtag/js?id={{ $conversions['ads_id'] }}"></script>
+                <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',@json($conversions['ads_id']));@if (! empty($conversions['ads_label']))gtag('event','conversion',{send_to:@json($conversions['ads_id'].'/'.$conversions['ads_label'])});@endif</script>
+            @endif
+        @endpush
+    @endif
+
     {{-- Page settings → Page code (Developer Mode only to write). --}}
     @php $pageCode = (array) $page->setting('code', []); @endphp
     @if (! empty($pageCode['head']) || ! empty($pageCode['css']))

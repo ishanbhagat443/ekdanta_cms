@@ -7,6 +7,9 @@
         <a href="{{ route('admin.global-blocks.export', $block) }}" class="btn btn-outline-secondary btn-sm">
             <i class="fas fa-file-export mr-1"></i> Export
         </a>
+        <a href="{{ route('admin.global-blocks.export', [$block, 'bundle' => 1]) }}" class="btn btn-outline-secondary btn-sm" title="Also carries the images it uses and the collection items, for another site">
+            Export with media
+        </a>
         <a href="{{ route('admin.global-blocks.index') }}" class="btn btn-default btn-sm">
             <i class="fas fa-arrow-left mr-1"></i> Library
         </a>

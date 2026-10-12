@@ -255,6 +255,27 @@ class SiteAndPageSettingsTest extends TestCase
         $this->get('/contact')->assertSee('window.pageCodeRan = true;', false);
     }
 
+    public function test_conversion_tags_fire_on_the_live_page_only(): void
+    {
+        $page = $this->page('thank-you', 'Thanks');
+        $editor = $this->editor('pages.manage');
+
+        $this->actingAs($editor)
+            ->put(route('admin.pages.update', $page), $this->pageUpdate($page, ['conversions' => ['meta_pixel' => '<script>', 'ads_id' => 'AW-1']]))
+            ->assertSessionHasErrors(['conversions.meta_pixel', 'conversions.ads_id']);
+
+        // IDs only, so no Developer Mode needed.
+        $this->actingAs($editor)
+            ->put(route('admin.pages.update', $page), $this->pageUpdate($page, ['conversions' => ['meta_pixel' => '123456789012345', 'ads_id' => 'AW-987654321', 'ads_label' => 'AbC-12_x']]))
+            ->assertSessionHasNoErrors();
+
+        $this->get('/thank-you')
+            ->assertSee("fbq('init',\"123456789012345\");fbq('track','PageView');fbq('track','Lead');", false)
+            ->assertSee('gtag/js?id=AW-987654321', false)
+            ->assertSee("send_to:\"AW-987654321\/AbC-12_x\"", false);
+        $this->get('/thank-you?preview=1')->assertDontSee('fbevents.js', false);
+    }
+
     public function test_builder_preview_offers_exact_sizes_and_reduce_motion(): void
     {
         $page = $this->page('contact', 'Contact heading');

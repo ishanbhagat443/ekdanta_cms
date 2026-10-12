@@ -183,9 +183,9 @@ class GlobalBlockController extends Controller
 
     /* ── Export / Import ─────────────────────────────────────────── */
 
-    public function export(GlobalBlock $block): \Symfony\Component\HttpFoundation\StreamedResponse
+    public function export(Request $request, GlobalBlock $block): \Symfony\Component\HttpFoundation\StreamedResponse
     {
-        $payload = $this->service->exportPayload($block);
+        $payload = $this->service->exportPayload($block, $request->boolean('bundle'));
 
         return response()->streamDownload(
             fn () => print (json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)),
@@ -196,7 +196,8 @@ class GlobalBlockController extends Controller
 
     public function import(Request $request): RedirectResponse
     {
-        $request->validate(['file' => ['required', 'file', 'mimes:json', 'max:2048']]);
+        // A bundled export carries its media files, so it can be large.
+        $request->validate(['file' => ['required', 'file', 'mimes:json,txt', 'max:'.config('gsm.media.max_upload_kb')]]);
 
         $decoded = json_decode((string) file_get_contents($request->file('file')->getRealPath()), true);
 
