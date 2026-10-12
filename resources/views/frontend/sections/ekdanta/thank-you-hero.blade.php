@@ -5,8 +5,8 @@
     fade the message. "Received" gets the visitor's local time (data-ek-now).
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $chat = '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path>';
 @endphp
 <div class="ek ek-thank-you-hero" id="{{ $d['anchor'] ?: 't-top' }}">

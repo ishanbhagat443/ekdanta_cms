@@ -5,8 +5,8 @@
     hidden and every logo shows. Phones (no design): five logos a row.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $clients = \App\Models\CollectionItem::pick('clients', $d['clients'] ?? null)->values();
     $total = $clients->count();
     $counts = $clients->countBy(fn ($c) => $c->get('industry'));

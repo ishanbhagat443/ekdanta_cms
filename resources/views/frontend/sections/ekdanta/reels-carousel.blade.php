@@ -5,8 +5,8 @@
     the first reel. Reels: Collections → Reels.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $reels = \App\Models\CollectionItem::pick('reels', $d['reels'] ?? null);
     $n = max(1, $reels->count());
 @endphp

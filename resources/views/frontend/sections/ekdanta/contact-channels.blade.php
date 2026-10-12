@@ -5,8 +5,8 @@
     jumps to its card. Drawn with the first card showing.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $channels = array_values(array_filter((array) ($d['channels'] ?? []), fn ($c) => ($c['label'] ?? '') !== ''));
     $count = count($channels);
     $icons = [

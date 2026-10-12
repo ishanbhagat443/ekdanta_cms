@@ -4,8 +4,8 @@
     facts up (numbers only). Phones (no design): the columns stack.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $case = $templateItem ?? null;
     $case = $case instanceof \App\Models\CollectionItem ? $case : \App\Models\CollectionItem::pick('case-studies', $d['case'] ?? null)->first();
     $tick = '<circle cx="12" cy="12" r="11" fill="#2EB45D"></circle><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0D1410" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>';

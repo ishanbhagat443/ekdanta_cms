@@ -39,8 +39,8 @@ class BriefBuilderSection extends EkdantaSection
             $this->text('heading', 'Heading (rises word by word)', 'Tell us what you need.', 80),
             $this->lines('text', 'Text', 'Four quick steps, then your brief opens in WhatsApp, ready to send. No long forms, no waiting for a call back.', 400),
             $this->text('call_before', 'Call line: text', 'Prefer to talk? Call sales on', 80),
-            $this->text('call_label', 'Call line: link', '63544 33194', 40),
-            $this->link('call_link', 'Call line: link goes to', 'tel:+91 63544 33194'),
+            $this->text('call_label', 'Call line: link', '{phone:3}', 40),
+            $this->link('call_link', 'Call line: link goes to', 'phone:3'),
             $this->text('call_after', 'Call line: after the link', '.', 20),
             $this->text('bg_word', 'Outline words behind', 'शुभ आरंभ · Your brief · शुभ आरंभ', 80, false),
             $this->rows('steps', 'Steps (one per Step number in the form)', [

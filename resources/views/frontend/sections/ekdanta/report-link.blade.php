@@ -5,8 +5,8 @@
     Drawn fixed. The WhatsApp message can carry the address that failed.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $href = link_href($d['button_link'] ?? '');
     if (($d['add_address'] ?? true) && str_starts_with($href, 'https://wa.me/')) {
         $href .= (str_contains($href, '?text=') ? rawurlencode(' ') : '?text=').rawurlencode(url()->current());

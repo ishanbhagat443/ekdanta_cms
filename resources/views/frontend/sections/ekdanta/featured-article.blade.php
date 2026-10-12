@@ -4,8 +4,8 @@
     in. Phones (no design): cover above, text below.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $post = \App\Models\Post::query()->live()->with(['categories', 'featuredMedia', 'author'])->orderByDesc('is_featured')->latest('published_at')->first();
     $mark = media_ref($d['mark'] ?? null)?->url;
     $arrow = '<path d="M5 12h14M13 6l6 6-6 6"></path>';

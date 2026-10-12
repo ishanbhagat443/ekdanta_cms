@@ -5,8 +5,8 @@
     design): the cards scroll sideways.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $current = ($templateItem ?? null) instanceof \App\Models\Post ? $templateItem : null;
     $count = max(1, min(6, (int) ($d['count'] ?? 3)));
     $with = ['categories', 'featuredMedia'];

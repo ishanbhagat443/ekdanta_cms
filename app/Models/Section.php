@@ -73,6 +73,12 @@ class Section extends Model
      * Effective payload for a device. Tablet/mobile store only overridden
      * keys; anything missing inherits from desktop (empty string = inherit).
      */
+    /** The values a view draws: dataFor() with {phone:1}, {whatsapp}, {email} filled from Settings → Business. */
+    public function viewData(string $device): array
+    {
+        return business_tokens($this->dataFor($device));
+    }
+
     public function dataFor(string $device): array
     {
         $desktop = (array) ($this->data_desktop ?? []);

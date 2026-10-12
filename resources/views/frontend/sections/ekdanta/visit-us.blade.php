@@ -4,8 +4,8 @@
     run the route and drop the pin. Drawn complete.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $roads = ['M40 660 C 140 520 260 470 420 470 S 620 430 680 380', 'M0 405 L 644 504', 'M520 230 C 480 340 440 420 420 470 S 380 600 370 680', 'M120 250 C 220 330 300 360 420 470', 'M260 260 L 300 680'];
     $pin = '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path>';
     $lines = fn ($text) => array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $text)), fn ($l) => $l !== ''));

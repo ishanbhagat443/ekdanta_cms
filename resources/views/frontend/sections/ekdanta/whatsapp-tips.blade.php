@@ -6,8 +6,8 @@
     then a smaller phone; no plane.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $tips = array_slice(array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $d['tips'])))), 0, 4);
     $mark = media_ref($d['mark'] ?? null)?->url;
     $chat = '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path>';

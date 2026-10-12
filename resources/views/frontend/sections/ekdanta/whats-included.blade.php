@@ -4,8 +4,8 @@
     the ticks draw in turn. Phones (no design): two columns.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $service = $templateItem ?? null;
     $service = $service instanceof \App\Models\CollectionItem ? $service : (\App\Models\CollectionItem::pick('services', $d['service'] ?? null)->first());
     $items = $service ? array_slice(array_values(array_filter((array) $service->get('included', []), fn ($r) => ($r['title'] ?? '') !== '')), 0, 6) : [];

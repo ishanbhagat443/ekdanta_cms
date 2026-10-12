@@ -4,8 +4,8 @@
     below as you type; without JS it stays hidden and the cards remain.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $cards = array_slice(array_values(array_filter((array) ($d['cards'] ?? []), fn ($c) => ($c['title'] ?? '') !== '')), 0, 6);
     $arrow = '<path d="M5 12h14M13 6l6 6-6 6"></path>';
     $glass = '<circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path>';

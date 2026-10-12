@@ -5,8 +5,8 @@
     whole grid. Phones (no design): items above, the frame drawn smaller.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $case = $templateItem ?? null;
     $case = $case instanceof \App\Models\CollectionItem ? $case : \App\Models\CollectionItem::pick('case-studies', $d['case'] ?? null)->first();
     $glass = '<circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path>';

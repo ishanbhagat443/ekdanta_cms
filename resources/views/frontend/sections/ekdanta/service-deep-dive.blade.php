@@ -6,8 +6,8 @@
     Expertise Cards) jump to a group.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $groups = \App\Models\CollectionItem::pick('service-groups', $d['groups'] ?? null)->values();
     $services = \App\Models\CollectionItem::pick('services')->filter(fn ($s) => $s->get('in_grid'));
     $total = $groups->count();

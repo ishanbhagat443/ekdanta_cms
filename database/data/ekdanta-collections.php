@@ -213,7 +213,7 @@ $items['faqs'] = array_merge([
     ['shoot-on-location', 'Can you shoot at our factory, store or site?', ['group' => 'contact', 'answer' => 'Yes. Our team shoots reels, product photos and brand films on location, like the site and factory videos we made for Trilok Infratech.']],
     ['only-social-media', 'Do you only do social media?', ['group' => 'contact', 'answer' => 'No. Everything your brand needs is under one roof: branding, digital marketing, lead and sales funnels, websites, CRM and films.']],
     ['where-based', 'Where are you based?', ['group' => 'contact', 'answer' => 'Our office is at Bhatar Trade Center in Surat. We also work with brands in Ahmedabad and across India.']],
-    ['get-started', 'How do we get started?', ['group' => 'contact', 'answer' => 'Send us a WhatsApp, call sales on 63544 33194, or build your brief above. We understand your business first, then share a plan.']],
+    ['get-started', 'How do we get started?', ['group' => 'contact', 'answer' => 'Send us a WhatsApp, call sales on {phone:3}, or build your brief above. We understand your business first, then share a plan.']],
 ], $faqs);
 
 $items['reels'] = [

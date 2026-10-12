@@ -5,8 +5,8 @@
     toast in; loops ring and vibrate the phone. Drawn saved.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $phones = business_phones();
     $first = $phones[0] ?? null;
     // The first number as an unknown caller sees it: +91 90994 17987.

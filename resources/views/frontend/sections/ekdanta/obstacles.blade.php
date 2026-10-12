@@ -5,8 +5,8 @@
     starts it from the beginning.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $cards = array_values(array_filter((array) ($d['cards'] ?? []), fn ($c) => ($c['obstacle'] ?? '') !== ''));
 @endphp
 <div class="ek ek-obstacles" id="{{ $d['anchor'] ?: 'j-obstacles' }}">

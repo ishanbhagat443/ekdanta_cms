@@ -5,8 +5,8 @@
     case, so it reads without JS. Cases: Collections → Case studies.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $cases = \App\Models\CollectionItem::pick('case-studies', $d['cases'] ?? null);
 @endphp
 <div class="ek ek-work-showcase" id="{{ $d['anchor'] ?: 'j-work' }}" data-base-colour="{{ $d['base_colour'] ?: '#0A5A30' }}">

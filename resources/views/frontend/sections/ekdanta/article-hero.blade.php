@@ -8,8 +8,8 @@
     Flows with the page; phones (no design): the same, smaller.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $post = ($templateItem ?? null) instanceof \App\Models\Post ? $templateItem : \App\Models\Post::query()->live()->latest('published_at')->first();
 @endphp
 @if ($post)

@@ -4,8 +4,8 @@
     scroll the phone feed and roll the notebook titles. Drawn dealt in.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $img = fn ($key) => media_ref($d[$key] ?? null)?->url;
     $bg = fn ($key) => ($url = $img($key)) ? '#FFFFFF url('.e($url).') center top / cover no-repeat' : '#FFFFFF';
     $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: '.ek_u(16).'; height: '.ek_u(16).'"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';

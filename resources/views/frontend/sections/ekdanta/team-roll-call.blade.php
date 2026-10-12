@@ -5,8 +5,8 @@
     each row stacks the role over its description.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $roles = \App\Models\CollectionItem::pick('team-roles', $d['roles'] ?? null)->take(7)->values();
     $arrow = '<path d="M5 12h14M13 6l6 6-6 6"></path>';
 @endphp

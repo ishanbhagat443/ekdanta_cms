@@ -7,8 +7,8 @@
     other services in a scrolling row.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $pages = \App\Models\CollectionItem::query()->of('services')->published()->where('data->has_page', true)->get();
     $service = $templateItem ?? null;
     $service = $service instanceof \App\Models\CollectionItem ? $service : ($pages->firstWhere('slug', $d['service'] ?? '') ?? $pages->first());

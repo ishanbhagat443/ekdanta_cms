@@ -5,8 +5,8 @@
     Service groups; each lists its services (Collections → Services).
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $groups = \App\Models\CollectionItem::pick('service-groups', $d['groups'] ?? null);
     $services = \App\Models\CollectionItem::pick('services')->filter(fn ($s) => $s->get('in_grid'));
     $n = max(1, $groups->count());

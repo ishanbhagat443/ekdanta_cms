@@ -6,8 +6,8 @@
     the wall smaller underneath.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $cases = \App\Models\CollectionItem::pick('case-studies', $d['cases'] ?? null)->map(fn ($c) => media_ref($c->get('image'))?->url)->filter()->values();
     $reels = \App\Models\CollectionItem::pick('reels', $d['reels'] ?? null)->map(fn ($r) => media_ref($r->get('cover'))?->url)->filter()->values();
     // Columns alternate case (300 tall) and reel (500 tall), starting with a case on odd columns.

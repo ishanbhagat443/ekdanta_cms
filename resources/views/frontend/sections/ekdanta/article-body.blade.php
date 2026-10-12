@@ -8,7 +8,7 @@
     follows the heading in view and counts down the minutes left.
 --}}
 @php
-    $d = $section->dataFor('desktop');
+    $d = $section->viewData('desktop');
     $post = ($templateItem ?? null) instanceof \App\Models\Post ? $templateItem : \App\Models\Post::query()->live()->latest('published_at')->first();
 @endphp
 @if ($post)

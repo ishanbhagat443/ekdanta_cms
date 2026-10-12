@@ -5,8 +5,8 @@
     first, then the questions, all closed.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $service = $templateItem ?? null;
     $service = $service instanceof \App\Models\CollectionItem ? $service : (\App\Models\CollectionItem::pick('services', $d['service'] ?? null)->first());
 @endphp
@@ -48,7 +48,7 @@
                                 @foreach ($faqs as $k => $faq)
                                     <details data-m="pf-faq" class="ek-pf-faq" @if ($k === 0 && ! $mob) open @endif style="border-radius: {{ ek_u($v([20, 16])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u(14) }} {{ ek_u(28) }} {{ ek_u(-24) }} rgba(13,20,16,0.5); overflow: hidden">
                                         <summary style="display: flex; align-items: center; justify-content: space-between; gap: {{ ek_u(16) }}; padding: {{ ek_u($v([20, 14])) }} {{ ek_u($v([24, 16])) }}; cursor: pointer; list-style: none; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([19, 15])) }}, 0.8125rem); letter-spacing: -0.02em; color: var(--tk-ink)">{{ $faq->title }}<span aria-hidden="true" class="ek-pf-chev" style="width: {{ ek_u($v([34, 28])) }}; height: {{ ek_u($v([34, 28])) }}; flex-shrink: 0; border-radius: 999px; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width: {{ ek_u(16) }}; height: {{ ek_u(16) }}">{!! $plus !!}</svg></span></summary>
-                                        <p style="margin: 0; padding: 0 {{ ek_u($v([24, 16])) }} {{ ek_u($v([22, 14])) }}; font-size: max({{ ek_u($v([17, 14])) }}, 0.8125rem); line-height: 1.55; color: #3B4640">{{ $faq->get('answer') }}</p>
+                                        <p style="margin: 0; padding: 0 {{ ek_u($v([24, 16])) }} {{ ek_u($v([22, 14])) }}; font-size: max({{ ek_u($v([17, 14])) }}, 0.8125rem); line-height: 1.55; color: #3B4640">{{ business_text($faq->get('answer')) }}</p>
                                     </details>
                                 @endforeach
                             </div>

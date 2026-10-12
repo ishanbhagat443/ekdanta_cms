@@ -5,8 +5,8 @@
     grouped by industry in the order of the Clients industry list.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $clients = \App\Models\CollectionItem::pick('clients', $d['clients'] ?? null);
     $shelves = collect(array_keys(\App\Collections\Clients::INDUSTRIES))
         ->map(fn ($industry) => ['name' => $industry, 'items' => $clients->filter(fn ($c) => $c->get('industry') === $industry)->values()])

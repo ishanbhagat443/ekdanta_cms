@@ -7,8 +7,8 @@
     smaller stack, the ticker.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $stack = \App\Models\Post::query()->live()->with(['categories', 'featuredMedia', 'author'])->whereNotNull('featured_media_id')->latest('published_at')->limit(3)->get();
     $topics = array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $d['topics']))));
     $glass = '<circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path>';

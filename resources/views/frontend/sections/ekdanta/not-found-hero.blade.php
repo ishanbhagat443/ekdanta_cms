@@ -5,8 +5,8 @@
     roll the "e" away and fade the hero out. Drawn arrived.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $code = (string) ($d['code'] ?: '404');
     $mark = media_ref($d['mark'] ?? null)?->url;
     $home = '<path d="M3 11l9-7 9 7v9H3z"></path><path d="M10 20v-5h4v5"></path>';

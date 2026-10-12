@@ -5,8 +5,8 @@
     (_reels-arc.scss). Phones (no design): a smaller, tighter arc.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $reels = \App\Models\CollectionItem::pick('reels', $d['reels'] ?? null)->take(5)->values();
     $n = $reels->count();
     $play = '<path d="M7 4v16l13-8z" fill="#FFFFFF"></path>';

@@ -5,8 +5,8 @@
     frame: number typed, keypad showing. The number: Settings → Business.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $number = (string) (business_phones()[0]['number'] ?? '');
     $chars = preg_split('//u', trim(preg_replace('/[^0-9 ]/', '', $number)), -1, PREG_SPLIT_NO_EMPTY);
     // Where each digit sits on the keypad: 1–9 in rows of three, 0 under 8.

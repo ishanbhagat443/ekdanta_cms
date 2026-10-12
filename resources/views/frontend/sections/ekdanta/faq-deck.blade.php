@@ -5,8 +5,8 @@
     screen readers; the arrows jump to the previous / next card.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $faqs = \App\Models\CollectionItem::query()->of('faqs')->published()->get()->filter(fn ($f) => $f->get('group') === ($d['group'] ?: 'contact'))->values();
     $count = max(1, $faqs->count());
     $styles = [['#FFFFFF', '#0D1410', '#4A564F', '#1E8E47'], ['#E6F4EA', '#0D1410', '#2F4A38', '#1E8E47'], ['#0A5A30', '#FFFFFF', '#DCEFE2', '#8FE3AE']];
@@ -64,7 +64,7 @@
                                 <article class="ek-faq-card {{ $i === 0 ? 'is-active' : '' }}" style="--i: {{ $i }}; --s: {{ $i % 2 ? 1 : -1 }}; position: absolute; left: 0; top: 0; width: {{ ek_u($v([744, 358])) }}; height: {{ ek_u($v([420, 344])) }}; box-sizing: border-box; padding: {{ ek_u($v([44, 22])) }}; border-radius: {{ ek_u($v([32, 26])) }}; background: {{ $bg }}; color: {{ $fg }}; box-shadow: 0 {{ ek_u($v([30, 24])) }} {{ ek_u($v([60, 50])) }} {{ ek_u($v([-36, -30])) }} rgba(13,20,16,0.45), inset 0 0 0 {{ ek_u(1) }} rgba(13,20,16,0.06); display: flex; flex-direction: column; gap: {{ ek_u($v([16, 12])) }}; transform-origin: 50% 100%">
                                     <span aria-hidden="true" style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([64, 44])) }}; line-height: 1; letter-spacing: -0.04em; color: {{ $num }}">{{ sprintf('%02d', $i + 1) }}</span>
                                     <h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([32, 22])) }}, 0.8125rem); line-height: {{ $v([1.18, 1.2]) }}; letter-spacing: -0.03em">{{ $faq->title }}</h3>
-                                    <p style="margin: 0; font-size: max({{ ek_u($v([20, 16])) }}, 0.8125rem); line-height: {{ $v([1.6, 1.55]) }}; color: {{ $answer }}">{{ $faq->get('answer') }}</p>
+                                    <p style="margin: 0; font-size: max({{ ek_u($v([20, 16])) }}, 0.8125rem); line-height: {{ $v([1.6, 1.55]) }}; color: {{ $answer }}">{{ business_text($faq->get('answer')) }}</p>
                                 </article>
                             @endforeach
                         </div>

@@ -5,8 +5,8 @@
     unit as a number, set by the motion engine). Drawn complete.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $steps = array_values(array_filter((array) ($d['steps'] ?? []), fn ($s) => ($s['title'] ?? '') !== ''));
     $mark = media_ref($d['mark'] ?? null);
     $paths = [

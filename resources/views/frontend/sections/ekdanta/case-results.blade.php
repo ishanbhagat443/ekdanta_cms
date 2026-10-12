@@ -6,8 +6,8 @@
     three small cards, then the quote and the band.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $case = $templateItem ?? null;
     $case = $case instanceof \App\Models\CollectionItem ? $case : \App\Models\CollectionItem::pick('case-studies', $d['case'] ?? null)->first();
     $placeholder = fn ($text) => str_starts_with(trim((string) $text), '[');

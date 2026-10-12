@@ -4,8 +4,8 @@
     stacked buttons, then a smaller tilted grid.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $all = \App\Models\CollectionItem::query()->of('case-studies')->published()->get();
     $case = $templateItem ?? null;
     $case = $case instanceof \App\Models\CollectionItem ? $case : (\App\Models\CollectionItem::pick('case-studies', $d['case'] ?? null)->first() ?? $all->first());

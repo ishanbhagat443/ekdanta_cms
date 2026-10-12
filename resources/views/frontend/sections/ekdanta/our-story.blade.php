@@ -6,8 +6,8 @@
     Phones (no design): founders above, beats below.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $br = fn (string $text) => implode('<br>', array_map('e', array_values(array_filter(array_map('trim', preg_split('/\R/', $text))))));
     $mark = media_ref($d['mark'] ?? null)?->url;
     $logo = media_ref($d['logo'] ?? null)?->url;

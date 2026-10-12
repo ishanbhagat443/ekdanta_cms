@@ -5,8 +5,8 @@
     in the final state: packages and stamp gone, the plan in place.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $lines = fn ($text) => array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $text)), fn ($l) => $l !== ''));
     $factors = array_values(array_filter((array) ($d['factors'] ?? []), fn ($f) => ($f['text'] ?? '') !== ''));
     $icons = [

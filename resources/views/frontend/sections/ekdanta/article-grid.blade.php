@@ -6,8 +6,8 @@
     Cards: partials/post-card.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $featured = ($d['skip_featured'] ?? true) ? \App\Models\Post::query()->live()->orderByDesc('is_featured')->latest('published_at')->value('id') : null;
     $posts = \App\Models\Post::query()->live()->with(['categories', 'featuredMedia'])->when($featured, fn ($q) => $q->whereKeyNot($featured))->latest('published_at')->limit(60)->get();
     $topics = \App\Models\BlogCategory::query()->where('is_active', true)->orderBy('sort_order')->get()

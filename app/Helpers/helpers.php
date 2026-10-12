@@ -366,3 +366,39 @@ if (! function_exists('ek_u')) {
         return "calc({$n} * var(--u))";
     }
 }
+
+if (! function_exists('business_text')) {
+    /**
+     * Contact details from Settings → Business inside a text: {phone:1}
+     * (the first number as written there), {whatsapp} (the WhatsApp number)
+     * and {email}. Change a number once and every section shows it.
+     */
+    function business_text(?string $text): string
+    {
+        $text = (string) $text;
+        if (! str_contains($text, '{')) {
+            return $text;
+        }
+
+        return preg_replace_callback('/\{(phone:([1-9])|whatsapp|email)\}/', fn (array $m) => match (true) {
+            $m[1] === 'whatsapp' => business_whatsapp()['number'] ?? '',
+            $m[1] === 'email' => (string) setting('business.email', ''),
+            default => business_phones()[(int) $m[2] - 1]['number'] ?? '',
+        }, $text);
+    }
+}
+
+if (! function_exists('business_tokens')) {
+    /** business_text() on every text in a section's data (lists included). */
+    function business_tokens(array $data): array
+    {
+        array_walk_recursive($data, function (&$value): void {
+            if (is_string($value)) {
+                $value = business_text($value);
+            }
+        });
+
+        return $data;
+    }
+}
+

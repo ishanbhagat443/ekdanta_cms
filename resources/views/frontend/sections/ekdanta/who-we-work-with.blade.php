@@ -5,8 +5,8 @@
     smaller tiles, cards in a 2 × 2 grid.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $clients = \App\Models\CollectionItem::pick('clients', $d['clients'] ?? null);
     $rows = $clients->isEmpty() ? [] : $clients->chunk((int) ceil($clients->count() / 3))->values();
     $industries = array_values(array_filter((array) ($d['industries'] ?? []), fn ($r) => ($r['industry'] ?? '') !== ''));

@@ -4,8 +4,8 @@
     whole sentence stays readable to screen readers). Drawn fully lit.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $photos = array_values((array) ($d['photos'] ?? []));
     $stats = array_values(array_filter((array) ($d['stats'] ?? []), fn ($s) => ($s['value'] ?? '') !== ''));
 @endphp

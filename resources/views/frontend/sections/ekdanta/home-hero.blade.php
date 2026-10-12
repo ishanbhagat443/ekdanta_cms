@@ -5,8 +5,8 @@
     Motion tab). Without JS or with reduced motion the beam is fully open.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
 @endphp
 <div class="ek ek-home-hero" id="{{ $d['anchor'] ?: 'j-top' }}">
     @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)

@@ -97,6 +97,33 @@ class EkdantaSectionsTest extends TestCase
             ->assertDontSee('<footer class="gsm-footer', false);
     }
 
+    public function test_contact_details_follow_the_business_settings_everywhere(): void
+    {
+        $settings = fn (array $phones) => app(SettingsService::class)->updateGroup('business', [
+            'email' => 'hello@example.in', 'country_code' => '91', 'phones' => $phones,
+            'offices' => [['name' => 'Surat', 'address' => 'Bhatar', 'directions_url' => 'https://maps.example/surat']],
+        ]);
+        $settings([['label' => 'All', 'number' => '90994 17987', 'whatsapp' => true], ['label' => 'All', 'number' => '90994 17949'], ['label' => 'Sales', 'number' => '63544 33194']]);
+        $this->page('contact', ['ekdanta-contact-hero', 'ekdanta-contact-channels', 'ekdanta-visit-us']);
+
+        $this->get('/contact')->assertOk()
+            ->assertSee('Call sales: 63544 33194')
+            ->assertSee('href="tel:+919099417949"', false) // the second number ("Or …")
+            ->assertSee('href="mailto:hello@example.in"', false)
+            ->assertSee('href="https://maps.example/surat"', false)
+            ->assertDontSee('{phone:', false);
+
+        // One change in Settings → Business, and every section follows.
+        $settings([['label' => 'All', 'number' => '90000 00001', 'whatsapp' => true], ['label' => 'All', 'number' => '90000 00002'], ['label' => 'Sales', 'number' => '90000 00003']]);
+        $this->get('/contact')->assertOk()
+            ->assertSee('Call sales: 90000 00003')
+            ->assertSee('href="tel:+919000000002"', false)
+            ->assertDontSee('63544');
+
+        $this->assertFalse(\App\Support\Link::valid('phone:0'));
+        $this->assertSame('#', \App\Support\Link::href('office:5'), 'an office the settings lack');
+    }
+
     public function test_the_404_page_finds_real_pages_and_reports_the_missing_address(): void
     {
         app(SettingsService::class)->updateGroup('business', ['country_code' => '91', 'phones' => [['label' => 'All services', 'number' => '90994 17987', 'whatsapp' => true]]]);

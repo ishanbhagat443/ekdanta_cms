@@ -5,8 +5,8 @@
     Phones (no design): heading, a smaller block, then the tabs.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $promises = array_slice(array_values(array_filter((array) ($d['promises'] ?? []), fn ($p) => ($p['title'] ?? '') !== '')), 0, 4);
     $icons = [
         'building' => '<path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"></path>',

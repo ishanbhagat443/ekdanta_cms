@@ -6,8 +6,8 @@
     Phones (no design): numbered index on top, picture, then the story.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $cases = \App\Models\CollectionItem::pick('case-studies', $d['cases'] ?? null)->values();
     $total = str_pad((string) $cases->count(), 2, '0', STR_PAD_LEFT);
     $num = fn (int $i) => str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT);

@@ -7,8 +7,8 @@
     card (motion tracks); the road and walker follow the step (--step).
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $form = \App\Models\Form::query()->where('slug', $d['form'] ?: 'ekdanta-brief')->where('is_active', true)->with('fields')->first();
     $visible = $form ? $form->fields->where('type', '!=', 'hidden') : collect();
     $steps = $visible->groupBy(fn ($f) => $f->step())->sortKeys()->values();

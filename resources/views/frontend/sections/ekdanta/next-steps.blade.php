@@ -5,8 +5,8 @@
     the pulse. Scroll tracks bring the head, track and cards in.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $steps = array_values(array_filter((array) ($d['steps'] ?? []), fn ($s) => ($s['title'] ?? '') !== ''));
     $total = count($steps);
     $icons = [

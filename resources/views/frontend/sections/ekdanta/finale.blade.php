@@ -5,8 +5,8 @@
     Phones, email and address: Settings → Business.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $groups = collect(business_phones())->groupBy('label');
     $email = (string) setting('business.email', '');
     $address = business_offices()[0]['address'] ?? '';

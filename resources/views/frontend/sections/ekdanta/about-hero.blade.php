@@ -6,8 +6,8 @@
     the entry stacks above a smaller ledger.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $word = (string) ($d['word'] ?: 'Ekdanta');
     $green = (int) ($d['word_green'] ?? 0);
     $mark = media_ref($d['mark'] ?? null)?->url;

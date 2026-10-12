@@ -5,8 +5,8 @@
     The orbit is decoration (aria-hidden); the words around it are fields.
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $lines = fn ($text) => array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $text)), fn ($l) => $l !== ''));
     $inner = array_values(array_filter((array) ($d['inner_ring'] ?? []), fn ($r) => ($r['label'] ?? '') !== ''));
     $outer = $lines($d['outer_ring'] ?? '');

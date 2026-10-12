@@ -6,8 +6,8 @@
     in muted, 2.9:1 on ink).
 --}}
 @php
-    $d = $section->dataFor('desktop');
-    $m = $section->dataFor('mobile');
+    $d = $section->viewData('desktop');
+    $m = $section->viewData('mobile');
     $cases = \App\Models\CollectionItem::pick('case-studies', $d['cases'] ?? null)->values();
     $lines = fn ($text) => array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $text)), fn ($l) => $l !== ''));
 @endphp
