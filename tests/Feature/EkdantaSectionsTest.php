@@ -146,6 +146,7 @@ class EkdantaSectionsTest extends TestCase
             ->assertSee('href="tel:+919099417949"', false) // the second number ("Or …")
             ->assertSee('href="mailto:hello@example.in"', false)
             ->assertSee('href="https://maps.example/surat"', false)
+            ->assertSee('<div class="ek-noscript">', false) // every channel, readable without JavaScript
             ->assertDontSee('{phone:', false);
 
         // One change in Settings → Business, and every section follows.

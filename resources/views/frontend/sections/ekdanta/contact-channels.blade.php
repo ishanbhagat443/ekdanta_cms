@@ -84,4 +84,5 @@
             </div>
         </div>
     @endforeach
+    @include('frontend.sections.ekdanta.partials.noscript-list', ['items' => array_map(fn ($c) => [($c['kicker'] ?? '').': '.($c['value'] ?? ''), (string) ($c['text'] ?? '')], $channels)])
 </div>

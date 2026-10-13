@@ -64,4 +64,5 @@
             </div>
         </div>
     @endforeach
+    @include('frontend.sections.ekdanta.partials.noscript-list', ['heading' => $d['heading'].' '.$d['subheading'], 'items' => $cases->map(fn ($c) => [$c->title, (string) $c->get('description')])->all()])
 </div>

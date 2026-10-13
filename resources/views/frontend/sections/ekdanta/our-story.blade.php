@@ -80,4 +80,12 @@
             </div>
         </div>
     @endforeach
+    @include('frontend.sections.ekdanta.partials.noscript-list', ['items' => [
+        ['', $d['text']],
+        [$fmt($d['years_number']).$d['years_suffix'], preg_replace('/\s+/', ' ', $d['years_text'])],
+        [$fmt($d['owners_number']).$d['owners_suffix'], $d['owners_text'].' '.$d['dots_caption']],
+        ['', $d['quote']],
+        [$d['became'], $d['logo_alt']],
+        ['', $d['founders_quote'].' '.$d['founders_credit']],
+    ]])
 </div>

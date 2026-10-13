@@ -60,4 +60,5 @@
             </div>
         </div>
     @endforeach
+    @include('frontend.sections.ekdanta.partials.noscript-list', ['items' => $cases->map(fn ($c) => [$c->title, trim($c->get('sector').'. '.implode(', ', $lines($c->get('made'))), '. ')])->all()])
 </div>

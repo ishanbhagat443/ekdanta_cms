@@ -76,4 +76,5 @@
             </div>
         </div>
     @endforeach
+    @include('frontend.sections.ekdanta.partials.noscript-list', ['items' => $faqs->map(fn ($f) => [$f->title, business_text($f->get('answer'))])->all()])
 </div>
