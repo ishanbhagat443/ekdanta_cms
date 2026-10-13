@@ -72,6 +72,41 @@ class EkdantaSectionsTest extends TestCase
         $this->assertSame(count($types), substr_count($html, 'data-ek-config'));
     }
 
+    public function test_an_edited_field_shows_and_a_phone_value_shows_on_phones_only(): void
+    {
+        $seeder = new EkdantaSiteSeeder;
+        $seeder->collections();
+        $seeder->briefForm();
+        $seeder->samplePosts(true);
+        $missed = [];
+
+        foreach ($this->types() as $key => $type) {
+            $phoneFields = collect($type->fields())->filter(fn ($f) => ($f['type'] ?? '') === 'text' && ! empty($f['device']));
+            $page = $this->page('t-'.$key, [$key]);
+            $section = $page->sections()->first();
+            $shown = false;
+            foreach ($phoneFields as $field) {
+                $section->update([
+                    'data_desktop' => array_replace($section->data_desktop, [$field['key'] => 'Deskmark'.$field['key']]),
+                    'data_mobile' => [$field['key'] => 'Phonemark'.$field['key']],
+                ]);
+                app(\App\Services\PageRenderService::class)->flushCache($page);
+                $html = $this->get('/t-'.$key)->assertOk()->getContent();
+                [$desktop, $phone] = array_pad(explode('data-ek-comp="mobile"', explode('data-ek-comp="desktop"', $html, 2)[1] ?? '', 2), 2, '');
+                if (str_contains($desktop, 'Deskmark'.$field['key']) && str_contains($phone, 'Phonemark'.$field['key'])
+                    && ! str_contains($phone, 'Deskmark'.$field['key']) && ! str_contains($desktop, 'Phonemark'.$field['key'])) {
+                    $shown = true;
+                    break;
+                }
+            }
+            if ($phoneFields->isNotEmpty() && ! $shown) {
+                $missed[] = $key;
+            }
+        }
+
+        $this->assertSame([], $missed, 'sections where no phone-overridable text showed per layout');
+    }
+
     public function test_the_finale_reads_the_business_settings_and_replaces_the_footer(): void
     {
         app(SettingsService::class)->updateGroup('business', [
