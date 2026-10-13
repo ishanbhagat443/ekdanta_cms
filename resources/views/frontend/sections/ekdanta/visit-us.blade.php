@@ -22,7 +22,10 @@
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: var(--tk-green-deep); color: #FFFFFF">
                 <div class="ek-art">
-                    <div style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([130, 82])) }}; width: {{ ek_u($v([520, 342])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([16, 8])) }}">
+                    {{-- Phones: the text and the map share one column; when the text grows (its
+                         minimum size on a short screen), the map gives way instead of covering it. --}}
+                    @if ($mob)<div style="position: absolute; left: {{ ek_u(24) }}; right: {{ ek_u(24) }}; top: {{ ek_u(82) }}; bottom: {{ ek_u(56) }}; display: flex; flex-direction: column; gap: {{ ek_u(16) }}">@endif
+                    <div style="{{ $mob ? '' : 'position: absolute; left: '.ek_u(96).'; top: '.ek_u(130).'; width: '.ek_u(520).';' }} display: flex; flex-direction: column; gap: {{ ek_u($v([16, 8])) }}">
                         <span data-m="visit-eyebrow" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, 0.75rem); letter-spacing: 0.12em; color: var(--tk-orange)">{{ $t['eyebrow'] }}</span>
                         <h2 data-m="visit-heading" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([64, 36])) }}; line-height: 1; letter-spacing: -0.045em">{{ $t['heading'] }}</h2>
                         <address style="margin-top: {{ ek_u($v([14, 6])) }}; font-style: normal; display: flex; flex-direction: column; gap: {{ ek_u($v([6, 2])) }}">
@@ -41,7 +44,7 @@
                         </div>
                     </div>
 
-                    <div data-m="map" style="position: absolute; left: {{ ek_u($v([700, 24])) }}; top: {{ ek_u($v([120, 438])) }}; width: {{ ek_u($v([644, 342])) }}; height: {{ ek_u($v([660, 350])) }}; border-radius: {{ ek_u($v([28, 22])) }}; overflow: hidden; background: #E9EFE7; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-40, -30])) }} rgba(0,0,0,0.6)">
+                    <div data-m="map" style="{{ $mob ? 'position: relative; margin-top: auto; flex: 0 1 '.ek_u(350).'; min-height: '.ek_u(160) : 'position: absolute; left: '.ek_u(700).'; top: '.ek_u(120).'; width: '.ek_u(644).'; height: '.ek_u(660) }}; border-radius: {{ ek_u($v([28, 22])) }}; overflow: hidden; background: #E9EFE7; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-40, -30])) }} rgba(0,0,0,0.6)">
                         <svg role="img" aria-label="{{ $d['map_description'] }}" viewBox="0 0 644 660" style="width: 100%; height: 100%; display: block">
                             <rect x="60" y="300" width="150" height="90" rx="22" fill="#D7E6D3"></rect>
                             <rect x="500" y="560" width="120" height="80" rx="22" fill="#D7E6D3"></rect>
@@ -81,6 +84,7 @@
                             <text x="624" y="646" text-anchor="end" font-family="'Hind', sans-serif" font-size="12" fill="#6A736D">{{ $d['map_note'] }}</text>
                         </svg>
                     </div>
+                    @if ($mob)</div>@endif
                 </div>
             </div>
         </div>

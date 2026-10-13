@@ -25,14 +25,16 @@
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
-            <div class="ek-stage" data-ek-stage style="background: var(--tk-paper)">
-                <div class="ek-art">
-                    <div data-m="pf-head" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([120, 84])) }}; width: {{ ek_u($v([520, 342])) }}">
+            {{-- Phones: the section flows with the page (not pinned), so opened answers always have room. --}}
+            <div class="ek-stage" data-ek-stage style="background: var(--tk-paper); {{ $mob ? 'height: auto; min-height: 100svh' : '' }}">
+                <div class="ek-art" @if ($mob) style="position: relative; left: auto; top: auto; height: auto; margin: 0 auto; padding: {{ ek_u(84) }} {{ ek_u(24) }} {{ ek_u(56) }}; box-sizing: border-box" @endif>
+                    <div data-m="pf-head" style="{{ $mob ? '' : 'position: absolute; left: '.ek_u(96).'; top: '.ek_u(120).'; width: '.ek_u(520) }}">
                         <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
                         <h2 style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([56, 32])) }}, 0.8125rem); line-height: 1.04; letter-spacing: -0.045em">{{ $t['heading'] }}</h2>
                         <p style="margin: {{ ek_u($v([14, 8])) }} 0 0; font-size: max({{ ek_u($v([19, 15])) }}, 0.8125rem); line-height: 1.5; color: var(--tk-muted)">{{ str_replace('{service}', $lower, $t['text']) }}</p>
                     </div>
-                    <div style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([320, 238])) }}; width: {{ ek_u($v([520, 342])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([12, 8])) }}">
+                    @if ($mob)<div style="margin-top: {{ ek_u(24) }}; display: flex; flex-direction: column">@endif
+                    <div style=" {{ $mob ? 'margin-bottom: '.ek_u(24).';' : 'position: absolute; left: '.ek_u(96).'; top: '.ek_u(320).'; width: '.ek_u(520).';' }} display: flex; flex-direction: column; gap: {{ ek_u($v([12, 8])) }}">
                         <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: {{ ek_u($v([12, 8])) }}">
                             @foreach ($factors as $k => $factor)
                                 <li data-m="pf-factor" style="display: flex; align-items: center; gap: {{ ek_u($v([14, 10])) }}; padding: {{ ek_u($v([14, 10])) }} {{ ek_u($v([18, 12])) }}; border-radius: {{ ek_u($v([16, 14])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u(10) }} {{ ek_u(20) }} {{ ek_u(-18) }} rgba(13,20,16,0.5)"><span class="ek-pf-num" aria-hidden="true" style="width: {{ ek_u($v([30, 26])) }}; height: {{ ek_u($v([30, 26])) }}; flex-shrink: 0; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(13) }}, 0.8125rem); display: flex; align-items: center; justify-content: center">{{ $k + 1 }}</span><span style="font-size: max({{ ek_u($v([17, 14])) }}, 0.8125rem); line-height: 1.35">{{ $factor }}</span></li>
@@ -42,7 +44,7 @@
                     </div>
 
                     @if ($faqs->isNotEmpty())
-                        <div style="position: absolute; left: {{ ek_u($v([720, 24])) }}; top: {{ ek_u($v([120, 524])) }}; width: {{ ek_u($v([624, 342])) }}">
+                        <div style="{{ $mob ? '' : 'position: absolute; left: '.ek_u(720).'; top: '.ek_u(120).'; width: '.ek_u(624).';' }}">
                             <span data-m="pf-faq-head" style="display: block; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['faq_label'] }}</span>
                             <div style="margin-top: {{ ek_u($v([16, 10])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([12, 8])) }}">
                                 @foreach ($faqs as $k => $faq)
@@ -54,6 +56,7 @@
                             </div>
                         </div>
                     @endif
+                    @if ($mob)</div>@endif
                 </div>
             </div>
         </div>

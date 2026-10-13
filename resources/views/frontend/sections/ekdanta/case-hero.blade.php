@@ -41,7 +41,10 @@
                 <div class="ek-art">
                     <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(circle at {{ $v(['78% 45%', '50% 75%']) }}, rgba(255,255,255,0.14), rgba(255,255,255,0) 55%)"></div>
 
-                    <div data-m="ch-text" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([136, 84])) }}; width: {{ ek_u($v([660, 342])) }}">
+                    {{-- Phones: the text, then the profile card (at 500 as drawn, lower when the text
+                         grows to its minimum size on a short screen), never over the buttons. --}}
+                    @if ($mob)<div style="position: absolute; left: 0; right: 0; top: {{ ek_u(84) }}; bottom: 0; display: flex; flex-direction: column">@endif
+                    <div data-m="ch-text" style="{{ $mob ? 'flex: none; margin-left: '.ek_u(24).'; width: '.ek_u(342).'; min-height: '.ek_u(416) : 'position: absolute; left: '.ek_u(96).'; top: '.ek_u(136).'; width: '.ek_u(660) }}">
                         <p data-m="ch-crumb" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([15, 13])) }}, 0.8125rem); color: rgba(255,255,255,0.75)"><a href="{{ link_href($d['crumb_home_link'] ?? '/work') }}" style="text-decoration: none">{{ $t['crumb_home'] }}</a><span aria-hidden="true">  ›  </span>{{ str_replace(['{n}', '{total}'], [$num($at), $num($count - 1)], $t['crumb_current']) }}</p>
                         <span data-m="ch-chip" style="display: inline-block; margin-top: {{ ek_u($v([18, 12])) }}; padding: {{ ek_u($v([6, 5])) }} {{ ek_u($v([12, 10])) }}; border-radius: 999px; background: var(--tk-green); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([12, 11])) }}, 0.75rem); letter-spacing: 0.06em; color: var(--tk-ink)">{{ $case->get('sector') }}</span>
                         <h1 style="margin: {{ ek_u($v([14, 8])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v($nameSize)) }}, 0.8125rem); line-height: 0.98; letter-spacing: -0.05em"><span style="display: block; overflow: hidden; padding-bottom: {{ ek_u($v([8, 4])) }}"><span data-m="ch-name" style="display: block">{{ $case->title }}</span></span></h1>
@@ -56,7 +59,7 @@
                         </div>
                     </div>
 
-                    <div data-m="ch-card-tip" style="position: absolute; left: {{ ek_u($v([820, 65])) }}; top: {{ ek_u($v([120, 500])) }}; width: {{ ek_u($v([520, 260])) }}; height: {{ ek_u($v([660, 330])) }}; transform-origin: 50% 100%">
+                    <div data-m="ch-card-tip" style="{{ $mob ? 'position: relative; flex: none; margin-left: '.ek_u(65).'; width: '.ek_u(260).'; height: '.ek_u(330) : 'position: absolute; left: '.ek_u(820).'; top: '.ek_u(120).'; width: '.ek_u(520).'; height: '.ek_u(660) }}; transform-origin: 50% 100%">
                         <div style="position: absolute; left: 0; top: 0; width: {{ ek_u(520) }}; height: {{ ek_u(660) }}; {{ $mob ? 'transform: scale(0.5); transform-origin: 0 0' : '' }}">
                             <div data-m="ch-card" style="position: absolute; inset: 0; border-radius: {{ ek_u(28) }}; background: #FFFFFF; color: var(--tk-ink); box-shadow: 0 {{ ek_u(60) }} {{ ek_u(100) }} {{ ek_u(-40) }} rgba(0,0,0,0.7); overflow: hidden">
                                 <div aria-hidden="true" style="position: absolute; left: {{ ek_u(24) }}; right: {{ ek_u(24) }}; top: {{ ek_u(22) }}; display: flex; align-items: center; gap: {{ ek_u(14) }}">
@@ -70,6 +73,7 @@
                             </div>
                         </div>
                     </div>
+                    @if ($mob)</div>@endif
 
                     @if ($count > 1)
                         <div data-m="ch-nav" style="position: absolute; right: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([806, 76])) }}; display: flex; align-items: center; gap: {{ ek_u($v([10, 6])) }}">

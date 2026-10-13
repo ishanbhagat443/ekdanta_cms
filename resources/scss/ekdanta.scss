@@ -16,6 +16,7 @@
 @use 'ekdanta/brief-builder';
 @use 'ekdanta/service-deep-dive';
 @use 'ekdanta/proof-carousel';
+@use 'ekdanta/pricing';
 @use 'ekdanta/next-steps';
 @use 'ekdanta/page-finder';
 @use 'ekdanta/our-story';
@@ -89,6 +90,16 @@
     top: calc((100% - 844 * var(--u)) / 2);
     width: calc(390 * var(--u));
     height: calc(844 * var(--u));
+}
+
+// Big Brand Finale on short phones (360 × 640): text at its minimum size makes
+// the card taller than drawn, so it sits a little higher and tighter, and the
+// footer line (with "Pause animations") still fits under it.
+@media (max-width: 767.98px) and (max-height: 700px) {
+    .ek-fin-col { top: calc(350 * var(--u)) !important; gap: calc(6 * var(--u)) !important; }
+    .ek-fin-card { padding: calc(12 * var(--u)) calc(16 * var(--u)) !important; gap: calc(5 * var(--u)) !important; }
+    .ek-fin-card > img { height: calc(24 * var(--u)) !important; }
+    .ek-fin-col > footer { padding-top: calc(6 * var(--u)) !important; }
 }
 
 // JavaScript off: a section whose items take turns on one stage lists them

@@ -1,0 +1,12 @@
+// Ekdanta · Pricing on short phones (360 × 640): text at its minimum size makes
+// the plan card and the list taller than drawn, so they sit tighter and the
+// buttons stay on screen.
+@media (max-width: 767.98px) and (max-height: 700px) {
+    .ek-price-plan { padding: calc(10 * var(--u)) calc(12 * var(--u)) !important; }
+    .ek-price-plan > ul { margin-top: calc(6 * var(--u)) !important; gap: calc(4 * var(--u)) !important; }
+    .ek-price-plan > div:last-child { margin-top: calc(6 * var(--u)) !important; padding-top: calc(6 * var(--u)) !important; }
+    .ek-price-list { margin-top: calc(10 * var(--u)) !important; }
+    .ek-price-list ul { margin-top: calc(4 * var(--u)) !important; gap: calc(3 * var(--u)) !important; }
+    .ek-price-list li > span:first-child { width: calc(26 * var(--u)) !important; height: calc(26 * var(--u)) !important; }
+    .ek-price-actions { padding-top: calc(8 * var(--u)) !important; }
+}

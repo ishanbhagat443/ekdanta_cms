@@ -10,7 +10,7 @@
         }
     },
     "mobile": {
-        "stage": { "pin": true, "length": 956 },
+        "stage": { "pin": false },
         "tracks": {
             "head": { "part": "pf-head", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateY": [{ "from": 30, "to": 0, "ease": "outCubic" }] }, "range": [-650, -230], "ease": "linear" },
             "factors": { "part": "pf-factor", "trigger": "scrub", "keyframes": { "opacity": [0, 1], "translateX": [{ "from": -30, "to": 0, "ease": "outCubic" }] }, "range": [-300, -50], "ease": "linear", "stagger": 90 },

@@ -28,28 +28,36 @@
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: var(--tk-paper)">
                 <div class="ek-art">
-                    <div data-m="price-head" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([120, 82])) }}; width: {{ ek_u($v([620, 342])) }}">
+                    {{-- Phones: heading, plan and list in one column, at their drawn places (82 / 248 / 548)
+                         or lower when text grows to its minimum size on a short screen. --}}
+                    @if ($mob)<div style="position: absolute; left: {{ ek_u(24) }}; right: {{ ek_u(24) }}; top: {{ ek_u(82) }}; bottom: 0; display: flex; flex-direction: column">@endif
+                    <div data-m="price-head" style="{{ $mob ? 'order: 1; flex: none; min-height: '.ek_u(166) : 'position: absolute; left: '.ek_u(96).'; top: '.ek_u(120).'; width: '.ek_u(620) }}">
                         <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, 0.75rem); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
                         <h2 style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([64, 32])) }}; line-height: {{ $v([1.02, 1.04]) }}; letter-spacing: -0.045em">{{ $t['heading'] }}<br><span style="color: var(--tk-green-text)">{{ $t['heading_2'] }}</span></h2>
                         <p style="margin: {{ ek_u($v([18, 8])) }} 0 0; {{ $mob ? '' : 'width: '.ek_u(560).';' }} font-size: max({{ ek_u($v([19, 14])) }}, 0.8125rem); line-height: {{ $v([1.5, 1.45]) }}; color: var(--tk-muted)">{{ $t['text'] }}</p>
                     </div>
 
-                    <div style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([440, 548])) }}; width: {{ ek_u($v([600, 342])) }}">
+                    <div class="ek-price-list" style="{{ $mob ? 'order: 3; flex: none; margin-top: '.ek_u(30).'; display: flex; flex-direction: column; min-height: '.ek_u(274) : 'position: absolute; left: '.ek_u(96).'; top: '.ek_u(440).'; width: '.ek_u(600) }}">
                         <span data-m="price-label" style="display: block; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([13, 11])) }}, 0.75rem); letter-spacing: 0.1em; color: var(--tk-muted)">{{ $t['factors_label'] }}</span>
                         <ul style="margin: {{ ek_u($v([14, 8])) }} 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: {{ ek_u($v([12, 8])) }}">
                             @foreach ($factors as $factor)
                                 <li data-m="price-factor" style="display: flex; align-items: center; gap: {{ ek_u($v([14, 10])) }}"><span style="width: {{ ek_u($v([40, 32])) }}; height: {{ ek_u($v([40, 32])) }}; flex-shrink: 0; border-radius: {{ ek_u($v([12, 10])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u(6) }} {{ ek_u(14) }} {{ ek_u(-10) }} rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" fill="none" stroke="#1E8E47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u($v([20, 16])) }}; height: {{ ek_u($v([20, 16])) }}">{!! $icons[$factor['icon'] ?? 'goal'] ?? $icons['goal'] !!}</svg></span><span style="font-size: max({{ ek_u($v([18, 14])) }}, 0.8125rem); line-height: {{ $v([1.35, 1.3]) }}">{{ $factor['text'] }}</span></li>
                             @endforeach
                         </ul>
-                        @unless ($mob)
+                        @if (! $mob)
                             <div data-m="price-actions" style="margin-top: {{ ek_u(26) }}; display: flex; gap: {{ ek_u(12) }}">
                                 <a class="ek-press" href="{{ link_href($d['button_link'] ?? '') }}" @if (\App\Support\Link::external($d['button_link'] ?? '')) target="_blank" rel="noopener" @endif style="{{ $button }}; padding: 0 {{ ek_u(24) }}; background: var(--tk-ink); color: #FFFFFF"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u(18) }}; height: {{ ek_u(18) }}">{!! $chat !!}</svg>{{ $t['button_label'] }}</a>
                                 <a class="ek-press" href="{{ link_href($d['button_2_link'] ?? '') }}" style="{{ $button }}; padding: 0 {{ ek_u(22) }}; box-shadow: inset 0 0 0 {{ ek_u(1.5) }} var(--tk-ink)">{{ $t['button_2_label'] }}</a>
                             </div>
-                        @endunless
+                        @else
+                            <div data-m="price-actions" class="ek-price-actions" style="margin-top: auto; padding-top: {{ ek_u(16) }}; display: flex; gap: {{ ek_u(8) }}">
+                                <a class="ek-press" href="{{ link_href($d['button_link'] ?? '') }}" @if (\App\Support\Link::external($d['button_link'] ?? '')) target="_blank" rel="noopener" @endif style="{{ $button }}; background: var(--tk-ink); color: #FFFFFF"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u(16) }}; height: {{ ek_u(16) }}">{!! $chat !!}</svg>{{ $t['button_label'] }}</a>
+                                <a class="ek-press" href="{{ link_href($d['button_2_link'] ?? '') }}" style="{{ $button }}; box-shadow: inset 0 0 0 {{ ek_u(1.5) }} var(--tk-ink)">{{ $t['button_2_label'] }}</a>
+                            </div>
+                        @endif
                     </div>
 
-                    <div style="position: absolute; {{ $mob ? 'left: '.ek_u(20).'; top: '.ek_u(248).'; width: '.ek_u(350).'; height: '.ek_u(270) : 'left: '.ek_u(790).'; top: 0; width: '.ek_u(560).'; height: '.ek_u(900) }}">
+                    <div style="{{ $mob ? 'position: relative; order: 2; flex: none; margin-left: '.ek_u(-4).'; width: '.ek_u(350).'; min-height: '.ek_u(270) : 'position: absolute; left: '.ek_u(790).'; top: 0; width: '.ek_u(560).'; height: '.ek_u(900) }}">
                         <div aria-hidden="true">
                             @foreach ($lines($d['packages']) as $j => $name)
                                 <div data-m="pack-{{ $j }}" class="ek-pack" style="position: absolute; left: {{ ek_u($j * $cgap) }}; top: {{ ek_u($ctop) }}; width: {{ ek_u($cw) }}; height: {{ ek_u($ch) }}; box-sizing: border-box; padding: {{ ek_u($v([20, 12])) }}; border-radius: {{ ek_u($v([20, 16])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u($v([20, 16])) }} {{ ek_u($v([40, 32])) }} {{ ek_u($v([-26, -22])) }} rgba(13,20,16,0.45); opacity: 0">
@@ -65,7 +73,7 @@
                                 <span style="display: inline-block; transform: rotate(-11deg); padding: {{ ek_u($v([12, 8])) }} {{ ek_u($v([22, 14])) }}; border-radius: {{ ek_u($v([14, 10])) }}; border: {{ ek_u($v([5, 4])) }} solid #E0662B; color: #E0662B; background: rgba(244,246,241,0.85); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([34, 22])) }}; line-height: 1; letter-spacing: 0.02em; white-space: nowrap">{{ $d['stamp'] }}</span>
                             </div>
                         </div>
-                        <div data-m="price-plan" style="position: absolute; {{ $mob ? 'left: 0; right: 0; top: 0; padding: '.ek_u(18).'; border-radius: '.ek_u(22) : 'left: '.ek_u(50).'; top: '.ek_u(170).'; width: '.ek_u(460).'; padding: '.ek_u(30).'; border-radius: '.ek_u(28) }}; box-sizing: border-box; background: var(--tk-green-deep); color: #FFFFFF; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-40, -30])) }} rgba(13,20,16,0.7)">
+                        <div data-m="price-plan" class="ek-price-plan" style="{{ $mob ? 'position: relative; padding: '.ek_u(18).'; border-radius: '.ek_u(22) : 'position: absolute; left: '.ek_u(50).'; top: '.ek_u(170).'; width: '.ek_u(460).'; padding: '.ek_u(30).'; border-radius: '.ek_u(28) }}; box-sizing: border-box; background: var(--tk-green-deep); color: #FFFFFF; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-40, -30])) }} rgba(13,20,16,0.7)">
                             <span style="display: flex; justify-content: space-between; align-items: center; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([13, 11])) }}, 0.75rem); letter-spacing: 0.1em; color: var(--tk-mint)"><span>{{ $d['plan_label'] }}</span><span style="padding: {{ ek_u($v([4, 3])) }} {{ ek_u($v([10, 8])) }}; border-radius: 999px; background: rgba(255,255,255,0.12); letter-spacing: 0.04em; color: #FFFFFF">{{ $d['plan_tag'] }}</span></span>
                             <span style="display: block; margin-top: {{ ek_u($v([14, 6])) }}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([32, 20])) }}; line-height: {{ $v([1.1, 1.12]) }}; letter-spacing: -0.035em">{!! nl2br(e($t['plan_title'])) !!}</span>
                             <ul style="margin: {{ ek_u($v([22, 12])) }} 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: {{ ek_u($v([10, 6])) }}">
@@ -79,13 +87,8 @@
                             </span>
                         </div>
                     </div>
+                    @if ($mob)</div>@endif
 
-                    @if ($mob)
-                        <div data-m="price-actions" style="position: absolute; left: {{ ek_u(24) }}; right: {{ ek_u(24) }}; top: {{ ek_u(772) }}; display: flex; gap: {{ ek_u(8) }}">
-                            <a class="ek-press" href="{{ link_href($d['button_link'] ?? '') }}" @if (\App\Support\Link::external($d['button_link'] ?? '')) target="_blank" rel="noopener" @endif style="{{ $button }}; background: var(--tk-ink); color: #FFFFFF"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u(16) }}; height: {{ ek_u(16) }}">{!! $chat !!}</svg>{{ $t['button_label'] }}</a>
-                            <a class="ek-press" href="{{ link_href($d['button_2_link'] ?? '') }}" style="{{ $button }}; box-shadow: inset 0 0 0 {{ ek_u(1.5) }} var(--tk-ink)">{{ $t['button_2_label'] }}</a>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

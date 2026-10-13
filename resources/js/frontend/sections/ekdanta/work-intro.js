@@ -5,7 +5,8 @@
  *   forward  the first comes forward, the others fly off [forwardFrom, +forwardFor]
  *   carousel one case at a time, by distance from the current index
  * The background blends between the cases' brand colours. Under reduced
- * motion the cases switch in place. Numbers: Motion tab → Scene settings.
+ * motion nothing moves or fades: the heading, then each case, switch in
+ * place, whole. Numbers: Motion tab → Scene settings.
  */
 import { clamp, lerp, inOutQuad as ease } from '../../motion/math.js';
 const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
@@ -37,8 +38,11 @@ export default function workIntro(el, { reduced, config, root }) {
             const a = ease(aT);
             const bT = clamp((s - p.forwardFrom) / p.forwardFor);
             const b = ease(bT);
-            const cf = clamp((s - p.carouselFrom) / p.step, 0, last);
+            const raw = clamp((s - p.carouselFrom) / p.step, 0, last);
+            const cf = reduced ? Math.round(raw) : raw;
             const inC = s >= p.carouselFrom;
+            // Reduced motion: the heading gives way to the first case halfway through "forward".
+            const casesIn = bT >= 0.5;
 
             cards.forEach((card, i) => {
                 const [px, py, ps, pr] = p.scatter[i % p.scatter.length];
@@ -50,7 +54,7 @@ export default function workIntro(el, { reduced, config, root }) {
                 let z;
                 if (reduced) {
                     [x, y, r, sc, z] = [p.hero[0], p.hero[1], -3, 1, 20];
-                    op = inC ? clamp(1 - Math.abs(Math.round(cf) - i)) : (i === 0 ? clamp(aT * 2) : 0);
+                    op = inC ? (i === cf ? 1 : 0) : (i === 0 && casesIn ? 1 : 0);
                 } else if (!inC) {
                     if (bT <= 0) {
                         [x, y, sc, r, op, z] = [lerp(px * p.spread, px, a), lerp(py + p.drop, py, a), lerp(ps * p.shrink, ps, a), pr, clamp(aT * 1.6 - 0.1), 5 + i];
@@ -75,6 +79,7 @@ export default function workIntro(el, { reduced, config, root }) {
                 let ty;
                 if (!inC) {
                     op = i === 0 ? clamp((s - (p.carouselFrom - 250)) / 250) : 0;
+                    if (reduced) op = op > 0.5 ? 1 : 0;
                     ty = (1 - op) * p.panelRise;
                 } else {
                     op = clamp(1 - Math.abs(cf - i) * 2.4);
@@ -85,7 +90,7 @@ export default function workIntro(el, { reduced, config, root }) {
             });
 
             if (intro) {
-                intro.style.opacity = (clamp(aT * 2 - 0.3) * (1 - clamp(bT * 2))).toFixed(3);
+                intro.style.opacity = reduced ? (casesIn ? '0' : '1') : (clamp(aT * 2 - 0.3) * (1 - clamp(bT * 2))).toFixed(3);
                 intro.style.transform = `translateY(${((reduced ? 0 : (1 - a) * p.introRise) * u).toFixed(1)}px)`;
             }
 
@@ -93,7 +98,7 @@ export default function workIntro(el, { reduced, config, root }) {
                 const i0 = Math.floor(cf);
                 stage.style.background = inC
                     ? mix(colours[i0], colours[Math.min(last, i0 + 1)], cf - i0)
-                    : mix(base, colours[0], b);
+                    : mix(base, colours[0], reduced ? (casesIn ? 1 : 0) : b);
             }
 
             const active = inC ? Math.round(cf) : -1;

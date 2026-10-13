@@ -57,7 +57,8 @@
                     @endif
                     <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: {{ ek_u($v([160, 90])) }}; background: linear-gradient(0deg, var(--tk-paper), rgba(244,246,241,0))"></div>
 
-                    <div data-m="wk-text" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([150, 92])) }}; width: {{ ek_u($v([640, 342])) }}">
+                    {{-- Above the wall: on a short phone the text can reach it. --}}
+                    <div data-m="wk-text" style="position: absolute; z-index: 1; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([150, 92])) }}; width: {{ ek_u($v([640, 342])) }}">
                         <p data-m="wk-crumb" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([15, 13])) }}, 0.8125rem); color: var(--tk-muted)"><a href="{{ link_href($d['crumb_home_link'] ?? '/') }}" style="text-decoration: none">{{ $t['crumb_home'] }}</a><span aria-hidden="true">  ›  </span>{{ $t['crumb_current'] }}</p>
                         <h1 style="margin: {{ ek_u($v([14, 8])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([128, 52])) }}, 0.8125rem); line-height: 1; letter-spacing: -0.05em">
                             <span style="display: block; overflow: hidden; padding-bottom: {{ ek_u($v([8, 4])) }}"><span data-m="wk-line" style="display: block">{{ $t['heading'] }}</span></span>
@@ -71,7 +72,7 @@
                         </ul>
                         <div data-m="wk-buttons" style="margin-top: {{ ek_u($v([30, 16])) }}; display: flex; {{ $mob ? 'flex-direction: column;' : '' }} gap: {{ ek_u($v([12, 8])) }}">
                             <a class="ek-press" href="{{ link_href($d['button_link'] ?? '') }}" style="{{ $button }}; padding: 0 {{ ek_u($v([26, 18])) }}; background: var(--tk-ink); color: #FFFFFF">{{ $t['button_label'] }}</a>
-                            <a class="ek-press" href="{{ link_href($d['button_2_link'] ?? '') }}" style="{{ $button }}; padding: 0 {{ ek_u($v([24, 16])) }}; gap: {{ ek_u(8) }}; border: {{ ek_u(1.5) }} solid var(--tk-ink)"><svg viewBox="0 0 24 24" aria-hidden="true" style="width: {{ ek_u(16) }}; height: {{ ek_u(16) }}"><path d="M7 4v16l13-8z" fill="#0D1410"></path></svg>{{ $t['button_2_label'] }}</a>
+                            <a class="ek-press" href="{{ link_href($d['button_2_link'] ?? '') }}" style="{{ $button }}; padding: 0 {{ ek_u($v([24, 16])) }}; gap: {{ ek_u(8) }}; background: var(--tk-paper); border: {{ ek_u(1.5) }} solid var(--tk-ink)"><svg viewBox="0 0 24 24" aria-hidden="true" style="width: {{ ek_u(16) }}; height: {{ ek_u(16) }}"><path d="M7 4v16l13-8z" fill="#0D1410"></path></svg>{{ $t['button_2_label'] }}</a>
                         </div>
                     </div>
                     <div aria-hidden="true" data-m="wk-hint" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; bottom: {{ ek_u($v([30, 20])) }}; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: max({{ ek_u(13) }}, 0.8125rem); letter-spacing: 0.14em; color: var(--tk-muted)">{{ $t['hint'] }}</div>

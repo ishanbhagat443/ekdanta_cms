@@ -25,13 +25,12 @@
 
                     <div aria-hidden="true" data-m="beam" style="position: absolute; inset: 0; background: var(--tk-green); clip-path: {{ $beam }}; {{ $beamBase }}"></div>
                     <div data-m="beam" style="position: absolute; inset: 0; clip-path: {{ $beam }}; {{ $beamBase }}">
-                        @include('frontend.sections.ekdanta.partials.home-hero-text', ['t' => $t, 'chips' => $chips, 'ghost' => false, 'mobile' => $mobile])
+                        @include('frontend.sections.ekdanta.partials.home-hero-text', ['t' => $t, 'chips' => $chips, 'ghost' => false, 'mobile' => $mobile, 'after' => $mobile])
                     </div>
 
-                    <div class="ek-hh-cta" style="position: absolute; left: {{ ek_u($mobile ? 24 : 96) }}; top: {{ ek_u($mobile ? 470 : 700) }}; display: flex; gap: {{ ek_u($mobile ? 8 : 12) }}">
-                        <a href="{{ link_href($t['button_link'] ?? '#contact') }}" style="height: {{ ek_u($mobile ? 52 : 56) }}; box-sizing: border-box; padding: 0 {{ ek_u($mobile ? 22 : 26) }}; display: inline-flex; align-items: center; background: var(--tk-ink); color: #FFFFFF; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($mobile ? 15 : 16) }}, 0.8125rem); text-decoration: none">{{ $t['button_label'] }}</a>
-                        <a href="{{ link_href($t['whatsapp_link'] ?? 'wa:') }}" target="_blank" rel="noopener" style="height: {{ ek_u($mobile ? 52 : 56) }}; box-sizing: border-box; padding: 0 {{ ek_u($mobile ? 18 : 24) }}; display: inline-flex; align-items: center; gap: {{ ek_u(8) }}; box-shadow: inset 0 0 0 {{ ek_u(1.5) }} var(--tk-ink); color: var(--tk-ink); border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($mobile ? 15 : 16) }}, 0.8125rem); text-decoration: none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u($mobile ? 17 : 18) }}; height: {{ ek_u($mobile ? 17 : 18) }}"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg>{{ $t['whatsapp_label'] }}</a>
-                    </div>
+                    @unless ($mobile)
+                        @include('frontend.sections.ekdanta.partials.home-hero-cta', ['t' => $t, 'mobile' => false])
+                    @endunless
 
                     <div aria-hidden="true" style="position: absolute; {{ $mobile ? 'left: 0; top: 0; transform-origin: 0 0; transform: translate('.ek_u(161.8).', '.ek_u(494.5).') rotate(22deg) scale(0.62)' : 'left: '.ek_u(852).'; top: '.ek_u(340) }}; width: {{ ek_u(588) }}; height: {{ ek_u(560) }}">
                         <img src="{{ media_ref($t['head_image'] ?? null)?->url }}" alt="" style="position: absolute; left: 0; top: 0; width: {{ ek_u(588) }}; height: {{ ek_u(560) }}; display: block">
@@ -41,7 +40,9 @@
                         </div>
                     </div>
 
-                    <div aria-hidden="true" class="ek-hh-hint" style="position: absolute; {{ $mobile ? 'left: '.ek_u(24).'; top: '.ek_u(540) : 'left: 0; right: 0; bottom: '.ek_u(30).'; text-align: center' }}; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: {{ $mobile ? ek_u(11) : 'max('.ek_u(13).', 0.8125rem)' }}; letter-spacing: 0.14em; color: {{ $mobile ? 'var(--tk-dark-4)' : 'var(--tk-ink)' }}">{{ $t['hint'] }}</div>
+                    @unless ($mobile)
+                        <div aria-hidden="true" class="ek-hh-hint" style="position: absolute; left: 0; right: 0; bottom: {{ ek_u(30) }}; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: max({{ ek_u(13) }}, 0.8125rem); letter-spacing: 0.14em; color: var(--tk-ink)">{{ $t['hint'] }}</div>
+                    @endunless
                 </div>
             </div>
         </div>

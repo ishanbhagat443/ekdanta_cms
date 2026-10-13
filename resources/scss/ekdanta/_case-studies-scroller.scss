@@ -46,3 +46,11 @@
 
     .ek-case-progress { transform: scaleX(calc(var(--f) / max(1, var(--count) - 1))); }
 }
+
+// Short phones (360 × 640): text at its minimum size makes each case's text
+// taller than drawn, so the picture shows a shorter crop (its slides keep
+// their height) and the text starts higher, keeping the button on screen.
+@media (max-width: 767.98px) and (max-height: 700px) {
+    .ek-comp--m .ek-case-window { height: calc(170 * var(--u)) !important; }
+    .ek-comp--m .ek-case-text { top: calc(346 * var(--u)) !important; }
+}

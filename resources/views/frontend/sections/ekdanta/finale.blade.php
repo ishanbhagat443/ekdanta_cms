@@ -31,7 +31,10 @@
                         <p data-m="end-big" style="margin: {{ $mob ? ek_u(4).' 0 0' : 0 }}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([200, 88])) }}; line-height: 0.9; letter-spacing: -0.06em; color: #FFFFFF; transform-origin: left center; transform: rotate(-3deg)">{!! nl2br(e($t['big'])) !!}</p>
                     </div>
 
-                    <address data-m="end-card" style="position: absolute; {{ $mob ? 'left: '.ek_u(16).'; right: '.ek_u(16).'; top: '.ek_u(376).'; padding: '.ek_u(18).' '.ek_u(20).' '.ek_u(20) : 'left: '.ek_u(880).'; top: '.ek_u(130).'; width: '.ek_u(464).'; padding: '.ek_u(32) }}; margin: 0; font-style: normal; box-sizing: border-box; border-radius: {{ ek_u($v([28, 24])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-40, -30])) }} rgba(13,20,16,0.5); display: flex; flex-direction: column; gap: {{ ek_u($v([18, 11])) }}">
+                    {{-- Phones: the card and the footer line share one column, so a card that grows
+                         (text at its minimum size on a short screen) pushes the line down, never under it. --}}
+                    @if ($mob)<div class="ek-fin-col" style="position: absolute; left: {{ ek_u(16) }}; right: {{ ek_u(16) }}; top: {{ ek_u(376) }}; bottom: {{ ek_u(16) }}; display: flex; flex-direction: column; gap: {{ ek_u(12) }}">@endif
+                    <address data-m="end-card" class="ek-fin-card" style="{{ $mob ? 'padding: '.ek_u(18).' '.ek_u(20).' '.ek_u(20) : 'position: absolute; left: '.ek_u(880).'; top: '.ek_u(130).'; width: '.ek_u(464).'; padding: '.ek_u(32) }}; margin: 0; font-style: normal; box-sizing: border-box; border-radius: {{ ek_u($v([28, 24])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-40, -30])) }} rgba(13,20,16,0.5); display: flex; flex-direction: column; gap: {{ ek_u($v([18, 11])) }}">
                         <img src="{{ media_ref($t['logo'] ?? null)?->url }}" alt="{{ $d['logo_alt'] }}" style="height: {{ ek_u($v([40, 30])) }}; width: auto; align-self: flex-start">
                         {{-- Mobile: the first group on its own, the rest and the email side by side. --}}
                         @foreach ($groups as $groupLabel => $numbers)
@@ -60,7 +63,7 @@
                         </div>
                     </address>
 
-                    <footer data-m="end-foot" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; right: {{ ek_u($v([96, 24])) }}; bottom: {{ ek_u($v([34, 16])) }}; padding-top: {{ ek_u($v([16, 10])) }}; border-top: {{ ek_u(1) }} solid rgba(13,20,16,0.2); display: flex; {{ $mob ? 'flex-direction: column; gap: '.ek_u(2) : 'justify-content: space-between; align-items: center; gap: '.ek_u(16) }}; font-size: max({{ ek_u($v([15, 12])) }}, {{ $mob ? '0.75rem' : '0.8125rem' }}); color: var(--tk-finale-foot)">
+                    <footer data-m="end-foot" style="{{ $mob ? 'margin: auto '.ek_u(8).' 0' : 'position: absolute; left: '.ek_u(96).'; right: '.ek_u(96).'; bottom: '.ek_u(34) }}; padding-top: {{ ek_u($v([16, 10])) }}; border-top: {{ ek_u(1) }} solid rgba(13,20,16,0.2); display: flex; {{ $mob ? 'flex-direction: column; gap: '.ek_u(2) : 'justify-content: space-between; align-items: center; gap: '.ek_u(16) }}; font-size: max({{ ek_u($v([15, 12])) }}, {{ $mob ? '0.75rem' : '0.8125rem' }}); color: var(--tk-finale-foot)">
                         <span>{{ $year($t['footer_left']) }}</span>
                         {{-- The button keeps its 44px target; the negative margin keeps the line its drawn height. --}}
                         <span style="display: flex; {{ $mob ? 'flex-direction: column; align-items: flex-start; gap: '.ek_u(2) : 'align-items: center; gap: '.ek_u(16) }}">
@@ -70,6 +73,7 @@
                             @endif
                         </span>
                     </footer>
+                    @if ($mob)</div>@endif
                 </div>
             </div>
         </div>
