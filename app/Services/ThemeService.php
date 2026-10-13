@@ -298,16 +298,23 @@ class ThemeService
      * its own, generic keywords bare. Quoting the whole list — the old
      * behaviour — turned `Georgia, "Times New Roman", serif` into one font
      * name that doesn't exist. Anything that isn't part of a name is dropped,
-     * so the value can't break out of the stylesheet.
+     * so the value can't break out of the stylesheet. A list with no generic
+     * keyword ends in sans-serif: until the web font arrives the browser would
+     * otherwise draw its default serif, and the swap moves the text further.
      */
     public static function fontStack(string $value): string
     {
         $generic = ['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-serif',
             'ui-sans-serif', 'ui-monospace', 'ui-rounded', 'emoji', 'math', 'fangsong', 'inherit', 'initial', 'unset'];
 
-        return collect(explode(',', $value))
+        $families = collect(explode(',', $value))
             ->map(fn (string $family) => trim((string) preg_replace('/[^\pL\pN _-]/u', '', $family)))
-            ->filter()
+            ->filter();
+        if ($families->isNotEmpty() && ! $families->contains(fn (string $family) => in_array(strtolower($family), $generic, true))) {
+            $families->push('sans-serif');
+        }
+
+        return $families
             ->map(fn (string $family) => in_array(strtolower($family), $generic, true) ? $family : "'{$family}'")
             ->implode(', ');
     }

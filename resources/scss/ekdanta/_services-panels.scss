@@ -3,8 +3,7 @@
 // the bar. Without JS --ek-f is 0: the first panel.
 .ek-services-panels {
     .ek-comp--d { --drift: 260; }
-    .ek-comp--m,
-    .ek-comp--t { --drift: 140; }
+    .ek-comp--m { --drift: 140; }
 
     .ek-sp-track { transform: translateX(calc(var(--ek-f, 0) * var(--w) * -1 * var(--u))); }
     .ek-sp-word { transform: translateX(calc((var(--ek-f, 0) - var(--i)) * var(--drift) * -1 * var(--u))); }

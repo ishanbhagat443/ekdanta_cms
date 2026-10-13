@@ -6,7 +6,7 @@
  */
 import { clamp, inOutQuad } from '../../motion/math.js';
 
-export const DEFAULTS = {
+const DEFAULTS = {
     openSeconds: 10, scrollOpen: 600, spreadA: -2400, spreadB: 3200, ctaAt: 0.8, ctaSpan: 0.12, ctaRise: 30,
     glowFrom: 0.55, hintAt: 560, hintFadeAt: 650, hintFadeSpan: 150,
 };

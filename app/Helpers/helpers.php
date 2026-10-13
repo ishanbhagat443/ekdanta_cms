@@ -370,8 +370,8 @@ if (! function_exists('ek_u')) {
 if (! function_exists('business_text')) {
     /**
      * Contact details from Settings → Business inside a text: {phone:1}
-     * (the first number as written there), {whatsapp} (the WhatsApp number)
-     * and {email}. Change a number once and every section shows it.
+     * (the first number as written there), {whatsapp} (the WhatsApp number),
+     * {email} and {reply_time}. Change a number once and every section shows it.
      */
     function business_text(?string $text): string
     {
@@ -380,9 +380,9 @@ if (! function_exists('business_text')) {
             return $text;
         }
 
-        return preg_replace_callback('/\{(phone:([1-9])|whatsapp|email)\}/', fn (array $m) => match (true) {
+        return preg_replace_callback('/\{(phone:([1-9])|whatsapp|email|reply_time)\}/', fn (array $m) => match (true) {
             $m[1] === 'whatsapp' => business_whatsapp()['number'] ?? '',
-            $m[1] === 'email' => (string) setting('business.email', ''),
+            $m[1] === 'email', $m[1] === 'reply_time' => (string) setting('business.'.$m[1], ''),
             default => business_phones()[(int) $m[2] - 1]['number'] ?? '',
         }, $text);
     }
@@ -402,13 +402,13 @@ if (! function_exists('business_tokens')) {
     }
 }
 
-
 if (! function_exists('lang_parts')) {
     /**
      * Marks Devanagari in rendered HTML as Hindi (WCAG 3.1.2, language of
      * parts), so screen readers switch voice for words typed in any field.
      * Only text between tags changes; tags, attributes and the contents of
-     * script, style, textarea and title stay as they are.
+     * script, style, textarea, title and svg (no HTML allowed there) stay as
+     * they are.
      */
     function lang_parts(string $html): string
     {
@@ -421,7 +421,7 @@ if (! function_exists('lang_parts')) {
             if ($i % 2) {
                 if ($raw && preg_match('#^</'.$raw.'\b#i', $part)) {
                     $raw = null;
-                } elseif (! $raw && preg_match('#^<(script|style|textarea|title)\b#i', $part, $m)) {
+                } elseif (! $raw && preg_match('#^<(script|style|textarea|title|svg)\b#i', $part, $m)) {
                     $raw = strtolower($m[1]);
                 }
             } elseif (! $raw) {

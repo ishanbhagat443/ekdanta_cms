@@ -5,7 +5,7 @@
     --f: var(--ek-f, 0);
 
     .ek-comp--d .ek-hw-fill { transform: scaleX(calc(var(--f) / var(--last))); }
-    .ek-comp--m .ek-hw-fill, .ek-comp--t .ek-hw-fill { transform: scaleY(calc(var(--f) / var(--last))); }
+    .ek-comp--m .ek-hw-fill { transform: scaleY(calc(var(--f) / var(--last))); }
 
     .ek-hw-step {
         --reached: clamp(0, (var(--f) - var(--i) + 0.3) * 1000, 1);

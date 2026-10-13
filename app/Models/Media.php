@@ -61,13 +61,13 @@ class Media extends Model
         return Storage::disk($this->disk)->url($this->path);
     }
 
-    /** Thumbnail for grids: variant if generated, original for images, null for files. */
     /** The full-size WebP copy when there is one (smaller file, same picture), else the original. */
     public function getWebUrlAttribute(): string
     {
         return isset($this->variants['webp']) ? Storage::disk($this->disk)->url($this->variants['webp']) : $this->url;
     }
 
+    /** Thumbnail for grids: variant if generated, original for images, null for files. */
     public function getThumbUrlAttribute(): ?string
     {
         $variant = $this->variants['thumb'] ?? null;

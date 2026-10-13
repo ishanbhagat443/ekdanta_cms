@@ -4,8 +4,8 @@
 .ek-next-steps {
     .ek-comp--d .ek-nx-fill { transform: scaleX(calc(var(--ek-f, 0) / 3)); }
     .ek-comp--d .ek-nx-marker { transform: translateX(calc(var(--ek-f, 0) * var(--gap) * var(--u))); }
-    :is(.ek-comp--m, .ek-comp--t) .ek-nx-fill { transform: scaleY(calc(var(--ek-f, 0) / 3)); }
-    :is(.ek-comp--m, .ek-comp--t) .ek-nx-marker { transform: translateY(calc(var(--ek-f, 0) * var(--gap) * var(--u))); }
+    .ek-comp--m .ek-nx-fill { transform: scaleY(calc(var(--ek-f, 0) / 3)); }
+    .ek-comp--m .ek-nx-marker { transform: translateY(calc(var(--ek-f, 0) * var(--gap) * var(--u))); }
     .ek-nx-marker { transition: transform 120ms linear; }
 
     .ek-nx-step { --r: clamp(0, (var(--ek-f, 0) - var(--i) + 0.5) * 1000, 1); }
@@ -22,10 +22,10 @@
         transition: opacity 350ms ease-out, transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 300ms ease-out, box-shadow 300ms ease-out;
     }
     .ek-comp--d .ek-nx-card { transform: translateY(calc((1 - var(--r)) * 14 * var(--u))); }
-    :is(.ek-comp--m, .ek-comp--t) .ek-nx-card { transform: translateX(calc((1 - var(--r)) * 10 * var(--u))); }
+    .ek-comp--m .ek-nx-card { transform: translateX(calc((1 - var(--r)) * 10 * var(--u))); }
     .ek-nx-step.is-active .ek-nx-card { background: #FFFFFF; }
     .ek-comp--d .ek-nx-step.is-active .ek-nx-card { box-shadow: 0 calc(30 * var(--u)) calc(60 * var(--u)) calc(-36 * var(--u)) rgba(13, 20, 16, 0.45), inset 0 0 0 calc(2 * var(--u)) #2EB45D; }
-    :is(.ek-comp--m, .ek-comp--t) .ek-nx-step.is-active .ek-nx-card { box-shadow: 0 calc(24 * var(--u)) calc(50 * var(--u)) calc(-30 * var(--u)) rgba(13, 20, 16, 0.45), inset 0 0 0 calc(2 * var(--u)) #2EB45D; }
+    .ek-comp--m .ek-nx-step.is-active .ek-nx-card { box-shadow: 0 calc(24 * var(--u)) calc(50 * var(--u)) calc(-30 * var(--u)) rgba(13, 20, 16, 0.45), inset 0 0 0 calc(2 * var(--u)) #2EB45D; }
     .ek-nx-chip {
         background: color-mix(in srgb, #D9F2E1 calc(var(--r) * 100%), #E7EBE4);
         color: color-mix(in srgb, #0A5A30 calc(var(--r) * 100%), #56605A);

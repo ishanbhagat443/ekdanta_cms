@@ -104,9 +104,9 @@ class KnownBugsRegressionTest extends TestCase
     public function test_bug_05_font_stacks_quote_each_family(): void
     {
         $this->assertSame("'Georgia', 'Times New Roman', serif", ThemeService::fontStack('Georgia, "Times New Roman", serif'));
-        $this->assertSame("'Poppins'", ThemeService::fontStack('Poppins'));
+        $this->assertSame("'Poppins', sans-serif", ThemeService::fontStack('Poppins'));
         // Nothing that can leave the declaration survives: ; } < > are dropped.
-        $this->assertSame("'Badstyle'", ThemeService::fontStack('Bad;}</style>'));
+        $this->assertSame("'Badstyle', sans-serif", ThemeService::fontStack('Bad;}</style>'));
 
         app(ThemeService::class)->updateTypography(['main_heading' => ['family' => 'Georgia, "Times New Roman", serif']]);
         $this->assertStringContainsString("--gsm-font-main-heading:'Georgia', 'Times New Roman', serif;", app(ThemeService::class)->renderCss());

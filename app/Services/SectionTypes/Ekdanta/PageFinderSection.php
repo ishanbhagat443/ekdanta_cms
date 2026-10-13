@@ -85,7 +85,7 @@ class PageFinderSection extends EkdantaSection
             ->map(fn (Page $p) => ['k' => 'page', 't' => $p->title, 'u' => url($p->isHomePage() ? '/' : '/'.$p->slug),
                 'w' => trim($p->seoMeta?->meta_keywords.' '.$p->seoMeta?->meta_description)]);
 
-        $services = CollectionItem::query()->where('collection', 'services')->published()->orderBy('sort_order')->get()
+        $services = CollectionItem::query()->of('services')->published()->orderBy('sort_order')->get()
             ->filter(fn (CollectionItem $s) => $s->url() !== null)
             ->map(fn (CollectionItem $s) => ['k' => 'service', 't' => $s->title, 'u' => $s->url(),
                 'w' => trim($s->get('short_name').' '.$s->get('one_liner').' '.$s->get('group'))]);

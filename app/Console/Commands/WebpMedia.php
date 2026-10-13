@@ -17,7 +17,7 @@ use Intervention\Image\ImageManager;
  */
 class WebpMedia extends Command
 {
-    protected $signature = 'mm:webp-media {--dry : List what would change without writing}';
+    protected $signature = 'mm:webp-media';
 
     protected $description = 'Give every image a full-size WebP copy (smaller files for the same picture).';
 
@@ -35,9 +35,6 @@ class WebpMedia extends Command
             }
             $webp = $media->variants['webp'] ?? 'media/conversions/'.dirname(substr($media->path, strlen('media/'))).'/'.pathinfo($media->path, PATHINFO_FILENAME).'/webp.webp';
             $this->line("  #{$media->id} {$media->path} → {$webp}");
-            if ($this->option('dry')) {
-                continue;
-            }
             try {
                 $disk->put($webp, $manager->read($disk->get($media->path))->toWebp($quality)->toString());
             } catch (\Throwable) {

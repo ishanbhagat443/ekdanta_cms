@@ -17,8 +17,7 @@
 
     .ek-case-tab { opacity: 0.8; }
     .ek-case-tab.is-active { opacity: 1; }
-    .ek-comp--m .ek-case-tab.is-active,
-    .ek-comp--t .ek-case-tab.is-active { background: var(--tk-green) !important; color: var(--tk-ink) !important; }
+    .ek-comp--m .ek-case-tab.is-active { background: var(--tk-green) !important; color: var(--tk-ink) !important; }
     .ek-case-tab-bar { transform: scaleX(clamp(0, var(--f) - var(--i) + 1, 1)); }
 
     .ek-case-window { clip-path: inset(calc(var(--win, 0) * 100%) 0 0 0 round calc(28 * var(--u))); }

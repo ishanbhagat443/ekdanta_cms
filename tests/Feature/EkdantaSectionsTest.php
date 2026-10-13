@@ -156,6 +156,9 @@ class EkdantaSectionsTest extends TestCase
             ->assertSee('href="tel:+919000000002"', false)
             ->assertDontSee('63544');
 
+        app(SettingsService::class)->updateGroup('business', ['reply_time' => 'Within 2 working hours']);
+        $this->assertSame('We call you: Within 2 working hours', business_text('We call you: {reply_time}'));
+
         $this->assertFalse(\App\Support\Link::valid('phone:0'));
         $this->assertSame('#', \App\Support\Link::href('office:5'), 'an office the settings lack');
     }

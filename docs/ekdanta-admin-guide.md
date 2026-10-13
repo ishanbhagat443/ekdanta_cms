@@ -43,7 +43,7 @@ Open the section in the builder (click its name). The **Desktop** tab holds ever
   - a web address (`https://…`), `tel:…` or `mailto:…`;
   - `wa:your message`: WhatsApp to the business number, with the message filled in;
   - from Settings → Business: `phone:1` (call its first number), `email:` and `office:1` (directions to its first office).
-- In text, `{phone:1}`, `{phone:2}`, `{whatsapp}` and `{email}` show the numbers and email from Settings → Business.
+- In text, `{phone:1}`, `{phone:2}`, `{whatsapp}`, `{email}` and `{reply_time}` show the numbers, email and reply time from Settings → Business.
 - Anchor: each section's last field sets its `#name` for links.
 
 ## Settings that feed the sections
@@ -54,6 +54,7 @@ Change these once; every section that shows them follows.
 |---|---|
 | Settings → Business → Phones | Big Brand Finale (contact card), Contact Hero (phone dial), Contact Channels, Brief Builder call line, Save Our Number (and its contact file, `/contact.vcf`), the header's phone menu call line, WhatsApp links (the number marked WhatsApp) |
 | Settings → Business → Email | Big Brand Finale, Contact Channels (`{email}`, `email:`) |
+| Settings → Business → Reply time | Any text with `{reply_time}`, e.g. Next Steps' "[Add reply time]" chip |
 | Settings → Business → Offices | Big Brand Finale (address), Contact Channels and Visit Us (`office:1` directions) |
 | Collections → Case studies | Work Showcase, Proof Carousel, Work Hero, Case Studies Scroller, Related Work, the case study template (Case Hero, Overview, Gallery, Results, Next Case) |
 | Collections → Service groups and Services | Services Panels, Expertise Cards, Service Deep Dive, the service template (Service Hero, What's Included, How It Works, Service Pricing + FAQ, Works Well With) |

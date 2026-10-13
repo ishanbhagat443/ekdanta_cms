@@ -3,8 +3,7 @@
 // what visitors get without JS, with reduced motion, or if the script fails.
 .ek-home-hero {
     .ek-comp { --bk: 0; --spa: -2400; --spb: 3200; --glow: 1; --cta: 1; --cta-rise: 30; --hint: 1; }
-    .ek-comp--m,
-    .ek-comp--t { --spa: -3000; --spb: 3000; --cta-rise: 24; }
+    .ek-comp--m { --spa: -3000; --spb: 3000; --cta-rise: 24; }
 }
 
 // Before the scene starts: the beam closed, as the design opens it.

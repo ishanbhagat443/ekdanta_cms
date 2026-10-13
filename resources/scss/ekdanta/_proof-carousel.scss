@@ -3,8 +3,7 @@
 // edge; d = a card's distance from the centre, in card widths of the design.
 .ek-proof-carousel {
     .ek-comp--d { --x0: 800; --xs: 351.2; --gap: 388; --c: 540; --dn: 820; --dy: 28; }
-    .ek-comp--m,
-    .ek-comp--t { --x0: 70; --xs: 266; --gap: 266; --c: 70; --dn: 300; --dy: 20; }
+    .ek-comp--m { --x0: 70; --xs: 266; --gap: 266; --c: 70; --dn: 300; --dy: 20; }
 
     .ek-proof-track {
         --x: calc(var(--x0) - var(--xs) * var(--ek-f, 0));

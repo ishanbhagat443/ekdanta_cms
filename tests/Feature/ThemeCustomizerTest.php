@@ -238,7 +238,7 @@ class ThemeCustomizerTest extends TestCase
         $this->assertSame('700', $theme->get('typography.main_heading_weight'));
 
         $css = $theme->renderCss();
-        $this->assertStringContainsString("--gsm-font-main-heading:'Montserrat';", $css);
+        $this->assertStringContainsString("--gsm-font-main-heading:'Montserrat', sans-serif;", $css);
         $this->assertStringContainsString('--gsm-weight-main-heading:700;', $css);
         $this->assertStringContainsString('--gsm-size-main-heading:48px;', $css);
         $this->assertStringContainsString('.gsm-text-main-heading{', $css);
@@ -294,7 +294,7 @@ class ThemeCustomizerTest extends TestCase
         ])->assertRedirect();
 
         $css = app(ThemeService::class)->renderCss();
-        $this->assertStringContainsString("--gsm-font-main-heading:'Runiga';", $css);
+        $this->assertStringContainsString("--gsm-font-main-heading:'Runiga', sans-serif;", $css);
         $this->assertStringContainsString("@font-face { font-family: 'Runiga';", $css);
     }
 

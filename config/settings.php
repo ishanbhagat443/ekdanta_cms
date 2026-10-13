@@ -43,7 +43,7 @@ return [
                     ['key' => 'longitude', 'label' => 'Longitude', 'type' => 'text', 'rules' => ['nullable', 'numeric', 'between:-180,180']],
                     ['key' => 'hours', 'label' => 'Office hours', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191']],
                 ]],
-            'reply_time' => ['label' => 'Reply Time', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191'], 'hint' => 'e.g. We reply within 2 working hours.'],
+            'reply_time' => ['label' => 'Reply Time', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191'], 'hint' => 'e.g. We reply within 2 working hours. Type {reply_time} in any section text to show it.'],
             'whatsapp' => ['label' => 'WhatsApp Number', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30'], 'hint' => 'With country code, e.g. +91 92742 03144. Used for WhatsApp buttons and links.'],
             'address' => ['label' => 'Address', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:1000']],
             'google_map' => ['label' => 'Google Map Embed URL', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:2000'], 'hint' => 'Paste the src URL from Google Maps → Share → Embed a map.'],
