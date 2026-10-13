@@ -124,6 +124,26 @@ class EkdantaSectionsTest extends TestCase
         $this->assertSame('#', \App\Support\Link::href('office:5'), 'an office the settings lack');
     }
 
+    public function test_the_admin_guide_lists_every_page_section_field_and_track(): void
+    {
+        \Spatie\Permission\Models\Role::findOrCreate(config('gsm.roles.super_admin'), 'web');
+        \Spatie\Permission\Models\Permission::findOrCreate('pages.manage', 'web');
+        $admin = \App\Models\User::factory()->create(['is_active' => true]);
+        $admin->assignRole(config('gsm.roles.super_admin'));
+
+        $html = $this->actingAs($admin)->get('/cms/help/ekdanta')->assertOk()
+            ->assertSee('Change an animation')
+            ->assertSee('Pages, in order')
+            ->assertSee('Use this page as: Thank-you page', false)
+            ->getContent();
+        foreach ($this->types() as $key => $type) {
+            $this->assertStringContainsString('id="'.$key.'"', $html, $type->label());
+        }
+        $this->assertStringContainsString('<code>ah-swoosh</code>', $html, 'motion parts are listed');
+
+        $this->actingAs(\App\Models\User::factory()->create(['is_active' => true]))->get('/cms/help/ekdanta')->assertForbidden();
+    }
+
     public function test_the_404_page_finds_real_pages_and_reports_the_missing_address(): void
     {
         app(SettingsService::class)->updateGroup('business', ['country_code' => '91', 'phones' => [['label' => 'All services', 'number' => '90994 17987', 'whatsapp' => true]]]);

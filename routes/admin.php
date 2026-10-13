@@ -133,6 +133,9 @@ Route::resource('posts', PostController::class)->except('show');
 Route::resource('blog-categories', BlogCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
 Route::delete('blog-tags/{tag}', [BlogCategoryController::class, 'destroyTag'])->name('blog-tags.destroy');
 
+// Help → Ekdanta guide (docs/ekdanta-admin-guide.md and the section reference).
+Route::get('help/ekdanta', [\App\Http\Controllers\Admin\HelpController::class, 'ekdanta'])->name('help.ekdanta');
+
 // Pages (WordPress-style page builder)
 Route::resource('pages', PageController::class)->except(['show', 'create']);
 // Export / import a page as JSON (another site, or a backup).

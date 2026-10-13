@@ -332,6 +332,12 @@ return [
             'can' => 'pages.manage',
         ],
         [
+            'text' => 'Ekdanta guide',
+            'icon' => 'fas fa-fw fa-book-open',
+            'url' => 'cms/help/ekdanta',
+            'can' => 'pages.manage',
+        ],
+        [
             'text' => 'Collections',
             'icon' => 'fas fa-fw fa-layer-group',
             'url' => 'cms/collections/case-studies',
