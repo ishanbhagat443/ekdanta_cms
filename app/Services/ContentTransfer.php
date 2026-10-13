@@ -72,7 +72,7 @@ final class ContentTransfer
                 'is_active' => $s->is_active,
                 'block' => $s->is_synced ? $s->globalBlock?->slug : null,
                 ...$this->portable($s->type, $s->only(['data_desktop', 'data_tablet', 'data_mobile'])),
-                'style' => $this->portableStyle((array) $s->style),
+                'style' => $this->mapStyleMedia((array) $s->style, $this->ref(...)),
             ])->all(),
         ]);
     }
@@ -86,7 +86,7 @@ final class ContentTransfer
             'type' => $block->type,
             'description' => $block->description,
             ...$this->portable($block->type, $block->only(['data_desktop', 'data_tablet', 'data_mobile'])),
-            'style' => $this->portableStyle((array) $block->style),
+            'style' => $this->mapStyleMedia((array) $block->style, $this->ref(...)),
         ]);
     }
 
@@ -178,7 +178,7 @@ final class ContentTransfer
                 ->map(fn (CollectionItem $item) => [
                     'collection' => $item->collection, 'slug' => $item->slug, 'title' => $item->title,
                     'status' => $item->status, 'sort_order' => $item->sort_order,
-                    'data' => $this->portableFields($this->collections->find($item->collection)->fields(), (array) $item->data),
+                    'data' => $this->mapMedia($this->collections->find($item->collection)->fields(), (array) $item->data, $this->ref(...)),
                 ])->all();
             $out['media'] = Media::query()->whereIn('id', array_keys($this->used))->get()
                 ->filter(fn (Media $m) => Storage::disk($m->disk)->exists($m->path))
@@ -194,29 +194,31 @@ final class ContentTransfer
     {
         $fields = $this->types->has($type) ? $this->types->find($type)->fields() : [];
 
-        return array_map(fn ($d) => is_array($d) ? $this->portableFields($fields, $d) : $d, $data);
+        return array_map(fn ($d) => is_array($d) ? $this->mapMedia($fields, $d, $this->ref(...)) : $d, $data);
     }
 
-    private function portableFields(array $fields, array $data): array
+    /** $fn on every media value of a field schema's data, list rows included. */
+    private function mapMedia(array $fields, array $data, callable $fn): array
     {
         foreach ($fields as $field) {
             $key = $field['key'];
             if (($field['type'] ?? null) === 'media' && array_key_exists($key, $data)) {
-                $data[$key] = $this->ref($data[$key]);
+                $data[$key] = $fn($data[$key]);
             }
             if (($field['type'] ?? null) === 'repeater' && is_array($data[$key] ?? null)) {
-                $data[$key] = array_map(fn ($row) => is_array($row) ? $this->portableFields($field['fields'] ?? [], $row) : $row, $data[$key]);
+                $data[$key] = array_values(array_map(fn ($row) => is_array($row) ? $this->mapMedia($field['fields'] ?? [], $row, $fn) : [], $data[$key]));
             }
         }
 
         return $data;
     }
 
-    private function portableStyle(array $style): array
+    /** $fn on a section style's background image and video. */
+    private function mapStyleMedia(array $style, callable $fn): array
     {
         foreach (['bg_media_id', 'bg_video_media_id'] as $key) {
             if (isset($style[$key])) {
-                $style[$key] = $this->ref($style[$key]);
+                $style[$key] = $fn($style[$key]);
             }
         }
 
@@ -251,19 +253,14 @@ final class ContentTransfer
             throw ValidationException::withMessages(['file' => 'Section '.($index + 1).": unknown type \"{$type}\"."]);
         }
         $schema = $this->types->find($type);
-        $desktop = $this->localFields($schema->fields(), (array) ($s['data_desktop'] ?? []));
+        $desktop = $this->mapMedia($schema->fields(), (array) ($s['data_desktop'] ?? []), $this->localRef(...));
         $valid = Validator::make(['data' => $desktop], $schema->rules());
         if ($valid->fails()) {
             throw ValidationException::withMessages(['file' => 'Section '.($index + 1)." ({$type}): ".$valid->errors()->first()]);
         }
         // Per-device values: only the fields that may differ per device, as in the editor.
-        $device = fn ($d) => is_array($d) ? array_filter(Arr::only($this->localFields($schema->fields(), $d), $schema->deviceKeys()), fn ($v) => $v !== null && $v !== '') ?: null : null;
-        $style = Section::withoutPrivilegedStyle((array) ($s['style'] ?? []));
-        foreach (['bg_media_id', 'bg_video_media_id'] as $key) {
-            if (isset($style[$key])) {
-                $style[$key] = $this->localId($style[$key]);
-            }
-        }
+        $device = fn ($d) => is_array($d) ? array_filter(Arr::only($this->mapMedia($schema->fields(), $d, $this->localRef(...)), $schema->deviceKeys()), fn ($v) => $v !== null && $v !== '') ?: null : null;
+        $style = $this->mapStyleMedia(Section::withoutPrivilegedStyle((array) ($s['style'] ?? [])), $this->localId(...));
 
         return [
             'type' => $type,
@@ -277,22 +274,7 @@ final class ContentTransfer
         ];
     }
 
-    /** Media references this site can't resolve are dropped (the field falls back to empty). */
-    private function localFields(array $fields, array $data): array
-    {
-        foreach ($fields as $field) {
-            $key = $field['key'];
-            if (($field['type'] ?? null) === 'media' && array_key_exists($key, $data)) {
-                $data[$key] = $this->localRef($data[$key]);
-            }
-            if (($field['type'] ?? null) === 'repeater' && is_array($data[$key] ?? null)) {
-                $data[$key] = array_values(array_map(fn ($row) => is_array($row) ? $this->localFields($field['fields'] ?? [], $row) : [], $data[$key]));
-            }
-        }
-
-        return $data;
-    }
-
+    /** A media reference this site can't resolve is dropped (the field falls back to empty). */
     private function localRef(mixed $value): mixed
     {
         if (Media::isKey($value)) {
@@ -343,7 +325,7 @@ final class ContentTransfer
                 continue;
             }
             $type = $this->collections->find($collection);
-            $data = Arr::only($this->localFields($type->fields(), (array) ($item['data'] ?? [])), array_column($type->fields(), 'key'));
+            $data = Arr::only($this->mapMedia($type->fields(), (array) ($item['data'] ?? []), $this->localRef(...)), array_column($type->fields(), 'key'));
             $valid = Validator::make(['title' => $item['title'] ?? null, 'data' => $data], ['title' => ['required', 'string', 'max:200'], ...$type->rules()]);
             if ($valid->fails()) {
                 continue;

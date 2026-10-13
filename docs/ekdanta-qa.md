@@ -117,6 +117,7 @@ Recorded per phase from Phase 1 on.
 | Phase 5 | Page settings: conversion tags | Labelled inputs with example placeholders, help text tied to them, errors under each field (an ID that isn't digits, or "AW-" plus digits, is refused). The group opens by itself when it holds values. The tags fire on the live page only, never in the builder preview | Pass |
 | Phase 5 | Help → Ekdanta guide | One page: the guide (headings in order, tables with header cells), then the pages in build order and every section's fields and default motion, with a linked index. Markdown is rendered with its HTML escaped. Only for users who can manage pages | Pass |
 | Phase 5 | Contact details from settings | Found: Contact Channels, the Contact Hero and Brief Builder call lines, the Home Hero WhatsApp label and Visit Us held typed copies of the numbers, so a change in Settings → Business would not reach them (the brief asks that it does). Fixed: {phone:1} / {whatsapp} / {email} in text and phone:1 / email: / office:1 in links, used by the design's defaults | Pass after fix |
+| Phase 5 | Ponytail review (end of phase) | One walk over a section's media fields (export and import used two copies) and one for a style's background media. Seeder steps, link grammar, tokens and the guide each have a caller; nothing else to cut | Done |
 
 ### Known limits (ponytail ledger)
 
