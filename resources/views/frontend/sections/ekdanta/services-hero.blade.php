@@ -61,7 +61,7 @@
                             @for ($i = 0; $i < 2; $i++)
                                 <span data-m="core-ring" style="position: absolute; left: {{ ek_u(-$v([70, 46])) }}; top: {{ ek_u(-$v([70, 46])) }}; width: {{ ek_u($v([140, 92])) }}; height: {{ ek_u($v([140, 92])) }}; border-radius: 50%; border: {{ ek_u(2) }} solid rgba(143,227,174,0.6)"></span>
                             @endfor
-                            <span data-m="pop-core" style="position: absolute; left: 0; top: 0; width: {{ ek_u($v([140, 92])) }}; height: {{ ek_u($v([140, 92])) }}; transform: translate(-50%, -50%); border-radius: 50%; background: #FFFFFF; box-shadow: 0 {{ ek_u($v([30, 24])) }} {{ ek_u($v([60, 50])) }} {{ ek_u(-20) }} rgba(0,0,0,0.7), 0 0 0 {{ ek_u($v([10, 8])) }} rgba(46,180,93,0.18); display: flex; align-items: center; justify-content: center">@if ($mark)<img src="{{ $mark->url }}" alt="" style="width: {{ ek_u($v([84, 56])) }}; height: auto; display: block">@endif</span>
+                            <span data-m="pop-core" style="position: absolute; left: 0; top: 0; width: {{ ek_u($v([140, 92])) }}; height: {{ ek_u($v([140, 92])) }}; transform: translate(-50%, -50%); border-radius: 50%; background: #FFFFFF; box-shadow: 0 {{ ek_u($v([30, 24])) }} {{ ek_u($v([60, 50])) }} {{ ek_u(-20) }} rgba(0,0,0,0.7), 0 0 0 {{ ek_u($v([10, 8])) }} rgba(46,180,93,0.18); display: flex; align-items: center; justify-content: center">@if ($mark)<img src="{{ $mark->web_url }}" alt="" style="width: {{ ek_u($v([84, 56])) }}; height: auto; display: block">@endif</span>
                         </div>
                     </div>
 

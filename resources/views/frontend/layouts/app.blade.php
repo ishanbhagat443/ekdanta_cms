@@ -18,9 +18,11 @@
          v5 and lacks the v6+ names the storefront uses (fa-bag-shopping,
          fa-magnifying-glass, fa-house, fa-shirt, fa-x-twitter …), which render
          as empty boxes. v7 also keeps the legacy v5 aliases, so both work. --}}
+    {{-- Loaded without blocking the first paint (media swap); icons arrive a moment later. --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
           integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer">
+          crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 
     {{-- Bootstrap 5 + site styles --}}
     @vite(['resources/scss/frontend.scss', 'resources/js/frontend/app.js'])
@@ -29,8 +31,10 @@
     @if ($googleFontsUrls = app(\App\Services\ThemeService::class)->googleFontsUrls())
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        {{-- Not blocking the first paint: text shows in the fallback font, then swaps (display=swap). --}}
         @foreach ($googleFontsUrls as $googleFontsUrl)
-            <link rel="stylesheet" href="{{ $googleFontsUrl }}">
+            <link rel="stylesheet" href="{{ $googleFontsUrl }}" media="print" onload="this.media='all'">
+            <noscript><link rel="stylesheet" href="{{ $googleFontsUrl }}"></noscript>
         @endforeach
     @endif
     <style id="gsm-theme-vars">{!! theme_css() !!}</style>

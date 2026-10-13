@@ -6,7 +6,7 @@
 @php
     $d = $section->viewData('desktop');
     $m = $section->viewData('mobile');
-    $img = fn ($key) => media_ref($d[$key] ?? null)?->url;
+    $img = fn ($key) => media_ref($d[$key] ?? null)?->web_url;
     $bg = fn ($key) => ($url = $img($key)) ? '#FFFFFF url('.e($url).') center top / cover no-repeat' : '#FFFFFF';
     $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: '.ek_u(16).'; height: '.ek_u(16).'"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
     // The loops move through exactly three items, then back to the first.
@@ -59,7 +59,7 @@
                             @elseif ($k === 'insta')
                                 <span aria-hidden="true" style="position: relative; {{ $mob ? 'width: '.ek_u(140).'; flex: none' : 'height: '.ek_u(320) }}; display: block">
                                     <span style="position: absolute; left: {{ ek_u($v([115, 30])) }}; top: {{ ek_u($v([34, 22])) }}; width: {{ ek_u($v([170, 90])) }}; height: {{ ek_u($v([330, 180])) }}; box-sizing: border-box; border-radius: {{ ek_u($v([28, 18])) }}; border: {{ ek_u($v([8, 6])) }} solid var(--tk-ink); background: #FFFFFF; overflow: hidden">
-                                        <span style="position: absolute; left: 0; right: 0; top: 0; height: {{ ek_u($v([30, 20])) }}; background: #FFFFFF; z-index: 1; display: flex; align-items: center; gap: {{ ek_u($v([6, 4])) }}; padding: 0 {{ ek_u($v([8, 6])) }}; box-sizing: border-box; border-bottom: {{ ek_u(1) }} solid var(--tk-line-2)">@if ($mark = $img('feed_mark'))<img src="{{ $mark }}" alt="" style="width: {{ ek_u($v([14, 10])) }}; height: auto">@endif<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: {{ ek_u($v([10, 7.5])) }}">{{ $d['feed_name'] }}</span></span>
+                                        <span style="position: absolute; left: 0; right: 0; top: 0; height: {{ ek_u($v([30, 20])) }}; background: #FFFFFF; z-index: 1; display: flex; align-items: center; gap: {{ ek_u($v([6, 4])) }}; padding: 0 {{ ek_u($v([8, 6])) }}; box-sizing: border-box; border-bottom: {{ ek_u(1) }} solid var(--tk-line-2)">@if ($mark = $img('feed_mark'))<img loading="lazy" decoding="async" src="{{ $mark }}" alt="" style="width: {{ ek_u($v([14, 10])) }}; height: auto">@endif<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: {{ ek_u($v([10, 7.5])) }}">{{ $d['feed_name'] }}</span></span>
                                         <span data-m="wy-feed" style="position: absolute; left: 0; top: {{ ek_u($v([30, 20])) }}; width: {{ ek_u($v([154, 78])) }}; display: block">@foreach ($feed as $photo)<span style="display: block; width: {{ ek_u($v([154, 74])) }}; height: {{ ek_u($v([169, 81])) }}; background: {{ $bg($photo) }}"></span>@endforeach</span>
                                     </span>
                                 </span>

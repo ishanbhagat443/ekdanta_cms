@@ -24,7 +24,7 @@
                         @for ($k = 0; $k < $cols; $k++)
                             <div data-m="{{ $k % 2 ? 'reel-wall-down' : 'reel-wall-up' }}" style="width: {{ ek_u($v([278, 125])) }}; flex-shrink: 0; display: flex; flex-direction: column; gap: {{ ek_u($v([12, 8])) }}; transform: translateY({{ ek_u($v([-330, -300])) }})">
                                 @for ($j = 0; $j < 3; $j++)
-                                    <img src="{{ media_ref($reels->get((3 * $k + $j) % $n)?->get('cover'))?->url }}" alt="" loading="lazy" style="width: {{ ek_u($v([278, 125])) }}; height: {{ ek_u($v([494, 222])) }}; object-fit: cover; display: block; border-radius: {{ ek_u($v([18, 12])) }}">
+                                    <img loading="lazy" decoding="async" src="{{ media_ref($reels->get((3 * $k + $j) % $n)?->get('cover'))?->web_url }}" alt="" loading="lazy" style="width: {{ ek_u($v([278, 125])) }}; height: {{ ek_u($v([494, 222])) }}; object-fit: cover; display: block; border-radius: {{ ek_u($v([18, 12])) }}">
                                 @endfor
                             </div>
                         @endfor
@@ -41,7 +41,7 @@
                                 <a href="{{ link_href($reel->get('instagram_url') ?: $t['link']) }}" target="_blank" rel="noopener"
                                    aria-label="{{ str_replace(['{title}', '{brand}'], [$reel->title, (string) $reel->get('brand')], (string) $t['reel_label']) }}"
                                    style="position: relative; display: block; width: 100%; height: 100%; border-radius: inherit; overflow: hidden; background: #1E2622; text-decoration: none">
-                                    <img src="{{ media_ref($reel->get('cover'))?->url }}" alt="" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block">
+                                    <img loading="lazy" decoding="async" src="{{ media_ref($reel->get('cover'))?->web_url }}" alt="" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block">
                                     <span style="position: absolute; top: {{ ek_u($v([14, 10])) }}; left: {{ ek_u($v([14, 10])) }}; padding: {{ ek_u($v([5, 4])) }} {{ ek_u($v([10, 8])) }}; border-radius: 999px; background: rgba(13,20,16,0.8); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: {{ $mob ? ek_u(10) : 'max('.ek_u(12).', 0.75rem)' }}; color: #FFFFFF">{{ $reel->get('tag') }}</span>
                                     <span aria-hidden="true" style="position: absolute; right: {{ ek_u($v([14, 10])) }}; bottom: {{ ek_u($v([14, 10])) }}; width: {{ ek_u($v([40, 34])) }}; height: {{ ek_u($v([40, 34])) }}; border-radius: 50%; background: rgba(13,20,16,0.8); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" style="width: {{ ek_u($v([16, 14])) }}; height: {{ ek_u($v([16, 14])) }}"><path d="M8 5v14l11-7z" fill="#FFFFFF"></path></svg></span>
                                 </a>

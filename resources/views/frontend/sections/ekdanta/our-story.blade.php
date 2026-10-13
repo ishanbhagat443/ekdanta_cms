@@ -9,8 +9,8 @@
     $d = $section->viewData('desktop');
     $m = $section->viewData('mobile');
     $br = fn (string $text) => implode('<br>', array_map('e', array_values(array_filter(array_map('trim', preg_split('/\R/', $text))))));
-    $mark = media_ref($d['mark'] ?? null)?->url;
-    $logo = media_ref($d['logo'] ?? null)?->url;
+    $mark = media_ref($d['mark'] ?? null)?->web_url;
+    $logo = media_ref($d['logo'] ?? null)?->web_url;
     // Indian grouping (1,00,000), as the counters show it.
     $fmt = fn ($n) => preg_replace('/\B(?=(\d{2})+\d{3}$)|\B(?=\d{3}$)/', ',', (string) (int) $n);
 @endphp
@@ -27,7 +27,7 @@
                     <div aria-hidden="true" style="position: absolute; left: {{ ek_u($v([60, -125])) }}; top: {{ ek_u($v([150, -90])) }}; width: {{ ek_u(640) }}; height: {{ ek_u(640) }}; border-radius: 999px; background: radial-gradient(circle, rgba(46,180,93,0.18), rgba(46,180,93,0) 65%)"></div>
 
                     @foreach ([1 => [$v([140, 40]), $v([220, 120]), -5, '#1E2A24', 2], 2 => [$v([372, 210]), $v([250, 136]), 5, '#24322B', 3]] as $n => [$x, $y, $tilt, $fill, $z])
-                        @php $photo = media_ref($d["founder_{$n}_photo"] ?? null)?->url; @endphp
+                        @php $photo = media_ref($d["founder_{$n}_photo"] ?? null)?->web_url; @endphp
                         <figure data-m="ab-founder-{{ $n }}" style="position: absolute; left: {{ ek_u($x) }}; top: {{ ek_u($y) }}; width: {{ ek_u($cardW) }}; margin: 0; transform: rotate({{ $tilt }}deg); z-index: {{ $z }}">
                             <div class="ek-story-photo" style="height: {{ ek_u($v([330, 190])) }}; border-radius: {{ ek_u($cardW / 2) }} {{ ek_u($cardW / 2) }} {{ ek_u($v([18, 12])) }} {{ ek_u($v([18, 12])) }}; background: {{ $fill }}; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; padding-bottom: {{ ek_u($v([18, 12])) }}; box-sizing: border-box; font-size: max({{ ek_u($v([15, 12])) }}, 0.75rem); color: #8A968F; text-align: center">
                                 @if ($photo)<img src="{{ $photo }}" alt="" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit">@else{{ $d["founder_{$n}_placeholder"] }}@endif
@@ -40,7 +40,7 @@
                     @endforeach
                     <div aria-hidden="true" data-m="ab-join" style="position: absolute; left: {{ ek_u($v([352, 171])) }}; top: {{ ek_u($v([268, 150])) }}; width: {{ ek_u($v([64, 48])) }}; height: {{ ek_u($v([64, 48])) }}; z-index: 4">
                         <span class="ek-story-plus" style="position: absolute; inset: 0; border-radius: 999px; background: var(--tk-green); color: var(--tk-ink); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([34, 26])) }}; display: flex; align-items: center; justify-content: center">+</span>
-                        <span class="ek-story-mark" data-m="ab-pulse" style="position: absolute; left: {{ ek_u($v([-8, -6])) }}; top: {{ ek_u($v([-8, -6])) }}; width: {{ ek_u($v([80, 60])) }}; height: {{ ek_u($v([80, 60])) }}; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center">@if ($mark)<img src="{{ $mark }}" alt="" style="width: {{ ek_u($v([50, 38])) }}; height: auto; display: block">@endif</span>
+                        <span class="ek-story-mark" data-m="ab-pulse" style="position: absolute; left: {{ ek_u($v([-8, -6])) }}; top: {{ ek_u($v([-8, -6])) }}; width: {{ ek_u($v([80, 60])) }}; height: {{ ek_u($v([80, 60])) }}; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center">@if ($mark)<img loading="lazy" decoding="async" src="{{ $mark }}" alt="" style="width: {{ ek_u($v([50, 38])) }}; height: auto; display: block">@endif</span>
                     </div>
 
                     <div data-m="ab-beats" style="position: absolute; left: {{ ek_u($v([760, 24])) }}; top: {{ ek_u($v([0, 410])) }}; width: {{ ek_u($v([580, 342])) }}; height: {{ ek_u($v([900, 434])) }}">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="ek-story-beat" style="--i: 4; position: absolute; left: 0; top: {{ ek_u($v([240, 10])) }}; width: 100%">
                             <p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([32, 22])) }}, 0.8125rem); letter-spacing: -0.02em; color: #BFD2C6">{{ $t['became'] }}</p>
-                            @if ($logo)<img data-story-logo src="{{ $logo }}" alt="{{ $d['logo_alt'] }}" style="margin-top: {{ ek_u($v([18, 12])) }}; height: {{ ek_u($v([96, 64])) }}; width: auto; display: block; transform-origin: left center">@endif
+                            @if ($logo)<img loading="lazy" decoding="async" data-story-logo src="{{ $logo }}" alt="{{ $d['logo_alt'] }}" style="margin-top: {{ ek_u($v([18, 12])) }}; height: {{ ek_u($v([96, 64])) }}; width: auto; display: block; transform-origin: left center">@endif
                             <p style="margin: {{ ek_u($v([34, 20])) }} 0 0; padding-left: {{ ek_u($v([18, 14])) }}; border-left: {{ ek_u(3) }} solid var(--tk-green); font-size: max({{ ek_u($v([21, 16])) }}, 0.8125rem); line-height: 1.5; font-style: italic; color: #DCE7E0">{{ $t['founders_quote'] }}</p>
                             <p style="margin: {{ ek_u(12) }} 0 0; padding-left: {{ ek_u($v([21, 17])) }}; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([15, 13])) }}, 0.8125rem); color: var(--tk-mint)">{{ $t['founders_credit'] }}</p>
                         </div>

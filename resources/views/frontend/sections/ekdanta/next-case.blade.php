@@ -21,7 +21,7 @@
     $num = fn (int $i) => str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT);
     $hex = ltrim((string) $next->get('colour'), '#');
     $bg = strlen($hex) === 6 ? '#'.$hex : 'var(--tk-ink)';
-    $img = media_ref($next->get('image'))?->url;
+    $img = media_ref($next->get('image'))?->web_url;
     $len = mb_strlen($next->title);
     $size = $len <= 11 ? [120, 56] : ($len <= 16 ? [100, 48] : [84, 40]);
 @endphp
@@ -45,7 +45,7 @@
                             <a class="ek-press" href="{{ link_href($d['button_2_link'] ?? '') }}" style="{{ $button }}; padding: 0 {{ ek_u($v([24, 20])) }}; border: {{ ek_u(1.5) }} solid rgba(255,255,255,0.7)">{{ $t['button_2_label'] }}</a>
                     </div>
                     <div data-m="nc-grid" style="position: absolute; left: {{ ek_u($v([900, 80])) }}; top: {{ ek_u($v([140, 478])) }}; width: {{ ek_u($v([440, 230])) }}; height: {{ ek_u($v([600, 314])) }}; border-radius: {{ ek_u($v([28, 20])) }}; overflow: hidden; background: #FFFFFF; box-shadow: 0 {{ ek_u(60) }} {{ ek_u(100) }} {{ ek_u(-40) }} rgba(0,0,0,0.7); transform: rotate(-3deg)">
-                        @if ($img)<img src="{{ $img }}" alt="{{ str_replace('{name}', $next->title, (string) $d['image_alt']) }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">@endif
+                        @if ($img)<img loading="lazy" decoding="async" src="{{ $img }}" alt="{{ str_replace('{name}', $next->title, (string) $d['image_alt']) }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">@endif
                     </div>
                 </div>
             </div>

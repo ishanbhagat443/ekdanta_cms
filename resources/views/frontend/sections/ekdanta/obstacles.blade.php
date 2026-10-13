@@ -60,7 +60,7 @@
                     @php $side = $v([156, 24]); $trackY = $v([820, 800]); $walker = $v([60, 44]); @endphp
                     <div aria-hidden="true" style="position: absolute; left: {{ ek_u($side) }}; right: {{ ek_u($side) }}; top: {{ ek_u($trackY) }}; border-top: {{ ek_u(2) }} dashed #C5CCC7"></div>
                     <div aria-hidden="true" data-m="trackfill" style="position: absolute; left: {{ ek_u($side) }}; top: {{ ek_u($trackY) }}; height: {{ ek_u(2) }}; width: {{ ek_u($v([1128, 342])) }}; background: var(--tk-green); transform-origin: 0 50%"></div>
-                    <div aria-hidden="true" data-m="walker" style="position: absolute; left: {{ ek_u($v([1224, 322])) }}; top: {{ ek_u($v([790, 778])) }}; width: {{ ek_u($walker) }}; height: {{ ek_u($walker) }}; border-radius: 50%; background: #FFFFFF; box-shadow: 0 {{ ek_u(8) }} {{ ek_u(20) }} {{ ek_u(-8) }} rgba(13,20,16,0.4); display: flex; align-items: center; justify-content: center"><img src="{{ media_ref($t['walker_image'] ?? null)?->url }}" alt="" style="width: {{ ek_u($v([38, 28])) }}; height: auto"></div>
+                    <div aria-hidden="true" data-m="walker" style="position: absolute; left: {{ ek_u($v([1224, 322])) }}; top: {{ ek_u($v([790, 778])) }}; width: {{ ek_u($walker) }}; height: {{ ek_u($walker) }}; border-radius: 50%; background: #FFFFFF; box-shadow: 0 {{ ek_u(8) }} {{ ek_u(20) }} {{ ek_u(-8) }} rgba(13,20,16,0.4); display: flex; align-items: center; justify-content: center"><img loading="lazy" decoding="async" src="{{ media_ref($t['walker_image'] ?? null)?->web_url }}" alt="" style="width: {{ ek_u($v([38, 28])) }}; height: auto"></div>
                 </div>
             </div>
         </div>

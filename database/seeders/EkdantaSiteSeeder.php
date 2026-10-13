@@ -53,6 +53,7 @@ class EkdantaSiteSeeder extends Seeder
         $this->collections();
         $this->theme();
         $this->business();
+        $this->favicon();
         $this->menus();
         $this->header();
         $this->finale();
@@ -331,6 +332,15 @@ class EkdantaSiteSeeder extends Seeder
                 'data_desktop' => ['label' => 'Become a big brand', 'url' => '#contact', 'style' => 'solid', 'new_tab' => false]],
         ]);
         app(LayoutService::class)->flushCache();
+    }
+
+    /** Settings → Branding: the e-mark as the favicon, when none is set. */
+    public function favicon(): void
+    {
+        if (blank(setting('branding.favicon'))) {
+            $file = base_path(self::ASSETS.'e-mark.png');
+            app(SettingsService::class)->updateGroup('branding', ['favicon' => new UploadedFile($file, 'favicon.png', 'image/png', null, true)]);
+        }
     }
 
     /** Settings → Business from the design; only values that are still empty are filled. */

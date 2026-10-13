@@ -34,7 +34,7 @@
                                 $c = $i - ($n - 1) / 2;
                                 $x = $mob ? 195 + $c * 66 - 66 : 720 + $c * 250 - 110;
                                 $y = $mob ? 306 + $c * $c * 10 : 330 + $c * $c * 14;
-                                $img = media_ref($reel->get('cover'))?->url;
+                                $img = media_ref($reel->get('cover'))?->web_url;
                                 $href = $reel->get('instagram_url') ?: ($d['link'] ?? '');
                                 $name = str_replace(['{title}', '{brand}'], [$reel->title, (string) $reel->get('brand')], (string) $d['reel_label']);
                             @endphp

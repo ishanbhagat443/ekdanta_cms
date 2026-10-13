@@ -56,6 +56,10 @@ class MediaLibraryTest extends TestCase
         Storage::disk('public')->assertExists($media->path);
         Storage::disk('public')->assertExists($media->variants['thumb']);
         Storage::disk('public')->assertExists($media->variants['card']);
+
+        // The WebP copy is the same picture at full size, and pages draw it.
+        $this->assertSame(1600, getimagesizefromstring(Storage::disk('public')->get($media->variants['webp']))[0]);
+        $this->assertStringEndsWith('/webp.webp', $media->web_url);
     }
 
     public function test_small_images_are_not_upscaled_and_documents_get_no_variants(): void

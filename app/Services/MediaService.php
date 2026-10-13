@@ -301,13 +301,10 @@ class MediaService
             $variants[$name] = $variantPath;
         }
 
-        // WebP copy of the largest variant for modern browsers / page speed.
+        // WebP copy at full size (the original is already capped): the same
+        // picture as a smaller file, drawn through Media::web_url.
         if (config('gsm.media.webp', true) && ! in_array($ext, ['webp', 'gif'], true)) {
             $image = $manager->read($disk->get($path));
-            $largest = max((array) config('gsm.media.variants') ?: [800]);
-            if ($image->width() > $largest) {
-                $image->scaleDown(width: $largest);
-            }
             $webpPath = "{$dir}/webp.webp";
             $disk->put($webpPath, $image->toWebp($quality)->toString());
             $variants['webp'] = $webpPath;

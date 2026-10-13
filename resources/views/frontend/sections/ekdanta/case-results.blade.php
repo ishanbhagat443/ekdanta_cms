@@ -17,7 +17,7 @@
     $results = array_slice(array_values(array_filter((array) $case->get('results', []), fn ($r) => ($r['label'] ?? '') !== '')), 0, 3);
     $hex = ltrim((string) $case->get('colour'), '#');
     $bg = strlen($hex) === 6 ? '#'.$hex : 'var(--tk-ink)';
-    $logo = media_ref($case->get('logo'))?->url;
+    $logo = media_ref($case->get('logo'))?->web_url;
     $short = $case->get('short_name') ?: $case->title;
 @endphp
 <div class="ek ek-case-results" id="{{ $d['anchor'] ?: 'c-result' }}">
@@ -49,7 +49,7 @@
                         <span aria-hidden="true" style="display: block; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([110, 64])) }}; line-height: 0.6; color: var(--tk-green)">“</span>
                         <blockquote style="margin: {{ ek_u($v([18, 8])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([24, 16])) }}, 0.8125rem); line-height: 1.4; letter-spacing: -0.02em">{{ $case->get('quote') }}</blockquote>
                         <figcaption style="margin-top: {{ ek_u($v([28, 14])) }}; padding-top: {{ ek_u($v([22, 12])) }}; border-top: {{ ek_u(1) }} solid rgba(255,255,255,0.22); display: flex; align-items: center; gap: {{ ek_u($v([14, 10])) }}">
-                            @if ($logo)<span style="width: {{ ek_u($v([110, 84])) }}; height: {{ ek_u($v([52, 40])) }}; border-radius: {{ ek_u(12) }}; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex: none"><img src="{{ $logo }}" alt="{{ str_replace('{name}', $case->title, (string) $d['logo_alt']) }}" style="width: {{ ek_u($v([81, 62])) }}; height: {{ ek_u($v([29, 22])) }}; object-fit: contain; display: block"></span>@endif
+                            @if ($logo)<span style="width: {{ ek_u($v([110, 84])) }}; height: {{ ek_u($v([52, 40])) }}; border-radius: {{ ek_u(12) }}; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex: none"><img loading="lazy" decoding="async" src="{{ $logo }}" alt="{{ str_replace('{name}', $case->title, (string) $d['logo_alt']) }}" style="width: {{ ek_u($v([81, 62])) }}; height: {{ ek_u($v([29, 22])) }}; object-fit: contain; display: block"></span>@endif
                             <span style="display: flex; flex-direction: column; gap: {{ ek_u(2) }}"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([16, 14])) }}, 0.8125rem)">{{ $case->get('quote_name') }}</span><span style="font-size: max({{ ek_u($v([14, 13])) }}, 0.8125rem); color: rgba(255,255,255,0.75)">{{ $case->get('quote_role') }}, {{ $case->title }}</span></span>
                         </figcaption>
                     </figure>

@@ -35,7 +35,7 @@
                             <ul data-m="br-row-{{ $r + 1 }}" style="position: absolute; left: {{ ek_u($travel[$r][0]) }}; top: {{ ek_u($v([340 + $r * 86, 296 + $r * 72])) }}; margin: 0; padding: 0; list-style: none; display: flex; gap: {{ ek_u($v([14, 12])) }}">
                                 @foreach ($row as $client)
                                     <li style="flex-shrink: 0; width: {{ ek_u($tw) }}; height: {{ ek_u($th) }}; border-radius: {{ ek_u($v([16, 14])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u(1) }} 0 rgba(13,20,16,0.05), 0 {{ ek_u(10) }} {{ ek_u(20) }} {{ ek_u(-16) }} rgba(13,20,16,0.45); display: flex; align-items: center; justify-content: center">
-                                        @if ($logo = media_ref($client->get('logo'))?->url)<img src="{{ $logo }}" alt="{{ $client->title }}" loading="lazy" style="width: {{ ek_u($tw - 35) }}; height: {{ ek_u($th - 24) }}; object-fit: contain; display: block">@else<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(13) }}, 0.75rem); text-align: center">{{ $client->title }}</span>@endif
+                                        @if ($logo = media_ref($client->get('logo'))?->web_url)<img loading="lazy" decoding="async" src="{{ $logo }}" alt="{{ $client->title }}" loading="lazy" style="width: {{ ek_u($tw - 35) }}; height: {{ ek_u($th - 24) }}; object-fit: contain; display: block">@else<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(13) }}, 0.75rem); text-align: center">{{ $client->title }}</span>@endif
                                     </li>
                                 @endforeach
                             </ul>

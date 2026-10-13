@@ -37,7 +37,7 @@
     $cat = $post->categories->first();
     $url = route('front.blog.show', $post->slug);
     $drawing = ! $post->featuredMedia || in_array($post->slug, $lines($d['drawing_for'] ?? ''), true);
-    $avatar = media_ref($d['avatar'] ?? null)?->url;
+    $avatar = media_ref($d['avatar'] ?? null)?->web_url;
     $back = '<path d="M19 12H5M11 6l-6 6 6 6"></path>';
 @endphp
 <div class="ek ek-article-hero" id="{{ $d['anchor'] ?: 'p-top' }}">
@@ -78,7 +78,7 @@
                             @include('frontend.sections.ekdanta.partials.article-drawing', ['d' => $d, 'mob' => $mob])
                         </div>
                     @else
-                        <img src="{{ $post->featuredMedia->url }}" alt="{{ $post->featuredMedia->alt ?? '' }}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+                        <img src="{{ $post->featuredMedia->web_url }}" alt="{{ $post->featuredMedia->alt ?? '' }}" style="width: 100%; height: 100%; object-fit: cover; display: block">
                     @endif
                 </div>
             </div>

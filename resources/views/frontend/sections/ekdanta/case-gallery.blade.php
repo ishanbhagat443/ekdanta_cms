@@ -14,7 +14,7 @@
 @if ($case)
 @php
     $made = array_slice(array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $case->get('made'))))), 0, 3);
-    $img = media_ref($case->get('image'))?->url;
+    $img = media_ref($case->get('image'))?->web_url;
 @endphp
 <div class="ek ek-case-gallery" id="{{ $d['anchor'] ?: 'c-gallery' }}">
     @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
@@ -38,7 +38,7 @@
 
                     <div data-m="cg-frame" style="position: absolute; left: {{ ek_u($v([600, 24])) }}; top: {{ ek_u($v([120, 428])) }}; width: {{ ek_u($v([744, 342])) }}; height: {{ ek_u($v([660, 303])) }}">
                         <div style="position: absolute; left: 0; top: 0; width: {{ ek_u(744) }}; height: {{ ek_u(660) }}; border-radius: {{ ek_u(28) }}; overflow: hidden; background: #FFFFFF; box-shadow: 0 {{ ek_u(50) }} {{ ek_u(90) }} {{ ek_u(-40) }} rgba(0,0,0,0.8); {{ $mob ? 'transform: scale(0.4597); transform-origin: 0 0' : '' }}">
-                            @if ($img)<img data-m="cg-pan" class="ek-gallery-img" src="{{ $img }}" alt="{{ str_replace('{name}', $case->title, (string) $d['image_alt']) }}" loading="lazy" style="position: absolute; left: 0; top: 0; width: {{ ek_u(857) }}; height: {{ ek_u(940) }}; max-width: none; object-fit: cover; object-position: top; display: block; transform-origin: 0 0">@endif
+                            @if ($img)<img loading="lazy" decoding="async" data-m="cg-pan" class="ek-gallery-img" src="{{ $img }}" alt="{{ str_replace('{name}', $case->title, (string) $d['image_alt']) }}" loading="lazy" style="position: absolute; left: 0; top: 0; width: {{ ek_u(857) }}; height: {{ ek_u(940) }}; max-width: none; object-fit: cover; object-position: top; display: block; transform-origin: 0 0">@endif
                             <span aria-hidden="true" style="position: absolute; left: {{ ek_u(18) }}; top: {{ ek_u(18) }}; display: flex; align-items: center; gap: {{ ek_u(8) }}; padding: {{ ek_u(8) }} {{ ek_u(14) }}; border-radius: 999px; background: rgba(13,20,16,0.85); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: {{ $mob ? ek_u(28) : 'max('.ek_u(13).', 0.8125rem)' }}"><svg viewBox="0 0 24 24" fill="none" stroke="#8FE3AE" stroke-width="2.6" stroke-linecap="round" style="width: {{ ek_u($v([14, 28])) }}; height: {{ ek_u($v([14, 28])) }}">{!! $glass !!}</svg><span class="ek-gallery-label"><span class="ek-gallery-zoom">{{ $d['zoom_label'] }}</span><span class="ek-gallery-full">{{ $d['full_label'] }}</span></span></span>
                         </div>
                     </div>

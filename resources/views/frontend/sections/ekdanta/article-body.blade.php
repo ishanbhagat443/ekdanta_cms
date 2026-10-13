@@ -18,7 +18,7 @@
     $minutes = $post->readingTimeMinutes();
     $url = route('front.blog.show', $post->slug);
     $author = $d['author_name'] ?: ucfirst($post->displayAuthor());
-    $authorImage = media_ref($d['author_image'] ?? null)?->url;
+    $authorImage = media_ref($d['author_image'] ?? null)?->web_url;
     $btn = 'width: '.ek_u(46).'; height: '.ek_u(46).'; border-radius: 999px; background: var(--tk-paper); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: var(--tk-ink); border: 0; cursor: pointer';
     $ring = round(2 * M_PI * 22, 2);
 @endphp
@@ -55,7 +55,7 @@
                 </div>
             @endif
             <div class="ek-ab__author" data-m="ab-rise">
-                <span class="ek-ab__avatar">@if ($authorImage)<img src="{{ $authorImage }}" alt="">@endif</span>
+                <span class="ek-ab__avatar">@if ($authorImage)<img loading="lazy" decoding="async" src="{{ $authorImage }}" alt="">@endif</span>
                 <span class="ek-ab__who">
                     <span class="ek-ab__label">{{ $d['author_kicker'] }}</span>
                     <span class="ek-ab__name">{{ $author }}</span>

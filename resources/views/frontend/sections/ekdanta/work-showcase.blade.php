@@ -27,7 +27,7 @@
                     @foreach ($cases as $i => $case)
                         <div aria-hidden="true" data-m="work-card" data-colour="{{ $case->get('colour') ?: '#0A5A30' }}"
                              style="position: absolute; left: {{ ek_u($v([500, 80])) }}; top: {{ ek_u($v([208, 100])) }}; width: {{ ek_u($v([440, 230])) }}; height: {{ ek_u($v([483, 252])) }}; border-radius: {{ ek_u($v([26, 20])) }}; overflow: hidden; background: #FFFFFF; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-30, -24])) }} rgba(0,0,0,0.7); transform: translate({{ ek_u($hero[0]) }}, {{ ek_u($hero[1]) }}) rotate(-3deg); opacity: {{ $i === 0 ? 1 : 0 }}; z-index: {{ 20 - $i }}">
-                            <img src="{{ media_ref($case->get('image'))?->url }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">
+                            <img loading="lazy" decoding="async" src="{{ media_ref($case->get('image'))?->web_url }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">
                         </div>
                     @endforeach
 
@@ -35,7 +35,7 @@
                         @foreach ($cases as $i => $case)
                             @php $made = array_filter(array_map('trim', explode("\n", (string) $case->get('made')))); @endphp
                             <article style="position: absolute; left: {{ ek_u($v([700, 24])) }}; top: {{ ek_u($v([210, 382])) }}; width: {{ ek_u($v([620, 342])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([18, 12])) }}; opacity: {{ $i === 0 ? 1 : 0 }}">
-                                <img src="{{ media_ref($case->get('image'))?->url }}" alt="{{ str_replace('{name}', $case->title, (string) $t['image_alt']) }}" class="visually-hidden">
+                                <img loading="lazy" decoding="async" src="{{ media_ref($case->get('image'))?->web_url }}" alt="{{ str_replace('{name}', $case->title, (string) $t['image_alt']) }}" class="visually-hidden">
                                 <span style="align-self: flex-start; padding: {{ ek_u($v([6, 5])) }} {{ ek_u($v([12, 10])) }}; border-radius: 999px; background: var(--tk-green); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([13, 11])) }}, 0.75rem); letter-spacing: 0.06em; color: var(--tk-ink)">{{ $case->get('sector') }}</span>
                                 <h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([60, 31])) }}; line-height: {{ $v([1, 1.02]) }}; letter-spacing: -0.045em">@if ($url = $case->url())<a href="{{ $url }}" style="color: inherit; text-decoration: none">{{ $case->title }}</a>@else{{ $case->title }}@endif</h3>
                                 <p style="margin: 0; font-size: max({{ ek_u($v([20, 15.5])) }}, 0.8125rem); line-height: {{ $v([1.55, 1.5]) }}; color: #DCE7E0">{{ $case->get('description') }}</p>

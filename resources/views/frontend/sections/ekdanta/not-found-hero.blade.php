@@ -8,7 +8,7 @@
     $d = $section->viewData('desktop');
     $m = $section->viewData('mobile');
     $code = (string) ($d['code'] ?: '404');
-    $mark = media_ref($d['mark'] ?? null)?->url;
+    $mark = media_ref($d['mark'] ?? null)?->web_url;
     $home = '<path d="M3 11l9-7 9 7v9H3z"></path><path d="M10 20v-5h4v5"></path>';
     $glass = '<circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path>';
     // Paper sheets, in the order they fade in: left, top, tilt.

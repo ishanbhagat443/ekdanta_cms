@@ -14,7 +14,7 @@
 @php
     $made = array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $case->get('made')))));
     $facts = array_values(array_filter((array) $case->get('facts', []), fn ($f) => ($f['value'] ?? '') !== ''));
-    $logo = media_ref($case->get('logo'))?->url;
+    $logo = media_ref($case->get('logo'))?->web_url;
 @endphp
 <div class="ek ek-case-overview" id="{{ $d['anchor'] ?: 'c-overview' }}">
     @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
@@ -55,7 +55,7 @@
                             <span style="display: flex; flex-direction: column; gap: {{ ek_u(4) }}"><span data-m="co-fact" style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([64, 36])) }}, 0.8125rem); line-height: 1; letter-spacing: -0.05em; color: var(--tk-green-deep)">{{ $fact['value'] }}</span><span style="font-size: max({{ ek_u($v([16, 13])) }}, 0.8125rem); color: var(--tk-muted)">{{ $fact['label'] ?? '' }}</span></span>
                         @endforeach
                         @if ($logo)
-                            <span style="margin-left: auto; width: {{ ek_u($v([190, 120])) }}; height: {{ ek_u($v([82, 56])) }}; border-radius: {{ ek_u($v([18, 14])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u(16) }} {{ ek_u(30) }} {{ ek_u(-24) }} rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: center"><img src="{{ $logo }}" alt="{{ str_replace('{name}', $case->title, (string) $d['logo_alt']) }}" style="width: {{ ek_u($v([135, 90])) }}; height: {{ ek_u($v([48, 32])) }}; object-fit: contain; display: block"></span>
+                            <span style="margin-left: auto; width: {{ ek_u($v([190, 120])) }}; height: {{ ek_u($v([82, 56])) }}; border-radius: {{ ek_u($v([18, 14])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u(16) }} {{ ek_u(30) }} {{ ek_u(-24) }} rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: center"><img loading="lazy" decoding="async" src="{{ $logo }}" alt="{{ str_replace('{name}', $case->title, (string) $d['logo_alt']) }}" style="width: {{ ek_u($v([135, 90])) }}; height: {{ ek_u($v([48, 32])) }}; object-fit: contain; display: block"></span>
                         @endif
                     </div>
                 </div>

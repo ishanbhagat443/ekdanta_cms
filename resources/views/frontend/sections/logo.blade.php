@@ -25,15 +25,15 @@
 <a href="{{ $link }}" class="navbar-brand gsm-logo-link order-0 {{ $classes }}" style="--logo-d: {{ $maxH('desktop') }}px; --logo-t: {{ $maxH('tablet') }}px; --logo-m: {{ $maxH('mobile') }}px">
     @if ($lightMedia)
         {{-- Shown only while an overlay header is transparent (see .gsm-header-overlay CSS). --}}
-        <img src="{{ $lightMedia->url }}" alt="{{ $alt }}" class="gsm-logo-light">
+        <img src="{{ $lightMedia->web_url }}" alt="{{ $alt }}" class="gsm-logo-light">
     @endif
     @if ($desktopMedia)
         @if ($tabletMedia || $mobileMedia)
-            <img src="{{ $desktopMedia->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-lg-inline-block">
-            <img src="{{ ($tabletMedia ?? $desktopMedia)->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-md-inline-block d-lg-none">
-            <img src="{{ ($mobileMedia ?? $tabletMedia ?? $desktopMedia)->url }}" alt="{{ $alt }}" class="gsm-logo-dark d-inline-block d-md-none">
+            <img src="{{ $desktopMedia->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-lg-inline-block">
+            <img src="{{ ($tabletMedia ?? $desktopMedia)->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-md-inline-block d-lg-none">
+            <img src="{{ ($mobileMedia ?? $tabletMedia ?? $desktopMedia)->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark d-inline-block d-md-none">
         @else
-            <img src="{{ $desktopMedia->url }}" alt="{{ $alt }}" class="gsm-logo-dark">
+            <img src="{{ $desktopMedia->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark">
         @endif
     @else
         <span class="fw-bold gsm-logo-dark">{{ setting('business.company_name', '') }}</span>

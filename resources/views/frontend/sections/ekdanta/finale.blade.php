@@ -35,7 +35,7 @@
                          (text at its minimum size on a short screen) pushes the line down, never under it. --}}
                     @if ($mob)<div class="ek-fin-col" style="position: absolute; left: {{ ek_u(16) }}; right: {{ ek_u(16) }}; top: {{ ek_u(376) }}; bottom: {{ ek_u(16) }}; display: flex; flex-direction: column; gap: {{ ek_u(12) }}">@endif
                     <address data-m="end-card" class="ek-fin-card" style="{{ $mob ? 'padding: '.ek_u(18).' '.ek_u(20).' '.ek_u(20) : 'position: absolute; left: '.ek_u(880).'; top: '.ek_u(130).'; width: '.ek_u(464).'; padding: '.ek_u(32) }}; margin: 0; font-style: normal; box-sizing: border-box; border-radius: {{ ek_u($v([28, 24])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u($v([40, 30])) }} {{ ek_u($v([80, 60])) }} {{ ek_u($v([-40, -30])) }} rgba(13,20,16,0.5); display: flex; flex-direction: column; gap: {{ ek_u($v([18, 11])) }}">
-                        <img src="{{ media_ref($t['logo'] ?? null)?->url }}" alt="{{ $d['logo_alt'] }}" style="height: {{ ek_u($v([40, 30])) }}; width: auto; align-self: flex-start">
+                        <img loading="lazy" decoding="async" src="{{ media_ref($t['logo'] ?? null)?->web_url }}" alt="{{ $d['logo_alt'] }}" style="height: {{ ek_u($v([40, 30])) }}; width: auto; align-self: flex-start">
                         {{-- Mobile: the first group on its own, the rest and the email side by side. --}}
                         @foreach ($groups as $groupLabel => $numbers)
                             @if ($mob && $loop->index === 1) <div style="display: flex; flex-wrap: wrap; gap: 0 {{ ek_u(20) }}"> @endif

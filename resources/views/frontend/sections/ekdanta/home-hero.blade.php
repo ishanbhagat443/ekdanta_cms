@@ -33,9 +33,9 @@
                     @endunless
 
                     <div aria-hidden="true" style="position: absolute; {{ $mobile ? 'left: 0; top: 0; transform-origin: 0 0; transform: translate('.ek_u(161.8).', '.ek_u(494.5).') rotate(22deg) scale(0.62)' : 'left: '.ek_u(852).'; top: '.ek_u(340) }}; width: {{ ek_u(588) }}; height: {{ ek_u(560) }}">
-                        <img src="{{ media_ref($t['head_image'] ?? null)?->url }}" alt="" style="position: absolute; left: 0; top: 0; width: {{ ek_u(588) }}; height: {{ ek_u(560) }}; display: block">
+                        <img src="{{ media_ref($t['head_image'] ?? null)?->web_url }}" alt="" fetchpriority="high" style="position: absolute; left: 0; top: 0; width: {{ ek_u(588) }}; height: {{ ek_u(560) }}; display: block">
                         <div data-m="rig" style="position: absolute; left: 0; top: 0; width: {{ ek_u(588) }}; height: {{ ek_u(560) }}; transform-origin: {{ ek_u(326) }} {{ ek_u(284) }}">
-                            <img src="{{ media_ref($t['trunk_image'] ?? null)?->url }}" alt="" style="position: absolute; left: 0; top: 0; width: {{ ek_u(588) }}; height: {{ ek_u(560) }}; display: block">
+                            <img src="{{ media_ref($t['trunk_image'] ?? null)?->web_url }}" alt="" style="position: absolute; left: 0; top: 0; width: {{ ek_u(588) }}; height: {{ ek_u(560) }}; display: block">
                             <span style="position: absolute; left: {{ ek_u(40) }}; top: {{ ek_u(150) }}; width: {{ ek_u(26) }}; height: {{ ek_u(26) }}; margin: {{ ek_u(-13) }} 0 0 {{ ek_u(-13) }}; border-radius: 50%; background: #FFF6C9; box-shadow: 0 0 {{ ek_u(40) }} {{ ek_u(18) }} rgba(255,246,201,0.55); opacity: var(--glow)"></span>
                         </div>
                     </div>

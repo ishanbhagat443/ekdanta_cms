@@ -60,7 +60,7 @@
 
                     <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: {{ $w }}px; height: {{ $h }}px; transform-origin: 0 0; transform: scale(var(--u-n, 1)); pointer-events: none">
                         <div data-m="proc-marker" style="position: absolute; left: 0; top: 0; width: {{ $v([56, 44]) }}px; height: {{ $v([56, 44]) }}px; offset-path: path('{{ $paths[$comp] }}'); offset-distance: 100%; offset-rotate: 0deg">
-                            <span data-m="proc-bob" style="display: flex; width: 100%; height: 100%; border-radius: 50%; background: #FFFFFF; box-shadow: 0 {{ $v([12, 10]) }}px {{ $v([26, 22]) }}px -10px rgba(13,20,16,0.45), 0 0 0 {{ $v([4, 3]) }}px var(--tk-green); align-items: center; justify-content: center">@if ($mark)<img src="{{ $mark->url }}" alt="" style="width: {{ $v([34, 27]) }}px; height: auto; display: block">@endif</span>
+                            <span data-m="proc-bob" style="display: flex; width: 100%; height: 100%; border-radius: 50%; background: #FFFFFF; box-shadow: 0 {{ $v([12, 10]) }}px {{ $v([26, 22]) }}px -10px rgba(13,20,16,0.45), 0 0 0 {{ $v([4, 3]) }}px var(--tk-green); align-items: center; justify-content: center">@if ($mark)<img loading="lazy" decoding="async" src="{{ $mark->web_url }}" alt="" style="width: {{ $v([34, 27]) }}px; height: auto; display: block">@endif</span>
                         </div>
                     </div>
                 </div>

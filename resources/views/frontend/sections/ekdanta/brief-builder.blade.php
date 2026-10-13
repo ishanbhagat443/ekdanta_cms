@@ -66,7 +66,7 @@
                                 </div>
                             @endforeach
                             <div class="ek-brief-walker" data-m="brief-walker" style="position: absolute; left: 0; top: 0; width: {{ ek_u($v([52, 44])) }}; height: {{ ek_u($v([52, 44])) }}">
-                                <div data-m="brief-bob" style="width: 100%; height: 100%; border-radius: 50%; background: #FFFFFF; box-shadow: 0 {{ ek_u(8) }} {{ ek_u(18) }} {{ ek_u(-8) }} rgba(13,20,16,0.45); display: flex; align-items: center; justify-content: center">@if ($mark)<img src="{{ $mark->url }}" alt="" style="width: {{ ek_u($v([32, 27])) }}; height: auto">@endif</div>
+                                <div data-m="brief-bob" style="width: 100%; height: 100%; border-radius: 50%; background: #FFFFFF; box-shadow: 0 {{ ek_u(8) }} {{ ek_u(18) }} {{ ek_u(-8) }} rgba(13,20,16,0.45); display: flex; align-items: center; justify-content: center">@if ($mark)<img loading="lazy" decoding="async" src="{{ $mark->web_url }}" alt="" style="width: {{ ek_u($v([32, 27])) }}; height: auto">@endif</div>
                             </div>
                         </div>
 

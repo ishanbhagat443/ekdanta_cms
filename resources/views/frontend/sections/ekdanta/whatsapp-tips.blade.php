@@ -9,7 +9,7 @@
     $d = $section->viewData('desktop');
     $m = $section->viewData('mobile');
     $tips = array_slice(array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $d['tips'])))), 0, 4);
-    $mark = media_ref($d['mark'] ?? null)?->url;
+    $mark = media_ref($d['mark'] ?? null)?->web_url;
     $chat = '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path>';
     $path = 'M120 820 C 420 700, 560 860, 760 640 S 980 380, 960 300';
     $href = link_href($d['button_link'] ?? '');
@@ -40,7 +40,7 @@
 
                     <div data-m="tw-phone" style="position: absolute; left: {{ ek_u($v([960, 107])) }}; top: {{ ek_u($v([150, 476])) }}; width: {{ ek_u($v([320, 176])) }}; height: {{ ek_u($v([620, 341])) }}; transform: rotate(-2deg)">
                         <div style="position: absolute; left: 0; top: 0; width: {{ ek_u(320) }}; height: {{ ek_u(620) }}; box-sizing: border-box; border-radius: {{ ek_u(44) }}; border: {{ ek_u(10) }} solid #1E2622; background: #ECE5DD; overflow: hidden; box-shadow: 0 {{ ek_u(60) }} {{ ek_u(100) }} {{ ek_u(-40) }} rgba(0,0,0,0.8); {{ $mob ? 'transform: scale(0.55); transform-origin: 0 0' : '' }}">
-                            <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: {{ ek_u(70) }}; background: var(--tk-green-deep); display: flex; align-items: center; gap: {{ ek_u(10) }}; padding: {{ ek_u(18) }} {{ ek_u(14) }} 0; box-sizing: border-box"><span style="width: {{ ek_u(36) }}; height: {{ ek_u(36) }}; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center">@if ($mark)<img src="{{ $mark }}" alt="" style="width: {{ ek_u(22) }}; height: auto">@endif</span><span style="display: flex; flex-direction: column"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: {{ ek_u(15) }}; color: #FFFFFF">{{ $d['phone_name'] }}</span><span style="font-size: {{ ek_u(12) }}; color: var(--tk-mint-2)">{{ $d['phone_status'] }}</span></span></div>
+                            <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: {{ ek_u(70) }}; background: var(--tk-green-deep); display: flex; align-items: center; gap: {{ ek_u(10) }}; padding: {{ ek_u(18) }} {{ ek_u(14) }} 0; box-sizing: border-box"><span style="width: {{ ek_u(36) }}; height: {{ ek_u(36) }}; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center">@if ($mark)<img loading="lazy" decoding="async" src="{{ $mark }}" alt="" style="width: {{ ek_u(22) }}; height: auto">@endif</span><span style="display: flex; flex-direction: column"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: {{ ek_u(15) }}; color: #FFFFFF">{{ $d['phone_name'] }}</span><span style="font-size: {{ ek_u(12) }}; color: var(--tk-mint-2)">{{ $d['phone_status'] }}</span></span></div>
                             <ol style="position: absolute; left: {{ ek_u(12) }}; right: {{ ek_u(12) }}; top: {{ ek_u(86) }}; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: {{ ek_u(10) }}">
                                 {{-- Phones draw the phone at 55 %: 1.48rem is 13 px on screen, and three tips fit. --}}
                                 @foreach ($mob ? array_slice($tips, 0, 3) : $tips as $k => $tip)

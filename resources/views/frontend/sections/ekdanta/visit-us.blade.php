@@ -73,7 +73,7 @@
                                     <ellipse cx="0" cy="4" rx="16" ry="5" fill="rgba(0,0,0,0.18)"></ellipse>
                                     <path d="M0 0 C -22 -26 -30 -40 -30 -56 A 30 30 0 1 1 30 -56 C 30 -40 22 -26 0 0 Z" fill="#0A5A30"></path>
                                     <circle cx="0" cy="-56" r="20" fill="#FFFFFF"></circle>
-                                    @if ($mark)<image href="{{ $mark->url }}" x="-13" y="-70" width="26" height="27"></image>@endif
+                                    @if ($mark)<image href="{{ $mark->web_url }}" x="-13" y="-70" width="26" height="27"></image>@endif
                                 </g>
                             </g>
                             <g data-m="pin-label">

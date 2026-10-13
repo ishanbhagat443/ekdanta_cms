@@ -54,7 +54,7 @@
                             @php [$sx, $sy] = $shelfAt[$s % count($shelfAt)]; @endphp
                             @foreach ($shelf['items'] as $j => $client)
                                 <li data-shelf="{{ $s }}" style="position: absolute; left: 0; top: 0; width: {{ ek_u(135) }}; height: {{ ek_u(48) }}; border-radius: {{ ek_u(10) }}; overflow: hidden; background: #FFFFFF; {{ $mob ? 'transform-origin: 0 0;' : '' }} transform: translate({{ ek_u($sx + ($j % 2) * $slot[0]) }}, {{ ek_u($sy + $slot[2] + intdiv($j, 2) * $slot[1]) }}) scale({{ $scale }})">
-                                    <img src="{{ media_ref($client->get('logo'))?->url }}" alt="{{ $client->title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block">
+                                    <img loading="lazy" decoding="async" src="{{ media_ref($client->get('logo'))?->web_url }}" alt="{{ $client->title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block">
                                 </li>
                             @endforeach
                         @endforeach

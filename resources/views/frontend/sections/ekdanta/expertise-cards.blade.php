@@ -56,7 +56,7 @@
                                 </span>
                                 <span aria-hidden="true" style="position: absolute; inset: 0; border-radius: {{ ek_u($v([24, 20])) }}; background: var(--tk-green-deep); transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 {{ ek_u($v([30, 24])) }} {{ ek_u($v([60, 50])) }} {{ ek_u($v([-30, -28])) }} rgba(13,20,16,0.6); display: flex; align-items: center; justify-content: center">
                                     <span style="position: absolute; inset: {{ ek_u($v([14, 10])) }}; border-radius: {{ ek_u($v([16, 14])) }}; border: {{ ek_u(1.5) }} dashed rgba(143,227,174,0.35)"></span>
-                                    <span style="width: {{ ek_u($v([116, 76])) }}; height: {{ ek_u($v([116, 76])) }}; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center">@if ($mark)<img src="{{ $mark->url }}" alt="" style="width: {{ ek_u($v([70, 46])) }}; height: auto; display: block">@endif</span>
+                                    <span style="width: {{ ek_u($v([116, 76])) }}; height: {{ ek_u($v([116, 76])) }}; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center">@if ($mark)<img loading="lazy" decoding="async" src="{{ $mark->web_url }}" alt="" style="width: {{ ek_u($v([70, 46])) }}; height: auto; display: block">@endif</span>
                                 </span>
                             </a>
                         </div>

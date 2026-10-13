@@ -12,6 +12,7 @@
         "bootstrap": "^5.2.3",
         "jsdom": "30.1.2",
         "laravel-vite-plugin": "^0.7.2",
+        "lighthouse": "13.5.0",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
     },

@@ -15,7 +15,7 @@
 @endphp
 <a href="{{ route('front.blog.show', $post->slug) }}" style="display: block; height: {{ ek_u($v([470, 400])) }}; border-radius: {{ ek_u($v([24, 20])) }}; overflow: hidden; background: #FFFFFF; box-shadow: 0 {{ ek_u(1) }} 0 rgba(13,20,16,0.04), 0 {{ ek_u(24) }} {{ ek_u(48) }} {{ ek_u(-32) }} rgba(13,20,16,0.45), inset 0 0 0 {{ ek_u(1) }} rgba(13,20,16,0.07); text-decoration: none; color: var(--tk-ink)">
     @if ($post->featuredMedia)
-        <span style="display: block; height: {{ ek_u($v([230, 190])) }}; background: var(--tk-paper) url({{ $post->featuredMedia->url }}) center top / cover no-repeat" role="img" aria-label="{{ $post->featuredMedia->alt ?: $post->title }}"></span>
+        <span style="display: block; height: {{ ek_u($v([230, 190])) }}; background: var(--tk-paper) url({{ $post->featuredMedia->web_url }}) center top / cover no-repeat" role="img" aria-label="{{ $post->featuredMedia->alt ?: $post->title }}"></span>
     @else
         <span aria-hidden="true" style="display: flex; height: {{ ek_u($v([230, 190])) }}; align-items: center; justify-content: center; background: {{ $artBg }}"><span style="width: {{ ek_u(96) }}; height: {{ ek_u(96) }}; border-radius: {{ ek_u(28) }}; background: rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: {{ ek_u(48) }}; height: {{ ek_u(48) }}"><path d="{{ $icon }}"></path></svg></span></span>
     @endif

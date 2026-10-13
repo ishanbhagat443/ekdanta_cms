@@ -10,7 +10,7 @@
     $m = $section->viewData('mobile');
     $word = (string) ($d['word'] ?: 'Ekdanta');
     $green = (int) ($d['word_green'] ?? 0);
-    $mark = media_ref($d['mark'] ?? null)?->url;
+    $mark = media_ref($d['mark'] ?? null)?->web_url;
     $ledger = array_values(array_filter((array) ($d['ledger'] ?? []), fn ($r) => ($r['text'] ?? '') !== ''));
     $kalam = "font-family: 'Kalam', 'Hind', cursive";
 @endphp

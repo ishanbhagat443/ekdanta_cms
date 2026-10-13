@@ -22,8 +22,8 @@
     $hex = ltrim((string) $case->get('colour'), '#');
     $bg = strlen($hex) === 6 ? '#'.$hex : 'var(--tk-ink)';
     $made = array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $case->get('made')))));
-    $logo = media_ref($case->get('logo'))?->url;
-    $img = media_ref($case->get('image'))?->url;
+    $logo = media_ref($case->get('logo'))?->web_url;
+    $img = media_ref($case->get('image'))?->web_url;
     $len = mb_strlen($case->title);
     $nameSize = $len <= 11 ? [104, 52] : ($len <= 16 ? [96, 46] : [76, 38]);
     $back = '<path d="M19 12H5M11 6l-6 6 6 6"></path>';
