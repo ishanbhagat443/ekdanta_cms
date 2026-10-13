@@ -402,3 +402,33 @@ if (! function_exists('business_tokens')) {
     }
 }
 
+
+if (! function_exists('lang_parts')) {
+    /**
+     * Marks Devanagari in rendered HTML as Hindi (WCAG 3.1.2, language of
+     * parts), so screen readers switch voice for words typed in any field.
+     * Only text between tags changes; tags, attributes and the contents of
+     * script, style, textarea and title stay as they are.
+     */
+    function lang_parts(string $html): string
+    {
+        if (! preg_match('/[\x{0900}-\x{097F}]/u', $html)) {
+            return $html;
+        }
+        $parts = preg_split('/(<[^>]*>)/u', $html, -1, PREG_SPLIT_DELIM_CAPTURE);
+        $raw = null; // the raw-text element we are inside
+        foreach ($parts as $i => $part) {
+            if ($i % 2) {
+                if ($raw && preg_match('#^</'.$raw.'\b#i', $part)) {
+                    $raw = null;
+                } elseif (! $raw && preg_match('#^<(script|style|textarea|title)\b#i', $part, $m)) {
+                    $raw = strtolower($m[1]);
+                }
+            } elseif (! $raw) {
+                $parts[$i] = preg_replace('/[\x{0900}-\x{097F}]+(?:[\s\-–]+[\x{0900}-\x{097F}]+)*/u', '<span lang="hi">$0</span>', $part);
+            }
+        }
+
+        return implode('', $parts);
+    }
+}

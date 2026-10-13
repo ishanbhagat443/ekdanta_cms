@@ -6,6 +6,9 @@
 //              motion (the finished layouts), at desktop, laptop and two phone sizes
 //   sideways   a page that scrolls sideways
 //   no-js      headings and paragraphs that are hidden with JavaScript off
+//   page       the checklist per page (finished layouts): one h1, no skipped heading
+//              level, images with alt, links, buttons and fields with a name, page
+//              language, ids used once, and (phones) tap targets at least 24 × 24
 //   node tests/visual/check.mjs [/path …]   (report: tests/visual/shots/check-report.json)
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -74,8 +77,35 @@ const overlapsInView = () => {
     return found;
 };
 
+// The page checklist, on what is drawn (each section has a desktop and a phone layout;
+// the other one is display: none and out of the accessibility tree).
+const checklist = () => {
+    const drawn = (el) => el.checkVisibility() && !el.closest('[aria-hidden="true"]');
+    const where = (el) => `${el.closest('[id]')?.id || el.tagName}: ${(el.textContent.trim() || el.outerHTML).slice(0, 50)}`;
+    const named = (el) => (el.getAttribute('aria-label') || el.getAttribute('title') || el.textContent.trim()
+        || [...el.querySelectorAll('img[alt], svg title')].map((i) => i.alt || i.textContent).join('')
+        || (el.getAttribute('aria-labelledby') || '').split(' ').map((id) => document.getElementById(id)?.textContent || '').join('')).trim();
+    const levels = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')].filter(drawn).map((h) => [Number(h.tagName[1]), h]);
+    const fields = [...document.querySelectorAll('input:not([type=hidden]), select, textarea')].filter(drawn);
+    const ids = [...document.querySelectorAll('[id]')].map((e) => e.id);
+    return {
+        lang: document.documentElement.lang || 'missing',
+        h1: levels.filter(([l]) => l === 1).length,
+        skips: levels.flatMap(([l, h], i) => (i && l > levels[i - 1][0] + 1 ? [`h${l} after h${levels[i - 1][0]} ${where(h)}`] : [])),
+        noAlt: [...document.querySelectorAll('img:not([alt])')].map(where),
+        noName: [...document.querySelectorAll('a[href], button, [role=button]')].filter(drawn).filter((el) => !named(el)).map((el) => el.outerHTML.slice(0, 80)),
+        noLabel: fields.filter((f) => !f.labels?.length && !f.getAttribute('aria-label') && !f.getAttribute('aria-labelledby') && !f.title).map((f) => f.outerHTML.slice(0, 80)),
+        dupIds: [...new Set(ids.filter((id, i) => ids.indexOf(id) !== i))],
+        small: innerWidth < 768 ? [...document.querySelectorAll('a[href], button, input, select, summary, [role=button]')].filter(drawn)
+            .map((el) => el.labels?.[0] || el) // a field's tap target is its label
+            .filter((el) => !el.closest('p, li > p') && getComputedStyle(el).display !== 'inline')
+            .filter((el) => { const r = el.getBoundingClientRect(); return r.width && r.height && (r.width < 24 || r.height < 24); })
+            .map((el) => `${el.closest('[id]')?.id || ''}: ${el.tagName} ${Math.round(el.getBoundingClientRect().width)}×${Math.round(el.getBoundingClientRect().height)} ${(el.textContent.trim() || el.getAttribute('aria-label') || '').slice(0, 30)}`) : [],
+    };
+};
+
 for (const path of paths) {
-    const result = { path, errors: [], cls: {}, overlap: {}, sideways: [], noJs: [] };
+    const result = { path, errors: [], cls: {}, overlap: {}, sideways: [], noJs: [], page: {} };
 
     // Motion on: errors and layout shift while loading.
     for (const size of [sizes[0], sizes[2]]) {
@@ -108,6 +138,7 @@ for (const path of paths) {
         }
         if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)) result.sideways.push(size.join('×'));
         result.overlap[size.join('×')] = [...found];
+        if (size[0] === 1440 || size[0] === 390) result.page[size[0]] = await page.evaluate(checklist);
         await context.close();
     }
 
@@ -127,7 +158,8 @@ for (const path of paths) {
 
     report.push(result);
     const overlaps = Object.entries(result.overlap).filter(([, list]) => list.length).map(([s, list]) => `${s} ${list.length}`).join(', ');
-    console.log(`${path}  errors ${result.errors.length}  cls ${JSON.stringify(result.cls)}  overlaps ${overlaps || 0}  sideways ${result.sideways.join(' ') || 'none'}  no-js hidden ${result.noJs.length}`);
+    const checks = Object.entries(result.page).map(([w, c]) => `${w}: lang ${c.lang} h1 ${c.h1} skips ${c.skips.length} alt ${c.noAlt.length} names ${c.noName.length} labels ${c.noLabel.length} dup-ids ${c.dupIds.length}${w < 768 ? ` small ${c.small.length}` : ''}`).join(' | ');
+    console.log(`${path}  errors ${result.errors.length}  cls ${JSON.stringify(result.cls)}  overlaps ${overlaps || 0}  sideways ${result.sideways.join(' ') || 'none'}  no-js hidden ${result.noJs.length}\n    ${checks}`);
 }
 
 mkdirSync('tests/visual/shots', { recursive: true });

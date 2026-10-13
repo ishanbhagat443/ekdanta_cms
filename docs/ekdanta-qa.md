@@ -121,8 +121,37 @@ Recorded per phase from Phase 1 on.
 | Phase 6 | Browser checks (tests/visual/check.mjs), every page | No console errors or failed requests; layout shift while loading 0.000–0.011 (under 0.1); no page scrolls sideways; no text runs into other text in any finished layout (reduced motion) at 1440 × 900, 1280 × 720, 390 × 844 or 360 × 640 | Pass |
 | Phase 6 | JavaScript off | Found: sections whose items take turns on one stage (Work Showcase, Contact Channels, FAQ Deck, Proof Carousel, Our Story, Case Studies Scroller) showed only their first item. Fixed: each lists every item in a `<noscript>` block. FAQ answers in closed `<details>` open without a script | Pass after fix |
 | Phase 6 | 360 × 640 (short phones), every section | The stage scales by height (u ≈ 0.76) while text keeps its 12–13 px minimum, so text grew into what sits below it. Found and fixed: Home Hero (buttons over the chips: the buttons follow the text; chips keep to one scrolling row on short screens), Big Brand Finale (footer line over the card), Visit Us (map over the buttons: the map gives way), Pricing (heading under the plan card, buttons off screen), Next Steps (cards overlapping, last one cut), Work Hero (wall showing through a button), Case Studies Scroller (button off screen), Case Hero (card over the buttons), Case Overview and Service Pricing + FAQ (text and opened answers cut off: on phones they flow with the page instead of pinning). 390 × 844 still matches the design | Pass after fix |
+| Phase 6 | Motion on, every section at its start, ⅓, ⅔ and end (`tests/visual/sections.mjs`), 1440 × 900 (249 shots) and 390 × 844 (242 shots) | Compared with the design. Parts only cross while they move (the FAQ deck's thrown card, cross-fades in Contact Channels, Save Our Number and Report Broken Link, Team rows sliding in, logos flying onto the shelves); every resting state is clear. Sections whose parts build in with the scroll (Service Deep Dive tiles, Expertise Cards deal, What's Included) start empty and fill within the first sixth, as drawn | Pass |
+| Phase 6 | Language of parts (WCAG 3.1.2), every page | Found: the Hindi words (विघ्नहर्ता, रिद्धि-सिद्धि, कर्ता-धर्ता, हमारा काम ही हमारी पहचान है।, शुभ आरंभ! and the Finale's footer line) sat in English text with no `lang`, so screen readers read them with an English voice. Only the About Hero's spelling was marked. Fixed where every section is drawn (`lang_parts()` in `render-section`): Devanagari in any field gets `<span lang="hi">`, so text an editor types later is covered too. Tags, attributes and script/style contents are left alone; no change on screen (pixel-compared) | Pass after fix |
 | Phase 6 | Reduced motion, Work Showcase | Found: the first case appeared over the heading and the cases cross-faded mid-scroll. Fixed: the heading, then each case, switch in place, whole | Pass after fix |
 | Phase 6 | Lighthouse, Home, mobile (performance) | Measured through a gzip proxy (tests/visual/gzip-proxy.mjs, as a production server compresses; the dev server does not): 66 at first (LCP 9.3 s, 1.9 MB). Fixed: images below the first screen load lazily; Ekdanta images use full-size WebP copies (`Media::web_url`, `php artisan mm:webp-media` for older uploads); the hero image loads first; Google Fonts and Font Awesome stylesheets no longer block the first paint; the header's WhatsApp icon is the design's inline chat icon; a favicon is set (browsers no longer fetch the 404 page as /favicon.ico). Now 92–95 (FCP 1.7 s, LCP 2.8 s, CLS 0.001, 455 KB). `sh tests/visual/lh.sh` | Pass after fix |
+
+### Pre-delivery checklist per page (Phase 6)
+
+Measured on the `--with-pages` preview with `node tests/visual/check.mjs` (finished layouts at 1440 × 900 and 390 × 844, overlaps also at 1280 × 720 and 360 × 640) and the section sweeps above. The same on every page:
+- one `<h1>` and no skipped heading level;
+- every image has `alt`, and every link, button and field has a name;
+- `lang="en"`, with Devanagari words marked `lang="hi"`;
+- no id used twice;
+- no console errors or failed requests, and no sideways scroll;
+- text stays readable with JavaScript off;
+- reduced motion shows finished states;
+- the focus ring is the approved orange with an ink ring;
+- small text uses the approved shades.
+
+| Page | Sections | Page-specific result | Status |
+|---|---|---|---|
+| Home `/` | 8 | Layout shift 0.002. Found: none. Phone tap targets: "Watch on Instagram" (147 × 21) and "See their stories on Instagram" (198 × 20) are under 24 px tall but stand alone, so they meet WCAG 2.5.8 through its spacing exception | Pass |
+| Contact `/contact` | 6 | Layout shift 0.001. Brief Builder chips: the label is the tap target (≥ 24 px); its checkbox is visually hidden | Pass |
+| Services `/services` | 7 | Layout shift 0.001 | Pass |
+| Thank you `/thank-you` | 5 | Layout shift 0.011 (the visitor's local time replaces "just now") | Pass |
+| 404 (any missing address) | 4 | Status 404; layout shift 0.003 | Pass |
+| About `/about` | 6 | Layout shift 0.002 | Pass |
+| Work `/work` | 5 | Found: Case Studies Scroller has no visible heading, so the case names (h3) followed the page's h1. Fixed: the case names are h2 (same look) | Pass after fix |
+| Case study `/work/{slug}` | 6 | Layout shift 0 | Pass |
+| Service detail `/services/{slug}` | 7 | Layout shift 0. Related Work's "Read the case study" links (186 × 20) stand alone: spacing exception | Pass |
+| Blog `/blog` | 5 | Layout shift 0.011 | Pass |
+| Article `/blog/{slug}` | 4 | Layout shift 0. "Meet the team" (135 × 23) stands alone: spacing exception | Pass |
 
 ### Known limits (ponytail ledger)
 
