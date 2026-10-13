@@ -371,7 +371,8 @@ if (! function_exists('business_text')) {
     /**
      * Contact details from Settings → Business inside a text: {phone:1}
      * (the first number as written there), {whatsapp} (the WhatsApp number),
-     * {email} and {reply_time}. Change a number once and every section shows it.
+     * {email}, {reply_time} and {hours:1} (the first office's hours). Change a
+     * number once and every section shows it.
      */
     function business_text(?string $text): string
     {
@@ -380,9 +381,10 @@ if (! function_exists('business_text')) {
             return $text;
         }
 
-        return preg_replace_callback('/\{(phone:([1-9])|whatsapp|email|reply_time)\}/', fn (array $m) => match (true) {
+        return preg_replace_callback('/\{(phone:([1-9])|hours:([1-9])|whatsapp|email|reply_time)\}/', fn (array $m) => match (true) {
             $m[1] === 'whatsapp' => business_whatsapp()['number'] ?? '',
             $m[1] === 'email', $m[1] === 'reply_time' => (string) setting('business.'.$m[1], ''),
+            str_starts_with($m[1], 'hours') => business_offices()[(int) $m[3] - 1]['hours'] ?? '',
             default => business_phones()[(int) $m[2] - 1]['number'] ?? '',
         }, $text);
     }

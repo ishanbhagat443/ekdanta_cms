@@ -31,7 +31,7 @@ class VisitUsSection extends EkdantaSection
             $this->text('eyebrow', 'Small line above the heading', 'VISIT US', 40),
             $this->text('heading', 'Heading', 'Come say namaste.', 80),
             $this->lines('address', 'Address (one line each)', "Block B, 402–403, Bhatar Trade Center\nNear Bhatar Char Rasta, Uma Bhawan Society\nBhatar, Surat, Gujarat 395017", 400),
-            $this->lines('details', 'Details under the address (one line each)', "Office hours: [Add office hours]\nAlso in Ahmedabad: [Add Ahmedabad address]", 400),
+            $this->lines('details', 'Details under the address (one line each)', "Office hours: {hours:1}\nAlso in Ahmedabad: [Add Ahmedabad address]", 400),
             $this->text('directions_label', 'Directions button', 'Get directions', 40),
             $this->link('directions_link', 'Directions button link', 'office:1'),
             $this->text('call_label', 'Call button', 'Call before you visit', 40),

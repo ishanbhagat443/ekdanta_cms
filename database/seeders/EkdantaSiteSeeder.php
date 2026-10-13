@@ -38,6 +38,9 @@ class EkdantaSiteSeeder extends Seeder
 {
     private const ASSETS = 'docs/ekdanta-design/assets/';
 
+    /** The Surat office's hours (given by Ekdanta, 13 Oct 2026). */
+    private const HOURS = 'Mon–Sat, 10 am – 6:30 pm';
+
     /** The two client-logo strips: 270 × 96 px per logo, in this order (design: LOGO_A, LOGO_B). */
     public const LOGOS = [
         'client-logos-strip-a.jpg' => ['Trilok Infratech', 'Trilok Precast', 'Global Silk Mills', 'Yantra Design', 'Amplus', 'Shree Ambica Automotive', 'Aditya Laces', 'Heaven Solar', 'Sagar Enterprise', 'The Zula House', 'Cruisemax Sports', 'Syasi Designers', 'M.M. Fashion', 'Fab De Print', 'Belvae', 'Qbits', 'Euro', 'Jalpooree', 'Raj Wafers', 'Jenish Spices', 'Maharana', 'Vidhi Ghee', 'Gaukrish Ghee', 'SRK Dairy'],
@@ -343,7 +346,11 @@ class EkdantaSiteSeeder extends Seeder
         }
     }
 
-    /** Settings → Business from the design; only values that are still empty are filled. */
+    /**
+     * Settings → Business from the design; only values that are still empty
+     * are filled. Office hours still holding the design's placeholder get the
+     * real ones.
+     */
     public function business(): void
     {
         $address = 'B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017';
@@ -357,12 +364,17 @@ class EkdantaSiteSeeder extends Seeder
                 ['label' => 'Sales', 'number' => '63544 33194', 'menu_label' => 'Sales', 'whatsapp' => false],
             ],
             'offices' => [
-                ['name' => 'Surat', 'address' => $address, 'directions_url' => 'https://share.google/EAOxrObclZeY4QkQR', 'latitude' => '', 'longitude' => '', 'hours' => '[Add office hours]'],
+                ['name' => 'Surat', 'address' => $address, 'directions_url' => 'https://share.google/EAOxrObclZeY4QkQR', 'latitude' => '', 'longitude' => '', 'hours' => self::HOURS],
                 ['name' => 'Ahmedabad', 'address' => '[Add Ahmedabad address]', 'directions_url' => '', 'latitude' => '', 'longitude' => '', 'hours' => ''],
             ],
         ];
 
         $missing = array_filter($values, fn ($value, string $key) => blank(setting("business.{$key}")), ARRAY_FILTER_USE_BOTH);
+        $offices = setting_list('business.offices');
+        if (! isset($missing['offices']) && ($offices[0]['hours'] ?? '') === '[Add office hours]') {
+            $offices[0]['hours'] = self::HOURS;
+            $missing['offices'] = $offices;
+        }
         if ($missing !== []) {
             app(SettingsService::class)->updateGroup('business', $missing);
         }

@@ -136,7 +136,7 @@ class EkdantaSectionsTest extends TestCase
     {
         $settings = fn (array $phones) => app(SettingsService::class)->updateGroup('business', [
             'email' => 'hello@example.in', 'country_code' => '91', 'phones' => $phones,
-            'offices' => [['name' => 'Surat', 'address' => 'Bhatar', 'directions_url' => 'https://maps.example/surat']],
+            'offices' => [['name' => 'Surat', 'address' => 'Bhatar', 'directions_url' => 'https://maps.example/surat', 'hours' => 'Mon–Sat, 10 am – 6:30 pm']],
         ]);
         $settings([['label' => 'All', 'number' => '90994 17987', 'whatsapp' => true], ['label' => 'All', 'number' => '90994 17949'], ['label' => 'Sales', 'number' => '63544 33194']]);
         $this->page('contact', ['ekdanta-contact-hero', 'ekdanta-contact-channels', 'ekdanta-visit-us']);
@@ -146,6 +146,7 @@ class EkdantaSectionsTest extends TestCase
             ->assertSee('href="tel:+919099417949"', false) // the second number ("Or …")
             ->assertSee('href="mailto:hello@example.in"', false)
             ->assertSee('href="https://maps.example/surat"', false)
+            ->assertSee('Office hours: Mon–Sat, 10 am – 6:30 pm') // Visit Us, from the office's hours
             ->assertSee('<div class="ek-noscript">', false) // every channel, readable without JavaScript
             ->assertDontSee('{phone:', false);
 

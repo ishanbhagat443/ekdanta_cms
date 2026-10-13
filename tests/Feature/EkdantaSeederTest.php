@@ -63,6 +63,19 @@ class EkdantaSeederTest extends TestCase
         $this->assertSame('91', setting('business.country_code'));
     }
 
+    public function test_office_hours_still_holding_the_placeholder_get_the_real_ones_and_typed_ones_stay(): void
+    {
+        $office = ['name' => 'Surat', 'address' => 'Bhatar', 'directions_url' => '', 'latitude' => '', 'longitude' => ''];
+        app(SettingsService::class)->updateGroup('business', ['offices' => [$office + ['hours' => '[Add office hours]']]]);
+        (new EkdantaSiteSeeder)->business();
+        $this->assertSame('Mon–Sat, 10 am – 6:30 pm', business_offices()[0]['hours']);
+        $this->assertSame('Bhatar', business_offices()[0]['address'], 'the rest of the office is kept');
+
+        app(SettingsService::class)->updateGroup('business', ['offices' => [$office + ['hours' => 'Mon–Fri, 9–5']]]);
+        (new EkdantaSiteSeeder)->business();
+        $this->assertSame('Mon–Fri, 9–5', business_offices()[0]['hours']);
+    }
+
     public function test_it_applies_the_theme_once_and_keeps_the_old_one_as_a_backup(): void
     {
         $seeder = new EkdantaSiteSeeder;
