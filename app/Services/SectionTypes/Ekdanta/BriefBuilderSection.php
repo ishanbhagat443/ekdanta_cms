@@ -55,6 +55,8 @@ class BriefBuilderSection extends EkdantaSection
             ], 10),
             $this->text('summary_label', 'Summary label (last step)', 'YOUR BRIEF', 40),
             $this->text('send_label', 'Send button', 'Send my brief on WhatsApp', 60),
+            $this->text('hint_details', 'Under Send, until name and phone are in', 'Add your name and phone number to send.', 100),
+            $this->text('hint_consent', 'Under Send, until the consent box is ticked', 'Tick the box above to send.', 100),
             $this->text('back_label', 'Back button', 'Back', 30),
             $this->text('next_label', 'Next button', 'Next', 30),
             $this->text('counter', 'Step counter ({n} = this step, {total} = how many)', 'Step {n} of {total}', 40),

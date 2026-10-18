@@ -89,7 +89,8 @@ class FormBuilderService
                 continue;
             }
 
-            $base = Str::slug($row['label'], '_') ?: 'field';
+            // A consent box keeps the name "consent", so rewording it keeps old submissions' column.
+            $base = $row['type'] === 'consent' ? 'consent' : (Str::slug($row['label'], '_') ?: 'field');
             $name = $base;
             $suffix = 2;
             while (in_array($name, $usedNames, true)) {
@@ -118,7 +119,8 @@ class FormBuilderService
                     'display' => ($row['display'] ?? null) === 'chips' ? 'chips' : null,
                     'whatsapp' => $row['whatsapp'] ?? null,
                     'autofill' => $row['type'] === 'hidden' ? ($row['autofill'] ?? null) : null,
-                ], fn ($v) => $v !== null && $v !== '') ?: null,
+                ] + ($row['type'] === 'consent' ? array_intersect_key($row, array_flip(['note', 'short_label', 'short_note', 'link_text', 'link_url'])) : []),
+                    fn ($v) => $v !== null && $v !== '') ?: null,
             ]);
         }
     }

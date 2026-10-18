@@ -31,6 +31,7 @@ class FormSubmissionService
                 'textarea' => ['string', 'max:5000'],
                 'select', 'radio' => ['string', 'in:'.implode(',', (array) $field->options)],
                 'checkbox' => ['array'],
+                'consent' => ['in:'.implode(',', FormField::CONSENT_VALUES)],
                 'file' => ['file', 'max:10240', 'mimes:jpg,jpeg,png,webp,pdf,doc,docx,xls,xlsx'],
                 default => ['string', 'max:1000'],
             });
@@ -60,7 +61,7 @@ class FormSubmissionService
         $validated = Validator::make(
             $request->all(),
             $this->validationRules($form),
-            [],
+            $form->fields->where('type', 'consent')->mapWithKeys(fn (FormField $f) => [$f->name.'.required' => 'Tick the box above to send.'])->all(),
             $this->attributeNames($form)
         )->validate();
 
@@ -68,6 +69,11 @@ class FormSubmissionService
 
         foreach ($form->fields as $field) {
             $value = $validated[$field->name] ?? null;
+
+            // A ticked consent box keeps the proof: when, and the exact words shown.
+            if ($field->type === 'consent' && $value !== null) {
+                $value = 'Yes, '.now()->format('j M Y, H:i T').': '.$field->consentText($value === 'short');
+            }
 
             if ($value instanceof UploadedFile) {
                 $value = mm_upload_url(

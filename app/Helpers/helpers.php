@@ -434,3 +434,26 @@ if (! function_exists('lang_parts')) {
         return implode('', $parts);
     }
 }
+
+if (! function_exists('cookie_bar')) {
+    /** Settings → Cookies with each empty value at its default; null while the bar is off. */
+    function cookie_bar(): ?array
+    {
+        $bar = [];
+        foreach (config('settings.cookies.fields') as $key => $field) {
+            $bar[$key] = (string) setting("cookies.{$key}", '') ?: ($field['default'] ?? '');
+        }
+        // "enabled" stored as "0" means off; never saved means the default (on).
+        $stored = setting('cookies.enabled');
+
+        return ($stored === null || $stored === '' ? $bar['enabled'] : $stored) ? $bar : null;
+    }
+}
+
+if (! function_exists('tracking_allowed')) {
+    /** Analytics and ad tags may load: the cookie bar is off, or the visitor chose "Allow all". */
+    function tracking_allowed(): bool
+    {
+        return cookie_bar() === null || request()->cookie('cookie_consent') === 'all';
+    }
+}

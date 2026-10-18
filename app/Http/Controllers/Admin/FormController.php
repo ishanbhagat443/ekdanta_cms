@@ -79,6 +79,11 @@ class FormController extends Controller
             'fields.*.display' => ['nullable', 'in:list,chips'],
             'fields.*.whatsapp' => ['nullable', 'string', 'max:200'],
             'fields.*.autofill' => ['nullable', 'in:'.implode(',', array_keys(FormField::AUTOFILL))],
+            'fields.*.note' => ['nullable', 'string', 'max:300'],
+            'fields.*.short_label' => ['nullable', 'string', 'max:300'],
+            'fields.*.short_note' => ['nullable', 'string', 'max:300'],
+            'fields.*.link_text' => ['nullable', 'string', 'max:100'],
+            'fields.*.link_url' => ['nullable', 'string', 'max:300', fn ($attribute, $value, $fail) => \App\Support\Link::valid($value) || $fail('The link address must be a page path, a full web address, or phone:/email: link.')],
         ]);
 
         $this->builder->updateForm($form, $data);

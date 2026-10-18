@@ -76,6 +76,49 @@ class EkdantaSeederTest extends TestCase
         $this->assertSame('Mon–Fri, 9–5', business_offices()[0]['hours']);
     }
 
+    public function test_the_brief_gains_consent_and_required_details_once_and_keeps_edits(): void
+    {
+        $seeder = new EkdantaSiteSeeder;
+        $seeder->briefForm();
+        $form = \App\Models\Form::query()->where('slug', 'ekdanta-brief')->sole();
+        // As built before the consent work, and with one label the admin changed.
+        $form->fields()->where('type', 'consent')->delete();
+        $form->fields()->whereIn('name', ['your_name', 'phone_number'])->update(['is_required' => false]);
+        $form->fields()->where('name', 'company_or_brand')->update(['label' => 'Your brand']);
+
+        $seeder->briefForm();
+        $seeder->briefForm();
+
+        $fields = $form->fields()->get()->keyBy('name');
+        $this->assertTrue($fields['your_name']->is_required && $fields['phone_number']->is_required);
+        $this->assertFalse($fields['company_or_brand']->is_required);
+        $this->assertSame('Your brand', $fields['company_or_brand']->label, 'a label the admin changed stays');
+        $consent = $form->fields()->where('type', 'consent')->sole();
+        $this->assertTrue($consent->is_required);
+        $this->assertSame(4, $consent->step(), 'on the last step');
+        $this->assertSame('I agree that Ekdanta can contact me about this brief.', $consent->setting('short_label'));
+    }
+
+    public function test_new_fields_reach_sections_built_before_them_and_nothing_set_changes(): void
+    {
+        $page = Page::create(['title' => 'Blog', 'slug' => 'blog', 'status' => Page::STATUS_PUBLISHED]);
+        // As built before the small print had a link; the editor's note, and an empty button label on purpose.
+        $section = $page->sections()->create(['type' => 'ekdanta-whatsapp-tips', 'name' => 'Tips', 'sort_order' => 0, 'is_active' => true,
+            'data_desktop' => ['note' => 'You join by sending us the message yourself. Leave any time by replying STOP.', 'button_label' => '']]);
+
+        (new EkdantaSiteSeeder)->newFields();
+        (new EkdantaSiteSeeder)->newFields();
+
+        $data = $section->fresh()->data_desktop;
+        $this->assertSame('You join by sending us the message yourself. Leave any time by replying STOP.', $data['note']);
+        $this->assertSame('', $data['button_label'], 'a value that is there, even empty, stays');
+        $this->assertSame('Privacy Policy', $data['note_link_label']);
+        $this->assertSame('/privacy-policy', $data['note_link']);
+        $this->assertSame('Ek tip,', $data['heading']);
+
+        $this->get('/blog')->assertOk()->assertSee('Leave any time by replying STOP. <a href="/privacy-policy" style="color: var(--tk-mint)">Privacy Policy</a>', false);
+    }
+
     public function test_it_applies_the_theme_once_and_keeps_the_old_one_as_a_backup(): void
     {
         $seeder = new EkdantaSiteSeeder;

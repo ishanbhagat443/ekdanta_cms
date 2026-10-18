@@ -310,5 +310,20 @@ class EkdantaSectionsTest extends TestCase
         // Four steps per composition; chips are real inputs with labels.
         $this->assertSame(8, substr_count($html, 'data-brief-step='));
         $this->assertStringContainsString('<input class="ek-brief-check" type="checkbox" name="services[]" value="Branding"', $html);
+
+        // The last step: a real, unticked, required consent box; the long wording on wide
+        // screens, the short one on phones (which also skip the summary); Send waits with a hint.
+        [$wide, $phone] = explode('data-ek-comp="mobile"', preg_replace('/\s+/', ' ', $html), 2);
+        $this->assertStringContainsString('<input class="ek-consent-input" type="checkbox" name="consent" value="wide" id="b-consent-d" required aria-describedby="b-consent-d-note" >', $wide);
+        $this->assertStringContainsString('I agree that Ekdanta can contact me on WhatsApp or by phone about this brief.', $wide);
+        $this->assertStringContainsString('We use these details only to reply to you. <a href="/privacy-policy"', $wide);
+        $this->assertStringContainsString('name="consent" value="short"', $phone);
+        $this->assertStringContainsString('I agree that Ekdanta can contact me about this brief.', $phone);
+        $this->assertStringContainsString('We only use them to reply.', $phone);
+        $this->assertStringContainsString('data-brief-summary', $wide);
+        $this->assertStringNotContainsString('data-brief-summary', $phone);
+        $this->assertStringContainsString('aria-live="polite" data-brief-hint data-details="Add your name and phone number to send." data-consent="Tick the box above to send."', $html);
+        $this->assertStringContainsString('Company or brand <span style="font-weight: 500; color: var(--tk-muted)">(optional)</span>', $html);
+        $this->assertSame(2, preg_match_all('/name="(your_name|phone_number)" id="b-\1-d" placeholder="" required/', $wide));
     }
 }

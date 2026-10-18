@@ -16,14 +16,17 @@ use App\Models\MediaFolder;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Section;
 use App\Models\ThemePreset;
 use App\Models\ThemeSetting;
 use App\Services\GlobalBlockService;
 use App\Services\LayoutService;
 use App\Services\MediaService;
+use App\Services\PageRenderService;
 use App\Services\SectionBuilderService;
 use App\Services\SettingsService;
 use App\Services\ThemeService;
+use App\Services\SectionTypes\SectionTypeRegistry;
 use App\Support\PageRoles;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
@@ -61,6 +64,7 @@ class EkdantaSiteSeeder extends Seeder
         $this->header();
         $this->finale();
         $this->briefForm();
+        $this->newFields();
         $this->samplePosts($this->withPages);
         if ($this->withPages) {
             $this->pages();
@@ -240,9 +244,55 @@ class EkdantaSiteSeeder extends Seeder
      * contact details, hidden fields for the page and campaign, saved as an
      * enquiry, then WhatsApp with the answers and the thank-you page.
      */
+    /**
+     * Fields added to a section type after its sections were built (the brief's
+     * hints, the finale's footer links, …): each existing Ekdanta section and
+     * saved block gains the default of every key it lacks, and the phone
+     * default of a key that is new. A value that is there, even empty, stays.
+     * Saved blocks go through GlobalBlockService (versioned, pushed to synced
+     * copies), so synced copies aren't touched twice.
+     */
+    public function newFields(): void
+    {
+        $registry = app(SectionTypeRegistry::class);
+        $fill = function ($row) use ($registry): ?array {
+            $type = $registry->find($row->type);
+            $desktop = (array) $row->data_desktop;
+            $missing = array_diff_key($type->defaults(), $desktop);
+            if ($missing === []) {
+                return null;
+            }
+            $mobile = array_intersect_key((array) ($type->deviceDefaults()['mobile'] ?? []), $missing);
+
+            return ['data_desktop' => $desktop + $missing] + ($mobile === [] ? [] : ['data_mobile' => (array) $row->data_mobile + $mobile]);
+        };
+
+        GlobalBlock::query()->where('type', 'like', 'ekdanta-%')->each(function (GlobalBlock $block) use ($fill): void {
+            if ($data = $fill($block)) {
+                app(GlobalBlockService::class)->update($block, $data);
+            }
+        });
+        Section::query()->where('type', 'like', 'ekdanta-%')->where(fn ($q) => $q->whereNull('global_block_id')->orWhere('is_synced', false))
+            ->each(function (Section $section) use ($fill): void {
+                if ($data = $fill($section)) {
+                    $section->update($data);
+                }
+            });
+        app(PageRenderService::class)->flushCache();
+    }
+
+    /** The brief's consent box (docs/ekdanta-content/copy.json → brief_consent). */
+    private const BRIEF_CONSENT = [
+        'label' => 'I agree that Ekdanta can contact me on WhatsApp or by phone about this brief.',
+        'note' => 'We use these details only to reply to you.', 'link_text' => 'Privacy Policy', 'link_url' => '/privacy-policy',
+        'short_label' => 'I agree that Ekdanta can contact me about this brief.', 'short_note' => 'We only use them to reply.',
+    ];
+
     public function briefForm(): void
     {
-        if (Form::query()->where('slug', 'ekdanta-brief')->exists()) {
+        if ($form = Form::query()->where('slug', 'ekdanta-brief')->first()) {
+            $this->upgradeBrief($form);
+
             return;
         }
 
@@ -258,9 +308,9 @@ class EkdantaSiteSeeder extends Seeder
             ['Services', 'checkbox', 1, true, ['Branding', 'Social media and reels', 'Meta ads and leads', 'SEO', 'Website', 'Films and shoots', 'CRM and apps'], 'I would like help with: {value}.'],
             ['Business type', 'radio', 2, true, ['Manufacturing', 'Food and beverage', 'Retail', 'Services', 'Something else'], 'Business type: {value}.'],
             ['When to start', 'radio', 3, true, ['This month', 'In 1 to 3 months', 'Just exploring'], 'When to start: {value}.'],
-            ['Your name', 'text', 4, false, null, 'My name is {value}.'],
-            ['Phone number', 'phone', 4, false, null, 'Phone: {value}.'],
-            ['Company or brand', 'text', 4, false, null, 'Company: {value}.'],
+            ['Your name', 'text', 4, true, null, 'My name is {value}.'],
+            ['Phone number', 'phone', 4, true, null, 'Phone: {value}.'],
+            ['Company or brand (optional)', 'text', 4, false, null, 'Company: {value}.'],
             ['Page', 'hidden', 4, false, null, null, 'page_url'],
             ['Referrer', 'hidden', 4, false, null, null, 'referrer'],
             ['UTM source', 'hidden', 4, false, null, null, 'utm_source'],
@@ -270,10 +320,31 @@ class EkdantaSiteSeeder extends Seeder
         foreach ($fields as $order => $row) {
             [$label, $type, $step, $required, $options, $sentence] = $row;
             $form->fields()->create([
-                'label' => $label, 'name' => Str::slug($label, '_'), 'type' => $type, 'options' => $options, 'is_required' => $required, 'sort_order' => $order,
+                'label' => $label, 'name' => $label === 'Company or brand (optional)' ? 'company_or_brand' : Str::slug($label, '_'), 'type' => $type, 'options' => $options, 'is_required' => $required, 'sort_order' => $order,
                 'settings' => array_filter(['step' => $step, 'display' => $options ? 'chips' : null, 'whatsapp' => $sentence, 'autofill' => $row[6] ?? null]),
             ]);
         }
+        $this->upgradeBrief($form);
+    }
+
+    /**
+     * A brief built before the consent work: name and phone become required,
+     * the company label still as seeded gains "(optional)", and a consent box
+     * is added to the last step if there is none. Nothing else is touched.
+     */
+    private function upgradeBrief(Form $form): void
+    {
+        $form->fields()->whereIn('name', ['your_name', 'phone_number'])->update(['is_required' => true]);
+        $form->fields()->where('name', 'company_or_brand')->where('label', 'Company or brand')->update(['label' => 'Company or brand (optional)']);
+        if ($form->fields()->where('type', 'consent')->exists()) {
+            return;
+        }
+        $fields = $form->fields()->get();
+        $form->fields()->create([
+            'label' => self::BRIEF_CONSENT['label'], 'name' => 'consent', 'type' => 'consent', 'is_required' => true,
+            'sort_order' => (int) $fields->max('sort_order') + 1,
+            'settings' => ['step' => $fields->max(fn ($f) => $f->step()) ?: 1] + array_diff_key(self::BRIEF_CONSENT, ['label' => 1]),
+        ]);
     }
 
     /**

@@ -106,6 +106,30 @@ return [
 
     /*
     |----------------------------------------------------------------
+    | Cookies — the consent bar
+    |----------------------------------------------------------------
+    | While it is on, Google Analytics, Tag Manager, the Meta Pixel, Google
+    | Ads conversion tags and scripts marked data-tracking load only after
+    | the visitor taps "Allow all" (cookie_consent=all, kept 180 days).
+    | "default" is the wording used until it is edited here.
+    */
+    'cookies' => [
+        'label' => 'Cookies',
+        'icon' => 'fas fa-cookie-bite',
+        'fields' => [
+            'enabled' => ['label' => 'Ask before analytics and ad cookies', 'type' => 'checkbox', 'default' => '1', 'rules' => ['nullable', 'boolean'], 'hint' => 'When off, no bar shows and tracking tags load for everyone.'],
+            'text_bold' => ['label' => 'Bar: opening words (bold)', 'type' => 'text', 'default' => 'Cookies, only with your OK.', 'rules' => ['nullable', 'string', 'max:100']],
+            'text' => ['label' => 'Bar: text', 'type' => 'textarea', 'default' => 'We use necessary cookies to run this site. With your OK, we also use analytics and ad cookies to see what helps and to measure our ads.', 'rules' => ['nullable', 'string', 'max:400']],
+            'link_text' => ['label' => 'Bar: link text', 'type' => 'text', 'default' => 'Privacy Policy', 'rules' => ['nullable', 'string', 'max:60']],
+            'link_url' => ['label' => 'Bar: link address', 'type' => 'text', 'default' => '/privacy-policy', 'rules' => ['nullable', 'string', 'max:300', 'regex:~^(/[^\s<>"]*|https?://[^\s<>"]+)$~'], 'hint' => 'A page path such as /privacy-policy, or a full web address.'],
+            'accept' => ['label' => 'Button: accept', 'type' => 'text', 'default' => 'Allow all', 'rules' => ['nullable', 'string', 'max:40']],
+            'reject' => ['label' => 'Button: necessary only', 'type' => 'text', 'default' => 'Only necessary', 'rules' => ['nullable', 'string', 'max:40']],
+            'reopen_label' => ['label' => '"Cookie settings" link (footer)', 'type' => 'text', 'default' => 'Cookie settings', 'rules' => ['nullable', 'string', 'max:40'], 'hint' => 'The footer button that brings the bar back.'],
+        ],
+    ],
+
+    /*
+    |----------------------------------------------------------------
     | WhatsApp — inquiry delivery via the Meta WhatsApp Cloud API
     |----------------------------------------------------------------
     | Every credential is admin-managed here (never hardcoded). When

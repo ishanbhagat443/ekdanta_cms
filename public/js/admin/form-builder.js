@@ -41,6 +41,7 @@
         show('.options-wrap', OPTION_TYPES.indexOf(type) !== -1);
         show('.options-only', type === 'radio' || type === 'checkbox'); // chips
         show('.hidden-only', type === 'hidden'); // fills itself with
+        show('.consent-only', type === 'consent'); // note, link, phone wording
     });
 
     if (window.Sortable) {

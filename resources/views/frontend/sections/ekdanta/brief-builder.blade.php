@@ -82,6 +82,8 @@
                                 @php
                                     $title = ($words[$i]['title'] ?? '') ?: $fields->first()->label;
                                     $hint = $words[$i]['hint'] ?? '';
+                                    $consent = $fields->firstWhere('type', 'consent');
+                                    $fields = $fields->where('type', '!=', 'consent');
                                     $textual = $fields->every(fn ($f) => ! $f->hasOptions());
                                     $last = $i === $total - 1;
                                 @endphp
@@ -92,11 +94,13 @@
                                     @endif
 
                                     @if ($textual)
-                                        <div style="display: grid; grid-template-columns: {{ $mob ? '1fr' : 'repeat(2, minmax(0, 1fr))' }}; gap: {{ $mob ? ek_u(10) : ek_u(12).' '.ek_u(16) }}">
+                                        {{-- Two to a row (name and phone side by side, also on phones); an odd last one takes the row. --}}
+                                        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: {{ $mob ? ek_u(10) : ek_u(12).' '.ek_u(16) }}">
                                             @foreach ($fields->values() as $j => $field)
                                                 @php $type = match ($field->type) { 'email' => 'email', 'phone' => 'tel', 'date' => 'date', default => 'text' }; @endphp
-                                                <div data-brief-field="{{ $field->name }}" data-wa="{{ $field->setting('whatsapp', '') }}" style="display: flex; flex-direction: column; gap: {{ ek_u($v([6, 4])) }}; {{ ! $mob && $j === $fields->count() - 1 && $fields->count() % 2 === 1 ? 'grid-column: 1 / -1;' : '' }}">
-                                                    <label for="b-{{ $field->name }}-{{ $k }}" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12.5])) }}, 0.8125rem)">{{ $field->label }}</label>
+                                                <div data-brief-field="{{ $field->name }}" data-wa="{{ $field->setting('whatsapp', '') }}" style="display: flex; flex-direction: column; gap: {{ ek_u($v([6, 4])) }}; min-width: 0; {{ $j === $fields->count() - 1 && $fields->count() % 2 === 1 ? 'grid-column: 1 / -1;' : '' }}">
+                                                    {{-- A trailing "(optional)" in the label reads lighter, as drawn. --}}
+                                                    <label for="b-{{ $field->name }}-{{ $k }}" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12.5])) }}, 0.8125rem)">{!! preg_replace('/\s*(\([^)]*\))$/u', ' <span style="font-weight: 500; color: var(--tk-muted)">$1</span>', e($field->label)) !!}</label>
                                                     @if ($field->type === 'textarea')
                                                         <textarea name="{{ $field->name }}" id="b-{{ $field->name }}-{{ $k }}" rows="2" @if ($field->is_required) required @endif placeholder="{{ $field->placeholder }}" style="{{ $input }}; height: auto; padding-block: {{ ek_u(10) }}; border-radius: {{ ek_u(20) }}"></textarea>
                                                     @else
@@ -122,11 +126,35 @@
                                     @endif
 
                                     @if ($last)
-                                        <div class="ek-brief-js" style="padding: {{ $mob ? ek_u(10).' '.ek_u(14) : ek_u(14).' '.ek_u(18) }}; border-radius: {{ ek_u($v([16, 14])) }}; background: #E6F4EA; display: flex; flex-direction: column; gap: {{ ek_u($v([4, 2])) }}">
-                                            <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([12, 11])) }}, 0.75rem); letter-spacing: 0.1em; color: var(--tk-green-text-sm)">{{ $t['summary_label'] }}</span>
-                                            <span data-brief-summary style="font-size: max({{ ek_u($v([16, 13.5])) }}, 0.8125rem); line-height: {{ $v([1.45, 1.4]) }}; color: var(--tk-dark-4)"></span>
+                                        @unless ($mob) {{-- phones and tablets held upright skip the summary, as drawn --}}
+                                            <div class="ek-brief-js" style="padding: {{ ek_u(14).' '.ek_u(18) }}; border-radius: {{ ek_u(16) }}; background: #E6F4EA; display: flex; flex-direction: column; gap: {{ ek_u(4) }}">
+                                                <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u(12) }}, 0.75rem); letter-spacing: 0.1em; color: var(--tk-green-text-sm)">{{ $t['summary_label'] }}</span>
+                                                <span data-brief-summary style="font-size: max({{ ek_u(16) }}, 0.8125rem); line-height: 1.45; color: var(--tk-dark-4)"></span>
+                                            </div>
+                                        @endunless
+                                        @if ($consent)
+                                            {{-- A real checkbox (Space toggles it, screen readers announce it) under the drawn box. Its value says which wording was shown. --}}
+                                            @php
+                                                $note = $mob ? $consent->setting('short_note', $consent->setting('note')) : $consent->setting('note');
+                                                $cid = 'b-consent-'.$k;
+                                                $described = $note || $consent->setting('link_text');
+                                            @endphp
+                                            <div data-brief-field="{{ $consent->name }}" style="position: relative; display: flex; flex-direction: column; gap: {{ ek_u(6) }}">
+                                                <input class="ek-consent-input" type="checkbox" name="{{ $consent->name }}" value="{{ $mob ? 'short' : 'wide' }}" id="{{ $cid }}" @if ($consent->is_required) required @endif @if ($described) aria-describedby="{{ $cid }}-note" @endif>
+                                                <label class="ek-consent" for="{{ $cid }}" style="display: flex; align-items: flex-start; gap: {{ ek_u(10) }}; min-height: 44px; box-sizing: border-box; padding: 11px 0; margin: -11px 0; cursor: pointer; font-family: 'Hind', sans-serif; font-weight: 400; font-size: max({{ ek_u($v([15, 14])) }}, 0.8125rem); line-height: 1.4; color: #2F4A38">
+                                                    <span class="ek-consent-box" aria-hidden="true" style="flex-shrink: 0; width: {{ ek_u($v([22, 20])) }}; height: {{ ek_u($v([22, 20])) }}; box-sizing: border-box; margin-top: {{ ek_u(1) }}; border-radius: {{ ek_u(6) }}; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" style="width: {{ ek_u(14) }}; height: {{ ek_u(14) }}">{!! $check !!}</svg></span>
+                                                    <span>{{ $mob ? $consent->setting('short_label', $consent->label) : $consent->label }}</span>
+                                                </label>
+                                                @if ($described)
+                                                    <p id="{{ $cid }}-note" style="margin: 0 0 0 {{ ek_u($v([32, 30])) }}; font-size: max({{ ek_u($v([14, 13])) }}, 0.8125rem); line-height: 1.4; color: var(--tk-muted)">{{ $note }}@if ($consent->setting('link_text')) <a href="{{ link_href($consent->setting('link_url')) }}" style="color: var(--tk-green-text-sm)">{{ $consent->setting('link_text') }}</a>@endif</p>
+                                                @endif
+                                            </div>
+                                        @endif
+                                        {{-- Send stays disabled (still focusable, with the reason read out) until name, phone and consent are in. --}}
+                                        <div class="ek-brief-js" style="display: flex; {{ $mob ? 'flex-direction: column;' : 'align-items: center; flex-wrap: wrap;' }} gap: {{ ek_u($v([14, 8])) }}">
+                                            <a class="ek-press" href="#" target="_blank" rel="noopener" data-brief-send aria-describedby="b-send-hint-{{ $k }}" style="{{ $mob ? '' : 'align-self: flex-start;' }} height: {{ ek_u($v([56, 50])) }}; box-sizing: border-box; padding: 0 {{ ek_u($v([26, 20])) }}; display: {{ $mob ? 'flex; justify-content: center' : 'inline-flex' }}; align-items: center; gap: {{ ek_u(10) }}; background: var(--tk-green-deep); color: #FFFFFF; text-decoration: none; font-size: max({{ ek_u($v([16, 15])) }}, 0.8125rem); {{ $pill }}"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u(18) }}; height: {{ ek_u(18) }}">{!! $chat !!}</svg>{{ $t['send_label'] }}</a>
+                                            <span id="b-send-hint-{{ $k }}" aria-live="polite" data-brief-hint data-details="{{ $t['hint_details'] }}" data-consent="{{ $t['hint_consent'] }}" style="font-size: max({{ ek_u($v([14, 13])) }}, 0.8125rem); color: var(--tk-muted)"></span>
                                         </div>
-                                        <a class="ek-press ek-brief-js" href="#" target="_blank" rel="noopener" data-brief-send style="{{ $mob ? '' : 'align-self: flex-start;' }} height: {{ ek_u($v([56, 50])) }}; box-sizing: border-box; padding: 0 {{ ek_u($v([26, 20])) }}; display: {{ $mob ? 'flex; justify-content: center' : 'inline-flex' }}; align-items: center; gap: {{ ek_u(10) }}; background: var(--tk-green-deep); color: #FFFFFF; text-decoration: none; font-size: max({{ ek_u($v([16, 15])) }}, 0.8125rem); {{ $pill }}"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: {{ ek_u(18) }}; height: {{ ek_u(18) }}">{!! $chat !!}</svg>{{ $t['send_label'] }}</a>
                                         <button type="submit" class="ek-brief-nojs" style="align-self: flex-start; height: {{ ek_u($v([56, 50])) }}; padding: 0 {{ ek_u($v([26, 20])) }}; border: 0; background: var(--tk-green-deep); color: #FFFFFF; font-size: max({{ ek_u($v([16, 15])) }}, 0.8125rem); {{ $pill }}">{{ $t['send_label'] }}</button>
                                     @endif
                                 </fieldset>

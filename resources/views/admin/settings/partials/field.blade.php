@@ -3,6 +3,8 @@
     $inputId = "setting_{$group}_{$key}";
     // Full-width for long content types, half-width for short inputs.
     $col = in_array($type, ['textarea', 'code', 'image', 'list'], true) ? 'col-12' : 'col-12 col-lg-6';
+    // Never saved: show the wording the site already uses (config "default").
+    $value ??= $field['default'] ?? null;
 @endphp
 
 <div class="{{ $col }}">

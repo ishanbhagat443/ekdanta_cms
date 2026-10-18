@@ -287,6 +287,40 @@ Website", 'step' => 1, 'display' => 'chips', 'whatsapp' => 'Help with: {value}.'
             ->assertSessionHasErrors(['success_page', 'fields.0.autofill']);
     }
 
+    public function test_a_consent_box_is_required_on_the_server_and_kept_with_its_time_and_words(): void
+    {
+        $admin = $this->admin();
+        $form = $this->makeForm([
+            ['label' => 'Your name', 'type' => 'text', 'is_required' => 1],
+            ['label' => 'I agree that Ekdanta can contact me about this brief.', 'type' => 'consent', 'is_required' => 1,
+                'note' => 'We use these details only to reply to you.', 'link_text' => 'Privacy Policy', 'link_url' => '/privacy-policy',
+                'short_label' => 'I agree that Ekdanta can contact me.', 'short_note' => 'We only use them to reply.'],
+        ], ['store_as_enquiry' => 1]);
+        $consent = $form->fields->firstWhere('type', 'consent');
+        $this->assertSame('consent', $consent->name, 'a stable name, whatever the wording');
+        $this->assertSame('/privacy-policy', $consent->setting('link_url'));
+
+        // Unticked, or anything but a box's own value: refused by the server too.
+        $this->postJson("/forms/{$form->slug}", ['your_name' => 'Asha'])->assertJsonValidationErrors(['consent' => 'Tick the box above to send.']);
+        $this->postJson("/forms/{$form->slug}", ['your_name' => 'Asha', 'consent' => 'maybe'])->assertJsonValidationErrors('consent');
+        $this->assertSame(0, $form->submissions()->count());
+
+        $this->travelTo(now()->setDate(2026, 10, 19)->setTime(10, 5));
+        $this->post("/forms/{$form->slug}", ['your_name' => 'Asha', 'consent' => 'short'])->assertRedirect();
+        $proof = 'Yes, 19 Oct 2026, 10:05 UTC: I agree that Ekdanta can contact me. We only use them to reply. Privacy Policy';
+        $this->assertSame($proof, $form->submissions()->sole()->data['consent']);
+        $this->assertSame($proof, \App\Models\Enquiry::query()->sole()->extra[$consent->label]);
+
+        $this->assertStringContainsString($proof, $this->actingAs($admin)->get("/cms/forms/{$form->id}/export")->streamedContent());
+        $this->actingAs($admin)->get("/cms/forms/{$form->id}/submissions")->assertSee('Yes, 19 Oct 2026, 10:05 UTC');
+
+        // The public form: one box, unticked to start, with its words and link.
+        $html = view('frontend.partials.dynamic-form', ['form' => $form, 'errors' => new \Illuminate\Support\ViewErrorBag])->render();
+        $this->assertMatchesRegularExpression('/<input type="checkbox"[^>]*name="consent"[^>]*required\s*>/', preg_replace('/\s+/', ' ', $html));
+        $this->assertDoesNotMatchRegularExpression('/name="consent"[^>]*\schecked/', preg_replace('/\s+/', ' ', $html));
+        $this->assertStringContainsString('<a href="/privacy-policy">Privacy Policy</a>', $html);
+    }
+
     public function test_a_whatsapp_form_saves_the_enquiry_then_hands_over_the_message(): void
     {
         app(\App\Services\SettingsService::class)->updateGroup('business', ['country_code' => '91', 'phones' => [['label' => 'All', 'number' => '90994 17987', 'whatsapp' => true]]]);

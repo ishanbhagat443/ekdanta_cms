@@ -4,8 +4,9 @@
  * shows a summary and a real wa.me link built from the answers (each
  * field's WhatsApp sentence). Tapping it saves the brief first (a
  * keepalive POST, so the save survives the tab switch), then lets the link
- * open WhatsApp, and the card turns to "sent". Without JS the whole form
- * shows and posts normally.
+ * open WhatsApp, and the card turns to "sent". Send stays disabled, with the
+ * reason in a live hint, until the last step's details are in and its
+ * consent box is ticked. Without JS the whole form shows and posts normally.
  */
 export function message(form) {
     const data = new FormData(form);
@@ -24,6 +25,12 @@ function answered(field) {
     return !input || (input.value.trim() !== '' && input.checkValidity());
 }
 
+/** The last step's first unfinished box (the details come before the consent box), or null when Send may go. */
+export function missing(step) {
+    return [...step.querySelectorAll('input[required]:not([type=radio]), textarea[required]')]
+        .find((box) => (box.type === 'checkbox' ? !box.checked : box.value.trim() === '' || !box.checkValidity())) || null;
+}
+
 function init(card) {
     const form = card.querySelector('[data-brief-form]');
     const steps = [...card.querySelectorAll('[data-brief-step]')];
@@ -31,6 +38,7 @@ function init(card) {
     const next = card.querySelector('[data-brief-next]');
     const send = card.querySelector('[data-brief-send]');
     const sent = card.querySelector('[data-brief-sent]');
+    const hint = card.querySelector('[data-brief-hint]');
     const miles = [...card.querySelectorAll('.ek-brief-mile')];
     let step = 0;
 
@@ -47,9 +55,13 @@ function init(card) {
         next.setAttribute('aria-disabled', String(!valid()));
         if (step === steps.length - 1) {
             const values = steps.slice(0, -1).map((s) => [...s.querySelectorAll('input:checked')].map((i) => i.value).join(', ')).filter(Boolean);
-            card.querySelector('[data-brief-summary]').textContent = values.join('  ·  ');
+            const summary = card.querySelector('[data-brief-summary]');
+            if (summary) summary.textContent = values.join('  ·  ');
             const number = form.dataset.waNumber;
             send.href = number ? `https://wa.me/${number}?text=${encodeURIComponent(message(form))}` : '#';
+            const box = missing(steps[step]);
+            send.setAttribute('aria-disabled', String(!!box));
+            if (hint) hint.textContent = box ? hint.dataset[box.type === 'checkbox' ? 'consent' : 'details'] : '';
         }
         if (focus) steps[step].querySelector('input, textarea')?.focus({ preventScroll: true });
     };
@@ -66,6 +78,8 @@ function init(card) {
     form.addEventListener('submit', (e) => { e.preventDefault(); if (step < steps.length - 1) next.click(); else send.click(); });
 
     send.addEventListener('click', (e) => {
+        const box = missing(steps[steps.length - 1]);
+        if (box) { e.preventDefault(); box.focus(); return; }
         if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
         fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, keepalive: true }).catch(() => {});
         if (!form.dataset.waNumber) e.preventDefault();

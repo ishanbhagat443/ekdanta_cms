@@ -12,6 +12,6 @@ class EncryptCookies extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        'cookie_consent', // set in the browser by the cookie bar, read by tracking_allowed()
     ];
 }

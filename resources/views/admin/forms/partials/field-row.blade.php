@@ -68,6 +68,29 @@
             <input type="text" name="fields[{{ $i }}][whatsapp]" id="{{ $id }}_whatsapp" class="form-control form-control-sm" value="{{ $field?->setting('whatsapp') }}" placeholder="Business type: {value}.">
         </div>
     </div>
+    <div class="form-row mt-1 consent-only" @unless ($type === 'consent') style="display:none" @endunless>
+        <div class="col-12 ml-md-4"><p class="small text-muted mb-1">A single box, unticked to start. The label above is its text; a ticked box is saved with the time and these words.</p></div>
+        <div class="col-md-4 ml-md-4">
+            <label class="small mb-0" for="{{ $id }}_note">Note under the box</label>
+            <input type="text" name="fields[{{ $i }}][note]" id="{{ $id }}_note" class="form-control form-control-sm" value="{{ $field?->setting('note') }}">
+        </div>
+        <div class="col-md-2">
+            <label class="small mb-0" for="{{ $id }}_link_text">Link text</label>
+            <input type="text" name="fields[{{ $i }}][link_text]" id="{{ $id }}_link_text" class="form-control form-control-sm" value="{{ $field?->setting('link_text') }}" placeholder="Privacy Policy">
+        </div>
+        <div class="col-md-3">
+            <label class="small mb-0" for="{{ $id }}_link_url">Link address</label>
+            <input type="text" name="fields[{{ $i }}][link_url]" id="{{ $id }}_link_url" class="form-control form-control-sm" value="{{ $field?->setting('link_url') }}" placeholder="/privacy-policy">
+        </div>
+        <div class="col-md-5 ml-md-4 mt-1">
+            <label class="small mb-0" for="{{ $id }}_short_label">Shorter text for phones <span class="text-muted">(optional)</span></label>
+            <input type="text" name="fields[{{ $i }}][short_label]" id="{{ $id }}_short_label" class="form-control form-control-sm" value="{{ $field?->setting('short_label') }}">
+        </div>
+        <div class="col-md-4 mt-1">
+            <label class="small mb-0" for="{{ $id }}_short_note">Shorter note for phones <span class="text-muted">(optional)</span></label>
+            <input type="text" name="fields[{{ $i }}][short_note]" id="{{ $id }}_short_note" class="form-control form-control-sm" value="{{ $field?->setting('short_note') }}">
+        </div>
+    </div>
     <div class="form-row mt-1 options-wrap" @unless ($field?->hasOptions()) style="display:none" @endunless>
         <div class="col ml-md-4">
             <label class="small mb-0" for="{{ $id }}_options">Options (one per line)</label>

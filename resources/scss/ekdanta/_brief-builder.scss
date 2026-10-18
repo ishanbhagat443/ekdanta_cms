@@ -26,6 +26,12 @@
     .ek-brief-check:checked + .ek-brief-chip { background: var(--tk-ink); border-color: var(--tk-ink) !important; color: #FFFFFF; svg { opacity: 1; } }
     .ek-brief-check:focus-visible + .ek-brief-chip { outline: 3px solid var(--tk-orange); outline-offset: 3px; box-shadow: 0 0 0 8px var(--tk-ink); }
 
+    // Consent: the real checkbox sits under the drawn box (unticked: #7B867F outline, 3.5:1).
+    .ek-consent-input { position: absolute; left: 0; top: 0; margin: 0; opacity: 0; width: 1px; height: 1px; }
+    .ek-consent-box { border: calc(2 * var(--u)) solid var(--tk-muted-2); background: #FFFFFF; transition: background-color 150ms ease-out, border-color 150ms ease-out; svg { opacity: 0; } }
+    .ek-consent-input:checked + .ek-consent .ek-consent-box { border-color: var(--tk-green-deep); background: var(--tk-green-deep); svg { opacity: 1; } }
+    .ek-consent-input:focus-visible + .ek-consent .ek-consent-box { outline: 3px solid var(--tk-orange); outline-offset: 3px; box-shadow: 0 0 0 8px var(--tk-ink); }
+
     [aria-disabled="true"] { opacity: 0.35; cursor: not-allowed; }
 
     .ek-brief-js, .ek-brief-sent { display: none !important; }

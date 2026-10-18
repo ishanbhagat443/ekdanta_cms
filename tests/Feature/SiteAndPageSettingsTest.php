@@ -269,7 +269,8 @@ class SiteAndPageSettingsTest extends TestCase
             ->put(route('admin.pages.update', $page), $this->pageUpdate($page, ['conversions' => ['meta_pixel' => '123456789012345', 'ads_id' => 'AW-987654321', 'ads_label' => 'AbC-12_x']]))
             ->assertSessionHasNoErrors();
 
-        $this->get('/thank-you')
+        $this->get('/thank-you')->assertDontSee('fbevents.js', false); // until the visitor allows them (CookieConsentTest)
+        $this->withUnencryptedCookie('cookie_consent', 'all')->get('/thank-you')
             ->assertSee("fbq('init',\"123456789012345\");fbq('track','PageView');fbq('track','Lead');", false)
             ->assertSee('gtag/js?id=AW-987654321', false)
             ->assertSee("send_to:\"AW-987654321\/AbC-12_x\"", false);

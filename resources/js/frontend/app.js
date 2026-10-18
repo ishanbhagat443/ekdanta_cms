@@ -6,6 +6,11 @@ window.bootstrap = bootstrap;
 // Motion: every section's Motion tab, plus older [data-anim] effects (Anime.js v4).
 import './motion/index.js';
 
+// The cookie bar: analytics and ad tags only after "Allow all".
+import initConsent from './consent.js';
+
+initConsent();
+
 // Hero background video: browsers may still block autoplay in rare cases
 // (e.g. data-saver mode) — force muted (required for mobile autoplay) and
 // retry playback on the first user gesture. The element itself is

@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class FormField extends Model
 {
-    public const TYPES = ['text', 'email', 'phone', 'select', 'radio', 'checkbox', 'date', 'textarea', 'file', 'hidden'];
+    public const TYPES = ['text', 'email', 'phone', 'select', 'radio', 'checkbox', 'consent', 'date', 'textarea', 'file', 'hidden'];
+
+    /** What a ticked consent box posts: the wording it showed ("short" on phones). */
+    public const CONSENT_VALUES = ['1', 'wide', 'short'];
 
     /** What a hidden field fills itself with in the visitor's browser. */
     public const AUTOFILL = [
@@ -51,7 +54,11 @@ class FormField extends Model
         return in_array($this->type, ['select', 'radio', 'checkbox'], true);
     }
 
-    /** settings: step (1, 2, …), display ("chips" for radio/checkbox), whatsapp (sentence with {value}), autofill (AUTOFILL). */
+    /**
+     * settings: step (1, 2, …), display ("chips" for radio/checkbox), whatsapp
+     * (sentence with {value}), autofill (AUTOFILL); consent boxes: note, link_text,
+     * link_url, and the phone wording short_label / short_note.
+     */
     public function setting(string $key, mixed $default = null): mixed
     {
         $value = data_get($this->settings, $key);
@@ -62,5 +69,14 @@ class FormField extends Model
     public function step(): int
     {
         return max(1, (int) $this->setting('step', 1));
+    }
+
+    /** A consent box's words as the visitor saw them: label, note and link text. */
+    public function consentText(bool $short = false): string
+    {
+        $label = $short ? $this->setting('short_label', $this->label) : $this->label;
+        $note = $short ? $this->setting('short_note', $this->setting('note', '')) : $this->setting('note', '');
+
+        return trim(implode(' ', array_filter([$label, $note, $this->setting('link_text')])));
     }
 }

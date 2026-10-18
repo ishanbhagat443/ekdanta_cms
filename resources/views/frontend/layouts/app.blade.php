@@ -53,9 +53,15 @@
         })(document.documentElement);
     </script>
 
+    {{-- Analytics and ad tags: only after "Allow all" (see the partial). --}}
+    @include('frontend.partials.tracking')
+
     @stack('head')
 </head>
 <body class="@yield('bodyClass')" data-gsm-theme="{{ theme('dark_mode.enabled', false) ? 'light' : '' }}">
+    @if (tracking_allowed() && ! request()->boolean('preview') && ($gtmId = trim((string) setting('seo.google_tag_manager', ''))))
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ urlencode($gtmId) }}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    @endif
     @include('frontend.partials.topbar')
     @include('frontend.partials.header')
 
@@ -68,6 +74,8 @@
         @include('frontend.partials.footer')
     @endunless
 
+
+    @include('frontend.partials.cookie-bar')
 
     @if (theme('custom_code.js_global'))
         <script>{!! theme('custom_code.js_global') !!}</script>

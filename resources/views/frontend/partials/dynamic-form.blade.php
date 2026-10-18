@@ -31,13 +31,15 @@
                 @endforeach
                 @foreach ($form->fields->where('type', '!=', 'hidden') as $field)
                     @php
-                        $isWide = in_array($field->type, ['textarea', 'checkbox', 'radio', 'file'], true);
+                        $isWide = in_array($field->type, ['textarea', 'checkbox', 'radio', 'file', 'consent'], true);
                         $fieldErrors = old('_gsm_form') === $form->slug ? $errors->first($field->name) : null;
                     @endphp
                     <div class="{{ $isWide ? 'col-12' : 'col-12 col-md-6' }}">
-                        <label class="form-label small fw-semibold" for="ff_{{ $form->id }}_{{ $field->name }}">
-                            {{ $field->label }} @if ($field->is_required)<span class="text-danger">*</span>@endif
-                        </label>
+                        @unless ($field->type === 'consent')
+                            <label class="form-label small fw-semibold" for="ff_{{ $form->id }}_{{ $field->name }}">
+                                {{ $field->label }} @if ($field->is_required)<span class="text-danger">*</span>@endif
+                            </label>
+                        @endunless
 
                         @switch($field->type)
                             @case('textarea')
@@ -76,6 +78,24 @@
                                                    for="ff_{{ $form->id }}_{{ $field->name }}_{{ $i }}">{{ $option }}</label>
                                         </div>
                                     @endforeach
+                                </div>
+                                @break
+
+                            @case('consent')
+                                {{-- One box, unticked to start; the link sits in the note when there is one, else after the label. --}}
+                                @php
+                                    $link = $field->setting('link_text') ? '<a href="'.e(link_href($field->setting('link_url'))).'">'.e($field->setting('link_text')).'</a>' : '';
+                                    $note = $field->setting('note');
+                                @endphp
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input {{ $fieldErrors ? 'is-invalid' : '' }}" value="1"
+                                           id="ff_{{ $form->id }}_{{ $field->name }}" name="{{ $field->name }}"
+                                           @if ($note) aria-describedby="ff_{{ $form->id }}_{{ $field->name }}_note" @endif
+                                           @checked(old($field->name)) @if($field->is_required) required @endif>
+                                    <label class="form-check-label small" for="ff_{{ $form->id }}_{{ $field->name }}">{{ $field->label }}@if ($field->is_required)<span class="text-danger"> *</span>@endif @unless ($note){!! $link !!}@endunless</label>
+                                    @if ($note)
+                                        <p class="small text-muted mb-0" id="ff_{{ $form->id }}_{{ $field->name }}_note">{{ $note }} {!! $link !!}</p>
+                                    @endif
                                 </div>
                                 @break
 
