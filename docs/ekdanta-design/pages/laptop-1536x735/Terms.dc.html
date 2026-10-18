@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ekdanta — Terms of Service</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&amp;family=Hind:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+.ek-skip{position:absolute;left:24px;top:-90px;z-index:200;padding:12px 20px;border-radius:999px;background:#0D1410;color:#FFFFFF;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:top 150ms ease-out}.ek-skip:focus{top:16px}
+body{margin:0;font-family:'Hind',system-ui,sans-serif;background:#FFFFFF;color:#0D1410;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #F2A230;outline-offset:3px}
+.eklg::-webkit-scrollbar{display:none}
+.press{transition:transform 100ms ease-out}
+.press:active{transform:scale(0.97)}
+.ek-rise{animation:ekRise 900ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekRise{from{transform:translateY(105%)}to{transform:none}}
+.ek-fade{animation:ekFade 800ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.mm-item{transition:opacity 320ms ease-out,transform 420ms cubic-bezier(.2,.8,.2,1)}
+.mm-panel{transition:opacity 260ms ease-out,transform 380ms cubic-bezier(.2,.8,.2,1)}
+.mm-bar{transition:transform 260ms cubic-bezier(.2,.8,.2,1),opacity 200ms ease-out}
+.ck-card{animation:ckIn 600ms cubic-bezier(.2,.8,.2,1) 1.2s both}
+@keyframes ckIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.ek-rise,.ek-fade,.ck-card{animation:none}.mm-item,.mm-panel,.mm-bar,.press{transition:none}}
+
+.lg-ring{animation:lgRing 3.2s ease-out infinite}
+@keyframes lgRing{0%{transform:scale(0.7);opacity:0.9}100%{transform:scale(1.5);opacity:0}}
+.lg-pop{animation:lgPop 700ms cubic-bezier(.2,.8,.2,1) .15s both}
+@keyframes lgPop{from{opacity:0;transform:translateY(40px) scale(0.94)}to{opacity:1;transform:none}}
+.lg-draw{stroke-dasharray:1 1;stroke-dashoffset:1;animation:lgDraw 1.2s cubic-bezier(.6,0,.2,1) .5s forwards}
+@keyframes lgDraw{to{stroke-dashoffset:0}}
+.lg-shield-fill{opacity:0;animation:lgFade 600ms ease-out 1.4s forwards}
+@keyframes lgFade{to{opacity:1}}
+.lg-shackle{transform:translateY(-18px);animation:lgShut 420ms cubic-bezier(.3,1.6,.5,1) 1.6s forwards}
+@keyframes lgShut{to{transform:none}}
+.lg-dots{opacity:0;animation:lgFade 500ms ease-out 1.9s forwards}
+.lg-chip{display:inline-flex;animation:lgChip 600ms cubic-bezier(.3,1.5,.5,1) both}
+@keyframes lgChip{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:none}}
+.lg-line{transform-origin:left center;animation:lgLine 500ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes lgLine{from{transform:scaleX(0)}to{transform:none}}
+.lg-sign{stroke-dasharray:1 1;stroke-dashoffset:1;animation:lgDraw 900ms ease-in-out 1.7s forwards}
+.lg-sign2{animation-delay:2.3s}
+.lg-stamp{opacity:0;animation:lgStamp 520ms cubic-bezier(.3,1.4,.5,1) 3s both}
+@keyframes lgStamp{from{opacity:0;transform:rotate(-14deg) scale(1.9)}to{opacity:1;transform:rotate(-14deg) scale(1)}}
+.lg-toc a{transition:color 200ms ease-out}
+@media (prefers-reduced-motion: reduce){.lg-ring{animation:none;opacity:0}.lg-pop,.lg-chip,.lg-line,.lg-stamp,.lg-shield-fill,.lg-dots{animation:none;opacity:1}.lg-draw,.lg-sign{animation:none;stroke-dashoffset:0}.lg-shackle{animation:none;transform:none}}
+</style>
+</helmet>
+<div style="width: 1536px; height: 735px; position: relative; overflow: hidden; background: #F4F6F1; font-family: 'Hind', system-ui, sans-serif; color: #0D1410">
+<a class="ek-skip" href="#main">Skip to main content</a>
+
+<div class="eklg" ref="{{scrollRef}}" id="main" tabindex="-1" onScroll="{{onScroll}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+
+<section id="t-top" style="position: relative; height: 1300px">
+<div style="position: sticky; top: 0; height: 735px; overflow: hidden; background: #F4F6F1; color: #0D1410">
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(#DDE2DA 1.4px, transparent 1.4px); background-size: 28px 28px; opacity: 0.5"></div>
+<div style="position: absolute; left: 120px; top: 150px; width: 640px; opacity: {{hTxtOp}}; transform: translateY({{hTxtTy}})">
+<p class="ek-fade" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #1E8E47">TERMS OF SERVICE</p>
+<h1 style="margin: 12px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 82px; line-height: 0.98; letter-spacing: -0.045em">
+<span style="display: block; overflow: hidden; padding-bottom: 6px"><span class="ek-rise" style="display: block; animation-delay: 120ms">Saaf baat,</span></span>
+<span style="display: block; overflow: hidden; padding-bottom: 6px"><span class="ek-rise" style="display: block; color: #1E8E47; animation-delay: 260ms">pakka kaam.</span></span>
+</h1>
+<p class="ek-fade" style="margin: 22px 0 0; max-width: 640px; font-size: 19px; line-height: 1.5; color: #4A564F; animation-delay: 500ms">The rules for using ekdanta.in, and how we work with clients, in plain words.</p>
+<p class="ek-fade" style="margin: 12px 0 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 15px; color: #1E8E47; animation-delay: 650ms">Last updated [Add date] · 6 min read</p>
+<div class="ek-fade" style="margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap; animation-delay: 800ms">
+<a class="press" href="#t-short" style="height: 56px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none; white-space: nowrap; background: #2EB45D; color: #0D1410">Read the short version</a>
+<a class="press" href="https://wa.me/919099417987?text=Hi%20Ekdanta%2C%20I%20have%20a%20question%20about%20your%20terms." style="height: 56px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none; white-space: nowrap; box-shadow: inset 0 0 0 1.5px #0D1410; color: #0D1410">Talk to us on WhatsApp</a>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 940px; top: 112px; width: 560px; height: 600px; transform: scale(0.85); transform-origin: 0 0">
+<div style="position: absolute; inset: 0; transform: translateY({{visTy}})">
+<div style="position: absolute; left: 80px; top: 50px; width: 380px; transform: rotate({{cardRot}}) translateY({{cardTy}}); transform-origin: 50% 70%">
+<div class="lg-pop" style="position: relative; box-sizing: border-box; height: 500px; padding: 30px 32px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 40px 70px -30px rgba(13,20,16,0.45); display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.16em; color: #56605A">AGREEMENT</span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em">Ekdanta × You</span>
+<span style="display: flex; flex-direction: column; gap: 12px; margin-top: 6px"><span class="lg-line" style="display: block; height: 9px; width: 300px; border-radius: 5px; background: #DDE2DA; animation-delay: 500ms"></span><span class="lg-line" style="display: block; height: 9px; width: 260px; border-radius: 5px; background: #DDE2DA; animation-delay: 670ms"></span><span class="lg-line" style="display: block; height: 9px; width: 288px; border-radius: 5px; background: #DDE2DA; animation-delay: 840ms"></span><span class="lg-line" style="display: block; height: 9px; width: 210px; border-radius: 5px; background: #DDE2DA; animation-delay: 1010ms"></span><span class="lg-line" style="display: block; height: 9px; width: 276px; border-radius: 5px; background: #DDE2DA; animation-delay: 1180ms"></span><span class="lg-line" style="display: block; height: 9px; width: 238px; border-radius: 5px; background: #DDE2DA; animation-delay: 1350ms"></span></span>
+<div style="margin-top: auto; display: flex; gap: 24px">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+<svg width="140" height="44" viewBox="0 0 140 44" aria-hidden="true"><path class="lg-sign" pathLength="1" d="M4 30 C 14 6, 24 6, 22 30 C 20 42, 34 18, 44 26 C 52 32, 58 14, 66 22 C 74 30, 82 24, 92 18 C 104 12, 116 30, 136 16" fill="none" stroke="#0A5A30" stroke-width="2.6" stroke-linecap="round"></path></svg>
+<span style="height: 2px; background: #0D1410"></span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #56605A">Ekdanta</span>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+<svg width="140" height="44" viewBox="0 0 140 44" aria-hidden="true"><path class="lg-sign lg-sign2" pathLength="1" d="M6 26 C 16 10, 30 34, 40 20 C 48 10, 56 34, 66 24 C 76 14, 90 30, 100 22 C 110 14, 122 26, 134 20" fill="none" stroke="#0D1410" stroke-width="2.6" stroke-linecap="round"></path></svg>
+<span style="height: 2px; background: #0D1410"></span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #56605A">You</span>
+</div>
+</div>
+<div style="position: absolute; right: -34px; bottom: 96px; transform: rotate({{stampRot}})">
+<div class="lg-stamp" style="width: 136px; height: 136px; box-sizing: border-box; border-radius: 999px; border: 5px solid #1E8E47; box-shadow: inset 0 0 0 4px #FFFFFF, inset 0 0 0 6px #1E8E47; background: rgba(230,244,234,0.92); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #1E8E47; transform: rotate(-14deg)">
+<span style="font-weight: 700; font-size: 15px">शुभ आरंभ</span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.08em">AGREED</span>
+</div>
+</div>
+</div>
+</div>
+<span style="position: absolute; left: 0px; top: 24px; transform: translate({{chip0}})"><span class="lg-chip" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 16px 0 10px; border-radius: 999px; background: #0D1410; color: #FFFFFF; box-shadow: 0 16px 30px -16px rgba(13,20,16,0.6); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; white-space: nowrap; animation-delay: 2700ms"><span style="width: 26px; height: 26px; border-radius: 999px; background: #2EB45D; color: #0D1410; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>No fixed packages</span></span>
+<span style="position: absolute; left: 382px; top: 236px; transform: translate({{chip1}})"><span class="lg-chip" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 16px 0 10px; border-radius: 999px; background: #0D1410; color: #FFFFFF; box-shadow: 0 16px 30px -16px rgba(13,20,16,0.6); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; white-space: nowrap; animation-delay: 2920ms"><span style="width: 26px; height: 26px; border-radius: 999px; background: #2EB45D; color: #0D1410; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Starts after your yes</span></span>
+<span style="position: absolute; left: 20px; top: 528px; transform: translate({{chip2}})"><span class="lg-chip" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 16px 0 10px; border-radius: 999px; background: #0D1410; color: #FFFFFF; box-shadow: 0 16px 30px -16px rgba(13,20,16,0.6); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; white-space: nowrap; animation-delay: 3140ms"><span style="width: 26px; height: 26px; border-radius: 999px; background: #2EB45D; color: #0D1410; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Indian law</span></span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="t-short" tabindex="-1" style="position: relative; height: 1700px">
+<div style="position: sticky; top: 0; height: 735px; overflow: hidden; background: #0D1410; color: #FFFFFF">
+<div style="position: absolute; left: 120px; top: 110px; width: 640px; opacity: {{shOp}}; transform: translateY({{shTy}})">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #8FE3AE">THE SHORT VERSION</p>
+<h2 style="margin: 8px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.045em">In short.</h2>
+<p style="margin: 12px 0 0; font-size: 19px; line-height: 1.5; color: #BFD2C6">The four things that matter most. The full terms are below.</p>
+</div>
+<div style="position: absolute; left: 120px; top: 290px; width: 300px; height: 290px; box-sizing: border-box; padding: 26px; border-radius: 26px; background: #1E2823; display: flex; flex-direction: column; gap: 12px; opacity: {{cOp0}}; transform: {{cTf0}}; box-shadow: 0 30px 50px -36px rgba(13,20,16,0.6)">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="width: 56px; height: 56px; border-radius: 999px; background: #2EB45D; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g pathLength="1" style="stroke-dasharray: 1 0"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></g></svg></span><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #7B867F">01</span></span>
+<span style="margin-top: auto; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.15; letter-spacing: -0.02em; color: #FFFFFF">No fixed packages</span>
+<span style="font-size: 16px; line-height: 1.45; color: #BFD2C6">A free consultation first, then a proposal and quote made for your business.</span>
+</div>
+<div style="position: absolute; left: 444px; top: 290px; width: 300px; height: 290px; box-sizing: border-box; padding: 26px; border-radius: 26px; background: #1E2823; display: flex; flex-direction: column; gap: 12px; opacity: {{cOp1}}; transform: {{cTf1}}; box-shadow: 0 30px 50px -36px rgba(13,20,16,0.6)">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="width: 56px; height: 56px; border-radius: 999px; background: #2EB45D; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g pathLength="1" style="stroke-dasharray: 1 0"><path d="M4 20c3-1 5-6 7-6s1 4 3 4 3-3 6-3"></path><path d="M14 4l6 6-8 8H6v-6z"></path></g></svg></span><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #7B867F">02</span></span>
+<span style="margin-top: auto; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.15; letter-spacing: -0.02em; color: #FFFFFF">Nothing starts without your yes</span>
+<span style="font-size: 16px; line-height: 1.45; color: #BFD2C6">Work begins only after you approve a written proposal.</span>
+</div>
+<div style="position: absolute; left: 768px; top: 290px; width: 300px; height: 290px; box-sizing: border-box; padding: 26px; border-radius: 26px; background: #1E2823; display: flex; flex-direction: column; gap: 12px; opacity: {{cOp2}}; transform: {{cTf2}}; box-shadow: 0 30px 50px -36px rgba(13,20,16,0.6)">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="width: 56px; height: 56px; border-radius: 999px; background: #2EB45D; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g pathLength="1" style="stroke-dasharray: 1 0"><path d="M4 20V4M4 20h16"></path><path d="M8 15l3-4 3 2 5-6" stroke-dasharray="2 2"></path></g></svg></span><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #7B867F">03</span></span>
+<span style="margin-top: auto; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.15; letter-spacing: -0.02em; color: #FFFFFF">No promised numbers</span>
+<span style="font-size: 16px; line-height: 1.45; color: #BFD2C6">Results depend on markets, platforms and budgets, so we do not guarantee them.</span>
+</div>
+<div style="position: absolute; left: 1092px; top: 290px; width: 300px; height: 290px; box-sizing: border-box; padding: 26px; border-radius: 26px; background: #1E2823; display: flex; flex-direction: column; gap: 12px; opacity: {{cOp3}}; transform: {{cTf3}}; box-shadow: 0 30px 50px -36px rgba(13,20,16,0.6)">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="width: 56px; height: 56px; border-radius: 999px; background: #2EB45D; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g pathLength="1" style="stroke-dasharray: 1 0"><path d="M12 4v16M6 20h12M5 8h14"></path><path d="M5 8l-3 6a3 3 0 0 0 6 0zM19 8l-3 6a3 3 0 0 0 6 0z"></path></g></svg></span><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #7B867F">04</span></span>
+<span style="margin-top: auto; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.15; letter-spacing: -0.02em; color: #FFFFFF">Indian law, Surat courts</span>
+<span style="font-size: 16px; line-height: 1.45; color: #BFD2C6">These terms follow the laws of India.</span>
+</div>
+
+</div>
+</section>
+
+<section id="t-full" style="position: relative; background: #FFFFFF; padding: 120px 0 120px">
+<div style="position: relative; display: flex; gap: 90px; padding-left: 120px">
+<aside style="flex-shrink: 0; width: 260px">
+<div style="position: sticky; top: 120px; opacity: {{railOp}}">
+<nav aria-label="On this page" class="lg-toc" style="position: relative"><p style="margin: 0 0 10px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.12em; color: #56605A">ON THIS PAGE</p><span aria-hidden="true" style="position: absolute; left: 0; top: 34px; width: 3px; height: 34px; border-radius: 2px; background: #2EB45D; transform: translateY({{tocBarTy}}); opacity: {{tocBarOp}}"></span><ol style="margin: 0; padding: 0; list-style: none; border-left: 1px solid #DDE2DA"><sc-for list="{{toc}}" as="tc" hint-placeholder-count="11"><li style="margin: 0"><a href="{{tc.href}}" aria-current="{{tc.cur}}" style="display: flex; align-items: center; height: 34px; padding-left: 16px; font-size: 15px; font-weight: {{tc.w}}; color: {{tc.c}}; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{tc.t}}</a></li></sc-for></ol></nav>
+<div style="margin-top: 26px; display: flex; align-items: center; gap: 14px"><svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true" style="transform: rotate(-90deg)"><circle cx="27" cy="27" r="22" fill="none" stroke="#E4E8E2" stroke-width="5"></circle><circle cx="27" cy="27" r="22" fill="none" stroke="#2EB45D" stroke-width="5" stroke-linecap="round" stroke-dasharray="{{ringC}}" stroke-dashoffset="{{ringOff}}"></circle></svg><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px">{{pctRead}}</span><span style="font-size: 14px; color: #56605A">{{minLeft}}</span></span></div>
+<p style="margin: 26px 0 0; font-size: 15px; line-height: 1.5; color: #56605A">Questions? <a href="mailto:info@ekdanta.in" style="color: #1E8E47; font-weight: 600">info@ekdanta.in</a></p>
+</div>
+</aside>
+<article style="width: 760px">
+<h2 id="h-1" tabindex="-1" style="margin: 8px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h1}}; transform: translateY({{t_h1}})"><span style="color: #2EB45D; margin-right: 12px">01</span>About these terms</h2>
+<p id="rv-0_0" style="opacity: {{r_0_0}}; transform: translateY({{t_0_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">These terms apply when you use ekdanta.in. The website and the Ekdanta Branding and Marketing brand are run by Vedanta Advisor, a sole proprietorship of Dishant Dipesh Bhagat, GSTIN 24GHNPD1228K1ZC, Shop No. 403, 4th Floor, Bhatar Trade Center, B Building, Bhatar Char Rasta, near Shiv Timber Mart, Surat, Gujarat 395017, India.</p>
+<p id="rv-0_1" style="opacity: {{r_0_1}}; transform: translateY({{t_0_1}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">By using this website, you agree to these terms. If you do not agree, please do not use the site.</p>
+<h2 id="h-2" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h2}}; transform: translateY({{t_h2}})"><span style="color: #2EB45D; margin-right: 12px">02</span>Using this website</h2>
+<p id="rv-1_0" style="opacity: {{r_1_0}}; transform: translateY({{t_1_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">Use the site lawfully. Do not try to break it, overload it, copy it in bulk, or use it to send spam.</p>
+<p id="rv-1_1" style="opacity: {{r_1_1}}; transform: translateY({{t_1_1}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">The content is general information about our services. It is not professional advice for your specific business.</p>
+<h2 id="h-3" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h3}}; transform: translateY({{t_h3}})"><span style="color: #2EB45D; margin-right: 12px">03</span>Enquiries, briefs and quotes</h2>
+<ul style="margin: 0 0 18px; padding: 0; list-style: none"><li id="rv-2_0_0" style="opacity: {{r_2_0_0}}; transform: translateY({{t_2_0_0}}); display: flex; gap: 12px; margin: 0 0 10px; font-size: 18.5px; line-height: 1.6; color: #2B3832"><span aria-hidden="true" style="flex-shrink: 0; margin-top: 4px; width: 22px; height: 22px; border-radius: 999px; background: #E6F4EA; color: #1E8E47; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Sending a brief or enquiry does not create a contract.</span></li><li id="rv-2_0_1" style="opacity: {{r_2_0_1}}; transform: translateY({{t_2_0_1}}); display: flex; gap: 12px; margin: 0 0 10px; font-size: 18.5px; line-height: 1.6; color: #2B3832"><span aria-hidden="true" style="flex-shrink: 0; margin-top: 4px; width: 22px; height: 22px; border-radius: 999px; background: #E6F4EA; color: #1E8E47; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>We have no fixed packages. After a free consultation, we share a proposal and quote made for your business.</span></li><li id="rv-2_0_2" style="opacity: {{r_2_0_2}}; transform: translateY({{t_2_0_2}}); display: flex; gap: 12px; margin: 0 0 10px; font-size: 18.5px; line-height: 1.6; color: #2B3832"><span aria-hidden="true" style="flex-shrink: 0; margin-top: 4px; width: 22px; height: 22px; border-radius: 999px; background: #E6F4EA; color: #1E8E47; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Work starts only after you approve the proposal in writing and pay any agreed advance.</span></li><li id="rv-2_0_3" style="opacity: {{r_2_0_3}}; transform: translateY({{t_2_0_3}}); display: flex; gap: 12px; margin: 0 0 10px; font-size: 18.5px; line-height: 1.6; color: #2B3832"><span aria-hidden="true" style="flex-shrink: 0; margin-top: 4px; width: 22px; height: 22px; border-radius: 999px; background: #E6F4EA; color: #1E8E47; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Prices, timelines and deliverables are set in that proposal. Quotes are valid for [Add validity, for example 15 days].</span></li></ul>
+<h2 id="h-4" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h4}}; transform: translateY({{t_h4}})"><span style="color: #2EB45D; margin-right: 12px">04</span>Client projects</h2>
+<p id="rv-3_0" style="opacity: {{r_3_0}}; transform: translateY({{t_3_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">Each project is covered by its own proposal or agreement. If that agreement says something different from these terms, the agreement applies.</p>
+<h2 id="h-5" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h5}}; transform: translateY({{t_h5}})"><span style="color: #2EB45D; margin-right: 12px">05</span>Results</h2>
+<p id="rv-4_0" style="opacity: {{r_4_0}}; transform: translateY({{t_4_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">We plan and run every campaign carefully, but results such as leads, sales, reach or rankings depend on many things outside our control, including platforms, markets and budgets.</p>
+<p id="rv-note" style="opacity: {{r_note}}; transform: translateY({{t_note}}); position: relative; margin: 8px 0 24px; padding: 20px 24px; border-radius: 18px; background: #E6F4EA; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22.2px; line-height: 1.4; color: #0E3A22"><span aria-hidden="true" style="position: absolute; left: 0; top: 0; bottom: 0; width: {{hlW}}; border-radius: 18px; background: rgba(46,180,93,0.28)"></span><span style="position: relative">We do not guarantee specific results unless a written agreement says so.</span></p>
+<h2 id="h-6" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h6}}; transform: translateY({{t_h6}})"><span style="color: #2EB45D; margin-right: 12px">06</span>Our content and your work</h2>
+<p id="rv-5_0" style="opacity: {{r_5_0}}; transform: translateY({{t_5_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">This site's text, design, graphics, logos and videos belong to Ekdanta or are used with permission. Please do not copy or reuse them without our written permission.</p>
+<p id="rv-5_1" style="opacity: {{r_5_1}}; transform: translateY({{t_5_1}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">Client work shown on this site is shown with our clients' permission and stays subject to their rights. Who owns the work we create for you is set out in your agreement. [Confirm usage rights.]</p>
+<h2 id="h-7" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h7}}; transform: translateY({{t_h7}})"><span style="color: #2EB45D; margin-right: 12px">07</span>What you send us</h2>
+<p id="rv-6_0" style="opacity: {{r_6_0}}; transform: translateY({{t_6_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">If you send us logos, photos or text, you confirm that you have the right to share them, and you allow us to use them to prepare your proposal or project.</p>
+<h2 id="h-8" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h8}}; transform: translateY({{t_h8}})"><span style="color: #2EB45D; margin-right: 12px">08</span>Other websites</h2>
+<p id="rv-7_0" style="opacity: {{r_7_0}}; transform: translateY({{t_7_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">Links to WhatsApp, Instagram, Google Maps and other sites are for your convenience. Their own terms and privacy policies apply, and we are not responsible for them.</p>
+<h2 id="h-9" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h9}}; transform: translateY({{t_h9}})"><span style="color: #2EB45D; margin-right: 12px">09</span>Limits of liability</h2>
+<p id="rv-8_0" style="opacity: {{r_8_0}}; transform: translateY({{t_8_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">This website is provided "as is". To the extent the law allows, Ekdanta is not liable for indirect or consequential losses from using it. Nothing in these terms limits any liability that cannot be limited under Indian law.</p>
+<h2 id="h-10" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h10}}; transform: translateY({{t_h10}})"><span style="color: #2EB45D; margin-right: 12px">10</span>Governing law</h2>
+<p id="rv-9_0" style="opacity: {{r_9_0}}; transform: translateY({{t_9_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">These terms are governed by the laws of India. Courts in Surat, Gujarat have jurisdiction. [Have a lawyer review these terms.]</p>
+<h2 id="h-11" tabindex="-1" style="margin: 56px 0 16px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.12; letter-spacing: -0.03em; scroll-margin-top: 110px; opacity: {{r_h11}}; transform: translateY({{t_h11}})"><span style="color: #2EB45D; margin-right: 12px">11</span>Changes to these terms</h2>
+<p id="rv-10_0" style="opacity: {{r_10_0}}; transform: translateY({{t_10_0}}); margin: 0 0 18px; font-size: 18.5px; line-height: 1.7; color: #2B3832">We may update these terms. The date at the top shows the latest version.</p>
+<p id="t-end" style="margin: 40px 0 0; font-size: 15px; color: #56605A">Last updated [Add date]</p>
+</article>
+</div>
+</section>
+
+<section id="t-ask" style="position: relative; height: 1300px">
+<div style="position: sticky; top: 0; height: 735px; overflow: hidden; background: #0A5A30; color: #FFFFFF">
+<svg aria-hidden="true" width="1536" height="735" viewBox="0 0 1536 735" style="position: absolute; left: 0; top: 0">
+<path d="M140 615 C 460 695, 666 320, 926 100" fill="none" stroke="rgba(143,227,174,0.45)" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round"></path>
+<path d="M140 615 C 460 695, 666 320, 926 100" fill="none" stroke="#020403" stroke-opacity="0" stroke-width="0"></path>
+</svg>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translate({{planeX}}, {{planeY}}) rotate({{planeRot}}); opacity: {{planeOp}}; transform-origin: 0 0"><div style="transform: translate(-22px, -22px)"><svg width="44" height="44" viewBox="0 0 24 24" fill="#FFFFFF" stroke="#0D1410" stroke-width="1.2" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L2 10.5l7.5 2.5L12 21l3-6.5z"></path><path d="M9.5 13L22 2" fill="none"></path></svg></div></div>
+<div style="position: absolute; left: 120px; top: 120px; width: 696px; opacity: {{akOp}}; transform: translateY({{akTy}})">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #8FE3AE">STILL HAVE QUESTIONS?</p>
+<h2 style="margin: 10px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 54px; line-height: 1.02; letter-spacing: -0.045em">Questions about these terms?</h2>
+<p style="margin: 14px 0 0; font-size: 20px; line-height: 1.5; color: #CFE8D7">Ask us before you start. We would rather explain now than surprise you later.</p>
+</div>
+<div style="position: absolute; left: 896px; top: 130px; width: 520px; box-sizing: border-box; padding: 32px; border-radius: 28px; background: #FFFFFF; color: #0D1410; box-shadow: 0 40px 80px -40px rgba(0,0,0,0.7); opacity: {{acOp}}; transform: perspective(1200px) rotateY({{acRot}}) translateX({{acTx}}); transform-origin: right center">
+<div style="display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E4E8E2; opacity: {{aR0}}; transform: translateY({{aT0}})"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">EMAIL</span><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 19px; line-height: 1.4; color: #0D1410">info@ekdanta.in</span></div><div style="display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E4E8E2; opacity: {{aR1}}; transform: translateY({{aT1}})"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">CALL</span><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 19px; line-height: 1.4; color: #0D1410">90994 17987</span></div><div style="display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E4E8E2; opacity: {{aR2}}; transform: translateY({{aT2}})"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">SALES</span><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 19px; line-height: 1.4; color: #0D1410">63544 33194</span></div><div style="display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E4E8E2; opacity: {{aR3}}; transform: translateY({{aT3}})"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">ADDRESS</span><span style="font-family: 'Hind', sans-serif; font-weight: 500; font-size: 17px; line-height: 1.4; color: #0D1410">B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017</span></div>
+<div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap">
+<a class="press" href="mailto:info@ekdanta.in?subject=Question%20about%20your%20terms" style="height: 54px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none; background: #0A5A30; color: #FFFFFF">Email us</a>
+<a class="press" href="https://wa.me/919099417987?text=Hi%20Ekdanta%2C%20I%20have%20a%20question%20about%20your%20terms." style="height: 54px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none; box-shadow: inset 0 0 0 1.5px #0D1410">WhatsApp us</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact" tabindex="-1" style="position: relative; height: 1800px">
+<div style="position: sticky; top: 0; height: 735px; overflow: hidden; background: #2EB45D">
+<div style="position: absolute; left: 120px; top: 96px; width: 620.7px">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 27.8px; letter-spacing: -0.02em; opacity: {{endL1Op}}">Now it's your turn to</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 98.0px; line-height: 0.95; letter-spacing: -0.055em; opacity: {{endL2Op}}; transform: translateY({{endL2Ty}})">become a</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 150px; line-height: 0.9; letter-spacing: -0.06em; color: #FFFFFF; transform-origin: left center; opacity: {{endBigOp}}; transform: rotate({{endBigRot}}) scale({{endBigSc}})">BIG<br>BRAND!</p>
+</div>
+<div style="position: absolute; right: 120px; top: 84px; width: 378.9px; box-sizing: border-box; padding: 24.5px; border-radius: 22.9px; background: #FFFFFF; box-shadow: 0 40px 80px -40px rgba(13,20,16,0.5); display: flex; flex-direction: column; gap: 13.1px; opacity: {{cardOp}}; transform: translateX({{cardTx}})">
+<img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 31.0px; width: auto; align-self: flex-start">
+<div style="display: flex; gap: 13.1px">
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.1em; color: #56605A">ALL SERVICES</span><a href="tel:+919099417987" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17.1px; text-decoration: none">90994 17987</a><a href="tel:+919099417949" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17.1px; text-decoration: none">90994 17949</a></div>
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.1em; color: #56605A">SALES</span><a href="tel:+916354433194" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17.1px; text-decoration: none">63544 33194</a></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.1em; color: #56605A">EMAIL</span><a href="mailto:info@ekdanta.in" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17.1px; text-decoration: none">info@ekdanta.in</a></div>
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.1em; color: #56605A">VISIT</span><span style="font-size: 13.1px; line-height: 1.45">B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017</span></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<a class="press" href="https://wa.me/919099417987" style="height: 40px; box-sizing: border-box; padding: 0 13.1px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; text-decoration: none; background: #0D1410; color: #FFFFFF">WhatsApp us</a>
+<a class="press" href="https://share.google/EAOxrObclZeY4QkQR" style="height: 40px; box-sizing: border-box; padding: 0 13.1px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; text-decoration: none; box-shadow: inset 0 0 0 1.5px #0D1410">Get directions</a>
+<a class="press" href="https://www.instagram.com/ekdanta.in/" style="height: 40px; box-sizing: border-box; padding: 0 13.1px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; text-decoration: none; box-shadow: inset 0 0 0 1.5px #0D1410">Instagram</a>
+</div>
+</div>
+<footer style="position: absolute; left: 96px; right: 96px; bottom: 23px; padding-top: 12px; border-top: 1px solid rgba(13,20,16,0.2); display: flex; flex-direction: column; gap: 6px; font-size: 13.3px; color: #0E3A22; opacity: {{footOp}}">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px">
+<nav aria-label="Footer" style="display: flex; gap: 16px; font-family: 'Poppins', sans-serif; font-weight: 600"><a href="LP-Home.dc.html" style="text-decoration: none">Home</a> <a href="LP-Services.dc.html" style="text-decoration: none">Services</a> <a href="LP-Work.dc.html" style="text-decoration: none">Work</a> <a href="LP-About.dc.html" style="text-decoration: none">About</a> <a href="LP-Blog.dc.html" style="text-decoration: none">Blog</a> <a href="LP-Contact.dc.html" style="text-decoration: none">Contact</a></nav>
+<nav aria-label="Legal" style="display: flex; gap: 16px; font-family: 'Poppins', sans-serif; font-weight: 600"><a href="LP-Privacy.dc.html" style="text-decoration: none">Privacy Policy</a> <a href="LP-Terms.dc.html" style="text-decoration: none">Terms of Service</a> <button type="button" onClick="{{ckOpen}}" style="padding: 0; border: 0; background: transparent; cursor: pointer; font-weight: 600; text-decoration: none">Cookie settings</button></nav>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 20px">
+<span>© 2026 Ekdanta Branding and Marketing, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC. Surat and Ahmedabad.</span>
+<span>Aapki branding &amp; marketing ke विघ्नहर्ता</span>
+</div>
+</footer>
+</div>
+</section>
+</div>
+
+<header style="position: absolute; top: 16px; left: 32px; right: 32px; height: 60px; box-sizing: border-box; padding: 0 8px 0 22px; border-radius: 999px; background: rgba(255,255,255,0.95); box-shadow: 0 10px 30px -18px rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: space-between; z-index: 50">
+<a href="LP-Home.dc.html" aria-label="Ekdanta home" style="display: flex; align-items: center"><img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 32px; width: auto; display: block"></a>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 4px; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 15px">
+<a href="LP-Home.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Home</a>
+<a href="LP-Services.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Services</a>
+<a href="LP-Work.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Work</a>
+<a href="LP-About.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">About</a>
+<a href="LP-Blog.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Blog</a>
+<a href="LP-Contact.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Contact</a>
+</nav>
+<a class="press" href="#contact" style="height: 42px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; background: #2EB45D; color: #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; text-decoration: none">Become a big brand</a>
+</header>
+<div aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 3px; width: {{progW}}; background: #F2A230; z-index: 60"></div>
+
+<sc-if value="{{ckShow}}" hint-placeholder-val="{{ true }}">
+<div class="ck-card" role="region" aria-label="Cookie choices" style="position: absolute; left: 24px; right: 24px; bottom: 16px; z-index: 80; box-sizing: border-box; padding: 12px 12px 12px 22px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 24px 50px -24px rgba(13,20,16,0.55), 0 0 0 1px rgba(13,20,16,0.06); display: flex; align-items: center; gap: 18px">
+<p style="margin: 0; flex: 1; font-size: 14px; line-height: 1.4; color: #4A564F"><b style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #0D1410">Cookies, only with your OK.</b> We use necessary cookies to run this site. With your OK, we also use analytics and ad cookies to see what helps and to measure our ads. <a href="LP-Privacy.dc.html" style="color: #1E8E47; white-space: nowrap">Privacy Policy</a></p>
+<div style="display: flex; gap: 8px; flex-shrink: 0"><button type="button" class="press" onClick="{{ckAll}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #0A5A30; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Allow all</button><button type="button" class="press" onClick="{{ckNeeded}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: transparent; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Only necessary</button></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"scrub":{"editor":"range","default":0,"min":0,"max":8038,"step":50,"unit":"px","label":"Preview scroll position"},"$preview":{"width":1536,"height":735}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.remeasure();
+    this._t1 = setTimeout(() => this.remeasure(), 400);
+    try { if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this.remeasure()); } catch (e) {}
+    this.applyScrub();
+  }
+  componentWillUnmount() { if (this._raf) cancelAnimationFrame(this._raf); clearTimeout(this._t1); }
+  componentDidUpdate(prev) { if ((prev.scrub || 0) !== (this.props.scrub || 0)) this.applyScrub(); }
+  applyScrub() {
+    const v = this.props.scrub || 0;
+    if (this._el && v > 0) { this._el.scrollTop = v; this.setState({ y: v }); }
+  }
+  // Reads where each block sits, so reveals, the contents and the closing follow the real layout.
+  measure() {
+    const el = this._el;
+    if (!el || !el.querySelectorAll) return null;
+    const top = (n) => { let t = 0; while (n && n !== el) { t += n.offsetTop; n = n.offsetParent; } return n === el ? t : null; };
+    const rv = {};
+    el.querySelectorAll('[id^="rv-"]').forEach((n) => { const t = top(n); if (t !== null) rv[n.id.slice(3)] = t; });
+    const h = [];
+    for (let i = 1; i <= 11; i++) { const n = el.querySelector('#h-' + i); const t = n ? top(n) : null; h.push(t); if (t !== null) rv['h' + i] = t; }
+    const g = (id) => { const n = el.querySelector('#' + id); return n ? top(n) : null; };
+    const L = { rv: rv, h: h, body: g('t-full'), artEnd: g('t-end'), ask: g('t-ask'), end: g('contact'), max: el.scrollHeight - el.clientHeight };
+    if (L.end === null || L.ask === null || h.indexOf(null) >= 0 || !(L.max > 0)) return null;
+    return L;
+  }
+  remeasure() { const L = this.measure(); if (L) { this._lay = L; this.setState({ m: (this.state && this.state.m || 0) + 1 }); } }
+  renderVals() {
+    const st = this.state || {};
+    const y = st.y || 0;
+    const rm = !!this._reduce;
+
+    const clamp = (v, a, b) => Math.max(a === undefined ? 0 : a, Math.min(b === undefined ? 1 : b, v));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const ease = (k) => (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+    const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+    const easeBack = (k) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
+    const px = (v) => v.toFixed(1) + 'px';
+    const f3 = (v) => v.toFixed(3);
+    const pct = (v) => (v * 100).toFixed(2) + '%';
+    const move = (v) => (rm ? 0 : v);
+
+    const FB = {"rv": {"0_0": 3180, "0_1": 3324, "1_0": 3463, "1_1": 3512, "2_0_0": 3683, "2_0_1": 3723, "2_0_2": 3792, "2_0_3": 3831, "3_0": 3998, "4_0": 4169, "note": 4250, "5_0": 4460, "5_1": 4541, "6_0": 4743, "7_0": 4914, "8_0": 5084, "9_0": 5287, "10_0": 5457, "h1": 3128, "h2": 3411, "h3": 3631, "h4": 3947, "h5": 4117, "h6": 4408, "h7": 4691, "h8": 4862, "h9": 5033, "h10": 5235, "h11": 5405}, "h": [3128, 3411, 3631, 3947, 4117, 4408, 4691, 4862, 5033, 5235, 5405], "body": 3000, "artEnd": 5529, "ask": 5673, "end": 6973, "max": 8038};
+    const L = this._lay || FB;
+    const top = (k) => (L.rv[k] !== undefined ? L.rv[k] : FB.rv[k]);
+    const VH = 735, T_SHORT = 1300, T_END = L.end, MAXY = L.max;
+    const out = {};
+
+    // 1. Hero: the visual builds itself on load (CSS); on scroll the text lifts away and the chips drift apart.
+    const h = rm ? 0 : clamp(y / 600);
+    Object.assign(out, {
+      hTxtOp: f3(rm ? 1 : 1 - clamp((y - 160) / 420)), hTxtTy: px(move(-h * 80)),
+      visTy: px(move(-h * 70)), cardRot: (rm ? -4 : -4 - h * 7).toFixed(2) + 'deg', cardTy: px(move(-h * 30)),
+      shieldTy: px(move(-h * 40)), shieldSc: (1 - h * 0.08).toFixed(3), stampRot: (h * 24).toFixed(2) + 'deg',
+      chip0: px(move(-h * 90)) + ', ' + px(move(-h * 40)), chip1: px(move(h * 80)) + ', ' + px(move(-h * 20)), chip2: px(move(-h * 40)) + ', ' + px(move(h * 60))
+    });
+
+    // 2. In short: four cards are dealt from a stack into place, one after another.
+    const s2 = y - T_SHORT;
+    const shA = rm ? 1 : clamp((s2 + 650) / 420);
+    out.shOp = f3(shA); out.shTy = px(move((1 - easeOut(shA)) * 40));
+    const DEAL = [[480.0, 505.0, -10.5], [168.0, 505.0, -3.5], [-144.0, 505.0, 3.5], [-456.0, 505.0, 10.5]];
+    DEAL.forEach((dd, k) => {
+      const a = rm ? 1 : easeOut(clamp((s2 + 380 - k * 110) / 520));
+      out['cOp' + k] = f3(clamp(a * 2.2));
+      out['cTf' + k] = 'translate(' + px(dd[0] * (1 - a)) + ', ' + px(dd[1] * (1 - a)) + ') rotate(' + (dd[2] * (1 - a)).toFixed(2) + 'deg)';
+    });
+
+    // 3. Full text: each block rises as it reaches the reading line; list items follow one another.
+    const stag = (k) => { const m = /_(\d+)$/.exec(k); return m && k.split('_').length === 3 ? (+m[1] % 5) * 60 : 0; };
+    Object.keys(FB.rv).forEach((k) => {
+      const a = rm ? 1 : clamp((y + VH - top(k) - 80 - stag(k)) / 320);
+      out['r_' + k] = f3(a);
+      out['t_' + k] = px(move((1 - easeOut(a)) * 30));
+    });
+    out.hlW = pct(rm ? 1 : clamp((y + VH - top('note') - 260) / 300));
+    let act = -1;
+    for (let i = 0; i < 11; i++) if (y >= L.h[i] - 260) act = i;
+    const prog = clamp((y + VH * 0.6 - L.body) / Math.max(1, L.artEnd - L.body));
+    const TOC = ["About these terms", "Using this website", "Enquiries, briefs and quotes", "Client projects", "Results", "Our content and your work", "What you send us", "Other websites", "Limits of liability", "Governing law", "Changes to these terms"];
+
+    const C = 2 * Math.PI * 22;
+    Object.assign(out, {
+      railOp: f3(rm ? 1 : clamp((y - L.body + VH * 0.8) / 300)),
+      tocBarTy: px(Math.max(0, act) * 34), tocBarOp: act < 0 ? '0' : '1',
+      ringOff: (C * (1 - prog)).toFixed(2), ringC: C.toFixed(2),
+      pctRead: Math.round(prog * 100) + '% read',
+      minLeft: prog >= 1 ? 'Done reading' : Math.ceil(6 * (1 - prog) - 0.001) + ' min left'
+    });
+    out.toc = TOC.map((t, i) => ({ t: (i < 9 ? '0' : '') + (i + 1) + '  ' + t, href: '#h-' + (i + 1), cur: i === act ? 'true' : 'false', c: i === act ? '#0D1410' : '#56605A', w: i === act ? '700' : '500' }));
+
+    // 4. Questions: a paper plane flies along the dotted path to the card, which swings in.
+    const s4 = y - L.ask;
+    const akA = rm ? 1 : clamp((s4 + 650) / 420);
+    out.akOp = f3(akA); out.akTy = px(move((1 - easeOut(akA)) * 40));
+    const pt = rm ? 1 : ease(clamp((s4 + 300) / 700));
+    const P = [140.0, 615.0, 460.0, 695.0, 666.0, 320.0, 926.0, 100.0];
+    const bz = (a, b, c, d2, t) => { const u = 1 - t; return u * u * u * a + 3 * u * u * t * b + 3 * u * t * t * c + t * t * t * d2; };
+    const bd = (a, b, c, d2, t) => { const u = 1 - t; return 3 * u * u * (b - a) + 6 * u * t * (c - b) + 3 * t * t * (d2 - c); };
+    const pX = bz(P[0], P[2], P[4], P[6], pt), pY = bz(P[1], P[3], P[5], P[7], pt);
+    const ang = Math.atan2(bd(P[1], P[3], P[5], P[7], pt), bd(P[0], P[2], P[4], P[6], pt)) * 180 / Math.PI;
+    Object.assign(out, { planeX: px(pX), planeY: px(pY), planeRot: (ang + 45).toFixed(1) + 'deg', planeOp: f3(rm ? 0 : clamp(pt * 6) * (1 - clamp((pt - 0.94) / 0.06))) });
+    const ac = rm ? 1 : easeOut(clamp((s4 + 120) / 500));
+    Object.assign(out, { acOp: f3(clamp(ac * 1.6)), acRot: (move(-28 * (1 - ac))).toFixed(2) + 'deg', acTx: px(move(60 * (1 - ac))) });
+    for (let k = 0; k < 4; k++) { const a = rm ? 1 : clamp((s4 + 60 - k * 70) / 260); out['aR' + k] = f3(a); out['aT' + k] = px(move((1 - easeOut(a)) * 14)); }
+
+    // Finale: the approved closing, 'Now it's your turn to become a BIG BRAND!'
+    const s7 = y - T_END;
+    const pe = clamp((s7 + 600) / 1500);
+    const qq = (x0) => (rm ? 1 : clamp((pe - x0) / 0.18));
+    Object.assign(out, {
+      endL1Op: f3(qq(0)), endL2Op: f3(qq(0.12)), endL2Ty: px(move((1 - qq(0.12)) * 32.7)),
+      endBigOp: f3(qq(0.24)), endBigRot: (rm ? -3 : lerp(-8, -3, qq(0.24))).toFixed(2) + 'deg', endBigSc: (rm ? 1 : lerp(0.6, 1, ease(qq(0.24)))).toFixed(3),
+      cardOp: f3(qq(0.45)), cardTx: px(move((1 - qq(0.45)) * 65.3)), footOp: f3(qq(0.7))
+    });
+
+
+
+    // Cookie choice: the banner shows until the visitor picks; 'Cookie settings' in the footer reopens it.
+    Object.assign(out, {
+      ckShow: !(this.state || {}).ck,
+      ckAll: () => this.setState({ ck: 'all' }), ckNeeded: () => this.setState({ ck: 'needed' }),
+      ckOpen: () => this.setState({ ck: null })
+    });
+
+
+    out.scrollRef = (el) => { this._el = el; };
+    out.onScroll = (ev) => {
+      const t = ev && (ev.currentTarget || ev.target);
+      if (!t) return;
+      this._y = t.scrollTop;
+      if (!this._raf) this._raf = requestAnimationFrame(() => { this._raf = null; this.setState({ y: this._y }); });
+    };
+    out.progW = pct(clamp(y / MAXY));
+
+    return out;
+  }
+}
+</script>
+</body>
+</html>

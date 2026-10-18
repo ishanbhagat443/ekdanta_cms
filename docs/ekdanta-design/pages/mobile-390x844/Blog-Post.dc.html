@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ekdanta — Blog article</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&amp;family=Hind:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+.ek-skip{position:absolute;left:24px;top:-90px;z-index:200;padding:12px 20px;border-radius:999px;background:#0D1410;color:#FFFFFF;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:top 150ms ease-out}.ek-skip:focus{top:16px}
+body{margin:0;font-family:'Hind',system-ui,sans-serif;background:#FFFFFF;color:#0D1410;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #F2A230;outline-offset:3px}
+.ekb::-webkit-scrollbar{display:none}
+.press{transition:transform 100ms ease-out}
+.press:active{transform:scale(0.97)}
+.ek-rise{animation:ekRise 900ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekRise{from{transform:translateY(105%)}to{transform:none}}
+.ek-fade{animation:ekFade 800ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.mm-item{transition:opacity 320ms ease-out,transform 420ms cubic-bezier(.2,.8,.2,1)}
+.mm-panel{transition:opacity 260ms ease-out,transform 380ms cubic-bezier(.2,.8,.2,1)}
+.mm-bar{transition:transform 260ms cubic-bezier(.2,.8,.2,1),opacity 200ms ease-out}
+.ck-card{animation:ckIn 600ms cubic-bezier(.2,.8,.2,1) 1.2s both}
+@keyframes ckIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.ek-rise,.ek-fade,.ck-card{animation:none}.mm-item,.mm-panel,.mm-bar,.press{transition:none}}
+
+.ty{animation:tyIn 1ms steps(1) both,tyCar 42ms steps(1)}
+.ty-last{animation:tyIn 1ms steps(1) both,tyBlink 1s steps(1) infinite}
+@keyframes tyIn{from{opacity:0}to{opacity:1}}
+@keyframes tyCar{0%,100%{box-shadow:6px 0 0 #2EB45D}}
+@keyframes tyBlink{0%,49%{box-shadow:6px 0 0 #2EB45D}50%,100%{box-shadow:none}}
+.p-swoosh{stroke-dasharray:1;stroke-dashoffset:1;animation:pDraw 700ms cubic-bezier(.6,0,.2,1) 2.35s forwards}
+@keyframes pDraw{to{stroke-dashoffset:0}}
+.p-cover{animation:pCover 1.1s cubic-bezier(.7,0,.2,1) .45s both}
+@keyframes pCover{from{clip-path:inset(100% 0 0 0 round 30px)}to{clip-path:inset(0 0 0 0 round 30px)}}
+.p-bro{animation:pBro 900ms cubic-bezier(.2,.8,.2,1) 1.05s both}
+@keyframes pBro{from{opacity:0;transform:translate(-70px,90px) rotate(-18deg)}to{opacity:1;transform:rotate(-8deg)}}
+.p-ph{animation:pPh 1s cubic-bezier(.2,.8,.2,1) 1.3s both}
+@keyframes pPh{from{opacity:0;transform:translateY(160px) rotate(16deg)}to{opacity:1;transform:rotate(5deg)}}
+.p-arrow{stroke-dasharray:1;stroke-dashoffset:1;animation:pDraw 700ms cubic-bezier(.6,0,.2,1) 1.9s forwards}
+.p-stk{animation:pStk 520ms cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pStk{from{transform:scale(0)}to{transform:scale(1)}}
+.p-bub{animation:pBub 10s ease-out infinite both}
+@keyframes pBub{0%{opacity:0;transform:translateY(18px) scale(.92)}6%,80%{opacity:1;transform:none}88%,100%{opacity:0;transform:translateY(-12px)}}
+.p-seg0{animation:pSeg0 9s linear infinite}.p-seg1{animation:pSeg1 9s linear infinite}.p-seg2{animation:pSeg2 9s linear infinite}
+@keyframes pSeg0{0%{width:0}33.3%,100%{width:100%}}
+@keyframes pSeg1{0%,33.3%{width:0}66.6%,100%{width:100%}}
+@keyframes pSeg2{0%,66.6%{width:0}100%{width:100%}}
+.p-spin{transform-box:fill-box;transform-origin:center;animation:pSpin 6s linear infinite}
+.p-spin-r{transform-box:fill-box;transform-origin:center;animation:pSpin 4s linear infinite reverse}
+@keyframes pSpin{to{transform:rotate(360deg)}}
+.p-belt{animation:pBelt .2333s linear infinite}
+@keyframes pBelt{to{stroke-dashoffset:-14}}
+.p-box{animation:pBox 4.5s linear infinite}
+@keyframes pBox{from{transform:translateX(0)}to{transform:translateX(280px)}}
+.p-qc{transform-box:fill-box;transform-origin:center;animation:pQc 1.5s ease-out .85s infinite both}
+@keyframes pQc{0%{opacity:0;transform:scale(.5)}12%{opacity:1;transform:scale(1.15)}22%,60%{opacity:1;transform:scale(1)}80%,100%{opacity:0;transform:scale(1)}}
+.p-scan{animation:pScan 1.5s ease-in-out infinite}
+@keyframes pScan{0%,100%{opacity:.35}50%{opacity:1}}
+.p-heart{transform-box:fill-box;transform-origin:center;animation:pHeart 2.4s ease-out infinite}
+@keyframes pHeart{0%,70%,100%{transform:scale(1)}78%{transform:scale(1.3)}86%{transform:scale(.95)}}
+.p-jdot{animation:pJdot 7s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes pJdot{0%{transform:translateX(0);opacity:0}4%,10%{transform:translateX(0);opacity:1}27%,35%{transform:translateX(165px)}52%,60%{transform:translateX(330px)}77%,92%{transform:translateX(495px);opacity:1}97%,100%{transform:translateX(495px);opacity:0}}
+.p-jline{transform-origin:0 50%;animation:pJline 7s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes pJline{0%,10%{transform:scaleX(0);opacity:1}27%,35%{transform:scaleX(.3334)}52%,60%{transform:scaleX(.6667)}77%,92%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+.p-jn0{animation:pJn0 7s infinite}.p-jn1{animation:pJn1 7s infinite}.p-jn2{animation:pJn2 7s infinite}.p-jn3{animation:pJn3 7s infinite}
+@keyframes pJn0{0%,3%,98%,100%{background:#FFFFFF;color:#56605A}5%,95%{background:#2EB45D;color:#0D1410}}
+@keyframes pJn1{0%,25%,98%,100%{background:#FFFFFF;color:#56605A}28%,95%{background:#2EB45D;color:#0D1410}}
+@keyframes pJn2{0%,50%,98%,100%{background:#FFFFFF;color:#56605A}53%,95%{background:#2EB45D;color:#0D1410}}
+@keyframes pJn3{0%,75%,98%,100%{background:#FFFFFF;color:#56605A}78%,95%{background:#F2A230;color:#0D1410}}
+.p-needle{transform-box:view-box;transform-origin:20px 30px;animation:pNeedle 2.6s cubic-bezier(.5,0,.3,1) infinite alternate}
+@keyframes pNeedle{from{transform:rotate(-55deg)}to{transform:rotate(50deg)}}
+.p-dot{animation:pDot 1.2s ease-in-out infinite}
+@keyframes pDot{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.p-truck{animation:pTruck 2.4s ease-in-out infinite}
+@keyframes pTruck{0%,100%{transform:translateX(-3px)}50%{transform:translateX(4px)}}
+.p-road{animation:pRoad .6s linear infinite}
+@keyframes pRoad{to{stroke-dashoffset:10}}
+.p-morph{animation:pMorph 3.2s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes pMorph{0%,15%{border-radius:3px;background:#8A968F;transform:rotate(0)}45%,65%{border-radius:50%;background:#2EB45D;transform:rotate(180deg) scale(1.1)}95%,100%{border-radius:3px;background:#8A968F;transform:rotate(360deg)}}
+.p-rec{animation:pRec 1.2s steps(1) infinite}
+@keyframes pRec{50%{opacity:.2}}
+.p-vf{animation:pVf 3s ease-in-out infinite}
+@keyframes pVf{0%,100%{transform:scale(1)}50%{transform:scale(.97)}}
+.p-toc{transition:transform 350ms cubic-bezier(.2,.8,.2,1),opacity 200ms ease-out}
+.p-ring{transition:stroke-dashoffset 200ms linear}
+@media (prefers-reduced-motion: reduce){
+.p-swoosh,.p-arrow{animation:none!important;stroke-dashoffset:0}
+.p-bro{transform:rotate(-8deg)}.p-ph{transform:rotate(5deg)}.p-seg0{width:100%}.p-jdot{opacity:0}.p-jline{transform:scaleX(1)}
+.p-toc,.p-ring,.press{transition:none}
+}
+.p-jdot{animation:pJdotC 7s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes pJdotC{0%{transform:translateX(0);opacity:0}4%,10%{transform:translateX(0);opacity:1}27%,35%{transform:translateX(78.5px)}52%,60%{transform:translateX(157.0px)}77%,92%{transform:translateX(235.5px);opacity:1}97%,100%{transform:translateX(235.5px);opacity:0}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; font-family: 'Hind', system-ui, sans-serif; color: #0D1410">
+<a class="ek-skip" href="#main">Skip to main content</a>
+
+<div class="ekb" ref="{{scrollRef}}" id="main" tabindex="-1" onScroll="{{onScroll}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+
+<section id="p-top" style="position: relative; padding: 96px 24px 36px; background: #FFFFFF">
+<div style="opacity: {{hdOp}}; transform: translateY({{hdTy}})">
+<div class="ek-fade" style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #56605A">
+<a href="M-Blog.dc.html" style="display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 10px; border-radius: 999px; background: #F4F6F1; text-decoration: none; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>All articles</a>
+<span style="padding: 5px 10px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #0A5A30">SOCIAL MEDIA</span>
+</div>
+<h1 aria-label="Why your factory needs reels, not just brochures." style="margin: 18px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 37px; line-height: 1.08; letter-spacing: -0.04em"><span aria-hidden="true" style="display: block; white-space: pre"><span class="ty" style="animation-delay: 320ms, 320ms;">W</span><span class="ty" style="animation-delay: 362ms, 362ms;">h</span><span class="ty" style="animation-delay: 404ms, 404ms;">y</span><span class="ty" style="animation-delay: 446ms, 446ms;"> </span><span class="ty" style="animation-delay: 488ms, 488ms;">y</span><span class="ty" style="animation-delay: 530ms, 530ms;">o</span><span class="ty" style="animation-delay: 572ms, 572ms;">u</span><span class="ty" style="animation-delay: 614ms, 614ms;">r</span><span class="ty" style="animation-delay: 656ms, 656ms;"> </span><span class="ty" style="animation-delay: 698ms, 698ms;">f</span><span class="ty" style="animation-delay: 740ms, 740ms;">a</span><span class="ty" style="animation-delay: 782ms, 782ms;">c</span><span class="ty" style="animation-delay: 824ms, 824ms;">t</span><span class="ty" style="animation-delay: 866ms, 866ms;">o</span><span class="ty" style="animation-delay: 908ms, 908ms;">r</span><span class="ty" style="animation-delay: 950ms, 950ms;">y</span></span><span aria-hidden="true" style="display: block; white-space: pre"><span class="ty" style="animation-delay: 992ms, 992ms;">n</span><span class="ty" style="animation-delay: 1034ms, 1034ms;">e</span><span class="ty" style="animation-delay: 1076ms, 1076ms;">e</span><span class="ty" style="animation-delay: 1118ms, 1118ms;">d</span><span class="ty" style="animation-delay: 1160ms, 1160ms;">s</span><span class="ty" style="animation-delay: 1202ms, 1202ms;"> </span><span class="ty" style="animation-delay: 1244ms, 1244ms; color: #1E8E47;">r</span><span class="ty" style="animation-delay: 1286ms, 1286ms; color: #1E8E47;">e</span><span class="ty" style="animation-delay: 1328ms, 1328ms; color: #1E8E47;">e</span><span class="ty" style="animation-delay: 1370ms, 1370ms; color: #1E8E47;">l</span><span class="ty" style="animation-delay: 1412ms, 1412ms; color: #1E8E47;">s</span><span class="ty" style="animation-delay: 1454ms, 1454ms;">,</span><span class="ty" style="animation-delay: 1496ms, 1496ms;"> </span><span class="ty" style="animation-delay: 1538ms, 1538ms;">n</span><span class="ty" style="animation-delay: 1580ms, 1580ms;">o</span><span class="ty" style="animation-delay: 1622ms, 1622ms;">t</span></span><span aria-hidden="true" style="display: block; white-space: pre"><span class="ty" style="animation-delay: 1664ms, 1664ms;">j</span><span class="ty" style="animation-delay: 1706ms, 1706ms;">u</span><span class="ty" style="animation-delay: 1748ms, 1748ms;">s</span><span class="ty" style="animation-delay: 1790ms, 1790ms;">t</span><span class="ty" style="animation-delay: 1832ms, 1832ms;"> </span><span class="ty" style="animation-delay: 1874ms, 1874ms;">b</span><span class="ty" style="animation-delay: 1916ms, 1916ms;">r</span><span class="ty" style="animation-delay: 1958ms, 1958ms;">o</span><span class="ty" style="animation-delay: 2000ms, 2000ms;">c</span><span class="ty" style="animation-delay: 2042ms, 2042ms;">h</span><span class="ty" style="animation-delay: 2084ms, 2084ms;">u</span><span class="ty" style="animation-delay: 2126ms, 2126ms;">r</span><span class="ty" style="animation-delay: 2168ms, 2168ms;">e</span><span class="ty" style="animation-delay: 2210ms, 2210ms;">s</span><span class="ty-last" style="animation-delay: 2252ms, 2252ms;">.</span></span></h1>
+<p class="ek-fade" style="margin: 16px 0 0; font-size: 15.5px; line-height: 1.55; color: #3B4640; animation-delay: 900ms">A brochure tells buyers what you make. A reel shows them. Why short videos win more enquiries for manufacturers, and five reels you can shoot this month.</p>
+<div class="ek-fade" style="margin-top: 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; animation-delay: 1100ms">
+<span style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #DDE2DA; display: flex; align-items: center; justify-content: center"><img src="../../assets/e-mark.png" alt="" style="width: 26px; height: auto"></span>
+<span style="display: flex; flex-direction: column; gap: 1px"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px">By the Ekdanta team</span><span style="font-size: 14px; color: #56605A">Published Sep 2026 · 5 min read</span></span>
+<span style="margin-left: auto; display: flex; align-items: center; gap: 8px"><a class="press" href="https://wa.me/?text=Why%20your%20factory%20needs%20reels%2C%20not%20just%20brochures%20https%3A%2F%2Fekdanta.in%2Fblog%2Ffactory-reels" aria-label="Share on WhatsApp" style="width: 40px; height: 40px; border-radius: 999px; background: #F4F6F1; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: #0D1410; border: 0; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg></a>
+<a class="press" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fekdanta.in%2Fblog%2Ffactory-reels" aria-label="Share on LinkedIn" style="width: 40px; height: 40px; border-radius: 999px; background: #F4F6F1; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: #0D1410; border: 0; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9h3.6v11H4zM5.8 3.5a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2zM9.8 9h3.4v1.6c.5-.9 1.7-1.9 3.5-1.9 3.7 0 4.3 2.4 4.3 5.5V20h-3.6v-5.1c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V20H9.8z"></path></svg></a>
+<button type="button" class="press" onClick="{{copyLink}}" aria-label="{{copyLbl}}" style="width: 40px; height: 40px; border-radius: 999px; background: #F4F6F1; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: #0D1410; border: 0; cursor: pointer"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></button></span>
+</div>
+</div>
+<div class="p-cover" style="position: relative; margin-top: 24px; width: 342px; height: 320px; border-radius: 26px; overflow: hidden; background: #0E3A22">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: -80px; bottom: -80px; background-image: radial-gradient(rgba(143,227,174,0.2) 1.6px, transparent 1.6px); background-size: 26px 26px; transform: translateY({{dotTy}})"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 58% 45%, rgba(46,180,93,0.38), transparent 70%)"></div>
+<div aria-hidden="true" style="position: absolute; left: 18px; bottom: -18px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 58px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1.5px rgba(143,227,174,0.22); white-space: nowrap">Show, don't tell.</div>
+<div style="position: absolute; left: 14px; top: 56px; width: 320px; height: 410px; transform: scale(0.5); transform-origin: 0 0"><div style="position: absolute; left: 0; top: 0; transform: translateY({{broTy}})">
+<div class="p-bro" role="img" aria-label="A printed company brochure listing generic claims" style="position: relative; width: 320px; height: 410px; border-radius: 8px; background: #FFFFFF; box-shadow: 0 40px 70px -30px rgba(0,0,0,0.6); transform: rotate(-8deg); overflow: hidden">
+<div style="height: 128px; background: #DDE2DA; display: flex; align-items: flex-end; padding: 0 24px 18px">
+<svg width="120" height="64" viewBox="0 0 120 64" aria-hidden="true"><path d="M0 64V30l22 12V30l22 12V30l22 12V8h14v-8h10v8h14v56z" fill="#B9C2BB"></path><rect x="96" y="38" width="10" height="10" fill="#DDE2DA"></rect></svg>
+</div>
+<div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.14em; color: #8A968F">COMPANY PROFILE</span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 25px; line-height: 1.1; letter-spacing: -0.03em; color: #56605A">Quality you<br>can trust.</span>
+<span style="display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; color: #8A968F">
+<span>• Modern plant</span><span>• Quality products</span><span>• Timely delivery</span><span>• Customer satisfaction</span>
+</span>
+</div>
+<span style="position: absolute; left: 24px; bottom: 14px; font-size: 12px; color: #A7B0AA">Page 1 of 24</span>
+<span class="p-stk" style="position: absolute; right: 16px; top: 16px; padding: 7px 14px; border-radius: 999px; background: #0D1410; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.08em; animation-delay: 1.75s">TELLS</span>
+</div>
+</div></div>
+<div style="position: absolute; left: 112px; top: 26px; width: 150px; height: 120px; transform: scale(0.5); transform-origin: 0 0"><svg aria-hidden="true" width="150" height="120" viewBox="0 0 150 120" style="position: absolute; left: 0; top: 0"><path class="p-arrow" pathLength="1" d="M8 100 C 40 40, 90 20, 136 34" fill="none" stroke="#F2A230" stroke-width="5" stroke-linecap="round"></path><path class="p-stk" d="M122 20 L140 35 L118 46" fill="none" stroke="#F2A230" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" style="transform-box: fill-box; transform-origin: center; animation-delay: 2.45s"></path></svg></div>
+<div style="position: absolute; left: 182px; top: 22px; width: 250px; height: 480px; transform: scale(0.56); transform-origin: 0 0"><div style="position: absolute; left: 0; top: 0; transform: translateY({{phTy}})">
+<div class="p-ph" role="img" aria-label="A phone playing a short factory reel" style="position: relative; width: 250px; height: 480px; box-sizing: border-box; border-radius: 40px; border: 9px solid #121A15; background: #121A15; box-shadow: 0 50px 90px -30px rgba(0,0,0,0.75); transform: rotate(5deg)">
+<div style="position: relative; width: 232px; height: 462px; border-radius: 31px; overflow: hidden; background: linear-gradient(180deg, #23382C 0%, #0D1410 72%)">
+<div style="position: absolute; left: 12px; right: 12px; top: 12px; display: flex; gap: 4px">
+<span style="flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.28); overflow: hidden"><span class="p-seg0" style="display: block; height: 3px; width: 0; background: #FFFFFF"></span></span>
+<span style="flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.28); overflow: hidden"><span class="p-seg1" style="display: block; height: 3px; width: 0; background: #FFFFFF"></span></span>
+<span style="flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.28); overflow: hidden"><span class="p-seg2" style="display: block; height: 3px; width: 0; background: #FFFFFF"></span></span>
+</div>
+<div style="position: absolute; left: 12px; right: 12px; top: 26px; display: flex; align-items: center; gap: 8px">
+<span style="width: 28px; height: 28px; border-radius: 999px; background: #F2A230; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 22V11l6 3.5V11l6 3.5V4h4v4h4v14z" fill="#0D1410"></path></svg></span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #FFFFFF">yourfactory</span>
+<span style="margin-left: 2px; padding: 3px 9px; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; color: #FFFFFF">Follow</span>
+</div>
+<svg aria-hidden="true" width="232" height="240" viewBox="0 0 232 240" style="position: absolute; left: 0; top: 66px">
+<path class="p-spin" d="M113.5 98.2 L123.8 99.7 L123.8 108.3 L113.5 109.8 L111.7 116.7 L119.8 123.1 L115.5 130.6 L105.9 126.8 L100.8 131.9 L104.6 141.5 L97.1 145.8 L90.7 137.7 L83.8 139.5 L82.3 149.8 L73.7 149.8 L72.2 139.5 L65.3 137.7 L58.9 145.8 L51.4 141.5 L55.2 131.9 L50.1 126.8 L40.5 130.6 L36.2 123.1 L44.3 116.7 L42.5 109.8 L32.2 108.3 L32.2 99.7 L42.5 98.2 L44.3 91.3 L36.2 84.9 L40.5 77.4 L50.1 81.2 L55.2 76.1 L51.4 66.5 L58.9 62.2 L65.3 70.3 L72.2 68.5 L73.7 58.2 L82.3 58.2 L83.8 68.5 L90.7 70.3 L97.1 62.2 L104.6 66.5 L100.8 76.1 L105.9 81.2 L115.5 77.4 L119.8 84.9 L111.7 91.3Z" fill="#8FE3AE"></path><circle cx="78" cy="104" r="13" fill="#1B2A22"></circle>
+<path class="p-spin-r" d="M166.5 59.5 L173.8 60.5 L173.8 67.5 L166.5 68.5 L164.6 73.7 L169.5 79.2 L165.0 84.5 L158.8 80.6 L154.0 83.4 L154.3 90.7 L147.4 92.0 L145.1 85.0 L139.7 84.0 L135.1 89.8 L129.1 86.3 L131.8 79.5 L128.3 75.3 L121.1 76.8 L118.7 70.2 L125.2 66.8 L125.2 61.2 L118.7 57.8 L121.1 51.2 L128.3 52.7 L131.8 48.5 L129.1 41.7 L135.1 38.2 L139.7 44.0 L145.1 43.0 L147.4 36.0 L154.3 37.3 L154.0 44.6 L158.8 47.4 L165.0 43.5 L169.5 48.8 L164.6 54.3Z" fill="#2EB45D"></path><circle cx="146" cy="64" r="8" fill="#1B2A22"></circle>
+<line class="p-scan" x1="160" y1="120" x2="160" y2="186" stroke="#8FE3AE" stroke-width="2" stroke-dasharray="4 4"></line>
+<g class="p-qc"><circle cx="160" cy="112" r="13" fill="#2EB45D"></circle><path d="M154 112l4 4 8-8" fill="none" stroke="#0D1410" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></g>
+<rect class="p-box" x="-30" y="164" width="24" height="24" rx="4" fill="#F2A230"></rect>
+<rect class="p-box" x="-30" y="164" width="24" height="24" rx="4" fill="#F2A230" style="animation-delay: -1.5s"></rect>
+<rect class="p-box" x="-30" y="164" width="24" height="24" rx="4" fill="#F2A230" style="animation-delay: -3s"></rect>
+<rect x="8" y="188" width="216" height="16" rx="8" fill="#33463B"></rect>
+<line class="p-belt" x1="16" y1="196" x2="216" y2="196" stroke="#5E7266" stroke-width="3" stroke-dasharray="6 8"></line>
+<circle cx="16" cy="196" r="5" fill="#8A968F"></circle><circle cx="216" cy="196" r="5" fill="#8A968F"></circle>
+</svg>
+<div style="position: absolute; right: 10px; bottom: 60px; display: flex; flex-direction: column; align-items: center; gap: 12px; color: #FFFFFF; font-size: 11px; font-family: 'Poppins', sans-serif; font-weight: 600">
+<span style="display: flex; flex-direction: column; align-items: center; gap: 2px"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path class="p-heart" d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="#FF5A6E"></path></svg>1.2k</span>
+<span style="display: flex; flex-direction: column; align-items: center; gap: 2px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"></path></svg>86</span>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M21 3L3 10l7 3 3 7z"></path></svg>
+</div>
+<div style="position: absolute; left: 12px; right: 50px; bottom: 22px; display: flex; flex-direction: column; gap: 6px; color: #FFFFFF">
+<span style="font-size: 13px; line-height: 1.35"><b style="font-family: 'Poppins', sans-serif; font-weight: 600">yourfactory</b> POV: every part is checked before it ships.</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #BFD2C6"><svg width="12" height="12" viewBox="0 0 24 24" fill="#BFD2C6" aria-hidden="true"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Original audio</span>
+</div>
+</div>
+<span class="p-stk" style="position: absolute; left: -50px; top: 300px; padding: 7px 14px; border-radius: 999px; background: #2EB45D; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.08em; animation-delay: 2.2s">SHOWS</span>
+</div>
+</div></div>
+</div>
+<div style="margin-top: 26px; padding: 14px 18px 6px; border-radius: 22px; background: #F4F6F1">
+<p style="margin: 0 0 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; color: #1E8E47">ON THIS PAGE</p>
+<nav aria-label="On this page"><ol style="margin: 0; padding: 0; list-style: none">
+<sc-for list="{{toc}}" as="tc" hint-placeholder-count="5"><li><a href="{{tc.href}}" aria-current="{{tc.cur}}" style="display: flex; align-items: center; gap: 12px; min-height: 44px; border-top: 1px solid #DDE2DA; font-size: 15px; font-weight: {{tc.w}}; color: {{tc.c}}; text-decoration: none"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; color: #1E8E47">{{tc.n}}</span>{{tc.t}}</a></li></sc-for>
+</ol></nav>
+</div>
+</section>
+
+<section id="p-body" style="position: relative; padding: 10px 24px 90px; background: #FFFFFF">
+<article style="width: 342px; font-size: 16.5px; line-height: 1.68; color: #2B332E">
+<p id="rv-lead" style="opacity: {{r_lead}}; transform: translateY({{t_lead}}); margin: 0 0 22px; font-size: 19px; line-height: 1.6; color: #0D1410"><span aria-hidden="true" style="float: left; margin: 6px 10px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 64px; line-height: 0.8; color: #1E8E47">A</span><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">A</span> buyer in Pune gets your brochure on WhatsApp. Before he calls you back, he opens your Instagram. What he finds there decides whether he calls you, or the next supplier on his list.</p><p id="rv-p1" style="opacity: {{r_p1}}; transform: translateY({{t_p1}}); margin: 0 0 20px">The brochure gets you on the list. What buyers see next decides whether you stay on it.</p><h2 id="h-1" style="opacity: {{r_h1}}; transform: translateY({{t_h1}}); scroll-margin-top: 120px; margin: 40px 0 14px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 25px; line-height: 1.14; letter-spacing: -0.035em; color: #0D1410">Buyers check you out before they call</h2><p id="rv-p2" style="opacity: {{r_p2}}; transform: translateY({{t_p2}}); margin: 0 0 20px">Most buyers do their homework on their phone before they pick it up to call. They look at your website, your Google listing and your Instagram, and they are asking one simple question: is this a real, serious company I can trust with my order?</p><figure id="rv-jr" style="opacity: {{r_jr}}; transform: translateY({{t_jr}}); margin: 6px 0 28px">
+<div style="position: relative; padding: 14px; border-radius: 22px; background: #F4F6F1">
+<div aria-hidden="true" style="position: absolute; left: 53.2px; top: 36px; width: 235.5px; height: 2px; background: #DDE2DA"></div>
+<div aria-hidden="true" class="p-jline" style="position: absolute; left: 53.2px; top: 36px; width: 235.5px; height: 2px; background: #2EB45D"></div>
+<div aria-hidden="true" class="p-jdot" style="position: absolute; left: 46.2px; top: 30px; width: 14px; height: 14px; border-radius: 999px; background: #F2A230; box-shadow: 0 0 0 5px rgba(242,162,48,0.25)"></div>
+<div style="position: relative; display: flex; z-index: 1"><div style="width: 78.5px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<span class="p-jn0" style="position: relative; width: 44px; height: 44px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #56605A; box-shadow: inset 0 0 0 2px #DDE2DA; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 12h5 M10 16h5"></path></svg></span>
+<span style="font-size: 12px; line-height: 1.3; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600">Gets your brochure</span>
+</div><div style="width: 78.5px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<span class="p-jn1" style="position: relative; width: 44px; height: 44px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #56605A; box-shadow: inset 0 0 0 2px #DDE2DA; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"></rect><circle cx="12" cy="12" r="3.6"></circle><path d="M16.6 7.4h.01"></path></svg></span>
+<span style="font-size: 12px; line-height: 1.3; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600">Opens your Instagram</span>
+</div><div style="width: 78.5px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<span class="p-jn2" style="position: relative; width: 44px; height: 44px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #56605A; box-shadow: inset 0 0 0 2px #DDE2DA; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5l5 3.5-5 3.5z"></path></svg></span>
+<span style="font-size: 12px; line-height: 1.3; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600">Watches your reels</span>
+</div><div style="width: 78.5px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<span class="p-jn3" style="position: relative; width: 44px; height: 44px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #56605A; box-shadow: inset 0 0 0 2px #DDE2DA; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></span>
+<span style="font-size: 12px; line-height: 1.3; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600">Calls you for a quote</span>
+</div></div>
+</div>
+<figcaption style="margin-top: 10px; font-size: 13.5px; line-height: 1.45; color: #56605A">How most buyers check a new supplier today. Your reels sit right in the middle.</figcaption>
+</figure><p id="rv-p3" style="opacity: {{r_p3}}; transform: translateY({{t_p3}}); margin: 0 0 20px">A brochure answers that question with claims: modern plant, quality products, timely delivery. The trouble is, every supplier says the same things. A reel answers it with proof.</p><h2 id="h-2" style="opacity: {{r_h2}}; transform: translateY({{t_h2}}); scroll-margin-top: 120px; margin: 40px 0 14px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 25px; line-height: 1.14; letter-spacing: -0.035em; color: #0D1410">What a brochure can't show</h2><p id="rv-p4" style="opacity: {{r_p4}}; transform: translateY({{t_p4}}); margin: 0 0 20px">Some things are hard to believe until you see them. A fifteen-second reel can show what pages of text cannot.</p><div role="table" aria-label="What a brochure says compared with what a reel shows" style="margin: 4px 0 32px">
+<div style="display: flex; padding-bottom: 10px; border-bottom: 2px solid #0D1410; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.12em"><span style="width: auto; color: #8A968F">THE BROCHURE SAYS</span><span style="color: #1E8E47"><span style="margin-left: 8px">→ THE REEL SHOWS</span></span></div>
+<div id="rv-cmp0" style="opacity: {{r_cmp0}}; transform: translateY({{t_cmp0}}); padding: 12px 0; border-bottom: 1px solid #DDE2DA">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; color: #56605A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A968F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z M14 3v4h4"></path></svg>“Modern plant”</span>
+<span style="display: flex; align-items: center; gap: 8px; margin-top: 6px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15.5px; line-height: 1.3; color: #0D1410; opacity: {{cmpA0}}; transform: translateX({{cmpW0}})"><svg width="16" height="16" viewBox="0 0 24 24" fill="#2EB45D" aria-hidden="true" style="flex-shrink: 0"><path d="M8 5.5v13l10-6.5z"></path></svg>Your machines running at full speed</span>
+</div><div id="rv-cmp1" style="opacity: {{r_cmp1}}; transform: translateY({{t_cmp1}}); padding: 12px 0; border-bottom: 1px solid #DDE2DA">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; color: #56605A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A968F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z M14 3v4h4"></path></svg>“Strict quality checks”</span>
+<span style="display: flex; align-items: center; gap: 8px; margin-top: 6px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15.5px; line-height: 1.3; color: #0D1410; opacity: {{cmpA1}}; transform: translateX({{cmpW1}})"><svg width="16" height="16" viewBox="0 0 24 24" fill="#2EB45D" aria-hidden="true" style="flex-shrink: 0"><path d="M8 5.5v13l10-6.5z"></path></svg>The gauge, the test and who signs off</span>
+</div><div id="rv-cmp2" style="opacity: {{r_cmp2}}; transform: translateY({{t_cmp2}}); padding: 12px 0; border-bottom: 1px solid #DDE2DA">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; color: #56605A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A968F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z M14 3v4h4"></path></svg>“Skilled team”</span>
+<span style="display: flex; align-items: center; gap: 8px; margin-top: 6px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15.5px; line-height: 1.3; color: #0D1410; opacity: {{cmpA2}}; transform: translateX({{cmpW2}})"><svg width="16" height="16" viewBox="0 0 24 24" fill="#2EB45D" aria-hidden="true" style="flex-shrink: 0"><path d="M8 5.5v13l10-6.5z"></path></svg>Your people at work, in their own words</span>
+</div><div id="rv-cmp3" style="opacity: {{r_cmp3}}; transform: translateY({{t_cmp3}}); padding: 12px 0; border-bottom: 1px solid #DDE2DA">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; color: #56605A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A968F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z M14 3v4h4"></path></svg>“Timely delivery”</span>
+<span style="display: flex; align-items: center; gap: 8px; margin-top: 6px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15.5px; line-height: 1.3; color: #0D1410; opacity: {{cmpA3}}; transform: translateX({{cmpW3}})"><svg width="16" height="16" viewBox="0 0 24 24" fill="#2EB45D" aria-hidden="true" style="flex-shrink: 0"><path d="M8 5.5v13l10-6.5z"></path></svg>Trucks loaded and leaving your gate</span>
+</div>
+</div><figure id="rv-fig" style="opacity: {{r_fig}}; transform: translateY({{t_fig}}); margin: 8px 0 36px">
+<div style="width: 342px; height: 300px; border-radius: 20px; overflow: hidden; background: #F4F6F1; clip-path: inset(0 0 {{figClip}} 0 round 20px)">
+<img src="../../assets/case-yantra-design.jpg" alt="Social media posts designed by Ekdanta for Yantra Design, showing CNC drilling and turning machines" style="width: 618px; height: 678px; max-width: none; display: block; transform: translate(-140px, -181px) scale({{figSc}}); transform-origin: 50% 50%">
+</div>
+<figcaption style="margin-top: 12px; display: flex; gap: 10px; font-size: 13.5px; line-height: 1.5; color: #56605A"><span style="width: 18px; height: 2px; margin-top: 10px; background: #2EB45D; flex: none"></span>Posts we design for Yantra Design, a CNC machine maker. Their machines are the hero of every post, not a stock photo.</figcaption>
+</figure><blockquote id="rv-quote" style="opacity: {{r_quote}}; transform: translateY({{t_quote}}); position: relative; margin: 16px 0 16px; padding: 50px 0 6px">
+<svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" style="position: absolute; left: -8px; top: 0"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" fill="#2EB45D"></path></svg>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px; line-height: 1.2; letter-spacing: -0.035em; color: #0D1410">Every supplier says “quality”. <mark style="color: inherit; background: linear-gradient(#FBD9A5, #FBD9A5) no-repeat 0 88% / {{hlW}} 42%">Only a reel can prove it.</mark></p>
+</blockquote><h2 id="h-3" style="opacity: {{r_h3}}; transform: translateY({{t_h3}}); scroll-margin-top: 120px; margin: 40px 0 14px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 25px; line-height: 1.14; letter-spacing: -0.035em; color: #0D1410">Five reels every factory can shoot this month</h2><p id="rv-p5" style="opacity: {{r_p5}}; transform: translateY({{t_p5}}); margin: 0 0 20px">You don't need a film crew. A recent phone, good light and a plan are enough. Start with these five, in any order.</p><div style="margin: 8px 0 26px; display: flex; flex-direction: column; gap: 10px"><div id="rv-rl0" style="opacity: {{r_rl0}}; transform: translateY({{t_rl0}}); position: relative; display: flex; gap: 14px; align-items: flex-start; box-sizing: border-box; padding: 16px 16px 16px; border-radius: 20px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DDE2DA">
+<span style="width: 54px; height: 54px; flex: none; border-radius: 16px; background: #F4F6F1; display: flex; align-items: center; justify-content: center"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><path class="p-spin" d="M28.8 15.9 L32.9 16.3 L32.9 19.7 L28.8 20.1 L28.0 22.6 L31.1 25.4 L29.1 28.1 L25.5 26.1 L23.4 27.6 L24.2 31.7 L21.0 32.7 L19.3 28.9 L16.7 28.9 L15.0 32.7 L11.8 31.7 L12.6 27.6 L10.5 26.1 L6.9 28.1 L4.9 25.4 L8.0 22.6 L7.2 20.1 L3.1 19.7 L3.1 16.3 L7.2 15.9 L8.0 13.4 L4.9 10.6 L6.9 7.9 L10.5 9.9 L12.6 8.4 L11.8 4.3 L15.0 3.3 L16.7 7.1 L19.3 7.1 L21.0 3.3 L24.2 4.3 L23.4 8.4 L25.5 9.9 L29.1 7.9 L31.1 10.6 L28.0 13.4Z" fill="#2EB45D"></path><circle cx="18" cy="18" r="5" fill="#F4F6F1"></circle></svg></span>
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -0.02em; color: #0D1410">The machine at full speed</span>
+<span style="font-size: 14.5px; line-height: 1.45; color: #56605A">One machine, one product, start to finish. No talking needed: let the sound of the machine carry it.</span>
+<span style="margin-top: 4px; align-self: flex-start; padding: 4px 9px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11.5px; color: #0A5A30">15 sec</span>
+</span>
+<span aria-hidden="true" style="position: absolute; right: 14px; top: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -0.04em; color: #E4E8E2">01</span>
+</div><div id="rv-rl1" style="opacity: {{r_rl1}}; transform: translateY({{t_rl1}}); position: relative; display: flex; gap: 14px; align-items: flex-start; box-sizing: border-box; padding: 16px 16px 16px; border-radius: 20px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DDE2DA">
+<span style="width: 54px; height: 54px; flex: none; border-radius: 16px; background: #F4F6F1; display: flex; align-items: center; justify-content: center"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M6 30a14 14 0 0 1 28 0" stroke="#DDE2DA" stroke-width="4" stroke-linecap="round"></path><path d="M24 17a14 14 0 0 1 10 13" stroke="#2EB45D" stroke-width="4" stroke-linecap="round"></path><line class="p-needle" x1="20" y1="30" x2="20" y2="14" stroke="#0D1410" stroke-width="3" stroke-linecap="round"></line><circle cx="20" cy="30" r="3.5" fill="#0D1410"></circle></svg></span>
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -0.02em; color: #0D1410">The quality check</span>
+<span style="font-size: 14.5px; line-height: 1.45; color: #56605A">The gauge, the test and the person who signs off. This is what buyers worry about most.</span>
+<span style="margin-top: 4px; align-self: flex-start; padding: 4px 9px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11.5px; color: #0A5A30">20 sec</span>
+</span>
+<span aria-hidden="true" style="position: absolute; right: 14px; top: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -0.04em; color: #E4E8E2">02</span>
+</div><div id="rv-rl2" style="opacity: {{r_rl2}}; transform: translateY({{t_rl2}}); position: relative; display: flex; gap: 14px; align-items: flex-start; box-sizing: border-box; padding: 16px 16px 16px; border-radius: 20px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DDE2DA">
+<span style="width: 54px; height: 54px; flex: none; border-radius: 16px; background: #F4F6F1; display: flex; align-items: center; justify-content: center"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 9h28v18H16l-7 6v-6H6z" fill="#2EB45D"></path><circle class="p-dot" cx="13" cy="18" r="2.6" fill="#0D1410"></circle><circle class="p-dot" cx="20" cy="18" r="2.6" fill="#0D1410" style="animation-delay: .2s"></circle><circle class="p-dot" cx="27" cy="18" r="2.6" fill="#0D1410" style="animation-delay: .4s"></circle></svg></span>
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -0.02em; color: #0D1410">Meet the team</span>
+<span style="font-size: 14.5px; line-height: 1.45; color: #56605A">A supervisor or operator explaining one thing they are proud of, in their own language.</span>
+<span style="margin-top: 4px; align-self: flex-start; padding: 4px 9px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11.5px; color: #0A5A30">30 sec</span>
+</span>
+<span aria-hidden="true" style="position: absolute; right: 14px; top: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -0.04em; color: #E4E8E2">03</span>
+</div><div id="rv-rl3" style="opacity: {{r_rl3}}; transform: translateY({{t_rl3}}); position: relative; display: flex; gap: 14px; align-items: flex-start; box-sizing: border-box; padding: 16px 16px 16px; border-radius: 20px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DDE2DA">
+<span style="width: 54px; height: 54px; flex: none; border-radius: 16px; background: #F4F6F1; display: flex; align-items: center; justify-content: center"><svg width="44" height="40" viewBox="0 0 44 40" aria-hidden="true"><g class="p-truck"><rect x="3" y="11" width="22" height="15" rx="2" fill="#F2A230"></rect><path d="M25 15h8l6 6v5H25z" fill="#2EB45D"></path><circle cx="11" cy="28" r="3.6" fill="#0D1410"></circle><circle cx="32" cy="28" r="3.6" fill="#0D1410"></circle></g><line class="p-road" x1="0" y1="35" x2="44" y2="35" stroke="#8A968F" stroke-width="2" stroke-dasharray="6 4"></line></svg></span>
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -0.02em; color: #0D1410">Order dispatched</span>
+<span style="font-size: 14.5px; line-height: 1.45; color: #56605A">Packing, loading and the truck leaving your gate. Proof that you deliver, and at what scale.</span>
+<span style="margin-top: 4px; align-self: flex-start; padding: 4px 9px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11.5px; color: #0A5A30">15 sec</span>
+</span>
+<span aria-hidden="true" style="position: absolute; right: 14px; top: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -0.04em; color: #E4E8E2">04</span>
+</div><div id="rv-rl4" style="opacity: {{r_rl4}}; transform: translateY({{t_rl4}}); position: relative; display: flex; gap: 14px; align-items: flex-start; box-sizing: border-box; padding: 16px 16px 16px; border-radius: 20px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DDE2DA">
+<span style="width: 54px; height: 54px; flex: none; border-radius: 16px; background: #F4F6F1; display: flex; align-items: center; justify-content: center"><span class="p-morph" style="display: block; width: 26px; height: 26px; border-radius: 3px; background: #8A968F"></span></span>
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -0.02em; color: #0D1410">Raw material to product</span>
+<span style="font-size: 14.5px; line-height: 1.45; color: #56605A">A fast-cut journey from raw material to the finished product. Simple, satisfying and easy to share.</span>
+<span style="margin-top: 4px; align-self: flex-start; padding: 4px 9px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11.5px; color: #0A5A30">20 sec</span>
+</span>
+<span aria-hidden="true" style="position: absolute; right: 14px; top: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -0.04em; color: #E4E8E2">05</span>
+</div><div id="rv-rl5" style="opacity: {{r_rl5}}; transform: translateY({{t_rl5}}); position: relative; box-sizing: border-box; padding: 22px 20px; border-radius: 22px; background: #0D1410; display: flex; flex-direction: column">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.12em; color: #FFFFFF"><span class="p-rec" style="width: 10px; height: 10px; border-radius: 999px; background: #FF5A6E"></span>REC</span>
+<span style="margin-top: 12px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 21px; line-height: 1.12; letter-spacing: -0.03em; color: #FFFFFF">Want us to shoot these at your factory?</span>
+<span style="margin-top: 8px; font-size: 15px; line-height: 1.5; color: #BFD2C6">We plan the shot list, shoot in a day and edit a month of reels.</span>
+<a class="press" href="https://wa.me/919099417987?text=Hi%20Ekdanta%2C%20I%27d%20like%20to%20plan%20a%20factory%20shoot." style="margin-top: 16px; align-self: flex-start; height: 48px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #2EB45D; color: #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none">Plan a factory shoot<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div></div><h2 id="h-4" style="opacity: {{r_h4}}; transform: translateY({{t_h4}}); scroll-margin-top: 120px; margin: 40px 0 14px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 25px; line-height: 1.14; letter-spacing: -0.035em; color: #0D1410">Keep it simple</h2><p id="rv-p6" style="opacity: {{r_p6}}; transform: translateY({{t_p6}}); margin: 0 0 20px">Good factory reels are simple. Before you post, run through this list:</p><ul aria-label="Checklist before you post" style="list-style: none; margin: 6px 0 18px; padding: 0; display: flex; flex-direction: column; gap: 8px"><li id="rv-ck0" style="opacity: {{r_ck0}}; transform: translateY({{t_ck0}}); display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 16px; background: #F4F6F1">
+<span aria-hidden="true" style="position: relative; width: 32px; height: 32px; flex: none; border-radius: 999px; box-shadow: inset 0 0 0 2px #2EB45D; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; inset: 0; border-radius: 999px; background: #2EB45D; opacity: {{ckF0}}"></span>
+<svg width="17" height="17" viewBox="0 0 24 24" style="position: relative"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" fill="none" stroke="#0D1410" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray: 1; stroke-dashoffset: {{ckD0}}"></path></svg>
+</span>
+<span style="font-size: 15.5px; line-height: 1.45; color: #0D1410">Shoot vertical, on a phone. A recent phone is enough.</span>
+</li><li id="rv-ck1" style="opacity: {{r_ck1}}; transform: translateY({{t_ck1}}); display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 16px; background: #F4F6F1">
+<span aria-hidden="true" style="position: relative; width: 32px; height: 32px; flex: none; border-radius: 999px; box-shadow: inset 0 0 0 2px #2EB45D; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; inset: 0; border-radius: 999px; background: #2EB45D; opacity: {{ckF1}}"></span>
+<svg width="17" height="17" viewBox="0 0 24 24" style="position: relative"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" fill="none" stroke="#0D1410" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray: 1; stroke-dashoffset: {{ckD1}}"></path></svg>
+</span>
+<span style="font-size: 15.5px; line-height: 1.45; color: #0D1410">Use daylight, or switch on every light on the floor.</span>
+</li><li id="rv-ck2" style="opacity: {{r_ck2}}; transform: translateY({{t_ck2}}); display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 16px; background: #F4F6F1">
+<span aria-hidden="true" style="position: relative; width: 32px; height: 32px; flex: none; border-radius: 999px; box-shadow: inset 0 0 0 2px #2EB45D; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; inset: 0; border-radius: 999px; background: #2EB45D; opacity: {{ckF2}}"></span>
+<svg width="17" height="17" viewBox="0 0 24 24" style="position: relative"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" fill="none" stroke="#0D1410" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray: 1; stroke-dashoffset: {{ckD2}}"></path></svg>
+</span>
+<span style="font-size: 15.5px; line-height: 1.45; color: #0D1410">Keep each reel under 30 seconds.</span>
+</li><li id="rv-ck3" style="opacity: {{r_ck3}}; transform: translateY({{t_ck3}}); display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 16px; background: #F4F6F1">
+<span aria-hidden="true" style="position: relative; width: 32px; height: 32px; flex: none; border-radius: 999px; box-shadow: inset 0 0 0 2px #2EB45D; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; inset: 0; border-radius: 999px; background: #2EB45D; opacity: {{ckF3}}"></span>
+<svg width="17" height="17" viewBox="0 0 24 24" style="position: relative"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" fill="none" stroke="#0D1410" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray: 1; stroke-dashoffset: {{ckD3}}"></path></svg>
+</span>
+<span style="font-size: 15.5px; line-height: 1.45; color: #0D1410">Add captions. Most people watch with the sound off.</span>
+</li><li id="rv-ck4" style="opacity: {{r_ck4}}; transform: translateY({{t_ck4}}); display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 16px; background: #F4F6F1">
+<span aria-hidden="true" style="position: relative; width: 32px; height: 32px; flex: none; border-radius: 999px; box-shadow: inset 0 0 0 2px #2EB45D; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; inset: 0; border-radius: 999px; background: #2EB45D; opacity: {{ckF4}}"></span>
+<svg width="17" height="17" viewBox="0 0 24 24" style="position: relative"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" fill="none" stroke="#0D1410" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray: 1; stroke-dashoffset: {{ckD4}}"></path></svg>
+</span>
+<span style="font-size: 15.5px; line-height: 1.45; color: #0D1410">Put your phone number or WhatsApp link in the caption.</span>
+</li></ul><h2 id="h-5" style="opacity: {{r_h5}}; transform: translateY({{t_h5}}); scroll-margin-top: 120px; margin: 40px 0 14px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 25px; line-height: 1.14; letter-spacing: -0.035em; color: #0D1410">Start small, then build</h2><p id="rv-p7" style="opacity: {{r_p7}}; transform: translateY({{t_p7}}); margin: 0 0 20px">Start with one reel a week for a month. Watch which ones bring messages and calls, then make more of those. Doing it every week matters more than making it perfect.</p><p id="rv-p8" style="opacity: {{r_p8}}; transform: translateY({{t_p8}}); margin: 0 0 20px; margin-bottom: 0">And keep your brochure. It still has a job: it is what buyers save, print and forward to their boss. Let your reels bring buyers in, and let your brochure help close the deal.</p><div id="p-end" style="height: 1px"></div><div id="rv-tags" style="opacity: {{r_tags}}; transform: translateY({{t_tags}}); margin-top: 36px; padding-top: 22px; border-top: 1px solid #DDE2DA; display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A; margin-right: 4px">TAGS</span><a href="M-Blog.dc.html" style="height: 36px; padding: 0 13px; display: inline-flex; align-items: center; border-radius: 999px; box-shadow: inset 0 0 0 1px #DDE2DA; text-decoration: none; font-size: 14.5px; color: #0D1410">Reels</a><a href="M-Blog.dc.html" style="height: 36px; padding: 0 13px; display: inline-flex; align-items: center; border-radius: 999px; box-shadow: inset 0 0 0 1px #DDE2DA; text-decoration: none; font-size: 14.5px; color: #0D1410">Manufacturing</a><a href="M-Blog.dc.html" style="height: 36px; padding: 0 13px; display: inline-flex; align-items: center; border-radius: 999px; box-shadow: inset 0 0 0 1px #DDE2DA; text-decoration: none; font-size: 14.5px; color: #0D1410">Instagram</a><a href="M-Blog.dc.html" style="height: 36px; padding: 0 13px; display: inline-flex; align-items: center; border-radius: 999px; box-shadow: inset 0 0 0 1px #DDE2DA; text-decoration: none; font-size: 14.5px; color: #0D1410">B2B marketing</a></div><div id="rv-author" style="opacity: {{r_author}}; transform: translateY({{t_author}}); margin-top: 26px; padding: 20px; border-radius: 22px; background: #F4F6F1; display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+<span style="width: 60px; height: 60px; flex: none; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><img src="../../assets/e-mark.png" alt="" style="width: 34px; height: auto"></span>
+<span style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #1E8E47">WRITTEN BY</span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">The Ekdanta team</span>
+<span style="font-size: 15px; line-height: 1.55; color: #3B4640">We make reels, posts, ads and websites for manufacturers and brands across Gujarat, from Surat and Ahmedabad.</span>
+<a href="M-About.dc.html" style="margin-top: 2px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #0A5A30; text-decoration: none">Meet the team<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<span style="margin-top: 10px; display: flex; align-items: center; gap: 8px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A; margin-right: 4px">SHARE</span><a class="press" href="https://wa.me/?text=Why%20your%20factory%20needs%20reels%2C%20not%20just%20brochures%20https%3A%2F%2Fekdanta.in%2Fblog%2Ffactory-reels" aria-label="Share on WhatsApp" style="width: 40px; height: 40px; border-radius: 999px; background: #F4F6F1; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: #0D1410; border: 0; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg></a>
+<a class="press" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fekdanta.in%2Fblog%2Ffactory-reels" aria-label="Share on LinkedIn" style="width: 40px; height: 40px; border-radius: 999px; background: #F4F6F1; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: #0D1410; border: 0; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9h3.6v11H4zM5.8 3.5a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2zM9.8 9h3.4v1.6c.5-.9 1.7-1.9 3.5-1.9 3.7 0 4.3 2.4 4.3 5.5V20h-3.6v-5.1c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V20H9.8z"></path></svg></a>
+<button type="button" class="press" onClick="{{copyLink}}" aria-label="{{copyLbl}}" style="width: 40px; height: 40px; border-radius: 999px; background: #F4F6F1; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: #0D1410; border: 0; cursor: pointer"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></button></span>
+<sc-if value="{{copied}}" hint-placeholder-val="{{ false }}"><span role="status" style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: #0D1410; color: #FFFFFF; font-size: 14px">Link copied</span></sc-if>
+</span>
+</div>
+</article>
+</section>
+
+<section id="p-more" style="position: relative; padding: 70px 24px 90px; background: #F4F6F1">
+<div id="rv-mh" style="opacity: {{r_mh}}; transform: translateY({{t_mh}}); display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+<span style="display: flex; flex-direction: column"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; color: #1E8E47">KEEP READING</span><h2 style="margin: 6px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.04; letter-spacing: -0.045em">More from the notebook.</h2></span>
+<a class="press" href="M-Blog.dc.html" style="height: 44px; box-sizing: border-box; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14.5px; text-decoration: none; white-space: nowrap; background: #0D1410; color: #FFFFFF">All articles<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+<div style="margin-top: 26px; display: flex; flex-direction: column; gap: 12px"><a href="M-Blog.dc.html" id="rv-m0" style="opacity: {{r_m0}}; transform: translateY({{t_m0}}); display: flex; gap: 14px; padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 1px 0 rgba(13,20,16,0.04), 0 20px 40px -30px rgba(13,20,16,0.45), inset 0 0 0 1px rgba(13,20,16,0.07); text-decoration: none; color: #0D1410">
+<span style="width: 108px; height: 132px; flex: none; border-radius: 14px; background: #F4F6F1 url(../../assets/case-heaven-solar.jpg) center top / cover no-repeat"></span>
+<span style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<span style="display: flex; align-items: center; gap: 8px"><span style="padding: 4px 8px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; color: #0A5A30">SOCIAL MEDIA</span><span style="font-size: 12.5px; color: #56605A">4 min read</span></span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 16.5px; line-height: 1.24; letter-spacing: -0.025em">Festival posts that bring enquiries, not just likes</span>
+<span style="font-size: 13.5px; line-height: 1.42; color: #56605A; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">Diwali, Navratri and Uttarayan posts that sell, with an offer and a clear next step.</span>
+</span>
+</a><a href="M-Blog.dc.html" id="rv-m1" style="opacity: {{r_m1}}; transform: translateY({{t_m1}}); display: flex; gap: 14px; padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 1px 0 rgba(13,20,16,0.04), 0 20px 40px -30px rgba(13,20,16,0.45), inset 0 0 0 1px rgba(13,20,16,0.07); text-decoration: none; color: #0D1410">
+<span style="width: 108px; height: 132px; flex: none; border-radius: 14px; background: #F4F6F1 url(../../assets/case-her-and-he.jpg) center top / cover no-repeat"></span>
+<span style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<span style="display: flex; align-items: center; gap: 8px"><span style="padding: 4px 8px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; color: #0A5A30">SHOOTS</span><span style="font-size: 12.5px; color: #56605A">5 min read</span></span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 16.5px; line-height: 1.24; letter-spacing: -0.025em">How we plan a product shoot in one day</span>
+<span style="font-size: 13.5px; line-height: 1.42; color: #56605A; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">Shot lists, props and light: how one well-planned day gives you a month of content.</span>
+</span>
+</a><a href="M-Blog.dc.html" id="rv-m2" style="opacity: {{r_m2}}; transform: translateY({{t_m2}}); display: flex; gap: 14px; padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 1px 0 rgba(13,20,16,0.04), 0 20px 40px -30px rgba(13,20,16,0.45), inset 0 0 0 1px rgba(13,20,16,0.07); text-decoration: none; color: #0D1410">
+<span style="width: 108px; height: 132px; flex: none; border-radius: 14px; background: #F4F6F1 url(../../assets/reel-1.jpg) center top / cover no-repeat"></span>
+<span style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<span style="display: flex; align-items: center; gap: 8px"><span style="padding: 4px 8px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; color: #0A5A30">SOCIAL MEDIA</span><span style="font-size: 12.5px; color: #56605A">4 min read</span></span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 16.5px; line-height: 1.24; letter-spacing: -0.025em">Reels or posts: what to make first on a small budget</span>
+<span style="font-size: 13.5px; line-height: 1.42; color: #56605A; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">Where to start when you can only make a few pieces of content a month.</span>
+</span>
+</a></div>
+</section>
+
+<section id="contact" tabindex="-1" style="position: relative; height: 1800px">
+<div style="position: sticky; top: 0; height: 844px; overflow: hidden; background: #2EB45D">
+<div style="position: absolute; left: 24px; top: 84px; width: 342px">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.02em; opacity: {{endL1Op}}">Now it's your turn to</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 64px; line-height: 0.98; letter-spacing: -0.055em; opacity: {{endL2Op}}; transform: translateY({{endL2Ty}})">become a</p>
+<p style="margin: 4px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 88px; line-height: 0.9; letter-spacing: -0.06em; color: #FFFFFF; transform-origin: left center; opacity: {{endBigOp}}; transform: rotate({{endBigRot}}) scale({{endBigSc}})">BIG<br>BRAND!</p>
+</div>
+<div style="position: absolute; left: 16px; right: 16px; top: 360px; box-sizing: border-box; padding: 16px 20px 18px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 30px 60px -30px rgba(13,20,16,0.5); display: flex; flex-direction: column; gap: 10px; opacity: {{cardOp}}; transform: translateX({{cardTx}})">
+<img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 28px; width: auto; align-self: flex-start">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: #56605A">ALL SERVICES</span><span style="display: flex; gap: 14px"><a href="tel:+919099417987" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none">90994 17987</a><a href="tel:+919099417949" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none">90994 17949</a></span></div>
+<div style="display: flex; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: #56605A">SALES</span><a href="tel:+916354433194" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none">63544 33194</a></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: #56605A">EMAIL</span><a href="mailto:info@ekdanta.in" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none">info@ekdanta.in</a></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: #56605A">VISIT</span><span style="font-size: 14px; line-height: 1.42">B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017</span></div>
+<div style="display: flex; gap: 6px">
+<a class="press" href="https://wa.me/919099417987" style="height: 40px; box-sizing: border-box; padding: 0 12px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12.5px; text-decoration: none; white-space: nowrap; background: #0D1410; color: #FFFFFF">WhatsApp us</a>
+<a class="press" href="https://share.google/EAOxrObclZeY4QkQR" style="height: 40px; box-sizing: border-box; padding: 0 12px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12.5px; text-decoration: none; white-space: nowrap; box-shadow: inset 0 0 0 1.5px #0D1410">Get directions</a>
+<a class="press" href="https://www.instagram.com/ekdanta.in/" style="height: 40px; box-sizing: border-box; padding: 0 12px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12.5px; text-decoration: none; white-space: nowrap; box-shadow: inset 0 0 0 1.5px #0D1410">Instagram</a>
+</div>
+</div>
+<footer style="position: absolute; left: 24px; right: 24px; bottom: 14px; padding-top: 10px; border-top: 1px solid rgba(13,20,16,0.2); display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 1.35; color: #0E3A22; opacity: {{footOp}}">
+<nav aria-label="Legal" style="display: flex; gap: 14px; flex-wrap: wrap; font-family: 'Poppins', sans-serif; font-weight: 600"><a href="M-Privacy.dc.html" style="text-decoration: none">Privacy Policy</a> <a href="M-Terms.dc.html" style="text-decoration: none">Terms of Service</a> <button type="button" onClick="{{ckOpen}}" style="padding: 0; border: 0; background: transparent; cursor: pointer; font-weight: 600; text-decoration: none">Cookie settings</button></nav>
+<span>© 2026 Ekdanta Branding and Marketing, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC.</span>
+<span>Surat and Ahmedabad · Aapki branding &amp; marketing ke विघ्नहर्ता</span>
+</footer>
+</div>
+</section>
+</div>
+
+<header style="position: absolute; top: 10px; left: 12px; right: 12px; height: 56px; box-sizing: border-box; padding: 0 6px 0 18px; border-radius: 999px; background: rgba(255,255,255,0.95); box-shadow: 0 10px 30px -18px rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: space-between; z-index: 50">
+<a href="M-Home.dc.html" aria-label="Ekdanta home" style="display: flex; align-items: center"><img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 27px; width: auto; display: block"></a>
+<span style="display: flex; align-items: center; gap: 6px">
+<a class="press" href="https://wa.me/919099417987" aria-label="WhatsApp Ekdanta" style="width: 44px; height: 44px; border-radius: 999px; background: #2EB45D; color: #0D1410; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg></a>
+<button type="button" class="press" onClick="{{toggleMenu}}" aria-label="{{menuLbl}}" aria-expanded="{{menuExp}}" style="width: 44px; height: 44px; border: 0; border-radius: 999px; background: #0D1410; cursor: pointer; position: relative">
+<span class="mm-bar" style="position: absolute; left: 13px; top: 17px; width: 18px; height: 2px; border-radius: 2px; background: #FFFFFF; transform: {{bar1}}"></span>
+<span class="mm-bar" style="position: absolute; left: 13px; top: 25px; width: 18px; height: 2px; border-radius: 2px; background: #FFFFFF; transform: {{bar2}}"></span>
+</button>
+</span>
+</header>
+<div aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 3px; width: {{progW}}; background: #F2A230; z-index: 60"></div>
+<nav class="mm-panel" aria-label="Main" style="position: absolute; inset: 0; z-index: 45; background: #0D1410; padding: 92px 24px 28px; box-sizing: border-box; display: flex; flex-direction: column; opacity: {{mpOp}}; transform: translateY({{mpTy}}); pointer-events: {{mpPe}}; visibility: {{mpVis}}">
+<a class="mm-item" href="M-Home.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 60ms">Home<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-Services.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 105ms">Services<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-Work.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 150ms">Work<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-About.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 195ms">About<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-Blog.dc.html" onClick="{{closeMenu}}" aria-current="page" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #2EB45D; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 240ms">Blog<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-Contact.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 285ms">Contact<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item press" href="#contact" onClick="{{closeMenu}}" style="margin-top: auto; height: 56px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #2EB45D; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 380ms">Become a big brand</a>
+<span class="mm-item" style="margin-top: 14px; text-align: center; font-size: 14px; color: #8A968F; opacity: {{mmOp}}; transition-delay: 420ms">Call <a href="tel:+919099417987" style="color: #FFFFFF">90994 17987</a> · Sales <a href="tel:+916354433194" style="color: #FFFFFF">63544 33194</a></span>
+</nav>
+<div aria-hidden="true" style="position: absolute; left: 16px; right: 16px; top: 74px; z-index: 40; box-sizing: border-box; height: 42px; padding: 0 16px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 12px 30px -16px rgba(13,20,16,0.45); display: flex; align-items: center; gap: 10px; overflow: hidden; opacity: {{barOp}}; transform: translateY({{barTy}}); pointer-events: none">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #1E8E47">{{barNum}}</span><span style="font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{barTitle}}</span><span style="margin-left: auto; flex-shrink: 0; font-size: 12.5px; color: #56605A">{{minLeft}}</span>
+<span style="position: absolute; left: 0; bottom: 0; height: 3px; width: {{barW}}; background: #2EB45D"></span>
+</div>
+<sc-if value="{{ckShow}}" hint-placeholder-val="{{ true }}">
+<div class="ck-card" role="region" aria-label="Cookie choices" style="position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 80; box-sizing: border-box; padding: 16px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 24px 50px -24px rgba(13,20,16,0.55), 0 0 0 1px rgba(13,20,16,0.06); display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: #4A564F"><b style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #0D1410">Cookies, only with your OK.</b> We use necessary cookies to run this site. With your OK, we also use analytics and ad cookies to see what helps and to measure our ads. <a href="M-Privacy.dc.html" style="color: #1E8E47; white-space: nowrap">Privacy Policy</a></p>
+<div style="display: flex; gap: 8px"><button type="button" class="press" onClick="{{ckAll}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #0A5A30; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Allow all</button><button type="button" class="press" onClick="{{ckNeeded}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: transparent; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Only necessary</button></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"scrub":{"editor":"range","default":0,"min":0,"max":7635,"step":50,"unit":"px","label":"Preview scroll position"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.remeasure();
+    this._t1 = setTimeout(() => this.remeasure(), 400);
+    try { if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this.remeasure()); } catch (e) {}
+    this.applyScrub();
+  }
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    clearTimeout(this._t1); clearTimeout(this._t2);
+  }
+  componentDidUpdate(prev) { if ((prev.scrub || 0) !== (this.props.scrub || 0)) this.applyScrub(); }
+  applyScrub() {
+    const v = this.props.scrub || 0;
+    if (this._el && v > 0) { this._el.scrollTop = v; this.setState({ y: v }); }
+  }
+  // Reads where each block sits on the page, so reveals, the contents and the finale follow the real layout.
+  // Falls back to the layout measured at build time.
+  measure() {
+    const el = this._el;
+    if (!el || !el.querySelectorAll) return null;
+    const top = (n) => { let t = 0; while (n && n !== el) { t += n.offsetTop; n = n.offsetParent; } return n === el ? t : null; };
+    const rv = {};
+    el.querySelectorAll('[id^="rv-"]').forEach((n) => { const t = top(n); if (t !== null) rv[n.id.slice(3)] = t; });
+    const h = [];
+    for (let i = 1; i <= 5; i++) { const n = el.querySelector('#h-' + i); const t = n ? top(n) : null; h.push(t); if (t !== null) rv['h' + i] = t; }
+    const g = (id) => { const n = el.querySelector('#' + id); return n ? top(n) : null; };
+    const L = { rv: rv, h: h, body: g('p-body'), artEnd: g('p-end'), end: g('contact'), more: g('p-more'), max: el.scrollHeight - el.clientHeight };
+    if (L.end === null || L.body === null || h.indexOf(null) >= 0 || !(L.max > 0)) return null;
+    return L;
+  }
+  remeasure() { const L = this.measure(); if (L) { this._lay = L; this.setState({ m: (this.state && this.state.m || 0) + 1 }); } }
+  renderVals() {
+    const st = this.state || {};
+    const y = st.y || 0;
+    const rm = !!this._reduce;
+
+    const clamp = (v, a, b) => Math.max(a === undefined ? 0 : a, Math.min(b === undefined ? 1 : b, v));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const ease = (k) => (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+    const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+    const easeBack = (k) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
+    const px = (v) => v.toFixed(1) + 'px';
+    const f3 = (v) => v.toFixed(3);
+    const pct = (v) => (v * 100).toFixed(2) + '%';
+    const move = (v) => (rm ? 0 : v);
+
+    const FB = {"rv":{"lead":1186,"jr":1713,"cmp0":2232,"cmp1":2307,"cmp2":2383,"cmp3":2458,"fig":2566,"quote":2974,"rl0":3338,"rl1":3503,"rl2":3668,"rl3":3832,"rl4":3997,"rl5":4162,"ck0":4560,"ck1":4637,"ck2":4714,"ck3":4778,"ck4":4855,"tags":5285,"author":5414,"p1":1360,"h1":1455,"p2":1526,"p3":1903,"h2":2054,"p4":2096,"h3":3164,"p5":3235,"h4":4442,"p6":4485,"h5":4964,"p7":5006,"p8":5137,"m0":6090,"m1":6261,"m2":6429,"mh":5913},"h":[1455,2054,3164,4442,4964],"body":1176,"artEnd":5248,"end":6679,"more":5843,"max":7635};
+    const L = this._lay || FB;
+    const top = (k) => (L.rv[k] !== undefined ? L.rv[k] : FB.rv[k]);
+    const VH = 844, MAXY = L.max;
+    const out = {};
+
+    // 1. Hero: the headline types itself out (CSS), the cover opens and its layers drift apart on scroll.
+    Object.assign(out, {
+      hdOp: f3(rm ? 1 : 1 - clamp((y - 200) / 380)), hdTy: px(move(y * 0.1)),
+      dotTy: px(move(y * 0.05)), broTy: px(move(-y * 0.08)), phTy: px(move(-y * 0.16)), bubTy: px(move(-y * 0.22))
+    });
+
+    // 2. Article: each block rises into place as it reaches the reading line.
+    const stag = (k) => { const m = /^(rl)(\d)$/.exec(k); return m && VH > 1000 ? (+m[2] % 2) * 80 : 0; };
+    Object.keys(FB.rv).forEach((k) => {
+      const a = rm ? 1 : clamp((y + VH - top(k) - 70 - stag(k)) / 280);
+      out['r_' + k] = f3(a);
+      out['t_' + k] = px(move((1 - easeOut(a)) * 34));
+    });
+    const late = (k, d) => (rm ? 1 : clamp((y + VH - top(k) - 70 - d) / 280));
+    const fg = ease(late('fig', 0));
+    out.figClip = pct(1 - fg); out.figSc = (rm ? 1 : 1.14 - 0.14 * fg).toFixed(3);
+    out.hlW = pct(late('quote', 140));
+    for (let i = 0; i < 4; i++) { const a = late('cmp' + i, 100); out['cmpA' + i] = f3(a); out['cmpW' + i] = VH > 1000 ? pct(a) : px(move((1 - a) * -14)); }
+    for (let i = 0; i < 5; i++) { const a = late('ck' + i, 90); out['ckD' + i] = f3(1 - a); out['ckF' + i] = f3(a); }
+
+    // 3. Reading: the contents follow the heading you are on; the bar under the header shows where you are.
+    let act = -1;
+    for (let i = 0; i < 5; i++) if (y >= L.h[i] - VH * 0.3) act = i;
+    const prog = clamp((y + VH * 0.6 - L.body) / Math.max(1, L.artEnd - L.body));
+    const left = Math.ceil(5 * (1 - prog) - 0.001);
+    const TOC = ["Buyers check you out first", "What a brochure can't show", "Five reels to shoot this month", "Keep it simple", "Start small, then build"];
+    const inArt = y > L.body + 120 && y < L.artEnd - VH * 0.4;
+    Object.assign(out, {
+      minLeft: prog >= 1 ? 'Done' : left + ' min left',
+      toc: TOC.map((t, i) => ({ t: t, n: '0' + (i + 1), href: '#h-' + (i + 1), cur: i === act ? 'true' : 'false', c: i === act ? '#0D1410' : '#3B4640', w: i === act ? '700' : '500' })),
+      barOp: f3(rm ? (inArt ? 1 : 0) : clamp((y - L.body - 120) / 160) * (1 - clamp((y - (L.artEnd - VH * 0.4)) / 160))),
+      barTy: px(move(inArt ? 0 : -10)), barNum: act < 0 ? '01' : '0' + (act + 1), barTitle: TOC[Math.max(0, act)], barW: pct(prog)
+    });
+
+    // Sharing
+    out.copied = !!st.copied;
+    out.copyLbl = st.copied ? 'Link copied' : 'Copy link';
+    out.copyLink = () => {
+      try { if (navigator.clipboard) navigator.clipboard.writeText(window.location.href); } catch (e) {}
+      this.setState({ copied: true });
+      clearTimeout(this._t2); this._t2 = setTimeout(() => this.setState({ copied: false }), 1800);
+    };
+
+    // Finale: the approved closing, 'Now it's your turn to become a BIG BRAND!'
+    const s7 = y - L.end;
+    const pe = clamp((s7 + 600) / 1500);
+    const qq = (x0) => (rm ? 1 : clamp((pe - x0) / 0.18));
+    Object.assign(out, {
+      endL1Op: f3(qq(0)), endL2Op: f3(qq(0.12)), endL2Ty: px(move((1 - qq(0.12)) * 30.0)),
+      endBigOp: f3(qq(0.24)), endBigRot: (rm ? -3 : lerp(-8, -3, qq(0.24))).toFixed(2) + 'deg', endBigSc: (rm ? 1 : lerp(0.6, 1, ease(qq(0.24)))).toFixed(3),
+      cardOp: f3(qq(0.45)), cardTx: px(move((1 - qq(0.45)) * 60.0)), footOp: f3(qq(0.7))
+    });
+
+
+    // Menu
+    const mo = !!st.menu;
+    Object.assign(out, {
+      toggleMenu: () => this.setState({ menu: !this.state.menu }), closeMenu: () => this.setState({ menu: false }),
+      menuLbl: mo ? 'Close menu' : 'Open menu', menuExp: mo ? 'true' : 'false',
+      bar1: mo ? 'translateY(4px) rotate(45deg)' : 'none', bar2: mo ? 'translateY(-4px) rotate(-45deg)' : 'none',
+      mpOp: mo ? '1' : '0', mpTy: mo || rm ? '0px' : '-16px', mpPe: mo ? 'auto' : 'none', mpVis: mo ? 'visible' : 'hidden',
+      mmOp: mo ? '1' : '0', mmTy: mo || rm ? '0px' : '18px'
+    });
+
+
+    // Cookie choice: the banner shows until the visitor picks; 'Cookie settings' in the footer reopens it.
+    Object.assign(out, {
+      ckShow: !(this.state || {}).ck,
+      ckAll: () => this.setState({ ck: 'all' }), ckNeeded: () => this.setState({ ck: 'needed' }),
+      ckOpen: () => this.setState({ ck: null })
+    });
+
+    out.scrollRef = (el) => { this._el = el; };
+    out.onScroll = (ev) => {
+      const t = ev && (ev.currentTarget || ev.target);
+      if (!t) return;
+      this._y = t.scrollTop;
+      if (!this._raf) this._raf = requestAnimationFrame(() => {
+        this._raf = null;
+        if (!this._n || ++this._n > 20) { this._n = 1; const L2 = this.measure(); if (L2) this._lay = L2; }
+        this.setState({ y: this._y });
+      });
+    };
+    out.progW = pct(clamp(y / MAXY));
+    return out;
+  }
+}
+</script>
+</body>
+</html>

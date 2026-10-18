@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ekdanta — Work</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&amp;family=Hind:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+.ek-skip{position:absolute;left:24px;top:-90px;z-index:200;padding:12px 20px;border-radius:999px;background:#0D1410;color:#FFFFFF;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:top 150ms ease-out}.ek-skip:focus{top:16px}
+body{margin:0;font-family:'Hind',system-ui,sans-serif;background:#FFFFFF;color:#0D1410;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #F2A230;outline-offset:3px}
+.ekw::-webkit-scrollbar{display:none}
+.press{transition:transform 100ms ease-out}
+.press:active{transform:scale(0.97)}
+.ek-rise{animation:ekRise 900ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekRise{from{transform:translateY(105%)}to{transform:none}}
+.ek-fade{animation:ekFade 800ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.mm-item{transition:opacity 320ms ease-out,transform 420ms cubic-bezier(.2,.8,.2,1)}
+.mm-panel{transition:opacity 260ms ease-out,transform 380ms cubic-bezier(.2,.8,.2,1)}
+.mm-bar{transition:transform 260ms cubic-bezier(.2,.8,.2,1),opacity 200ms ease-out}
+.ck-card{animation:ckIn 600ms cubic-bezier(.2,.8,.2,1) 1.2s both}
+@keyframes ckIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.ek-rise,.ek-fade,.ck-card{animation:none}.mm-item,.mm-panel,.mm-bar,.press{transition:none}}
+
+.wk-up{animation:wkUp linear infinite}
+@keyframes wkUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.wk-down{animation:wkDown linear infinite}
+@keyframes wkDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.wk-in{animation:wkIn 1200ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes wkIn{from{opacity:0;transform:translateY(160px)}to{opacity:1;transform:none}}
+.ek-bob{animation:ekBob 3.2s ease-in-out infinite}
+@keyframes ekBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.wk-pulse{animation:wkPulse 1.8s ease-out infinite}
+@keyframes wkPulse{from{box-shadow:0 0 0 0 rgba(46,180,93,.7)}to{box-shadow:0 0 0 22px rgba(46,180,93,0)}}
+.wk-tile{transition:transform 650ms cubic-bezier(.2,.8,.2,1),opacity 450ms ease-out}
+.wk-chip{transition:background-color 200ms ease-out,color 200ms ease-out}
+@media (prefers-reduced-motion: reduce){.wk-up,.wk-down,.wk-in,.ek-bob,.wk-pulse{animation:none!important}.wk-tile,.wk-chip{transition:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F6F1; font-family: 'Hind', system-ui, sans-serif; color: #0D1410">
+<a class="ek-skip" href="#main">Skip to main content</a>
+
+<div class="ekw" ref="{{scrollRef}}" id="main" tabindex="-1" onScroll="{{onScroll}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+
+<section id="w-top" style="position: relative; height: 1300px">
+<div style="position: sticky; top: 0; height: 844px; overflow: hidden; background: #F4F6F1">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 470px; width: 390px; height: 374px; overflow: hidden">
+<div style="position: absolute; left: 0; top: 0; width: 390px; height: 374px; transform: translate({{wallTx}}, {{wallTy}}) scale({{wallSc}}); transform-origin: 50% 30%">
+<div style="position: absolute; left: -90px; top: -120px; width: 1250px; height: 1700px; display: flex; gap: 22px; transform: scale(0.5) rotateX(50deg) rotateZ(-34deg); transform-origin: 0 0"><div class="wk-in" style="width: 280px; flex-shrink: 0; animation-delay: 200ms"><div class="wk-up" style="display: flex; flex-direction: column; gap: 22px; animation-duration: 46s"><img src="../../assets/case-trilok-infratech.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-1.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-heaven-solar.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-4.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-trilok-infratech.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-1.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-heaven-solar.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-4.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"></div></div><div class="wk-in" style="width: 280px; flex-shrink: 0; animation-delay: 340ms"><div class="wk-down" style="display: flex; flex-direction: column; gap: 22px; animation-duration: 54s"><img src="../../assets/reel-2.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-yantra-design.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-3.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-srk-dairy.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-2.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-yantra-design.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-3.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-srk-dairy.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"></div></div><div class="wk-in" style="width: 280px; flex-shrink: 0; animation-delay: 480ms"><div class="wk-up" style="display: flex; flex-direction: column; gap: 22px; animation-duration: 50s"><img src="../../assets/case-her-and-he.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-5.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-valleyrides.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-1.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-her-and-he.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-5.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-valleyrides.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-1.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"></div></div><div class="wk-in" style="width: 280px; flex-shrink: 0; animation-delay: 620ms"><div class="wk-down" style="display: flex; flex-direction: column; gap: 22px; animation-duration: 58s"><img src="../../assets/reel-4.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-srk-dairy.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-2.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-trilok-infratech.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-4.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-srk-dairy.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/reel-2.jpg" alt="" style="width: 280px; height: 500px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"><img src="../../assets/case-trilok-infratech.jpg" alt="" style="width: 280px; height: 300px; object-fit: cover; object-position: top; display: block; border-radius: 20px; background: #FFFFFF; box-shadow: 0 30px 50px -30px rgba(13,20,16,0.55)"></div></div></div>
+</div>
+<div style="position: absolute; left: 0; right: 0; top: 0; height: 90px; background: linear-gradient(180deg, #F4F6F1, rgba(244,246,241,0))"></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(0deg, #F4F6F1, rgba(244,246,241,0))"></div>
+</div>
+<div style="position: absolute; left: 24px; top: 96px; width: 342px; opacity: {{heroTextOp}}; transform: translateY({{heroTextTy}})">
+<p class="ek-fade" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #56605A"><a href="M-Home.dc.html" style="text-decoration: none">Home</a><span aria-hidden="true">  ›  </span>Work</p>
+<h1 style="margin: 10px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.05em">
+<span style="display: block; overflow: hidden; padding-bottom: 6px"><span class="ek-rise" style="display: block; animation-delay: 150ms">Kaam</span></span>
+<span style="display: block; overflow: hidden; padding-bottom: 6px"><span class="ek-rise" style="display: block; color: #1E8E47; animation-delay: 300ms">bolta hai.</span></span>
+</h1>
+<p class="ek-fade" style="margin: 12px 0 0; font-size: 15.5px; line-height: 1.5; color: #3B4640; animation-delay: 650ms">45+ brands across manufacturing, food, retail and services. Here is some of what we have made for them.</p>
+<div class="ek-fade" style="margin-top: 16px; display: flex; gap: 8px; animation-delay: 850ms"><span style="padding: 8px 12px; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.1); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px"><b style="color: #1E8E47">6</b> case studies</span><span style="padding: 8px 12px; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.1); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px"><b style="color: #1E8E47">45+</b> brands</span><span style="padding: 8px 12px; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.1); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px"><b style="color: #1E8E47">4</b> industries</span></div>
+<div class="ek-fade" style="margin-top: 20px; display: flex; gap: 10px; animation-delay: 1050ms">
+<a class="press" href="#w-cases" style="height: 48px; box-sizing: border-box; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14.5px; text-decoration: none; white-space: nowrap; background: #0D1410; color: #FFFFFF">See the case studies</a>
+<a class="press" href="#w-reels" style="height: 48px; box-sizing: border-box; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14.5px; text-decoration: none; white-space: nowrap; box-shadow: inset 0 0 0 1.5px #0D1410"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z" fill="#0D1410"></path></svg>Watch the reels</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="w-cases" style="position: relative; height: 4900px">
+<div style="position: sticky; top: 0; height: 844px; overflow: hidden; background: {{caseBg}}; color: #FFFFFF">
+<span aria-hidden="true" style="position: absolute; right: -10px; bottom: -40px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 200px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.1); transform: translateY({{bigNumTy}})">{{caseNum}}</span>
+<div style="position: absolute; left: 24px; top: 88px; opacity: {{cIdxOp}}"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; color: rgba(255,255,255,0.75)">CASE STUDIES · {{caseNum}} / 06</span></div>
+<div role="group" aria-label="Choose a case study" style="position: absolute; left: 24px; top: 112px; display: flex; gap: 6px; opacity: {{cIdxOp}}; transform: translateX({{cIdxTx}})">
+<sc-for list="{{cIndex}}" as="ci" hint-placeholder-count="6">
+<button type="button" class="press" onClick="{{ci.go}}" aria-label="{{ci.aria}}" aria-current="{{ci.cur}}" style="position: relative; width: 44px; height: 44px; border: 0; border-radius: 999px; background: {{ci.bg}}; color: {{ci.c}}; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer">{{ci.num}}</button>
+</sc-for>
+</div>
+<div style="position: absolute; left: 24px; top: 168px; width: 342px; height: 212px; border-radius: 22px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 80px -40px rgba(0,0,0,0.75); clip-path: inset({{winClip}} 0 0 0 round 22px)">
+<div style="position: absolute; left: 0; top: 0; width: 342px; transform: translateY({{trackTy}})">
+<sc-for list="{{cImgs}}" as="cm" hint-placeholder-count="6">
+<div style="position: relative; width: 342px; height: 212px; overflow: hidden"><img src="{{cm.src}}" alt="{{cm.alt}}" style="position: absolute; left: 0; top: -50px; width: 342px; height: 312px; object-fit: cover; object-position: top; display: block; transform: translateY({{cm.ty}})"></div>
+</sc-for>
+</div>
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 11px; border-radius: 999px; background: rgba(13,20,16,0.82); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #FFFFFF">INSTAGRAM GRID · {{caseNum}}</span>
+</div>
+<sc-for list="{{cText}}" as="ct" hint-placeholder-count="6">
+<div style="position: absolute; left: 24px; top: 398px; width: 342px; display: flex; flex-direction: column; gap: 10px; opacity: {{ct.op}}; transform: translateY({{ct.ty}}); visibility: {{ct.vis}}">
+<span style="align-self: flex-start; padding: 5px 10px; border-radius: 999px; background: #2EB45D; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #0D1410">{{ct.sector}}</span>
+<h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px; line-height: 1.04; letter-spacing: -0.045em">{{ct.name}}</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.86)">{{ct.desc}}</p>
+<span style="display: flex; flex-wrap: wrap; gap: 6px" aria-label="What we made">
+<sc-for list="{{ct.did}}" as="dd" hint-placeholder-count="3"><span style="padding: 6px 11px; border-radius: 999px; background: rgba(255,255,255,0.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3); font-size: 13px; font-weight: 500; opacity: {{dd.op}}; transform: scale({{dd.sc}})">{{dd.label}}</span></sc-for>
+</span>
+<span style="display: flex; align-items: baseline; gap: 10px; font-size: 13px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 0.1em; color: rgba(255,255,255,0.6)">RESULT</span><span style="color: rgba(255,255,255,0.86)">[Add one number from this campaign]</span></span>
+<a class="press" href="M-Case-Study.dc.html" style="align-self: flex-start; height: 44px; box-sizing: border-box; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14.5px; text-decoration: none; white-space: nowrap; background: #FFFFFF; color: #0D1410">Read the full case study<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section id="w-reels" style="position: relative; height: 2600px">
+<div style="position: sticky; top: 0; height: 844px; overflow: hidden; background: #0D1410; color: #FFFFFF">
+<div aria-hidden="true" style="position: absolute; left: -100.0px; top: 172px; width: 590px; height: 590px; border-radius: 999px; background: radial-gradient(circle, rgba(46,180,93,0.22), rgba(46,180,93,0) 65%); opacity: {{rGlowOp}}"></div>
+<div style="position: absolute; left: 24px; top: 88px; width: 342px; text-align: center; opacity: {{rHeadOp}}; transform: translateY({{rHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; color: #8FE3AE">REELS</span>
+<h2 style="margin: 6px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px; line-height: 1.04; letter-spacing: -0.045em">Reels that stop the scroll.</h2>
+<p style="margin: 10px 0 0; font-size: 15.5px; line-height: 1.5; color: #BFD2C6">Scripted, shot and edited by our in-house team.</p>
+</div>
+<sc-for list="{{phones}}" as="ph" hint-placeholder-count="5">
+<a href="https://www.instagram.com/ekdanta.in/" aria-label="{{ph.aria}}" style="position: absolute; left: {{ph.x}}; top: 232px; width: 190px; height: 346px; text-decoration: none; color: #FFFFFF; opacity: {{ph.op}}; transform: translateY({{ph.ty}}) rotate({{ph.rot}}) scale({{ph.sc}}); z-index: {{ph.z}}">
+<span class="ek-bob" style="position: absolute; left: 0; top: 0; width: 190px; height: 346px; animation-delay: {{ph.delay}}">
+<span style="position: absolute; left: 0; top: 0; width: 190px; height: 346px; box-sizing: border-box; border-radius: 26px; border: 6px solid #1E2622; overflow: hidden; background: #1E2622; box-shadow: {{ph.ring}}">
+<img src="{{ph.img}}" alt="" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness({{ph.br}})">
+<span style="position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(0deg, rgba(13,20,16,0.92), rgba(13,20,16,0))"></span>
+<span style="position: absolute; left: 10px; top: 10px; padding: 4px 8px; border-radius: 999px; background: rgba(13,20,16,0.8); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 9.5px">{{ph.tag}}</span>
+<span style="position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px">{{ph.brand}}</span><span style="font-size: 12px; line-height: 1.3; color: #DCE7E0">{{ph.title}}</span></span>
+<span style="position: absolute; left: 50%; top: 40%; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 999px; background: rgba(13,20,16,0.75); display: flex; align-items: center; justify-content: center; opacity: {{ph.playOp}}"><span class="wk-pulse" style="position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 999px"></span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z" fill="#FFFFFF"></path></svg></span>
+</span>
+</span>
+</a>
+</sc-for>
+<div style="position: absolute; left: 24px; width: 342px; top: 606px; display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: {{rCapOp}}">
+<span aria-hidden="true" style="display: flex; gap: 6px"><sc-for list="{{rDots}}" as="rd" hint-placeholder-count="5"><span style="width: {{rd.w}}; height: 8px; border-radius: 999px; background: {{rd.bg}}"></span></sc-for></span>
+<a href="https://www.instagram.com/ekdanta.in/" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #2EB45D">Watch more on Instagram @ekdanta.in</a>
+</div>
+</div>
+</section>
+
+<section id="w-clients" style="position: relative; height: 2200px">
+<div style="position: sticky; top: 0; height: 844px; overflow: hidden; background: #F4F6F1">
+<div style="position: absolute; left: 24px; top: 88px; width: 342px; opacity: {{clHeadOp}}; transform: translateY({{clHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; color: #1E8E47">OUR CLIENTS</span>
+<h2 style="margin: 6px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.04; letter-spacing: -0.045em">Brands that trust Ekdanta.</h2>
+</div>
+<div role="group" aria-label="Filter by industry" style="position: absolute; left: 24px; top: 194px; width: 342px; display: flex; flex-wrap: wrap; gap: 8px; opacity: {{clHeadOp}}">
+<sc-for list="{{filters}}" as="fl" hint-placeholder-count="5">
+<button type="button" class="wk-chip press" onClick="{{fl.pick}}" aria-pressed="{{fl.on}}" aria-label="{{fl.aria}}" style="height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: {{fl.bg}}; color: {{fl.c}}; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.14); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; cursor: pointer">{{fl.label}} <span style="opacity: 0.6">{{fl.n}}</span></button>
+</sc-for>
+</div>
+<div style="position: absolute; left: 24px; top: 300px; width: 342px; height: 500px; overflow: hidden">
+<div style="position: absolute; left: 0; top: 0; width: 342px; transform: translateY({{gridTy}})">
+<sc-for list="{{tiles}}" as="tl" hint-placeholder-count="44">
+<div class="wk-tile" role="img" aria-label="{{tl.name}}" style="position: absolute; left: 0; top: 0; width: 79px; height: 44px; transform: translate({{tl.x}}, {{tl.y}}) scale({{tl.sc}}); opacity: {{tl.vis}}; z-index: {{tl.z}}">
+<div style="width: 79px; height: 44px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 1px 0 rgba(13,20,16,0.05), 0 10px 18px -14px rgba(13,20,16,0.45); display: flex; align-items: center; justify-content: center; opacity: {{tl.op}}; transform: translateY({{tl.ty}})"><span style="width: 135px; height: 48px; flex-shrink: 0; transform: scale(0.526); background-image: url({{tl.src}}); background-repeat: no-repeat; background-size: {{tl.bs}}; background-position: {{tl.bp}}"></span></div>
+</div>
+</sc-for>
+</div>
+</div>
+<p style="position: absolute; left: 24px; bottom: 24px; margin: 0; font-size: 14px; color: #56605A; opacity: {{clHeadOp}}">Showing <b style="color: #0D1410">{{shown}}</b> of 44 · <a href="https://www.instagram.com/ekdanta.in/" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0A5A30">@ekdanta.in</a></p>
+</div>
+</section>
+
+<section id="contact" tabindex="-1" style="position: relative; height: 1800px">
+<div style="position: sticky; top: 0; height: 844px; overflow: hidden; background: #2EB45D">
+<div style="position: absolute; left: 24px; top: 84px; width: 342px">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.02em; opacity: {{endL1Op}}">Now it's your turn to</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 64px; line-height: 0.98; letter-spacing: -0.055em; opacity: {{endL2Op}}; transform: translateY({{endL2Ty}})">become a</p>
+<p style="margin: 4px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 88px; line-height: 0.9; letter-spacing: -0.06em; color: #FFFFFF; transform-origin: left center; opacity: {{endBigOp}}; transform: rotate({{endBigRot}}) scale({{endBigSc}})">BIG<br>BRAND!</p>
+</div>
+<div style="position: absolute; left: 16px; right: 16px; top: 360px; box-sizing: border-box; padding: 16px 20px 18px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 30px 60px -30px rgba(13,20,16,0.5); display: flex; flex-direction: column; gap: 10px; opacity: {{cardOp}}; transform: translateX({{cardTx}})">
+<img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 28px; width: auto; align-self: flex-start">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: #56605A">ALL SERVICES</span><span style="display: flex; gap: 14px"><a href="tel:+919099417987" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none">90994 17987</a><a href="tel:+919099417949" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none">90994 17949</a></span></div>
+<div style="display: flex; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: #56605A">SALES</span><a href="tel:+916354433194" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none">63544 33194</a></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: #56605A">EMAIL</span><a href="mailto:info@ekdanta.in" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none">info@ekdanta.in</a></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: #56605A">VISIT</span><span style="font-size: 14px; line-height: 1.42">B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017</span></div>
+<div style="display: flex; gap: 6px">
+<a class="press" href="https://wa.me/919099417987" style="height: 40px; box-sizing: border-box; padding: 0 12px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12.5px; text-decoration: none; white-space: nowrap; background: #0D1410; color: #FFFFFF">WhatsApp us</a>
+<a class="press" href="https://share.google/EAOxrObclZeY4QkQR" style="height: 40px; box-sizing: border-box; padding: 0 12px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12.5px; text-decoration: none; white-space: nowrap; box-shadow: inset 0 0 0 1.5px #0D1410">Get directions</a>
+<a class="press" href="https://www.instagram.com/ekdanta.in/" style="height: 40px; box-sizing: border-box; padding: 0 12px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12.5px; text-decoration: none; white-space: nowrap; box-shadow: inset 0 0 0 1.5px #0D1410">Instagram</a>
+</div>
+</div>
+<footer style="position: absolute; left: 24px; right: 24px; bottom: 14px; padding-top: 10px; border-top: 1px solid rgba(13,20,16,0.2); display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 1.35; color: #0E3A22; opacity: {{footOp}}">
+<nav aria-label="Legal" style="display: flex; gap: 14px; flex-wrap: wrap; font-family: 'Poppins', sans-serif; font-weight: 600"><a href="M-Privacy.dc.html" style="text-decoration: none">Privacy Policy</a> <a href="M-Terms.dc.html" style="text-decoration: none">Terms of Service</a> <button type="button" onClick="{{ckOpen}}" style="padding: 0; border: 0; background: transparent; cursor: pointer; font-weight: 600; text-decoration: none">Cookie settings</button></nav>
+<span>© 2026 Ekdanta Branding and Marketing, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC.</span>
+<span>Surat and Ahmedabad · Aapki branding &amp; marketing ke विघ्नहर्ता</span>
+</footer>
+</div>
+</section>
+</div>
+
+<header style="position: absolute; top: 10px; left: 12px; right: 12px; height: 56px; box-sizing: border-box; padding: 0 6px 0 18px; border-radius: 999px; background: rgba(255,255,255,0.95); box-shadow: 0 10px 30px -18px rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: space-between; z-index: 50">
+<a href="M-Home.dc.html" aria-label="Ekdanta home" style="display: flex; align-items: center"><img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 27px; width: auto; display: block"></a>
+<span style="display: flex; align-items: center; gap: 6px">
+<a class="press" href="https://wa.me/919099417987" aria-label="WhatsApp Ekdanta" style="width: 44px; height: 44px; border-radius: 999px; background: #2EB45D; color: #0D1410; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg></a>
+<button type="button" class="press" onClick="{{toggleMenu}}" aria-label="{{menuLbl}}" aria-expanded="{{menuExp}}" style="width: 44px; height: 44px; border: 0; border-radius: 999px; background: #0D1410; cursor: pointer; position: relative">
+<span class="mm-bar" style="position: absolute; left: 13px; top: 17px; width: 18px; height: 2px; border-radius: 2px; background: #FFFFFF; transform: {{bar1}}"></span>
+<span class="mm-bar" style="position: absolute; left: 13px; top: 25px; width: 18px; height: 2px; border-radius: 2px; background: #FFFFFF; transform: {{bar2}}"></span>
+</button>
+</span>
+</header>
+<div aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 3px; width: {{progW}}; background: #F2A230; z-index: 60"></div>
+<nav class="mm-panel" aria-label="Main" style="position: absolute; inset: 0; z-index: 45; background: #0D1410; padding: 92px 24px 28px; box-sizing: border-box; display: flex; flex-direction: column; opacity: {{mpOp}}; transform: translateY({{mpTy}}); pointer-events: {{mpPe}}; visibility: {{mpVis}}">
+<a class="mm-item" href="M-Home.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 60ms">Home<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-Services.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 105ms">Services<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-Work.dc.html" onClick="{{closeMenu}}" aria-current="page" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #2EB45D; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 150ms">Work<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-About.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 195ms">About<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-Blog.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 240ms">Blog<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="M-Contact.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 285ms">Contact<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item press" href="#contact" onClick="{{closeMenu}}" style="margin-top: auto; height: 56px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #2EB45D; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 380ms">Become a big brand</a>
+<span class="mm-item" style="margin-top: 14px; text-align: center; font-size: 14px; color: #8A968F; opacity: {{mmOp}}; transition-delay: 420ms">Call <a href="tel:+919099417987" style="color: #FFFFFF">90994 17987</a> · Sales <a href="tel:+916354433194" style="color: #FFFFFF">63544 33194</a></span>
+</nav>
+
+<sc-if value="{{ckShow}}" hint-placeholder-val="{{ true }}">
+<div class="ck-card" role="region" aria-label="Cookie choices" style="position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 80; box-sizing: border-box; padding: 16px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 24px 50px -24px rgba(13,20,16,0.55), 0 0 0 1px rgba(13,20,16,0.06); display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: #4A564F"><b style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #0D1410">Cookies, only with your OK.</b> We use necessary cookies to run this site. With your OK, we also use analytics and ad cookies to see what helps and to measure our ads. <a href="M-Privacy.dc.html" style="color: #1E8E47; white-space: nowrap">Privacy Policy</a></p>
+<div style="display: flex; gap: 8px"><button type="button" class="press" onClick="{{ckAll}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #0A5A30; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Allow all</button><button type="button" class="press" onClick="{{ckNeeded}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: transparent; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Only necessary</button></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"scrub":{"editor":"range","default":0,"min":0,"max":11956,"step":50,"unit":"px","label":"Preview scroll position"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.applyScrub();
+  }
+  componentWillUnmount() { if (this._raf) cancelAnimationFrame(this._raf); }
+  componentDidUpdate(prev) { if ((prev.scrub || 0) !== (this.props.scrub || 0)) this.applyScrub(); }
+  applyScrub() {
+    const v = this.props.scrub || 0;
+    if (this._el && v > 0) { this._el.scrollTop = v; this.setState({ y: v }); }
+  }
+  renderVals() {
+    const st = this.state || {};
+    const y = st.y || 0;
+    const rm = !!this._reduce;
+
+    const clamp = (v, a, b) => Math.max(a === undefined ? 0 : a, Math.min(b === undefined ? 1 : b, v));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const ease = (k) => (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+    const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+    const easeBack = (k) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
+    const px = (v) => v.toFixed(1) + 'px';
+    const f3 = (v) => v.toFixed(3);
+    const pct = (v) => (v * 100).toFixed(2) + '%';
+    const move = (v) => (rm ? 0 : v);
+
+    const snap = (raw, n) => { const r = clamp(raw, 0, n); const i = Math.min(n - 1, Math.floor(r)); return r >= n ? n : i + ease(clamp((r - i - 0.4) / 0.6)); };
+    const scrollTo = (top) => { if (this._el) this._el.scrollTo({ top: top, behavior: rm ? 'auto' : 'smooth' }); };
+    const mix = (c1, c2, k) => 'rgb(' + c1.map((v, i) => Math.round(lerp(v, c2[i], k))).join(',') + ')';
+    const T_END = 11000, MAXY = 11956;
+    const out = {};
+    const G = {"W": 390, "side": 24, "phW": 190, "step": 212, "cols": 4, "tx": 87, "ty": 52, "avail": 500, "winH": 212};
+    const T_CASES = 1300, T_REELS = 6200, T_CL = 8800;
+
+    // 1. Hero: the wall of real work drifts on its own (CSS); scrolling pulls it closer.
+    const h = rm ? 0 : clamp(y / 450);
+    Object.assign(out, {
+      heroTextOp: f3(rm ? 1 : 1 - clamp((y - 100) / 320)), heroTextTy: px(move(-h * 60)),
+      wallTx: px(move(-h * 30)), wallTy: px(move(-h * 120)), wallSc: (1 + h * 0.15).toFixed(3)
+    });
+
+    // 2. Case studies: numbered index on top, a parallax window, the story below.
+    const s2 = y - T_CASES;
+    const WK = [
+      { img: '../../assets/case-trilok-infratech.jpg', name: 'Trilok Infratech', sector: 'INFRASTRUCTURE AND PRECAST', bg: [14, 44, 84],
+        desc: 'A precast infrastructure manufacturer with 20+ years of expertise, serving 100+ clients across India and international markets.', did: ['Social media creatives', 'Site and factory reels', 'Hindi and English campaigns'] },
+      { img: '../../assets/case-yantra-design.jpg', name: 'Yantra Design', sector: 'INDUSTRIAL MACHINERY', bg: [74, 18, 18],
+        desc: "A CNC machine manufacturer delivering high-precision drilling solutions, with 250+ installations across India's engineering industries.", did: ['Product creatives', 'Machine showcase posts', 'Launch campaigns'] },
+      { img: '../../assets/case-heaven-solar.jpg', name: 'Heaven Solar', sector: 'RENEWABLE ENERGY', bg: [12, 62, 36],
+        desc: 'A Gujarat solar energy company with 10,000+ installations, and an official Adani Solar channel partner.', did: ['Gujarati and English creatives', 'Offer campaigns', 'Festival posts'] },
+      { img: '../../assets/case-srk-dairy.jpg', name: 'SRK Dairy Farm and Foods', sector: 'DAIRY AND FMCG', bg: [72, 50, 10],
+        desc: 'A dairy brand delivering farm-fresh premium ghee, with a strong distribution network.', did: ['Product photography', 'Recipe and festive creatives', 'Brand campaigns'] },
+      { img: '../../assets/case-her-and-he.jpg', name: 'Her & He Cosmetics', sector: 'SKINCARE', bg: [42, 40, 44],
+        desc: 'A unisex skincare brand from Surat, with formulas made for everyday skin.', did: ['Product shoots', 'Model creatives', 'Launch posts'] },
+      { img: '../../assets/case-valleyrides.jpg', name: 'ValleyRides', sector: 'ADVENTURE TOURISM', bg: [12, 58, 66],
+        desc: 'An adventure hospitality brand offering guided Himalayan treks, cozy stays and local cuisine in Sankri, Uttarakhand.', did: ['Travel creatives', 'Reels from the trail', 'Booking campaigns'] }
+    ];
+    const cIn = rm ? 1 : easeOut(clamp((s2 + 600) / 600));
+    const cf = rm ? Math.round(clamp((s2 - 200) / 700, 0, 5)) : snap((s2 - 200) / 700, 5);
+    const ai = Math.round(cf);
+    const i0 = Math.floor(cf), i1 = Math.min(5, i0 + 1);
+    Object.assign(out, {
+      caseBg: cf <= 0 ? mix([13, 20, 16], WK[0].bg, cIn) : mix(WK[i0].bg, WK[i1].bg, cf - i0),
+      caseNum: '0' + (ai + 1), bigNumTy: px(move((cf - ai) * -160)),
+      cIdxOp: f3(cIn), cIdxTx: px(move((1 - cIn) * -30)), winClip: pct(1 - cIn), trackTy: px(-cf * G.winH),
+      cIndex: WK.map((w, i) => ({ num: '0' + (i + 1), aria: 'Case study ' + (i + 1) + ': ' + w.name, cur: i === ai ? 'true' : 'false',
+        bg: i === ai ? '#2EB45D' : 'transparent', c: i === ai ? '#0D1410' : '#FFFFFF', go: () => scrollTo(T_CASES + 200 + i * 700 + 80) })),
+      cImgs: WK.map((w, i) => ({ src: w.img, alt: 'Social media work for ' + w.name, ty: px(move(clamp((cf - i) * 90, -50, 50))) })),
+      cText: WK.map((w, i) => {
+        const o = clamp(1 - Math.abs(cf - i) * 2.4) * cIn;
+        return { name: w.name, sector: w.sector, desc: w.desc, op: f3(o), ty: px(move((cf - i) * -40)), vis: o > 0.01 ? 'visible' : 'hidden',
+          did: w.did.map((l, k) => { const c = rm ? 1 : clamp((1 - Math.abs(cf - i) - 0.45 - k * 0.12) / 0.2); return { label: l, op: f3(c), sc: (0.7 + 0.3 * easeBack(c)).toFixed(3) }; }) };
+      })
+    });
+
+    // 3. Reels: five phones rise, then slide through the spotlight one after another.
+    const s3 = y - T_REELS;
+    const rHead = rm ? 1 : clamp((s3 + 650) / 420);
+    const REELS = [
+      { img: '../../assets/reel-1.jpg', title: 'First impression matters', brand: 'Cruisemax Sports', tag: 'ATHLEISURE' },
+      { img: '../../assets/reel-2.jpg', title: 'Vitamin C Serum 20%', brand: 'Her & He Cosmetics', tag: 'SKINCARE' },
+      { img: '../../assets/reel-3.jpg', title: 'Looking for fresh faces and creative minds', brand: 'The Zula House', tag: 'CASTING CALL' },
+      { img: '../../assets/reel-4.jpg', title: 'Advanced UV protection', brand: 'Cruisemax Sports', tag: 'PRODUCT FEATURE' },
+      { img: '../../assets/reel-5.jpg', title: 'Looking for influencers and UGC creators', brand: 'Creator casting call', tag: 'UGC AND INFLUENCERS' }
+    ];
+    const focus = rm ? 1 : clamp((s3 - 100) / 200);
+    const cpos = rm ? 0 : snap((s3 - 300) / 280, 4);
+    const ar = Math.round(cpos);
+    out.phones = REELS.map((r, i) => {
+      const rise = rm ? 1 : clamp((s3 + 450 - i * 90) / 450);
+      const a = clamp(1 - Math.abs(cpos - i) * 1.4);
+      return { img: r.img, title: r.title, brand: r.brand, tag: r.tag, aria: 'Watch ' + r.title + ' by ' + r.brand + ' on Instagram',
+        x: px(G.W / 2 - G.phW / 2 + (i - cpos) * G.step),
+        ty: px(move((1 - easeBack(rise)) * 600)), op: f3(clamp(rise * 2)), rot: ((i - cpos) * 3).toFixed(1) + 'deg',
+        sc: lerp(0.92, 0.84 + 0.16 * a, focus).toFixed(3), br: lerp(0.8, 0.5 + 0.5 * a, focus).toFixed(3), playOp: f3(a * focus),
+        ring: a > 0.5 ? '0 0 0 4px #2EB45D, 0 40px 80px -30px rgba(0,0,0,0.85)' : '0 30px 60px -30px rgba(0,0,0,0.8)',
+        z: 10 + Math.round(a * 10), delay: (i * 0.45).toFixed(2) + 's' };
+    });
+    Object.assign(out, { rHeadOp: f3(rHead), rHeadTy: px(move((1 - easeOut(rHead)) * 30)), rCapOp: f3(rHead), rGlowOp: f3(rHead),
+      rDots: REELS.map((r, i) => ({ w: i === ar ? '26px' : '8px', bg: i === ar ? '#2EB45D' : 'rgba(255,255,255,0.3)' })) });
+
+    // 4. Clients: the wall cascades in and pans up; the industry filter re-sorts it (CSS transitions).
+    const s4 = y - T_CL;
+    const clHead = rm ? 1 : clamp((s4 + 650) / 420);
+    const LOGO_A = ['Trilok Infratech', 'Trilok Precast', 'Global Silk Mills', 'Yantra Design', 'Amplus', 'Shree Ambica Automotive', 'Aditya Laces', 'Heaven Solar', 'Sagar Enterprise', 'The Zula House', 'Cruisemax Sports', 'Syasi Designers', 'M.M. Fashion', 'Fab De Print', 'Belvae', 'Qbits', 'Euro', 'Jalpooree', 'Raj Wafers', 'Jenish Spices', 'Maharana', 'Vidhi Ghee', 'Gaukrish Ghee', 'SRK Dairy'];
+    const LOGO_B = ['Suzuki dealership', 'Samsung authorised distributor', 'Dharmaraj Suzuki Citylight', 'Vijay Mobile', '09 Mobile Gallery', 'Her & He Cosmetics', 'Karvi Realtors', 'Nainvish', 'Zorko', 'Chapter.1', 'ValleyRides', 'Slimiphy', 'Zeronine Retail ERP', 'Zeronine Tax Consultancy', 'MoneyMatters AM', 'Jiya Financial Services', 'Karma Realtors', 'Signs360', 'GenZ Lifestyle', 'Ruparel'];
+    const ALL = [];
+    LOGO_A.forEach((n, k) => ALL.push({ name: n, src: '../../assets/client-logos-strip-a.jpg', bs: '3240px 48px', bp: (-k * 135) + 'px 0px', cat: k < 16 ? 'Manufacturing' : 'Food and beverage' }));
+    LOGO_B.forEach((n, k) => ALL.push({ name: n, src: '../../assets/client-logos-strip-b.jpg', bs: '2700px 48px', bp: (-k * 135) + 'px 0px', cat: k < 8 ? 'Retail' : 'Services' }));
+    const sel = st.ind || 'All';
+    const FILT = [["All", "All", 44], ["Manufacturing", "Manufacturing", 16], ["Food and beverage", "Food", 8], ["Retail", "Retail", 8], ["Services", "Services", 12]];
+    let j = 0;
+    out.tiles = ALL.map((t, i) => {
+      const match = sel === 'All' || t.cat === sel;
+      const slot = match ? j++ : i;
+      const a = rm ? 1 : clamp((s4 + 300 - i * 12) / 260);
+      return { name: t.name, src: t.src, bs: t.bs, bp: t.bp, x: px((slot % G.cols) * G.tx), y: px(Math.floor(slot / G.cols) * G.ty),
+        sc: match ? '1' : '0.85', vis: match ? '1' : '0', z: match ? 2 : 0, op: f3(a), ty: px(move((1 - easeOut(a)) * 30)) };
+    });
+    const gridH = Math.ceil(j / G.cols) * G.ty;
+    const pan = Math.max(0, gridH - G.avail);
+    out.gridTy = px(-pan * (rm ? 0 : clamp((s4 - 100) / 900)));
+    out.filters = FILT.map((f) => ({ label: f[1], aria: f[0] + ', ' + f[2] + ' brands', n: String(f[2]), on: f[0] === sel ? 'true' : 'false', bg: f[0] === sel ? '#0D1410' : '#FFFFFF', c: f[0] === sel ? '#FFFFFF' : '#0D1410',
+      pick: () => this.setState({ ind: f[0] }) }));
+    Object.assign(out, { clHeadOp: f3(clHead), clHeadTy: px(move((1 - easeOut(clHead)) * 30)), shown: String(j) });
+
+    // Finale: the approved closing, 'Now it's your turn to become a BIG BRAND!'
+    const s7 = y - T_END;
+    const pe = clamp((s7 + 600) / 1500);
+    const qq = (x0) => (rm ? 1 : clamp((pe - x0) / 0.18));
+    Object.assign(out, {
+      endL1Op: f3(qq(0)), endL2Op: f3(qq(0.12)), endL2Ty: px(move((1 - qq(0.12)) * 30.0)),
+      endBigOp: f3(qq(0.24)), endBigRot: (rm ? -3 : lerp(-8, -3, qq(0.24))).toFixed(2) + 'deg', endBigSc: (rm ? 1 : lerp(0.6, 1, ease(qq(0.24)))).toFixed(3),
+      cardOp: f3(qq(0.45)), cardTx: px(move((1 - qq(0.45)) * 60.0)), footOp: f3(qq(0.7))
+    });
+
+
+    // Menu
+    const mo = !!st.menu;
+    Object.assign(out, {
+      toggleMenu: () => this.setState({ menu: !this.state.menu }), closeMenu: () => this.setState({ menu: false }),
+      menuLbl: mo ? 'Close menu' : 'Open menu', menuExp: mo ? 'true' : 'false',
+      bar1: mo ? 'translateY(4px) rotate(45deg)' : 'none', bar2: mo ? 'translateY(-4px) rotate(-45deg)' : 'none',
+      mpOp: mo ? '1' : '0', mpTy: mo || rm ? '0px' : '-16px', mpPe: mo ? 'auto' : 'none', mpVis: mo ? 'visible' : 'hidden',
+      mmOp: mo ? '1' : '0', mmTy: mo || rm ? '0px' : '18px'
+    });
+
+
+    // Cookie choice: the banner shows until the visitor picks; 'Cookie settings' in the footer reopens it.
+    Object.assign(out, {
+      ckShow: !(this.state || {}).ck,
+      ckAll: () => this.setState({ ck: 'all' }), ckNeeded: () => this.setState({ ck: 'needed' }),
+      ckOpen: () => this.setState({ ck: null })
+    });
+
+
+    out.scrollRef = (el) => { this._el = el; };
+    out.onScroll = (ev) => {
+      const t = ev && (ev.currentTarget || ev.target);
+      if (!t) return;
+      this._y = t.scrollTop;
+      if (!this._raf) this._raf = requestAnimationFrame(() => { this._raf = null; this.setState({ y: this._y }); });
+    };
+    out.progW = pct(clamp(y / MAXY));
+
+    return out;
+  }
+}
+</script>
+</body>
+</html>

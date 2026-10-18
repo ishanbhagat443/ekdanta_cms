@@ -1,0 +1,202 @@
+{
+  "title": "Terms of Service",
+  "eyebrow": "TERMS OF SERVICE",
+  "h1": [
+    "Saaf baat,",
+    "pakka kaam."
+  ],
+  "sub": "The rules for using ekdanta.in, and how we work with clients, in plain words.",
+  "meta": "Last updated [Add date] · 6 min read",
+  "btn1": "Read the short version",
+  "btn2": "Talk to us on WhatsApp",
+  "btn2_href": "https://wa.me/919099417987?text=Hi%20Ekdanta%2C%20I%20have%20a%20question%20about%20your%20terms.",
+  "chips": [
+    "No fixed packages",
+    "Starts after your yes",
+    "Indian law"
+  ],
+  "short_title": "In short.",
+  "short_sub": "The four things that matter most. The full terms are below.",
+  "cards": [
+    [
+      "No fixed packages",
+      "A free consultation first, then a proposal and quote made for your business.",
+      "chat"
+    ],
+    [
+      "Nothing starts without your yes",
+      "Work begins only after you approve a written proposal.",
+      "sign"
+    ],
+    [
+      "No promised numbers",
+      "Results depend on markets, platforms and budgets, so we do not guarantee them.",
+      "chart"
+    ],
+    [
+      "Indian law, Surat courts",
+      "These terms follow the laws of India.",
+      "scale"
+    ]
+  ],
+  "callout_key": "results",
+  "sections": [
+    [
+      "About these terms",
+      [
+        [
+          "p",
+          "These terms apply when you use ekdanta.in. The website and the Ekdanta Branding and Marketing brand are run by Vedanta Advisor, a sole proprietorship of Dishant Dipesh Bhagat, GSTIN 24GHNPD1228K1ZC, Shop No. 403, 4th Floor, Bhatar Trade Center, B Building, Bhatar Char Rasta, near Shiv Timber Mart, Surat, Gujarat 395017, India."
+        ],
+        [
+          "p",
+          "By using this website, you agree to these terms. If you do not agree, please do not use the site."
+        ]
+      ]
+    ],
+    [
+      "Using this website",
+      [
+        [
+          "p",
+          "Use the site lawfully. Do not try to break it, overload it, copy it in bulk, or use it to send spam."
+        ],
+        [
+          "p",
+          "The content is general information about our services. It is not professional advice for your specific business."
+        ]
+      ]
+    ],
+    [
+      "Enquiries, briefs and quotes",
+      [
+        [
+          "ul",
+          [
+            "Sending a brief or enquiry does not create a contract.",
+            "We have no fixed packages. After a free consultation, we share a proposal and quote made for your business.",
+            "Work starts only after you approve the proposal in writing and pay any agreed advance.",
+            "Prices, timelines and deliverables are set in that proposal. Quotes are valid for [Add validity, for example 15 days]."
+          ]
+        ]
+      ]
+    ],
+    [
+      "Client projects",
+      [
+        [
+          "p",
+          "Each project is covered by its own proposal or agreement. If that agreement says something different from these terms, the agreement applies."
+        ]
+      ]
+    ],
+    [
+      "Results",
+      [
+        [
+          "p",
+          "We plan and run every campaign carefully, but results such as leads, sales, reach or rankings depend on many things outside our control, including platforms, markets and budgets."
+        ],
+        [
+          "note",
+          "We do not guarantee specific results unless a written agreement says so."
+        ]
+      ]
+    ],
+    [
+      "Our content and your work",
+      [
+        [
+          "p",
+          "This site's text, design, graphics, logos and videos belong to Ekdanta or are used with permission. Please do not copy or reuse them without our written permission."
+        ],
+        [
+          "p",
+          "Client work shown on this site is shown with our clients' permission and stays subject to their rights. Who owns the work we create for you is set out in your agreement. [Confirm usage rights.]"
+        ]
+      ]
+    ],
+    [
+      "What you send us",
+      [
+        [
+          "p",
+          "If you send us logos, photos or text, you confirm that you have the right to share them, and you allow us to use them to prepare your proposal or project."
+        ]
+      ]
+    ],
+    [
+      "Other websites",
+      [
+        [
+          "p",
+          "Links to WhatsApp, Instagram, Google Maps and other sites are for your convenience. Their own terms and privacy policies apply, and we are not responsible for them."
+        ]
+      ]
+    ],
+    [
+      "Limits of liability",
+      [
+        [
+          "p",
+          "This website is provided \"as is\". To the extent the law allows, Ekdanta is not liable for indirect or consequential losses from using it. Nothing in these terms limits any liability that cannot be limited under Indian law."
+        ]
+      ]
+    ],
+    [
+      "Governing law",
+      [
+        [
+          "p",
+          "These terms are governed by the laws of India. Courts in Surat, Gujarat have jurisdiction. [Have a lawyer review these terms.]"
+        ]
+      ]
+    ],
+    [
+      "Changes to these terms",
+      [
+        [
+          "p",
+          "We may update these terms. The date at the top shows the latest version."
+        ]
+      ]
+    ]
+  ],
+  "ask_title": "Questions about these terms?",
+  "ask_sub": "Ask us before you start. We would rather explain now than surprise you later.",
+  "ask_rows": [
+    [
+      "EMAIL",
+      "info@ekdanta.in"
+    ],
+    [
+      "CALL",
+      "90994 17987"
+    ],
+    [
+      "SALES",
+      "63544 33194"
+    ],
+    [
+      "ADDRESS",
+      "B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017"
+    ]
+  ],
+  "ask_btn1": [
+    "Email us",
+    "mailto:info@ekdanta.in?subject=Question%20about%20your%20terms"
+  ],
+  "ask_btn2": [
+    "WhatsApp us",
+    "https://wa.me/919099417987?text=Hi%20Ekdanta%2C%20I%20have%20a%20question%20about%20your%20terms."
+  ],
+  "theme": {
+    "hero_bg": "#F4F6F1",
+    "hero_fg": "#0D1410",
+    "hero_acc": "#1E8E47",
+    "hero_sub": "#4A564F",
+    "short_bg": "#0D1410",
+    "short_fg": "#FFFFFF",
+    "ask_bg": "#0A5A30"
+  }
+}

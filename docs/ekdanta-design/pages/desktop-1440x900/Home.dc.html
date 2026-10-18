@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ekdanta — Home, final design</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&amp;family=Hind:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>.ck-card{animation:ckIn 600ms cubic-bezier(.2,.8,.2,1) 1.2s both}@keyframes ckIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}@media (prefers-reduced-motion: reduce){.ck-card{animation:none}}.ek-skip{position:absolute;left:24px;top:-90px;z-index:200;padding:12px 20px;border-radius:999px;background:#0D1410;color:#FFFFFF;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:top 150ms ease-out}.ek-skip:focus{top:16px}
+body{margin:0;font-family:'Hind',system-ui,sans-serif;background:#0A5A30;color:#0D1410;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid #F2A230;outline-offset:3px}
+.ekj::-webkit-scrollbar{display:none}
+.ek-rig{transform-origin:326px 284px;animation:ekRig 4.2s ease-in-out infinite}
+@keyframes ekRig{0%,100%{transform:rotate(0deg)}25%{transform:rotate(6deg)}75%{transform:rotate(-6deg)}}
+@property --ax{syntax:'<length>';inherits:false;initial-value:892.0px}
+@property --ay{syntax:'<length>';inherits:false;initial-value:490.0px}
+.ek-beam{animation:ekBeam 4.2s ease-in-out infinite}
+@keyframes ekBeam{0%,100%{--ax:892.0px;--ay:490.0px}25%{--ax:907.6px;--ay:460.8px}75%{--ax:879.6px;--ay:520.6px}}
+@media (prefers-reduced-motion: reduce){.ek-rig,.ek-beam{animation:none}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #0A5A30; font-family: 'Hind', system-ui, sans-serif; color: #0D1410">
+<a class="ek-skip" href="#main">Skip to main content</a>
+
+<div class="ekj" ref="{{scrollRef}}" id="main" tabindex="-1" onScroll="{{onScroll}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+
+<section id="j-top" style="position: relative; height: 1600px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #0A5A30">
+<div aria-hidden="true" style="position: absolute; left: 96px; top: 150px; width: 900px; color: rgba(255,255,255,0.13)">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 44px; letter-spacing: -0.02em">Aapki branding &amp; marketing ke</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 176px; line-height: 1.2">विघ्नहर्ता</p>
+<p style="margin: 18px 0 0; width: 640px; font-size: 23px; line-height: 1.5">We turn the obstacles in your business into रिद्धि-सिद्धि: more leads, more sales and a brand people remember.</p>
+<div style="margin-top: 26px; display: flex; gap: 10px"><span style="padding: 9px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.13); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px">Brand positioning</span><span style="padding: 9px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.13); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px">Creative production</span><span style="padding: 9px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.13); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px">Lead nurturing</span><span style="padding: 9px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.13); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px">Sales funnel optimisation</span></div>
+</div>
+<div aria-hidden="true" class="ek-beam" style="position: absolute; top: 0; left: 0; width: 1440px; height: 900px; background: #2EB45D; clip-path: polygon(var(--ax) calc(var(--ay) - 16px), 0px calc((var(--ay) - 110px) * {{bk}} + {{bt}}), 0px calc((var(--ay) + 60px) * {{bk}} + {{bb}}), var(--ax) calc(var(--ay) + 16px))"></div>
+<div class="ek-beam" style="position: absolute; top: 0; left: 0; width: 1440px; height: 900px; clip-path: polygon(var(--ax) calc(var(--ay) - 16px), 0px calc((var(--ay) - 110px) * {{bk}} + {{bt}}), 0px calc((var(--ay) + 60px) * {{bk}} + {{bb}}), var(--ax) calc(var(--ay) + 16px))">
+<div style="position: absolute; left: 96px; top: 150px; width: 900px; color: #0D1410">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 44px; letter-spacing: -0.02em">Aapki branding &amp; marketing ke</p>
+<h1 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 176px; line-height: 1.2">विघ्नहर्ता</h1>
+<p style="margin: 18px 0 0; width: 640px; font-size: 23px; line-height: 1.5">We turn the obstacles in your business into रिद्धि-सिद्धि: more leads, more sales and a brand people remember.</p>
+<div style="margin-top: 26px; display: flex; gap: 10px"><span style="padding: 9px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px">Brand positioning</span><span style="padding: 9px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px">Creative production</span><span style="padding: 9px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px">Lead nurturing</span><span style="padding: 9px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px">Sales funnel optimisation</span></div>
+</div>
+</div>
+<div style="position: absolute; left: 96px; top: 700px; display: flex; gap: 12px; opacity: {{heroCtaOp}}; transform: translateY({{heroCtaTy}})">
+<a href="#j-contact" style="height: 56px; box-sizing: border-box; padding: 0 26px; display: inline-flex; align-items: center; background: #0D1410; color: #FFFFFF; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none">Become a big brand</a>
+<a href="https://wa.me/919099417987" style="height: 56px; box-sizing: border-box; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid #0D1410; color: #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg>WhatsApp 90994 17987</a>
+</div>
+
+<div aria-hidden="true" style="position: absolute; left: 852px; top: 340px; width: 588px; height: 560px">
+<img src="../../assets/elephant-head.png" alt="" style="position: absolute; left: 0; top: 0; width: 588px; height: 560px; display: block">
+<div class="ek-rig" style="position: absolute; left: 0; top: 0; width: 588px; height: 560px">
+<img src="../../assets/elephant-trunk-torch.png" alt="" style="position: absolute; left: 0; top: 0; width: 588px; height: 560px; display: block">
+<span style="position: absolute; left: 40px; top: 150px; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: #FFF6C9; box-shadow: 0 0 40px 18px rgba(255,246,201,0.55); opacity: {{glowOp}}"></span>
+</div>
+</div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 30px; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.14em; color: #0D1410; opacity: {{hintOp}}">SCROLL TO EXPLORE</div>
+</div>
+</section>
+
+<section id="j-obstacles" style="position: relative; height: 3600px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #F4F6F1">
+<div style="position: absolute; left: 156px; right: 156px; top: 116px; display: flex; justify-content: space-between; align-items: flex-end">
+<h2 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 54px; line-height: 1.02; letter-spacing: -0.045em">Every business has obstacles.<br>Removing them is our name.</h2>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; color: #56605A">OBSTACLES REMOVED</span>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.04em">{{removed}}<span style="color: #9AA39E">/6</span></span>
+</div>
+</div>
+<div style="position: absolute; left: 156px; top: 300px; width: 1128px; display: grid; grid-template-columns: repeat(3, 360px); gap: 24px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
+<div style="height: 220px; perspective: 1200px">
+<div style="position: relative; width: 360px; height: 220px; transform-style: preserve-3d; transform: rotateY({{c.angle}})">
+<div style="position: absolute; top: 0; left: 0; width: 360px; height: 220px; box-sizing: border-box; padding: 26px; border-radius: 22px; background: #DDE2DA; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#56605A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="1"></rect><path d="M7 8l4 8M13 8l4 8M5 16v4M19 16v4"></path></svg>
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.2; letter-spacing: -0.03em; color: #3B4640">{{c.obstacle}}</span>
+</div>
+<div style="position: absolute; top: 0; left: 0; width: 360px; height: 220px; box-sizing: border-box; padding: 26px; border-radius: 22px; background: #2EB45D; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0D1410" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l3 3 5-6"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.03em">{{c.fix}}</span><span style="font-size: 16px; line-height: 1.45; color: #0E3A22">{{c.fixText}}</span></span>
+</div>
+</div>
+</div>
+</sc-for>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 156px; right: 156px; top: 820px; border-top: 2px dashed #C5CCC7"></div>
+<div aria-hidden="true" style="position: absolute; left: 156px; top: 820px; height: 2px; width: {{trackW}}; background: #2EB45D"></div>
+<div aria-hidden="true" style="position: absolute; left: {{walkerX}}; top: 790px; width: 60px; height: 60px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 8px 20px -8px rgba(13,20,16,0.4); display: flex; align-items: center; justify-content: center"><img src="../../assets/e-mark.png" alt="" style="width: 38px; height: auto"></div>
+</div>
+</section>
+
+<section id="j-work" style="position: relative; height: 6000px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: {{workBg}}; color: #FFFFFF">
+<div style="position: absolute; left: 0; right: 0; top: 118px; text-align: center; opacity: {{workIntroOp}}; transform: translateY({{workIntroTy}})">
+<h2 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 84px; line-height: 1.25">हमारा काम ही हमारी पहचान है।</h2>
+<p style="margin: 6px 0 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #BFE3CC">Our work is our identity. 45+ brands, and a few of their stories.</p>
+</div>
+<sc-for list="{{works}}" as="w" hint-placeholder-count="6">
+<div style="position: absolute; left: 500px; top: 208px; width: 440px; height: 483px; border-radius: 26px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 80px -30px rgba(0,0,0,0.7); transform: {{w.tf}}; opacity: {{w.op}}; z-index: {{w.z}}">
+<img src="{{w.img}}" alt="{{w.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">
+</div>
+</sc-for>
+<sc-for list="{{cases}}" as="k" hint-placeholder-count="6">
+<div style="position: absolute; left: 700px; top: 210px; width: 620px; display: flex; flex-direction: column; gap: 18px; opacity: {{k.op}}; transform: translateY({{k.ty}})">
+<span style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: #2EB45D; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; color: #0D1410">{{k.sector}}</span>
+<h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 60px; line-height: 1; letter-spacing: -0.045em">{{k.name}}</h3>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #DCE7E0">{{k.desc}}</p>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; color: #9FC7AE">WHAT WE MADE</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{k.did}}" as="d" hint-placeholder-count="3">
+<span style="padding: 7px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4); font-size: 15px; font-weight: 500">{{d.label}}</span>
+</sc-for>
+</div>
+</div>
+<div style="margin-top: 6px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; align-items: baseline; gap: 14px">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; color: #9FC7AE">RESULT</span>
+<span style="font-size: 18px; color: #DCE7E0">[Add one number from this campaign]</span>
+</div>
+</div>
+</sc-for>
+<div aria-hidden="true" style="position: absolute; right: 40px; top: 360px; display: flex; flex-direction: column; gap: 10px; opacity: {{workDotsOp}}">
+<sc-for list="{{workDots}}" as="d" hint-placeholder-count="6">
+<span style="width: 10px; height: {{d.h}}; border-radius: 999px; background: {{d.bg}}"></span>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="j-reels" style="position: relative; height: 3400px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #0D1410; color: #FFFFFF">
+<div aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 1440px; height: 900px; display: flex; gap: 12px; opacity: {{rWallOp}}">
+<sc-for list="{{rCols}}" as="col" hint-placeholder-count="5">
+<div style="width: 278px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; transform: translateY({{col.ty}})">
+<sc-for list="{{col.imgs}}" as="im" hint-placeholder-count="3">
+<img src="{{im.src}}" alt="" style="width: 278px; height: 494px; object-fit: cover; display: block; border-radius: 18px">
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; top: 92px; text-align: center; opacity: {{rHeadOp}}; transform: translateY({{rHeadTy}})">
+<h2 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 64px; line-height: 1.05; letter-spacing: -0.045em">Reels that stop the scroll.</h2>
+<p style="margin: 10px 0 0; font-size: 19px; color: #BFD2C6">Scripted, shot and edited by our in-house team. Keep scrolling to watch them one by one.</p>
+</div>
+<div style="position: absolute; top: 0; left: 0; width: 1440px; height: 900px; perspective: 1400px">
+<sc-for list="{{rCards}}" as="rc" hint-placeholder-count="5">
+<a href="https://www.instagram.com/ekdanta.in/" aria-label="{{rc.aria}}" style="position: absolute; left: 575px; top: 262px; width: 290px; height: 516px; border-radius: 26px; overflow: hidden; background: #1E2622; box-shadow: {{rc.ring}}; transform: {{rc.tf}}; opacity: {{rc.op}}; z-index: {{rc.z}}; text-decoration: none">
+<img src="{{rc.img}}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block">
+<span style="position: absolute; top: 14px; left: 14px; padding: 5px 10px; border-radius: 999px; background: rgba(13,20,16,0.8); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; color: #FFFFFF">{{rc.tag}}</span>
+<span style="position: absolute; right: 14px; bottom: 14px; width: 40px; height: 40px; border-radius: 50%; background: rgba(13,20,16,0.8); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#FFFFFF"></path></svg></span>
+</a>
+</sc-for>
+</div>
+<span style="position: absolute; left: 96px; top: 812px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.03em; opacity: {{rCapOp}}">{{rCount}}<span style="color: #56605A"> / 05</span></span>
+<div style="position: absolute; left: 0; right: 0; top: 800px; height: 64px">
+<sc-for list="{{rCaps}}" as="cp" hint-placeholder-count="5">
+<div style="position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; opacity: {{cp.op}}; transform: translateY({{cp.ty}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">{{cp.brand}}</span>
+<span style="font-size: 17px; color: #BFD2C6">{{cp.title}}</span>
+</div>
+</sc-for>
+</div>
+<a href="https://www.instagram.com/ekdanta.in/" style="position: absolute; right: 96px; top: 816px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; color: #2EB45D; opacity: {{rCapOp}}">Watch on Instagram @ekdanta.in</a>
+</div>
+</section>
+
+<section id="j-brands" style="position: relative; height: 2400px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #F4F6F1">
+<div style="position: absolute; left: 96px; top: 112px; width: 760px; opacity: {{brHeadOp}}; transform: translateY({{brHeadTy}})">
+<h2 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.045em">45+ brands we empower</h2>
+<p style="margin: 12px 0 0; font-size: 19px; line-height: 1.5; color: #56605A">Sorted by industry. Keep scrolling and watch each one find its place.</p>
+</div>
+<a href="https://www.instagram.com/ekdanta.in/" style="position: absolute; right: 96px; top: 128px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; color: #0A5A30; opacity: {{brHeadOp}}">See their stories on Instagram @ekdanta.in</a>
+<sc-for list="{{shelves}}" as="sh" hint-placeholder-count="4">
+<div style="position: absolute; left: {{sh.x}}; top: 236px; width: 282px; opacity: {{sh.op}}">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px">{{sh.name}}</span><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.03em; color: #1E8E47">{{sh.count}}</span></div>
+<div style="margin-top: 8px; height: 4px; border-radius: 2px; background: #DCE3DA"><div style="height: 4px; border-radius: 2px; width: {{sh.fill}}; background: #2EB45D"></div></div>
+</div>
+</sc-for>
+<sc-for list="{{logoTiles}}" as="lt" hint-placeholder-count="12">
+<div role="img" aria-label="{{lt.name}}" style="position: absolute; left: 0; top: 0; width: 135px; height: 48px; border-radius: 10px; background-color: #FFFFFF; background-image: url({{lt.src}}); background-repeat: no-repeat; background-size: {{lt.bs}}; background-position: {{lt.bp}}; box-shadow: {{lt.sh}}; transform: {{lt.tf}}; opacity: {{lt.op}}; z-index: {{lt.z}}"></div>
+</sc-for>
+<div style="position: absolute; left: 96px; right: 96px; top: 784px; padding-top: 16px; border-top: 1px solid #DCE3DA; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; opacity: {{brStatsOp}}; transform: translateY({{brStatsTy}})">
+<div style="display: flex; align-items: baseline; gap: 12px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -0.04em">{{bsYears}}</span><span style="font-size: 15px; line-height: 1.3; color: #56605A">years in sales and marketing</span></div>
+<div style="display: flex; align-items: baseline; gap: 12px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -0.04em">{{bsOwners}}</span><span style="font-size: 15px; line-height: 1.3; color: #56605A">business owners guided</span></div>
+<div style="display: flex; align-items: baseline; gap: 12px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -0.04em">{{bsBrands}}</span><span style="font-size: 15px; line-height: 1.3; color: #56605A">brands empowered</span></div>
+<div style="display: flex; align-items: baseline; gap: 12px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -0.04em">2</span><span style="font-size: 15px; line-height: 1.3; color: #56605A">cities, Surat and Ahmedabad</span></div>
+</div>
+</div>
+</section>
+
+<section id="j-services" style="position: relative; height: 3600px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden">
+<div style="position: absolute; top: 0; left: 0; width: 5760px; height: 900px; display: flex; transform: translateX({{hTrack}})">
+<sc-for list="{{panels}}" as="pn" hint-placeholder-count="4">
+<div style="position: relative; width: 1440px; height: 900px; flex-shrink: 0; overflow: hidden; background: {{pn.bg}}; color: {{pn.fg}}">
+<span style="position: absolute; left: 96px; top: 130px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; opacity: 0.8">{{pn.num}}  /  OUR EXPERTISE</span>
+<span aria-hidden="true" style="position: absolute; left: 80px; top: 170px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 230px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 2px {{pn.stroke}}; white-space: nowrap; transform: translateX({{pn.wordX}})">{{pn.word}}</span>
+<h2 style="position: absolute; left: 96px; top: 430px; margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 60px; letter-spacing: -0.045em">{{pn.title}}</h2>
+<div style="position: absolute; left: 96px; top: 530px; width: 700px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px">
+<sc-for list="{{pn.items}}" as="it" hint-placeholder-count="6">
+<span style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid {{pn.rule}}; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 20px"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{pn.dot}}; flex-shrink: 0"></span>{{it.label}}</span>
+</sc-for>
+</div>
+<p style="position: absolute; left: 900px; top: 540px; width: 440px; margin: 0; font-size: 22px; line-height: 1.55; opacity: 0.9">{{pn.desc}}</p>
+</div>
+</sc-for>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 96px; right: 96px; bottom: 50px; height: 4px; border-radius: 2px; background: rgba(128,128,128,0.3)"><div style="height: 4px; border-radius: 2px; width: {{hProg}}; background: #F2A230"></div></div>
+</div>
+</section>
+
+<section id="j-about" style="position: relative; height: 2250px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #F4F6F1">
+<div style="position: absolute; left: 96px; top: 120px; width: 740px">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 38px; letter-spacing: -0.02em">Ekdanta ke</p>
+<h2 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 104px; line-height: 1.2; color: #1E8E47">कर्ता-धर्ता</h2>
+<p style="margin: 20px 0 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 27px; line-height: 1.42; letter-spacing: -0.02em">
+<sc-for list="{{words}}" as="wd" hint-placeholder-count="30"><span style="color: {{wd.c}}">{{wd.t}} </span></sc-for>
+</p>
+<p style="margin: 22px 0 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; color: #1E8E47; opacity: {{sigOp}}">Vaishali Hirpara and Dishant Bhagat, founders</p>
+</div>
+<div style="position: absolute; left: 900px; top: 120px; width: 444px; display: flex; gap: 20px">
+<div style="flex: 1; height: 300px; border-radius: 120px 120px 18px 18px; background: #DDE2DA; box-sizing: border-box; overflow: hidden; font-size: 15px; color: #56605A"><img src="../../assets/founder-vaishali-hirpara.jpg" alt="Vaishali Hirpara, founder of Ekdanta" style="width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block"></div>
+<div style="flex: 1; height: 300px; border-radius: 120px 120px 18px 18px; background: #DDE2DA; box-sizing: border-box; overflow: hidden; font-size: 15px; color: #56605A"><img src="../../assets/founder-dishant-bhagat.jpg" alt="Dishant Bhagat, founder of Ekdanta" style="width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block"></div>
+</div>
+<div style="position: absolute; left: 900px; top: 470px; width: 444px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; letter-spacing: -0.04em">{{stYears}}</span><span style="font-size: 16px; color: #56605A">years in sales, marketing and consulting</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; letter-spacing: -0.04em">{{stOwners}}</span><span style="font-size: 16px; color: #56605A">business owners guided</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; letter-spacing: -0.04em">{{stBrands}}</span><span style="font-size: 16px; color: #56605A">brands empowered</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; letter-spacing: -0.04em">2</span><span style="font-size: 16px; color: #56605A">cities: Surat and Ahmedabad</span></div>
+</div>
+</div>
+</section>
+
+<section id="j-contact" style="position: relative; height: 1800px">
+<div style="position: sticky; top: 0; height: 900px; overflow: hidden; background: #2EB45D">
+<div style="position: absolute; left: 96px; top: 150px; width: 760px">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; opacity: {{endL1Op}}">Now it's your turn to</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 120px; line-height: 0.95; letter-spacing: -0.055em; opacity: {{endL2Op}}; transform: translateY({{endL2Ty}})">become a</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 200px; line-height: 0.9; letter-spacing: -0.06em; color: #FFFFFF; transform-origin: left center; opacity: {{endBigOp}}; transform: rotate({{endBigRot}}) scale({{endBigSc}})">BIG<br>BRAND!</p>
+</div>
+<div style="position: absolute; left: 880px; top: 130px; width: 464px; box-sizing: border-box; padding: 32px; border-radius: 28px; background: #FFFFFF; box-shadow: 0 40px 80px -40px rgba(13,20,16,0.5); display: flex; flex-direction: column; gap: 18px; opacity: {{cardOp}}; transform: translateX({{cardTx}})">
+<img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 40px; width: auto; align-self: flex-start">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">ALL SERVICES</span><a href="tel:+919099417987" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">90994 17987</a><a href="tel:+919099417949" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">90994 17949</a></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">SALES</span><a href="tel:+916354433194" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">63544 33194</a></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">EMAIL</span><a href="mailto:info@ekdanta.in" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; text-decoration: none">info@ekdanta.in</a></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #56605A">VISIT</span><span style="font-size: 17px; line-height: 1.5">B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017</span></div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap">
+<a href="https://wa.me/919099417987" style="height: 48px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; gap: 8px; background: #0D1410; color: #FFFFFF; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none">WhatsApp us</a>
+<a href="https://share.google/EAOxrObclZeY4QkQR" style="height: 48px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; border: 1.5px solid #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none">Get directions</a>
+<a href="https://www.instagram.com/ekdanta.in/" style="height: 48px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; border: 1.5px solid #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none">Instagram</a>
+</div>
+</div>
+<footer style="position: absolute; left: 96px; right: 96px; bottom: 24px; padding-top: 12px; border-top: 1px solid rgba(13,20,16,0.2); display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #0E3A22; opacity: {{footOp}}">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px">
+<nav aria-label="Footer" style="display: flex; gap: 16px; font-family: 'Poppins', sans-serif; font-weight: 600"><a href="Final-Home.dc.html" style="text-decoration: none">Home</a> <a href="Services.dc.html" style="text-decoration: none">Services</a> <a href="Work.dc.html" style="text-decoration: none">Work</a> <a href="About.dc.html" style="text-decoration: none">About</a> <a href="Blog.dc.html" style="text-decoration: none">Blog</a> <a href="Contact.dc.html" style="text-decoration: none">Contact</a></nav>
+<nav aria-label="Legal" style="display: flex; gap: 16px; font-family: 'Poppins', sans-serif; font-weight: 600"><a href="Privacy.dc.html" style="text-decoration: none">Privacy Policy</a> <a href="Terms.dc.html" style="text-decoration: none">Terms of Service</a> <button type="button" onClick="{{ckOpen}}" style="padding: 0; border: 0; background: transparent; cursor: pointer; font-weight: 600; text-decoration: none">Cookie settings</button></nav>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 20px">
+<span>© 2026 Ekdanta Branding and Marketing, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC. Surat and Ahmedabad.</span>
+<span>Aapki branding &amp; marketing ke विघ्नहर्ता</span>
+</div>
+</footer>
+</div>
+</section>
+</div>
+
+<header style="position: absolute; top: 16px; left: 32px; right: 32px; height: 60px; box-sizing: border-box; padding: 0 10px 0 24px; border-radius: 999px; background: rgba(255,255,255,0.95); box-shadow: 0 10px 30px -18px rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: space-between; z-index: 50">
+<a href="#j-top" aria-label="Ekdanta home" style="display: flex; align-items: center"><img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 32px; width: auto; display: block"></a>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 6px; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 15px">
+<a href="#j-top" aria-current="page" style="padding: 9px 13px; border-radius: 999px; background: rgba(46,180,93,0.22); font-weight: 600; text-decoration: none">Home</a>
+<a href="Services.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Services</a>
+<a href="Work.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Work</a>
+<a href="About.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">About</a>
+<a href="Blog.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Blog</a>
+<a href="Contact.dc.html" style="padding: 9px 13px; border-radius: 999px; text-decoration: none">Contact</a>
+</nav>
+<a href="#j-contact" style="height: 42px; box-sizing: border-box; padding: 0 18px; display: inline-flex; align-items: center; background: #2EB45D; color: #0D1410; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; text-decoration: none">Become a big brand</a>
+</header>
+<div aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 3px; width: {{progW}}; background: #F2A230; z-index: 60"></div>
+<sc-if value="{{ckShow}}" hint-placeholder-val="{{ true }}">
+<div class="ck-card" role="region" aria-label="Cookie choices" style="position: absolute; left: 24px; right: 24px; bottom: 16px; z-index: 80; box-sizing: border-box; padding: 12px 12px 12px 22px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 24px 50px -24px rgba(13,20,16,0.55), 0 0 0 1px rgba(13,20,16,0.06); display: flex; align-items: center; gap: 18px">
+<p style="margin: 0; flex: 1; font-size: 14px; line-height: 1.4; color: #4A564F"><b style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #0D1410">Cookies, only with your OK.</b> We use necessary cookies to run this site. With your OK, we also use analytics and ad cookies to see what helps and to measure our ads. <a href="Privacy.dc.html" style="color: #1E8E47">Privacy Policy</a></p>
+<div style="display: flex; gap: 8px; flex-shrink: 0"><button type="button" class="press" onClick="{{ckAll}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #0A5A30; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Allow all</button><button type="button" class="press" onClick="{{ckNeeded}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: transparent; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Only necessary</button></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"scrub":{"editor":"range","default":0,"min":0,"max":23750,"step":50,"unit":"px","label":"Preview scroll position"},"replay":{"editor":"boolean","default":false,"label":"Replay the 10-second intro (toggle)"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    this.applyScrub();
+    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._base = performance.now();
+    if (!reduce && !((this.props.scrub || 0) > 0)) this.startIntro(); else this.setState({ t: 99 });
+  }
+  componentWillUnmount() { if (this._ir) cancelAnimationFrame(this._ir); if (this._raf) cancelAnimationFrame(this._raf); }
+  componentDidUpdate(prev) {
+    if ((prev.scrub || 0) !== (this.props.scrub || 0)) this.applyScrub();
+    if (!!prev.replay !== !!this.props.replay) { if (this._el) this._el.scrollTop = 0; this.setState({ y: 0 }); this.startIntro(); }
+  }
+  startIntro() {
+    if (this._ir) cancelAnimationFrame(this._ir);
+    const t0 = performance.now();
+    const step = () => {
+      const t = (performance.now() - t0) / 1000;
+      this.setState({ t: t, tb: (performance.now() - (this._base || t0)) / 1000 });
+      this._ir = t < 10.9 ? requestAnimationFrame(step) : null;
+    };
+    this._ir = requestAnimationFrame(step);
+  }
+  applyScrub() {
+    const v = this.props.scrub || 0;
+    if (this._el && v > 0) { this._el.scrollTop = v; this.setState({ y: v }); }
+  }
+  renderVals() {
+    const st = this.state || {};
+    const y = st.y || 0;
+    const rm = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const clamp = (v, a, b) => Math.max(a === undefined ? 0 : a, Math.min(b === undefined ? 1 : b, v));
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    const px = (v) => v.toFixed(1) + 'px';
+    const f3 = (v) => v.toFixed(3);
+    const mix = (c1, c2, t) => 'rgb(' + c1.map((v, i) => Math.round(lerp(v, c2[i], t))).join(',') + ')';
+
+    // 1. Hero (as hero sample 2): the elephant holds the torch and the spotlight comes from it.
+    //    The trunk and the beam tip move together forever (CSS keyframes ekRig / ekBeam).
+    //    The beam's spread opens over 10 seconds, or sooner as the visitor scrolls.
+    const it = typeof st.t === 'number' ? st.t : (rm ? 99 : 0);
+    const timeP = clamp(it / 10);
+    const scrollP = clamp(y / 600);
+    const prog = rm ? 1 : Math.max(timeP, scrollP);
+    const open = ease(prog);
+    const bk = (1 - open).toFixed(4), bt = (-2400 * open).toFixed(1) + 'px', bb = (3200 * open).toFixed(1) + 'px';
+    const doneIn = rm ? 1 : Math.max(clamp((it - 10) / 0.6), clamp((y - 560) / 100));
+
+    // 2. Obstacles, pinned from 2250
+    const s2 = y - 1600;
+    const obstacles = [
+      ['Nobody knows our brand', 'Branding and positioning', 'Identity, packaging and a clear place in your market.'],
+      ['Our posts get no reach', 'Social media and reels', 'Content calendars, reels and creatives that get seen.'],
+      ["Enquiries come, sales don't", 'Lead nurturing and CRM', 'Funnels and follow-ups that turn enquiries into orders.'],
+      ['Our website looks outdated', 'Website development', 'Fast, modern websites, built and maintained in-house.'],
+      ['Ads are burning money', 'Meta ads and performance', 'Campaigns tracked to leads and sales, not just clicks.'],
+      ['No time to shoot content', 'Films and shoots', 'Our crew shoots at your factory, store or site.']
+    ];
+    let removed = 0;
+    const cards = obstacles.map((o, k) => {
+      const t = ease(clamp((s2 - k * 420) / 300));
+      if (t > 0.5) removed++;
+      return { obstacle: o[0], fix: o[1], fixText: o[2], angle: (t * 180).toFixed(1) + 'deg' };
+    });
+    const walk = clamp(s2 / 2400);
+
+    // 3. Work, pinned from 5850
+    const s3 = y - 5200;
+    const aT = clamp((s3 + 600) / 1100), a = ease(aT);
+    const bT = clamp((s3 - 500) / 600), b = ease(bT);
+    const cf = clamp((s3 - 1100) / 700, 0, 5);
+    const inC = s3 >= 1100;
+    const W = [
+      { key: 'trilok', img: '../../assets/case-trilok-infratech.jpg', name: 'Trilok Infratech', sector: 'INFRASTRUCTURE AND PRECAST', bg: [14, 44, 84],
+        desc: 'A precast infrastructure manufacturer with 20+ years of expertise, serving 100+ clients across India and international markets.', did: ['Social media creatives', 'Site and factory reels', 'Hindi and English campaigns'] },
+      { key: 'yantra', img: '../../assets/case-yantra-design.jpg', name: 'Yantra Design', sector: 'INDUSTRIAL MACHINERY', bg: [74, 18, 18],
+        desc: "A CNC machine manufacturer delivering high-precision drilling solutions, with 250+ installations across India's engineering industries.", did: ['Product creatives', 'Machine showcase posts', 'Launch campaigns'] },
+      { key: 'heaven', img: '../../assets/case-heaven-solar.jpg', name: 'Heaven Solar', sector: 'RENEWABLE ENERGY', bg: [12, 62, 36],
+        desc: "A Gujarat solar energy company with 10,000+ installations, and an official Adani Solar channel partner.", did: ['Gujarati and English creatives', 'Offer campaigns', 'Festival posts'] },
+      { key: 'srk', img: '../../assets/case-srk-dairy.jpg', name: 'SRK Dairy Farm and Foods', sector: 'DAIRY AND FMCG', bg: [72, 50, 10],
+        desc: 'A dairy brand delivering farm-fresh premium ghee, with a strong distribution network.', did: ['Product photography', 'Recipe and festive creatives', 'Brand campaigns'] },
+      { key: 'herhe', img: '../../assets/case-her-and-he.jpg', name: 'Her & He Cosmetics', sector: 'SKINCARE', bg: [42, 40, 44],
+        desc: "A unisex skincare brand from Surat, with formulas made for everyday skin.", did: ['Product shoots', 'Model creatives', 'Launch posts'] },
+      { key: 'valley', img: '../../assets/case-valleyrides.jpg', name: 'ValleyRides', sector: 'ADVENTURE TOURISM', bg: [12, 58, 66],
+        desc: 'An adventure hospitality brand offering guided Himalayan treks, cozy stays and local cuisine in Sankri, Uttarakhand.', did: ['Travel creatives', 'Reels from the trail', 'Booking campaigns'] }
+    ];
+    const scatter = [
+      { x: -470, y: 60, s: 0.42, r: -8 }, { x: -170, y: 230, s: 0.38, r: 6 }, { x: 150, y: 40, s: 0.42, r: 7 },
+      { x: 430, y: 220, s: 0.38, r: -6 }, { x: 580, y: 40, s: 0.34, r: 5 }, { x: -580, y: 250, s: 0.34, r: -4 }
+    ];
+    const HERO = { x: -320, y: 0 };
+    const works = W.map((w, i) => {
+      const P = scatter[i];
+      let x, yy, sc, r, op, z;
+      if (!inC) {
+        if (bT <= 0) { x = lerp(P.x * 1.6, P.x, a); yy = lerp(P.y + 320, P.y, a); sc = lerp(P.s * 0.4, P.s, a); r = P.r; op = clamp(aT * 1.6 - 0.1); z = 5 + i; }
+        else if (i === 0) { x = lerp(P.x, HERO.x, b); yy = lerp(P.y, HERO.y, b); sc = lerp(P.s, 1, b); r = lerp(P.r, -3, b); op = 1; z = 20; }
+        else { const k = 1 + b * 1.5; x = P.x * k; yy = P.y * k; sc = P.s * (1 + b * 1.8); r = P.r * (1 + b); op = clamp(1 - b * 1.25); z = 25; }
+      } else {
+        const d = cf - i;
+        x = HERO.x - d * 720; yy = HERO.y + Math.abs(d) * 40; r = -3 - d * 10;
+        sc = 1 - Math.min(Math.abs(d), 1) * 0.12; op = clamp(1 - Math.abs(d) * 1.5); z = 20 - Math.round(Math.abs(d) * 4);
+      }
+      return { img: w.img, alt: 'Social media work for ' + w.name, tf: 'translate(' + px(x) + ', ' + px(yy) + ') rotate(' + r.toFixed(2) + 'deg) scale(' + sc.toFixed(3) + ')', op: f3(op), z: z };
+    });
+    const cases = W.map((w, i) => {
+      let op, ty;
+      if (!inC) { op = i === 0 ? clamp((s3 - 850) / 250) : 0; ty = (1 - op) * 40; }
+      else { op = clamp(1 - Math.abs(cf - i) * 2.4); ty = (cf - i) * -60; }
+      return { name: w.name, sector: w.sector, desc: w.desc, did: w.did.map((d) => ({ label: d })), op: f3(op), ty: px(ty) };
+    });
+    const base = [10, 90, 48];
+    let workBg;
+    if (!inC) workBg = mix(base, W[0].bg, b);
+    else { const i0 = Math.floor(cf), i1 = Math.min(5, i0 + 1); workBg = mix(W[i0].bg, W[i1].bg, cf - i0); }
+    const activeW = inC ? Math.round(cf) : -1;
+
+    // 3b. Reels, pinned from 11850
+    const sr = y - 11200;
+    const rA = clamp((sr + 700) / 900);
+    const rRaw = clamp((sr - 300) / 450, 0, 4);
+    const rI = Math.min(3, Math.floor(rRaw));
+    const rf = rRaw >= 4 ? 4 : rI + ease(clamp((rRaw - rI - 0.35) / 0.65));
+    const REELS = [
+      { img: '../../assets/reel-1.jpg', title: 'First impression matters', brand: 'Cruisemax Sports', tag: 'ATHLEISURE' },
+      { img: '../../assets/reel-2.jpg', title: 'Vitamin C Serum 20%', brand: 'Her & He Cosmetics', tag: 'SKINCARE' },
+      { img: '../../assets/reel-3.jpg', title: 'Looking for fresh faces and creative minds', brand: 'The Zula House', tag: 'CASTING CALL' },
+      { img: '../../assets/reel-4.jpg', title: 'Advanced UV protection', brand: 'Cruisemax Sports', tag: 'PRODUCT FEATURE' },
+      { img: '../../assets/reel-5.jpg', title: 'Looking for influencers and UGC creators', brand: 'Creator casting call', tag: 'UGC AND INFLUENCERS' }
+    ];
+    const rCards = REELS.map((r, i) => {
+      const ti = ease(clamp((sr + 700 - i * 90) / 800));
+      const d = i - rf;
+      const ad = Math.abs(d);
+      const dx = d * 300;
+      const ry = -clamp(d, -1, 1) * 24;
+      const sc = 1 - Math.min(ad, 2) * 0.16;
+      const ty = (1 - ti) * 520 + Math.min(ad, 2) * 14;
+      const op = clamp(1 - Math.max(0, ad - 1.2)) * clamp(ti * 1.4);
+      return {
+        img: r.img, tag: r.tag, aria: 'Watch ' + r.title + ' by ' + r.brand + ' on Instagram',
+        tf: 'translate(' + px(dx) + ', ' + px(ty) + ') rotateY(' + ry.toFixed(1) + 'deg) scale(' + sc.toFixed(3) + ')',
+        op: f3(op), z: 20 - Math.round(ad * 4),
+        ring: ad < 0.5 ? '0 0 0 4px #2EB45D, 0 40px 80px -30px rgba(0,0,0,0.8)' : '0 30px 60px -30px rgba(0,0,0,0.8)'
+      };
+    });
+    const rCaps = REELS.map((r, i) => ({ brand: r.brand, title: r.title, op: f3(clamp(1 - Math.abs(rf - i) * 2.5) * clamp((rA - 0.6) / 0.4)), ty: px((rf - i) * -16) }));
+    const rColSets = [['first', 'serum', 'zula'], ['uv', 'cast', 'first'], ['serum', 'zula', 'uv'], ['cast', 'first', 'serum'], ['zula', 'uv', 'cast']];
+    const RIMG = { first: REELS[0].img, serum: REELS[1].img, zula: REELS[2].img, uv: REELS[3].img, cast: REELS[4].img };
+    const rCols = rColSets.map((set, k) => ({ ty: px(-330 + (k % 2 ? 1 : -1) * clamp(sr, -900, 2500) * 0.12), imgs: set.map((n) => ({ src: RIMG[n] })) }));
+
+    // 4. Brands sort themselves into industry shelves, pinned from 15250
+    const sb = y - 14600;
+    const LOGO_A = ["Trilok Infratech", "Trilok Precast", "Global Silk Mills", "Yantra Design", "Amplus", "Shree Ambica Automotive", "Aditya Laces", "Heaven Solar", "Sagar Enterprise", "The Zula House", "Cruisemax Sports", "Syasi Designers", "M.M. Fashion", "Fab De Print", "Belvae", "Qbits", "Euro", "Jalpooree", "Raj Wafers", "Jenish Spices", "Maharana", "Vidhi Ghee", "Gaukrish Ghee", "SRK Dairy"];
+    const LOGO_B = ["Suzuki dealership", "Samsung authorised distributor", "Dharmaraj Suzuki Citylight", "Vijay Mobile", "09 Mobile Gallery", "Her & He Cosmetics", "Karvi Realtors", "Nainvish", "Zorko", "Chapter.1", "ValleyRides", "Slimiphy", "Zeronine Retail ERP", "Zeronine Tax Consultancy", "MoneyMatters AM", "Jiya Financial Services", "Karma Realtors", "Signs360", "GenZ Lifestyle", "Ruparel"];
+    const CATS = [['Manufacturing', 'A', 0, 16], ['Food and beverage', 'A', 16, 8], ['Retail', 'B', 0, 8], ['Services', 'B', 8, 12]];
+    let bseed = 21;
+    const brnd = () => { bseed = (bseed * 16807) % 2147483647; return (bseed - 1) / 2147483646; };
+    const order = []; for (let i = 0; i < 44; i++) order.push(i);
+    for (let i = 43; i > 0; i--) { const j = Math.floor(brnd() * (i + 1)); const t = order[i]; order[i] = order[j]; order[j] = t; }
+    const rank = []; order.forEach((v, i) => { rank[v] = i; });
+    const logoTiles = [];
+    const landed = [0, 0, 0, 0];
+    let popped = 0, gi = 0;
+    CATS.forEach((cat, c) => {
+      for (let j = 0; j < cat[3]; j++) {
+        const k = cat[2] + j;
+        const isA = cat[1] === 'A';
+        const cx = 200 + brnd() * 905, cy = 300 + brnd() * 400, cr = (brnd() - 0.5) * 56;
+        const sx = 96 + c * 322 + (j % 2) * 147, sy = 300 + Math.floor(j / 2) * 58;
+        const pop = easeOut(clamp((sb + 500 - rank[gi] * 12) / 200));
+        const fly = ease(clamp((sb - 300 - (c * 70 + j * 28)) / 450));
+        if (pop > 0.5) popped++;
+        if (fly > 0.5) landed[c]++;
+        let tf, op;
+        if (rm) { tf = 'translate(' + px(sx) + ', ' + px(sy) + ')'; op = clamp((sb + 300) / 400); }
+        else {
+          const x = lerp(cx, sx, fly);
+          const yy = lerp(cy + Math.sin((sb + gi * 50) / 120) * 6 * (1 - fly), sy, fly) - Math.sin(Math.PI * fly) * 80;
+          tf = 'translate(' + px(x) + ', ' + px(yy) + ') rotate(' + lerp(cr, 0, fly).toFixed(1) + 'deg) scale(' + ((0.4 + 0.5 * pop) + 0.1 * fly).toFixed(3) + ')';
+          op = pop;
+        }
+        logoTiles.push({
+          name: isA ? LOGO_A[k] : LOGO_B[k],
+          src: isA ? '../../assets/client-logos-strip-a.jpg' : '../../assets/client-logos-strip-b.jpg',
+          bs: isA ? '3240px 48px' : '2700px 48px', bp: (-k * 135) + 'px 0px',
+          tf: tf, op: f3(op), z: fly > 0.02 && fly < 0.98 ? 30 : 10,
+          sh: fly > 0.02 && fly < 0.98 ? '0 18px 30px -14px rgba(13,20,16,0.45)' : '0 1px 0 rgba(13,20,16,0.06), 0 6px 14px -10px rgba(13,20,16,0.35)'
+        });
+        gi++;
+      }
+    });
+    const shelfOp = rm ? 1 : clamp((sb - 250) / 250);
+    const shelves = CATS.map((cat, c) => ({ name: cat[0], x: px(96 + c * 322), count: String(rm ? cat[3] : landed[c]), fill: ((rm ? 1 : landed[c] / cat[3]) * 100).toFixed(1) + '%', op: f3(shelfOp) }));
+    const brHead = clamp((sb + 700) / 500);
+    const bsIn = rm ? 1 : clamp((sb - 900) / 200);
+    const bsC = rm ? 1 : easeOut(clamp((sb - 950) / 450));
+
+    // 5. Services horizontal, pinned from 12750
+    const s5 = y - 17000;
+    const h = clamp(s5 / 2700) * 3;
+    const P5 = [
+      { word: 'BRANDING', title: 'Branding', bg: '#2EB45D', fg: '#0D1410', stroke: 'rgba(13,20,16,0.35)', dot: '#0D1410', rule: 'rgba(13,20,16,0.2)',
+        items: ['Brand strategy', 'Brand identity', 'Visual identity', 'Brand guidelines', 'Packaging design', 'Brand positioning'],
+        desc: 'We create distinctive brand identities that build recognition, trust and long-term value.' },
+      { word: 'DIGITAL', title: 'Digital', bg: '#0D1410', fg: '#FFFFFF', stroke: 'rgba(46,180,93,0.55)', dot: '#2EB45D', rule: 'rgba(255,255,255,0.15)',
+        items: ['Social media management', 'Performance marketing', 'Meta ads', 'Lead generation', 'SEO', 'Website development'],
+        desc: 'Data-driven digital strategies designed to attract the right audience, generate quality leads and accelerate growth.' },
+      { word: 'GROWTH', title: 'Growth', bg: '#F4F6F1', fg: '#0D1410', stroke: 'rgba(30,142,71,0.4)', dot: '#2EB45D', rule: 'rgba(13,20,16,0.12)',
+        items: ['Lead funnel strategy', 'Sales funnel design', 'Lead nurturing', 'Sales consulting', 'CRM and app development', 'Conversion optimisation'],
+        desc: 'We build systems that turn enquiries into qualified leads, and leads into long-term customers.' },
+      { word: 'FILMS', title: 'Films', bg: '#0A5A30', fg: '#FFFFFF', stroke: 'rgba(255,255,255,0.35)', dot: '#F2A230', rule: 'rgba(255,255,255,0.18)',
+        items: ['Brand and corporate films', 'Product photography', 'Product videos', 'Motion graphics', 'UGC content', 'Influencer and model shoots'],
+        desc: 'Compelling visual content that captures attention, tells your story and strengthens your brand.' }
+    ];
+    const panels = P5.map((p, i) => Object.assign({}, p, {
+      num: '0' + (i + 1), items: p.items.map((l) => ({ label: l })), wordX: px((h - i) * -260)
+    }));
+
+    // 6. Founders, pinned from 16350
+    const s6 = y - 20600;
+    const pf = clamp((s6 + 300) / 1500);
+    const story = "We met as co-professionals. Across 10+ years in sales, marketing and consulting, we've guided 10,000+ business owners, and saw that great businesses weren't losing because of their potential. They were losing because the digital world never saw their true value. That realisation became Ekdanta.";
+    const tokens = story.split(' ');
+    const lit = Math.floor(pf * tokens.length * 1.05);
+    const words = tokens.map((t, i) => ({ t: t, c: i < lit ? '#0D1410' : '#C5CCC7' }));
+    const cu = easeOut(clamp((pf - 0.1) / 0.8));
+
+    // 7. Finale, pinned from 18600
+    const s7 = y - 22850;
+    const pe = clamp((s7 + 600) / 1500);
+    const q = (x0) => clamp((pe - x0) / 0.18);
+
+    return {
+      scrollRef: (el) => { this._el = el; },
+      ckShow: !(this.state || {}).ck, ckAll: () => this.setState({ ck: 'all' }), ckNeeded: () => this.setState({ ck: 'needed' }), ckOpen: () => this.setState({ ck: null }),
+      onScroll: (ev) => {
+        const t = ev && (ev.currentTarget || ev.target);
+        if (!t) return;
+        this._y = t.scrollTop;
+        if (!this._raf) this._raf = requestAnimationFrame(() => { this._raf = null; this.setState({ y: this._y }); });
+      },
+      progW: (clamp(y / 23750) * 100).toFixed(2) + '%',
+      bk, bt, bb, glowOp: f3(0.55 + 0.45 * prog), hintOp: f3(doneIn * (1 - clamp((y - 650) / 150))),
+      heroCtaOp: f3(clamp((prog - 0.8) / 0.12)), heroCtaTy: px((1 - clamp((prog - 0.8) / 0.12)) * 30),
+      cards, removed: String(removed), walkerX: px(lerp(156, 1224, walk)), trackW: px(lerp(0, 1128, walk)),
+      works, cases, workBg,
+      rCards, rCaps, rCols, rCount: '0' + (Math.round(rf) + 1), rCapOp: f3(clamp((rA - 0.6) / 0.4)),
+      rHeadOp: f3(clamp(rA * 1.5)), rHeadTy: px((1 - ease(rA)) * 40), rWallOp: f3(lerp(0.14, 0.08, clamp(rf / 4))),
+      workIntroOp: f3(clamp(aT * 2 - 0.3) * (1 - clamp(bT * 2))), workIntroTy: px((1 - a) * 40),
+      workDotsOp: s3 > 1000 ? '1' : '0',
+      workDots: W.map((w, i) => ({ h: i === activeW ? '34px' : '10px', bg: i === activeW ? '#2EB45D' : 'rgba(255,255,255,0.3)' })),
+      brStatsOp: f3(bsIn), brStatsTy: px(rm ? 0 : (1 - easeOut(bsIn)) * 24), bsYears: Math.round(10 * bsC) + '+', bsOwners: Math.round(10000 * bsC).toLocaleString('en-IN') + '+', bsBrands: Math.round(45 * bsC) + '+',
+      logoTiles, shelves, brTotal: String(rm ? 44 : popped), brHeadOp: f3(brHead), brHeadTy: px(rm ? 0 : (1 - easeOut(brHead)) * 30),
+      hTrack: px(-h * 1440), hProg: (h / 3 * 100).toFixed(2) + '%', panels,
+      words, sigOp: f3(clamp((pf - 0.85) / 0.15)),
+      stYears: Math.round(10 * cu) + '+', stOwners: Math.round(10000 * cu).toLocaleString('en-IN') + '+', stBrands: Math.round(45 * cu) + '+',
+      endL1Op: f3(q(0)), endL2Op: f3(q(0.12)), endL2Ty: px((1 - q(0.12)) * 40),
+      endBigOp: f3(q(0.24)), endBigRot: lerp(-8, -3, q(0.24)).toFixed(2) + 'deg', endBigSc: lerp(0.6, 1, ease(q(0.24))).toFixed(3),
+      cardOp: f3(q(0.45)), cardTx: px((1 - q(0.45)) * 80), footOp: f3(q(0.7))
+    };
+  }
+}
+</script>
+</body>
+</html>

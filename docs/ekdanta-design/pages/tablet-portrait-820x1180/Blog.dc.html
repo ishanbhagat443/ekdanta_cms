@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ekdanta — Blog</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&amp;family=Hind:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+.ek-skip{position:absolute;left:24px;top:-90px;z-index:200;padding:12px 20px;border-radius:999px;background:#0D1410;color:#FFFFFF;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:top 150ms ease-out}.ek-skip:focus{top:16px}
+body{margin:0;font-family:'Hind',system-ui,sans-serif;background:#FFFFFF;color:#0D1410;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #F2A230;outline-offset:3px}
+.ekb::-webkit-scrollbar{display:none}
+.press{transition:transform 100ms ease-out}
+.press:active{transform:scale(0.97)}
+.ek-rise{animation:ekRise 900ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekRise{from{transform:translateY(105%)}to{transform:none}}
+.ek-fade{animation:ekFade 800ms cubic-bezier(.2,.8,.2,1) both}
+@keyframes ekFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.mm-item{transition:opacity 320ms ease-out,transform 420ms cubic-bezier(.2,.8,.2,1)}
+.mm-panel{transition:opacity 260ms ease-out,transform 380ms cubic-bezier(.2,.8,.2,1)}
+.mm-bar{transition:transform 260ms cubic-bezier(.2,.8,.2,1),opacity 200ms ease-out}
+.ck-card{animation:ckIn 600ms cubic-bezier(.2,.8,.2,1) 1.2s both}
+@keyframes ckIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.ek-rise,.ek-fade,.ck-card{animation:none}.mm-item,.mm-panel,.mm-bar,.press{transition:none}}
+
+.bl-card{animation:blCard 9s cubic-bezier(.6,0,.2,1) infinite both}
+@keyframes blCard{0%,28%{transform:translate(0,0) rotate(0deg) scale(1);opacity:1;z-index:3}33%{transform:translate(-170px,30px) rotate(-12deg) scale(1);opacity:0;z-index:3}33.5%{transform:translate(44px,-44px) rotate(5deg) scale(.88);opacity:0;z-index:1}38%,61%{transform:translate(44px,-44px) rotate(5deg) scale(.88);opacity:.7;z-index:1}66%,94%{transform:translate(22px,-22px) rotate(2.5deg) scale(.94);opacity:.9;z-index:2}100%{transform:translate(0,0) rotate(0deg) scale(1);opacity:1;z-index:3}}
+.bl-tick{animation:blTick 36s linear infinite}
+@keyframes blTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.bl-post{transition:transform 600ms cubic-bezier(.2,.8,.2,1),opacity 400ms ease-out}
+.bl-chip{transition:background-color 200ms ease-out,color 200ms ease-out}
+.bl-row{overflow-x:auto;scrollbar-width:none}.bl-row::-webkit-scrollbar{display:none}
+.bl-clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bl-clamp3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media (prefers-reduced-motion: reduce){.bl-card,.bl-tick{animation:none!important}.bl-card{opacity:1}.bl-post,.bl-chip{transition:none}}
+</style>
+</helmet>
+<div style="width: 820px; height: 1180px; position: relative; overflow: hidden; background: #FFFFFF; font-family: 'Hind', system-ui, sans-serif; color: #0D1410">
+<a class="ek-skip" href="#main">Skip to main content</a>
+
+<div class="ekb" ref="{{scrollRef}}" id="main" tabindex="-1" onScroll="{{onScroll}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+
+<section id="b-top" style="position: relative; height: 1300px">
+<div style="position: sticky; top: 0; height: 1180px; overflow: hidden; background: #FFFFFF">
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(13,20,16,0.045) 1px, transparent 1px); background-size: 100% 34px; background-position: 0 14px"></div>
+<div style="position: absolute; left: 48px; top: 150px; width: 724px; opacity: {{heroTextOp}}; transform: translateY({{heroTextTy}})">
+<div class="ek-fade" style="display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 3px solid #0D1410"><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.14em">THE EKDANTA NOTEBOOK</span><span style="margin-left: auto; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #56605A">Surat · Ahmedabad</span></div>
+<h1 style="margin: 14px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 112px; line-height: 0.98; letter-spacing: -0.05em">
+<span style="display: block; overflow: hidden; padding-bottom: 6px"><span class="ek-rise" style="display: block; animation-delay: 150ms">Seekho.</span></span>
+<span style="display: block; overflow: hidden; padding-bottom: 6px"><span class="ek-rise" style="display: block; color: #1E8E47; animation-delay: 300ms">Phir badho.</span></span>
+</h1>
+<p class="ek-fade" style="margin: 10px 0 0; font-size: 20px; line-height: 1.5; color: #3B4640; animation-delay: 550ms">Practical notes on branding, social media, ads, websites and sales, from the team that does this work every day.</p>
+<div class="ek-fade" style="margin-top: 18px; height: 62px; box-sizing: border-box; padding: 0 6px 0 18px; border-radius: 999px; background: #F4F6F1; box-shadow: inset 0 0 0 1.5px #DCE3DA; display: flex; align-items: center; gap: 10px; animation-delay: 750ms">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#56605A" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+<input type="search" aria-label="Search articles" placeholder="Search articles, e.g. reels" value="{{q}}" onChange="{{setQ}}" style="flex: 1; min-width: 0; height: 40px; border: 0; background: none; outline: none; font-size: 18px; color: #0D1410">
+<a class="press" href="#b-posts" style="height: 50px; box-sizing: border-box; padding: 0 16px; display: inline-flex; align-items: center; background: #0D1410; color: #FFFFFF; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; text-decoration: none">Search</a>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 235px; top: 630px; width: 380px; height: 470px; transform: translateY({{stackTy}}) rotate({{stackRot}}) scale(0.92); transform-origin: 0 0; opacity: {{stackOp}}"><div class="bl-card" style="position: absolute; left: 0; top: 0; width: 380px; height: 470px; border-radius: 26px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 80px -36px rgba(13,20,16,0.55), inset 0 0 0 1px rgba(13,20,16,0.06); animation-delay: 0s"><div style="height: 260px; background: #F4F6F1 url(../../assets/case-heaven-solar.jpg) center top / cover no-repeat"></div><div style="padding: 22px 24px; display: flex; flex-direction: column; gap: 10px"><span style="align-self: flex-start; padding: 5px 10px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #0A5A30">SOCIAL MEDIA</span><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 23px; line-height: 1.2; letter-spacing: -0.03em">Hindi, Gujarati or English? Choosing a language for your posts</span><span style="font-size: 14px; color: #56605A">By the Ekdanta team</span></div></div><div class="bl-card" style="position: absolute; left: 0; top: 0; width: 380px; height: 470px; border-radius: 26px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 80px -36px rgba(13,20,16,0.55), inset 0 0 0 1px rgba(13,20,16,0.06); animation-delay: -6s"><div style="height: 260px; background: #F4F6F1 url(../../assets/case-srk-dairy.jpg) center top / cover no-repeat"></div><div style="padding: 22px 24px; display: flex; flex-direction: column; gap: 10px"><span style="align-self: flex-start; padding: 5px 10px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #0A5A30">BRANDING</span><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 23px; line-height: 1.2; letter-spacing: -0.03em">Packaging that sells on a crowded shelf</span><span style="font-size: 14px; color: #56605A">By the Ekdanta team</span></div></div><div class="bl-card" style="position: absolute; left: 0; top: 0; width: 380px; height: 470px; border-radius: 26px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 80px -36px rgba(13,20,16,0.55), inset 0 0 0 1px rgba(13,20,16,0.06); animation-delay: -3s"><div style="height: 260px; background: #F4F6F1 url(../../assets/case-trilok-infratech.jpg) center top / cover no-repeat"></div><div style="padding: 22px 24px; display: flex; flex-direction: column; gap: 10px"><span style="align-self: flex-start; padding: 5px 10px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #0A5A30">SOCIAL MEDIA</span><span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 23px; line-height: 1.2; letter-spacing: -0.03em">Why your factory needs reels, not just brochures</span><span style="font-size: 14px; color: #56605A">By the Ekdanta team</span></div></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 1100px; height: 64px; background: #0D1410; color: #FFFFFF; overflow: hidden; display: flex; align-items: center">
+<div class="bl-tick" style="display: flex; white-space: nowrap; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 21px; width: max-content; padding-left: 18px"><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Social media<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Meta ads<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Branding<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Packaging<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Websites<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Product shoots<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Reels<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">CRM<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Sales<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Festival marketing<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Lead generation<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">SEO<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Social media<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Meta ads<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Branding<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Packaging<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Websites<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Product shoots<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Reels<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">CRM<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Sales<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Festival marketing<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">Lead generation<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span><span style="display: inline-flex; align-items: center; gap: 18px; padding-right: 18px">SEO<span style="width: 7px; height: 7px; border-radius: 999px; background: #2EB45D"></span></span></div>
+</div>
+</div>
+</section>
+
+<section id="b-feat" style="position: relative; height: 1500px">
+<div style="position: sticky; top: 0; height: 1180px; overflow: hidden; background: #F4F6F1">
+<div style="position: absolute; left: 48px; top: 140px; width: 724px; opacity: {{ftHeadOp}}; transform: translateY({{ftHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #1E8E47">FEATURED ARTICLE</span>
+<h2 style="margin: 6px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 54px; line-height: 1.04; letter-spacing: -0.045em">Start with this one.</h2>
+</div>
+<div style="position: absolute; left: 48px; top: 250px; width: 724px; border-radius: 30px; overflow: hidden; background: #0D1410; color: #FFFFFF; box-shadow: 0 40px 80px -40px rgba(13,20,16,0.7); clip-path: inset(0 {{ftClip}} 0 {{ftClip}} round 30px)">
+<div style="position: relative; height: 400px; overflow: hidden; background: #FFFFFF"><img src="../../assets/case-heaven-solar.jpg" alt="Gujarati and English posts made by Ekdanta for Heaven Solar" style="width: 100%; height: 520px; object-fit: cover; object-position: top; display: block; transform: translateY({{ftImgTy}}) scale({{ftImgSc}}); transform-origin: 50% 0"></div>
+<div style="padding: 34px; display: flex; flex-direction: column; gap: 16px">
+<span style="align-self: flex-start; padding: 5px 10px; border-radius: 999px; background: #2EB45D; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; color: #0D1410; opacity: {{ft0}}">SOCIAL MEDIA</span>
+<h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 38px; line-height: 1.12; letter-spacing: -0.04em; opacity: {{ft1}}; transform: translateY({{ft1y}})">Hindi, Gujarati or English? Choosing a language for your posts.</h3>
+<p style="margin: 0; font-size: 19px; line-height: 1.5; color: #BFD2C6; opacity: {{ft2}}; transform: translateY({{ft2y}})">Your buyers scroll in more than one language. Here is how we decide which one each post should speak, with examples from brands across Gujarat.</p>
+<span style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #9FC7AE; opacity: {{ft3}}"><span style="width: 32px; height: 32px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><img src="../../assets/e-mark.png" alt="" style="width: 20px; height: auto"></span>By the Ekdanta team · 7 min read</span>
+<a class="press" href="TP-Blog-Post.dc.html" style="align-self: flex-start; height: 52px; box-sizing: border-box; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; text-decoration: none; white-space: nowrap; background: #FFFFFF; color: #0D1410; opacity: {{ft3}}">Read the article<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="b-posts" tabindex="-1" style="position: relative; height: 2880px; background: #FFFFFF">
+<div style="position: absolute; left: 48px; top: 120px; width: 724px; opacity: {{psHeadOp}}; transform: translateY({{psHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #1E8E47">ALL ARTICLES</span>
+<h2 style="margin: 6px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 54px; line-height: 1.04; letter-spacing: -0.045em">{{psTitle}}</h2>
+</div>
+<div class="bl-row" role="group" aria-label="Filter by topic" style="position: absolute; left: 0; right: 0; top: 252px; padding: 4px 48px; box-sizing: border-box; display: flex; gap: 8px; flex-wrap: wrap; opacity: {{psHeadOp}}">
+<sc-for list="{{cats}}" as="ct" hint-placeholder-count="7">
+<button type="button" class="bl-chip press" onClick="{{ct.pick}}" aria-pressed="{{ct.on}}" style="flex-shrink: 0; height: 46px; padding: 0 14px; border: 0; border-radius: 999px; background: {{ct.bg}}; color: {{ct.c}}; box-shadow: inset 0 0 0 1px rgba(13,20,16,0.14); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer; white-space: nowrap">{{ct.label}} <span style="opacity: 0.6">{{ct.n}}</span></button>
+</sc-for>
+</div>
+<sc-if value="{{noMatch}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 48px; top: 380px; width: 724px; height: 200px; box-sizing: border-box; padding: 20px; border-radius: 22px; border: 2px dashed #C5CCC7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px">No articles match that.</span><span style="font-size: 17px; color: #56605A">Try another word, or pick a different topic.</span></div>
+</sc-if>
+<sc-for list="{{posts}}" as="p" hint-placeholder-count="9">
+<a href="TP-Blog-Post.dc.html" class="bl-post" aria-hidden="{{p.hidden}}" tabindex="{{p.tab}}" style="position: absolute; left: 48px; top: 380px; width: 352px; height: 452px; border-radius: 24px; overflow: hidden; background: #FFFFFF; box-shadow: 0 1px 0 rgba(13,20,16,0.04), 0 20px 40px -30px rgba(13,20,16,0.45), inset 0 0 0 1px rgba(13,20,16,0.07); text-decoration: none; color: #0D1410; transform: translate({{p.x}}, {{p.y}}) scale({{p.sc}}); opacity: {{p.vis}}; pointer-events: {{p.pe}}">
+<span style="display: block; width: 352px; height: 452px; opacity: {{p.op}}; transform: translateY({{p.ty}})">
+<sc-if value="{{p.isImg}}" hint-placeholder-val="{{ true }}"><span style="display: block; height: 210px; background: #F4F6F1 url({{p.img}}) center top / cover no-repeat"></span></sc-if>
+<sc-if value="{{p.isArt}}" hint-placeholder-val="{{ false }}"><span style="display: flex; height: 210px; align-items: center; justify-content: center; background: {{p.artBg}}"><span style="width: 88px; height: 88px; border-radius: 26px; background: rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{p.icon}}"></path></svg></span></span></sc-if>
+<span style="display: flex; flex-direction: column; gap: 10px; padding: 18px 22px">
+<span style="display: flex; align-items: center; gap: 10px"><span style="padding: 5px 10px; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.06em; color: #0A5A30">{{p.cat}}</span><span style="font-size: 14px; color: #56605A">{{p.read}}</span></span>
+<span class="bl-clamp3" style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 21px; line-height: 1.22; letter-spacing: -0.03em">{{p.title}}</span>
+<span class="bl-clamp3" style="font-size: 15.5px; line-height: 1.5; color: #56605A">{{p.ex}}</span>
+</span>
+</span>
+</a>
+</sc-for>
+</section>
+
+<section id="b-sub" style="position: relative; height: 1600px">
+<div style="position: sticky; top: 0; height: 1180px; overflow: hidden; background: #0D1410; color: #FFFFFF">
+<div style="position: absolute; left: 48px; top: 140px; width: 724px; opacity: {{sbHeadOp}}; transform: translateY({{sbHeadTy}})">
+<span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.12em; color: #8FE3AE">WEEKLY TIPS ON WHATSAPP</span>
+<h2 style="margin: 8px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 88px; line-height: 1; letter-spacing: -0.05em">Ek tip, <span style="color: #2EB45D">har hafte.</span></h2>
+<p style="margin: 12px 0 0; font-size: 20px; line-height: 1.5; color: #BFD2C6">One practical marketing tip on WhatsApp, every week. Short enough to read with your morning chai.</p>
+<a class="press" href="https://wa.me/919099417987?text=Hi%20Ekdanta%2C%20please%20add%20me%20to%20your%20weekly%20tips." style="margin-top: 18px; height: 56px; box-sizing: border-box; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; text-decoration: none; white-space: nowrap; background: #2EB45D; color: #0D1410"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg>Join on WhatsApp</a>
+<p style="margin: 12px 0 0; width: 724px; font-size: 15px; line-height: 1.45; color: #8A968F">You join by sending us the message yourself. Leave any time by replying STOP. <a href="TP-Privacy.dc.html" style="color: #8FE3AE">Privacy Policy</a></p>
+</div>
+<svg aria-hidden="true" width="820" height="1180" viewBox="0 0 820 1180" style="position: absolute; left: 0; top: 0"><path d="M60 1110 C 200 1010, 110 870, 290 800 S 440 640, 520 612" fill="none" stroke="rgba(143,227,174,0.35)" stroke-width="2" pathLength="1" style="stroke-dasharray: 0.012 0.012"></path></svg>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 38px; height: 38px; offset-path: path('M60 1110 C 200 1010, 110 870, 290 800 S 440 640, 520 612'); offset-distance: {{planeAt}}; offset-rotate: auto; opacity: {{planeOp}}"><svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 11.5L21 3l-6.5 18-3.5-7.5L2 11.5z" fill="#F2A230"></path><path d="M11 13.5L21 3" stroke="#0D1410" stroke-width="1.2"></path></svg></div>
+<div style="position: absolute; left: 430px; top: 590px; width: 280px; height: 540px; box-sizing: border-box; border-radius: 40px; border: 9px solid #1E2622; background: #ECE5DD; overflow: hidden; box-shadow: 0 50px 90px -40px rgba(0,0,0,0.8); opacity: {{phoneOp}}; transform: translateY({{phoneTy}}) rotate({{phoneRot}})">
+<div style="position: absolute; left: 0; right: 0; top: 0; height: 66px; background: #0A5A30; display: flex; align-items: center; gap: 8px; padding: 14px 12px 0; box-sizing: border-box"><span style="width: 30px; height: 30px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><img src="../../assets/e-mark.png" alt="" style="width: 18px; height: auto"></span><span style="display: flex; flex-direction: column"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF">Ekdanta tips</span><span style="font-size: 11px; color: #CFE8D7">Broadcast</span></span></div>
+<div style="position: absolute; left: 8px; right: 8px; top: 80px; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{tips}}" as="tp" hint-placeholder-count="4">
+<span style="align-self: flex-start; max-width: 230px; padding: 7px 10px 6px; border-radius: 4px 12px 12px 12px; background: #FFFFFF; box-shadow: 0 1px 1px rgba(0,0,0,0.12); font-size: 14.5px; line-height: 1.38; color: #0D1410; opacity: {{tp.op}}; transform: translateY({{tp.ty}}) scale({{tp.sc}}); transform-origin: 0 0"><b style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10.5px; color: #1E8E47; display: block; margin-bottom: 1px">{{tp.n}}</b>{{tp.t}}</span>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact" tabindex="-1" style="position: relative; height: 1900px">
+<div style="position: sticky; top: 0; height: 1180px; overflow: hidden; background: #2EB45D">
+<div style="position: absolute; left: 48px; top: 130px; width: 724px">
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 30px; letter-spacing: -0.02em; opacity: {{endL1Op}}">Now it's your turn to</p>
+<p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 108px; line-height: 0.96; letter-spacing: -0.055em; opacity: {{endL2Op}}; transform: translateY({{endL2Ty}})">become a</p>
+<p style="margin: 4px 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 168px; line-height: 0.88; letter-spacing: -0.06em; color: #FFFFFF; transform-origin: left center; opacity: {{endBigOp}}; transform: rotate({{endBigRot}}) scale({{endBigSc}})">BIG BRAND!</p>
+</div>
+<div style="position: absolute; left: 48px; right: 48px; top: 560px; box-sizing: border-box; padding: 32px 36px; border-radius: 30px; background: #FFFFFF; box-shadow: 0 40px 80px -40px rgba(13,20,16,0.5); display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; opacity: {{cardOp}}; transform: translateX({{cardTx}})">
+<img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="grid-column: 1 / span 2; height: 40px; width: auto; justify-self: start">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; color: #56605A">ALL SERVICES</span><a href="tel:+919099417987" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 26px; text-decoration: none">90994 17987</a><a href="tel:+919099417949" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 26px; text-decoration: none">90994 17949</a></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; color: #56605A">SALES</span><a href="tel:+916354433194" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 26px; text-decoration: none">63544 33194</a><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; color: #56605A; margin-top: 12px">EMAIL</span><a href="mailto:info@ekdanta.in" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 26px; text-decoration: none">info@ekdanta.in</a></div>
+<div style="grid-column: 1 / span 2; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; color: #56605A">VISIT</span><span style="font-size: 18px; line-height: 1.45">B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017</span></div>
+<div style="grid-column: 1 / span 2; display: flex; gap: 10px">
+<a class="press" href="https://wa.me/919099417987" style="height: 56px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; text-decoration: none; white-space: nowrap; background: #0D1410; color: #FFFFFF">WhatsApp us</a>
+<a class="press" href="https://share.google/EAOxrObclZeY4QkQR" style="height: 56px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; text-decoration: none; white-space: nowrap; box-shadow: inset 0 0 0 1.5px #0D1410">Get directions</a>
+<a class="press" href="https://www.instagram.com/ekdanta.in/" style="height: 56px; box-sizing: border-box; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; text-decoration: none; white-space: nowrap; box-shadow: inset 0 0 0 1.5px #0D1410">Instagram</a>
+</div>
+</div>
+<footer style="position: absolute; left: 48px; right: 48px; bottom: 28px; padding-top: 10px; border-top: 1px solid rgba(13,20,16,0.2); display: flex; flex-direction: column; gap: 3px; font-size: 15px; line-height: 1.35; color: #0E3A22; opacity: {{footOp}}">
+<nav aria-label="Legal" style="display: flex; gap: 14px; flex-wrap: wrap; font-family: 'Poppins', sans-serif; font-weight: 600"><a href="TP-Privacy.dc.html" style="text-decoration: none">Privacy Policy</a> <a href="TP-Terms.dc.html" style="text-decoration: none">Terms of Service</a> <button type="button" onClick="{{ckOpen}}" style="padding: 0; border: 0; background: transparent; cursor: pointer; font-weight: 600; text-decoration: none">Cookie settings</button></nav>
+<span>© 2026 Ekdanta Branding and Marketing, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC.</span>
+<span>Surat and Ahmedabad · Aapki branding &amp; marketing ke विघ्नहर्ता</span>
+</footer>
+</div>
+</section>
+</div>
+
+<header style="position: absolute; top: 18px; left: 24px; right: 24px; height: 68px; box-sizing: border-box; padding: 0 8px 0 24px; border-radius: 999px; background: rgba(255,255,255,0.95); box-shadow: 0 10px 30px -18px rgba(13,20,16,0.5); display: flex; align-items: center; justify-content: space-between; z-index: 50">
+<a href="TP-Home.dc.html" aria-label="Ekdanta home" style="display: flex; align-items: center"><img src="../../assets/logo-colour.png" alt="Ekdanta — Your Branding Partner" style="height: 34px; width: auto; display: block"></a>
+<span style="display: flex; align-items: center; gap: 8px">
+<a class="press" href="#contact" style="height: 52px; box-sizing: border-box; padding: 0 20px; display: inline-flex; align-items: center; background: #0D1410; color: #FFFFFF; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none">Become a big brand</a>
+<a class="press" href="https://wa.me/919099417987" aria-label="WhatsApp Ekdanta" style="width: 52px; height: 52px; border-radius: 999px; background: #2EB45D; color: #0D1410; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg></a>
+<button type="button" class="press" onClick="{{toggleMenu}}" aria-label="{{menuLbl}}" aria-expanded="{{menuExp}}" style="width: 52px; height: 52px; border: 0; border-radius: 999px; background: #0D1410; cursor: pointer; position: relative">
+<span class="mm-bar" style="position: absolute; left: 16px; top: 21px; width: 20px; height: 2px; border-radius: 2px; background: #FFFFFF; transform: {{bar1}}"></span>
+<span class="mm-bar" style="position: absolute; left: 16px; top: 29px; width: 20px; height: 2px; border-radius: 2px; background: #FFFFFF; transform: {{bar2}}"></span>
+</button>
+</span>
+</header>
+<div aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 3px; width: {{progW}}; background: #F2A230; z-index: 60"></div>
+<nav class="mm-panel" aria-label="Main" style="position: absolute; inset: 0; z-index: 45; background: #0D1410; padding: 124px 48px 40px; box-sizing: border-box; display: flex; flex-direction: column; opacity: {{mpOp}}; transform: translateY({{mpTy}}); pointer-events: {{mpPe}}; visibility: {{mpVis}}">
+<a class="mm-item" href="TP-Home.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 44px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 60ms">Home<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="TP-Services.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 44px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 105ms">Services<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="TP-Work.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 44px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 150ms">Work<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="TP-About.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 44px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 195ms">About<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="TP-Blog.dc.html" onClick="{{closeMenu}}" aria-current="page" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 44px; letter-spacing: -0.04em; color: #2EB45D; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 240ms">Blog<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item" href="TP-Contact.dc.html" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 44px; letter-spacing: -0.04em; color: #FFFFFF; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 285ms">Contact<span aria-hidden="true" style="color: #56605A">→</span></a>
+<a class="mm-item press" href="#contact" onClick="{{closeMenu}}" style="margin-top: auto; height: 68px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #2EB45D; color: #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; text-decoration: none; opacity: {{mmOp}}; transform: translateY({{mmTy}}); transition-delay: 380ms">Become a big brand</a>
+<span class="mm-item" style="margin-top: 14px; text-align: center; font-size: 17px; color: #8A968F; opacity: {{mmOp}}; transition-delay: 420ms">Call <a href="tel:+919099417987" style="color: #FFFFFF">90994 17987</a> · Sales <a href="tel:+916354433194" style="color: #FFFFFF">63544 33194</a></span>
+</nav>
+
+<sc-if value="{{ckShow}}" hint-placeholder-val="{{ true }}">
+<div class="ck-card" role="region" aria-label="Cookie choices" style="position: absolute; left: 32px; right: 32px; bottom: 16px; z-index: 80; box-sizing: border-box; padding: 12px 12px 12px 22px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 24px 50px -24px rgba(13,20,16,0.55), 0 0 0 1px rgba(13,20,16,0.06); display: flex; align-items: center; gap: 18px">
+<p style="margin: 0; flex: 1; font-size: 15px; line-height: 1.4; color: #4A564F"><b style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #0D1410">Cookies, only with your OK.</b> We use necessary cookies to run this site. With your OK, we also use analytics and ad cookies to see what helps and to measure our ads. <a href="TP-Privacy.dc.html" style="color: #1E8E47; white-space: nowrap">Privacy Policy</a></p>
+<div style="display: flex; gap: 8px; flex-shrink: 0"><button type="button" class="press" onClick="{{ckAll}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #0A5A30; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Allow all</button><button type="button" class="press" onClick="{{ckNeeded}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: transparent; box-shadow: inset 0 0 0 1.5px #0D1410; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap">Only necessary</button></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"scrub":{"editor":"range","default":0,"min":0,"max":8000,"step":50,"unit":"px","label":"Preview scroll position"},"$preview":{"width":820,"height":1180}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.applyScrub();
+  }
+  componentWillUnmount() { if (this._raf) cancelAnimationFrame(this._raf); }
+  componentDidUpdate(prev) { if ((prev.scrub || 0) !== (this.props.scrub || 0)) this.applyScrub(); }
+  applyScrub() {
+    const v = this.props.scrub || 0;
+    if (this._el && v > 0) { this._el.scrollTop = v; this.setState({ y: v }); }
+  }
+  renderVals() {
+    const st = this.state || {};
+    const y = st.y || 0;
+    const rm = !!this._reduce;
+
+    const clamp = (v, a, b) => Math.max(a === undefined ? 0 : a, Math.min(b === undefined ? 1 : b, v));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const ease = (k) => (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+    const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+    const easeBack = (k) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
+    const px = (v) => v.toFixed(1) + 'px';
+    const f3 = (v) => v.toFixed(3);
+    const pct = (v) => (v * 100).toFixed(2) + '%';
+    const move = (v) => (rm ? 0 : v);
+
+    const snap = (raw, n) => { const r = clamp(raw, 0, n); const i = Math.min(n - 1, Math.floor(r)); return r >= n ? n : i + ease(clamp((r - i - 0.4) / 0.6)); };
+    const scrollTo = (top) => { if (this._el) this._el.scrollTo({ top: top, behavior: rm ? 'auto' : 'smooth' }); };
+    const mix = (c1, c2, k) => 'rgb(' + c1.map((v, i) => Math.round(lerp(v, c2[i], k))).join(',') + ')';
+    const T_END = 7280, MAXY = 8000;
+    const out = {};
+    const G = {"H": 1180, "cols": 2, "sx": 372, "sy": 476, "ptop": 380};
+    const T_FEAT = 1300, T_POSTS = 2800, T_SUB = 5680;
+
+    // 1. Hero: the headline rises, the card stack shuffles and the topic ticker runs (CSS);
+    //    scrolling lifts the stack away. The search box filters the articles below.
+    const h = rm ? 0 : clamp(y / 450);
+    const q = (st.q || '').trim();
+    Object.assign(out, {
+      heroTextOp: f3(rm ? 1 : 1 - clamp((y - 100) / 320)), heroTextTy: px(move(-h * 60)),
+      stackTy: px(move(-h * 100)), stackRot: (-h * 6).toFixed(2) + 'deg', stackOp: f3(rm ? 1 : 1 - clamp((y - 150) / 300)),
+      q: st.q || '', setQ: (ev) => this.setState({ q: ev && ev.target ? ev.target.value : '' })
+    });
+
+    // 2. Featured: the card opens like a curtain, the cover settles and the text follows.
+    const s2 = y - T_FEAT;
+    const ftHead = rm ? 1 : clamp((s2 + 650) / 420);
+    const fk = rm ? 1 : ease(clamp((s2 + 450) / 600));
+    Object.assign(out, {
+      ftHeadOp: f3(ftHead), ftHeadTy: px(move((1 - easeOut(ftHead)) * 30)),
+      ftClip: pct((1 - fk) * 0.5), ftImgSc: (rm ? 1 : 1.2 - 0.2 * fk).toFixed(3), ftImgTy: px(move(-clamp(s2 / 900) * 90))
+    });
+    for (let i = 0; i < 4; i++) { const a = rm ? 1 : clamp((s2 + 200 - i * 80) / 250); out['ft' + i] = f3(a); out['ft' + i + 'y'] = px(move((1 - easeOut(a)) * 24)); }
+
+    // 3. All articles: cards rise as they scroll into view; topic chips and search re-sort the list.
+    const IC = {
+      web: 'M3 5h18v14H3z M3 9h18 M7 7h.01 M10 7h.01',
+      crm: 'M4 4h5v16H4z M10 4h5v10h-5z M16 4h4v7h-4z',
+      logo: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8a4 4 0 1 0 0 8'
+    };
+    const P = [
+      { cat: 'Social media', title: 'Why your factory needs reels, not just brochures', ex: 'Buyers decide faster when they can see your plant, your machines and your people at work.', read: '5 min read', img: '../../assets/case-trilok-infratech.jpg' },
+      { cat: 'Ads', title: 'Meta ads for manufacturers: a simple first campaign', ex: 'One campaign that brings real enquiries, without spending your budget on likes.', read: '6 min read', img: '../../assets/case-yantra-design.jpg' },
+      { cat: 'Social media', title: 'Festival posts that bring enquiries, not just likes', ex: 'Diwali, Navratri and Uttarayan posts that sell, with an offer and a clear next step.', read: '4 min read', img: '../../assets/case-heaven-solar.jpg' },
+      { cat: 'Websites', title: 'Five signs your website is losing you leads', ex: 'Slow pages, hidden phone numbers and forms nobody fills. Fix these first.', read: '5 min read', art: ['#0E2440', IC.web] },
+      { cat: 'Branding', title: 'Packaging that sells on a crowded shelf', ex: 'What shoppers notice in the first three seconds, and how to design for it.', read: '6 min read', img: '../../assets/case-srk-dairy.jpg' },
+      { cat: 'Growth', title: 'Why leads go cold, and how a CRM fixes it', ex: 'Most enquiries are lost to slow follow-ups, not to competitors. Here is the fix.', read: '5 min read', art: ['#1F2A44', IC.crm] },
+      { cat: 'Shoots', title: 'How we plan a product shoot in one day', ex: 'Shot lists, props and light: how one well-planned day gives you a month of content.', read: '5 min read', img: '../../assets/case-her-and-he.jpg' },
+      { cat: 'Social media', title: 'Reels or posts: what to make first on a small budget', ex: 'Where to start when you can only make a few pieces of content a month.', read: '4 min read', img: '../../assets/reel-1.jpg' },
+      { cat: 'Branding', title: "Does your logo still work in WhatsApp's tiny circle?", ex: 'Most people see your logo at the size of a coin. Here is how to make sure it still reads.', read: '3 min read', art: ['#2EB45D', IC.logo] }
+    ];
+    const CATS = ['All', 'Social media', 'Ads', 'Branding', 'Websites', 'Shoots', 'Growth'];
+    const sel = st.cat || 'All';
+    const ql = q.toLowerCase();
+    let j = 0;
+    out.posts = P.map((p, i) => {
+      const match = (sel === 'All' || p.cat === sel) && (!ql || (p.title + ' ' + p.ex + ' ' + p.cat).toLowerCase().indexOf(ql) >= 0);
+      const slot = match ? j++ : i;
+      const sx = (slot % G.cols) * G.sx, sy = Math.floor(slot / G.cols) * G.sy;
+      const a = rm ? 1 : easeOut(clamp((y + G.H - (T_POSTS + G.ptop + sy) - 40) / 300));
+      return { cat: p.cat.toUpperCase(), title: p.title, ex: p.ex, read: p.read, isImg: !!p.img, isArt: !!p.art, img: p.img || '', artBg: p.art ? p.art[0] : '', icon: p.art ? p.art[1] : '',
+        x: px(sx), y: px(sy), sc: match ? '1' : '0.92', vis: match ? '1' : '0', pe: match ? 'auto' : 'none', hidden: match ? 'false' : 'true', tab: match ? '0' : '-1',
+        op: f3(a), ty: px(move((1 - a) * 60)) };
+    });
+    out.cats = CATS.map((c) => ({ label: c, n: String(c === 'All' ? P.length : P.filter((p) => p.cat === c).length), on: c === sel ? 'true' : 'false',
+      bg: c === sel ? '#0D1410' : '#FFFFFF', c: c === sel ? '#FFFFFF' : '#0D1410', pick: () => this.setState({ cat: c }) }));
+    const psHead = rm ? 1 : clamp((y - T_POSTS + G.H * 0.8) / 400);
+    Object.assign(out, { psHeadOp: f3(psHead), psHeadTy: px(move((1 - easeOut(psHead)) * 30)), noMatch: j === 0,
+      psTitle: q ? 'Results for “' + q + '”' : 'Fresh from the team.' });
+
+    // 4. Weekly tips: the paper plane flies to the phone and the tips arrive one by one.
+    const s4 = y - T_SUB;
+    const sbHead = rm ? 1 : clamp((s4 + 650) / 420);
+    const pk = rm ? 1 : easeOut(clamp((s4 + 500) / 500));
+    const pa = rm ? 1 : clamp((s4 + 300) / 1000);
+    const TIPS = ['Put your phone number in the first line of your Instagram bio.', 'Reply to every enquiry within the hour. Speed wins deals.', 'One reel shot at your factory beats ten stock photos.', 'Festival posts sell better with an offer and a deadline.'];
+    out.tips = TIPS.map((t, k) => { const a = rm ? 1 : clamp((s4 - k * 200) / 180); return { n: 'TIP ' + (k + 1), t: t, op: f3(a), ty: px(move((1 - easeOut(a)) * 20)), sc: (0.9 + 0.1 * easeOut(a)).toFixed(3) }; });
+    Object.assign(out, { sbHeadOp: f3(sbHead), sbHeadTy: px(move((1 - easeOut(sbHead)) * 30)),
+      phoneOp: f3(clamp(pk * 1.5)), phoneTy: px(move((1 - pk) * 200)), phoneRot: (rm ? -2 : lerp(8, -2, pk)).toFixed(2) + 'deg',
+      planeAt: pct(pa), planeOp: f3(rm ? 0 : clamp(pa * 10) * (1 - clamp((pa - 0.94) / 0.06))) });
+
+    // Finale: the approved closing, 'Now it's your turn to become a BIG BRAND!'
+    const s7 = y - T_END;
+    const pe = clamp((s7 + 600) / 1500);
+    const qq = (x0) => (rm ? 1 : clamp((pe - x0) / 0.18));
+    Object.assign(out, {
+      endL1Op: f3(qq(0)), endL2Op: f3(qq(0.12)), endL2Ty: px(move((1 - qq(0.12)) * 36.0)),
+      endBigOp: f3(qq(0.24)), endBigRot: (rm ? -3 : lerp(-8, -3, qq(0.24))).toFixed(2) + 'deg', endBigSc: (rm ? 1 : lerp(0.6, 1, ease(qq(0.24)))).toFixed(3),
+      cardOp: f3(qq(0.45)), cardTx: px(move((1 - qq(0.45)) * 70.0)), footOp: f3(qq(0.7))
+    });
+
+
+    // Menu
+    const mo = !!st.menu;
+    Object.assign(out, {
+      toggleMenu: () => this.setState({ menu: !this.state.menu }), closeMenu: () => this.setState({ menu: false }),
+      menuLbl: mo ? 'Close menu' : 'Open menu', menuExp: mo ? 'true' : 'false',
+      bar1: mo ? 'translateY(4px) rotate(45deg)' : 'none', bar2: mo ? 'translateY(-4px) rotate(-45deg)' : 'none',
+      mpOp: mo ? '1' : '0', mpTy: mo || rm ? '0px' : '-16px', mpPe: mo ? 'auto' : 'none', mpVis: mo ? 'visible' : 'hidden',
+      mmOp: mo ? '1' : '0', mmTy: mo || rm ? '0px' : '18px'
+    });
+
+
+    // Cookie choice: the banner shows until the visitor picks; 'Cookie settings' in the footer reopens it.
+    Object.assign(out, {
+      ckShow: !(this.state || {}).ck,
+      ckAll: () => this.setState({ ck: 'all' }), ckNeeded: () => this.setState({ ck: 'needed' }),
+      ckOpen: () => this.setState({ ck: null })
+    });
+
+
+    out.scrollRef = (el) => { this._el = el; };
+    out.onScroll = (ev) => {
+      const t = ev && (ev.currentTarget || ev.target);
+      if (!t) return;
+      this._y = t.scrollTop;
+      if (!this._raf) this._raf = requestAnimationFrame(() => { this._raf = null; this.setState({ y: this._y }); });
+    };
+    out.progW = pct(clamp(y / MAXY));
+
+    return out;
+  }
+}
+</script>
+</body>
+</html>

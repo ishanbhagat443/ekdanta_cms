@@ -1,0 +1,63 @@
+{
+  "brand": "Ekdanta Branding and Marketing",
+  "tagline": "Your Branding Partner",
+  "legal_entity": {
+    "trade_name": "Vedanta Advisor",
+    "legal_name": "Bhagat Dishant Dipesh",
+    "display_owner_name": "Dishant Dipesh Bhagat",
+    "constitution": "Proprietorship",
+    "gstin": "24GHNPD1228K1ZC",
+    "registered_address": "Shop No. 403, 4th Floor, Bhatar Trade Center, B Building, Bhatar Char Rasta, near Shiv Timber Mart, Surat, Gujarat 395017",
+    "source": "GST registration certificate supplied by the owner"
+  },
+  "office": {
+    "name": "Surat",
+    "address": "B-402–403, Bhatar Trade Center, near Bhatar Char Rasta, Uma Bhawan Society, Bhatar, Surat, Gujarat 395017",
+    "directions_url": "https://share.google/EAOxrObclZeY4QkQR",
+    "hours": "Mon–Sat, 10 am – 6:30 pm"
+  },
+  "second_office": {
+    "name": "Ahmedabad",
+    "address": "[Add Ahmedabad address]"
+  },
+  "phones": [
+    {
+      "label": "All services",
+      "number": "90994 17987",
+      "whatsapp": true
+    },
+    {
+      "label": "All services",
+      "number": "90994 17949"
+    },
+    {
+      "label": "Sales",
+      "number": "63544 33194"
+    }
+  ],
+  "email": "info@ekdanta.in",
+  "whatsapp_link": "https://wa.me/919099417987",
+  "instagram": "https://www.instagram.com/ekdanta.in/",
+  "own_numbers_that_stay": [
+    "10+ years",
+    "10,000+ business owners",
+    "45+ brands",
+    "2 cities"
+  ],
+  "placeholders_for_owner": [
+    "[Add Ahmedabad address]",
+    "[Add reply time]",
+    "[Add date] (policy dates)",
+    "[Add period] (data retention)",
+    "[Add response time] (privacy requests)",
+    "[Add validity] (quote validity)",
+    "[Add grievance officer name]",
+    "[Add grievance officer email]"
+  ],
+  "footer_line_wide": "© {year} Ekdanta Branding and Marketing, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC. Surat and Ahmedabad.",
+  "footer_line_narrow": [
+    "© {year} Ekdanta Branding and Marketing, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC.",
+    "Surat and Ahmedabad · Aapki branding & marketing ke विघ्नहर्ता"
+  ],
+  "footer_right": "Aapki branding & marketing ke विघ्नहर्ता"
+}

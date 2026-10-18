@@ -1,0 +1,74 @@
+{
+  "skip_link": "Skip to main content",
+  "brief_consent": {
+    "label_wide": "I agree that Ekdanta can contact me on WhatsApp or by phone about this brief.",
+    "note_wide": "We use these details only to reply to you. [Privacy Policy → /privacy-policy]",
+    "label_phone": "I agree that Ekdanta can contact me about this brief.",
+    "note_phone": "We only use them to reply. [Privacy Policy → /privacy-policy]",
+    "default": "unticked",
+    "required": true,
+    "hint_missing_details": "Add your name and phone number to send.",
+    "hint_missing_consent": "Tick the box above to send.",
+    "company_label": "Company or brand (optional)"
+  },
+  "cookie_bar": {
+    "text_bold": "Cookies, only with your OK.",
+    "text": "We use necessary cookies to run this site. With your OK, we also use analytics and ad cookies to see what helps and to measure our ads.",
+    "link": "Privacy Policy → /privacy-policy",
+    "accept": "Allow all",
+    "reject": "Only necessary",
+    "reopen_label": "Cookie settings"
+  },
+  "whatsapp_tips_small_print": "You join by sending us the message yourself. Leave any time by replying STOP. [Privacy Policy → /privacy-policy]",
+  "phone_menu_line": "Call 90994 17987 · Sales 63544 33194",
+  "footer_links": {
+    "pages": [
+      "Home /",
+      "Services /services",
+      "Work /work",
+      "About /about",
+      "Blog /blog",
+      "Contact /contact"
+    ],
+    "legal": [
+      "Privacy Policy /privacy-policy",
+      "Terms of Service /terms-of-service"
+    ],
+    "cookie_button": "Cookie settings"
+  },
+  "alt_text": {
+    "founder_1": "Vaishali Hirpara, founder of Ekdanta",
+    "founder_2": "Dishant Bhagat, founder of Ekdanta",
+    "case_grid": "Instagram grid made by Ekdanta for {client}",
+    "work_card": "Social media work for {client}",
+    "blog_featured": "Gujarati and English posts made by Ekdanta for Heaven Solar",
+    "article_figure": "Social media posts designed by Ekdanta for Yantra Design, showing CNC drilling and turning machines",
+    "logo": "Ekdanta — Your Branding Partner",
+    "client_logo": "{client name}",
+    "reel_poster": "Reel by Ekdanta for {brand}: {title}",
+    "decorative_empty_alt": [
+      "e-mark next to text",
+      "elephant head",
+      "elephant trunk with torch",
+      "dot grids",
+      "shapes",
+      "scene drawings"
+    ]
+  },
+  "claim_replacements": {
+    "Trilok Infratech": "A precast infrastructure manufacturer with 20+ years of expertise, serving 100+ clients across India and international markets.",
+    "Yantra Design": "A CNC machine manufacturer delivering high-precision drilling solutions, with 250+ installations across India's engineering industries.",
+    "Heaven Solar": "A Gujarat solar energy company with 10,000+ installations, and an official Adani Solar channel partner.",
+    "SRK Dairy Farm and Foods": "A dairy brand delivering farm-fresh premium ghee, with a strong distribution network.",
+    "Her & He Cosmetics": "A unisex skincare brand from Surat, with formulas made for everyday skin."
+  },
+  "header_menu_everywhere": [
+    "Home /",
+    "Services /services",
+    "Work /work",
+    "About /about",
+    "Blog /blog",
+    "Contact /contact"
+  ],
+  "header_button": "Become a big brand → the page's closing section (#contact)"
+}
