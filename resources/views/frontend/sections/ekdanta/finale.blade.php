@@ -1,8 +1,11 @@
 {{--
     Ekdanta · Big Brand Finale: the closing line, the contact card and the
-    footer line with the visitor's "Pause animations" button. The band and
-    footer colours are the approved contrast fixes (--tk-finale, --tk-finale-foot).
-    Phones, email and address: Settings → Business.
+    site footer. Wide screens: page links (a menu) and the legal links in
+    one row, the legal line and tagline below. Phones and tablets held
+    upright: the legal links, then the two lines. "Cookie settings" brings
+    the cookie bar back; "Pause animations" stays (WCAG 2.2.2). The band
+    and footer colours are the approved contrast fixes (--tk-finale,
+    --tk-finale-foot). Phones, email, address and {legal_line}: Settings → Business.
 --}}
 @php
     $d = $section->viewData('desktop');
@@ -57,21 +60,42 @@
                         @endif
                         <div style="display: flex; flex-wrap: wrap; gap: {{ ek_u($v([10, 6])) }}">
                             @foreach ($buttons as $i => $button)
+                                {{-- Phones: 10 px sides (drawn 12) so the three buttons keep to one row, as drawn, with room for the footer. --}}
                                 @php $external = \App\Support\Link::external($button['link'] ?? ''); @endphp
-                                <a href="{{ link_href($button['link'] ?? '') }}" @if ($external) target="_blank" rel="noopener" @endif style="height: {{ ek_u($v([48, 40])) }}; box-sizing: border-box; padding: 0 {{ ek_u($v([18, 12])) }}; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([15, 12.5])) }}, {{ $mob ? '0.78125rem' : '0.8125rem' }}); text-decoration: none; white-space: nowrap; {{ $i === 0 ? 'background: var(--tk-ink); color: #FFFFFF' : 'box-shadow: inset 0 0 0 '.ek_u(1.5).' var(--tk-ink)' }}">{{ $button['label'] }}</a>
+                                <a href="{{ link_href($button['link'] ?? '') }}" @if ($external) target="_blank" rel="noopener" @endif style="height: {{ ek_u($v([48, 40])) }}; box-sizing: border-box; padding: 0 {{ ek_u($v([18, 10])) }}; display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([15, 12.5])) }}, {{ $mob ? '0.78125rem' : '0.8125rem' }}); text-decoration: none; white-space: nowrap; {{ $i === 0 ? 'background: var(--tk-ink); color: #FFFFFF' : 'box-shadow: inset 0 0 0 '.ek_u(1.5).' var(--tk-ink)' }}">{{ $button['label'] }}</a>
                             @endforeach
                         </div>
                     </address>
 
-                    <footer data-m="end-foot" style="{{ $mob ? 'margin: auto '.ek_u(8).' 0' : 'position: absolute; left: '.ek_u(96).'; right: '.ek_u(96).'; bottom: '.ek_u(34) }}; padding-top: {{ ek_u($v([16, 10])) }}; border-top: {{ ek_u(1) }} solid rgba(13,20,16,0.2); display: flex; {{ $mob ? 'flex-direction: column; gap: '.ek_u(2) : 'justify-content: space-between; align-items: center; gap: '.ek_u(16) }}; font-size: max({{ ek_u($v([15, 12])) }}, {{ $mob ? '0.75rem' : '0.8125rem' }}); color: var(--tk-finale-foot)">
-                        <span>{{ $year($t['footer_left']) }}</span>
-                        {{-- The button keeps its 44px target; the negative margin keeps the line its drawn height. --}}
-                        <span style="display: flex; {{ $mob ? 'flex-direction: column; align-items: flex-start; gap: '.ek_u(2) : 'align-items: center; gap: '.ek_u(16) }}">
-                            <span>{{ $t['footer_right'] }}</span>
-                            @if ($t['pause_label'])
-                                <button type="button" class="ek-pause-toggle" data-ek-pause aria-pressed="false" style="margin: -11px -0.25rem">{{ $t['pause_label'] }}</button>
+                    <footer data-m="end-foot" class="ek-fin-foot" style="{{ $mob ? 'margin: auto '.ek_u(8).' 0' : 'position: absolute; left: '.ek_u(96).'; right: '.ek_u(96).'; bottom: '.ek_u(24) }}; padding-top: {{ ek_u($v([12, 10])) }}; border-top: {{ ek_u(1) }} solid rgba(13,20,16,0.2); display: flex; flex-direction: column; gap: {{ ek_u($v([6, 3])) }}; font-size: max({{ ek_u($v([14, 12])) }}, {{ $mob ? '0.75rem' : '0.8125rem' }}); line-height: 1.35; color: var(--tk-finale-foot)">
+                        @php
+                            $legal = collect([[$t['privacy_label'] ?? '', $d['privacy_link'] ?? ''], [$t['terms_label'] ?? '', $d['terms_link'] ?? '']])->filter(fn ($l) => $l[0] !== '');
+                        @endphp
+                        {{-- Links and buttons keep a 44 px target; negative margins keep the lines their drawn height. --}}
+                        <div style="display: flex; {{ $mob ? '' : 'justify-content: space-between; align-items: center; gap: '.ek_u(20) }}">
+                            @if (! $mob && $menu)
+                                <nav aria-label="Footer" class="ek-fin-links">
+                                    @foreach ($menu->rootItems->filter(fn ($i) => $i->isVisibleToCurrentUser()) as $item)
+                                        <a href="{{ $item->resolvedUrl() }}" @if ($item->target === '_blank') target="_blank" rel="noopener" @endif>{{ $item->displayLabel() }}</a>
+                                    @endforeach
+                                </nav>
                             @endif
-                        </span>
+                            <nav aria-label="Legal" class="ek-fin-links" style="flex-wrap: wrap">
+                                @foreach ($legal as [$label, $link])
+                                    <a href="{{ link_href($link) }}">{{ $label }}</a>
+                                @endforeach
+                                @if (($t['cookie_label'] ?? '') !== '' && cookie_bar())
+                                    <button type="button" data-cookie-settings>{{ $t['cookie_label'] }}</button>
+                                @endif
+                                @if ($t['pause_label'])
+                                    <button type="button" class="ek-pause-toggle" data-ek-pause aria-pressed="false">{{ $t['pause_label'] }}</button>
+                                @endif
+                            </nav>
+                        </div>
+                        <div style="display: flex; {{ $mob ? 'flex-direction: column; gap: '.ek_u(3) : 'justify-content: space-between; gap: '.ek_u(20) }}">
+                            <span>{{ $year($t['footer_left']) }}</span>
+                            <span>{{ $t['footer_right'] }}</span>
+                        </div>
                     </footer>
                     @if ($mob)</div>@endif
                 </div>

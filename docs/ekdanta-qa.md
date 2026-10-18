@@ -136,6 +136,11 @@ Recorded per phase from Phase 1 on.
 | P3 Phase 2 | Tracking tags | With no choice or "Only necessary", `/` and `/thank-you` contain no Analytics, Tag Manager, Meta Pixel or Google Ads tag (CookieConsentTest). After "Allow all" they all load, Google's behind Consent Mode v2 (denied by default, then granted). Never in the builder preview. Scripts an editor marks `<script type="text/plain" data-tracking>` run only after "Allow all". Settings → Cookies off: tags load as before, no bar | Pass |
 | P3 Phase 2 | WhatsApp Tips small print | "You join by sending us the message yourself. Leave any time by replying STOP." followed by a "Privacy Policy" link (new link fields, mint `#8FE3AE` on the dark card) | Pass |
 | P3 Phase 2 | Ponytail review | Cut: the Send button's own copy of "what is missing" (missing() now returns the box to focus); the unused "on" consent value | Done |
+| P3 Phase 3 | Skip link | "Skip to main content" is the first focusable element on every public page, the error pages included: hidden above the screen until focused, then a dark pill at the top left over the header, orange ring; Enter moves focus to `<main id="main" tabindex="-1">` (checked at 1440, 1536, 820 and 390 wide). Its slide is off under reduced motion | Pass |
+| P3 Phase 3 | Big Brand Finale footer | As drawn: wide screens two rows (page links from "Ekdanta main menu" on the left; Privacy Policy, Terms of Service, Cookie settings on the right; the legal line and the tagline below); phones and tablets held upright three lines. Links in Poppins 600 with 44 px targets that don't move the layout. "Pause animations" (WCAG 2.2.2) stays, beside Cookie settings. Two navigation landmarks: "Footer" and "Legal". Found: on phones the taller footer ran past the stage; the card's three buttons wrapped (325 px of buttons in 318). Fixed: 10 px button sides (drawn 12) keep them on one row as drawn, and the footer fits at 390 × 844 | Pass after fix |
+| P3 Phase 3 | Settings → Business: legal entity | Legal name, Trade name, Constitution and Registered address beside the GST number, each labelled, with hints naming the tokens ({legal_line}, {gstin}, {registered_address}) | Pass |
+| P3 Phase 3 | Settings → Cookies | Labelled fields; a value never saved shows the wording the site uses (the field's default), so what the admin sees is what visitors see | Pass |
+| P3 Phase 3 | Ponytail review | Nothing to cut: each addition has its caller. The old "Cookie settings" label setting was dropped while building: the Finale owns that button | Done |
 
 ### Pre-delivery checklist per page (Phase 6)
 
@@ -181,4 +186,8 @@ Measured on the `--with-pages` preview with `node tests/visual/check.mjs` (finis
 Fill these in the CMS, then run your Steps 2.4 and 3 again:
 
 - Publish Privacy Policy and Terms of Service only after review: until then their links (consent note, cookie bar, footer, WhatsApp Tips) lead to a 404 on the live site.
+- Big Brand Finale (Design → Block Library), the footer line is typed by hand. Replace it with the tokens so a change in Settings → Business reaches it: Desktop "Footer line, left" = `© {year} Ekdanta Branding and Marketing, {legal_line} Surat and Ahmedabad.`; Mobile tab "Footer line, left" = `© {year} Ekdanta Branding and Marketing, {legal_line}`. Check the preview shows the same words as before.
+- Big Brand Finale: confirm "Footer: page links" is "Ekdanta main menu", and the Privacy and Terms links go to `/privacy-policy` and `/terms-of-service`.
+- Settings → Business: check Legal name, Trade name, Constitution and Registered address against the GST certificate.
+- Settings → Cookies: read the bar's words; save once.
 

@@ -51,6 +51,10 @@ return [
             'longitude' => ['label' => 'Longitude', 'type' => 'number', 'rules' => ['nullable', 'numeric', 'between:-180,180']],
             'gst' => ['label' => 'GST Number', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:30']],
             'pan' => ['label' => 'PAN Number', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:20']],
+            'legal_name' => ['label' => 'Legal name', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191'], 'hint' => 'As on the GST registration.'],
+            'trade_name' => ['label' => 'Trade name', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191'], 'hint' => 'The business the brand belongs to, e.g. Vedanta Advisor.'],
+            'constitution' => ['label' => 'Constitution', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:60'], 'hint' => 'e.g. Proprietorship. In any section text, {legal_line} reads "a brand of {trade name} ({constitution}). GSTIN {GST number}." and {gstin} the GST number.'],
+            'registered_address' => ['label' => 'Registered address', 'type' => 'textarea', 'rules' => ['nullable', 'string', 'max:500'], 'hint' => 'In any section text: {registered_address}.'],
             'working_hours' => ['label' => 'Working Hours', 'type' => 'text', 'rules' => ['nullable', 'string', 'max:191'], 'hint' => 'e.g. Mon–Sat, 9:00 AM – 7:00 PM'],
         ],
     ],
@@ -124,7 +128,6 @@ return [
             'link_url' => ['label' => 'Bar: link address', 'type' => 'text', 'default' => '/privacy-policy', 'rules' => ['nullable', 'string', 'max:300', 'regex:~^(/[^\s<>"]*|https?://[^\s<>"]+)$~'], 'hint' => 'A page path such as /privacy-policy, or a full web address.'],
             'accept' => ['label' => 'Button: accept', 'type' => 'text', 'default' => 'Allow all', 'rules' => ['nullable', 'string', 'max:40']],
             'reject' => ['label' => 'Button: necessary only', 'type' => 'text', 'default' => 'Only necessary', 'rules' => ['nullable', 'string', 'max:40']],
-            'reopen_label' => ['label' => '"Cookie settings" link (footer)', 'type' => 'text', 'default' => 'Cookie settings', 'rules' => ['nullable', 'string', 'max:40'], 'hint' => 'The footer button that brings the bar back.'],
         ],
     ],
 

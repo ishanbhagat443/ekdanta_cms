@@ -52,9 +52,25 @@ class FinaleSection extends EkdantaSection
                 ['label' => 'Get directions', 'link' => 'https://share.google/EAOxrObclZeY4QkQR'],
                 ['label' => 'Instagram', 'link' => 'https://www.instagram.com/ekdanta.in/'],
             ], 4),
-            $this->text('footer_left', 'Footer line, left ({year} = this year)', '© {year} Ekdanta Branding and Marketing. Surat and Ahmedabad.', 200),
+            $this->text('footer_left', 'Footer line, left ({year} = this year, {legal_line} = Settings → Business)', '© {year} Ekdanta Branding and Marketing, {legal_line} Surat and Ahmedabad.', 200),
             $this->text('footer_right', 'Footer line, right', 'Aapki branding & marketing ke विघ्नहर्ता', 200),
+            ['key' => 'menu_id', 'label' => 'Footer: page links (a menu)', 'type' => 'menu', 'device' => false, 'rules' => ['nullable', 'integer', 'exists:menus,id'],
+                'hint' => 'Wide screens show its links on the left of the footer; phones skip them (the menu is a tap away).'],
+            $this->text('privacy_label', 'Footer: Privacy link text', 'Privacy Policy', 40),
+            $this->link('privacy_link', 'Footer: Privacy link goes to', '/privacy-policy'),
+            $this->text('terms_label', 'Footer: Terms link text', 'Terms of Service', 40),
+            $this->link('terms_link', 'Footer: Terms link goes to', '/terms-of-service'),
+            $this->text('cookie_label', 'Footer: "Cookie settings" button (brings the cookie bar back; empty = none)', 'Cookie settings', 40),
             $this->text('pause_label', '"Pause animations" button (empty = none)', 'Pause animations', 40),
         ];
+    }
+
+    /** Phones and tablets held upright: three footer lines (links, legal line, cities and tagline). */
+    public function deviceDefaults(): array
+    {
+        return ['mobile' => [
+            'footer_left' => '© {year} Ekdanta Branding and Marketing, {legal_line}',
+            'footer_right' => 'Surat and Ahmedabad · Aapki branding & marketing ke विघ्नहर्ता',
+        ]];
     }
 }

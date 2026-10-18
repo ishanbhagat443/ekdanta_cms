@@ -59,13 +59,15 @@
     @stack('head')
 </head>
 <body class="@yield('bodyClass')" data-gsm-theme="{{ theme('dark_mode.enabled', false) ? 'light' : '' }}">
+    {{-- First stop for the keyboard: straight past the header to the page. --}}
+    <a class="gsm-skip" href="#main">{{ __('Skip to main content') }}</a>
     @if (tracking_allowed() && ! request()->boolean('preview') && ($gtmId = trim((string) setting('seo.google_tag_manager', ''))))
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ urlencode($gtmId) }}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     @endif
     @include('frontend.partials.topbar')
     @include('frontend.partials.header')
 
-    <main>
+    <main id="main" tabindex="-1">
         @yield('content')
     </main>
 

@@ -102,6 +102,32 @@
     .ek-fin-col > footer { padding-top: calc(6 * var(--u)) !important; }
 }
 
+// Big Brand Finale footer: links and buttons drawn as text (Poppins 600),
+// each with a 44 px target that the negative margins keep off the layout.
+.ek-fin-links {
+    display: flex;
+    gap: 4px;
+    margin-left: -6px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+
+    a, button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        margin: -12px 0;
+        padding: 0 6px;
+        border: 0;
+        background: none;
+        color: inherit;
+        font: inherit;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    a:hover, button:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .ek-pause-toggle { text-decoration: underline; }
+}
+
 // JavaScript off: a section whose items take turns on one stage lists them
 // all below it (partials/noscript-list), plainly.
 .ek-noscript {

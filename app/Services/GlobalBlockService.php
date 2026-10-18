@@ -90,11 +90,12 @@ class GlobalBlockService
      * version, then — if $propagate — pushes the new payload to every
      * synced instance and flushes their page/layout caches.
      */
-    public function update(GlobalBlock $block, array $data, bool $propagate = true): GlobalBlock
+    /** $validate false: a seeder merging in defaults, not an editor's input (a missing media key mustn't stop it). */
+    public function update(GlobalBlock $block, array $data, bool $propagate = true, bool $validate = true): GlobalBlock
     {
         $type = $this->registry->find($block->type);
 
-        if (isset($data['data_desktop'])) {
+        if ($validate && isset($data['data_desktop'])) {
             \Illuminate\Support\Facades\Validator::make(
                 ['data' => $data['data_desktop']],
                 $type->rules()

@@ -57,10 +57,14 @@
             a.btn { background: #4b5563; border-color: #4b5563; color: #12161d; }
             a.btn--ghost { background: transparent; color: #e8eaed; border-color: #3a4150; }
         }
+        .skip { position: fixed; left: 24px; top: -90px; padding: 12px 20px; border-radius: 999px; background: #0D1410; color: #fff; font-weight: 600; text-decoration: none; }
+        .skip:focus { top: 16px; outline: 3px solid #F2A230; outline-offset: 3px; }
+        main:focus { outline: none; }
     </style>
 </head>
 <body>
-    <main class="box">
+    <a class="skip" href="#main">{{ __('Skip to main content') }}</a>
+    <main class="box" id="main" tabindex="-1">
         <p class="code">@yield('code')</p>
         <h1>@yield('title')</h1>
         <p>@yield('message')</p>

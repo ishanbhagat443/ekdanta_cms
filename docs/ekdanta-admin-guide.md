@@ -9,11 +9,12 @@ The setup command puts the shared content in place: `php artisan ekdanta:seed`. 
 - **Media Library → Ekdanta folder:** the design's images. Each has a stable key such as `ekdanta/logo-colour`, so sections find them on any server.
 - **Collections:** case studies, service groups, services, client logos, reels, FAQs and team roles.
 - **Design → Theme Customizer:** the Ekdanta theme (colours, fonts, focus ring), also kept under Backups as "Ekdanta".
-- **Settings → Business:** phone numbers, email and offices.
-- **Menus:** the main menu, the home page menu (its in-page links) and the blog menu.
+- **Settings → Business:** phone numbers, email, offices and the legal entity (legal name, trade name, constitution, GST number, registered address).
+- **Settings → SEO Defaults → OG image:** the share image (the Home hero), if none is set.
+- **Menus:** "Ekdanta main menu" (Home, Services, Work, About, Blog, Contact), used on every page: in the header, and as the Big Brand Finale's footer links.
 - **Header Builder:** the floating pill header, with the "Become a big brand" button.
 - **Design → Block Library:** the **Big Brand Finale** saved block (the green closing section of every page).
-- **Engagement → Forms:** the **Ekdanta Brief** form, used by the Brief Builder.
+- **Engagement → Forms:** the **Ekdanta Brief** form, used by the Brief Builder: name and phone required, and a consent box on the last step.
 - **Blog:** the design's articles as drafts titled "SAMPLE – …". Replace or delete them.
 
 It does not create pages. Build them as below.
@@ -26,7 +27,7 @@ It does not create pages. Build them as below.
 4. Open **Page settings** (right column):
    - *Use this page as*: Home page, 404 page or Thank-you page, for those three pages.
    - *Template for*: Case study, Service or Blog article, for the three template pages.
-   - *Header menu*: the home page menu on Home, the blog menu on Blog and the article template; the site default elsewhere.
+   - *Header menu*: leave it on the site default ("Ekdanta main menu") on every page, Home and the blog included.
    - *Show page title banner*: off.
 5. Set *Status* to Published and save. Use the eye icon (Preview) to check it at desktop and phone sizes; the preview bar has 1440 × 900, 1280 × 720, 390 × 844 and 360 × 640, and a *Reduce motion* switch.
 
@@ -43,8 +44,15 @@ Open the section in the builder (click its name). The **Desktop** tab holds ever
   - a web address (`https://…`), `tel:…` or `mailto:…`;
   - `wa:your message`: WhatsApp to the business number, with the message filled in;
   - from Settings → Business: `phone:1` (call its first number), `email:` and `office:1` (directions to its first office).
-- In text, `{phone:1}`, `{phone:2}`, `{whatsapp}`, `{email}`, `{reply_time}` and `{hours:1}` (the first office's hours) show those details from Settings → Business.
+- In text, `{phone:1}`, `{phone:2}`, `{whatsapp}`, `{email}`, `{reply_time}`, `{hours:1}` (the first office's hours), `{gstin}`, `{registered_address}` and `{legal_line}` show those details from Settings → Business. `{legal_line}` reads "a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC.", built from the trade name, constitution and GST number. In the Big Brand Finale's footer line, `{year}` is this year.
 - Anchor: each section's last field sets its `#name` for links.
+
+## Privacy, consent and cookies
+
+- **The brief's consent box.** In *Forms → Ekdanta Brief*, the last field is a *Consent* box: its label is the sentence the visitor agrees to, with a note, a link (the Privacy Policy) and shorter wording for phones. It starts unticked and the brief can't be sent without it; the server checks too. A ticked box is saved with the time and the exact words shown, in the submission, the enquiry and the CSV export. Any form can have one: add a field of type *Consent*.
+- **The cookie bar** (Settings → Cookies) shows until a visitor chooses; their choice is kept for 180 days, and the footer's *Cookie settings* button brings the bar back. Until a visitor taps *Allow all*, no Google Analytics, Tag Manager (SEO Defaults), Meta Pixel or Google Ads conversion tag (Page settings → Conversion tags) loads. Google's tags then start with Consent Mode v2 at "denied", updated to "granted". To make your own script wait for the same choice, add it as `<script type="text/plain" data-tracking>…</script>` (Developer Mode, page code). Switching the bar off loads the tags for everyone.
+- **Skip to main content** is the first stop for keyboard users on every page; it appears at the top left when focused.
+- **The site footer** is in the Big Brand Finale: the page links come from a menu (*Footer: page links*), then *Privacy Policy*, *Terms of Service*, *Cookie settings* and *Pause animations*, the legal line (`{legal_line}`) and the tagline. Phones and tablets held upright show three lines; set the phone wording in the block's Mobile tab.
 
 ## Settings that feed the sections
 
@@ -56,6 +64,9 @@ Change these once; every section that shows them follows.
 | Settings → Business → Email | Big Brand Finale, Contact Channels (`{email}`, `email:`) |
 | Settings → Business → Reply time | Any text with `{reply_time}`, e.g. Next Steps' "[Add reply time]" chip |
 | Settings → Business → Offices | Big Brand Finale (address), Contact Channels and Visit Us (`office:1` directions), Visit Us office hours (`{hours:1}`) |
+| Settings → Business → Legal name, Trade name, Constitution, GST number, Registered address | The Big Brand Finale's footer line (`{legal_line}`), and any text with `{gstin}` or `{registered_address}` |
+| Settings → Cookies | The cookie bar's words and its Privacy link, and whether it asks at all |
+| Menus → Ekdanta main menu | The header on every page, and the Big Brand Finale's footer page links (its *Footer: page links* field) |
 | Collections → Case studies | Work Showcase, Proof Carousel, Work Hero, Case Studies Scroller, Related Work, the case study template (Case Hero, Overview, Gallery, Results, Next Case) |
 | Collections → Service groups and Services | Services Panels, Expertise Cards, Service Deep Dive, the service template (Service Hero, What's Included, How It Works, Service Pricing + FAQ, Works Well With) |
 | Collections → Client logos | Brand Shelves, Who We Work With, Client Logo Wall |

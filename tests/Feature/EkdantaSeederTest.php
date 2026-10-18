@@ -42,8 +42,8 @@ class EkdantaSeederTest extends TestCase
         $this->assertSame('pill', $header->headerVariant());
         $this->assertSame('overlay', $header->navStyle('mobile'));
         $this->assertSame(27, $header->sections()->where('type', 'logo')->first()->dataFor('mobile')['max_height']);
-        $this->assertSame(5, Menu::query()->where('slug', 'ekdanta-main-menu')->first()->items()->count());
-        $this->assertSame(7, Menu::query()->where('slug', 'ekdanta-home-page-menu')->first()->items()->count());
+        $this->assertSame(['Home', 'Services', 'Work', 'About', 'Blog', 'Contact'], Menu::query()->where('slug', 'ekdanta-main-menu')->first()->items()->orderBy('sort_order')->pluck('label')->all());
+        $this->assertSame(1, Menu::query()->where('slug', 'like', 'ekdanta-%')->count(), 'one menu everywhere');
         $this->assertCount(3, business_phones());
 
         $this->get('/')->assertSee('gsm-header-pill', false)->assertSee('Become a big brand');
@@ -119,6 +119,34 @@ class EkdantaSeederTest extends TestCase
         $this->get('/blog')->assertOk()->assertSee('Leave any time by replying STOP. <a href="/privacy-policy" style="color: var(--tk-mint)">Privacy Policy</a>', false);
     }
 
+    public function test_it_fills_the_legal_entity_footer_menu_and_share_image_only_where_empty(): void
+    {
+        \Illuminate\Support\Facades\Storage::fake('public');
+        app(SettingsService::class)->updateGroup('business', ['trade_name' => 'My trade name']);
+        $seeder = new EkdantaSiteSeeder;
+        foreach (['media', 'business', 'shareImage', 'menus', 'finale', 'business', 'shareImage', 'finale'] as $step) {
+            $seeder->{$step}();
+        }
+
+        $this->assertSame('My trade name', setting('business.trade_name'), 'a value someone typed stays');
+        $this->assertSame('Bhagat Dishant Dipesh', setting('business.legal_name'));
+        $this->assertSame('Proprietorship', setting('business.constitution'));
+        $this->assertSame('24GHNPD1228K1ZC', setting('business.gst'));
+        $this->assertStringStartsWith('Shop No. 403, 4th Floor', setting('business.registered_address'));
+
+        $finale = GlobalBlock::query()->where('slug', 'big-brand-finale')->sole();
+        $this->assertSame(Menu::query()->where('slug', 'ekdanta-main-menu')->value('id'), $finale->data_desktop['menu_id']);
+
+        $og = \App\Models\Media::query()->where('key', 'ekdanta/og-default')->sole();
+        $this->assertSame('Ekdanta — Aapki branding & marketing ke विघ्नहर्ता', $og->alt);
+        $this->assertSame('Vaishali Hirpara, founder of Ekdanta', \App\Models\Media::query()->where('key', 'ekdanta/founder-vaishali-hirpara')->value('alt'));
+        $path = setting('seo.og_image');
+        $this->assertNotSame($og->path, $path, 'the setting has its own copy');
+        \Illuminate\Support\Facades\Storage::disk('public')->assertExists($path);
+        $seeder->shareImage();
+        $this->assertSame($path, setting('seo.og_image'), 'set once');
+    }
+
     public function test_it_applies_the_theme_once_and_keeps_the_old_one_as_a_backup(): void
     {
         $seeder = new EkdantaSiteSeeder;
@@ -155,7 +183,7 @@ class EkdantaSeederTest extends TestCase
         $this->assertTrue($home->is(PageRoles::page('home')));
         $this->assertSame('page-not-found', PageRoles::page('not_found')->slug);
         $this->assertSame('post', Page::query()->where('slug', 'article-template')->sole()->setting('template_for'));
-        $this->assertSame(Menu::query()->where('slug', 'ekdanta-blog-menu')->value('id'), Page::query()->where('slug', 'blog')->sole()->setting('header.menu_id'));
+        $this->assertSame([], Page::query()->whereIn('slug', array_keys(EkdantaSiteSeeder::PAGES))->get()->filter(fn ($p) => $p->setting('header.menu_id'))->pluck('slug')->all(), 'every page uses the header\'s menu');
 
         $this->get('/')->assertOk()->assertSee('j-top', false);
         $this->get('/contact')->assertOk()->assertSee('c-brief', false);

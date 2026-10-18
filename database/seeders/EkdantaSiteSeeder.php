@@ -60,6 +60,7 @@ class EkdantaSiteSeeder extends Seeder
         $this->theme();
         $this->business();
         $this->favicon();
+        $this->shareImage();
         $this->menus();
         $this->header();
         $this->finale();
@@ -77,7 +78,7 @@ class EkdantaSiteSeeder extends Seeder
      * (header.menu as a menu slug), role, section types after "ekdanta-"].
      */
     public const PAGES = [
-        'home' => ['Home', ['header' => ['menu' => 'ekdanta-home-page-menu']], 'home', ['home-hero', 'obstacles', 'work-showcase', 'reels-carousel', 'brand-shelves', 'services-panels', 'founders-story']],
+        'home' => ['Home', [], 'home', ['home-hero', 'obstacles', 'work-showcase', 'reels-carousel', 'brand-shelves', 'services-panels', 'founders-story']],
         'contact' => ['Contact', [], null, ['contact-hero', 'contact-channels', 'brief-builder', 'visit-us', 'faq-deck']],
         'services' => ['Services', [], null, ['services-hero', 'expertise-cards', 'service-deep-dive', 'process-path', 'proof-carousel', 'pricing']],
         'thank-you' => ['Thank you', [], 'thank_you', ['thank-you-hero', 'next-steps', 'save-our-number', 'while-you-wait']],
@@ -86,8 +87,8 @@ class EkdantaSiteSeeder extends Seeder
         'work' => ['Work', [], null, ['work-hero', 'case-studies-scroller', 'reels-arc', 'client-logo-wall']],
         'case-study-template' => ['Case study (template)', ['template_for' => 'case_study'], null, ['case-hero', 'case-overview', 'case-gallery', 'case-results', 'next-case']],
         'service-template' => ['Service (template)', ['template_for' => 'service'], null, ['service-hero', 'whats-included', 'how-it-works', 'related-work', 'service-pricing-faq', 'works-well-with']],
-        'blog' => ['Blog', ['header' => ['menu' => 'ekdanta-blog-menu']], null, ['blog-hero', 'featured-article', 'article-grid', 'whatsapp-tips']],
-        'article-template' => ['Blog article (template)', ['template_for' => 'post', 'header' => ['menu' => 'ekdanta-blog-menu']], null, ['article-hero', 'article-body', 'keep-reading']],
+        'blog' => ['Blog', [], null, ['blog-hero', 'featured-article', 'article-grid', 'whatsapp-tips']],
+        'article-template' => ['Blog article (template)', ['template_for' => 'post'], null, ['article-hero', 'article-body', 'keep-reading']],
     ];
 
     /** The pages (only with --with-pages). A page that already has sections is left as it is. */
@@ -136,13 +137,15 @@ class EkdantaSiteSeeder extends Seeder
     /** The Big Brand Finale as a saved block: pages place it synced, so one edit changes every page. */
     public function finale(): void
     {
-        if (GlobalBlock::query()->where('slug', 'big-brand-finale')->exists()) {
-            return;
-        }
-        app(GlobalBlockService::class)->create([
+        $block = GlobalBlock::query()->where('slug', 'big-brand-finale')->first() ?? app(GlobalBlockService::class)->create([
             'name' => 'Big Brand Finale', 'slug' => 'big-brand-finale', 'type' => 'ekdanta-finale',
-            'description' => 'The closing section of every Ekdanta page, with the contact card and the footer line.',
+            'description' => 'The closing section of every Ekdanta page, with the contact card and the site footer.',
         ]);
+        // The footer's page links: the main menu, unless a menu is picked already.
+        $main = Menu::query()->where('slug', 'ekdanta-main-menu')->value('id');
+        if ($main && empty($block->data_desktop['menu_id'])) {
+            app(GlobalBlockService::class)->update($block, ['data_desktop' => ['menu_id' => $main] + (array) $block->data_desktop], validate: false);
+        }
     }
 
     /** The design's blog articles: [category, title, excerpt, cover media key or null, featured]. */
@@ -269,7 +272,7 @@ class EkdantaSiteSeeder extends Seeder
 
         GlobalBlock::query()->where('type', 'like', 'ekdanta-%')->each(function (GlobalBlock $block) use ($fill): void {
             if ($data = $fill($block)) {
-                app(GlobalBlockService::class)->update($block, $data);
+                app(GlobalBlockService::class)->update($block, $data, validate: false);
             }
         });
         Section::query()->where('type', 'like', 'ekdanta-%')->where(fn ($q) => $q->whereNull('global_block_id')->orWhere('is_synced', false))
@@ -348,13 +351,12 @@ class EkdantaSiteSeeder extends Seeder
     }
 
     /**
-     * The design's navigation. Home uses its section anchors, blog pages add
-     * Blog; each page picks its menu in Page settings (Main is the header's).
+     * The design's navigation: one menu on every page (the header's, and the
+     * Big Brand Finale's footer links). Menus a site already has are left
+     * as they are, including the older home page and blog menus.
      */
     public const MENUS = [
-        'Ekdanta main menu' => [['Home', '/'], ['Work', '/work'], ['Services', '/services'], ['About', '/about'], ['Contact', '/contact']],
-        'Ekdanta home page menu' => [['Home', '#j-top', 'd-lg-none'], ['Why Ekdanta', '#j-obstacles'], ['Work', '#j-work'], ['Reels', '#j-reels'], ['Services', '/services'], ['About', '#j-about'], ['Contact', '/contact']],
-        'Ekdanta blog menu' => [['Home', '/'], ['Work', '/work'], ['Services', '/services'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']],
+        'Ekdanta main menu' => [['Home', '/'], ['Services', '/services'], ['Work', '/work'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']],
     ];
 
     public function menus(): void
@@ -409,6 +411,19 @@ class EkdantaSiteSeeder extends Seeder
     }
 
     /** Settings → Branding: the e-mark as the favicon, when none is set. */
+    /**
+     * SEO Defaults → OG image: the share image (the Home hero), if none is set.
+     * Its own copy, as an upload: removing it in Settings deletes that file,
+     * never the Media Library's.
+     */
+    public function shareImage(): void
+    {
+        if (blank(setting('seo.og_image'))) {
+            $file = base_path(self::ASSETS.'ekdanta-og-1200x630.jpg');
+            app(SettingsService::class)->updateGroup('seo', ['og_image' => new UploadedFile($file, 'ekdanta-og-1200x630.jpg', 'image/jpeg', null, true)]);
+        }
+    }
+
     public function favicon(): void
     {
         if (blank(setting('branding.favicon'))) {
@@ -429,6 +444,12 @@ class EkdantaSiteSeeder extends Seeder
             'company_name' => 'Ekdanta Branding and Marketing',
             'email' => 'info@ekdanta.in',
             'country_code' => '91',
+            // docs/ekdanta-content/business.json → legal_entity (the GST registration).
+            'gst' => '24GHNPD1228K1ZC',
+            'legal_name' => 'Bhagat Dishant Dipesh',
+            'trade_name' => 'Vedanta Advisor',
+            'constitution' => 'Proprietorship',
+            'registered_address' => 'Shop No. 403, 4th Floor, Bhatar Trade Center, B Building, Bhatar Char Rasta, near Shiv Timber Mart, Surat, Gujarat 395017',
             'phones' => [
                 ['label' => 'All services', 'number' => '90994 17987', 'menu_label' => 'Call', 'whatsapp' => true],
                 ['label' => 'All services', 'number' => '90994 17949', 'menu_label' => '', 'whatsapp' => false],
@@ -478,6 +499,13 @@ class EkdantaSiteSeeder extends Seeder
     }
 
     /** Design assets into the Media Library as "ekdanta/<file name>", each logo as "ekdanta/client-<name>". */
+    /** Assets with their own key or description (docs/ekdanta-content/copy.json → alt_text): file name => [key, description]. */
+    private const ASSET_INFO = [
+        'ekdanta-og-1200x630' => ['ekdanta/og-default', 'Ekdanta — Aapki branding & marketing ke विघ्नहर्ता'],
+        'founder-vaishali-hirpara' => ['ekdanta/founder-vaishali-hirpara', 'Vaishali Hirpara, founder of Ekdanta'],
+        'founder-dishant-bhagat' => ['ekdanta/founder-dishant-bhagat', 'Dishant Bhagat, founder of Ekdanta'],
+    ];
+
     public function media(): void
     {
         $folder = MediaFolder::query()->firstOrCreate(['name' => 'Ekdanta', 'parent_id' => null]);
@@ -485,7 +513,8 @@ class EkdantaSiteSeeder extends Seeder
         foreach (glob(base_path(self::ASSETS.'*.{png,jpg}'), GLOB_BRACE) as $file) {
             $name = pathinfo($file, PATHINFO_FILENAME);
             if (! str_starts_with($name, 'client-logos-strip')) {
-                $this->store($file, 'ekdanta/'.$name, $folder->id);
+                [$key, $alt] = self::ASSET_INFO[$name] ?? ['ekdanta/'.$name, null];
+                $this->store($file, $key, $folder->id, null, $alt);
             }
         }
 
@@ -509,7 +538,11 @@ class EkdantaSiteSeeder extends Seeder
 
     private function store(string $path, string $key, int $folderId, ?string $filename = null, ?string $alt = null): void
     {
-        if (Media::query()->where('key', $key)->exists()) {
+        if ($media = Media::query()->where('key', $key)->first()) {
+            if ($alt !== null && blank($media->alt)) {
+                $media->forceFill(['alt' => $alt])->save(); // a description someone wrote stays
+            }
+
             return;
         }
 

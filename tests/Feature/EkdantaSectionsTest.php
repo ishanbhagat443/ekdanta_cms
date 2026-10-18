@@ -117,19 +117,34 @@ class EkdantaSectionsTest extends TestCase
                 ['label' => 'Sales', 'number' => '63544 33194'],
             ],
             'offices' => [['name' => 'Surat', 'address' => 'Bhatar Trade Center, Surat']],
+            'gst' => '24GHNPD1228K1ZC', 'trade_name' => 'Vedanta Advisor', 'constitution' => 'Proprietorship',
         ]);
-        $this->page('closing', ['ekdanta-finale']);
+        (new EkdantaSiteSeeder)->menus();
+        $page = $this->page('closing', ['ekdanta-finale']);
+        $section = $page->sections()->sole();
+        $section->update(['data_desktop' => ['menu_id' => \App\Models\Menu::query()->where('slug', 'ekdanta-main-menu')->value('id')] + $section->data_desktop]);
 
-        $this->get('/closing')->assertOk()
+        $html = $this->get('/closing')->assertOk()
             ->assertSee('id="contact"', false)
             ->assertSee('href="tel:+916354433194"', false)
             ->assertSee('Sales')
             ->assertSee('mailto:info@ekdanta.in', false)
             ->assertSee('Bhatar Trade Center, Surat')
             ->assertSee('href="https://wa.me/919099417987"', false)
-            ->assertSee('© '.now()->format('Y').' Ekdanta Branding and Marketing.', false)
             ->assertSee('data-ek-pause', false)
-            ->assertDontSee('<footer class="gsm-footer', false);
+            ->assertDontSee('<footer class="gsm-footer', false)
+            ->getContent();
+
+        // The site footer: page links (wide screens), the legal links and "Cookie settings", the legal line from Settings → Business.
+        [$wide, $phone] = explode('data-ek-comp="mobile"', preg_replace('/\s+/', ' ', $html), 2);
+        $this->assertStringContainsString('<nav aria-label="Footer" class="ek-fin-links"> <a href="/" >Home</a>', $wide);
+        $this->assertStringNotContainsString('aria-label="Footer"', $phone);
+        foreach ([$wide, $phone] as $layout) {
+            $this->assertStringContainsString('<a href="/privacy-policy">Privacy Policy</a> <a href="/terms-of-service">Terms of Service</a> <button type="button" data-cookie-settings>Cookie settings</button>', $layout);
+        }
+        $legal = '© '.now()->format('Y').' Ekdanta Branding and Marketing, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC.';
+        $this->assertStringContainsString("<span>{$legal} Surat and Ahmedabad.</span>", $wide);
+        $this->assertStringContainsString("<span>{$legal}</span> <span>Surat and Ahmedabad · Aapki branding &amp; marketing ke", $phone);
     }
 
     public function test_contact_details_follow_the_business_settings_everywhere(): void
@@ -159,6 +174,13 @@ class EkdantaSectionsTest extends TestCase
 
         app(SettingsService::class)->updateGroup('business', ['reply_time' => 'Within 2 working hours']);
         $this->assertSame('We call you: Within 2 working hours', business_text('We call you: {reply_time}'));
+
+        // The legal entity, typed once in Settings → Business.
+        app(SettingsService::class)->updateGroup('business', ['gst' => '24GHNPD1228K1ZC', 'trade_name' => 'Vedanta Advisor', 'constitution' => 'Proprietorship', 'registered_address' => 'Shop No. 403, Surat']);
+        $this->assertSame('© Ekdanta, a brand of Vedanta Advisor (proprietorship). GSTIN 24GHNPD1228K1ZC. Registered: Shop No. 403, Surat. GST: 24GHNPD1228K1ZC',
+            business_text('© Ekdanta, {legal_line} Registered: {registered_address}. GST: {gstin}'));
+        app(SettingsService::class)->updateGroup('business', ['trade_name' => '']);
+        $this->assertSame('GSTIN 24GHNPD1228K1ZC.', business_legal_line(), 'parts left empty drop out');
 
         $this->assertFalse(\App\Support\Link::valid('phone:0'));
         $this->assertSame('#', \App\Support\Link::href('office:5'), 'an office the settings lack');

@@ -2600,3 +2600,27 @@ main button[type="submit"].btn {
 @keyframes gsm-cookie-in { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .gsm-cookie-bar { animation: none; } }
 html[data-motion="off"] .gsm-cookie-bar { animation: none; }
+
+// "Skip to main content" (layout): hidden above the screen until it has
+// focus, then a dark pill at the top left, over the header.
+.gsm-skip {
+    position: fixed;
+    left: 24px;
+    top: -90px;
+    z-index: 2000;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: var(--tk-ink, #0D1410);
+    color: #FFFFFF;
+    font-family: 'Poppins', var(--gsm-font-buttons, sans-serif);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: top 150ms ease-out;
+
+    &:focus { top: 16px; color: #FFFFFF; outline: 3px solid var(--tk-orange, #F2A230); outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+html[data-motion="off"] .gsm-skip { transition: none; }
+main:focus { outline: none; } // the skip link's target; focus lands on its first control from there
+

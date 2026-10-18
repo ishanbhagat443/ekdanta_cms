@@ -57,6 +57,21 @@ class RoutingAndChromeTest extends TestCase
 
     /* ── /blogs → /blog (the blog's address since Phase 4) ─────────── */
 
+    public function test_skip_to_main_content_is_the_first_stop_on_every_page(): void
+    {
+        \App\Models\Page::create(['title' => 'About', 'slug' => 'about', 'status' => \App\Models\Page::STATUS_PUBLISHED]);
+
+        foreach (['/about', '/blog', '/no-such-page'] as $url) {
+            $html = $this->get($url)->getContent();
+            $body = substr($html, strpos($html, '<body'));
+            // The first link, button or field after <body> is the skip link.
+            preg_match('/<(a|button|input|select|textarea)\b[^>]*>/', $body, $first);
+            $this->assertMatchesRegularExpression('/^<a class="(gsm-)?skip" href="#main">$/', $first[0], $url);
+            $this->assertStringContainsString('Skip to main content</a>', $body);
+            $this->assertMatchesRegularExpression('/<main( class="box")? id="main" tabindex="-1">/', $body);
+        }
+    }
+
     public function test_old_blog_url_redirects_permanently_keeping_its_query(): void
     {
         $this->get('/blogs')->assertRedirect(url('/blog'))->assertStatus(301);

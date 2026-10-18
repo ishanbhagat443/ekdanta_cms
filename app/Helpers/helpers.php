@@ -371,8 +371,9 @@ if (! function_exists('business_text')) {
     /**
      * Contact details from Settings → Business inside a text: {phone:1}
      * (the first number as written there), {whatsapp} (the WhatsApp number),
-     * {email}, {reply_time} and {hours:1} (the first office's hours). Change a
-     * number once and every section shows it.
+     * {email}, {reply_time}, {hours:1} (the first office's hours), {gstin},
+     * {registered_address} and {legal_line} ("a brand of Vedanta Advisor
+     * (proprietorship). GSTIN …"). Change a detail once and every section shows it.
      */
     function business_text(?string $text): string
     {
@@ -381,12 +382,27 @@ if (! function_exists('business_text')) {
             return $text;
         }
 
-        return preg_replace_callback('/\{(phone:([1-9])|hours:([1-9])|whatsapp|email|reply_time)\}/', fn (array $m) => match (true) {
+        return preg_replace_callback('/\{(phone:([1-9])|hours:([1-9])|whatsapp|email|reply_time|gstin|registered_address|legal_line)\}/', fn (array $m) => match (true) {
             $m[1] === 'whatsapp' => business_whatsapp()['number'] ?? '',
-            $m[1] === 'email', $m[1] === 'reply_time' => (string) setting('business.'.$m[1], ''),
+            $m[1] === 'email', $m[1] === 'reply_time', $m[1] === 'registered_address' => (string) setting('business.'.$m[1], ''),
+            $m[1] === 'gstin' => (string) setting('business.gst', ''),
+            $m[1] === 'legal_line' => business_legal_line(),
             str_starts_with($m[1], 'hours') => business_offices()[(int) $m[3] - 1]['hours'] ?? '',
             default => business_phones()[(int) $m[2] - 1]['number'] ?? '',
         }, $text);
+    }
+}
+
+if (! function_exists('business_legal_line')) {
+    /** "a brand of {trade name} ({constitution}). GSTIN {gst}." from Settings → Business; parts left empty drop out. */
+    function business_legal_line(): string
+    {
+        $trade = trim((string) setting('business.trade_name', ''));
+        $constitution = trim((string) setting('business.constitution', ''));
+        $gst = trim((string) setting('business.gst', ''));
+
+        return trim(($trade !== '' ? "a brand of {$trade}".($constitution !== '' ? ' ('.mb_strtolower($constitution).')' : '').'.' : '')
+            .($gst !== '' ? " GSTIN {$gst}." : ''));
     }
 }
 

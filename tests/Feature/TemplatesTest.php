@@ -90,10 +90,18 @@ class TemplatesTest extends TestCase
         $this->get('/blog')->assertOk()->assertSee('Reels for factories');
         $this->get('/blog/reels-for-factories')->assertOk();
 
-        // A page at /blog and a page marked as the article template take over.
-        $blog = Page::create(['title' => 'Blog', 'slug' => 'blog', 'status' => Page::STATUS_PUBLISHED]);
+        // While the builder's blog page and article template are drafts, the built-in blog keeps answering.
+        $blog = Page::create(['title' => 'Blog', 'slug' => 'blog', 'status' => Page::STATUS_DRAFT]);
         $blog->sections()->create(['type' => 'text-block', 'name' => 'T', 'sort_order' => 0, 'is_active' => true, 'data_desktop' => ['heading' => 'Built blog']]);
-        $this->templatePage('article-template', 'post', 'Article template');
+        $template = $this->templatePage('article-template', 'post', 'Article template');
+        $template->update(['status' => Page::STATUS_DRAFT]);
+        $this->get('/blog')->assertOk()->assertSee('Reels for factories')->assertDontSee('Built blog');
+        $this->get('/blog/reels-for-factories')->assertOk()->assertDontSee('Article template');
+
+        // Published, a page at /blog and the page marked as the article template take over.
+        $blog->update(['status' => Page::STATUS_PUBLISHED]);
+        $template->update(['status' => Page::STATUS_PUBLISHED]);
+        app(\App\Services\PageRenderService::class)->flushCache();
 
         $this->get('/blog')->assertOk()->assertSee('Built blog');
         $this->get('/blog/reels-for-factories')->assertOk()->assertSee('Article template')->assertSee('<title>Reels for factories', false);
