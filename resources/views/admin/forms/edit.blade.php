@@ -135,36 +135,6 @@
                             @foreach ($form->fields as $i => $field)
                                 @include('admin.forms.partials.field-row', ['i' => $i, 'field' => $field])
                             @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" name="fields[{{ $i }}][placeholder]" class="form-control form-control-sm"
-                                                   placeholder="Placeholder" value="{{ $field->placeholder }}">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" name="fields[{{ $i }}][validation_rules]" class="form-control form-control-sm"
-                                                   placeholder="Extra rules" value="{{ $field->validation_rules }}">
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="hidden" name="fields[{{ $i }}][is_required]" value="0">
-                                                <input type="checkbox" class="custom-control-input" id="req_{{ $i }}"
-                                                       name="fields[{{ $i }}][is_required]" value="1" @checked($field->is_required)>
-                                                <label class="custom-control-label small" for="req_{{ $i }}">Req.</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto ml-auto">
-                                            <button type="button" class="btn btn-xs btn-outline-danger remove-field"><i class="fas fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="form-row mt-1 options-wrap" @unless($field->hasOptions()) style="display:none" @endunless>
-                                        <div class="col-11 offset-1">
-                                            <textarea name="fields[{{ $i }}][options]" rows="2" class="form-control form-control-sm"
-                                                      placeholder="One option per line">{{ implode("\n", $field->options ?? []) }}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
                         </div>
                         <p class="text-muted small mb-0 @if($form->fields->isNotEmpty()) d-none @endif" id="no-fields-hint">
                             No fields yet — click “Add Field”.

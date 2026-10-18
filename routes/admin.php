@@ -222,8 +222,8 @@ Route::delete('media-folders/{folder}', [MediaFolderController::class, 'destroy'
 
 // Settings (grouped tabs: business, branding, social, seo)
 Route::get('settings/{group}', [SettingController::class, 'edit'])
-    ->whereAlphaNumeric('group')
+    ->where('group', '[a-z_]+')
     ->name('settings.edit');
 Route::put('settings/{group}', [SettingController::class, 'update'])
-    ->whereAlphaNumeric('group')
+    ->where('group', '[a-z_]+')
     ->name('settings.update');
