@@ -29,7 +29,8 @@ class HelpController extends Controller
 
         return view('admin.help.ekdanta', [
             'guide' => Str::markdown((string) file_get_contents(base_path('docs/ekdanta-admin-guide.md')), ['html_input' => 'escape', 'allow_unsafe_links' => false]),
-            'pages' => EkdantaSiteSeeder::PAGES,
+            // The legal pages close the list, with the four legal sections each.
+            'pages' => EkdantaSiteSeeder::PAGES + array_map(fn ($p) => [$p[0], [], null, ['legal-hero', 'legal-short', 'legal-body', 'legal-questions']], EkdantaSiteSeeder::LEGAL_PAGES),
             'types' => $types,
         ]);
     }

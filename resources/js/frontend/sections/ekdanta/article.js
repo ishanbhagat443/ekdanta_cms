@@ -2,10 +2,12 @@
  * Ekdanta · Article: the reading rail follows the heading in view (its
  * contents link gets aria-current, the bar moves: --act) and counts down
  * the minutes left as a reading line 60 % down the screen passes the text.
+ * On phones and tablets a slim bar ([data-now]) shows the part being read,
+ * the minutes left and how far along, while the text is on screen.
  * Copy-link buttons ([data-copy-link]) copy the address and say so.
  * Markup: [data-article] (data-minutes, data-left "{minutes} min left",
  * data-done, data-read "{percent}% read") > [data-toc] links,
- * [data-article-text], [data-ring], [data-left], [data-read].
+ * [data-article-text], [data-ring], [data-left], [data-read], [data-now].
  */
 
 /** Share of the text read: the reading line's place between its top and bottom. */
@@ -32,6 +34,7 @@ function initRail(root) {
     const ring = root.querySelector('[data-ring]');
     const left = root.querySelector('[data-left]');
     const read = root.querySelector('[data-read]');
+    const now = root.querySelector('[data-now]');
     const total = Number(root.dataset.minutes) || 1;
     const C = ring ? Number(ring.getAttribute('stroke-dasharray')) : 0;
     let current = null;
@@ -49,8 +52,17 @@ function initRail(root) {
         const box = text.getBoundingClientRect();
         const p = progress(box.top, box.height, vh);
         ring?.setAttribute('stroke-dashoffset', (C * (1 - p)).toFixed(2));
-        if (left) left.textContent = p >= 1 ? root.dataset.done : root.dataset.left.replace('{minutes}', minutesLeft(total, p));
+        const leftText = p >= 1 ? root.dataset.done : root.dataset.left.replace('{minutes}', minutesLeft(total, p));
+        if (left) left.textContent = leftText;
         if (read) read.textContent = root.dataset.read.replace('{percent}', Math.round(p * 100));
+        if (now) {
+            const link = links[Math.max(0, at)];
+            now.querySelector('[data-now-num]').textContent = link?.querySelector('.ek-ab__num')?.textContent || String(Math.max(0, at) + 1).padStart(2, '0');
+            now.querySelector('[data-now-title]').textContent = link ? [...link.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join('').trim() : '';
+            now.querySelector('[data-now-left]').textContent = leftText;
+            now.querySelector('[data-now-bar]').style.transform = `scaleX(${p.toFixed(3)})`;
+            now.classList.toggle('is-on', box.top < -60 && box.bottom > vh * 0.4);
+        }
     };
 
     let queued = false;

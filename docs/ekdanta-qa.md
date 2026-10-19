@@ -141,6 +141,10 @@ Recorded per phase from Phase 1 on.
 | P3 Phase 3 | Settings → Business: legal entity | Legal name, Trade name, Constitution and Registered address beside the GST number, each labelled, with hints naming the tokens ({legal_line}, {gstin}, {registered_address}) | Pass |
 | P3 Phase 3 | Settings → Cookies | Labelled fields; a value never saved shows the wording the site uses (the field's default), so what the admin sees is what visitors see | Pass |
 | P3 Phase 3 | Ponytail review | Nothing to cut: each addition has its caller. The old "Cookie settings" label setting was dropped while building: the Finale owns that button | Done |
+| P3 Phase 4 | Legal pages (Privacy, Terms), every section | Checked at 1440 × 900 and 390 × 844 at each section's start, ⅓, ⅔ and end against `Privacy.dc.html` and `Terms.dc.html`, and in the browser checks at all four sizes: no errors, no overlaps, layout shift 0–0.001, readable without JavaScript. One `<h1>` per layout. Hero: the picture is decoration (hidden from screen readers), the heading rises line by line, under reduced motion everything is drawn finished and the rings stop. In Short: the cards are headings (h3) in a stack; card numbers are decoration. Full text: numbered `h2`s with ids, "On this page" is a labelled navigation whose current link gets `aria-current`; on phones its rows are 44 px tall. The phone bar under the header is decoration (the contents list says the same). Questions: a description list; buttons 46–54 px | Pass |
+| P3 Phase 4 | Contrast inside the legal boards | Card numbers are drawn `#7B867F` at 14 px (3.4:1 on the light card, 4.0:1 on the dark one): they take the approved small-text shades instead, `#6A736D` and `#8A968F` (4.6:1, 4.9:1). Heading numbers drawn `#2EB45D` (2.9:1, 34 px bold) take the approved large green `#1E8E47`; the rail's question link and the phone contents numbers `#1B8141`. Everything else as drawn | Pass (approved shades) |
+| P3 Phase 4 | Reading time | Worked out from the page text as the articles are (200 words a minute): Privacy 4 min, Terms 3 min. The boards show 7 and 6; edit the hero's date line to write a number instead of {minutes} | Note |
+| P3 Phase 4 | Ponytail review | Cut: an unused variable, the icon labels typed twice, a one-use variable | Done |
 
 ### Pre-delivery checklist per page (Phase 6)
 
@@ -190,4 +194,5 @@ Fill these in the CMS, then run your Steps 2.4 and 3 again:
 - Big Brand Finale: confirm "Footer: page links" is "Ekdanta main menu", and the Privacy and Terms links go to `/privacy-policy` and `/terms-of-service`.
 - Settings → Business: check Legal name, Trade name, Constitution and Registered address against the GST certificate.
 - Settings → Cookies: read the bar's words; save once.
+- Privacy Policy and Terms of Service (drafts): the four legal sections are in place from the approved text. Check each against `Privacy.dc.html` / `Terms.dc.html` at 1440 × 900 and 390 × 844, fill the page SEO's OG image (`ekdanta/og-default`), and leave every `[Add …]` placeholder for the owner.
 

@@ -1,0 +1,402 @@
+{
+    "desktop": {
+        "stage": {
+            "pin": true,
+            "length": 800
+        },
+        "tracks": {
+            "head-fade": {
+                "part": "ls-head",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -650,
+                    -230
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "head-rise": {
+                "part": "ls-head",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateY": [
+                        40,
+                        0
+                    ]
+                },
+                "range": [
+                    -650,
+                    -230
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-1": {
+                "part": "ls-card-0",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        458.0,
+                        0
+                    ],
+                    "translateY": [
+                        600.0,
+                        0
+                    ],
+                    "rotate": [
+                        -10.5,
+                        0
+                    ]
+                },
+                "range": [
+                    -380,
+                    140
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-1-fade": {
+                "part": "ls-card-0",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -380,
+                    -285
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "card-2": {
+                "part": "ls-card-1",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        153.0,
+                        0
+                    ],
+                    "translateY": [
+                        600.0,
+                        0
+                    ],
+                    "rotate": [
+                        -3.5,
+                        0
+                    ]
+                },
+                "range": [
+                    -270,
+                    250
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-2-fade": {
+                "part": "ls-card-1",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -270,
+                    -175
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "card-3": {
+                "part": "ls-card-2",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        -152.0,
+                        0
+                    ],
+                    "translateY": [
+                        600.0,
+                        0
+                    ],
+                    "rotate": [
+                        3.5,
+                        0
+                    ]
+                },
+                "range": [
+                    -160,
+                    360
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-3-fade": {
+                "part": "ls-card-2",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -160,
+                    -65
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "card-4": {
+                "part": "ls-card-3",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        -457.0,
+                        0
+                    ],
+                    "translateY": [
+                        600.0,
+                        0
+                    ],
+                    "rotate": [
+                        10.5,
+                        0
+                    ]
+                },
+                "range": [
+                    -50,
+                    470
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-4-fade": {
+                "part": "ls-card-3",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -50,
+                    45
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            }
+        }
+    },
+    "mobile": {
+        "stage": {
+            "pin": true,
+            "length": 856
+        },
+        "tracks": {
+            "head-fade": {
+                "part": "ls-head",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -650,
+                    -230
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "head-rise": {
+                "part": "ls-head",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateY": [
+                        40,
+                        0
+                    ]
+                },
+                "range": [
+                    -650,
+                    -230
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-1": {
+                "part": "ls-card-0",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        70.5,
+                        0
+                    ],
+                    "translateY": [
+                        668.0,
+                        0
+                    ],
+                    "rotate": [
+                        -10.5,
+                        0
+                    ]
+                },
+                "range": [
+                    -380,
+                    140
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-1-fade": {
+                "part": "ls-card-0",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -380,
+                    -285
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "card-2": {
+                "part": "ls-card-1",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        -94.5,
+                        0
+                    ],
+                    "translateY": [
+                        668.0,
+                        0
+                    ],
+                    "rotate": [
+                        -3.5,
+                        0
+                    ]
+                },
+                "range": [
+                    -270,
+                    250
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-2-fade": {
+                "part": "ls-card-1",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -270,
+                    -175
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "card-3": {
+                "part": "ls-card-2",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        94.5,
+                        0
+                    ],
+                    "translateY": [
+                        460.0,
+                        0
+                    ],
+                    "rotate": [
+                        3.5,
+                        0
+                    ]
+                },
+                "range": [
+                    -160,
+                    360
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-3-fade": {
+                "part": "ls-card-2",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -160,
+                    -65
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "card-4": {
+                "part": "ls-card-3",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        -70.5,
+                        0
+                    ],
+                    "translateY": [
+                        460.0,
+                        0
+                    ],
+                    "rotate": [
+                        10.5,
+                        0
+                    ]
+                },
+                "range": [
+                    -50,
+                    470
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-4-fade": {
+                "part": "ls-card-3",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -50,
+                    45
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            }
+        }
+    }
+}

@@ -16,7 +16,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 const base = process.env.EK_BASE || 'http://127.0.0.1:8001';
 const paths = process.argv.slice(2).length ? process.argv.slice(2) : [
     '/', '/contact', '/services', '/thank-you', '/no-such-page', '/about', '/work', '/work/yantra-design',
-    '/services/meta-ads', '/blog', '/blog/why-your-factory-needs-reels-not-just-brochures',
+    '/services/meta-ads', '/blog', '/blog/why-your-factory-needs-reels-not-just-brochures', '/privacy-policy', '/terms-of-service',
 ];
 const sizes = [[1440, 900], [1280, 720], [390, 844], [360, 640]];
 const browser = await chromium.launch({ channel: 'chrome' });
@@ -28,6 +28,8 @@ const open = async (options) => {
         viewport: { width, height }, isMobile: width < 768, hasTouch: width < 768,
         reducedMotion: options.reduce ? 'reduce' : 'no-preference', javaScriptEnabled: options.js !== false,
     });
+    // The finished layouts are checked after a cookie choice: the bar covers the bottom until then.
+    if (options.reduce) await context.addCookies([{ name: 'cookie_consent', value: 'necessary', url: base }]);
     const page = await context.newPage();
     return { context, page };
 };

@@ -1,0 +1,356 @@
+{
+    "desktop": {
+        "stage": {
+            "pin": true,
+            "length": 400
+        },
+        "tracks": {
+            "head-fade": {
+                "part": "lq-head",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -650,
+                    -230
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "head-rise": {
+                "part": "lq-head",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateY": [
+                        40,
+                        0
+                    ]
+                },
+                "range": [
+                    -650,
+                    -230
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "plane": {
+                "part": "lq-plane",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        116.0,
+                        125.7,
+                        154.4,
+                        200.3,
+                        260.9,
+                        333.7,
+                        416.2,
+                        507.5,
+                        595.7,
+                        670.6,
+                        733.7,
+                        784.7,
+                        822.7,
+                        846.1,
+                        854.0
+                    ],
+                    "translateY": [
+                        780.0,
+                        782.3,
+                        787.1,
+                        788.5,
+                        778.0,
+                        745.5,
+                        682.1,
+                        582.5,
+                        467.1,
+                        365.5,
+                        285.0,
+                        226.6,
+                        188.2,
+                        166.8,
+                        160.0
+                    ],
+                    "rotate": [
+                        59.0,
+                        57.2,
+                        51.6,
+                        41.9,
+                        28.5,
+                        14.1,
+                        2.0,
+                        -5.8,
+                        -8.7,
+                        -8.0,
+                        -5.5,
+                        -2.0,
+                        1.4,
+                        3.9,
+                        4.8
+                    ],
+                    "opacity": [
+                        0,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        0
+                    ]
+                },
+                "range": [
+                    -300,
+                    400
+                ],
+                "ease": "linear",
+                "reduce": "hide"
+            },
+            "card": {
+                "part": "lq-card",
+                "trigger": "scrub",
+                "keyframes": {
+                    "rotateY": [
+                        -28,
+                        0
+                    ],
+                    "translateX": [
+                        60,
+                        0
+                    ]
+                },
+                "range": [
+                    -120,
+                    380
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-fade": {
+                "part": "lq-card",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -120,
+                    192
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "rows": {
+                "part": "lq-row",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ],
+                    "translateY": [
+                        14,
+                        0
+                    ]
+                },
+                "range": [
+                    -60,
+                    200
+                ],
+                "stagger": 70,
+                "ease": "outCubic",
+                "reduce": "start"
+            }
+        }
+    },
+    "mobile": {
+        "stage": {
+            "pin": true,
+            "length": 456
+        },
+        "tracks": {
+            "head-fade": {
+                "part": "lq-head",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -650,
+                    -230
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "head-rise": {
+                "part": "lq-head",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateY": [
+                        40,
+                        0
+                    ]
+                },
+                "range": [
+                    -650,
+                    -230
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "plane": {
+                "part": "lq-plane",
+                "trigger": "scrub",
+                "keyframes": {
+                    "translateX": [
+                        30.0,
+                        35.9,
+                        52.3,
+                        75.8,
+                        101.9,
+                        125.8,
+                        144.7,
+                        160.4,
+                        178.1,
+                        202.0,
+                        232.1,
+                        264.4,
+                        293.2,
+                        313.0,
+                        320.0
+                    ],
+                    "translateY": [
+                        754.0,
+                        755.1,
+                        757.6,
+                        758.7,
+                        754.0,
+                        738.5,
+                        706.7,
+                        654.0,
+                        588.6,
+                        526.3,
+                        472.3,
+                        429.4,
+                        398.6,
+                        380.1,
+                        374.0
+                    ],
+                    "rotate": [
+                        56.6,
+                        55.5,
+                        51.5,
+                        42.8,
+                        25.3,
+                        -1.5,
+                        -23.3,
+                        -30.9,
+                        -27.6,
+                        -20.0,
+                        -11.6,
+                        -4.6,
+                        0.5,
+                        3.5,
+                        4.5
+                    ],
+                    "opacity": [
+                        0,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        0
+                    ]
+                },
+                "range": [
+                    -300,
+                    400
+                ],
+                "ease": "linear",
+                "reduce": "hide"
+            },
+            "card": {
+                "part": "lq-card",
+                "trigger": "scrub",
+                "keyframes": {
+                    "rotateY": [
+                        -28,
+                        0
+                    ],
+                    "translateX": [
+                        60,
+                        0
+                    ]
+                },
+                "range": [
+                    -120,
+                    380
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "card-fade": {
+                "part": "lq-card",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -120,
+                    192
+                ],
+                "ease": "outCubic",
+                "reduce": "start"
+            },
+            "rows": {
+                "part": "lq-row",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ],
+                    "translateY": [
+                        14,
+                        0
+                    ]
+                },
+                "range": [
+                    -60,
+                    200
+                ],
+                "stagger": 70,
+                "ease": "outCubic",
+                "reduce": "start"
+            }
+        }
+    }
+}

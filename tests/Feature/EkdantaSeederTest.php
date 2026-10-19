@@ -147,6 +147,44 @@ class EkdantaSeederTest extends TestCase
         $this->assertSame($path, setting('seo.og_image'), 'set once');
     }
 
+    public function test_it_fills_the_legal_pages_only_while_empty_and_keeps_every_placeholder(): void
+    {
+        $seeder = new EkdantaSiteSeeder;
+        $seeder->finale();
+        // Terms already built by hand: left alone.
+        $terms = Page::create(['title' => 'Terms', 'slug' => 'terms-of-service', 'status' => Page::STATUS_DRAFT]);
+        $terms->sections()->create(['type' => 'text-block', 'name' => 'Mine', 'sort_order' => 0, 'is_active' => true, 'data_desktop' => ['heading' => 'Mine']]);
+
+        $seeder->legalPages();
+        $seeder->legalPages();
+
+        $privacy = Page::query()->where('slug', 'privacy-policy')->sole();
+        $this->assertSame(Page::STATUS_DRAFT, $privacy->status);
+        $this->assertSame(['ekdanta-legal-hero', 'ekdanta-legal-short', 'ekdanta-legal-body', 'ekdanta-legal-questions', 'ekdanta-finale'],
+            $privacy->sections()->orderBy('sort_order')->pluck('type')->all());
+        $this->assertSame(['Mine'], $terms->sections()->pluck('name')->all());
+        $this->assertSame('Privacy Policy | Ekdanta Branding and Marketing', $privacy->seoMeta->meta_title);
+        $this->assertStringStartsWith('What we collect when you contact us', $privacy->seoMeta->meta_description);
+
+        // Every "[…]" placeholder of the legal text comes through exactly.
+        $data = json_encode($privacy->sections()->pluck('data_desktop')->all(), JSON_UNESCAPED_UNICODE);
+        preg_match_all('/\[Add[^\]]*\]/u', (string) file_get_contents(base_path('docs/ekdanta-content/legal/privacy-policy.json')), $wanted);
+        foreach (array_unique($wanted[0]) as $placeholder) {
+            $this->assertStringContainsString($placeholder, $data);
+        }
+
+        // The page: numbered headings with a contents list, the hero's reading time, no raw markup from the text.
+        $privacy->update(['status' => Page::STATUS_PUBLISHED]);
+        $html = $this->get('/privacy-policy')->assertOk()->getContent();
+        $this->assertStringContainsString('<h2 id="l-full-1" tabindex="-1" data-m="lb-rise"><span class="ek-lb-num">01</span>Who we are</h2>', $html);
+        $this->assertStringContainsString('<a href="#l-full-11"><span class="ek-ab__num">11</span>Changes to this policy</a>', $html);
+        $this->assertStringContainsString('Last updated [Add date] · 4 min read', $html);
+        $this->assertStringContainsString('<dt>When you send a brief</dt>', $html);
+        $this->assertStringContainsString('We do not sell or rent your personal data to anyone.', $html);
+        $this->assertSame(2, substr_count($html, '<h1'), 'one per layout (desktop, phone), no title banner');
+        $this->assertStringNotContainsString('gsm-page-banner', $html);
+    }
+
     public function test_it_applies_the_theme_once_and_keeps_the_old_one_as_a_backup(): void
     {
         $seeder = new EkdantaSiteSeeder;

@@ -20,24 +20,11 @@
     $author = $d['author_name'] ?: ucfirst($post->displayAuthor());
     $authorImage = media_ref($d['author_image'] ?? null)?->web_url;
     $btn = 'width: '.ek_u(46).'; height: '.ek_u(46).'; border-radius: 999px; background: var(--tk-paper); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: var(--tk-ink); border: 0; cursor: pointer';
-    $ring = round(2 * M_PI * 22, 2);
 @endphp
 <div class="ek ek-article-body" id="{{ $d['anchor'] ?: 'p-body' }}" data-article data-minutes="{{ $minutes }}" data-left="{{ $d['left_label'] }}" data-done="{{ $d['done_label'] }}" data-read="{{ $d['read_label'] }}">
     <div class="ek-ab">
         <aside class="ek-ab__rail" aria-label="{{ $d['rail_label'] }}" data-m="ab-rail">
-            @if ($body['toc'] !== [])
-                <span class="ek-ab__label">{{ $d['toc_label'] }}</span>
-                <nav class="ek-ab__toc" aria-label="{{ \Illuminate\Support\Str::ucfirst(mb_strtolower($d['toc_label'])) }}" data-toc>
-                    <span class="ek-ab__bar" aria-hidden="true"></span>
-                    @foreach ($body['toc'] as $entry)
-                        <a href="#{{ $entry['id'] }}">{{ $entry['label'] }}</a>
-                    @endforeach
-                </nav>
-            @endif
-            <div class="ek-ab__progress">
-                <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="22" fill="none" stroke="#DDE2DA" stroke-width="5"></circle><circle data-ring cx="28" cy="28" r="22" fill="none" stroke="#2EB45D" stroke-width="5" stroke-linecap="round" stroke-dasharray="{{ $ring }}" stroke-dashoffset="{{ $ring }}" transform="rotate(-90 28 28)"></circle></svg>
-                <span><span class="ek-ab__left" data-left>{{ str_replace('{minutes}', $minutes, $d['left_label']) }}</span><span data-read>{{ str_replace('{percent}', '0', $d['read_label']) }}</span></span>
-            </div>
+            @include('frontend.sections.ekdanta.partials.reading-rail', ['toc' => $body['toc'], 'tocLabel' => $d['toc_label'], 'minutes' => $minutes, 'leftLabel' => $d['left_label'], 'readLabel' => $d['read_label']])
             <div class="ek-ab__share" data-share>
                 <span class="ek-ab__label ek-ab__label--muted">{{ $d['share_label'] }}</span>
                 <div>@include('frontend.sections.ekdanta.partials.share-links', ['t' => $d, 'url' => $url, 'title' => $post->title, 'btn' => $btn, 'icon' => [20, 18, 19]])</div>
@@ -45,6 +32,9 @@
             </div>
         </aside>
         <article class="ek-ab__main">
+            @if ($body['toc'] !== [])
+                @include('frontend.sections.ekdanta.partials.reading-now', ['first' => $body['toc'][0], 'left' => str_replace('{minutes}', $minutes, $d['left_label'])])
+            @endif
             <div class="ek-ab-text" data-article-text>{!! $body['html'] !!}</div>
             @if ($post->tags->isNotEmpty())
                 <div class="ek-ab__tags" data-m="ab-rise">

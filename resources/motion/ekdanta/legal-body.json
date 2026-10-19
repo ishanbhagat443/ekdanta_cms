@@ -1,0 +1,102 @@
+{
+    "desktop": {
+        "tracks": {
+            "rail": {
+                "part": "lb-rail",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -720,
+                    -420
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "blocks": {
+                "part": "lb-rise",
+                "trigger": "enter",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ],
+                    "translateY": [
+                        30,
+                        0
+                    ]
+                },
+                "duration": 600,
+                "ease": "outCubic",
+                "stagger": 60
+            },
+            "note": {
+                "part": "lb-note",
+                "trigger": "enter",
+                "keyframes": {
+                    "--hl": [
+                        0,
+                        1
+                    ]
+                },
+                "duration": 900,
+                "delay": 300,
+                "ease": "outCubic"
+            }
+        }
+    },
+    "mobile": {
+        "tracks": {
+            "rail": {
+                "part": "lb-rail",
+                "trigger": "scrub",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ]
+                },
+                "range": [
+                    -675,
+                    -375
+                ],
+                "ease": "linear",
+                "reduce": "start"
+            },
+            "blocks": {
+                "part": "lb-rise",
+                "trigger": "enter",
+                "keyframes": {
+                    "opacity": [
+                        0,
+                        1
+                    ],
+                    "translateY": [
+                        30,
+                        0
+                    ]
+                },
+                "duration": 600,
+                "ease": "outCubic",
+                "stagger": 60
+            },
+            "note": {
+                "part": "lb-note",
+                "trigger": "enter",
+                "keyframes": {
+                    "--hl": [
+                        0,
+                        1
+                    ]
+                },
+                "duration": 900,
+                "delay": 300,
+                "ease": "outCubic"
+            }
+        }
+    }
+}

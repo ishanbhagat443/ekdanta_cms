@@ -17,7 +17,9 @@ The setup command puts the shared content in place: `php artisan ekdanta:seed`. 
 - **Engagement → Forms:** the **Ekdanta Brief** form, used by the Brief Builder: name and phone required, and a consent box on the last step.
 - **Blog:** the design's articles as drafts titled "SAMPLE – …". Replace or delete them.
 
-It does not create pages. Build them as below.
+It also fills **Privacy Policy** and **Terms of Service** (from `docs/ekdanta-content/legal`), but only while those pages have no sections: the four legal sections, then the Big Brand Finale, left as drafts. Every `[Add …]` in their text is yours to fill.
+
+It does not create the other pages. Build them as below.
 
 ## Build a page
 

@@ -27,6 +27,7 @@ use App\Services\SectionBuilderService;
 use App\Services\SettingsService;
 use App\Services\ThemeService;
 use App\Services\SectionTypes\SectionTypeRegistry;
+use App\Support\LegalContent;
 use App\Support\PageRoles;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
@@ -66,6 +67,7 @@ class EkdantaSiteSeeder extends Seeder
         $this->finale();
         $this->briefForm();
         $this->newFields();
+        $this->legalPages();
         $this->samplePosts($this->withPages);
         if ($this->withPages) {
             $this->pages();
@@ -281,6 +283,44 @@ class EkdantaSiteSeeder extends Seeder
                     $section->update($data);
                 }
             });
+        app(PageRenderService::class)->flushCache();
+    }
+
+    /** slug => [title, docs/ekdanta-content/legal file, anchor prefix]. */
+    public const LEGAL_PAGES = [
+        'privacy-policy' => ['Privacy Policy', 'privacy-policy', 'l'],
+        'terms-of-service' => ['Terms of Service', 'terms-of-service', 't'],
+    ];
+
+    /**
+     * Privacy Policy and Terms of Service, from docs/ekdanta-content/legal:
+     * the four legal sections, then the Big Brand Finale. Only a page that
+     * has no sections yet is filled (its title banner off, as every Ekdanta
+     * page); a new page stays a draft. The page's
+     * SEO title and description are set only if empty.
+     */
+    public function legalPages(): void
+    {
+        $finale = GlobalBlock::query()->where('slug', 'big-brand-finale')->first();
+        $builder = app(SectionBuilderService::class);
+
+        foreach (self::LEGAL_PAGES as $slug => [$title, $file, $prefix]) {
+            $page = Page::query()->firstOrCreate(['slug' => $slug], ['title' => $title, 'status' => Page::STATUS_DRAFT]);
+            if (! $page->sections()->exists()) {
+                $page->update(['show_banner' => false]); // the Legal Hero is the page's heading
+                foreach (LegalContent::sections($file, $prefix) as $type => $data) {
+                    $section = $builder->addSection($page, 'page', $type);
+                    $section->update(['data_desktop' => $data + (array) $section->data_desktop]);
+                }
+                if ($finale) {
+                    app(GlobalBlockService::class)->placeOnPage($finale, $page, $page->sections()->count() + 1);
+                }
+            }
+            $seo = $page->seoMeta()->firstOrNew();
+            if (blank($seo->meta_title)) {
+                $seo->fill(['meta_title' => "{$title} | Ekdanta Branding and Marketing", 'meta_description' => $seo->meta_description ?: LegalContent::sections($file, $prefix)['ekdanta-legal-hero']['text']])->save();
+            }
+        }
         app(PageRenderService::class)->flushCache();
     }
 

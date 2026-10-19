@@ -1,0 +1,6 @@
+{{-- Legal Hero picture: up to three chips, each at $at[i] (design px); its own part, so scroll drifts it on its own. $part (the pop-in), $chipBg, $chipFg, $shadow. --}}
+@foreach (array_slice($chips, 0, 3) as $i => $chip)
+    <span data-m="lg-chip-{{ ['a', 'b', 'c'][$i] }}" style="position: absolute; left: {{ ek_u($at[$i][0]) }}; top: {{ ek_u($at[$i][1]) }}">
+        <span data-m="{{ $part }}" style="display: inline-flex; align-items: center; gap: {{ ek_u(8) }}; height: {{ ek_u(44) }}; box-sizing: border-box; padding: 0 {{ ek_u(16) }} 0 {{ ek_u(10) }}; border-radius: 999px; background: {{ $chipBg }}; color: {{ $chipFg }}; box-shadow: 0 {{ ek_u(16) }} {{ ek_u(30) }} {{ ek_u(-16) }} {{ $shadow }}; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: {{ ek_u(15) }}; white-space: nowrap"><span style="width: {{ ek_u(26) }}; height: {{ ek_u(26) }}; border-radius: 999px; background: var(--tk-green); color: var(--tk-ink); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="width: {{ ek_u(14) }}; height: {{ ek_u(14) }}"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{{ $chip }}</span>
+    </span>
+@endforeach
