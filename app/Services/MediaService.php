@@ -87,9 +87,13 @@ class MediaService
 
     public function updateMeta(Media $media, array $data): Media
     {
+        $decorative = array_key_exists('is_decorative', $data) ? (bool) $data['is_decorative'] : $media->is_decorative;
+
         return $this->media->update($media, [
             'title' => $data['title'] ?? $media->title,
-            'alt' => $data['alt'] ?? $media->alt,
+            // A decorative picture has no description (screen readers skip it).
+            'alt' => $decorative ? null : (array_key_exists('alt', $data) ? $data['alt'] : $media->alt),
+            'is_decorative' => $decorative,
             'folder_id' => array_key_exists('folder_id', $data) ? $data['folder_id'] : $media->folder_id,
         ]);
     }

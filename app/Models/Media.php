@@ -22,6 +22,7 @@ class Media extends Model
         'width',
         'height',
         'alt',
+        'is_decorative',
         'title',
         'variants',
         'uploaded_by',
@@ -29,6 +30,7 @@ class Media extends Model
 
     protected $casts = [
         'variants' => 'array',
+        'is_decorative' => 'boolean',
         'size' => 'integer',
         'width' => 'integer',
         'height' => 'integer',

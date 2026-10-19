@@ -168,6 +168,13 @@ test('count-up keeps the real number for screen readers', () => {
     again.update(100);
     assert.equal(stat.querySelector('.visually-hidden').textContent, '10,000+');
     assert.equal(stat.querySelector('[aria-hidden="true"]').textContent, '10,000+');
+
+    // Reduced motion: the final number at once, wherever the scroll is (an unpinned
+    // stage never scrolls through the whole range).
+    again.destroy();
+    const still = scene(el, { tracks: [{ part: 'stat', trigger: 'scrub', keyframes: { $count: 'en-IN' }, range: [-150, 1050], ease: 'outCubic' }] }, { reduced: true });
+    still.update(0);
+    assert.equal(stat.querySelector('[aria-hidden="true"]').textContent, '10,000+');
 });
 
 test('older [data-anim] sections still animate, with a real spring', async () => {

@@ -62,6 +62,19 @@ class MediaLibraryTest extends TestCase
         $this->assertStringEndsWith('/webp.webp', $media->web_url);
     }
 
+    public function test_a_picture_marked_decorative_has_no_description(): void
+    {
+        $admin = $this->admin();
+        $this->actingAs($admin)->post('/cms/media', ['files' => [UploadedFile::fake()->image('mark.png')]]);
+        $media = Media::firstOrFail();
+
+        $this->actingAs($admin)->putJson("/cms/media/{$media->id}", ['alt' => 'A mark', 'is_decorative' => 1])
+            ->assertOk()->assertJsonPath('media.is_decorative', true)->assertJsonPath('media.alt', null);
+        $this->actingAs($admin)->putJson("/cms/media/{$media->id}", ['alt' => 'The Ekdanta mark', 'is_decorative' => 0])
+            ->assertOk()->assertJsonPath('media.alt', 'The Ekdanta mark');
+        $this->actingAs($admin)->get('/cms/media')->assertSee('id="mld-decorative"', false);
+    }
+
     public function test_small_images_are_not_upscaled_and_documents_get_no_variants(): void
     {
         $this->actingAs($this->admin())->post('/cms/media', [

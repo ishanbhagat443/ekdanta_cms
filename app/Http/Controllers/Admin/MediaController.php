@@ -83,12 +83,13 @@ class MediaController extends Controller
         return response()->json(['media' => $uploaded], 201);
     }
 
-    /** AJAX: update title / alt / move to folder. */
+    /** AJAX: update title / alt / decorative / move to folder. */
     public function update(Request $request, Media $medium): JsonResponse
     {
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:191'],
             'alt' => ['nullable', 'string', 'max:191'],
+            'is_decorative' => ['nullable', 'boolean'],
             'folder_id' => ['nullable', 'integer', 'exists:media_folders,id'],
         ]);
 

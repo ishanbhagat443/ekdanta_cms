@@ -126,6 +126,15 @@
                             </small>
                         </div>
                         <div class="form-group">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="mld-decorative" aria-describedby="mld-decorative-help">
+                                <label class="custom-control-label" for="mld-decorative"><small>Decorative</small></label>
+                            </div>
+                            <small class="form-text text-muted mt-0" id="mld-decorative-help">
+                                Only decorates (a mark beside text, a layer of a drawing): no description, and screen readers skip it.
+                            </small>
+                        </div>
+                        <div class="form-group">
                             <label class="mb-0"><small>File URL</small></label>
                             <div class="input-group input-group-sm">
                                 <input type="text" id="mld-url" class="form-control" readonly>

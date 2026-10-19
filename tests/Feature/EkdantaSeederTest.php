@@ -185,6 +185,39 @@ class EkdantaSeederTest extends TestCase
         $this->assertStringNotContainsString('gsm-page-banner', $html);
     }
 
+    public function test_founder_photos_fill_only_empty_fields_and_media_get_descriptions(): void
+    {
+        \Illuminate\Support\Facades\Storage::fake('public');
+        $seeder = new EkdantaSiteSeeder;
+        $seeder->media();
+        $seeder->collections();
+        $about = Page::create(['title' => 'About', 'slug' => 'about', 'status' => Page::STATUS_PUBLISHED]);
+        $defaults = fn (string $type) => app(\App\Services\SectionTypes\SectionTypeRegistry::class)->find($type)->defaults();
+        $story = $about->sections()->create(['type' => 'ekdanta-our-story', 'name' => 'Story', 'sort_order' => 0, 'is_active' => true,
+            'data_desktop' => ['founder_1_photo' => null, 'founder_2_photo' => 'ekdanta/e-mark'] + $defaults('ekdanta-our-story')]); // the second one chosen by hand
+        $founders = $about->sections()->create(['type' => 'ekdanta-founders-story', 'name' => 'Founders', 'sort_order' => 1, 'is_active' => true,
+            'data_desktop' => ['photos' => [['image' => null, 'name' => '[Photo: Vaishali Hirpara]'], ['image' => '', 'name' => '[Photo: Dishant Bhagat]']]] + $defaults('ekdanta-founders-story')]);
+        \App\Models\Media::query()->where('key', 'ekdanta/reel-2')->update(['alt' => 'Written by hand']);
+
+        $seeder->founderPhotos();
+        $seeder->mediaDescriptions();
+        $seeder->founderPhotos();
+
+        $this->assertSame('ekdanta/founder-vaishali-hirpara', $story->fresh()->data_desktop['founder_1_photo']);
+        $this->assertSame('ekdanta/e-mark', $story->fresh()->data_desktop['founder_2_photo'], 'a photo someone chose stays');
+        $this->assertSame(['ekdanta/founder-vaishali-hirpara', 'ekdanta/founder-dishant-bhagat'], array_column($founders->fresh()->data_desktop['photos'], 'image'));
+
+        $alt = \App\Models\Media::query()->where('key', 'like', 'ekdanta/reel-%')->orderBy('key')->pluck('alt', 'key');
+        $this->assertSame('Reel by Ekdanta for Cruisemax Sports: First impression matters', $alt['ekdanta/reel-1']);
+        $this->assertSame('Written by hand', $alt['ekdanta/reel-2']);
+        $this->assertSame(3, \App\Models\Media::query()->where('is_decorative', true)->count());
+
+        // On the page: the photo with its description, cropped as drawn.
+        $this->get('/about')->assertOk()
+            ->assertSee('alt="Vaishali Hirpara, founder of Ekdanta" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%', false)
+            ->assertSee('alt="Dishant Bhagat, founder of Ekdanta"', false);
+    }
+
     public function test_it_applies_the_theme_once_and_keeps_the_old_one_as_a_backup(): void
     {
         $seeder = new EkdantaSiteSeeder;

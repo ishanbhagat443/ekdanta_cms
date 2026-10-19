@@ -27,10 +27,10 @@
                     <div aria-hidden="true" style="position: absolute; left: {{ ek_u($v([60, -125])) }}; top: {{ ek_u($v([150, -90])) }}; width: {{ ek_u(640) }}; height: {{ ek_u(640) }}; border-radius: 999px; background: radial-gradient(circle, rgba(46,180,93,0.18), rgba(46,180,93,0) 65%)"></div>
 
                     @foreach ([1 => [$v([140, 40]), $v([220, 120]), -5, '#1E2A24', 2], 2 => [$v([372, 210]), $v([250, 136]), 5, '#24322B', 3]] as $n => [$x, $y, $tilt, $fill, $z])
-                        @php $photo = media_ref($d["founder_{$n}_photo"] ?? null)?->web_url; @endphp
+                        @php $photo = media_ref($d["founder_{$n}_photo"] ?? null); @endphp
                         <figure data-m="ab-founder-{{ $n }}" style="position: absolute; left: {{ ek_u($x) }}; top: {{ ek_u($y) }}; width: {{ ek_u($cardW) }}; margin: 0; transform: rotate({{ $tilt }}deg); z-index: {{ $z }}">
                             <div class="ek-story-photo" style="height: {{ ek_u($v([330, 190])) }}; border-radius: {{ ek_u($cardW / 2) }} {{ ek_u($cardW / 2) }} {{ ek_u($v([18, 12])) }} {{ ek_u($v([18, 12])) }}; background: {{ $fill }}; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; padding-bottom: {{ ek_u($v([18, 12])) }}; box-sizing: border-box; font-size: max({{ ek_u($v([15, 12])) }}, 0.75rem); color: #8A968F; text-align: center">
-                                @if ($photo)<img src="{{ $photo }}" alt="" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit">@else{{ $d["founder_{$n}_placeholder"] }}@endif
+                                @if ($photo)<img src="{{ $photo->web_url }}" alt="{{ $photo->alt ?? '' }}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; border-radius: inherit">@else{{ $d["founder_{$n}_placeholder"] }}@endif
                             </div>
                             <figcaption style="text-align: center">
                                 <p style="margin: {{ ek_u($v([14, 8])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([18, 15])) }}, 0.8125rem)">{{ $d["founder_{$n}_name"] }}</p>

@@ -33,8 +33,8 @@ class FoundersStorySection extends EkdantaSection
                 $this->image('image', 'Photo'),
                 $this->text('name', 'Name (photo description; shown until a photo is chosen)', null, 120),
             ], [
-                ['image' => null, 'name' => '[Photo: Vaishali Hirpara]'],
-                ['image' => null, 'name' => '[Photo: Dishant Bhagat]'],
+                ['image' => 'ekdanta/founder-vaishali-hirpara', 'name' => '[Photo: Vaishali Hirpara]'],
+                ['image' => 'ekdanta/founder-dishant-bhagat', 'name' => '[Photo: Dishant Bhagat]'],
             ], 2),
             $this->rows('stats', 'Numbers', [
                 $this->text('value', 'Number (e.g. 10,000+)', null, 20),

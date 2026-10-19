@@ -32,7 +32,7 @@
                             @php $media = media_ref($photo['image'] ?? null); @endphp
                             <div style="flex: 1; height: {{ ek_u($v([300, 150])) }}; border-radius: {{ ek_u($v([120, 82])) }} {{ ek_u($v([120, 82])) }} {{ ek_u($v([18, 14])) }} {{ ek_u($v([18, 14])) }}; overflow: hidden; background: var(--tk-line-2); display: flex; align-items: flex-end; justify-content: center; @unless ($media) {{ $mob ? 'padding: 0 '.ek_u(8).' '.ek_u(12).'; text-align: center;' : 'padding-bottom: '.ek_u(18).';' }} @endunless box-sizing: border-box; font-size: max({{ ek_u($v([15, 12.5])) }}, {{ $mob ? '0.78125rem' : '0.8125rem' }}); color: var(--tk-muted)">
                                 @if ($media)
-                                    <img loading="lazy" decoding="async" src="{{ $media->web_url }}" alt="{{ trim(str_replace('Photo:', '', (string) ($photo['name'] ?? '')), '[] ') }}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+                                    <img loading="lazy" decoding="async" src="{{ $media->web_url }}" alt="{{ $media->alt ?: trim(str_replace('Photo:', '', (string) ($photo['name'] ?? '')), '[] ') }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block">
                                 @else
                                     {{ $photo['name'] ?? '' }}
                                 @endif

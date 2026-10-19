@@ -131,7 +131,7 @@
         // An image with no description is invisible to screen readers and to
         // image search. Flag it on the card so it can be found and fixed,
         // rather than only noticing inside the details panel.
-        var needsAlt = media.type === 'image' && !(media.alt || '').trim();
+        var needsAlt = media.type === 'image' && !media.is_decorative && !(media.alt || '').trim();
 
         var altBadge = needsAlt
             ? '<div class="position-absolute ml-needs-alt" style="top:6px; right:8px;" ' +
@@ -317,6 +317,8 @@
             (m.width ? ' · ' + m.width + '×' + m.height + 'px' : '');
         el('mld-title').value = m.title || '';
         el('mld-alt').value = m.alt || '';
+        el('mld-decorative').checked = !!m.is_decorative;
+        el('mld-alt').disabled = !!m.is_decorative;
         el('mld-url').value = m.url;
 
         window.jQuery('#ml-detail-modal').modal('show');
@@ -471,7 +473,8 @@
     el('mld-save').addEventListener('click', function () {
         ajax('PUT', cfg.mediaUrl + '/' + state.detailId, {
             title: el('mld-title').value,
-            alt: el('mld-alt').value
+            alt: el('mld-alt').value,
+            is_decorative: el('mld-decorative').checked ? 1 : 0
         }).then(function (r) {
             state.items[state.detailId] = Object.assign(state.items[state.detailId] || {}, r.media);
             toast('Saved');
@@ -479,6 +482,9 @@
             load();
         }).catch(function (e) { toast(e.message, true); });
     });
+
+    // Decorative: no description to write.
+    el('mld-decorative').addEventListener('change', function () { el('mld-alt').disabled = this.checked; });
 
     el('mld-copy').addEventListener('click', function () {
         el('mld-url').select();

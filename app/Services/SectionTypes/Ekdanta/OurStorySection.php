@@ -31,7 +31,7 @@ class OurStorySection extends EkdantaSection
         $founder = fn (int $n, string $name) => [
             $this->text("founder_{$n}_name", "Founder {$n}: name", $name, 60, false),
             $this->text("founder_{$n}_role", "Founder {$n}: role", 'Founder', 40, false),
-            $this->image("founder_{$n}_photo", "Founder {$n}: photo"),
+            $this->image("founder_{$n}_photo", "Founder {$n}: photo", 'ekdanta/founder-'.\Illuminate\Support\Str::slug($name)),
             $this->text("founder_{$n}_placeholder", "Founder {$n}: text shown until a photo is added", "[Photo: {$name}]", 80, false),
         ];
 

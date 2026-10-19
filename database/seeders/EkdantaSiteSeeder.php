@@ -68,6 +68,8 @@ class EkdantaSiteSeeder extends Seeder
         $this->briefForm();
         $this->newFields();
         $this->legalPages();
+        $this->founderPhotos();
+        $this->mediaDescriptions();
         $this->samplePosts($this->withPages);
         if ($this->withPages) {
             $this->pages();
@@ -284,6 +286,60 @@ class EkdantaSiteSeeder extends Seeder
                 }
             });
         app(PageRenderService::class)->flushCache();
+    }
+
+    /**
+     * The founders' photos in Our Story and Founders Story sections (and
+     * their saved blocks) whose photo fields are still empty. A photo
+     * someone chose stays.
+     */
+    public function founderPhotos(): void
+    {
+        $keys = ['ekdanta/founder-vaishali-hirpara', 'ekdanta/founder-dishant-bhagat'];
+        $fill = function (array $data, string $type) use ($keys): ?array {
+            $before = $data;
+            if ($type === 'ekdanta-our-story') {
+                foreach ([1, 2] as $n) {
+                    $data["founder_{$n}_photo"] = ($data["founder_{$n}_photo"] ?? null) ?: $keys[$n - 1];
+                }
+            } else {
+                foreach (array_slice((array) ($data['photos'] ?? []), 0, 2, true) as $i => $row) {
+                    $data['photos'][$i]['image'] = ($row['image'] ?? null) ?: $keys[$i];
+                }
+            }
+
+            return $data === $before ? null : $data;
+        };
+        $types = ['ekdanta-our-story', 'ekdanta-founders-story'];
+        GlobalBlock::query()->whereIn('type', $types)->each(function (GlobalBlock $block) use ($fill): void {
+            if ($data = $fill((array) $block->data_desktop, $block->type)) {
+                app(GlobalBlockService::class)->update($block, ['data_desktop' => $data], validate: false);
+            }
+        });
+        Section::query()->whereIn('type', $types)->where(fn ($q) => $q->whereNull('global_block_id')->orWhere('is_synced', false))
+            ->each(function (Section $section) use ($fill): void {
+                if ($data = $fill((array) $section->data_desktop, $section->type)) {
+                    $section->update(['data_desktop' => $data]);
+                }
+            });
+        app(PageRenderService::class)->flushCache();
+    }
+
+    /**
+     * Media Library descriptions, where none is written yet: each reel's
+     * poster as "Reel by Ekdanta for {brand}: {title}" (its Reels item), and
+     * the pictures that only decorate marked Decorative.
+     */
+    public function mediaDescriptions(): void
+    {
+        foreach (CollectionItem::query()->where('collection', 'reels')->get() as $reel) {
+            $media = Media::query()->where('key', $reel->get('cover'))->first();
+            if ($media && blank($media->alt) && ! $media->is_decorative) {
+                $media->forceFill(['alt' => "Reel by Ekdanta for {$reel->get('brand')}: {$reel->title}"])->save();
+            }
+        }
+        Media::query()->whereIn('key', ['ekdanta/e-mark', 'ekdanta/elephant-head', 'ekdanta/elephant-trunk-torch'])
+            ->where(fn ($q) => $q->whereNull('alt')->orWhere('alt', ''))->update(['is_decorative' => true]);
     }
 
     /** slug => [title, docs/ekdanta-content/legal file, anchor prefix]. */

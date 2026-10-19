@@ -179,10 +179,8 @@ export class Scene {
 
         if (scrub.length) {
             this.origin = Math.min(...scrub.map((t) => t.range[0]));
+            // Reduced motion: the whole timeline (count-ups too) shows its final state, as the designs do.
             const tl = createTimeline({ autoplay: false, defaults: { ease: 'linear' } });
-            // Reduced motion: a scroll-linked number keeps following the
-            // scroll (a changing number is not movement), in its own timeline.
-            const live = this.env.reduced ? createTimeline({ autoplay: false, defaults: { ease: 'linear' } }) : null;
             for (const t of scrub) {
                 const els = this.targetsOf(t);
                 if (!els.length) continue;
@@ -191,7 +189,7 @@ export class Scene {
                 const each = t.stagger || 0;
                 if (t.keyframes.$count) {
                     els.map((e) => countTarget(e, t.keyframes.$count)).forEach((c, i) => {
-                        if (c) (live || tl).add(c.box, { v: [0, c.to], duration: span, ease: easeOf(t.ease), onUpdate: c.draw }, at + i * each);
+                        if (c) tl.add(c.box, { v: [0, c.to], duration: span, ease: easeOf(t.ease), onUpdate: c.draw }, at + i * each);
                     });
                 } else {
                     tl.add(els, { ...this.params(t), duration: span, ease: easeOf(t.ease), delay: each ? stagger(each) : 0 }, at);
@@ -200,13 +198,9 @@ export class Scene {
             }
             // A child renders its start state only once the playhead has
             // passed it, so run to the end and back now (same frame, no paint).
-            for (const timeline of [tl, live]) {
-                if (!timeline) continue;
-                timeline.seek(timeline.duration);
-                timeline.seek(0);
-            }
+            tl.seek(tl.duration);
+            tl.seek(0);
             this.timeline = tl;
-            this.live = live;
         }
 
         for (const t of tracks) {
@@ -331,9 +325,6 @@ export class Scene {
         if (this.timeline) {
             this.timeline.seek(this.env.reduced ? this.timeline.duration : clamp(px - this.origin, 0, this.timeline.duration));
         }
-        if (this.live) {
-            this.live.seek(clamp(px - this.origin, 0, this.live.duration));
-        }
 
         const st = this.config.steps;
         if (st) {
@@ -397,7 +388,6 @@ export class Scene {
             if (!anim) targets.forEach((e) => { e.style.animation = ''; });
         }
         this.timeline?.revert();
-        this.live?.revert();
         this.switches.forEach((sw) => sw.anim.revert());
         this.env.factory?.destroy?.();
     }
