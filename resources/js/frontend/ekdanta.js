@@ -12,6 +12,7 @@ import aboutStory from './sections/ekdanta/about-story.js';
 import initClientWalls from './sections/ekdanta/client-wall.js';
 import initBlogGrids from './sections/ekdanta/blog-grid.js';
 import initArticles from './sections/ekdanta/article.js';
+import initFit from './motion/fit.js';
 
 window.EkMotion.register('ekdanta-home-hero', torchBeam);
 window.EkMotion.register('ekdanta-work-showcase', workIntro);
@@ -25,6 +26,7 @@ initPageFinders();
 initClientWalls();
 initBlogGrids();
 initArticles();
+initFit();
 
 // "Received today at 3:42 pm": the visitor's own clock ([data-ek-now] holds "… {time} …").
 document.querySelectorAll('[data-ek-now]').forEach((el) => {

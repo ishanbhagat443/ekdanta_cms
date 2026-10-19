@@ -1,0 +1,76 @@
+/* Ekdanta screen fit, v2 (Theme Customizer > Custom CSS). Works with the script in Custom JS.
+   Each pinned stage keeps its size u. The script measures the gaps between the design box (.ek-art)
+   and the screen (--ek-l, --ek-r, --ek-t, --ek-b) and tags each part of the art. These rules move
+   each part to the screen's left edge, right edge or centre, and stretch full-frame layers to fill it. */
+html, body { overflow-x: clip; }
+.ek-comp .ek-art { overflow: visible; }
+
+/* L: left edge. C: centre. R: right edge. Parts are centred vertically (--ek-dy), except
+   parts that sit on the frame's bottom edge in the design (data-ek-v="B"): they sit on the screen's. */
+.ek-art > [data-ek-v="B"] { --ek-y: var(--ek-b, 0px); }
+.ek-art > [data-ek-fit="L"] { translate: calc(-1 * var(--ek-l, 0px)) var(--ek-y, var(--ek-dy, 0px)); }
+.ek-art > [data-ek-fit="C"] { translate: calc((var(--ek-r, 0px) - var(--ek-l, 0px)) / 2) var(--ek-y, var(--ek-dy, 0px)); }
+.ek-art > [data-ek-fit="R"] { translate: var(--ek-r, 0px) var(--ek-y, var(--ek-dy, 0px)); }
+/* S: a full-frame layer fills the whole screen. SX: a full-width band fills the screen's width. */
+.ek-art > [data-ek-fit="S"] {
+  left: calc(-1 * var(--ek-l, 0px)) !important; right: calc(-1 * var(--ek-r, 0px)) !important; width: auto !important;
+  top: calc(-1 * var(--ek-t, 0px)) !important; bottom: calc(-1 * var(--ek-b, 0px)) !important; height: auto !important;
+}
+.ek-art > [data-ek-fit="SX"] {
+  left: calc(-1 * var(--ek-l, 0px)) !important; right: calc(-1 * var(--ek-r, 0px)) !important; width: auto !important;
+  translate: 0 var(--ek-y, var(--ek-dy, 0px));
+}
+/* W: a row (the footer) widens by the side gaps, so its ends line up with the L and R groups. */
+.ek-art > [data-ek-fit="W"] {
+  width: calc(var(--ek-w) * var(--u) + var(--ek-l, 0px) + var(--ek-r, 0px)) !important;
+  translate: calc(-1 * var(--ek-l, 0px)) var(--ek-y, var(--ek-dy, 0px));
+}
+/* Z: an image wall zooms from the screen's centre until it covers the screen. */
+.ek-art > [data-ek-fit="Z"] {
+  translate: calc((var(--ek-r, 0px) - var(--ek-l, 0px)) / 2) var(--ek-dy, 0px);
+  scale: var(--ek-cover, 1); transform-origin: 50% 50%;
+}
+/* T: a sideways track of full-frame panels. Each panel becomes as wide and tall as the screen.
+   Inside a panel, parts that start on the left (data-ek-in="L") keep their distance from the
+   screen's left edge, the others (data-ek-in="R") keep theirs from the right edge, and a phone
+   panel's column (data-ek-in="C") stays centred. */
+.ek-art > [data-ek-fit="T"] {
+  left: calc(-1 * var(--ek-l, 0px)) !important; top: calc(-1 * var(--ek-t, 0px)) !important;
+  bottom: calc(-1 * var(--ek-b, 0px)) !important; height: auto !important; width: max-content !important;
+}
+.ek-art > [data-ek-fit="T"] > * {
+  width: calc(var(--ek-pw) * var(--u) + var(--ek-l, 0px) + var(--ek-r, 0px)) !important; height: auto !important;
+}
+.ek-art > [data-ek-fit="T"] > * > [data-ek-in="L"] { translate: 0 calc(var(--ek-t, 0px) + var(--ek-dy, 0px)); }
+.ek-art > [data-ek-fit="T"] > * > [data-ek-in="R"] { translate: calc(var(--ek-l, 0px) + var(--ek-r, 0px)) calc(var(--ek-t, 0px) + var(--ek-dy, 0px)); }
+.ek-art > [data-ek-fit="T"] > * > [data-ek-in="C"] { translate: calc((var(--ek-l, 0px) + var(--ek-r, 0px)) / 2) calc(var(--ek-t, 0px) + var(--ek-dy, 0px)); }
+/* The services track moves one widened panel per step (its own rule moves one design width). */
+.ek-services-panels .ek-art > [data-ek-fit="T"] {
+  transform: translate(calc(var(--ek-f, 0) * -1 * (var(--ek-pw) * var(--u) + var(--ek-l, 0px) + var(--ek-r, 0px)))) !important;
+}
+
+/* Home hero: the beam layers fill the screen. The script measures how far the torch rig moved
+   (--ek-hx, --ek-hy) and how far the headline moved (--ek-cx, --ek-cy), so the beam's tip stays
+   on the torch and the lit copy of the headline inside the beam stays over the headline.
+   The polygons are the section's own, with the tip moved. */
+.ek-home-hero .ek-comp--d .ek-art > [data-m="beam"] {
+  --ek-ax: calc(var(--ax) + var(--ek-hx, 0px));
+  --ek-ay: calc(var(--ay) + var(--ek-hy, 0px));
+  clip-path: polygon(
+    var(--ek-ax) calc(var(--ek-ay) - 16 * var(--u)),
+    0 calc((var(--ek-ay) - 110 * var(--u)) * var(--bk) + var(--spa) * var(--u)),
+    0 calc((var(--ek-ay) + 60 * var(--u)) * var(--bk) + var(--spb) * var(--u)),
+    var(--ek-ax) calc(var(--ek-ay) + 16 * var(--u))
+  ) !important;
+}
+.ek-home-hero .ek-comp--m .ek-art > [data-m="beam"] {
+  --ek-mx: calc(var(--mx) + var(--ek-hx, 0px));
+  --ek-my: calc(var(--my) + var(--ek-hy, 0px));
+  clip-path: polygon(
+    calc(var(--ek-mx) + 7 * var(--u)) calc(var(--ek-my) - 12 * var(--u)),
+    calc((var(--ek-mx) - var(--ek-my) * 1.6 + 250 * var(--u)) * var(--bk) + var(--spb) * var(--u)) calc(-10 * var(--u)),
+    calc((var(--ek-mx) - var(--ek-my) * 1.6 - 300 * var(--u)) * var(--bk) + var(--spa) * var(--u)) calc(-10 * var(--u)),
+    calc(var(--ek-mx) - 7 * var(--u)) calc(var(--ek-my) + 12 * var(--u))
+  ) !important;
+}
+.ek-home-hero .ek-art > [data-m="beam"] > * { translate: var(--ek-cx, 0px) var(--ek-cy, 0px); }

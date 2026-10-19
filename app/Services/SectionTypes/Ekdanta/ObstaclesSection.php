@@ -47,4 +47,12 @@ class ObstaclesSection extends EkdantaSection
     {
         return ['mobile' => ['heading' => 'Every business has obstacles. Removing them is our name.']];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '[data-m="walker"]' => 'C',
+        ];
+    }
 }

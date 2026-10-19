@@ -38,4 +38,13 @@ class ReelsCarouselSection extends EkdantaSection
     {
         return ['mobile' => ['link_label' => 'Watch on Instagram']];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '[data-m="reel-wall"]' => 'Z',
+            '.ek-comp--d [data-m="reel-late"]' => 'C',
+        ];
+    }
 }

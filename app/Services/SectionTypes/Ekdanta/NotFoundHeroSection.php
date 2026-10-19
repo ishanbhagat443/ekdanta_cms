@@ -43,4 +43,12 @@ class NotFoundHeroSection extends EkdantaSection
             $this->link('search_link', 'Search link goes to', '#n-routes'),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="nf-trail"]' => 'S',
+        ];
+    }
 }

@@ -38,4 +38,12 @@ class WorkShowcaseSection extends EkdantaSection
             $this->colour('base_colour', 'Background before the first case', '#0A5A30'),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="work-panels"]' => 'R',
+        ];
+    }
 }

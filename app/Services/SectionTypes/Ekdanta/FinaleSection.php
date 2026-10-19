@@ -73,4 +73,12 @@ class FinaleSection extends EkdantaSection
             'footer_right' => 'Surat and Ahmedabad · Aapki branding & marketing ke विघ्नहर्ता',
         ]];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '[data-m="end-foot"]' => 'W',
+        ];
+    }
 }

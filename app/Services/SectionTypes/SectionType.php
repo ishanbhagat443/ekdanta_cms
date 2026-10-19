@@ -72,6 +72,20 @@ abstract class SectionType
         return [];
     }
 
+    /**
+     * Screen fit (resources/js/frontend/motion/fit.js): parts its automatic
+     * rule places wrongly, as CSS selector (matched against the parts of a
+     * composition's .ek-art) => anchor: L left edge, C centre, R right edge,
+     * S fills the screen, SX fills its width, W a row widened to both edges,
+     * Z zooms to cover, T a sideways track of full-screen panels.
+     *
+     * @return array<string, string>
+     */
+    public function fitParts(): array
+    {
+        return [];
+    }
+
     /** True for a section that draws its own site footer: the layout then skips the usual one. */
     public function hidesFooter(): bool
     {

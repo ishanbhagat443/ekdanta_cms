@@ -33,4 +33,12 @@ class ServicesPanelsSection extends EkdantaSection
             $this->text('groups', 'Groups to show (slugs, comma separated; empty = all, in their order)', null, 300, false),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '[data-m="svc-panels"]' => 'T',
+        ];
+    }
 }

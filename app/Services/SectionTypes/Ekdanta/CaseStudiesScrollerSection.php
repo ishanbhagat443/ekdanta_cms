@@ -39,4 +39,12 @@ class CaseStudiesScrollerSection extends EkdantaSection
             $this->text('button_label', 'Button (opens the case study)', 'Read the full case study', 40),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="wc-texts"]' => 'R',
+        ];
+    }
 }

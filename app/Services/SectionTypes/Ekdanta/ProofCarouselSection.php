@@ -38,4 +38,14 @@ class ProofCarouselSection extends EkdantaSection
             $this->link('link', 'Link goes to', '/work'),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="proof-head"]' => 'L',
+            '.ek-comp--d [data-m="proof-ui"]:has(a)' => 'R',
+            '.ek-comp--d [data-m="proof-ui"]:not(:has(a))' => 'L',
+        ];
+    }
 }

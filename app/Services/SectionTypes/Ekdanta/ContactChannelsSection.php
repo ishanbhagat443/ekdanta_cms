@@ -54,4 +54,12 @@ class ContactChannelsSection extends EkdantaSection
             ], 8),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="ch-cards"]' => 'R',
+        ];
+    }
 }

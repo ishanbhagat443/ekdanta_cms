@@ -43,4 +43,12 @@ class HomeHeroSection extends EkdantaSection
     {
         return ['mobile' => ['whatsapp_label' => 'WhatsApp']];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '[data-m="beam"]' => 'S',
+        ];
+    }
 }

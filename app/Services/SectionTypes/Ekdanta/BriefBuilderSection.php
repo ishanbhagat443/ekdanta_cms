@@ -76,4 +76,12 @@ class BriefBuilderSection extends EkdantaSection
     {
         return Schema::hasTable('forms') ? Form::query()->where('is_active', true)->orderBy('name')->pluck('name', 'slug')->all() : [];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="brief-word"]' => 'L',
+        ];
+    }
 }

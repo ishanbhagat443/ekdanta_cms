@@ -35,4 +35,12 @@ class ServiceDeepDiveSection extends EkdantaSection
             $this->text('nav_label', 'Group tabs (for screen readers)', 'Service groups', 60, false),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="deep-groups"]' => 'S',
+        ];
+    }
 }

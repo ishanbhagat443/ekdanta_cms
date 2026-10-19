@@ -47,4 +47,12 @@ class ExpertiseCardsSection extends EkdantaSection
     {
         return ['mobile' => ['link_label' => 'See in detail']];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m^="card-"]' => 'L',
+        ];
+    }
 }

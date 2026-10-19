@@ -46,6 +46,9 @@
     // below. A pinned stage's height is CSS (--ek-len-*), so nothing jumps
     // when the script starts. No motion: no attributes, nothing to run.
     $motion = \App\Support\SectionMotion::render($section);
+    // Screen fit: the parts this type anchors by hand (motion/fit.js).
+    $fitParts = app(\App\Services\SectionTypes\SectionTypeRegistry::class)->has($section->type)
+        ? app(\App\Services\SectionTypes\SectionTypeRegistry::class)->find($section->type)->fitParts() : [];
     foreach ($motion['lengths'] ?? [] as $pinDevice => $pinLength) {
         $style[] = '--ek-len-'.$pinDevice[0].': '.$pinLength;
     }
@@ -54,6 +57,7 @@
 <section id="{{ $domId }}"
          class="gsm-section gsm-section-{{ $section->type }} {{ $section->visibilityClasses() }} @if ($motion) ek-scene @if ($motion['steps']) ek-steps @endif @foreach (array_keys($motion['lengths']) as $pinDevice) ek-pin-{{ $pinDevice[0] }} @endforeach @endif"
          @if ($motion) data-ek-motion data-ek-type="{{ $section->type }}" @endif
+         @if ($fitParts !== []) data-ek-fit-parts="{{ json_encode($fitParts) }}" @endif
          @if ($style !== []) style="{{ implode('; ', $style) }}" @endif>
     @if ($motion)
         <script type="application/json" data-ek-config>@json($motion['config'])</script>

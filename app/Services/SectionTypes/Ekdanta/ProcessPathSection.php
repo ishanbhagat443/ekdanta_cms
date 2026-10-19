@@ -46,4 +46,12 @@ class ProcessPathSection extends EkdantaSection
             $this->image('mark', 'Mark riding the path', 'ekdanta/e-mark'),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d .ek-art > div:nth-child(5)' => 'L',
+        ];
+    }
 }

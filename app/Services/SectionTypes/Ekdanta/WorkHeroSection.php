@@ -52,4 +52,14 @@ class WorkHeroSection extends EkdantaSection
             $this->text('reels', 'Wall: reels (slugs, comma separated; empty = all)', '', 400, false),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="wk-text"]' => 'C',
+            '.ek-comp--d [data-m="wk-hint"]' => 'C',
+            '.ek-comp--d .ek-art > div:nth-child(2)' => 'C',
+        ];
+    }
 }

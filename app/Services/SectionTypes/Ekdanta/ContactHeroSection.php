@@ -54,4 +54,12 @@ class ContactHeroSection extends EkdantaSection
     {
         return ['mobile' => ['call_label' => 'Call sales']];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="bubble"]' => 'C',
+        ];
+    }
 }

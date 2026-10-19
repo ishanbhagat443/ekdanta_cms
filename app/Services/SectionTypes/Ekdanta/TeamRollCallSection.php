@@ -35,4 +35,13 @@ class TeamRollCallSection extends EkdantaSection
             $this->text('roles', 'Roles (slugs from Team roles, comma separated; empty = all, seven at most)', '', 400, false),
         ];
     }
+
+    /** Screen fit: parts its automatic rule places wrongly (see SectionType::fitParts). */
+    public function fitParts(): array
+    {
+        return [
+            '.ek-comp--d [data-m="tm-head"]' => 'C',
+            '.ek-comp--d [data-m="tm-text"]' => 'C',
+        ];
+    }
 }
