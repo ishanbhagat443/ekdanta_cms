@@ -58,17 +58,38 @@
 .ek-press:active { transform: scale(0.97); }
 @media (prefers-reduced-motion: reduce) { .ek-press { transition: none; } }
 
+// Screen sizes, the same three everywhere (motion/index.js, SectionMotion::render,
+// the pinning in frontend.scss, _article.scss):
+//   desktop  992 wide and up, unless held upright and up to 1366 tall;
+//   tablet   768–991 wide, or 768 and up held upright, up to 1366 tall (the boards' tablet portrait);
+//   phone    up to 767 wide.
+// Tablets draw the phone composition (or the tablet one, when a section has tablet values),
+// as tall as the screen and centred.
+$tablet: '(min-width: 768px) and (max-width: 991.98px), (min-width: 768px) and (orientation: portrait) and (max-height: 1366px)';
+$upright: '(min-width: 768px) and (orientation: portrait) and (max-height: 1366px)';
+
 .ek-comp { height: 100%; }
 .ek-comp--d { --u: min(100cqw / 1440, 100svh / 900); }
-.ek-comp--m { display: none; --u: min(100cqw / 390, 100svh / 844); }
+.ek-comp--m, .ek-comp--t { display: none; --u: min(100cqw / 390, 100svh / 844); }
 
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
     .ek-comp--d { display: none; }
     .ek-comp--m { display: block; }
 }
+@media #{$tablet} {
+    .ek-comp--d { display: none; }
+    .ek-comp--m, .ek-comp--t { display: block; }
+    .ek:has(> .ek-comp--t) > .ek-comp--m { display: none; }
+}
 
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .ek-comp--m { --u: min(100cqw / 390, 100svh / 844, 1.35px); }
+// The nine pages with a tablet design, and the Big Brand Finale (sections marked .ek-tw,
+// SectionType::tabletWide): on an upright tablet the phone layout widens to the screen,
+// a 724 px column on 820 × 1180. Positions and column widths use --ux (screen width ÷ 390,
+// through ek_x()); sizes and type keep --u.
+@media #{$upright} {
+    .ek-tw :is(.ek-comp--m, .ek-comp--t) { --ux: calc(100cqw / 390); }
+    .ek-tw :is(.ek-comp--m, .ek-comp--t) .ek-art { left: 0; width: 100%; --ek-l: 0px; }
+    .ek-tw :is(.ek-comp--m, .ek-comp--t) .ek-g2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } // the boards' 2-column card grids
 }
 
 .ek-stage {
@@ -86,7 +107,7 @@
     height: calc(900 * var(--u));
 }
 
-.ek-comp--m .ek-art {
+:is(.ek-comp--m, .ek-comp--t) .ek-art {
     left: calc((100% - 390 * var(--u)) / 2);
     top: calc((100% - 844 * var(--u)) / 2);
     width: calc(390 * var(--u));
@@ -115,6 +136,8 @@
     a, button {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
+        min-width: 44px;
         min-height: 44px;
         margin: -12px 0;
         padding: 0 6px;

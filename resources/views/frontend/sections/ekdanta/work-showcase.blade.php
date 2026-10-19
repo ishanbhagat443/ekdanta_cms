@@ -10,9 +10,9 @@
     $cases = \App\Models\CollectionItem::pick('case-studies', $d['cases'] ?? null);
 @endphp
 <div class="ek ek-work-showcase" id="{{ $d['anchor'] ?: 'j-work' }}" data-base-colour="{{ $d['base_colour'] ?: '#0A5A30' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $hero = $mob ? [0, 0] : [-320, 0];
         @endphp

@@ -106,6 +106,22 @@ class HeaderBuilderTest extends TestCase
         $this->assertSame('Call', $section->dataFor('mobile')['label']);
         $this->assertSame('/contact-us', $section->dataFor('mobile')['url']); // inherited
         $this->assertSame('Contact Us', $section->dataFor('desktop')['label']);
+
+        // An empty tablet field uses the phone's value, then the desktop's.
+        $this->assertSame('Call', $section->dataFor('tablet')['label']);
+        $this->assertSame('/contact-us', $section->dataFor('tablet')['url']);
+        $this->assertArrayNotHasKey('tablet', $section->comps([], []), 'no tablet composition while tablet = phone');
+
+        // Each tab shows the device's own value, the inherited one as a hint.
+        $html = $this->actingAs($this->admin())->get('/cms/header-builder')->assertOk()->getContent();
+        $this->assertMatchesRegularExpression('/value=""\s+class="form-control form-control-sm" placeholder="Same as Mobile: Call"/', $html);
+        $this->assertMatchesRegularExpression('/value="Call"\s+class="form-control form-control-sm" placeholder="Same as Desktop: Contact Us"/', $html);
+
+        $this->actingAs($this->admin())->putJson("/cms/sections/{$section->id}", [
+            'device' => 'tablet',
+            'data' => ['label' => 'Talk to us', 'url' => ''],
+        ])->assertOk();
+        $this->assertSame('Talk to us', $section->refresh()->comps([], [])['tablet']['label']);
     }
 
     public function test_meta_only_save_does_not_wipe_payload(): void

@@ -12,9 +12,9 @@
     $lines = fn ($text) => array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $text)), fn ($l) => $l !== ''));
 @endphp
 <div class="ek ek-proof-carousel" id="{{ $d['anchor'] ?: 's-work' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $link = '<a class="ek-press" href="'.e(link_href($d['link'] ?? '/work')).'" style="height: '.ek_u($v([48, 50])).'; box-sizing: border-box; padding: 0 '.ek_u(20).'; display: '.($mob ? 'flex; justify-content: center' : 'inline-flex').'; align-items: center; gap: '.ek_u(8).'; border-radius: 999px; box-shadow: inset 0 0 0 '.ek_u(1.5).' rgba(255,255,255,0.5); font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u($v([15, 14.5])).', 0.8125rem); text-decoration: none">'.e($t['link_label']).'</a>';
         @endphp
@@ -36,7 +36,7 @@
                                 <li class="ek-proof-card {{ $i === 0 ? 'is-active' : '' }}" style="--i: {{ $i }}; flex-shrink: 0; width: {{ ek_u($v([360, 250])) }}; height: {{ ek_u($v([500, 420])) }}; border-radius: {{ ek_u($v([24, 22])) }}; overflow: hidden; background: #18231E; box-shadow: 0 {{ ek_u($v([30, 24])) }} {{ ek_u($v([60, 50])) }} {{ ek_u($v([-30, -24])) }} rgba(0,0,0,0.8); display: flex; flex-direction: column">
                                     <div style="height: {{ ek_u($v([290, 230])) }}; overflow: hidden; background: #FFFFFF">@if ($img = media_ref($case->get('image')))<img loading="lazy" decoding="async" src="{{ $img->web_url }}" alt="{{ str_replace('{name}', $case->title, $d['image_alt']) }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">@endif</div>
                                     <div style="padding: {{ ek_u($v([18, 14])) }} {{ ek_u($v([22, 16])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([10, 8])) }}">
-                                        <span style="align-self: flex-start; padding: {{ ek_u($v([5, 4])) }} {{ ek_u($v([10, 9])) }}; border-radius: 999px; background: var(--tk-green); color: var(--tk-ink); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([11, 10])) }}, 0.6875rem); letter-spacing: 0.06em">{{ $case->get('sector') }}</span>
+                                        <span style="align-self: flex-start; padding: {{ ek_u($v([5, 4])) }} {{ ek_u($v([10, 9])) }}; border-radius: 999px; background: var(--tk-green); color: var(--tk-ink); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([11, 10])) }}, 0.75rem); letter-spacing: 0.06em">{{ $case->get('sector') }}</span>
                                         <h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([25, 20])) }}, 0.8125rem); line-height: 1.1; letter-spacing: -0.03em">{{ $case->title }}</h3>
                                         <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: {{ ek_u($v([6, 5])) }}">
                                             @foreach ($lines($case->get('made')) as $made)

@@ -3,7 +3,7 @@
 // what visitors get without JS, with reduced motion, or if the script fails.
 .ek-home-hero {
     .ek-comp { --bk: 0; --spa: -2400; --spb: 3200; --glow: 1; --cta: 1; --cta-rise: 30; --hint: 1; }
-    .ek-comp--m { --spa: -3000; --spb: 3000; --cta-rise: 24; }
+    :is(.ek-comp--m, .ek-comp--t) { --spa: -3000; --spb: 3000; --cta-rise: 24; }
 }
 
 // Before the scene starts: the beam closed, as the design opens it.
@@ -20,9 +20,10 @@
 
 .ek-hh-hint { opacity: var(--hint); }
 
-// Short phones (360 × 640): the chips keep to one row that scrolls sideways,
-// so the headline, chips and buttons stay above the torch.
+// Short phones (360 × 640, 375 × 667): the design box is scaled to the screen's height, so its
+// column is narrower than the screen while text stays at its minimum size. The headline block
+// spans the screen (20 px margins), so the chips wrap two to a row and the buttons stay clear
+// of the torch. (--ek-l: the gap left of the design box, _fit.scss.)
 @media (max-width: 767.98px) and (max-height: 700px) {
-    .ek-hh-chips { flex-wrap: nowrap !important; overflow-x: auto; scrollbar-width: none; margin-right: calc(-24 * var(--u)); }
-    .ek-hh-chips::-webkit-scrollbar { display: none; }
+    .ek-home-hero .ek-hh-text { left: calc(20px - var(--ek-l, 0px)) !important; width: calc(100cqw - 40px) !important; }
 }

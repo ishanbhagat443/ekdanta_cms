@@ -39,12 +39,14 @@ const ENTRANCE = {
     'flip-up': { opacity: [0, 1], rotateX: [-28, 0], transformPerspective: 800 },
 };
 
-const deviceOf = () => (innerWidth >= 992 ? 'desktop' : innerWidth >= 768 ? 'tablet' : 'mobile');
+// The three screen sizes (the same in ekdanta.scss and SectionMotion::MEDIA).
+const TABLET = '(min-width: 768px) and (max-width: 991.98px), (min-width: 768px) and (orientation: portrait) and (max-height: 1366px)';
+const deviceOf = () => (typeof matchMedia === 'function' && matchMedia(TABLET).matches ? 'tablet' : innerWidth >= 768 ? 'desktop' : 'mobile');
 
-/** Size of one design px (the CSS --u): 1440 × 900 desktop, 390 × 844 phone, tablets capped. */
+/** Size of one design px (the CSS --u): 1440 × 900 desktop; 390 × 844 phones and tablets. */
 const deviceUnit = (d) => (d === 'desktop'
     ? Math.min(innerWidth / 1440, innerHeight / 900)
-    : Math.min(innerWidth / 390, innerHeight / 844, d === 'tablet' ? 1.35 : Infinity));
+    : Math.min(innerWidth / 390, innerHeight / 844));
 
 const isReduced = () => root.getAttribute('data-motion') === 'off'
     || (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches);

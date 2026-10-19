@@ -25,10 +25,12 @@ export function unitOf(el) {
 
 /**
  * A section may draw one composition per screen size ([data-ek-comp]; tablets
- * show the phone one): parts and the stage are looked up in the one in view.
+ * show the tablet one, else the phone one): parts and the stage are looked
+ * up in the one in view.
  */
 export function compOf(el, device) {
-    return el.querySelector(`[data-ek-comp="${device === 'tablet' ? 'mobile' : device}"]`) || el;
+    return (device === 'tablet' && el.querySelector('[data-ek-comp="tablet"]'))
+        || el.querySelector(`[data-ek-comp="${device === 'tablet' ? 'mobile' : device}"]`) || el;
 }
 
 /** Design px → screen px, for plain numbers on length properties. */

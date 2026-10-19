@@ -29,9 +29,9 @@
 @endphp
 @if ($form)
 <div class="ek ek-brief-builder" id="{{ $d['anchor'] ?: 'c-brief' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $k = $comp[0]; // ids are per composition (both are in the page)
             $spacing = $v([210.67, 96]);

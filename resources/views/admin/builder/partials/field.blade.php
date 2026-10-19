@@ -1,6 +1,7 @@
 {{--
     Renders one section-type field for a device tab.
-    Vars: $field (schema), $value, $device, $sectionId, $menus (for menu type)
+    Vars: $field (schema), $value (this device's own value), $inherited (what an
+    empty field on the tablet/mobile tab uses), $device, $sectionId, $menus
     Inputs are named data[key] inside each device form.
 --}}
 @php
@@ -8,7 +9,10 @@
     $type = $field['type'];
     $inputId = "s{$sectionId}_{$device}_{$key}";
     $isDeviceField = (bool) ($field['device'] ?? false);
-    $placeholder = $device !== 'desktop' && $isDeviceField ? 'Inherits desktop value' : '';
+    $from = $device === 'tablet' ? 'Mobile' : 'Desktop';
+    $inherited = is_scalar($inherited ?? null) ? (string) $inherited : '';
+    $shown = \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($inherited))), 70);
+    $placeholder = $device !== 'desktop' && $isDeviceField ? 'Same as '.$from.($shown !== '' ? ': '.$shown : '') : '';
 @endphp
 
 @if ($device === 'desktop' || $isDeviceField)
@@ -77,6 +81,9 @@
 
             @case('select')
                 <select name="data[{{ $key }}]" id="{{ $inputId }}" class="form-control form-control-sm">
+                    @if ($placeholder !== '')
+                        <option value="">Same as {{ $from }}: {{ $field['options'][$inherited] ?? $inherited }}</option>
+                    @endif
                     @foreach ($field['options'] ?? [] as $optValue => $optLabel)
                         <option value="{{ $optValue }}" @selected($value === $optValue)>{{ $optLabel }}</option>
                     @endforeach

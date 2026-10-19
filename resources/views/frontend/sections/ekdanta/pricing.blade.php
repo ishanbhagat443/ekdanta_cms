@@ -18,9 +18,9 @@
     $chat = '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path>';
 @endphp
 <div class="ek ek-pricing" id="{{ $d['anchor'] ?: 's-price' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $button = 'height: '.ek_u($v([54, 50])).'; box-sizing: border-box; display: inline-flex; align-items: center; '.($mob ? 'justify-content: center; flex: 1;' : '').' gap: '.ek_u(8).'; border-radius: 999px; font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u($v([16, 14])).', 0.8125rem); text-decoration: none';
             [$cw, $ch, $cgap, $ctop] = $v([[168, 300, 184, 240], [106, 190, 118, 34]]);

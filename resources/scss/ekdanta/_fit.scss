@@ -5,6 +5,13 @@
 html, body { overflow-x: clip; }
 .ek-comp .ek-art { overflow: visible; }
 
+/* Until the script measures them, the gaps of a centred design box (the numbers it will find),
+   so a part tagged in the markup (the empty full-frame layers, data-ek-fit="S") is in place at
+   the first paint: moving it later would count as layout shift. */
+.ek-comp--d .ek-art { --ek-l: calc((100cqw - 1440 * var(--u)) / 2); --ek-t: calc((100svh - 900 * var(--u)) / 2); }
+:is(.ek-comp--m, .ek-comp--t) .ek-art { --ek-l: calc((100cqw - 390 * var(--u)) / 2); --ek-t: calc((100svh - 844 * var(--u)) / 2); }
+.ek-comp .ek-art { --ek-r: var(--ek-l); --ek-b: var(--ek-t); }
+
 /* L: left edge. C: centre. R: right edge. Parts are centred vertically (--ek-dy), except
    parts that sit on the frame's bottom edge in the design (data-ek-v="B"): they sit on the screen's. */
 .ek-art > [data-ek-v="B"] { --ek-y: var(--ek-b, 0px); }
@@ -63,7 +70,7 @@ html, body { overflow-x: clip; }
     var(--ek-ax) calc(var(--ek-ay) + 16 * var(--u))
   ) !important;
 }
-.ek-home-hero .ek-comp--m .ek-art > [data-m="beam"] {
+.ek-home-hero :is(.ek-comp--m, .ek-comp--t) .ek-art > [data-m="beam"] {
   --ek-mx: calc(var(--mx) + var(--ek-hx, 0px));
   --ek-my: calc(var(--my) + var(--ek-hy, 0px));
   clip-path: polygon(

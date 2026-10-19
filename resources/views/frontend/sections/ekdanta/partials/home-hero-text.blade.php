@@ -4,7 +4,7 @@
     the text, where the design puts them (470 / 540) or lower when the text
     grows to its minimum size on a small screen, never under it.
 --}}
-<div @if ($ghost) aria-hidden="true" @endif style="position: absolute; left: {{ ek_u($mobile ? 24 : 96) }}; top: {{ ek_u($mobile ? 100 : 150) }}; width: {{ ek_u($mobile ? 342 : 900) }}; color: {{ $ghost ? 'rgba(255,255,255,0.13)' : 'var(--tk-ink)' }}; @if ($after ?? false) display: flex; flex-direction: column; min-height: {{ ek_u(454) }} @endif">
+<div class="ek-hh-text" @if ($ghost) aria-hidden="true" @endif style="position: absolute; left: {{ ek_u($mobile ? 24 : 96) }}; top: {{ ek_u($mobile ? 100 : 150) }}; width: {{ ek_u($mobile ? 342 : 900) }}; color: {{ $ghost ? 'rgba(255,255,255,0.13)' : 'var(--tk-ink)' }}; @if ($after ?? false) display: flex; flex-direction: column; min-height: {{ ek_u(454) }} @endif">
     <p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($mobile ? 21 : 44) }}, 0.8125rem); letter-spacing: -0.02em">{{ $t['intro'] }}</p>
     @if ($ghost)
         <p style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($mobile ? 78 : 176) }}; line-height: 1.2">{{ $t['heading'] }}</p>

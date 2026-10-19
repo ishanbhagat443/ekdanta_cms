@@ -1397,14 +1397,14 @@ html[data-motion="off"] {
 // (design px, scaled to the screen height), and its [data-ek-stage] sticks
 // while the visitor scrolls through it. Heights are CSS, so nothing moves
 // when the script starts. No JS, reduced motion, "Pause animations" or the
-// site switch: no pinning, the content simply flows.
+// site switch: no pinning, the content simply flows. Screen sizes: see ekdanta.scss.
 @media (prefers-reduced-motion: no-preference) {
     html.js-enabled:not([data-motion="off"]) {
-        @media (min-width: 992px) {
+        @media (min-width: 992px) and (orientation: landscape), (min-width: 992px) and (min-height: 1366.02px) {
             .ek-pin-d { height: calc(100svh + var(--ek-len-d) * 100svh / 900); }
             .ek-pin-d [data-ek-stage] { position: sticky; top: 0; }
         }
-        @media (min-width: 768px) and (max-width: 991.98px) {
+        @media (min-width: 768px) and (max-width: 991.98px), (min-width: 768px) and (orientation: portrait) and (max-height: 1366px) {
             .ek-pin-t { height: calc(100svh + var(--ek-len-t) * 100svh / 844); }
             .ek-pin-t [data-ek-stage] { position: sticky; top: 0; }
         }
@@ -1419,11 +1419,11 @@ html[data-motion="off"] {
 // animations": its items switch in place as the visitor scrolls, without
 // moving, and every item is still reachable.
 html.js-enabled {
-    @media (min-width: 992px) {
+    @media (min-width: 992px) and (orientation: landscape), (min-width: 992px) and (min-height: 1366.02px) {
         .ek-steps.ek-pin-d { height: calc(100svh + var(--ek-len-d) * 100svh / 900); }
         .ek-steps.ek-pin-d [data-ek-stage] { position: sticky; top: 0; }
     }
-    @media (min-width: 768px) and (max-width: 991.98px) {
+    @media (min-width: 768px) and (max-width: 991.98px), (min-width: 768px) and (orientation: portrait) and (max-height: 1366px) {
         .ek-steps.ek-pin-t { height: calc(100svh + var(--ek-len-t) * 100svh / 844); }
         .ek-steps.ek-pin-t [data-ek-stage] { position: sticky; top: 0; }
     }
@@ -1516,6 +1516,18 @@ html[data-motion="off"] :is(.ek-scene, .ek-scene *) { animation: none !important
 .navbar-brand.gsm-logo-link img { max-height: var(--logo-m, 56px); }
 @include media-breakpoint-up(md) { .navbar-brand.gsm-logo-link img { max-height: var(--logo-t, 56px); } }
 @include media-breakpoint-up(lg) { .navbar-brand.gsm-logo-link img { max-height: var(--logo-d, 56px); } }
+
+// Tablets 992 px and wider held upright (up to 1366 tall) are tablets too (ekdanta.scss):
+// Section::displayClasses adds gsm-t-* where tablet and desktop differ. After Bootstrap's
+// d-lg-*, so these win.
+@media (min-width: 992px) and (orientation: portrait) and (max-height: 1366px) {
+    .gsm-t-none { display: none !important; }
+    .gsm-t-block { display: block !important; }
+    .gsm-t-flex { display: flex !important; }
+    .gsm-t-inline-flex { display: inline-flex !important; }
+    .gsm-t-inline-block { display: inline-block !important; }
+    .navbar-brand.gsm-logo-link img { max-height: var(--logo-t, 56px); }
+}
 
 // Section background video + overlay layers (Page Builder, any section).
 .gsm-section-video {
@@ -2327,6 +2339,31 @@ $gsm-cta-gradient: linear-gradient(90deg, #0b0f19 2%, #111827 19%, #4b5563 50%, 
     .gsm-menu-toggle,
     .gsm-menu-toggle:hover,
     .gsm-menu-toggle:focus-visible { background: var(--gsm-header-text, #111827); color: #fff; outline-color: var(--gsm-header-text, #111827); }
+
+    // Tablets (tablet-portrait boards): a taller pill; the button comes first and goes dark
+    // beside the green WhatsApp one; 52 px buttons, 8 px apart.
+    @media (min-width: 768px) and (max-width: 991.98px), (min-width: 768px) and (orientation: portrait) and (max-height: 1366px) {
+        top: 18px;
+        left: 24px;
+        right: 24px;
+
+        > .container,
+        > .container-fluid { padding-left: 24px; padding-right: 8px; }
+
+        .gsm-site-header__bar { min-height: 68px; }
+        .gsm-site-header__actions { gap: 8px; }
+        .gsm-site-header__actions .gsm-header-icon { width: 52px; height: 52px; }
+        .gsm-site-header__actions .btn-primary {
+            order: -1 !important; // over .order-3
+            margin: 0 !important; // over .ms-lg-3
+            padding: 0 20px !important;
+            line-height: 50px; // 52 with the border
+            font-size: 15px;
+            background: var(--gsm-header-text, #111827);
+            border-color: var(--gsm-header-text, #111827);
+            color: #fff;
+        }
+    }
 }
 
 // Anchors and keyboard focus are never hidden under the floating pill.
@@ -2565,7 +2602,7 @@ main button[type="submit"].btn {
     &[hidden] { display: none; }
     p { margin: 0; flex: 1; font-family: 'Hind', var(--gsm-font-body-text, sans-serif); font-size: 14px; line-height: 1.4; color: #4A564F; }
     b { font-family: 'Poppins', var(--gsm-font-buttons, sans-serif); font-weight: 700; color: var(--tk-ink, #0D1410); }
-    a { color: var(--tk-green-text-sm, #1B8141); white-space: nowrap; }
+    a { color: var(--tk-green-text-sm, #1B8141); white-space: nowrap; padding: 11px 0; } // a 44 px target; inline padding leaves the lines as they are
 
     &__actions { display: flex; gap: 8px; flex-shrink: 0; }
     button {

@@ -86,6 +86,12 @@ abstract class SectionType
         return [];
     }
 
+    /** On an upright tablet, its phone layout widens to the screen (.ek-tw; ek_x() values). */
+    public function tabletWide(): bool
+    {
+        return false;
+    }
+
     /** True for a section that draws its own site footer: the layout then skips the usual one. */
     public function hidesFooter(): bool
     {

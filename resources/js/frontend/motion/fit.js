@@ -167,5 +167,5 @@ export default function initFit() {
     ['resize', 'orientationchange', 'load', 'pageshow'].forEach((e) => addEventListener(e, later));
     window.visualViewport?.addEventListener('resize', later);
     document.fonts?.ready.then(later);
-    later();
+    run(); // at once, before the first frame where it can: a later move counts as layout shift
 }

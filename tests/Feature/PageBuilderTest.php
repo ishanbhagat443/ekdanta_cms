@@ -175,7 +175,7 @@ class PageBuilderTest extends TestCase
             'style' => ['visible' => ['desktop' => true, 'tablet' => false, 'mobile' => true]],
         ])->assertOk();
 
-        $this->assertSame('d-block d-md-none d-lg-block', $section->fresh()->visibilityClasses());
+        $this->assertSame('d-block d-md-none d-lg-block gsm-t-none', $section->fresh()->visibilityClasses());
     }
 
     /* ── Frontend rendering ─────────────────────────────────────── */

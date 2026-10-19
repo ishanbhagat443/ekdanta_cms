@@ -3,7 +3,7 @@
 // being thrown away (e, 0–1), above 0 it waits further back (dd, 0–3).
 .ek-faq-deck {
     .ek-comp--d { --tx: 60; --ty: -620; --tr: -10deg; --sy: 24; --ss: 0.055; }
-    .ek-comp--m { --tx: -460; --ty: -30; --tr: -12deg; --sy: 18; --ss: 0.05; } // phones throw sideways
+    :is(.ek-comp--m, .ek-comp--t) { --tx: -460; --ty: -30; --tr: -12deg; --sy: 18; --ss: 0.05; } // phones throw sideways
 
     .ek-faq-card {
         --d: calc(var(--i) - var(--ek-f, 0));

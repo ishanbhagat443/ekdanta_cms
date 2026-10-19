@@ -94,7 +94,7 @@
 
                     @if ($whatsapp)
                         <a href="{{ $whatsapp['wa'] }}" target="_blank" rel="noopener"
-                           class="gsm-header-icon gsm-header-whatsapp {{ $layout->setting('whatsapp_button') === 'mobile' ? 'd-inline-flex d-lg-none' : '' }}"
+                           class="gsm-header-icon gsm-header-whatsapp {{ $layout->setting('whatsapp_button') === 'mobile' ? \App\Models\Section::displayClasses(true, true, false, 'inline-flex') : '' }}"
                            aria-label="WhatsApp {{ setting('business.company_name', '') }}">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path></svg>
                         </a>

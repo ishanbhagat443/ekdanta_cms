@@ -16,9 +16,9 @@
     $nodes = ['desktop' => [[210, 620], [465, 490], [720, 620], [975, 490], [1230, 620]], 'mobile' => [[118, 282], [70, 394], [118, 506], [70, 618], [118, 730]]];
 @endphp
 <div class="ek ek-process-path" id="{{ $d['anchor'] ?: 's-process' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             [$w, $h] = $v([[1440, 900], [390, 844]]);
         @endphp

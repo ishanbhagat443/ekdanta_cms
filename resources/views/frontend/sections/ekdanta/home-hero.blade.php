@@ -9,9 +9,9 @@
     $m = $section->viewData('mobile');
 @endphp
 <div class="ek ek-home-hero" id="{{ $d['anchor'] ?: 'j-top' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mobile = $comp === 'mobile';
+            $mobile = $comp !== 'desktop';
             $chips = array_filter(array_map('trim', explode("\n", (string) ($t['chips'] ?? ''))));
             $beam = $mobile
                 ? 'polygon(calc(var(--mx) + '.ek_u(7).') calc(var(--my) - '.ek_u(12).'), calc((var(--mx) - var(--my) * 1.6 + '.ek_u(250).') * var(--bk) + var(--spb) * var(--u)) '.ek_u(-10).', calc((var(--mx) - var(--my) * 1.6 - '.ek_u(300).') * var(--bk) + var(--spa) * var(--u)) '.ek_u(-10).', calc(var(--mx) - '.ek_u(7).') calc(var(--my) + '.ek_u(12).'))'

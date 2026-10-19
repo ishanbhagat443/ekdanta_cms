@@ -303,7 +303,7 @@ class MenuBuilderTest extends TestCase
         $desktopOnly = $menu->items()->create(['label' => 'Desktop', 'link_type' => 'url', 'url' => '/', 'visible_devices' => ['desktop']]);
 
         $this->assertSame('', $allDevices->deviceVisibilityClasses());
-        $this->assertSame('d-none d-md-none d-lg-block', $desktopOnly->deviceVisibilityClasses());
+        $this->assertSame('d-none d-md-none d-lg-block gsm-t-none', $desktopOnly->deviceVisibilityClasses());
     }
 
     /* ── Frontend integration (existing HeaderBuilderTest already

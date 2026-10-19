@@ -12,9 +12,9 @@
     $n = max(1, $groups->count());
 @endphp
 <div class="ek ek-services-panels" id="{{ $d['anchor'] ?: 'j-services' }}" style="--panels: {{ $n }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $w = $v([1440, 390]);
         @endphp

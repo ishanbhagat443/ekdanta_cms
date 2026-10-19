@@ -15,9 +15,9 @@
     $down = '<path d="M12 5v14M5 12l7 7 7-7"></path>';
 @endphp
 <div class="ek ek-faq-deck" id="{{ $d['anchor'] ?: 'c-faq' }}" style="--count: {{ $count }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $arrow = 'width: '.ek_u($v([50, 44])).'; height: '.ek_u($v([50, 44])).'; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer';
             $more = '<p style="margin: '.($mob ? '0' : ek_u(6).' 0 0').'; font-size: max('.ek_u($v([17, 15])).', 0.8125rem); line-height: 1.5; color: #4A564F">'.e($t['more_before']).' <a href="'.e(link_href($d['more_link'] ?? 'wa:')).'"'.(\App\Support\Link::external($d['more_link'] ?? 'wa:') ? ' target="_blank" rel="noopener"' : '').' style="font-weight: 600; color: var(--tk-green-deep)">'.e($t['more_link_label']).'</a>'.e($t['more_after']).'</p>';

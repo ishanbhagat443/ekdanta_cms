@@ -20,9 +20,9 @@
     };
 @endphp
 <div class="ek ek-case-studies-scroller" id="{{ $d['anchor'] ?: 'w-cases' }}" style="--count: {{ max(1, $cases->count()) }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             [$winW, $winH] = $v([[480, 620], [342, 210]]);
             $eyebrow = str_replace(['{n}', '{total}'], ['<span data-ek-step-num="2">01</span>', e($total)], e($t['eyebrow']));
@@ -37,15 +37,15 @@
                         <span aria-hidden="true" class="ek-case-bignum" style="--i: {{ $i }}; position: absolute; right: {{ ek_u($v([40, 10])) }}; bottom: {{ ek_u($v([-90, -40])) }}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: {{ ek_u($v([380, 180])) }}; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: {{ ek_u(2) }} rgba(255,255,255,0.12)">{{ $num($i) }}</span>
                     @endforeach
 
-                    <p data-m="wc-eyebrow" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([112, 80])) }}; margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: rgba(255,255,255,0.7)">{!! $eyebrow !!}</p>
+                    <p data-m="wc-eyebrow" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([112, 80])) }}; margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: rgba(255,255,255,0.7)">{!! $eyebrow !!}</p>
 
-                    <div data-m="wc-index-in" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([168, 108])) }}">
-                        <div data-m="wc-index" style="display: flex; {{ $mob ? 'gap: '.ek_u(6) : 'flex-direction: column; gap: '.ek_u(6).'; width: '.ek_u(280) }}">
+                    <div data-m="wc-index-in" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([168, 108])) }}">
+                        <div data-m="wc-index" style="display: flex; {{ $mob ? 'gap: '.ek_u(6) : 'flex-direction: column; gap: '.ek_u(6).'; width: '.ek_x(280) }}">
                             @foreach ($cases as $i => $case)
                                 @if ($mob)
                                     <button type="button" class="ek-case-tab {{ $i === 0 ? 'is-active' : '' }}" data-ek-step="{{ $i }}" style="--i: {{ $i }}; width: {{ ek_u(48) }}; height: {{ ek_u(32) }}; border: 0; border-radius: 999px; background: rgba(255,255,255,0.12); color: #FFFFFF; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(13) }}, 0.8125rem)"><span aria-hidden="true">{{ $num($i) }}</span><span class="visually-hidden">{{ $case->title }}</span></button>
                                 @else
-                                    <button type="button" class="ek-case-tab {{ $i === 0 ? 'is-active' : '' }}" data-ek-step="{{ $i }}" style="--i: {{ $i }}; display: block; width: {{ ek_u(280) }}; padding: {{ ek_u(12) }} 0; border: 0; border-top: {{ ek_u(1) }} solid rgba(255,255,255,0.14); background: none; text-align: left; cursor: pointer; color: #FFFFFF">
+                                    <button type="button" class="ek-case-tab {{ $i === 0 ? 'is-active' : '' }}" data-ek-step="{{ $i }}" style="--i: {{ $i }}; display: block; width: {{ ek_x(280) }}; padding: {{ ek_u(12) }} 0; border: 0; border-top: {{ ek_u(1) }} solid rgba(255,255,255,0.14); background: none; text-align: left; cursor: pointer; color: #FFFFFF">
                                         <span style="display: flex; gap: {{ ek_u(12) }}; align-items: baseline"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(13) }}, 0.8125rem); color: var(--tk-mint)">{{ $num($i) }}</span><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(18) }}, 0.8125rem); letter-spacing: -0.02em">{{ $case->title }}</span></span>
                                         <span style="display: block; margin: {{ ek_u(4) }} 0 0 {{ ek_u(32) }}; font-size: max({{ ek_u(13) }}, 0.8125rem); letter-spacing: 0.04em; color: rgba(255,255,255,0.75)">{{ $case->get('sector') }}</span>
                                         <span aria-hidden="true" style="display: block; margin: {{ ek_u(10) }} 0 0 {{ ek_u(32) }}; height: {{ ek_u(3) }}; border-radius: {{ ek_u(2) }}; background: rgba(255,255,255,0.15); overflow: hidden"><span class="ek-case-tab-bar" style="display: block; height: 100%; background: var(--tk-green); transform-origin: 0 50%"></span></span>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div data-m="wc-window" class="ek-case-window" style="position: absolute; left: {{ ek_u($v([420, 24])) }}; top: {{ ek_u($v([150, 156])) }}; width: {{ ek_u($winW) }}; height: {{ ek_u($winH) }}; border-radius: {{ ek_u($v([28, 22])) }}; overflow: hidden; background: #FFFFFF; box-shadow: 0 {{ ek_u(50) }} {{ ek_u(90) }} {{ ek_u(-40) }} rgba(0,0,0,0.75); --win-h: {{ $winH }}">
+                    <div data-m="wc-window" class="ek-case-window" style="position: absolute; left: {{ ek_x($v([420, 24])) }}; top: {{ ek_u($v([150, 156])) }}; width: {{ ek_x($winW) }}; height: {{ ek_u($winH) }}; border-radius: {{ ek_u($v([28, 22])) }}; overflow: hidden; background: #FFFFFF; box-shadow: 0 {{ ek_u(50) }} {{ ek_u(90) }} {{ ek_u(-40) }} rgba(0,0,0,0.75); --win-h: {{ $winH }}">
                         <div class="ek-case-track" style="position: absolute; left: 0; top: 0; width: 100%">
                             @foreach ($cases as $i => $case)
                                 <div style="position: relative; width: 100%; height: {{ ek_u($winH) }}; overflow: hidden">@if ($img = media_ref($case->get('image'))?->web_url)<img loading="lazy" decoding="async" class="ek-case-img" src="{{ $img }}" alt="{{ str_replace('{name}', $case->title, (string) $d['image_alt']) }}" loading="lazy" style="--i: {{ $i }}; position: absolute; left: 0; top: {{ ek_u(-70) }}; width: 100%; height: {{ ek_u($winH + 140) }}; object-fit: cover; object-position: top; display: block">@endif</div>
@@ -67,7 +67,7 @@
                     <div data-m="wc-texts">
                         @foreach ($cases as $i => $case)
                             @php $made = array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $case->get('made'))))); @endphp
-                            <article class="ek-case-text" style="--i: {{ $i }}; position: absolute; left: {{ ek_u($v([960, 24])) }}; top: {{ ek_u($v([170, 388])) }}; width: {{ ek_u($v([390, 342])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([16, 8])) }}">
+                            <article class="ek-case-text" style="--i: {{ $i }}; position: absolute; left: {{ ek_x($v([960, 24])) }}; top: {{ ek_u($v([170, 388])) }}; width: {{ ek_x($v([390, 342])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([16, 8])) }}">
                                 <span style="align-self: flex-start; padding: {{ ek_u($v([6, 4])) }} {{ ek_u($v([12, 10])) }}; border-radius: 999px; background: var(--tk-green); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([12, 11])) }}, 0.75rem); letter-spacing: 0.06em; color: var(--tk-ink)">{{ $case->get('sector') }}</span>
                                 <h2 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([50, 28])) }}, 0.8125rem); line-height: 1.02; letter-spacing: -0.045em">{{ $case->title }}</h2>
                                 <p style="margin: 0; font-size: max({{ ek_u($v([18, 14])) }}, 0.8125rem); line-height: {{ $v([1.55, 1.45]) }}; color: rgba(255,255,255,0.86)">{{ $case->get('description') }}</p>
@@ -85,7 +85,7 @@
                         @endforeach
                     </div>
                     @unless ($mob)
-                        <div aria-hidden="true" data-m="wc-progress" style="position: absolute; left: {{ ek_u(960) }}; top: {{ ek_u(800) }}; width: {{ ek_u(384) }}; height: {{ ek_u(4) }}; border-radius: {{ ek_u(2) }}; background: rgba(255,255,255,0.15); overflow: hidden"><div class="ek-case-progress" style="height: 100%; background: var(--tk-orange); transform-origin: 0 50%"></div></div>
+                        <div aria-hidden="true" data-m="wc-progress" style="position: absolute; left: {{ ek_x(960) }}; top: {{ ek_u(800) }}; width: {{ ek_x(384) }}; height: {{ ek_u(4) }}; border-radius: {{ ek_u(2) }}; background: rgba(255,255,255,0.15); overflow: hidden"><div class="ek-case-progress" style="height: 100%; background: var(--tk-orange); transform-origin: 0 50%"></div></div>
                     @endunless
                 </div>
             </div>

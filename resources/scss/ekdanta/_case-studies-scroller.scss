@@ -17,7 +17,7 @@
 
     .ek-case-tab { opacity: 0.8; }
     .ek-case-tab.is-active { opacity: 1; }
-    .ek-comp--m .ek-case-tab.is-active { background: var(--tk-green) !important; color: var(--tk-ink) !important; }
+    :is(.ek-comp--m, .ek-comp--t) .ek-case-tab.is-active { background: var(--tk-green) !important; color: var(--tk-ink) !important; }
     .ek-case-tab-bar { transform: scaleX(clamp(0, var(--f) - var(--i) + 1, 1)); }
 
     .ek-case-window { clip-path: inset(calc(var(--win, 0) * 100%) 0 0 0 round calc(28 * var(--u))); }
@@ -50,6 +50,6 @@
 // taller than drawn, so the picture shows a shorter crop (its slides keep
 // their height) and the text starts higher, keeping the button on screen.
 @media (max-width: 767.98px) and (max-height: 700px) {
-    .ek-comp--m .ek-case-window { height: calc(170 * var(--u)) !important; }
-    .ek-comp--m .ek-case-text { top: calc(346 * var(--u)) !important; }
+    :is(.ek-comp--m, .ek-comp--t) .ek-case-window { height: calc(170 * var(--u)) !important; }
+    :is(.ek-comp--m, .ek-comp--t) .ek-case-text { top: calc(346 * var(--u)) !important; }
 }

@@ -10,9 +10,9 @@
     $cards = array_values(array_filter((array) ($d['cards'] ?? []), fn ($c) => ($c['obstacle'] ?? '') !== ''));
 @endphp
 <div class="ek ek-obstacles" id="{{ $d['anchor'] ?: 'j-obstacles' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             // [desktop, mobile] design measurements
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $cardW = $v([360, 165]);

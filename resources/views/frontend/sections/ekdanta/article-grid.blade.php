@@ -20,15 +20,15 @@
     $base = url()->current();
 @endphp
 <div class="ek ek-article-grid" id="{{ $d['anchor'] ?: 'b-posts' }}" data-blog-grid>
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $title = $q !== '' ? str_replace('{q}', $q, $t['results_heading']) : $t['heading'];
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}" data-grid-comp data-heading="{{ $t['heading'] }}" data-results="{{ $t['results_heading'] }}">
             <div style="padding: {{ ek_u($v([100, 72])) }} 0 {{ ek_u($v([120, 80])) }}; background: #FFFFFF">
-                <div style="width: {{ ek_u($v([1248, 342])) }}; margin: 0 auto">
+                <div style="width: {{ ek_x($v([1248, 342])) }}; margin: 0 auto">
                     <div data-m="ag-head">
                         <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
                         <h2 data-grid-title style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([48, 30])) }}, 0.8125rem); line-height: 1.04; letter-spacing: -0.045em">{{ $title }}</h2>
@@ -41,7 +41,7 @@
                         </nav>
                     @endif
                     <div data-grid-empty @if ($shown > 0) hidden @endif style="margin-top: {{ ek_u($v([40, 24])) }}; height: {{ ek_u($v([240, 200])) }}; border-radius: {{ ek_u(24) }}; border: {{ ek_u(2) }} dashed #C5CCC7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: {{ ek_u(8) }}; text-align: center; padding: 0 {{ ek_u(20) }}"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([22, 18])) }}, 0.8125rem)">{{ $t['empty_title'] }}</span><span style="font-size: max({{ ek_u($v([17, 15])) }}, 0.8125rem); color: var(--tk-muted)">{{ $t['empty_text'] }}</span></div>
-                    <ul style="margin: {{ ek_u($v([40, 24])) }} 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat({{ $v([3, 1]) }}, minmax(0, 1fr)); gap: {{ ek_u($v([30, 18])) }} {{ ek_u(24) }}">
+                    <ul class="ek-g2" style="margin: {{ ek_u($v([40, 24])) }} 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat({{ $v([3, 1]) }}, minmax(0, 1fr)); gap: {{ ek_u($v([30, 18])) }} {{ ek_u(24) }}">
                         @foreach ($posts as $post)
                             <li data-m="ag-card" data-topic="{{ $post->categories->pluck('slug')->implode(' ') }}" data-text="{{ mb_strtolower($post->title.' '.$post->autoExcerpt().' '.$post->categories->pluck('name')->implode(' ')) }}" @unless ($match($post)) hidden @endunless style="view-transition-name: ek-post-{{ $comp[0] }}-{{ $post->id }}">
                                 @include('frontend.sections.ekdanta.partials.post-card', ['readTime' => $d['read_time']])

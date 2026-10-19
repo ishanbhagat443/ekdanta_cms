@@ -21,19 +21,19 @@
 @endphp
 @if ($cards->isNotEmpty())
 <div class="ek ek-related-work" id="{{ $d['anchor'] ?: 'v-proof' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: #FFFFFF">
                 <div class="ek-art">
-                    <div data-m="rw-head" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([116, 84])) }}; width: {{ ek_u($v([900, 342])) }}">
+                    <div data-m="rw-head" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([116, 84])) }}; width: {{ ek_x($v([900, 342])) }}">
                         <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
                         <h2 style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([56, 32])) }}, 0.8125rem); line-height: 1.04; letter-spacing: -0.045em">{{ $service->get('proof_title') }}</h2>
                     </div>
-                    <ul style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([280, 200])) }}; width: {{ ek_u($v([1248, 342])) }}; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: {{ $mob ? '1fr' : 'repeat(3, minmax(0, 1fr))' }}; gap: {{ ek_u($v([24, 14])) }}">
+                    <ul style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([280, 200])) }}; width: {{ ek_x($v([1248, 342])) }}; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: {{ $mob ? '1fr' : 'repeat(3, minmax(0, 1fr))' }}; gap: {{ ek_u($v([24, 14])) }}">
                         @foreach ($cards as $i => $card)
                             @php
                                 $case = $card['case'] ?? null;

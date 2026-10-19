@@ -13,9 +13,9 @@
     $poppins = "font-family=\"'Poppins', sans-serif\"";
 @endphp
 <div class="ek ek-visit-us" id="{{ $d['anchor'] ?: 'c-visit' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $button = 'height: '.ek_u($v([54, 48])).'; box-sizing: border-box; display: inline-flex; align-items: center; gap: '.ek_u(8).'; border-radius: 999px; font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u($v([16, 14.5])).', 0.8125rem); text-decoration: none; white-space: nowrap';
         @endphp

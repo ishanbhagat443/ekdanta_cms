@@ -10,9 +10,9 @@
     $stats = array_values(array_filter((array) ($d['stats'] ?? []), fn ($s) => ($s['value'] ?? '') !== ''));
 @endphp
 <div class="ek ek-founders-story" id="{{ $d['anchor'] ?: 'j-about' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">

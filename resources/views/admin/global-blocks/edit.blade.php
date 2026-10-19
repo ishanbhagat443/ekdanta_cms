@@ -52,15 +52,17 @@
                                  id="tab_block_{{ $device }}" role="tabpanel">
                                 @if ($device !== 'desktop')
                                     <p class="text-muted small mb-2">
-                                        <i class="fas fa-info-circle mr-1"></i> Only device-overridable fields are shown. Empty = inherits desktop.
+                                        <i class="fas fa-info-circle mr-1"></i> Only fields that can change per screen are shown. An empty field uses {{ $device === 'tablet' ? 'the Mobile value, then the Desktop value' : 'the Desktop value' }}.
                                     </p>
                                 @endif
 
                                 <form class="gsm-block-form" data-device="{{ $device }}">
+                                    @php [$own, $inherited] = $block->ownAndInherited($device); @endphp
                                     @foreach ($type->fields() as $field)
                                         @include('admin.builder.partials.field', [
                                             'field' => $field,
-                                            'value' => $block->dataFor($device)[$field['key']] ?? null,
+                                            'value' => $own[$field['key']] ?? null,
+                                            'inherited' => $inherited[$field['key']] ?? null,
                                             'device' => $device,
                                             'sectionId' => 'gb'.$block->id,
                                             'menus' => [],

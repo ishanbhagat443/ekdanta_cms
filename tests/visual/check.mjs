@@ -10,6 +10,7 @@
 //              level, images with alt, links, buttons and fields with a name, page
 //              language, ids used once, and (phones) tap targets at least 24 × 24
 //   node tests/visual/check.mjs [/path …]   (report: tests/visual/shots/check-report.json)
+//   EK_SIZES=820x1180,1024x1366: other sizes (errors and layout shift at the first and third)
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';
 
@@ -18,7 +19,7 @@ const paths = process.argv.slice(2).length ? process.argv.slice(2) : [
     '/', '/contact', '/services', '/thank-you', '/no-such-page', '/about', '/work', '/work/yantra-design',
     '/services/meta-ads', '/blog', '/blog/why-your-factory-needs-reels-not-just-brochures', '/privacy-policy', '/terms-of-service',
 ];
-const sizes = [[1440, 900], [1280, 720], [390, 844], [360, 640]];
+const sizes = (process.env.EK_SIZES || '1440x900,1280x720,390x844,360x640').split(',').map((s) => s.split('x').map(Number));
 const browser = await chromium.launch({ channel: 'chrome' });
 const report = [];
 
@@ -110,7 +111,7 @@ for (const path of paths) {
     const result = { path, errors: [], cls: {}, overlap: {}, sideways: [], noJs: [], page: {} };
 
     // Motion on: errors and layout shift while loading.
-    for (const size of [sizes[0], sizes[2]]) {
+    for (const size of sizes.filter((s, i) => i === 0 || i === 2)) {
         const { context, page } = await open({ size });
         await page.addInitScript(() => {
             window.__cls = 0;
@@ -140,7 +141,7 @@ for (const path of paths) {
         }
         if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)) result.sideways.push(size.join('×'));
         result.overlap[size.join('×')] = [...found];
-        if (size[0] === 1440 || size[0] === 390) result.page[size[0]] = await page.evaluate(checklist);
+        result.page[size.join('×')] = await page.evaluate(checklist);
         await context.close();
     }
 
@@ -160,7 +161,7 @@ for (const path of paths) {
 
     report.push(result);
     const overlaps = Object.entries(result.overlap).filter(([, list]) => list.length).map(([s, list]) => `${s} ${list.length}`).join(', ');
-    const checks = Object.entries(result.page).map(([w, c]) => `${w}: lang ${c.lang} h1 ${c.h1} skips ${c.skips.length} alt ${c.noAlt.length} names ${c.noName.length} labels ${c.noLabel.length} dup-ids ${c.dupIds.length}${w < 768 ? ` small ${c.small.length}` : ''}`).join(' | ');
+    const checks = Object.entries(result.page).map(([s, c]) => `${s}: lang ${c.lang} h1 ${c.h1} skips ${c.skips.length} alt ${c.noAlt.length} names ${c.noName.length} labels ${c.noLabel.length} dup-ids ${c.dupIds.length}${parseInt(s, 10) < 768 ? ` small ${c.small.length}` : ''}`).join(' | ');
     console.log(`${path}  errors ${result.errors.length}  cls ${JSON.stringify(result.cls)}  overlaps ${overlaps || 0}  sideways ${result.sideways.join(' ') || 'none'}  no-js hidden ${result.noJs.length}\n    ${checks}`);
 }
 

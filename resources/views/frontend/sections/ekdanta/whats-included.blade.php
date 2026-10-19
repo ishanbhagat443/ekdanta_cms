@@ -12,22 +12,22 @@
 @endphp
 @if ($items)
 <div class="ek ek-whats-included" id="{{ $d['anchor'] ?: 'v-incl' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             [$cols, $dx, $dy, $cw, $ch] = $v([[3, 424, 200, 400, 176], [2, 177, 180, 165, 168]]);
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: var(--tk-paper)">
                 <div class="ek-art">
-                    <div data-m="wi-head" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([116, 84])) }}; {{ $mob ? 'width: '.ek_u(342) : '' }}">
+                    <div data-m="wi-head" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([116, 84])) }}; {{ $mob ? 'width: '.ek_x(342) : '' }}">
                         <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
                         <h2 style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([56, 32])) }}, 0.8125rem); line-height: 1.04; letter-spacing: -0.045em">{{ $t['heading'] }}</h2>
                     </div>
-                    <ul data-m="wi-stack" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([290, 220])) }}; width: {{ ek_u($v([1248, 342])) }}; height: {{ ek_u($v([400, 528])) }}; margin: 0; padding: 0; list-style: none">
+                    <ul data-m="wi-stack" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([290, 220])) }}; width: {{ ek_x($v([1248, 342])) }}; height: {{ ek_u($v([400, 528])) }}; margin: 0; padding: 0; list-style: none">
                         @foreach ($items as $i => $item)
-                            <li data-m="wi-card-{{ $i + 1 }}" style="position: absolute; left: {{ ek_u(($i % $cols) * $dx) }}; top: {{ ek_u(intdiv($i, $cols) * $dy) }}; width: {{ ek_u($cw) }}; height: {{ ek_u($ch) }}; box-sizing: border-box; padding: {{ ek_u($v([24, 14])) }} {{ ek_u($v([26, 14])) }}; border-radius: {{ ek_u($v([22, 18])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u(20) }} {{ ek_u(40) }} {{ ek_u(-28) }} rgba(13,20,16,0.45); z-index: {{ 10 - $i }}">
+                            <li data-m="wi-card-{{ $i + 1 }}" style="position: absolute; left: {{ ek_x(($i % $cols) * $dx) }}; top: {{ ek_u(intdiv($i, $cols) * $dy) }}; width: {{ ek_x($cw) }}; height: {{ ek_u($ch) }}; box-sizing: border-box; padding: {{ ek_u($v([24, 14])) }} {{ ek_u($v([26, 14])) }}; border-radius: {{ ek_u($v([22, 18])) }}; background: #FFFFFF; box-shadow: 0 {{ ek_u(20) }} {{ ek_u(40) }} {{ ek_u(-28) }} rgba(13,20,16,0.45); z-index: {{ 10 - $i }}">
                                 <span style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(13) }}, 0.8125rem); letter-spacing: 0.08em; color: var(--tk-green-text-sm)">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span><svg viewBox="0 0 30 30" aria-hidden="true" style="width: {{ ek_u($v([30, 26])) }}; height: {{ ek_u($v([30, 26])) }}"><circle cx="15" cy="15" r="14" fill="#D9F2E1"></circle><path data-m="wi-tick" pathLength="1" d="M9 15.5l4 4 8-9" fill="none" stroke="#1E8E47" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 1" stroke-dashoffset="0"></path></svg></span>
                                 <h3 style="margin: {{ ek_u($v([12, 6])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([21, 16])) }}, 0.8125rem); line-height: 1.2; letter-spacing: -0.02em">{{ $item['title'] }}</h3>
                                 <p style="margin: {{ ek_u($v([6, 4])) }} 0 0; font-size: max({{ ek_u($v([16, 13])) }}, 0.8125rem); line-height: {{ $v([1.45, 1.35]) }}; color: var(--tk-muted)">{{ $item['text'] ?? '' }}</p>

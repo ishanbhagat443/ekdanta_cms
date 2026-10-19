@@ -23,9 +23,9 @@
 @endphp
 @if ($posts->isNotEmpty())
 <div class="ek ek-keep-reading" id="{{ $d['anchor'] ?: 'p-more' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
@@ -39,7 +39,7 @@
                 </div>
                 <ul class="ek-kr-row" style="margin: {{ ek_u($v([44, 28])) }} 0 0; padding: 0; list-style: none; display: flex; gap: {{ ek_u($v([24, 16])) }}; {{ $mob ? 'overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-right: '.ek_u(-24).'; padding-right: '.ek_u(24).'; padding-bottom: '.ek_u(40).'; margin-bottom: '.ek_u(-40) : '' }}">
                     @foreach ($posts as $post)
-                        <li data-m="kr-card" style="flex: none; width: {{ ek_u($v([400, 300])) }}; scroll-snap-align: start">
+                        <li data-m="kr-card" style="flex: none; width: {{ ek_x($v([400, 300])) }}; scroll-snap-align: start">
                             @include('frontend.sections.ekdanta.partials.post-card', ['readTime' => $t['read_time']])
                         </li>
                     @endforeach

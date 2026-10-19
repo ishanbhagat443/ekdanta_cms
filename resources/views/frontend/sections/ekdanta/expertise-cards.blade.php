@@ -14,9 +14,9 @@
     $arrow = '<path d="M5 12h14M13 6l6 6-6 6"></path>';
 @endphp
 <div class="ek ek-expertise-cards" id="{{ $d['anchor'] ?: 's-menu' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             [$w, $h] = $v([[294, 440], [165, 300]]);
         @endphp

@@ -37,7 +37,16 @@ A role or template takes effect on the live site once its page is published. Tem
 
 ## Edit a section's words, pictures and links
 
-Open the section in the builder (click its name). The **Desktop** tab holds every field. The **Mobile** tab changes only the fields that may differ on phones; an empty Mobile field uses the Desktop value. Tablets show the phone layout, so they use the Mobile values.
+Open the section in the builder (click its name). The **Desktop** tab holds every field. The **Mobile** and **Tablet** tabs change only the fields that may differ on those screens, and show what a field uses when you leave it empty (in grey):
+
+- An empty **Mobile** field uses the Desktop value.
+- An empty **Tablet** field uses the Mobile value, then the Desktop value. Fill it only when tablets need their own words.
+
+Which layout a screen gets:
+
+- **Desktop:** screens 992 px wide and up held sideways, and desktop monitors.
+- **Tablet:** screens 768 to 991 px wide, and every tablet held upright (up to 1366 px tall, so a 1024 × 1366 iPad Pro too). Home, Services, Contact and Thank you show the phone layout, larger and centred. The other pages, and the Big Brand Finale, widen it to the screen.
+- **Phone:** screens up to 767 px wide.
 
 - Text in square brackets, such as `[Add office hours]`, is a placeholder for you to replace.
 - Pictures come from the Media Library.

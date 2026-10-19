@@ -15,9 +15,9 @@
     $stats = array_values(array_filter((array) ($d['stats'] ?? []), fn ($s) => ($s['value'] ?? '') !== ''));
 @endphp
 <div class="ek ek-brand-shelves" id="{{ $d['anchor'] ?: 'j-brands' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             // Shelf label positions: desktop in a row; phones as the design places them.
             $shelfAt = $mob ? [[24, 236], [206, 236], [24, 506], [206, 392]] : [[96, 236], [418, 236], [740, 236], [1062, 236]];

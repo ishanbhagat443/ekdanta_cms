@@ -16,9 +16,9 @@
     $around = fn (int $n, float $r, float $start) => array_map(fn ($i) => [round($r * cos(deg2rad($start + $i * 360 / max(1, $n))), 1), round($r * sin(deg2rad($start + $i * 360 / max(1, $n))), 1)], range(0, max(0, $n - 1)));
 @endphp
 <div class="ek ek-services-hero" id="{{ $d['anchor'] ?: 's-top' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $words = $lines($t['roll_words']);
             $rings = [

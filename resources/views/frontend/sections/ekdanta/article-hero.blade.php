@@ -41,9 +41,9 @@
     $back = '<path d="M19 12H5M11 6l-6 6 6 6"></path>';
 @endphp
 <div class="ek ek-article-hero" id="{{ $d['anchor'] ?: 'p-top' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $by = str_replace('{author}', $post->displayAuthor(), $t['byline']);
             $meta = str_replace(['{date}', '{minutes}'], [$post->published_at?->format('M Y') ?? '', $post->readingTimeMinutes()], $t['meta']);
@@ -59,8 +59,8 @@
                             <span style="padding: {{ ek_u(6) }} {{ ek_u(12) }}; border-radius: 999px; background: #D9F2E1; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u(12) }}, 0.75rem); letter-spacing: 0.06em; color: var(--tk-green-deep)">{{ mb_strtoupper($cat->name) }}</span>
                         @endif
                     </div>
-                    <h1 aria-label="{{ $title }}" style="position: relative; margin: {{ ek_u($v([22, 18])) }} 0 0; max-width: {{ ek_u($v([1100, 342])) }}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([78, 40])) }}, 1.5rem); line-height: 1.06; letter-spacing: -0.045em"><span aria-hidden="true">{!! $typed !!}</span></h1>
-                    <p data-m="ah-lede" style="margin: {{ ek_u($v([26, 18])) }} 0 0; max-width: {{ ek_u($v([820, 342])) }}; font-size: max({{ ek_u($v([21, 17])) }}, 0.8125rem); line-height: 1.55; color: #3B4640">{{ $post->autoExcerpt(40) }}</p>
+                    <h1 aria-label="{{ $title }}" style="position: relative; margin: {{ ek_u($v([22, 18])) }} 0 0; max-width: {{ ek_x($v([1100, 342])) }}; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([78, 40])) }}, 1.5rem); line-height: 1.06; letter-spacing: -0.045em"><span aria-hidden="true">{!! $typed !!}</span></h1>
+                    <p data-m="ah-lede" style="margin: {{ ek_u($v([26, 18])) }} 0 0; max-width: {{ ek_x($v([820, 342])) }}; font-size: max({{ ek_u($v([21, 17])) }}, 0.8125rem); line-height: 1.55; color: #3B4640">{{ $post->autoExcerpt(40) }}</p>
                     <div data-m="ah-byline" style="margin-top: {{ ek_u($v([28, 22])) }}; display: flex; align-items: center; gap: {{ ek_u($v([14, 12])) }}; flex-wrap: wrap">
                         <span style="width: {{ ek_u($v([50, 44])) }}; height: {{ ek_u($v([50, 44])) }}; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 {{ ek_u(1.5) }} var(--tk-line-2); display: flex; align-items: center; justify-content: center">@if ($avatar)<img src="{{ $avatar }}" alt="" style="width: {{ ek_u($v([28, 24])) }}; height: auto">@endif</span>
                         <span style="display: flex; flex-direction: column; gap: {{ ek_u(2) }}"><span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([16, 15])) }}, 0.8125rem)">{{ ucfirst($by) }}</span><span style="font-size: max({{ ek_u($v([15, 14])) }}, 0.8125rem); color: var(--tk-muted)">{{ $meta }}</span></span>
@@ -73,8 +73,8 @@
                 </div>
                 <div data-m="ah-cover" style="position: relative; margin-top: {{ ek_u($v([82, 36])) }}; height: {{ ek_u($v([540, 300])) }}; border-radius: {{ ek_u($v([30, 24])) }}; overflow: hidden; background: var(--tk-dark-4)">
                     @if ($drawing)
-                        {{-- Phones: the drawing at 42 %, the brochure and phone in view. --}}
-                        <div style="position: absolute; left: {{ $mob ? ek_u(-76) : 0 }}; top: {{ $mob ? ek_u(36) : 0 }}; width: {{ ek_u(1248) }}; height: {{ ek_u(540) }}; {{ $mob ? 'transform: scale(0.42); transform-origin: 0 0' : '' }}">
+                        {{-- Phones: the drawing at 42 %, the brochure and phone in view. Artwork: its words are hidden from screen readers. --}}
+                        <div aria-hidden="true" style="position: absolute; left: {{ $mob ? ek_u(-76) : 0 }}; top: {{ $mob ? ek_u(36) : 0 }}; width: {{ ek_x(1248) }}; height: {{ ek_u(540) }}; {{ $mob ? 'transform: scale(0.42); transform-origin: 0 0' : '' }}">
                             @include('frontend.sections.ekdanta.partials.article-drawing', ['d' => $d, 'mob' => $mob])
                         </div>
                     @else

@@ -31,9 +31,9 @@
     $wa = str_replace('{service}', $lower, (string) ($d['button_link'] ?? ''));
 @endphp
 <div class="ek ek-service-hero" id="{{ $d['anchor'] ?: 'v-top' }}" style="--hero-fg: {{ $fg }}; --hero-line: {{ $line }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $button = 'height: '.ek_u($v([56, 46])).'; box-sizing: border-box; display: inline-flex; align-items: center; border-radius: 999px; font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u($v([16, 15])).', 0.8125rem); text-decoration: none'.($mob ? '; justify-content: center' : '');
             $label = 'font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u(12).', 0.75rem); letter-spacing: 0.1em';
@@ -43,10 +43,10 @@
                 <div class="ek-art">
                     <div aria-hidden="true" style="position: absolute; left: {{ ek_u($v([760, -10])) }}; top: {{ ek_u($v([60, 380])) }}; width: {{ ek_u($v([700, 410])) }}; height: {{ ek_u($v([700, 410])) }}; border-radius: 999px; background: radial-gradient(circle, {{ $glow }}, rgba(0,0,0,0) 65%)"></div>
 
-                    <div data-m="sv-text" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([132, 84])) }}; width: {{ ek_u($v([640, 342])) }}">
+                    <div data-m="sv-text" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([132, 84])) }}; width: {{ ek_x($v([640, 342])) }}">
                         <p data-m="sv-crumb" style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([15, 13])) }}, 0.8125rem); opacity: 0.75"><a href="{{ link_href($d['crumb_home_link'] ?? '/services') }}" style="text-decoration: none">{{ $t['crumb_home'] }}</a><span aria-hidden="true">  ›  </span>{{ $service->title }}</p>
                         <h1 style="margin: {{ ek_u($v([16, 10])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v($titleSize)) }}, 0.8125rem); line-height: 1; letter-spacing: -0.05em"><span style="display: block; overflow: hidden; padding-bottom: {{ ek_u($v([8, 4])) }}"><span data-m="sv-title" style="display: block">{{ $service->title }}</span></span></h1>
-                        <p data-m="sv-promise" style="margin: {{ ek_u($v([24, 12])) }} 0 0; {{ $mob ? '' : 'width: '.ek_u(580).';' }} font-size: max({{ ek_u($v([21, 16])) }}, 0.8125rem); line-height: 1.5; opacity: 0.88">{{ $service->get('promise') }}</p>
+                        <p data-m="sv-promise" style="margin: {{ ek_u($v([24, 12])) }} 0 0; {{ $mob ? '' : 'width: '.ek_x(580).';' }} font-size: max({{ ek_u($v([21, 16])) }}, 0.8125rem); line-height: 1.5; opacity: 0.88">{{ $service->get('promise') }}</p>
                         @if ($goodFor)
                             <div data-m="sv-good-for" style="margin-top: {{ ek_u($v([24, 14])) }}; display: flex; align-items: center; gap: {{ ek_u($v([10, 8])) }}; flex-wrap: wrap">
                                 <span class="ek-sv-label" style="{{ $label }}; margin-right: {{ ek_u(4) }}">{{ $t['good_for_label'] }}</span>
@@ -63,7 +63,7 @@
                         </div>
                     </div>
 
-                    <div aria-hidden="true" data-m="sv-scene" style="position: absolute; left: {{ ek_u($v([790, 55])) }}; top: {{ ek_u($v([130, 498])) }}; width: {{ ek_u($v([560, 280])) }}; height: {{ ek_u($v([560, 280])) }}">
+                    <div aria-hidden="true" data-m="sv-scene" style="position: absolute; left: {{ ek_x($v([790, 55])) }}; top: {{ ek_u($v([130, 498])) }}; width: {{ ek_u($v([560, 280])) }}; height: {{ ek_u($v([560, 280])) }}">
                         <div style="position: absolute; left: 0; top: 0; width: {{ ek_u(560) }}; height: {{ ek_u(560) }}; {{ $mob ? 'transform: scale(0.5); transform-origin: 0 0' : '' }}">
                             @include('frontend.sections.ekdanta.service-scenes.'.$scene)
                         </div>

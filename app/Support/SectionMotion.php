@@ -35,6 +35,13 @@ final class SectionMotion
 {
     public const DEVICES = ['desktop', 'tablet', 'mobile'];
 
+    /** The three screen sizes (the same in ekdanta.scss, frontend.scss and motion/index.js). */
+    public const MEDIA = [
+        'desktop' => '(min-width: 992px) and (orientation: landscape), (min-width: 992px) and (min-height: 1366.02px)',
+        'tablet' => '(min-width: 768px) and (max-width: 991.98px), (min-width: 768px) and (orientation: portrait) and (max-height: 1366px)',
+        'mobile' => '(max-width: 767.98px)',
+    ];
+
     public const TRIGGERS = [
         'scrub' => 'Tied to scrolling',
         'enter' => 'When it scrolls into view',
@@ -519,7 +526,6 @@ final class SectionMotion
         $config = [];
         $css = '';
         $lengths = [];
-        $media = ['desktop' => '(min-width: 992px)', 'tablet' => '(min-width: 768px) and (max-width: 991.98px)', 'mobile' => '(max-width: 767.98px)'];
 
         foreach (self::effective($section) as $device => $effective) {
             $out = [];
@@ -565,7 +571,7 @@ final class SectionMotion
             // the script (or a timeout) lifts it: see .ek-revealed / .ek-reveal.
             if ($hidden !== []) {
                 $scope = 'html.js-enabled:not(.ek-reveal):not([data-motion="off"]) #gsm-s'.$section->id.':not(.ek-revealed)';
-                $css .= '@media (prefers-reduced-motion: no-preference) and '.$media[$device].'{'
+                $css .= '@media (prefers-reduced-motion: no-preference) and '.self::MEDIA[$device].'{'
                     .implode(',', array_map(fn ($sel) => trim($scope.' '.$sel), array_unique($hidden))).'{opacity:0}}';
             }
 

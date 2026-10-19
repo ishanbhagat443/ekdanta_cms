@@ -18,9 +18,9 @@
     $mail = '<path d="M3 6h18v12H3z"></path><path d="M3 7l9 6 9-6"></path>';
 @endphp
 <div class="ek ek-next-steps" id="{{ $d['anchor'] ?: 't-next' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $gap = $v([322.67, 160]);
         @endphp

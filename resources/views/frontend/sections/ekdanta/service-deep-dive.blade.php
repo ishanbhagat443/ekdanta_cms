@@ -13,9 +13,9 @@
     $total = $groups->count();
 @endphp
 <div class="ek ek-service-deep-dive" id="{{ $d['anchor'] ?: 's-deep' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $wipe = $v([[1078, 440], [195, 420]]);
         @endphp

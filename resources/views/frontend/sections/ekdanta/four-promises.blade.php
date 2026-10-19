@@ -23,21 +23,21 @@
     ];
 @endphp
 <div class="ek ek-four-promises" id="{{ $d['anchor'] ?: 'a-values' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: #FFFFFF">
                 <div class="ek-art">
-                    <div data-m="vl-head" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([124, 84])) }}; width: {{ ek_u($v([560, 342])) }}">
+                    <div data-m="vl-head" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([124, 84])) }}; width: {{ ek_x($v([560, 342])) }}">
                         <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
                         <h2 style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([64, 36])) }}, 0.8125rem); line-height: 1.02; letter-spacing: -0.045em">{{ $t['heading'] }}</h2>
                         <p style="margin: {{ ek_u($v([14, 8])) }} 0 0; font-size: max({{ ek_u($v([19, 15])) }}, 0.8125rem); line-height: 1.5; color: var(--tk-muted)">{{ $t['text'] }}</p>
                     </div>
 
-                    <div data-m="vl-tabs" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([400, 532])) }}; width: {{ ek_u($v([520, 342])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([6, 2])) }}">
+                    <div data-m="vl-tabs" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([400, 532])) }}; width: {{ ek_x($v([520, 342])) }}; display: flex; flex-direction: column; gap: {{ ek_u($v([6, 2])) }}">
                         @foreach ($promises as $i => $promise)
                             <button type="button" class="ek-promise-tab {{ $i === 0 ? 'is-active' : '' }}" data-ek-step="{{ $i }}" style="--i: {{ $i }}; position: relative; display: flex; align-items: center; gap: {{ ek_u($v([16, 12])) }}; height: {{ ek_u($v([60, 46])) }}; padding: 0 0 0 {{ ek_u($v([22, 18])) }}; border: 0; background: none; text-align: left; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([22, 17])) }}, 0.8125rem); letter-spacing: -0.02em">
                                 <span aria-hidden="true" class="ek-promise-bar" style="position: absolute; left: 0; top: {{ ek_u($v([12, 9])) }}; width: {{ ek_u(4) }}; height: {{ ek_u($v([36, 28])) }}; border-radius: {{ ek_u(2) }}; background: var(--tk-green)"></span>
@@ -46,10 +46,10 @@
                         @endforeach
                     </div>
 
-                    <div data-m="vl-prism" style="position: absolute; left: {{ ek_u($v([760, 27])) }}; top: {{ ek_u($v([220, 258])) }}; width: {{ ek_u($v([560, 336])) }}; height: {{ ek_u($v([360, 216])) }}">
-                        <div style="position: absolute; left: 0; top: 0; width: {{ ek_u(560) }}; height: {{ ek_u(360) }}; {{ $mob ? 'transform: scale(0.6); transform-origin: 0 0' : '' }}">
-                            <div aria-hidden="true" style="position: absolute; left: {{ ek_u(60) }}; right: {{ ek_u(60) }}; top: {{ ek_u(420) }}; height: {{ ek_u(30) }}; border-radius: 999px; background: radial-gradient(ellipse, rgba(13,20,16,0.22), rgba(13,20,16,0) 70%)"></div>
-                            <div data-m="vl-bob" style="position: absolute; left: 0; top: 0; width: {{ ek_u(560) }}; height: {{ ek_u(360) }}; perspective: {{ ek_u(1800) }}">
+                    <div data-m="vl-prism" style="position: absolute; left: {{ ek_x($v([760, 27])) }}; top: {{ ek_u($v([220, 258])) }}; width: {{ ek_x($v([560, 336])) }}; height: {{ ek_u($v([360, 216])) }}">
+                        <div style="position: absolute; left: 0; top: 0; width: {{ ek_x(560) }}; height: {{ ek_u(360) }}; {{ $mob ? 'transform: scale(0.6); transform-origin: 0 0' : '' }}">
+                            <div aria-hidden="true" style="position: absolute; left: {{ ek_x(60) }}; right: {{ ek_x(60) }}; top: {{ ek_u(420) }}; height: {{ ek_u(30) }}; border-radius: 999px; background: radial-gradient(ellipse, rgba(13,20,16,0.22), rgba(13,20,16,0) 70%)"></div>
+                            <div data-m="vl-bob" style="position: absolute; left: 0; top: 0; width: {{ ek_x(560) }}; height: {{ ek_u(360) }}; perspective: {{ ek_u(1800) }}">
                                 <div class="ek-promise-block" style="position: absolute; inset: 0; transform-style: preserve-3d">
                                     @foreach ($promises as $i => $promise)
                                         @php [$bg, $fg, $tile] = $colours[$promise['colour'] ?? 'green'] ?? $colours['green']; @endphp
@@ -68,7 +68,7 @@
                         </div>
                     </div>
 
-                    <p aria-hidden="true" data-m="vl-hint" style="position: absolute; left: {{ ek_u($v([760, 24])) }}; width: {{ ek_u($v([560, 342])) }}; top: {{ ek_u($v([680, 742])) }}; margin: 0; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: max({{ ek_u($v([15, 13])) }}, 0.8125rem); color: var(--tk-muted)">{{ $t['hint'] }}</p>
+                    <p aria-hidden="true" data-m="vl-hint" style="position: absolute; left: {{ ek_x($v([760, 24])) }}; width: {{ ek_x($v([560, 342])) }}; top: {{ ek_u($v([680, 742])) }}; margin: 0; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: max({{ ek_u($v([15, 13])) }}, 0.8125rem); color: var(--tk-muted)">{{ $t['hint'] }}</p>
                 </div>
             </div>
         </div>

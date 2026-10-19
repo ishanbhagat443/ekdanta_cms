@@ -550,8 +550,9 @@
 // Keep Reading: phones scroll the cards sideways.
 .ek-kr-row::-webkit-scrollbar { display: none; }
 
-// ── Phones and tablets (no design): the rail stacks above the text ─────
-@media (max-width: 991.98px) {
+// ── Phones and tablets: the rail stacks above the text ─────────────────
+// (tablet: 768–991 wide, or held upright up to 1366 tall, as in ekdanta.scss)
+@media (max-width: 991.98px), (min-width: 768px) and (orientation: portrait) and (max-height: 1366px) {
     .ek-ab {
         --u: min(100cqw / 390, 100svh / 844);
         display: block;
@@ -570,7 +571,7 @@
         font-size: fs(17);
         > p:first-child { font-size: fs(19); }
         > p:first-child::first-letter { font-size: fs(68); margin: u(6) u(10) 0 0; }
-        > h2 { margin: u(48) 0 u(14); font-size: fs(28); }
+        > h2 { margin: u(48) 0 u(14); font-size: fs(28); scroll-margin-top: 120px; } // under the reading bar
     }
 
     .ek-b-journey__track, .ek-b-journey__fill, .ek-b-journey__dot { display: none; }
@@ -617,8 +618,18 @@
     .ek-lb-kv dt { font-size: fs(15); }
     .ek-lb-kv dd { font-size: fs(17); }
 }
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .ek-ab { --u: min(100cqw / 390, 100svh / 844, 1.35px); }
+// Tablets, as the Blog-Post tablet-portrait board: a 724 px column on 820 wide (48 px
+// margins), type about 1.15 times the phone's, the steps in one row, reel ideas two by two.
+@media (min-width: 768px) and (max-width: 991.98px), (min-width: 768px) and (orientation: portrait) and (max-height: 1366px) {
+    .ek-ab { --u: calc(100cqw / 820 * 1.15); padding-left: calc(100cqw * 48 / 820); padding-right: calc(100cqw * 48 / 820); }
+    .ek-b-journey__steps li { width: 25%; }
+    .ek-b-reel { width: calc(50% - #{u(7)}); }
+    .ek-b-figure__frame { height: u(383); }
+    .ek-ab__now-wrap { top: 94px; } // 8 px under the tablet header (frontend.scss .gsm-header-pill)
+    .ek-ab-text > h2 { scroll-margin-top: 140px; }
+    // Legal (Privacy and Terms tablet boards): the contents in two columns, terms beside their meaning.
+    .ek-ab--legal .ek-ab__toc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: u(28); }
+    .ek-lb-kv > div { grid-template-columns: u(209) 1fr; gap: u(21); }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -367,6 +367,18 @@ if (! function_exists('ek_u')) {
     }
 }
 
+if (! function_exists('ek_x')) {
+    /**
+     * Ekdanta views: a horizontal position or column width in design px. As
+     * ek_u(), except on an upright tablet in a widened section (.ek-tw), where
+     * the phone layout spreads to the screen's width (--ux).
+     */
+    function ek_x(int|float|string $n): string
+    {
+        return "calc({$n} * var(--ux, var(--u)))";
+    }
+}
+
 if (! function_exists('business_text')) {
     /**
      * Contact details from Settings → Business inside a text: {phone:1}

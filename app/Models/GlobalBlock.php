@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class GlobalBlock extends Model
 {
+    use Concerns\HasDeviceData;
+
     public const STATUS_ACTIVE = 'active';
 
     public const STATUS_DRAFT = 'draft';
@@ -132,21 +134,6 @@ class GlobalBlock extends Model
     public function scopeFavorites(Builder $query): Builder
     {
         return $query->where('is_favorite', true);
-    }
-
-    /** Same inheritance rule as Section::dataFor() — tablet/mobile are sparse overrides. */
-    public function dataFor(string $device): array
-    {
-        $desktop = (array) ($this->data_desktop ?? []);
-
-        if ($device === 'desktop') {
-            return $desktop;
-        }
-
-        $overrides = (array) ($this->{'data_'.$device} ?? []);
-        $overrides = array_filter($overrides, fn ($v) => $v !== null && $v !== '');
-
-        return array_replace($desktop, $overrides);
     }
 
     public function styleValue(string $key, mixed $default = null): mixed

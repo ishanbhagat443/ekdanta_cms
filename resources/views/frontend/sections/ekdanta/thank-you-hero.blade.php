@@ -10,9 +10,9 @@
     $chat = '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"></path>';
 @endphp
 <div class="ek ek-thank-you-hero" id="{{ $d['anchor'] ?: 't-top' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $size = $v([128, 112]);
             $chip = 'height: '.ek_u($v([56, 44])).'; box-sizing: border-box; padding: 0 '.ek_u($v([18, 14])).' 0 '.ek_u($v([8, 6])).'; display: inline-flex; align-items: center; gap: '.ek_u($v([10, 8])).'; border-radius: 999px; background: #FFFFFF; box-shadow: 0 '.ek_u($v([18, 14])).' '.ek_u($v([40, 30])).' '.ek_u($v([-22, -18])).' rgba(13,20,16,0.45), inset 0 0 0 '.ek_u(1).' #E3E8E0; font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u($v([15, 13])).', 0.8125rem); white-space: nowrap';
@@ -22,8 +22,8 @@
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: #FFFFFF">
                 <div class="ek-art">
-                    <div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(var(--tk-line-2) {{ ek_u($v([1.4, 1.3])) }}, transparent {{ ek_u($v([1.4, 1.3])) }}); background-size: {{ ek_u($v([28, 24])) }} {{ ek_u($v([28, 24])) }}; -webkit-mask-image: radial-gradient(ellipse {{ $v(['60% 55% at 50% 40%', '80% 45% at 50% 28%']) }}, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse {{ $v(['60% 55% at 50% 40%', '80% 45% at 50% 28%']) }}, #000 20%, transparent 75%)"></div>
-                    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(ellipse {{ $v(['45% 40% at 50% 30%', '70% 35% at 50% 26%']) }}, rgba(46,180,93,{{ $v([0.12, 0.13]) }}), transparent 70%)"></div>
+                    <div data-ek-fit="S" aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(var(--tk-line-2) {{ ek_u($v([1.4, 1.3])) }}, transparent {{ ek_u($v([1.4, 1.3])) }}); background-size: {{ ek_u($v([28, 24])) }} {{ ek_u($v([28, 24])) }}; -webkit-mask-image: radial-gradient(ellipse {{ $v(['60% 55% at 50% 40%', '80% 45% at 50% 28%']) }}, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse {{ $v(['60% 55% at 50% 40%', '80% 45% at 50% 28%']) }}, #000 20%, transparent 75%)"></div>
+                    <div data-ek-fit="S" aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(ellipse {{ $v(['45% 40% at 50% 30%', '70% 35% at 50% 26%']) }}, rgba(46,180,93,{{ $v([0.12, 0.13]) }}), transparent 70%)"></div>
 
                     <div aria-hidden="true" data-m="ty-waves" style="position: absolute; left: {{ ek_u($v([656, 139])) }}; top: {{ ek_u($v([196, 166])) }}; width: {{ ek_u($size) }}; height: {{ ek_u($size) }}">
                         @for ($i = 0; $i < 3; $i++)

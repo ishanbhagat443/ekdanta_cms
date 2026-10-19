@@ -189,16 +189,11 @@ class MenuItem extends Model
     {
         $devices = $this->visible_devices;
 
-        if (empty($devices) || count($devices) === 3) {
+        if (empty($devices)) {
             return '';
         }
 
-        $classes = [];
-        $classes[] = in_array('mobile', $devices, true) ? 'd-block' : 'd-none';
-        $classes[] = in_array('tablet', $devices, true) ? 'd-md-block' : 'd-md-none';
-        $classes[] = in_array('desktop', $devices, true) ? 'd-lg-block' : 'd-lg-none';
-
-        return implode(' ', $classes);
+        return Section::displayClasses(in_array('mobile', $devices, true), in_array('tablet', $devices, true), in_array('desktop', $devices, true));
     }
 
     public function badgeClass(): string

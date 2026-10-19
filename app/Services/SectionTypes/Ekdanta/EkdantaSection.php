@@ -25,9 +25,31 @@ abstract class EkdantaSection extends PageSectionType
     /** @return list<array<string, mixed>> */
     abstract protected function content(): array;
 
+    /**
+     * Sections of the nine pages with a tablet design (About, Work, Blog,
+     * Case study, Service detail, Blog article, 404, Privacy, Terms) and the
+     * Big Brand Finale: on an upright tablet the phone layout widens to a
+     * 724 px column. Home, Services, Contact and Thank you keep the phone
+     * layout, larger and centred.
+     */
+    private const TABLET_WIDE = [
+        'about-hero', 'our-story', 'four-promises', 'team-roll-call', 'who-we-work-with',
+        'work-hero', 'case-studies-scroller', 'reels-arc', 'client-logo-wall',
+        'case-hero', 'case-overview', 'case-gallery', 'case-results', 'next-case',
+        'service-hero', 'whats-included', 'how-it-works', 'related-work', 'service-pricing-faq', 'works-well-with',
+        'blog-hero', 'featured-article', 'article-grid', 'whatsapp-tips', 'article-hero', 'article-body', 'keep-reading',
+        'not-found-hero', 'page-finder', 'report-link',
+        'legal-hero', 'legal-short', 'legal-body', 'legal-questions', 'finale',
+    ];
+
     public function key(): string
     {
         return 'ekdanta-'.$this->slug();
+    }
+
+    public function tabletWide(): bool
+    {
+        return in_array($this->slug(), self::TABLET_WIDE, true);
     }
 
     public function group(): string

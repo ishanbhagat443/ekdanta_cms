@@ -20,9 +20,9 @@
     $mark = media_ref($d['mark'] ?? null);
 @endphp
 <div class="ek ek-contact-channels" id="{{ $d['anchor'] ?: 'c-channels' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $button = 'height: '.ek_u($v([54, 46])).'; box-sizing: border-box; display: inline-flex; align-items: center; border-radius: 999px; font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u($v([16, 14])).', 0.8125rem); text-decoration: none';
         @endphp

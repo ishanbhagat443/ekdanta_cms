@@ -33,7 +33,7 @@
     @for $n from 1 through 8 {
         .ek-comp:has(.ek-ch-card:nth-child(#{$n}).is-active) .ek-ch-dots > span:nth-child(#{$n}) { background: var(--tk-green) !important; }
         .ek-comp--d:has(.ek-ch-card:nth-child(#{$n}).is-active) .ek-ch-dots > span:nth-child(#{$n}) { height: calc(34 * var(--u)) !important; }
-        .ek-comp--m:has(.ek-ch-card:nth-child(#{$n}).is-active) .ek-ch-dots > span:nth-child(#{$n}) { width: calc(26 * var(--u)) !important; }
+        :is(.ek-comp--m, .ek-comp--t):has(.ek-ch-card:nth-child(#{$n}).is-active) .ek-ch-dots > span:nth-child(#{$n}) { width: calc(26 * var(--u)) !important; }
     }
 }
 

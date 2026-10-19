@@ -151,8 +151,8 @@ class KnownBugsRegressionTest extends TestCase
         // Default: links in the header on desktop, menu button elsewhere.
         app(LayoutService::class)->flushCache();
         $this->get('/')->assertOk()
-            ->assertSee('gsm-site-header__nav d-none d-md-none d-lg-flex', false)
-            ->assertSee('gsm-main-menu d-inline-flex d-md-inline-flex d-lg-none', false);
+            ->assertSee('gsm-site-header__nav d-none d-md-none d-lg-flex gsm-t-none', false)
+            ->assertSee('gsm-main-menu d-inline-flex d-md-inline-flex d-lg-none gsm-t-inline-flex', false);
 
         $this->actingAs($this->superAdmin())->put('/cms/header-builder', [
             'nav_style' => ['desktop' => 'inline', 'tablet' => 'inline', 'mobile' => 'overlay'],

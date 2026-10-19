@@ -20,16 +20,16 @@
 @endphp
 <div class="ek ek-page-finder" id="{{ $d['anchor'] ?: 'n-routes' }}">
     <script type="application/json" data-finder-index>@json(\App\Services\SectionTypes\Ekdanta\PageFinderSection::index())</script>
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $lines = array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $t['heading']))));
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: #FFFFFF">
                 <div class="ek-art">
-                    <div data-m="nf-head" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([112, 84])) }}; {{ $mob ? 'width: '.ek_u(342) : '' }}">
+                    <div data-m="nf-head" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([112, 84])) }}; {{ $mob ? 'width: '.ek_x(342) : '' }}">
                         <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: var(--tk-green-text-sm)">{{ $t['eyebrow'] }}</span>
                         <h2 style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([58, 31])) }}, 0.8125rem); line-height: {{ $v([1.02, 1.04]) }}; letter-spacing: -0.05em">{!! $mob ? e(implode(' ', $lines)) : implode('<br>', array_map('e', $lines)) !!}</h2>
                     </div>
@@ -40,12 +40,12 @@
                             [$vb, $attrs, $paths] = $icons[$card['icon'] ?? 'home'] ?? $icons['home'];
                             $about = ($card['icon'] ?? '') === 'about';
                             $place = $mob
-                                ? 'left: '.ek_u([24, 201][$i % 2]).'; top: '.ek_u(290 + intdiv($i, 2) * 160).'; width: '.ek_u(165).'; height: '.ek_u(148).'; padding: '.ek_u(14).'; border-radius: '.ek_u(20)
-                                : 'left: '.ek_u([96, 520, 944][$i % 3]).'; top: '.ek_u(330 + intdiv($i, 3) * 254).'; width: '.ek_u(400).'; height: '.ek_u(230).'; padding: '.ek_u(26).' '.ek_u(28).'; border-radius: '.ek_u(26);
+                                ? 'left: '.ek_x([24, 201][$i % 2]).'; top: '.ek_u(290 + intdiv($i, 2) * 160).'; width: '.ek_x(165).'; height: '.ek_u(148).'; padding: '.ek_u(14).'; border-radius: '.ek_u(20)
+                                : 'left: '.ek_x([96, 520, 944][$i % 3]).'; top: '.ek_u(330 + intdiv($i, 3) * 254).'; width: '.ek_x(400).'; height: '.ek_u(230).'; padding: '.ek_u(26).' '.ek_u(28).'; border-radius: '.ek_u(26);
                         @endphp
                         <a data-m="nf-card-{{ $i }}" href="{{ link_href($card['link'] ?? '') }}" style="position: absolute; {{ $place }}; box-sizing: border-box; background: {{ $green ? 'var(--tk-green)' : 'var(--tk-paper)' }}; color: var(--tk-ink); text-decoration: none; display: flex; flex-direction: column">
                             <span aria-hidden="true" style="display: flex; align-items: center; justify-content: space-between">
-                                <span style="width: {{ ek_u($v([60, 44])) }}; height: {{ ek_u($v([60, 44])) }}; border-radius: {{ ek_u($v([18, 14])) }}; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 {{ ek_u(1) }} #E3E8E0"><svg viewBox="{{ $vb }}" {!! $attrs !!} style="width: {{ ek_u($about ? $v([32, 26]) : $v([30, 24])) }}; height: {{ ek_u($v([30, 24])) }}; overflow: visible">{!! $paths !!}</svg></span>
+                                <span style="width: {{ ek_u($v([60, 44])) }}; height: {{ ek_u($v([60, 44])) }}; border-radius: {{ ek_u($v([18, 14])) }}; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 {{ ek_u(1) }} #E3E8E0"><svg viewBox="{{ $vb }}" {!! $attrs !!} style="width: {{ ek_x($about ? $v([32, 26]) : $v([30, 24])) }}; height: {{ ek_u($v([30, 24])) }}; overflow: visible">{!! $paths !!}</svg></span>
                                 <span style="width: {{ ek_u($v([44, 32])) }}; height: {{ ek_u($v([44, 32])) }}; border-radius: 999px; background: {{ $green ? 'var(--tk-ink)' : '#FFFFFF' }}; color: {{ $green ? '#FFFFFF' : 'var(--tk-ink)' }}; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width: {{ ek_u($v([16, 14])) }}; height: {{ ek_u($v([16, 14])) }}">{!! $arrow !!}</svg></span>
                             </span>
                             <span style="margin-top: auto; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([28, 19])) }}, 0.8125rem); letter-spacing: -0.035em">{{ $card['title'] }}</span>
@@ -56,7 +56,7 @@
                     <div role="search" data-m="nf-search" data-finder hidden
                          data-one="{{ $d['count_one'] }}" data-many="{{ $d['count_many'] }}" data-none="{{ $d['count_none'] }}"
                          data-kind-page="{{ $d['kind_page'] }}" data-kind-service="{{ $d['kind_service'] }}" data-kind-article="{{ $d['kind_article'] }}"
-                         style="position: absolute; left: {{ ek_u($v([864, 24])) }}; top: {{ ek_u($v([150, 210])) }}; width: {{ ek_u($v([480, 342])) }}; z-index: 5">
+                         style="position: absolute; left: {{ ek_x($v([864, 24])) }}; top: {{ ek_u($v([150, 210])) }}; width: {{ ek_x($v([480, 342])) }}; z-index: 5">
                         <label class="ek-finder-field" style="height: {{ ek_u($v([64, 56])) }}; box-sizing: border-box; padding: 0 {{ ek_u($v([10, 6])) }} 0 {{ ek_u($v([22, 18])) }}; border-radius: 999px; background: var(--tk-paper); display: flex; align-items: center; gap: {{ ek_u($v([12, 10])) }}">
                             <svg viewBox="0 0 24 24" fill="none" stroke="#56605A" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" style="width: {{ ek_u($v([20, 18])) }}; height: {{ ek_u($v([20, 18])) }}; flex: none">{!! $glass !!}</svg>
                             <input type="search" aria-label="{{ $d['search_label'] }}" placeholder="{{ $t['placeholder'] }}" autocomplete="off" style="flex: 1; min-width: 0; height: {{ ek_u($v([48, 44])) }}; border: 0; background: none; font-size: max({{ ek_u($v([17, 16])) }}, 0.8125rem); color: var(--tk-ink)">

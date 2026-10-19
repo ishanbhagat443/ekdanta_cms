@@ -16,9 +16,9 @@
     $handset = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path>';
 @endphp
 <div class="ek ek-save-our-number" id="{{ $d['anchor'] ?: 't-save' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $button = '<a class="ek-press" href="'.e(route('front.vcard')).'" download="Ekdanta.vcf" style="'.($mob ? 'position: absolute; left: '.ek_u(24).'; right: '.ek_u(24).'; top: '.ek_u(762).'; height: '.ek_u(52).'; justify-content: center; display: flex;' : 'margin-top: '.ek_u(30).'; height: '.ek_u(56).'; padding: 0 '.ek_u(24).'; display: inline-flex;').' box-sizing: border-box; align-items: center; gap: '.ek_u(10).'; background: var(--tk-green); color: var(--tk-ink); border-radius: 999px; font-family: \'Poppins\', sans-serif; font-weight: 600; font-size: max('.ek_u($v([16, 15])).', 0.8125rem); text-decoration: none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: '.ek_u(18).'; height: '.ek_u(18).'"><circle cx="9" cy="8" r="4"></circle><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"></path><path d="M19 8v6M16 11h6"></path></svg>'.e($t['button_label']).'</a>';
             [$pw, $ph, $pb, $pr] = $v([[310, 640, 11, 48], [166, 312, 7, 30]]);
@@ -26,7 +26,7 @@
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: var(--tk-ink); color: #FFFFFF">
                 <div class="ek-art">
-                    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(ellipse {{ $v(['40% 60% at 72% 50%', '60% 35% at 70% 52%']) }}, rgba(46,180,93,0.22), transparent 70%)"></div>
+                    <div data-ek-fit="S" aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(ellipse {{ $v(['40% 60% at 72% 50%', '60% 35% at 70% 52%']) }}, rgba(46,180,93,0.22), transparent 70%)"></div>
 
                     <div style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([150, 84])) }}; width: {{ ek_u($v([640, 342])) }}">
                         <div data-m="sv-head">

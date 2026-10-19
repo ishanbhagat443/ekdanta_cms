@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Section extends Model
 {
+    use Concerns\HasDeviceData;
+
     protected $fillable = [
         'type',
         'name',
@@ -79,18 +81,18 @@ class Section extends Model
         return business_tokens($this->dataFor($device));
     }
 
-    public function dataFor(string $device): array
+    /**
+     * The compositions an Ekdanta view draws: desktop and phone, plus a
+     * tablet one only when the tablet's values differ from the phone's
+     * (otherwise tablets show the phone composition).
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    public function comps(array $desktop, array $mobile): array
     {
-        $desktop = (array) ($this->data_desktop ?? []);
+        $same = $this->dataFor('tablet') === $this->dataFor('mobile');
 
-        if ($device === 'desktop') {
-            return $desktop;
-        }
-
-        $overrides = (array) ($this->{'data_'.$device} ?? []);
-        $overrides = array_filter($overrides, fn ($v) => $v !== null && $v !== '');
-
-        return array_replace($desktop, $overrides);
+        return ['desktop' => $desktop, 'mobile' => $mobile] + ($same ? [] : ['tablet' => $this->viewData('tablet')]);
     }
 
     /**
@@ -166,7 +168,8 @@ class Section extends Model
 
     /**
      * Bootstrap classes that show an element only on the given devices
-     * (mobile < 768 px, tablet < 992 px, desktop above). Empty when shown
+     * (mobile < 768 px, tablet < 992 px, desktop above), plus gsm-t-* for
+     * tablets 992 px and wider held upright (frontend.scss). Empty when shown
      * everywhere; $display is the value used where it is shown.
      */
     public static function displayClasses(bool $mobile, bool $tablet, bool $desktop, string $display = 'block'): string
@@ -175,10 +178,11 @@ class Section extends Model
             return '';
         }
 
-        return implode(' ', [
+        return implode(' ', array_filter([
             $mobile ? "d-{$display}" : 'd-none',
             $tablet ? "d-md-{$display}" : 'd-md-none',
             $desktop ? "d-lg-{$display}" : 'd-lg-none',
-        ]);
+            $tablet !== $desktop ? ($tablet ? "gsm-t-{$display}" : 'gsm-t-none') : null,
+        ]));
     }
 }

@@ -11,23 +11,23 @@
     $arrow = '<path d="M5 12h14M13 6l6 6-6 6"></path>';
 @endphp
 <div class="ek ek-team-roll-call" id="{{ $d['anchor'] ?: 'a-team' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
         @endphp
         <div class="ek-comp ek-comp--{{ $comp[0] }}" data-ek-comp="{{ $comp }}">
             <div class="ek-stage" data-ek-stage style="background: var(--tk-green-deep); color: #FFFFFF">
                 <div class="ek-art">
-                    <div data-m="tm-head" style="position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([112, 84])) }}; {{ $mob ? 'width: '.ek_u(342) : '' }}">
+                    <div data-m="tm-head" style="position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([112, 84])) }}; {{ $mob ? 'width: '.ek_x(342) : '' }}">
                         <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: max({{ ek_u($v([14, 12])) }}, {{ $v(['0.8125rem', '0.75rem']) }}); letter-spacing: 0.12em; color: var(--tk-mint)">{{ $t['eyebrow'] }}</span>
                         <h2 style="margin: {{ ek_u($v([8, 4])) }} 0 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: max({{ ek_u($v([60, 36])) }}, 0.8125rem); line-height: 1.02; letter-spacing: -0.045em">{{ $t['heading'] }}</h2>
                     </div>
-                    <p data-m="tm-text" style="position: absolute; {{ $mob ? 'left: '.ek_u(24).'; top: '.ek_u(198) : 'right: '.ek_u(96).'; top: '.ek_u(140) }}; width: {{ ek_u($v([420, 342])) }}; margin: 0; font-size: max({{ ek_u($v([19, 15])) }}, 0.8125rem); line-height: 1.5; color: var(--tk-mint-2)">{{ $t['text'] }}</p>
+                    <p data-m="tm-text" style="position: absolute; {{ $mob ? 'left: '.ek_x(24).'; top: '.ek_u(198) : 'right: '.ek_x(96).'; top: '.ek_u(140) }}; width: {{ ek_x($v([420, 342])) }}; margin: 0; font-size: max({{ ek_u($v([19, 15])) }}, 0.8125rem); line-height: 1.5; color: var(--tk-mint-2)">{{ $t['text'] }}</p>
 
                     <ol data-m="tm-bands" style="list-style: none; margin: 0; padding: 0">
                         @foreach ($roles as $i => $role)
-                            <li class="ek-team-band" data-m="tm-band-{{ $i % 2 ? 'odd' : 'even' }}" style="--i: {{ $i }}; position: absolute; left: {{ ek_u($v([96, 24])) }}; top: {{ ek_u($v([270 + $i * 78, 276 + $i * 72])) }}; width: {{ ek_u($v([1248, 342])) }}; height: {{ ek_u($v([64, 62])) }}; box-sizing: border-box; padding: 0 {{ ek_u($v([12, 8])) }} 0 {{ ek_u($v([28, 18])) }}; border-radius: 999px; display: flex; align-items: center; gap: {{ ek_u($v([18, 12])) }}">
+                            <li class="ek-team-band" data-m="tm-band-{{ $i % 2 ? 'odd' : 'even' }}" style="--i: {{ $i }}; position: absolute; left: {{ ek_x($v([96, 24])) }}; top: {{ ek_u($v([270 + $i * 78, 276 + $i * 72])) }}; width: {{ ek_x($v([1248, 342])) }}; height: {{ ek_u($v([64, 62])) }}; box-sizing: border-box; padding: 0 {{ ek_u($v([12, 8])) }} 0 {{ ek_u($v([28, 18])) }}; border-radius: 999px; display: flex; align-items: center; gap: {{ ek_u($v([18, 12])) }}">
                                 <span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: max({{ ek_u($v([14, 12])) }}, 0.75rem); letter-spacing: 0.06em; opacity: 0.85">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>
                                 @if ($mob)
                                     <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: {{ ek_u(1) }}">

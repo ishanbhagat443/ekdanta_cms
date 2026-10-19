@@ -102,7 +102,7 @@
                         @if ($device !== 'desktop')
                             <p class="text-muted small mb-2">
                                 <i class="fas fa-info-circle mr-1"></i>
-                                Only device-overridable fields are shown. Empty = inherits desktop.
+                                Only fields that can change per screen are shown. An empty field uses {{ $device === 'tablet' ? 'the Mobile value, then the Desktop value' : 'the Desktop value' }}.
                             </p>
                         @endif
 
@@ -113,10 +113,12 @@
                                        class="form-control form-control-sm" {{ $device !== 'desktop' ? 'disabled' : '' }}>
                             </div>
 
+                            @php [$own, $inherited] = $section->ownAndInherited($device); @endphp
                             @foreach ($type->fields() as $field)
                                 @include('admin.builder.partials.field', [
                                     'field' => $field,
-                                    'value' => $section->dataFor($device)[$field['key']] ?? null,
+                                    'value' => $own[$field['key']] ?? null,
+                                    'inherited' => $inherited[$field['key']] ?? null,
                                     'device' => $device,
                                     'sectionId' => $sid,
                                     'menus' => $menus,

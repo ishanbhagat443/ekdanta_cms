@@ -11,9 +11,9 @@
     $n = max(1, $reels->count());
 @endphp
 <div class="ek ek-reels-carousel" id="{{ $d['anchor'] ?: 'j-reels' }}">
-    @foreach (['desktop' => $d, 'mobile' => $m] as $comp => $t)
+    @foreach ($section->comps($d, $m) as $comp => $t)
         @php
-            $mob = $comp === 'mobile';
+            $mob = $comp !== 'desktop';
             $v = fn (array $pair) => $mob ? $pair[1] : $pair[0];
             $cols = $mob ? 3 : 5;
         @endphp

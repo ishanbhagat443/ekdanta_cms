@@ -29,8 +29,8 @@
     @endif
     @if ($desktopMedia)
         @if ($tabletMedia || $mobileMedia)
-            <img src="{{ $desktopMedia->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-lg-inline-block">
-            <img src="{{ ($tabletMedia ?? $desktopMedia)->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-md-inline-block d-lg-none">
+            <img src="{{ $desktopMedia->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-lg-inline-block gsm-t-none">
+            <img src="{{ ($tabletMedia ?? $desktopMedia)->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark d-none d-md-inline-block d-lg-none gsm-t-inline-block">
             <img src="{{ ($mobileMedia ?? $tabletMedia ?? $desktopMedia)->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark d-inline-block d-md-none">
         @else
             <img src="{{ $desktopMedia->web_url }}" alt="{{ $alt }}" class="gsm-logo-dark">
