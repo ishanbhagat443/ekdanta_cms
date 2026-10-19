@@ -44,13 +44,14 @@
     -webkit-font-smoothing: antialiased;
 
     a { color: inherit; }
+}
 
-    // Approved focus ring: orange outline with an ink halo (MASTER.md).
-    :focus-visible {
-        outline: 3px solid var(--tk-orange);
-        outline-offset: 3px;
-        box-shadow: 0 0 0 8px var(--tk-ink);
-    }
+// Approved focus ring: orange outline with an ink halo (MASTER.md), in the sections and
+// on the site's own header and full-screen menu.
+:is(.ek, .gsm-site-header, .gsm-nav-overlay) :focus-visible {
+    outline: 3px solid var(--tk-orange);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 8px var(--tk-ink);
 }
 
 // Buttons sink a little while pressed (design: .press).

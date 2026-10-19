@@ -33,6 +33,19 @@ export function compOf(el, device) {
         || el.querySelector(`[data-ek-comp="${device === 'tablet' ? 'mobile' : device}"]`) || el;
 }
 
+const DRAWN = { opacity: 1, scale: 1, scaleX: 1, scaleY: 1 }; // any other property: 0
+
+/**
+ * A scroll track that starts from the part as drawn and ends away from it
+ * (it fades, moves or turns the part out): the part is whole before it.
+ * One that ends at the drawn state brings the part in.
+ */
+export function leaves(track) {
+    const props = Object.entries(track.keyframes || {}).filter(([k]) => !k.startsWith('$'));
+    const drawn = (k, v) => parseFloat(v) === (DRAWN[k] ?? 0);
+    return props.length > 0 && props.every(([k, v]) => Array.isArray(v) && drawn(k, v[0])) && props.some(([k, v]) => !drawn(k, v[v.length - 1]));
+}
+
 /** Design px → screen px, for plain numbers on length properties. */
 export function scaleKeyframes(value, u, key = '') {
     if (Array.isArray(value)) return value.map((v) => scaleKeyframes(v, u, key));
@@ -121,6 +134,7 @@ export class Scene {
         this.pinned = !!config.stage?.pin && (!env.reduced || !!config.steps || stepping);
         this.switches = []; // reduced motion, reduce: 'step': { anim, at, on }
         this.focusEnd = new Map(); // element → px where its scrub tracks are done (D9)
+        this.focusBefore = new Map(); // element → px where it starts to leave
         this.timeline = null;
         this.origin = 0;
         this.timed = []; // { track, anim, targets, run }
@@ -196,7 +210,9 @@ export class Scene {
                 } else {
                     tl.add(els, { ...this.params(t), duration: span, ease: easeOf(t.ease), delay: each ? stagger(each) : 0 }, at);
                 }
-                els.forEach((e, i) => this.focusEnd.set(e, Math.max(this.focusEnd.get(e) ?? -Infinity, t.range[1] + i * each)));
+                els.forEach((e, i) => (leaves(t)
+                    ? this.focusBefore.set(e, Math.min(this.focusBefore.get(e) ?? Infinity, t.range[0] + i * each))
+                    : this.focusEnd.set(e, Math.max(this.focusEnd.get(e) ?? -Infinity, t.range[1] + i * each))));
             }
             // A child renders its start state only once the playhead has
             // passed it, so run to the end and back now (same frame, no paint).

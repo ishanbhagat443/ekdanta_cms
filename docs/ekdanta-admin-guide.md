@@ -135,6 +135,8 @@ On the thank-you page, Page settings → **Conversion tags** takes the Meta Pixe
 
 ## Quick checks before publishing
 
-- Preview at 1440 × 900 and 390 × 844, then with *Reduce motion* on.
+- Preview at 1440 × 900 and 390 × 844, then with *Reduce motion* on. Then a tablet held upright (820 × 1180) and a small phone (360 × 640): text a phone shows at its minimum size must wrap, not run off the screen.
+- Press Tab through the page: every link and button shows the orange ring and scrolls into view.
+- Privacy Policy and Terms of Service are published, and no `[Add …]` placeholder is left in them.
 - Replace every `[ … ]` placeholder.
 - The home, 404 and thank-you pages have their role, and the three template pages their *Template for*.

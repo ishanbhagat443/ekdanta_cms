@@ -137,13 +137,15 @@ function refresh() {
     syncPauseButtons();
 }
 
+// 'instant', not 'auto': Bootstrap sets scroll-behavior: smooth, which 'auto' follows, and a
+// smooth scroll from a focus handler loses to the browser's own scroll to the focused element.
 function scrollToPx(scene, px, instant = false) {
-    window.scrollTo({ top: scene.top + px * scene.scale, behavior: instant || isReduced() ? 'auto' : 'smooth' });
+    window.scrollTo({ top: scene.top + px * scene.scale, behavior: instant || isReduced() ? 'instant' : 'smooth' });
 }
 
 function scrollToProgress(el, p, { instant = false } = {}) {
     const scene = scenes.get(el);
-    if (scene) window.scrollTo({ top: scene.top + p * scene.travel, behavior: instant || isReduced() ? 'auto' : 'smooth' });
+    if (scene) window.scrollTo({ top: scene.top + p * scene.travel, behavior: instant || isReduced() ? 'instant' : 'smooth' });
 }
 
 /** Design px where step i is fully in place. */
@@ -226,16 +228,23 @@ function boot() {
     document.addEventListener('focusin', (e) => {
         const el = e.target.closest('[data-ek-motion]');
         const scene = el && scenes.get(el);
-        if (!scene?.pinned) return;
+        if (!scene) return;
+        // Scroll to where the focused part is in and has not started to leave; in a pinned
+        // section, also where its stage is on the screen (0 … length).
         let need = -Infinity;
+        let before = Infinity;
         for (let n = e.target; n && n !== el.parentElement; n = n.parentElement) {
             if (scene.focusEnd.has(n)) need = Math.max(need, scene.focusEnd.get(n));
+            if (scene.focusBefore.has(n)) before = Math.min(before, scene.focusBefore.get(n));
         }
         const st = scene.config.steps;
         const part = st && scene.root.querySelector(`[data-m="${st.part}"]`);
         const item = part && [...part.children].findIndex((c) => c.contains(e.target));
         if (item >= 0 && item !== scene.state.index) need = Math.max(need, stepPx(st, item, part.children.length));
-        if (need > scene.state.px) scrollToPx(scene, need, true);
+        const now = (window.scrollY - scene.top) / scene.scale; // state.px rests while a scene is off screen
+        const [lo, hi] = scene.pinned ? [0, scene.length] : [-Infinity, Infinity];
+        const px = Math.min(Math.max(now, need, lo), before, hi);
+        if (Math.abs(px - now) > 0.5) scrollToPx(scene, px, true);
     });
 
     // Builder preview: the Motion tab's scroll slider and play button.

@@ -2338,7 +2338,7 @@ $gsm-cta-gradient: linear-gradient(90deg, #0b0f19 2%, #111827 19%, #4b5563 50%, 
 
     .gsm-menu-toggle,
     .gsm-menu-toggle:hover,
-    .gsm-menu-toggle:focus-visible { background: var(--gsm-header-text, #111827); color: #fff; outline-color: var(--gsm-header-text, #111827); }
+    .gsm-menu-toggle:focus-visible { background: var(--gsm-header-text, #111827); color: #fff; }
 
     // Tablets (tablet-portrait boards): a taller pill; the button comes first and goes dark
     // beside the green WhatsApp one; 52 px buttons, 8 px apart.

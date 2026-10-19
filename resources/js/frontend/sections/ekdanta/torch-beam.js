@@ -38,6 +38,13 @@ export default function torchBeam(el, { reduced, config, root }) {
         raf = draw() < p.openSeconds + 0.9 ? requestAnimationFrame(intro) : 0;
     };
 
+    // Keyboard: focus landing in the hero ends the intro at once, so the buttons it reaches show.
+    const finish = () => {
+        t0 = Math.min(t0, performance.now() - (p.openSeconds + 1) * 1000);
+        draw();
+    };
+    el.addEventListener('focusin', finish);
+
     return {
         update(state) {
             y = state.px;
@@ -51,6 +58,7 @@ export default function torchBeam(el, { reduced, config, root }) {
         },
         destroy() {
             cancelAnimationFrame(raf);
+            el.removeEventListener('focusin', finish);
         },
     };
 }

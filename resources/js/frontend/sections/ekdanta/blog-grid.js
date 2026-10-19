@@ -55,7 +55,7 @@ export default function initBlogGrids() {
             e.preventDefault();
             state.query = input?.value || '';
             update();
-            anchor?.scrollIntoView({ behavior: calm() ? 'auto' : 'smooth' });
+            anchor?.scrollIntoView({ behavior: calm() ? 'instant' : 'smooth' }); // 'auto' would follow Bootstrap's smooth scrolling
         });
     });
 }

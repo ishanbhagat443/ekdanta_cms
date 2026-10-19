@@ -247,11 +247,6 @@ class EkdantaSiteSeeder extends Seeder
     }
 
     /**
-     * "Ekdanta Brief" (Contact → Brief Builder): four steps of chips and
-     * contact details, hidden fields for the page and campaign, saved as an
-     * enquiry, then WhatsApp with the answers and the thank-you page.
-     */
-    /**
      * Fields added to a section type after its sections were built (the brief's
      * hints, the finale's footer links, …): each existing Ekdanta section and
      * saved block gains the default of every key it lacks, and the phone
@@ -274,12 +269,22 @@ class EkdantaSiteSeeder extends Seeder
             return ['data_desktop' => $desktop + $missing] + ($mobile === [] ? [] : ['data_mobile' => (array) $row->data_mobile + $mobile]);
         };
 
-        GlobalBlock::query()->where('type', 'like', 'ekdanta-%')->each(function (GlobalBlock $block) use ($fill): void {
+        $this->fillEkdanta(fn ($q) => $q->where('type', 'like', 'ekdanta-%'), $fill);
+    }
+
+    /**
+     * Apply $fill (row => attributes to set, or null) to every saved block
+     * the query matches, versioned and pushed to its synced copies, and to
+     * every section that isn't such a copy.
+     */
+    private function fillEkdanta(\Closure $where, \Closure $fill): void
+    {
+        $where(GlobalBlock::query())->each(function (GlobalBlock $block) use ($fill): void {
             if ($data = $fill($block)) {
                 app(GlobalBlockService::class)->update($block, $data, validate: false);
             }
         });
-        Section::query()->where('type', 'like', 'ekdanta-%')->where(fn ($q) => $q->whereNull('global_block_id')->orWhere('is_synced', false))
+        $where(Section::query())->where(fn ($q) => $q->whereNull('global_block_id')->orWhere('is_synced', false))
             ->each(function (Section $section) use ($fill): void {
                 if ($data = $fill($section)) {
                     $section->update($data);
@@ -296,33 +301,20 @@ class EkdantaSiteSeeder extends Seeder
     public function founderPhotos(): void
     {
         $keys = ['ekdanta/founder-vaishali-hirpara', 'ekdanta/founder-dishant-bhagat'];
-        $fill = function (array $data, string $type) use ($keys): ?array {
-            $before = $data;
-            if ($type === 'ekdanta-our-story') {
+        $this->fillEkdanta(fn ($q) => $q->whereIn('type', ['ekdanta-our-story', 'ekdanta-founders-story']), function ($row) use ($keys): ?array {
+            $data = $before = (array) $row->data_desktop;
+            if ($row->type === 'ekdanta-our-story') {
                 foreach ([1, 2] as $n) {
                     $data["founder_{$n}_photo"] = ($data["founder_{$n}_photo"] ?? null) ?: $keys[$n - 1];
                 }
             } else {
-                foreach (array_slice((array) ($data['photos'] ?? []), 0, 2, true) as $i => $row) {
-                    $data['photos'][$i]['image'] = ($row['image'] ?? null) ?: $keys[$i];
+                foreach (array_slice((array) ($data['photos'] ?? []), 0, 2, true) as $i => $photo) {
+                    $data['photos'][$i]['image'] = ($photo['image'] ?? null) ?: $keys[$i];
                 }
             }
 
-            return $data === $before ? null : $data;
-        };
-        $types = ['ekdanta-our-story', 'ekdanta-founders-story'];
-        GlobalBlock::query()->whereIn('type', $types)->each(function (GlobalBlock $block) use ($fill): void {
-            if ($data = $fill((array) $block->data_desktop, $block->type)) {
-                app(GlobalBlockService::class)->update($block, ['data_desktop' => $data], validate: false);
-            }
+            return $data === $before ? null : ['data_desktop' => $data];
         });
-        Section::query()->whereIn('type', $types)->where(fn ($q) => $q->whereNull('global_block_id')->orWhere('is_synced', false))
-            ->each(function (Section $section) use ($fill): void {
-                if ($data = $fill((array) $section->data_desktop, $section->type)) {
-                    $section->update(['data_desktop' => $data]);
-                }
-            });
-        app(PageRenderService::class)->flushCache();
     }
 
     /**
@@ -342,10 +334,10 @@ class EkdantaSiteSeeder extends Seeder
             ->where(fn ($q) => $q->whereNull('alt')->orWhere('alt', ''))->update(['is_decorative' => true]);
     }
 
-    /** slug => [title, docs/ekdanta-content/legal file, anchor prefix]. */
+    /** slug (also its docs/ekdanta-content/legal file) => [title, anchor prefix]. */
     public const LEGAL_PAGES = [
-        'privacy-policy' => ['Privacy Policy', 'privacy-policy', 'l'],
-        'terms-of-service' => ['Terms of Service', 'terms-of-service', 't'],
+        'privacy-policy' => ['Privacy Policy', 'l'],
+        'terms-of-service' => ['Terms of Service', 't'],
     ];
 
     /**
@@ -360,11 +352,11 @@ class EkdantaSiteSeeder extends Seeder
         $finale = GlobalBlock::query()->where('slug', 'big-brand-finale')->first();
         $builder = app(SectionBuilderService::class);
 
-        foreach (self::LEGAL_PAGES as $slug => [$title, $file, $prefix]) {
+        foreach (self::LEGAL_PAGES as $slug => [$title, $prefix]) {
             $page = Page::query()->firstOrCreate(['slug' => $slug], ['title' => $title, 'status' => Page::STATUS_DRAFT]);
             if (! $page->sections()->exists()) {
                 $page->update(['show_banner' => false]); // the Legal Hero is the page's heading
-                foreach (LegalContent::sections($file, $prefix) as $type => $data) {
+                foreach (LegalContent::sections($slug, $prefix) as $type => $data) {
                     $section = $builder->addSection($page, 'page', $type);
                     $section->update(['data_desktop' => $data + (array) $section->data_desktop]);
                 }
@@ -374,7 +366,7 @@ class EkdantaSiteSeeder extends Seeder
             }
             $seo = $page->seoMeta()->firstOrNew();
             if (blank($seo->meta_title)) {
-                $seo->fill(['meta_title' => "{$title} | Ekdanta Branding and Marketing", 'meta_description' => $seo->meta_description ?: LegalContent::sections($file, $prefix)['ekdanta-legal-hero']['text']])->save();
+                $seo->fill(['meta_title' => "{$title} | Ekdanta Branding and Marketing", 'meta_description' => $seo->meta_description ?: LegalContent::sections($slug, $prefix)['ekdanta-legal-hero']['text']])->save();
             }
         }
         app(PageRenderService::class)->flushCache();
@@ -387,6 +379,11 @@ class EkdantaSiteSeeder extends Seeder
         'short_label' => 'I agree that Ekdanta can contact me about this brief.', 'short_note' => 'We only use them to reply.',
     ];
 
+    /**
+     * "Ekdanta Brief" (Contact → Brief Builder): four steps of chips and
+     * contact details, hidden fields for the page and campaign, saved as an
+     * enquiry, then WhatsApp with the answers and the thank-you page.
+     */
     public function briefForm(): void
     {
         if ($form = Form::query()->where('slug', 'ekdanta-brief')->first()) {

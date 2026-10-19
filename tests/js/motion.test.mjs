@@ -93,6 +93,8 @@ test('scrub tracks on one property hand over in scroll order', () => {
     assert.ok(Math.abs(at(500) - 0.6) < 1e-6);
     assert.ok(Math.abs(at(900) - 0.2) < 1e-6);
     assert.equal(at(-100), 0.5, 'scrolling back up reverses');
+    assert.equal(s.focusEnd.get(head), 0, 'keyboard focus: in from 0 …');
+    assert.equal(s.focusBefore.get(head), 400, '… until it starts to fade out');
 });
 
 test('scrub stagger is in scroll px, one child after another', () => {
@@ -187,4 +189,13 @@ test('older [data-anim] sections still animate, with a real spring', async () =>
     assert.ok(observed.includes(el));
     assert.equal(typeof window.EkMotion.get(el).progress, 'number');
     assert.equal(document.documentElement.classList.contains('ek-ready'), true);
+});
+
+test('a track that takes a part away from its drawn state leaves; one that brings it there enters', async () => {
+    const { leaves } = await import('../../resources/js/frontend/motion/scene.js');
+    assert.equal(leaves({ keyframes: { opacity: [1, 0] } }), true, 'fades out');
+    assert.equal(leaves({ keyframes: { translateY: [0, 120] } }), true, 'drifts away (parallax)');
+    assert.equal(leaves({ keyframes: { opacity: [0, 1] } }), false, 'fades in');
+    assert.equal(leaves({ keyframes: { translateY: ['60px', 0], opacity: [0, 1] } }), false, 'rises in');
+    assert.equal(leaves({ keyframes: { translateY: [40, -40] } }), false, 'neither: counted as bringing it in, as before');
 });

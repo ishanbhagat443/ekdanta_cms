@@ -15,6 +15,9 @@ use App\Services\SettingsService;
 use Database\Seeders\EkdantaSiteSeeder;
 use Database\Seeders\HeaderSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 /** `php artisan ekdanta:seed` sets up the site once and never overwrites what the admin changed. */
@@ -259,5 +262,29 @@ class EkdantaSeederTest extends TestCase
         $this->get('/')->assertOk()->assertSee('j-top', false);
         $this->get('/contact')->assertOk()->assertSee('c-brief', false);
         $this->get('/no-such-page')->assertNotFound()->assertSee('n-routes', false);
+    }
+
+    public function test_running_the_command_again_changes_nothing(): void
+    {
+        Storage::fake('public');
+        $this->artisan('ekdanta:seed', ['--with-pages' => true])->assertSuccessful();
+        $rows = $this->everyRow();
+        $files = Storage::disk('public')->allFiles();
+
+        $this->artisan('ekdanta:seed', ['--with-pages' => true])->assertSuccessful();
+
+        $this->assertNotEmpty($rows['sections']);
+        $this->assertNotEmpty($rows['media']);
+        $this->assertNotEmpty($files);
+        $this->assertEquals($rows, $this->everyRow(), 'no row added, changed or removed');
+        $this->assertSame($files, Storage::disk('public')->allFiles(), 'no file added');
+    }
+
+    /** Every table's rows, without their timestamps. */
+    private function everyRow(): array
+    {
+        $tables = collect(DB::select("select name from sqlite_master where type = 'table' and name not like 'sqlite_%'"))->pluck('name');
+
+        return $tables->mapWithKeys(fn ($t) => [$t => DB::table($t)->get()->map(fn ($r) => Arr::except((array) $r, ['created_at', 'updated_at']))->all()])->all();
     }
 }

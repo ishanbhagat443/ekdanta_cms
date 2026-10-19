@@ -1,7 +1,7 @@
 // Screenshots of every section of a page where it starts, a third and two thirds in,
 // and where it ends (the brief's Phase 6 positions), at one size.
 //   node tests/visual/sections.mjs <path> <name> <width>x<height> [--reduce]
-//   EK_ONLY=c-visit,c-faq: only those sections
+//   EK_ONLY=c-visit,c-faq: only those sections; EK_CONSENT=necessary: a cookie choice made (no bar)
 // Files: tests/visual/shots/sections/<name>-<section>-<n>.png
 import { chromium } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
@@ -17,7 +17,9 @@ const page = await browser.newPage({
     viewport: { width, height }, isMobile: width < 768, hasTouch: width < 768,
     reducedMotion: args.includes('--reduce') ? 'reduce' : 'no-preference',
 });
-await page.goto((process.env.EK_BASE || 'http://127.0.0.1:8001') + path, { waitUntil: 'networkidle' });
+const base = process.env.EK_BASE || 'http://127.0.0.1:8001';
+if (process.env.EK_CONSENT) await page.context().addCookies([{ name: 'cookie_consent', value: process.env.EK_CONSENT, url: base }]);
+await page.goto(base + path, { waitUntil: 'networkidle' });
 await page.waitForTimeout(2500);
 const sections = await page.evaluate(() => [...document.querySelectorAll('.gsm-section')].map((s) => {
     const top = s.getBoundingClientRect().top + scrollY;
