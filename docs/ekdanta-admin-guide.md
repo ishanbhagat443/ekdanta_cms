@@ -48,6 +48,8 @@ Which layout a screen gets:
 - **Tablet:** screens 768 to 991 px wide, and every tablet held upright (up to 1366 px tall, so a 1024 × 1366 iPad Pro too). Home, Services, Contact and Thank you show the phone layout, larger and centred. The other pages, and the Big Brand Finale, widen it to the screen.
 - **Phone:** screens up to 767 px wide.
 
+**The screen fit is built into the section engine.** On a screen that isn't shaped like 1440 × 900 (a 1536 × 735 laptop, a 1180 × 820 tablet held sideways), each part of a section keeps its place against the screen's left edge, right edge or centre, and full-screen layers (backgrounds, the Home beam, the reel wall, the services panels) reach the edges. No Theme Customizer code is needed: don't add the "Ekdanta screen fit, v2" snippet back. Which edge a part keeps to is set for each section type in code, not in the section editor. If a part sits in the wrong place, note the page, the screen size, the section and where the part should sit, for Claude Code.
+
 - Text in square brackets, such as `[Add office hours]`, is a placeholder for you to replace.
 - Pictures come from the Media Library.
 - A link field takes:

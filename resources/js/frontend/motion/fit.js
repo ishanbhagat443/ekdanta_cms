@@ -10,9 +10,8 @@
  *
  * The automatic rule sorts parts by where they sit; a section type lists
  * the parts it gets wrong (SectionType::fitParts → data-ek-fit-parts).
- * From the "Ekdanta screen fit, v2" Theme Customizer snippet
- * (docs/screen-fit-v2); while that snippet is still on a page it does the
- * fitting and this stands down.
+ * It replaced the "Ekdanta screen fit, v2" Theme Customizer snippet
+ * (docs/screen-fit-v2).
  */
 const SPLIT = 0.66; // a desktop part wider than 66 % of the frame keeps its whole section centred
 const MEDIA = /^(svg|img|video|canvas|picture)$/i;
@@ -163,7 +162,6 @@ function later() {
 }
 
 export default function initFit() {
-    if (window.EK_FIT_RUN) return; // ponytail: the Theme Customizer snippet still fits this page; drop this line with it
     ['resize', 'orientationchange', 'load', 'pageshow'].forEach((e) => addEventListener(e, later));
     window.visualViewport?.addEventListener('resize', later);
     document.fonts?.ready.then(later);
